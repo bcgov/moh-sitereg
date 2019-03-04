@@ -5,4 +5,5 @@ export * from './i-msp-register-state';
 export * from './i-msp-group-numbers';
 export * from './i-msp-signing-authority';
 export * from './i-msp-users';
+export * from './i-user';
 export * from './';
