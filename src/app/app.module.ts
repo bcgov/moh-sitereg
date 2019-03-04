@@ -17,7 +17,6 @@ import { SharedCoreModule } from 'moh-common-lib';
     AppRoutingModule,
     CoreModule,
     MspRegisterModule,
-    SharedCoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
