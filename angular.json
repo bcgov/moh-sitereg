@@ -30,6 +30,11 @@
               "src/styles.scss"
             ],
             "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/app/styles"
+              ]
+            },
             "es5BrowserSupport": true
           },
           "configurations": {
@@ -87,6 +92,11 @@
               "src/styles.scss"
             ],
             "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/app/styles"
+              ]
+            },
             "assets": [
               "src/favicon.ico",
               "src/assets"
