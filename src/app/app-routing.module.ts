@@ -8,10 +8,10 @@ const routes: Routes = [
     path: '',
     component: HomePageComponent,
     data: {title: 'Home'}
-  }, {
-    path: 'msp-register',
-    component: MspRegisterComponent,
-    data: {title: 'MSP Registration'}
+  },
+  {
+    path: 'msp-registration',
+    loadChildren: './modules/msp-register/msp-register.module#MspRegisterModule'
   }
 ];
 
