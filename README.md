@@ -3,7 +3,7 @@ To manage MSP Direct and Compap Registrations for the Ministry of Health for the
 
 sitereg used [angular-scaffold](https://github.com/bcgov/angular-scaffold) as it's starting off point.  The original angular-scaffold readme can be found in `angular-scaffold-readme.md`.
 
-## Setup 123
+## Setup
 
 ### Prerequisites
 
