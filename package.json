@@ -24,7 +24,7 @@
     "bootstrap": "^4.0.0",
     "core-js": "^2.5.4",
     "font-awesome": "^4.7.0",
-    "moh-common-lib": "0.0.7",
+    "moh-common-lib": "0.0.8",
     "moment": "^2.24.0",
     "mygovbc-bootstrap-theme": "^0.4.1",
     "ngx-bootstrap": "^3.2.0",

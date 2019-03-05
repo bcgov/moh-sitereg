@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Container} from 'moh-common-lib/models';
-import { subRoutes } from './msp-register-routing.module';
+import { Container } from 'moh-common-lib/models';
+import { subRoutes } from '@msp-register/models/sub-routes';
 
 @Component({
   selector: 'sitereg-msp-register',
