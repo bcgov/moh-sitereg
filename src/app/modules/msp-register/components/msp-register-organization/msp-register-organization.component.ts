@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'sitereg-msp-register-organization',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MspRegisterOrganizationComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
+  }
+
+  continue() {
+    this.router.navigate(['msp-registration/signing-authority']);
+    console.log('navigates');
   }
 
 }

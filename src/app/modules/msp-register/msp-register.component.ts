@@ -17,8 +17,4 @@ export class MspRegisterComponent extends Container implements OnInit {
   ngOnInit() {
   }
 
-  continue() {
-    console.log('continue clicked!');
-  }
-
 }
