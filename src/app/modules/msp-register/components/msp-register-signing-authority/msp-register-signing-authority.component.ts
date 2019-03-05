@@ -15,7 +15,7 @@ export class MspRegisterSigningAuthorityComponent implements OnInit {
   ngOnInit() {
   }
   continue() {
-    this.router.navigate(['signing-authority']);
+    this.router.navigate(['msp-register/signing-authority']);
     console.log('navigates');
   }
 }
