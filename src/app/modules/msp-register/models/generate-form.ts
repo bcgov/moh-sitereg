@@ -1,6 +1,7 @@
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { IMspOrganization, MSPValidForms } from '@msp-register/interfaces';
 type valueof<T> = T[keyof T];
+const ctrKeys = ['fb', 'gf', 'newFb'];
 
 interface IControls {
   name: string;
@@ -8,9 +9,8 @@ interface IControls {
 }
 
 const validKeys = [ 'string' ]
-// radios.items.map(item => item.toUpperCase());
 
-export class GenerateForm<T, K extends keyof T>  {
+export class GenerateForm<T>  {
   keys: string[];
 
   validateKeys([...args]): string[] {
@@ -20,7 +20,6 @@ export class GenerateForm<T, K extends keyof T>  {
 
    generateArr(keys: string[]): IControls[] {
     let arr = [];
-    console.log(keys);
     for (let key of keys) {
       arr = this.genControls(key, arr);
      }
@@ -32,7 +31,6 @@ export class GenerateForm<T, K extends keyof T>  {
 
       obj[itm.name] = itm.control;
     });
-    console.log('object', JSON.stringify(obj, null, 2));
     return obj as U;
   }
 
@@ -46,10 +44,11 @@ export class GenerateForm<T, K extends keyof T>  {
     private fb: FormBuilder,
   ) {
 
-    // this.keys = args.map(itm => {
-      // if(itm instanceof validKeys>) return itm
-    // })
   }
 
+  genKeys() {
+    const keys =  Object.keys(this).filter(key => !ctrKeys.includes(key));
 
+    return keys;
+  }
   }

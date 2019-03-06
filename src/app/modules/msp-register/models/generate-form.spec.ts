@@ -34,5 +34,6 @@ describe('GenerateForm', () => {
     const forms = gf.genForms<IMspOrganization>(arr);
     expect(forms).toBeDefined();
     expect(typeof forms.name === 'object').toBeTruthy();
+    expect(Object.keys(forms).length).toBe(8);
   });
 });
