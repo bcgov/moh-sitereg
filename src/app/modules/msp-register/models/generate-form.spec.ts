@@ -35,5 +35,6 @@ describe('GenerateForm', () => {
     expect(forms).toBeDefined();
     expect(typeof forms.name === 'object').toBeTruthy();
     expect(Object.keys(forms).length).toBe(8);
+    expect(Object.keys(forms).filter(itm => !data.includes(itm)).length).toBe(0);
   });
 });
