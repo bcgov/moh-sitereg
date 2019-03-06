@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MspRegisterSigningAuthorityComponent } from './msp-register-signing-authority.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { SharedModule } from '@shared/shared.module';
 
 describe('MspRegisterSigningAuthorityComponent', () => {
   let component: MspRegisterSigningAuthorityComponent;
@@ -8,6 +10,7 @@ describe('MspRegisterSigningAuthorityComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [RouterTestingModule, SharedModule],
       declarations: [ MspRegisterSigningAuthorityComponent ]
     })
     .compileComponents();

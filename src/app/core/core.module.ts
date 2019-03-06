@@ -13,7 +13,6 @@ import { SharedModule } from '@shared/shared.module';
   ],
   exports: [
   HomePageComponent,
-
-]
+  ]
 })
 export class CoreModule { }

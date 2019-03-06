@@ -5,7 +5,9 @@
     "types": [
       "jasmine",
       "node"
-    ]
+    ],
+    "typeRoots": [ "../node_modules/@types" ],
+    "skipLibCheck": true
   },
   "files": [
     "test.ts",

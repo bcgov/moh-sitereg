@@ -2,8 +2,6 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { IMspOrganization, MSPValidForms } from '@msp-register/interfaces';
 type valueof<T> = T[keyof T];
 
-type IValidKeys = string;
-
 interface IControls {
   name: string;
   control: FormControl;
@@ -13,19 +11,20 @@ const validKeys = [ 'string' ]
 // radios.items.map(item => item.toUpperCase());
 
 export class GenerateForm<T, K extends keyof T>  {
-  keys: IValidKeys[];
+  keys: string[];
 
-  validateKeys([...args]): IValidKeys[] {
-    const keys = args.filter(itm => validKeys.includes(itm)) as IValidKeys[];
+  validateKeys([...args]): string[] {
+    const keys = args.filter(itm => validKeys.includes(itm)) as string[];
     return keys;
   }
 
-   generateArr(keys: IValidKeys[], callback): IControls[] {
+   generateArr(keys: string[]): IControls[] {
     let arr = [];
-    for(let key of keys) {
+    console.log(keys);
+    for (let key of keys) {
       arr = this.genControls(key, arr);
      }
-     return arr;
+    return arr;
   }
   genForms<U>(arr: IControls[]): U {
     const obj = {};
