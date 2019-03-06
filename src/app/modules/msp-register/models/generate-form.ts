@@ -28,10 +28,11 @@ export class GenerateForm<T, K extends keyof T>  {
   }
   genForms<U>(arr: IControls[]): U {
     const obj = {};
-    arr.forEach((itm, arr, i) => {
+    arr.forEach((itm, array, i) => {
 
       obj[itm.name] = itm.control;
     });
+    console.log('object', JSON.stringify(obj, null, 2));
     return obj as U;
   }
 
