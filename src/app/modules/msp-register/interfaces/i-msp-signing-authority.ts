@@ -1,7 +1,8 @@
 import { IUser } from './i-user';
+import { FormControl } from '@angular/forms';
 
 export interface IMspSigningAuthority extends IUser {
-  directAccess: boolean;
-  alsoAdmin: string;
+  directAccess: boolean | FormControl;
+  alsoAdmin: string | FormControl;
 }
 
