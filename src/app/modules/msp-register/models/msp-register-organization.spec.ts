@@ -20,7 +20,7 @@ describe('MspRegisterOrganization', () => {
     expect(mro).toBeTruthy();
   });
   it('should generate an array of the objects values', () => {
-    const keys = mro.genKeys();
+    const keys = mro.genKeys;
     expect(keys).toBeDefined();
   })
 });

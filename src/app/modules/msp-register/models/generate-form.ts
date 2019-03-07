@@ -46,9 +46,8 @@ export class GenerateForm<T>  {
 
   }
 
-  genKeys() {
+  get genKeys() {
     const keys =  Object.keys(this).filter(key => !ctrKeys.includes(key));
-
     return keys;
   }
   }
