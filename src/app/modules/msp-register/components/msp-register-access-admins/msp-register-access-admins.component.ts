@@ -12,12 +12,16 @@ export class MspRegisterAccessAdminsComponent implements OnInit {
   fg: FormGroup;
 
   constructor(
-    private mspRegisterStateSvc: MspRegisterStateService,
+    public mspRegisterStateSvc: MspRegisterStateService,
   ) {
     this.fg = this.mspRegisterStateSvc.mspRegisterAccessAdminsForm;
   }
 
   ngOnInit() {
+  }
+
+  continue() {
+    console.log('continue clicked');
   }
 
 }

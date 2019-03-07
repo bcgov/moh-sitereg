@@ -8,13 +8,15 @@ import { MspRegisterStateService } from '@msp-register/services/msp-register-sta
   styleUrls: ['./msp-register-authorize.component.scss']
 })
 export class MspRegisterAuthorizeComponent implements OnInit {
-  private fg: FormGroup;
+  fg: FormGroup;
   constructor(
-    private mspRegisterStateSvc: MspRegisterStateService
+    public mspRegisterStateSvc: MspRegisterStateService
   ) { }
 
   ngOnInit() {
     this.fg = this.mspRegisterStateSvc.mspRegisterAuthorizeForm;
   }
-
+  continue() {
+    console.log('continue clicked');
+  }
 }

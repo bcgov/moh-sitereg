@@ -1,4 +1,4 @@
-<h2 class="border-bottom">Prime Account</h2>
+<h2 class="border-bottom">Register Access Admins</h2>
 <sitereg-page-sections *ngIf="fg">
 
   <form [formGroup]="fg">
@@ -8,60 +8,7 @@
       <div class="text-danger" *ngIf="fg.invalid">
         {{ fg.errors}}
       </div>
-      <label class="control-label" for="address">Street Address</label>
-      <input id="adddress" formControlName="address" class="form-control">
-      <div class="text-danger" *ngIf="fg.invalid">
-        {{ fg.errors}}
-      </div>
 
-      <label class="control-label" for="city">City</label>
-      <input id="city" formControlName="city" class="form-control">
-      <div class="text-danger" *ngIf="fg.invalid">
-        {{ fg.errors}}
-      </div>
-
-      <label class="control-label" for="city">Province</label>
-      <select class="form-control" *ngIf="provinces | async as provinces">
-        <option value="null" label="-- Select question --" selected></option>
-        <option *ngFor="let province of provinces " [value]="province.provCode">{{province.description}}</option>
-      </select>
-
-      <label class="control-label" for="postalCode">PostalCode</label>
-      <input id="postalCode" formControlName="postalCode" class="form-control">
-      <div class="text-danger" *ngIf="fg.invalid">
-        {{ fg.errors}}
-      </div>
-
-      <label class="control-label" for="thirdParty">Are you contracting a 3rd party to administer MSP direct on you
-        behalf?
-      </label>
-      <div class="radio-class">
-      <label for="thirdPartyTrue">Yes</label>
-      <input type="radio" id="thirdPartyTrue" formControlName="thirdParty" class="form-control">
-      <label for="thirdPartyFalse">No</label>
-      <input type="radio" id="thirdPartyFalse" formControlName="thirdParty" class="form-control">
-
-      <div class="text-danger" *ngIf="fg.invalid">
-        {{ fg.errors}}
-      </div>
-      </div>
-
-      <label class="control-label">Are you applying to access MSP Direct through Blue Cross?
-      </label>
-      <div class="radio-class">
-        <label for="blueCrossTrue">Yes</label>
-        <input type="radio" id="blueCrocssTrue" formControlName="blueCross" class="form-control" value="true">
-        <label for="blueCrossFalse">No</label>
-        <input type="radio" id="blueCrossFalse" formCocntrolName="blueCross" class="form-control" value="false" c>
-        <div class="text-danger" *ngIf="fg.invalid">
-          {{ fg.errors}}
-        </div>
-      </div>
-      <label class="control-label" for="city">This organization will be adminstering MSP for</label>
-      <select class="form-control" *ngIf="administeringFor | async as administering">
-        <option value="null" label="-- Select Province --" selected></option>
-        <option *ngFor="let a of administering " [value]="a">{{a}}</option>
-      </select>
     </div>
   </form>
 </sitereg-page-sections>

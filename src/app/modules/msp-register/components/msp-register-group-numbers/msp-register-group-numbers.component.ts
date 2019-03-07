@@ -10,12 +10,15 @@ import { MspRegisterStateService } from '@msp-register/services/msp-register-sta
 export class MspRegisterGroupNumbersComponent implements OnInit {
   fg: FormGroup;
   constructor(
-    private mspRegisterStateSvc: MspRegisterStateService,
+    public mspRegisterStateSvc: MspRegisterStateService,
   ) {
     this.fg = this.mspRegisterStateSvc.mspRegisterGroupNumbersForm;
   }
 
   ngOnInit() {
+  }
+  continue() {
+    console.log('continue clicked');
   }
 
 }
