@@ -7,6 +7,7 @@ import { CoreModule } from '@core/core.module';
 import { MspRegisterModule } from './modules/msp-register/msp-register.module';
 import { SharedCoreModule } from 'moh-common-lib';
 import { SharedModule } from '@shared/shared.module';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { SharedModule } from '@shared/shared.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
+
     CoreModule,
     SharedModule,
   ],
