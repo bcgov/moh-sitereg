@@ -1,0 +1,62 @@
+<form [formGroup]="fg">
+  <div class="form-group col-sm-6 p-sm-0">
+
+    <!-- Title (optional); multi-select -->
+
+    <!-- First Name -->
+    <label class="control-label" for="firstName">First Name</label>
+    <input id="firstName" formControlName="firstName" class="form-control">
+    <div class="text-danger" *ngIf="fg.invalid">
+      {{ fg.errors}}
+    </div>
+    <!-- Last Name -->
+    <label class="control-label" for="lastName">Last Name</label>
+    <input id="lastName" formControlName="lastName" class="form-control">
+    <div class="text-danger" *ngIf="fg.invalid">
+      {{ fg.errors}}
+    </div>
+    <!-- Int -->
+    <label class="control-label" for="initial">Organization</label>
+    <input id="initial" formControlName="initial" class="form-control">
+    <div class="text-danger" *ngIf="fg.invalid">
+      {{ fg.errors}}
+    </div>
+    <!-- Job Title -->
+    <label class="control-label" for="jobTitle">Job Title</label>
+    <input id="jobTitle" formControlName="jobTitle" class="form-control">
+    <div class="text-danger" *ngIf="fg.invalid">
+      {{ fg.errors}}
+    </div>
+    <!-- Email Address -->
+    <label class="control-label" for="emailAddress">Email Address</label>
+    <input id="emailAddress" formControlName="emailAddress" class="form-control">
+    <div class="text-danger" *ngIf="fg.invalid">
+      {{ fg.errors}}
+    </div>
+    <!-- Confirm Email Address -->
+    <!-- TODO: make this a validator -->
+    <label class="control-label" for="emailAddress">Email Address</label>
+    <input id="emailAddress" formControlName="emailAddress" class="form-control">
+    <div class="text-danger" *ngIf="fg.invalid">
+      {{ fg.errors}}
+    </div>
+    <!-- Phone -->
+    <label class="control-label" for="phone">Phone</label>
+    <input id="phone" formControlName="phone" class="form-control">
+    <div class="text-danger" *ngIf="fg.invalid">
+      {{ fg.errors}}
+    </div>
+    <!-- Ext (optional) -->
+    <label class="control-label" for="ext">Ext (optional)</label>
+    <input id="ext" formControlName="ext" class="form-control">
+    <div class="text-danger" *ngIf="fg.invalid">
+      {{ fg.errors}}
+    </div>
+    <!-- Fax -->
+    <label class="control-label" for="fax">Fax</label>
+    <input id="fax" formControlName="fax" class="form-control">
+    <div class="text-danger" *ngIf="fg.invalid">
+      {{ fg.errors}}
+    </div>
+  </div>
+</form>

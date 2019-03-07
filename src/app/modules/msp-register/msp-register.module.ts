@@ -10,6 +10,7 @@ import { MspRegisterAuthorizeComponent } from './components/msp-register-authori
 import { MspRegisterGroupNumbersComponent } from './components/msp-register-group-numbers/msp-register-group-numbers.component';
 import { MspRegisterSigningAuthorityComponent } from './components/msp-register-signing-authority/msp-register-signing-authority.component';
 import { MspRegisterUsersComponent } from './components/msp-register-users/msp-register-users.component';
+import { MspRegisterPersonComponent } from './components/msp-register-person/msp-register-person.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { MspRegisterUsersComponent } from './components/msp-register-users/msp-r
     MspRegisterAuthorizeComponent,
     MspRegisterGroupNumbersComponent,
     MspRegisterSigningAuthorityComponent,
-    MspRegisterUsersComponent
+    MspRegisterUsersComponent,
+    MspRegisterPersonComponent
   ],
   imports: [
     CommonModule,

@@ -17,5 +17,6 @@ export * from './i-msp-users';
 export * from './i-user';
 export * from './';
 
+
 // tslint:disable-next-line: max-line-length
 export type MSPValidForms = IMspAuthorize | IMspForm | IMspOrganization | IMspRegisterState | IMspGroupNumbers | IMspSigningAuthority | IMspUsers | IUser;

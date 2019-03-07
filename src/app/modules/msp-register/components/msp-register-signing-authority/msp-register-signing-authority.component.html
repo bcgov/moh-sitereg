@@ -1,13 +1,7 @@
 <h2 class="border-bottom">Signing Authority</h2>
 <sitereg-page-sections *ngIf="fg">
 
-  <form [formGroup]="fg">
-    <div class="form-group col-sm-6 p-sm-0">
-      <label class="control-label" for="name">Organization</label>
-      <input id="name" formControlName="name" class="form-control">
-      <div class="text-danger" *ngIf="fg.invalid">
-        {{ fg.errors}}
-      </div>
+<sitereg-msp-register-person (person)="updateFormData($event)"></sitereg-msp-register-person>
 <!-- Title (optional); multi-select -->
 
 <!-- First Name -->
@@ -21,8 +15,7 @@
 <!-- Does the Signing Authority require access to MSP Direct?; radio(yes/no) -->
 <!-- Will the Signing Authority also be performing the Access Administrator's function?; radio(yes/no) -->
 
-    </div>
-  </form>
+
 </sitereg-page-sections>
 <common-form-action-bar (btnClick)="continue()" [canContinue]="fg.valid">
 
