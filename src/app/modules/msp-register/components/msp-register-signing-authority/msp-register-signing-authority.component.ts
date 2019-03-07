@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormGroup } from '@angular/forms';
+import { MspRegisterStateService } from '@msp-register/services/msp-register-state.service';
 
 @Component({
   selector: 'sitereg-msp-register-signing-authority',
@@ -7,10 +9,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./msp-register-signing-authority.component.scss']
 })
 export class MspRegisterSigningAuthorityComponent implements OnInit {
+  fg: FormGroup;
 
   constructor(
-    private router: Router
-  ) { }
+    private router: Router,
+    private mspRegisterStateSvc: MspRegisterStateService,
+  ) {
+    this.fg = this.mspRegisterStateSvc.mspRegisterSigningAuthorityForm;
+  }
 
   ngOnInit() {
   }
