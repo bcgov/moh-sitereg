@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MspRegisterStateService } from '@msp-register/services/msp-register-state.service';
-
+// TODO: initialize componenet with an array of the formgroups and then use NGFor to dynamically render them and add them.
 @Component({
   selector: 'sitereg-msp-register-group-numbers',
   templateUrl: './msp-register-group-numbers.component.html',

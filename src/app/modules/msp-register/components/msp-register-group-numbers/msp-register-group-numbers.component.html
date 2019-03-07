@@ -1,5 +1,8 @@
+<!-- TODO: bit of thinking as to how to make the component work for this. -->
+
 <h2 class="border-bottom">Group Numbers</h2>
 <sitereg-page-sections *ngIf="fg">
+  <!-- button; Add Group Number -->
 
   <form [formGroup]="fg">
     <div class="form-group col-sm-6 p-sm-0">
@@ -8,7 +11,7 @@
       <div class="text-danger" *ngIf="fg.invalid">
         {{ fg.errors}}
       </div>
-
+      <!-- MSP Gropu Number; input -->
     </div>
   </form>
 </sitereg-page-sections>
