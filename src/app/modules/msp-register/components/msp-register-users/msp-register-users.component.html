@@ -1,13 +1,10 @@
-<h2 class="border-bottom">Signing Authority</h2>
+<h2 class="border-bottom">Users</h2>
 <sitereg-page-sections *ngIf="fg">
 
   <form [formGroup]="fg">
     <div class="form-group col-sm-6 p-sm-0">
-      <label class="control-label" for="name">Organization</label>
-      <input id="name" formControlName="name" class="form-control">
-      <div class="text-danger" *ngIf="fg.invalid">
-        {{ fg.errors}}
-      </div>
+      <sitereg-msp-register-person [fg]="fg"></sitereg-msp-register-person>
+
 <!-- Title (optional); multi-select -->
 
 <!-- First Name -->
