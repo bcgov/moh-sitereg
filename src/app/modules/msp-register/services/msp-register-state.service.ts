@@ -37,6 +37,7 @@ export class MspRegisterStateService {
     this.mspRegisterGroupNumbersForm = this.createMspRegisterGroupNumbersForm(gf, fb);
     this.mspRegisterUsersForm = this.createMspRegisterUsersForm(gf, fb);
     this.mspRegisterAuthorizeForm = this.createMspRegisterAuthorizeForm(gf, fb);
+    this.mspRegisterOrganizationForm.valueChanges.subscribe(obs => console.log(obs));
   }
 
   createMspRegisterOrganizationForm(gf: GenerateForm<any>, fb: FormBuilder) {

@@ -1,7 +1,6 @@
 <h2 class="border-bottom">Users</h2>
 <sitereg-page-sections *ngIf="fg">
 
-  <form [formGroup]="fg">
       <sitereg-msp-register-person [fg]="fg"></sitereg-msp-register-person>
 
 <!-- Title (optional); multi-select -->
@@ -17,7 +16,6 @@
 <!-- Does the Signing Authority require access to MSP Direct?; multi-select(yes/no) -->
 
 
-  </form>
 </sitereg-page-sections>
 <common-form-action-bar (btnClick)="continue()" [canContinue]="fg.valid">
 

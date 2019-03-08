@@ -1,12 +1,23 @@
 <h2 class="border-bottom">Signing Authority</h2>
 <sitereg-page-sections *ngIf="fg">
 
-<sitereg-msp-register-person [fg]="fg"></sitereg-msp-register-person>
+  <sitereg-msp-register-person [fg]="fg"></sitereg-msp-register-person>
 
-<!-- Does the Signing Authority require access to MSP Direct?; radio(yes/no) -->
-<!-- Will the Signing Authority also be performing the Access Administrator's function?; radio(yes/no) -->
+  <!-- Does the Signing Authority require access to MSP Direct?; radio(yes/no) -->
+  <!-- Will the Signing Authority also be performing the Access Administrator's function?; radio(yes/no) -->
+  <form [formGroup]="fg">
+    <div class="form-group col-sm-8 p-sm-0">
 
-
+      <input class='form-check-input' formControlName="alsoAdmin" type="radio" name="" id="aatruev" [checked]="fg.controls['alsoAdmin']" tabindex="0" [value]="true">
+      <label class='form-check-label' for="aatrue">
+        Yes
+      </label>
+      <input class='form-check-input' formControlName="alsoAdmin" type="radio" id="aafalse" [checked]="!fg.controls['alsoAdmin']" tabindex="0" [value]="false">
+      <label class='form-check-label' for="aafalse">
+        No
+      </label>
+    </div>
+  </form>
 </sitereg-page-sections>
 <common-form-action-bar (btnClick)="continue()" [canContinue]="fg.valid">
 

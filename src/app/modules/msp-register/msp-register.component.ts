@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Container } from 'moh-common-lib/models';
 import { subRoutes } from '@msp-register/models/sub-routes';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'sitereg-msp-register',
@@ -9,12 +10,14 @@ import { subRoutes } from '@msp-register/models/sub-routes';
 })
 export class MspRegisterComponent extends Container implements OnInit {
 
-  constructor() {
+  constructor(private router: Router) {
     super();
     this.setProgressSteps( subRoutes );
+
   }
 
   ngOnInit() {
+    this.router.navigate(['msp-registration/organization']);
   }
 
 }
