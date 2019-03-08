@@ -11,4 +11,4 @@ export interface IUser {
   ext?: string | FormControl;
   fax: string | FormControl;
 }
-type UserTitle = 'mr' | 'mrs';
+export type UserTitle = 'mr' | 'mrs';

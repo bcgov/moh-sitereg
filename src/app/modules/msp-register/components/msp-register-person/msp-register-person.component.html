@@ -2,7 +2,11 @@
   <div class="form-group col-sm-6 p-sm-0">
 
     <!-- Title (optional); multi-select -->
-
+    <label class="control-label" for="userTitle">Title (optional)</label>
+    <select class="form-control" *ngIf="userTitles">
+      <option value="null" label="" selected></option>
+      <option *ngFor="let title of userTitles " [value]="title">{{title}}</option>
+    </select>
     <!-- First Name -->
     <label class="control-label" for="firstName">First Name</label>
     <input id="firstName" formControlName="firstName" class="form-control">

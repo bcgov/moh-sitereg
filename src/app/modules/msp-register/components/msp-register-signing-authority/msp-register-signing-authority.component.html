@@ -1,7 +1,7 @@
 <h2 class="border-bottom">Signing Authority</h2>
 <sitereg-page-sections *ngIf="fg">
 
-<sitereg-msp-register-person (person)="updateFormData($event)"></sitereg-msp-register-person>
+<sitereg-msp-register-person (person)="updateFormData($event)" [formData]="fg"></sitereg-msp-register-person>
 <!-- Title (optional); multi-select -->
 
 <!-- First Name -->
