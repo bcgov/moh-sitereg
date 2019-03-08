@@ -1,17 +1,22 @@
 <form [formGroup]="fg">
-  <div class="form-group col-sm-6 p-sm-0">
-
+  <div class="form-group col-sm-8 p-sm-0">
     <!-- Title (optional); multi-select -->
-    <label class="control-label" for="userTitle">Title (optional)</label>
-    <select class="form-control" *ngIf="userTitles">
-      <option value="null" label="" selected></option>
-      <option *ngFor="let title of userTitles " [value]="title">{{title}}</option>
-    </select>
-    <!-- First Name -->
-    <label class="control-label" for="firstName">First Name</label>
-    <input id="firstName" formControlName="firstName" class="form-control">
-    <div class="text-danger" *ngIf="fg.invalid">
-      {{ fg.errors}}
+    <div class="row">
+      <div class="col-sm-4">
+        <label class="control-label" for="userTitle">Title (optional)</label>
+        <select class="form-control" *ngIf="userTitles">
+          <option value="null" label="" selected></option>
+          <option *ngFor="let title of userTitles " [value]="title">{{title}}</option>
+        </select>
+      </div>
+      <!-- First Name -->
+      <div class="col-sm-8">
+        <label class="control-label" for="firstName">First Name</label>
+        <input id="firstName" formControlName="firstName" class="form-control">
+        <div class="text-danger" *ngIf="fg.invalid">
+          {{ fg.errors}}
+        </div>
+      </div>
     </div>
     <!-- Last Name -->
     <label class="control-label" for="lastName">Last Name</label>
@@ -39,23 +44,29 @@
     </div>
     <!-- Confirm Email Address -->
     <!-- TODO: make this a validator -->
-    <label class="control-label" for="emailAddress">Email Address</label>
+    <label class="control-label" for="emailAddress">Confirm Email Address</label>
     <input id="emailAddress" formControlName="emailAddress" class="form-control">
     <div class="text-danger" *ngIf="fg.invalid">
       {{ fg.errors}}
     </div>
     <!-- Phone -->
+    <div class="row">
+      <div class="col-sm-8">
     <label class="control-label" for="phone">Phone</label>
     <input id="phone" formControlName="phone" class="form-control">
     <div class="text-danger" *ngIf="fg.invalid">
       {{ fg.errors}}
     </div>
+    </div>
     <!-- Ext (optional) -->
+    <div class="col-sm-4">
     <label class="control-label" for="ext">Ext (optional)</label>
     <input id="ext" formControlName="ext" class="form-control">
     <div class="text-danger" *ngIf="fg.invalid">
       {{ fg.errors}}
     </div>
+  </div>
+  </div>
     <!-- Fax -->
     <label class="control-label" for="fax">Fax</label>
     <input id="fax" formControlName="fax" class="form-control">
