@@ -4,7 +4,9 @@
 // HOWEVER, THAT FILE HAS NOT YET BEEN CREATED IN THE COMMON STYLES LIB, SO HERE IS THE TEMPORARY HOME
 
 @import 'variables.scss';
-
+button {
+  width: auto;
+}
 // Header, adds the gold bottom border and shadow
 header nav {
   background-color: map-get($theme-colors, primary);;
