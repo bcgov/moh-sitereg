@@ -32,18 +32,27 @@
         {{ fg.errors}}
       </div>
 
-      <label class="control-label" for="thirdParty">Are you contracting a 3rd party to administer MSP direct on you
+      <label class="control-label">Are you contracting a 3rd party to administer MSP direct on you
         behalf?
       </label>
-      <div class="radio-class">
-        <label for="thirdPartyTrue">Yes</label>
-        <input type="radio" id="thirdPartyTrue" formControlName="thirdParty" class="form-control">
-        <label for="thirdPartyFalse">No</label>
-        <input type="radio" id="thirdPartyFalse" formControlName="thirdParty" class="form-control">
 
-        <div class="text-danger" *ngIf="fg.invalid">
-          {{ fg.errors}}
-        </div>
+
+      <div class="text-danger" *ngIf="fg.invalid">
+        {{ fg.errors}}
+      </div>
+      <div class="form-check">
+        <input class='form-check-input' formControlName="thirdParty" type="radio" name="" id="thirdPartyTrue" [checked]="fg.controls['thirdParty']"
+          tabindex="0" [value]="true">
+        <label class='form-check-label' for="aatrue">
+          Yes
+        </label>
+
+
+        <input class='form-check-input' formControlName="thirdParty" type="radio" id="thirdPartyFalse" [checked]="!fg.controls['thirdParty']"
+          tabindex="0" [value]="false">
+        <label class='form-check-label' for="thirdPartyFalse">
+          No
+        </label>
       </div>
 
       <label class="control-label">Are you applying to access MSP Direct through Blue Cross?
