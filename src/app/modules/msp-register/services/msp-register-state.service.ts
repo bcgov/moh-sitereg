@@ -19,7 +19,7 @@ export class MspRegisterStateService {
   public mspRegisterAccessAdminsForm: FormGroup[];
   public mspRegisterSigningAuthorityForm: FormGroup;
   public mspRegisterGroupNumbersForm: FormGroup;
-  public mspRegisterUsersForm: FormGroup;
+  public mspRegisterUsersForm: FormGroup[];
   public mspRegisterAuthorizeForm: FormGroup;
 
 
@@ -27,12 +27,24 @@ export class MspRegisterStateService {
     return this.fb;
   }
 
+  get accessAdminsValid() {
+    return true;
+  }
+
   addAdmin() {
     this.mspRegisterAccessAdminsForm.unshift(this.createMspRegisterSigningAuthorityForm(this.gf, this.fb));
   }
 
   removeAdmin(i: number) {
-    let ret = this.mspRegisterAccessAdminsForm.splice(i, 1);
+    this.mspRegisterAccessAdminsForm.splice(i, 1);
+  }
+
+  addUser() {
+    this.mspRegisterUsersForm.unshift(this.createMspRegisterUsersForm(this.gf, this.fb));
+  }
+
+  removeUser(i: number) {
+    this.mspRegisterUsersForm.splice(i, 1);
   }
 
   constructor() {
@@ -42,7 +54,7 @@ export class MspRegisterStateService {
     this.mspRegisterAccessAdminsForm = [this.createMspRegisterAccessAdminsForm(gf, fb)];
     this.mspRegisterSigningAuthorityForm = this.createMspRegisterSigningAuthorityForm(gf, fb);
     this.mspRegisterGroupNumbersForm = this.createMspRegisterGroupNumbersForm(gf, fb);
-    this.mspRegisterUsersForm = this.createMspRegisterUsersForm(gf, fb);
+    this.mspRegisterUsersForm = [this.createMspRegisterUsersForm(gf, fb)];
     this.mspRegisterAuthorizeForm = this.createMspRegisterAuthorizeForm(gf, fb);
     this.mspRegisterOrganizationForm.valueChanges.subscribe(obs => console.log(obs));
   }

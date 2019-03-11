@@ -10,13 +10,14 @@ import { BehaviorSubject } from 'rxjs';
   styleUrls: ['./msp-register-users.component.scss']
 })
 export class MspRegisterUsersComponent implements OnInit {
-  fg: FormGroup;
+  fgs: FormGroup[];
   administeringFor: BehaviorSubject<string[]> = new BehaviorSubject<string[]>(['me', 'you']);
+
   constructor(
     public mspRegisterStateSvc: MspRegisterStateService,
     private router: Router
   ) {
-    this.fg = this.mspRegisterStateSvc.mspRegisterUsersForm;
+    this.fgs = this.mspRegisterStateSvc.mspRegisterUsersForm;
   }
 
   ngOnInit() {
@@ -24,6 +25,14 @@ export class MspRegisterUsersComponent implements OnInit {
 
   continue() {
     this.router.navigate(['msp-registration/group-numbers']);
+  }
+
+  addUser() {
+    this.mspRegisterStateSvc.addUser();
+  }
+
+  delete(i: number) {
+    this.mspRegisterStateSvc.removeUser(i);
   }
 
 }
