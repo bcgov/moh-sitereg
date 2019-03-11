@@ -31,6 +31,10 @@ export class MspRegisterStateService {
     this.mspRegisterAccessAdminsForm.unshift(this.createMspRegisterSigningAuthorityForm(this.gf, this.fb));
   }
 
+  removeAdmin(i: number) {
+    let ret = this.mspRegisterAccessAdminsForm.splice(i, 1);
+  }
+
   constructor() {
     const fb = this.fb;
     const gf = this.gf;

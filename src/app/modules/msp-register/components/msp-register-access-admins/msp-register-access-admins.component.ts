@@ -30,4 +30,8 @@ export class MspRegisterAccessAdminsComponent implements OnInit {
     this.mspRegisterStateSvc.addAdmin()
   }
 
+  delete(i: number) {
+    this.mspRegisterStateSvc.removeAdmin(i);
+  }
+
 }
