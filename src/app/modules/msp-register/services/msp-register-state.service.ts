@@ -16,7 +16,7 @@ export class MspRegisterStateService {
   private fb = new FormBuilder();
   private gf = new GenerateForm(this.fb);
   public mspRegisterOrganizationForm: FormGroup;
-  public mspRegisterAccessAdminsForm: FormGroup;
+  public mspRegisterAccessAdminsForm: FormGroup[];
   public mspRegisterSigningAuthorityForm: FormGroup;
   public mspRegisterGroupNumbersForm: FormGroup;
   public mspRegisterUsersForm: FormGroup;
@@ -27,12 +27,15 @@ export class MspRegisterStateService {
     return this.fb;
   }
 
+  addAdmin() {
+    this.mspRegisterAccessAdminsForm.push(this.createMspRegisterSigningAuthorityForm(this.gf, this.fb));
+  }
 
   constructor() {
     const fb = this.fb;
     const gf = this.gf;
     this.mspRegisterOrganizationForm = this.createMspRegisterOrganizationForm(gf, fb);
-    this.mspRegisterAccessAdminsForm = this.createMspRegisterAccessAdminsForm(gf, fb);
+    this.mspRegisterAccessAdminsForm = [this.createMspRegisterAccessAdminsForm(gf, fb)];
     this.mspRegisterSigningAuthorityForm = this.createMspRegisterSigningAuthorityForm(gf, fb);
     this.mspRegisterGroupNumbersForm = this.createMspRegisterGroupNumbersForm(gf, fb);
     this.mspRegisterUsersForm = this.createMspRegisterUsersForm(gf, fb);

@@ -9,8 +9,10 @@
     </a>
   </div>
 </div>
-<h2 class="border-bottom">Add New Access Admin</h2>
-<sitereg-page-sections *ngIf="fg">
+
+<sitereg-page-sections *ngFor="let fg of fgs">
+    <!-- <ng-container *ngTemplateOutlet="addAdmins"> -->
+    <h2 class="border-bottom">Add New Access Admin</h2>
 
   <form [formGroup]="fg">
     <sitereg-msp-register-person [fg]="fg"></sitereg-msp-register-person>
@@ -32,7 +34,8 @@
       </div>
     </div>
   </form>
+<!-- </ng-container> -->
 </sitereg-page-sections>
-<common-form-action-bar (btnClick)="continue()" [canContinue]="fg.valid">
+<!-- <common-form-action-bar (btnClick)="continue()" [canContinue]="fg.valid"> -->
 
-</common-form-action-bar>
+<!-- </common-form-action-bar> -->

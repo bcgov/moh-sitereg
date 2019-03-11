@@ -10,13 +10,13 @@ import { Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MspRegisterAccessAdminsComponent implements OnInit {
-  fg: FormGroup;
+  fgs: FormGroup[];
 
   constructor(
     public mspRegisterStateSvc: MspRegisterStateService,
     private router: Router
   ) {
-    this.fg = this.mspRegisterStateSvc.mspRegisterAccessAdminsForm;
+    this.fgs = this.mspRegisterStateSvc.mspRegisterAccessAdminsForm;
   }
 
   ngOnInit() {
@@ -27,7 +27,7 @@ export class MspRegisterAccessAdminsComponent implements OnInit {
   }
 
   addAdmin() {
-
+    this.mspRegisterStateSvc.addAdmin()
   }
 
 }
