@@ -6,16 +6,38 @@
   <!-- Does the Signing Authority require access to MSP Direct?; radio(yes/no) -->
   <!-- Will the Signing Authority also be performing the Access Administrator's function?; radio(yes/no) -->
   <form [formGroup]="fg">
-    <div class="form-group col-sm-8 p-sm-0">
 
-      <input class='form-check-input' formControlName="alsoAdmin" type="radio" name="" id="aatruev" [checked]="fg.controls['alsoAdmin']" tabindex="0" [value]="true">
-      <label class='form-check-label' for="aatrue">
-        Yes
+    <div class="form-group col-sm-8 p-sm-0">
+        <label class="control-label">Are you applying to access MSP Direct through Blue Cross?
+          </label>
+      <div class="form-check">
+
+        <input class='form-check-input' formControlName="directAccess" type="radio" name="" id="bctrue" [checked]="fg.controls['directAccess']"
+          tabindex="0" [value]="true">
+        <label class='form-check-label' for="bctrue">
+          Yes
+        </label>
+        <input class='form-check-input' formControlName="directAccess" type="radio" id="bcfalse" [checked]="!fg.controls['directAccess']"
+          tabindex="0" [value]="false">
+        <label class='form-check-label' for="bcfalse">
+          No
+        </label>
+      </div>
+      <label class="control-label">Will the Signing Authority also be performing the Access Administrator's function?
       </label>
-      <input class='form-check-input' formControlName="alsoAdmin" type="radio" id="aafalse" [checked]="!fg.controls['alsoAdmin']" tabindex="0" [value]="false">
-      <label class='form-check-label' for="aafalse">
-        No
-      </label>
+      <div class="form-check">
+
+        <input class='form-check-input' formControlName="alsoAdmin" type="radio" name="" id="aatruev" [checked]="fg.controls['alsoAdmin']"
+          tabindex="0" [value]="true">
+        <label class='form-check-label' for="aatrue">
+          Yes
+        </label>
+        <input class='form-check-input' formControlName="alsoAdmin" type="radio" id="aafalse" [checked]="!fg.controls['alsoAdmin']"
+          tabindex="0" [value]="false">
+        <label class='form-check-label' for="aafalse">
+          No
+        </label>
+      </div>
     </div>
   </form>
 </sitereg-page-sections>

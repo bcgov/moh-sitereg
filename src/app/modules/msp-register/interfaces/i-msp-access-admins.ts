@@ -6,6 +6,6 @@ export interface IMspAccessAdmins {
 }
 
 export interface IMspAccessAdmin extends IUser {
-  mspDirectAccess: boolean | FormControl;
+  directAccess: boolean | FormControl;
 }
 

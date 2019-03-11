@@ -32,7 +32,6 @@ export class MspRegisterOrganizationComponent implements OnInit {
 
   continue() {
     this.router.navigate(['msp-registration/signing-authority']);
-    console.log('navigates');
   }
 
 }

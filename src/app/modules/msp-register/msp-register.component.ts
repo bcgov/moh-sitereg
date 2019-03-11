@@ -17,7 +17,8 @@ export class MspRegisterComponent extends Container implements OnInit {
   }
 
   ngOnInit() {
-    this.router.navigate(['msp-registration/organization']);
+    // this.router.navigate(['msp-registration/organization']);
+
   }
 
 }

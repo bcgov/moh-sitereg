@@ -14,7 +14,11 @@
 <!-- Ext (optional) -->
 <!-- Fax -->
 <!-- Does the Signing Authority require access to MSP Direct?; multi-select(yes/no) -->
-
+<label class="control-label" for="city">This preson will be adminstering MSP for</label>
+      <select class="form-control" *ngIf="administeringFor | async as administering">
+        <option value="null" label="-- Select Organization --" selected></option>
+        <option *ngFor="let a of administering " [value]="a">{{a}}</option>
+      </select>
 
 </sitereg-page-sections>
 <common-form-action-bar (btnClick)="continue()" [canContinue]="fg.valid">

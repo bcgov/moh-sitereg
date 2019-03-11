@@ -11,7 +11,6 @@ import { MspRegisterGroupNumbersComponent } from './components/msp-register-grou
 import { MspRegisterSigningAuthorityComponent } from './components/msp-register-signing-authority/msp-register-signing-authority.component';
 import { MspRegisterUsersComponent } from './components/msp-register-users/msp-register-users.component';
 import { MspRegisterPersonComponent } from './components/msp-register-person/msp-register-person.component';
-import { MspRegisterRadioSelectComponent } from './components/msp-register-radio-select/msp-register-radio-select.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +22,6 @@ import { MspRegisterRadioSelectComponent } from './components/msp-register-radio
     MspRegisterSigningAuthorityComponent,
     MspRegisterUsersComponent,
     MspRegisterPersonComponent,
-    MspRegisterRadioSelectComponent
   ],
   imports: [
     CommonModule,

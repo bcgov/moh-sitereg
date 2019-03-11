@@ -5,9 +5,25 @@
 
   <!-- h2; New Access Administrator -->
   <form [formGroup]="fg">
-      <sitereg-msp-register-person [fg]="fg"></sitereg-msp-register-person>
+    <sitereg-msp-register-person [fg]="fg"></sitereg-msp-register-person>
+    <div class="form-group col-sm-8 p-sm-0">
+      <label class="control-label">Does the Signing Authority require access to MSP Direct?
+      </label>
+      <div class="form-check">
 
-<!-- Does the Signing Authority require access to MSP Direct?; radio(yes/no) -->
+        <input class='form-check-input' formControlName="directAccess" type="radio" name="" id="bctrue" [checked]="fg.controls['directAccess']"
+          tabindex="0" [value]="true">
+        <label class='form-check-label' for="bctrue">
+          Yes
+        </label>
+        <input class='form-check-input' formControlName="directAccess" type="radio" id="bcfalse" [checked]="!fg.controls['directAccess']"
+          tabindex="0" [value]="false">
+        <label class='form-check-label' for="bcfalse">
+          No
+        </label>
+      </div>
+    </div>
+    <!-- Does the Signing Authority require access to MSP Direct?; radio(yes/no) -->
   </form>
 </sitereg-page-sections>
 <common-form-action-bar (btnClick)="continue()" [canContinue]="fg.valid">

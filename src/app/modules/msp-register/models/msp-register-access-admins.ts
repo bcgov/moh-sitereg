@@ -3,7 +3,7 @@ import { GenerateForm } from './generate-form';
 import { FormBuilder, FormControl } from '@angular/forms';
 
 export class MspRegisterAccessAdmins extends GenerateForm<IMspAccessAdmin> implements IMspAccessAdmin {
-  mspDirectAccess: boolean | FormControl = false;
+  directAccess: boolean | FormControl = false;
   userTitle?: FormControl | 'mr' | 'mrs' = new FormControl();
   firstName: string | FormControl = '';
   initial?: string | FormControl = '';

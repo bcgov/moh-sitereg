@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { MspRegisterPerson } from '@msp-register/models/msp-register-person';
 import { GenerateForm } from '@msp-register/models/generate-form';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'sitereg-msp-register-person',
@@ -20,6 +21,7 @@ export class MspRegisterPersonComponent implements OnInit, OnDestroy {
   userTitles: UserTitle[] = ['mr', 'mrs'];
 
   constructor(
+    private router: Router
   ) {
 
   }
@@ -30,6 +32,8 @@ export class MspRegisterPersonComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
   }
 
-
+  continue() {
+    this.router.navigate(['msp-register/group-numbers']);
+  }
 
 }

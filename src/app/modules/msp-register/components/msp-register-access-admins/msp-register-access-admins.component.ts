@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MspRegisterStateService } from '@msp-register/services/msp-register-state.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'sitereg-msp-register-access-admins',
@@ -13,6 +14,7 @@ export class MspRegisterAccessAdminsComponent implements OnInit {
 
   constructor(
     public mspRegisterStateSvc: MspRegisterStateService,
+    private router: Router
   ) {
     this.fg = this.mspRegisterStateSvc.mspRegisterAccessAdminsForm;
   }
@@ -21,7 +23,7 @@ export class MspRegisterAccessAdminsComponent implements OnInit {
   }
 
   continue() {
-    console.log('continue clicked');
+    this.router.navigate(['msp-registration/users']);
   }
 
 }

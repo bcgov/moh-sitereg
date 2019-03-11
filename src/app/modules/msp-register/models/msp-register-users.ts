@@ -13,6 +13,7 @@ export class MspRegisterUsers extends GenerateForm<IMspUsers> implements IUser {
   phone: string | FormControl = '';
   ext?: string | FormControl = '';
   fax: string | FormControl = '';
+  administeringFor: string | FormControl = '';
 
   constructor(
     private gf: GenerateForm<IMspOrganization>,

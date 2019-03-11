@@ -10,5 +10,6 @@ export interface IUser {
   phone: string | FormControl;
   ext?: string | FormControl;
   fax: string | FormControl;
+  administeringFor: string | FormControl;
 }
 export type UserTitle = 'mr' | 'mrs';

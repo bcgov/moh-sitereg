@@ -34,7 +34,7 @@ export const subRoutes: Routes = [
     data: { title: 'Group Numbers'}
   },
   {
-    path: 'register-authorize',
+    path: 'authorize',
     component: MspRegisterAuthorizeComponent,
     data: { title: 'Authorize'}
   },

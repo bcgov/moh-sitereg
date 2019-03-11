@@ -2,7 +2,7 @@
 <sitereg-page-sections *ngIf="fg">
 
   <form [formGroup]="fg">
-    <div class="form-group col-sm-6 p-sm-0">
+    <div class="form-group col-sm-8 p-sm-0">
       <label class="control-label" for="name">Organization</label>
       <input id="name" formControlName="name" class="form-control">
       <div class="text-danger" *ngIf="fg.invalid">
@@ -41,11 +41,7 @@
         {{ fg.errors}}
       </div>
       <div class="form-check">
-        <input class='form-check-input' formControlName="thirdParty" type="radio" name="" id="thirdPartyTrue" [checked]="fg.controls['thirdParty']"
-          tabindex="0" [value]="true">
-        <label class='form-check-label' for="aatrue">
-          Yes
-        </label>
+
 
 
         <input class='form-check-input' formControlName="thirdParty" type="radio" id="thirdPartyFalse" [checked]="!fg.controls['thirdParty']"
@@ -53,22 +49,28 @@
         <label class='form-check-label' for="thirdPartyFalse">
           No
         </label>
+        <input class='form-check-input' formControlName="thirdParty" type="radio" name="" id="thirdPartyTrue" [checked]="fg.controls['thirdParty']"
+          tabindex="0" [value]="true">
+        <label class='form-check-label' for="aatrue">
+          Yes
+        </label>
       </div>
 
       <label class="control-label">Are you applying to access MSP Direct through Blue Cross?
       </label>
       <div class="form-check">
-        <input class='form-check-input' formControlName="blueCross" type="radio" name="" id="aatruev" [checked]="fg.controls['blueCross']"
-          tabindex="0" [value]="true">
-        <label class='form-check-label' for="aatrue">
-          Yes
-        </label>
+
 
 
         <input class='form-check-input' formControlName="blueCross" type="radio" id="aafalse" [checked]="!fg.controls['blueCross']"
           tabindex="0" [value]="false">
         <label class='form-check-label' for="aafalse">
           No
+        </label>
+        <input class='form-check-input' formControlName="blueCross" type="radio" name="" id="aatruev" [checked]="fg.controls['blueCross']"
+          tabindex="0" [value]="true">
+        <label class='form-check-label' for="aatrue">
+          Yes
         </label>
       </div>
       <label class="control-label" for="city">This organization will be adminstering MSP for</label>
