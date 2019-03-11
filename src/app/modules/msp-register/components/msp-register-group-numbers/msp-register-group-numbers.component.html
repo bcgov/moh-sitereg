@@ -1,20 +1,28 @@
 <!-- TODO: bit of thinking as to how to make the component work for this. -->
 
 <h2 class="border-bottom">Group Numbers</h2>
-<sitereg-page-sections *ngIf="fg">
-  <!-- button; Add Group Number -->
-
+<div class='row mb-4'>
+    <div class='col-md-3 p-4'>
+      <a (click)='addGroupNumber()'>
+        <button class="btn btn-block btn-lg btn-secondary">
+          Add Group Number
+        </button>
+      </a>
+    </div>
+  </div>
+<sitereg-page-sections *ngFor="let fg of fgs; index as i">
+  <h3 class="border-bottom">Group Number #{{i+1}}</h3>
+  <button (click)="delete(i)">Delete</button>
   <form [formGroup]="fg">
     <div class="form-group col-sm-6 p-sm-0">
-      <label class="control-label" for="name">Organization</label>
-      <input id="name" formControlName="name" class="form-control">
+      <label class="control-label" for="groupNumber">MSP Group Number</label>
+      <input id="groupNumber" formControlName="groupNumber" class="form-control">
       <div class="text-danger" *ngIf="fg.invalid">
         {{ fg.errors}}
       </div>
-      <!-- MSP Gropu Number; input -->
     </div>
   </form>
 </sitereg-page-sections>
-<common-form-action-bar (btnClick)="continue()" [canContinue]="fg.valid">
+<common-form-action-bar (btnClick)="continue()" [canContinue]="mspRegisterStateSvc.accessAdminsValid">
 
 </common-form-action-bar>

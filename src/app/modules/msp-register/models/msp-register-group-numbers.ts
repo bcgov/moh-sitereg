@@ -4,7 +4,7 @@ import { FormBuilder, FormControl } from '@angular/forms';
 import { IMspGroupNumbers } from '@msp-register/interfaces';
 
 export class MspRegisterGroupNumbers extends GenerateForm<IMspGroupNumbers> implements IMspGroupNumbers {
-  groupNumbers: FormControl | number[] = [];
+  groupNumber: FormControl | number = 0;
 
   constructor(
     private gf: GenerateForm<IMspAccessAdmin>,

@@ -18,7 +18,7 @@ export class MspRegisterStateService {
   public mspRegisterOrganizationForm: FormGroup;
   public mspRegisterAccessAdminsForm: FormGroup[];
   public mspRegisterSigningAuthorityForm: FormGroup;
-  public mspRegisterGroupNumbersForm: FormGroup;
+  public mspRegisterGroupNumbersForm: FormGroup[];
   public mspRegisterUsersForm: FormGroup[];
   public mspRegisterAuthorizeForm: FormGroup;
 
@@ -47,13 +47,21 @@ export class MspRegisterStateService {
     this.mspRegisterUsersForm.splice(i, 1);
   }
 
+  addGroupNumber() {
+    this.mspRegisterGroupNumbersForm.unshift(this.createMspRegisterGroupNumbersForm(this.gf, this.fb));
+  }
+
+  removeGroupNumber(i: number) {
+    this.mspRegisterGroupNumbersForm.splice(i, 1);
+  }
+
   constructor() {
     const fb = this.fb;
     const gf = this.gf;
     this.mspRegisterOrganizationForm = this.createMspRegisterOrganizationForm(gf, fb);
     this.mspRegisterAccessAdminsForm = [this.createMspRegisterAccessAdminsForm(gf, fb)];
     this.mspRegisterSigningAuthorityForm = this.createMspRegisterSigningAuthorityForm(gf, fb);
-    this.mspRegisterGroupNumbersForm = this.createMspRegisterGroupNumbersForm(gf, fb);
+    this.mspRegisterGroupNumbersForm = [this.createMspRegisterGroupNumbersForm(gf, fb)];
     this.mspRegisterUsersForm = [this.createMspRegisterUsersForm(gf, fb)];
     this.mspRegisterAuthorizeForm = this.createMspRegisterAuthorizeForm(gf, fb);
     this.mspRegisterOrganizationForm.valueChanges.subscribe(obs => console.log(obs));

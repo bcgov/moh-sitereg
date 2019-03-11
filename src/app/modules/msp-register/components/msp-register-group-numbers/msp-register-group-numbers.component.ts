@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MspRegisterStateService } from '@msp-register/services/msp-register-state.service';
+import { Router } from '@angular/router';
 // TODO: initialize componenet with an array of the formgroups and then use NGFor to dynamically render them and add them.
 @Component({
   selector: 'sitereg-msp-register-group-numbers',
@@ -8,17 +9,27 @@ import { MspRegisterStateService } from '@msp-register/services/msp-register-sta
   styleUrls: ['./msp-register-group-numbers.component.scss']
 })
 export class MspRegisterGroupNumbersComponent implements OnInit {
-  fg: FormGroup;
+  fgs: FormGroup[];
   constructor(
     public mspRegisterStateSvc: MspRegisterStateService,
+    private router: Router,
   ) {
-    this.fg = this.mspRegisterStateSvc.mspRegisterGroupNumbersForm;
+    this.fgs = this.mspRegisterStateSvc.mspRegisterGroupNumbersForm;
   }
 
   ngOnInit() {
   }
   continue() {
     console.log('continue clicked');
+    this.router.navigate(['msp-registration/authorize']);
+  }
+
+  addGroupNumber() {
+    this.mspRegisterStateSvc.addGroupNumber();
+  }
+
+  delete(i: number) {
+    this.mspRegisterStateSvc.removeGroupNumber(i);
   }
 
 }
