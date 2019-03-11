@@ -28,7 +28,7 @@ export class MspRegisterStateService {
   }
 
   addAdmin() {
-    this.mspRegisterAccessAdminsForm.push(this.createMspRegisterSigningAuthorityForm(this.gf, this.fb));
+    this.mspRegisterAccessAdminsForm.unshift(this.createMspRegisterSigningAuthorityForm(this.gf, this.fb));
   }
 
   constructor() {
