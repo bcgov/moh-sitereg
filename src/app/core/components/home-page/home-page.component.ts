@@ -15,7 +15,7 @@ export class HomePageComponent implements OnInit {
   }
 
   mspRegister() {
-    this.router.navigate(['/msp-registration']);
+    this.router.navigate(['/msp-registration/organization']);
   }
 
 }

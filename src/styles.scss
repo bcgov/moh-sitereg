@@ -164,9 +164,8 @@ button.disabled {
 
 .form-check-label {
   width: 60px;
+  margin-bottom: 7px;
 }
-
-
 
 // Makes .label styled identically to the label element. Useful in cases where
 // you want to display a label but can't use one for a11y purposes, e.g. the
@@ -192,4 +191,7 @@ button.disabled {
 // Remove the up/down arrows beside number inputs, specifically date
 input[type=number] {
   -moz-appearance:textfield;
+}
+input, select {
+  margin-bottom: 7px;
 }
