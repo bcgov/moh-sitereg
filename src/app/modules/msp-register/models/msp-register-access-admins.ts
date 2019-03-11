@@ -13,6 +13,7 @@ export class MspRegisterAccessAdmins extends GenerateForm<IMspAccessAdmin> imple
   phone: string | FormControl = '';
   ext?: string | FormControl = '';
   fax: string | FormControl = '';
+  administeringFor = null;
 
   constructor(
     private gf: GenerateForm<IMspAccessAdmin>,

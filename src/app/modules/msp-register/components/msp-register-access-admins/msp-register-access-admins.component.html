@@ -1,9 +1,17 @@
 <!-- TODO: ask if the control to add access administrators is the button click. UX is confusing -->
-<h2 class="border-bottom">Register Access Admins</h2>
-<!-- button; Add Access Administrators -->
+<h2 class="border-bottom">Access Admins</h2>
+<div class='row mb-4'>
+  <div class='col-md-3 p-4'>
+    <a (click)='addAdmin()'>
+      <button class="btn btn-block btn-lg btn-secondary">
+        Add Access Admin
+      </button>
+    </a>
+  </div>
+</div>
+<h2 class="border-bottom">Add New Access Admin</h2>
 <sitereg-page-sections *ngIf="fg">
 
-  <!-- h2; New Access Administrator -->
   <form [formGroup]="fg">
     <sitereg-msp-register-person [fg]="fg"></sitereg-msp-register-person>
     <div class="form-group col-sm-8 p-sm-0">
@@ -23,7 +31,6 @@
         </label>
       </div>
     </div>
-    <!-- Does the Signing Authority require access to MSP Direct?; radio(yes/no) -->
   </form>
 </sitereg-page-sections>
 <common-form-action-bar (btnClick)="continue()" [canContinue]="fg.valid">

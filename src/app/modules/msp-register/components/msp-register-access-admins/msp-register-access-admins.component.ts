@@ -26,4 +26,8 @@ export class MspRegisterAccessAdminsComponent implements OnInit {
     this.router.navigate(['msp-registration/users']);
   }
 
+  addAdmin() {
+
+  }
+
 }
