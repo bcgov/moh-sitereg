@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { MspRegisterStateService } from '@msp-register/services/msp-register-state.service';
+import { MspRegisterStateService, UserTypes } from '@msp-register/services/msp-register-state.service';
 import { MspRegisterDataService } from '@msp-register/services/msp-register-data.service';
 import { Observable } from 'rxjs';
+
+export type AccessType = 'admin' | 'user';
 
 @Component({
   selector: 'sitereg-msp-register-authorize',
@@ -33,6 +35,14 @@ export class MspRegisterAuthorizeComponent implements OnInit {
     this.userFgs = this.mspRegisterStateSvc.mspRegisterUsersForm;
 
 
+  }
+
+  updateAccess($event: string, i: number, type: UserTypes) {
+    switch (type) {
+      case('admin'): return console.log(i, $event);
+      case('user'): return console.log(i, $event);
+
+    }
   }
   continue() {
     console.log('continue clicked');

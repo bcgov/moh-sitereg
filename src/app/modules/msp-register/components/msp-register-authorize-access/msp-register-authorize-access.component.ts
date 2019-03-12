@@ -18,7 +18,6 @@ export class MspRegisterAuthorizeAccessComponent implements OnInit {
 
   ngOnInit() {
     this.fc.valueChanges.subscribe(obs => {
-      console.log(obs);
       this.value.emit(obs);
     })
   }
