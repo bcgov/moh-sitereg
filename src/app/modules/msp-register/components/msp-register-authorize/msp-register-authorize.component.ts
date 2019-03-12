@@ -17,7 +17,9 @@ export class MspRegisterAuthorizeComponent implements OnInit {
   constructor(
     public mspRegisterStateSvc: MspRegisterStateService,
     public mspRegDataSvc: MspRegisterDataService,
-  ) { }
+  ) {
+
+  }
 
   ngOnInit() {
     this.fg = this.mspRegisterStateSvc.mspRegisterAuthorizeForm;
@@ -25,11 +27,14 @@ export class MspRegisterAuthorizeComponent implements OnInit {
     this.mspRegDataSvc.updateSigningAuthorityName(name);
     const address = this.mspRegisterStateSvc.signingAuthorityAddress;
     this.mspRegDataSvc.updateSigningAuthorityAddress(address);
+    console.log(this.fg);
+
   }
   continue() {
     console.log('continue clicked');
   }
   validToken($event) {
     console.log($event);
+    if (!$event.ok) console.log('error');
   }
 }

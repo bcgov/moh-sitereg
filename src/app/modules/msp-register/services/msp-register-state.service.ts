@@ -9,6 +9,7 @@ import { MspRegisterGroupNumbers } from '@msp-register/models/msp-register-group
 import { MspRegisterUsers } from '@msp-register/models/msp-register-users';
 import { MspRegisterAuthorize } from '@msp-register/models/msp-register-authorize';
 
+export type UserTypes = 'admin' | 'user';
 @Injectable({
   providedIn: 'root'
 })
@@ -65,6 +66,18 @@ export class MspRegisterStateService {
     return `${formVal.address} `;
   }
 
+  authorizeUsersList(group: FormGroup[]) {
+    const users = [];
+    if (group.length < 1) return;
+    for (const control of group) {
+      if (!control) return;
+      users.push(control.value);
+    }
+    return users;
+  }
+
+
+
   constructor() {
     const fb = this.fb;
     const gf = this.gf;
@@ -75,6 +88,7 @@ export class MspRegisterStateService {
     this.mspRegisterUsersForm = [this.createMspRegisterUsersForm(gf, fb)];
     this.mspRegisterAuthorizeForm = this.createMspRegisterAuthorizeForm(gf, fb);
     this.mspRegisterOrganizationForm.valueChanges.subscribe(obs => console.log(obs));
+
   }
 
   createMspRegisterOrganizationForm(gf: GenerateForm<any>, fb: FormBuilder) {
@@ -84,7 +98,12 @@ export class MspRegisterStateService {
 
  createMspRegisterAccessAdminsForm(gf: GenerateForm<any>, fb: FormBuilder) {
    const mraa = new MspRegisterAccessAdmins(gf, fb);
-   return this.fb.group(mraa.genForms(mraa.generateArr(mraa.genKeys)));
+   const form = this.fb.group(mraa.genForms(mraa.generateArr(mraa.genKeys)));
+   for (const control in form.controls) {
+    form.controls[control].setValue('zzzzz');
+   }
+   return form;
+
  }
 
  createMspRegisterSigningAuthorityForm(gf: GenerateForm<any>, fb: FormBuilder) {
@@ -105,5 +124,13 @@ export class MspRegisterStateService {
  createMspRegisterAuthorizeForm(gf: GenerateForm<any>, fb: FormBuilder) {
    const mra = new MspRegisterAuthorize(gf, fb);
    return this.fb.group(mra.genForms(mra.generateArr(mra.genKeys)));
+ }
+
+ addUsersToList() {
+   const gf = new GenerateForm(this.fb);
+   const data = [this.mspRegisterUsersForm, this.mspRegisterAccessAdminsForm];
+   data.forEach((itm, i, arr) => {
+
+   })
  }
 }

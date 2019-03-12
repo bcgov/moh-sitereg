@@ -1,5 +1,5 @@
-<!-- TODO: lay this out with more details about functionality -->
-<h2 s>Authorize</h2>
+
+<h2 >Authorize</h2>
 <div class="row">
 <span class="border-bottom col-sm-8">These are the MSP Group Numbers you will be administering for MSP Direct.</span>
 <span class="end col-sm-4 border-bottom">{{date | date: 'yyyy-MMM-dd' }}</span>
@@ -10,17 +10,10 @@
   <p *ngIf="mspRegDataSvc.signingAuthorityName | async as name">{{name}}</p>
   <p *ngIf="mspRegDataSvc.signingAuthorityAddress | async as addr">{{addr}}</p>
 
-<!--
-  <form [formGroup]="fg">
-    <div class="form-group col-sm-6 p-sm-0">
-      <label class="control-label" for="name">Organization</label>
-      <input id="name" formControlName="name" class="form-control">
-      <div class="text-danger" *ngIf="fg.invalid">
-        {{ fg.errors}}
-      </div>
-
-    </div>
-  </form> -->
+  <div class="form-check form-check-inline mb-5">
+    <input class="input-lg form-check-input" id="firstPersonAuthorize"  type="checkbox">
+    <label class="form-check-label" for="firstPersonAuthorize"></label>
+</div>
 
   <div class="row">
     <sitereg-captcha [apiBaseUrl]=""

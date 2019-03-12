@@ -11,6 +11,7 @@ import { MspRegisterGroupNumbersComponent } from './components/msp-register-grou
 import { MspRegisterSigningAuthorityComponent } from './components/msp-register-signing-authority/msp-register-signing-authority.component';
 import { MspRegisterUsersComponent } from './components/msp-register-users/msp-register-users.component';
 import { MspRegisterPersonComponent } from './components/msp-register-person/msp-register-person.component';
+import { MspRegisterAuthorizeAccessComponent } from './components/msp-register-authorize-access/msp-register-authorize-access.component';
 
 @NgModule({
   declarations: [
@@ -22,12 +23,13 @@ import { MspRegisterPersonComponent } from './components/msp-register-person/msp
     MspRegisterSigningAuthorityComponent,
     MspRegisterUsersComponent,
     MspRegisterPersonComponent,
+    MspRegisterAuthorizeAccessComponent,
   ],
   imports: [
     CommonModule,
     SharedModule,
     MspRegisterRoutingModule
   ],
-  exports: []
+  exports: [MspRegisterAuthorizeAccessComponent]
 })
 export class MspRegisterModule { }

@@ -40,6 +40,10 @@ export class GenerateForm<T>  {
     return arr;
   }
 
+  pushData(text: string, control: FormControl) {
+    return control.setValue(text);
+  }
+
   constructor(
     private fb: FormBuilder,
   ) {
