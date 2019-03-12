@@ -1,4 +1,4 @@
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
 import { IMspOrganization, MSPValidForms } from '@msp-register/interfaces';
 type valueof<T> = T[keyof T];
 const ctrKeys = ['fb', 'gf', 'newFb'];
@@ -42,6 +42,10 @@ export class GenerateForm<T>  {
 
   pushData(text: string, control: FormControl) {
     return control.setValue(text);
+  }
+
+  addValidator(control: string, validator: Validators, fg: FormGroup) {
+    fg.controls[control].setValidators(Validators.required);
   }
 
   constructor(
