@@ -13,6 +13,8 @@ export class MspRegisterAuthorizeComponent implements OnInit {
   fg: FormGroup;
   signingAuthorityName: Observable<string>;
   date: Date = new Date();
+  adminFgs: FormGroup[];
+  userFgs: FormGroup[];
 
   constructor(
     public mspRegisterStateSvc: MspRegisterStateService,
@@ -27,7 +29,9 @@ export class MspRegisterAuthorizeComponent implements OnInit {
     this.mspRegDataSvc.updateSigningAuthorityName(name);
     const address = this.mspRegisterStateSvc.signingAuthorityAddress;
     this.mspRegDataSvc.updateSigningAuthorityAddress(address);
-    console.log(this.fg);
+    this.adminFgs = this.mspRegisterStateSvc.mspRegisterAccessAdminsForm;
+    this.userFgs = this.mspRegisterStateSvc.mspRegisterUsersForm;
+
 
   }
   continue() {

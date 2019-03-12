@@ -1,6 +1,8 @@
 import { GenerateForm } from './generate-form';
 import { IMspOrganization, IMspSigningAuthority, IMspUsers, IUser } from '@msp-register/interfaces';
-import { FormControl, FormBuilder } from '@angular/forms';
+import { FormControl, FormBuilder, Validators, Validator } from '@angular/forms';
+
+
 
 
 export class MspRegisterUsers extends GenerateForm<IMspUsers> implements IUser {
@@ -15,12 +17,18 @@ export class MspRegisterUsers extends GenerateForm<IMspUsers> implements IUser {
   fax: string | FormControl = '';
   administeringFor: string | FormControl = '';
 
+  validators: [{
+    name: 'firstName',
+    validators: []
+
+  }]
+
   constructor(
     private gf: GenerateForm<IMspOrganization>,
     private newFb: FormBuilder,
   ) {
     super(newFb);
-
+    const valid = new FormControl('', Validators.required)
   }
 
 

@@ -10,9 +10,15 @@
   <p *ngIf="mspRegDataSvc.signingAuthorityName | async as name">{{name}}</p>
   <p *ngIf="mspRegDataSvc.signingAuthorityAddress | async as addr">{{addr}}</p>
 
-  <div class="form-check form-check-inline mb-5">
-    <input class="input-lg form-check-input" id="firstPersonAuthorize"  type="checkbox">
-    <label class="form-check-label" for="firstPersonAuthorize"></label>
+  <div class="form-check form-check-inline mb-5" *ngIf="adminFgs">
+    <ng-container *ngFor="let adminFg of adminFgs">
+    <sitereg-msp-register-authorize-access checked="adminFg.values['directAccess']" [label]="adminFg.value.firstName"></sitereg-msp-register-authorize-access>
+  </ng-container>
+  </div>
+  <div class="form-check form-check-inline mb-5" *ngIf="userFgs">
+      <ng-container *ngFor="let userFg of userFgs">
+      <sitereg-msp-register-authorize-access checked="userFg.values['directAccess']" [label]="userFg.value.firstName"></sitereg-msp-register-authorize-access>
+    </ng-container>
 </div>
 
   <div class="row">
