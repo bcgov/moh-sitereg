@@ -15,6 +15,7 @@ export class MspRegisterSigningAuthority extends GenerateForm<IMspSigningAuthori
   phone: string | FormControl = '';
   ext?: string | FormControl = '';
   fax: string | FormControl = '';
+  administeringFor: string | FormControl;
 
   constructor(
     private gf: GenerateForm<IMspOrganization>,

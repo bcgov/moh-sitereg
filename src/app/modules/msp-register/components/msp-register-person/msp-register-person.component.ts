@@ -14,10 +14,7 @@ import { Router } from '@angular/router';
 })
 export class MspRegisterPersonComponent implements OnInit, OnDestroy {
 
-  @Output() person: EventEmitter<IUser> = new EventEmitter<IUser>();
   @Input() fg: FormGroup;
-  // fg: FormGroup;
-  subscription: Subscription;
   userTitles: UserTitle[] = ['mr', 'mrs'];
 
   constructor(

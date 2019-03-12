@@ -55,6 +55,16 @@ export class MspRegisterStateService {
     this.mspRegisterGroupNumbersForm.splice(i, 1);
   }
 
+  get signingAuthorityName() {
+    const formVal = this.mspRegisterSigningAuthorityForm.value;
+    return `${formVal.firstName} ${formVal.lastName} `;
+  }
+
+  get signingAuthorityAddress() {
+    const formVal = this.mspRegisterOrganizationForm.value;
+    return `${formVal.address} `;
+  }
+
   constructor() {
     const fb = this.fb;
     const gf = this.gf;

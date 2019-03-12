@@ -1,7 +1,16 @@
 <!-- TODO: lay this out with more details about functionality -->
-<h2 class="border-bottom">Authorize</h2>
+<h2 s>Authorize</h2>
+<div class="row">
+<span class="border-bottom col-sm-8">These are the MSP Group Numbers you will be administering for MSP Direct.</span>
+<span class="end col-sm-4 border-bottom">{{date | date: 'yyyy-MMM-dd' }}</span>
+</div>
 <sitereg-page-sections *ngIf="fg">
+  <h2 *ngIf="mspRegDataSvc.agreementNumber | async as num">Agreement number: {{ num}}</h2>
+  <p *ngIf="mspRegDataSvc.agreementText | async as text">{{text}}</p>
+  <p *ngIf="mspRegDataSvc.signingAuthorityName | async as name">{{name}}</p>
+  <p *ngIf="mspRegDataSvc.signingAuthorityAddress | async as addr">{{addr}}</p>
 
+<!--
   <form [formGroup]="fg">
     <div class="form-group col-sm-6 p-sm-0">
       <label class="control-label" for="name">Organization</label>
@@ -11,7 +20,7 @@
       </div>
 
     </div>
-  </form>
+  </form> -->
 </sitereg-page-sections>
 <common-form-action-bar (btnClick)="continue()" [canContinue]="fg.valid">
 

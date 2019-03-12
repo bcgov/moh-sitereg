@@ -29,7 +29,6 @@ export class MspRegisterSigningAuthorityComponent implements OnInit {
       if (!this.fg.controls[key]) return;
       this.fg.controls[key].setValue(obj[key]);
     }
-    console.log(this.fg);
   }
 
   continue() {
