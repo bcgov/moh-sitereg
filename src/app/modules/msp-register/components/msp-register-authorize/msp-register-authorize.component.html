@@ -21,6 +21,15 @@
 
     </div>
   </form> -->
+
+  <div class="row">
+    <sitereg-captcha [apiBaseUrl]=""
+             [nonce]=""
+             (onValidToken)="validToken($event)"
+             successMessage="You can save the form now.">
+    </sitereg-captcha>
+</div>
+
 </sitereg-page-sections>
 <common-form-action-bar (btnClick)="continue()" [canContinue]="fg.valid">
 

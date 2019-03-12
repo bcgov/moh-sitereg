@@ -29,4 +29,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
   continue() {
     console.log('continue clicked');
   }
+  validToken($event) {
+    console.log($event);
+  }
 }
