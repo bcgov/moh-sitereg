@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MspRegisterOrganization } from '@msp-register/models/msp-register-organization';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { GenerateForm } from '@msp-register/models/generate-form';
 import { BehaviorSubject } from 'rxjs';
 import { MspRegisterAccessAdmins } from '@msp-register/models/msp-register-access-admins';
@@ -127,10 +127,12 @@ export class MspRegisterStateService {
  }
 
  addUsersToList() {
-   const gf = new GenerateForm(this.fb);
    const data = [this.mspRegisterUsersForm, this.mspRegisterAccessAdminsForm];
-   data.forEach((itm, i, arr) => {
+   for (const group of data) {
+    for(const itm of group) {
 
-   })
+    }
+   }
  }
+
 }
