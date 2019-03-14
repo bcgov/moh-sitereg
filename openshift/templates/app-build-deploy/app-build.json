@@ -49,7 +49,7 @@
 		  "dockerfile": "|-
 			FROM angular-builder-supp-benefit:latest
 			COPY * /tmp/app/dist/
-			CMD  /usr/libexec/s2i/run"
+			CMD  /usr/libexec/s2i/run",
 		  "images": [
 			{
 			  "as": null,
