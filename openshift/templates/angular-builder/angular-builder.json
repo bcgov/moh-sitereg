@@ -25,7 +25,6 @@
       },
       "spec": {
 		"failedBuildsHistoryLimit": 5,
-		"nodeSelector": null,
         "output": {
           "to": {
             "kind": "ImageStreamTag",
@@ -42,20 +41,20 @@
 			"memory": "2Gi"
 		  }
 		},
-        "runPolicy": "Serial",
         "source": {
           "type": "Git",
           "git": {
             "uri": "${GIT_REPO_URL}",
 	        "ref": "${GIT_REFERENCE}"
-          },
-          "contextDir": "openshift/templates/angular-builder/"
+          }
         },
         "strategy": {
-		  "from": {
-			"kind": "ImageStreamTag",
-			"name": "nodejs:8",
-			"namespace": "openshift"
+		  "sourceStrategy": {
+		    "from": {
+			  "kind": "ImageStreamTag",
+			  "name": 'nodejs:8',
+			  "namespace": "openshift"
+		    }
 		  },
           "type": "Source"
         },
