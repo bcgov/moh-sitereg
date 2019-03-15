@@ -21,6 +21,20 @@ export const sa: IMspSigningAuthority[] = [
     administeringFor: '',
     alsoAdmin: true,
     directAccess: true
+  },
+  {
+    userTitle: 'Mrs.',
+    firstName: 'Sally',
+    initial: ']',
+    lastName: 'Da SilvaSilva',
+    jobTitle: 'Occupational Therapist',
+    emailAddress: 'laj@zul.bt',
+    phone: '(702) 914-2954',
+    ext: '2974',
+    fax: '(780) 500-2589',
+    administeringFor: '',
+    alsoAdmin: true,
+    directAccess: true
   }
 ];
 export const users: IUser[] = [
@@ -121,4 +135,17 @@ export const organization: IMspOrganization = {
   thirdParty: true,
   blueCross: true,
   administeringFor: 'yes'
+};
+
+export const coreUser: IUser = {
+  userTitle: 'Mrs.',
+  firstName: 'Dennis',
+  initial: 'I',
+  lastName: 'Mason',
+  jobTitle: 'Computer Ops. Manager',
+  emailAddress: 'rato@tupan.bf',
+  phone: '(572) 909-9185',
+  ext: '750',
+  fax: '(965) 998-3504',
+  administeringFor: ''
 };

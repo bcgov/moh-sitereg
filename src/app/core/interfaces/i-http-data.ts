@@ -18,7 +18,7 @@ export interface IContractingOut {
 export interface ICoreUserDef {
   sa_curtesy_title?: string;
   sa_last_name: string;
-  sa_intial?: string;
+  sa_initial?: string;
   sa_job_title: string;
   sa_email: string;
   sa_phone_num: string;
