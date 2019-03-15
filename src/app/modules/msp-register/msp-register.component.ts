@@ -9,16 +9,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./msp-register.component.scss']
 })
 export class MspRegisterComponent extends Container implements OnInit {
-
   constructor(private router: Router) {
     super();
-    this.setProgressSteps( subRoutes );
-
+    this.setProgressSteps(subRoutes);
   }
 
   ngOnInit() {
     // this.router.navigate(['msp-registration/organization']);
-
   }
-
 }

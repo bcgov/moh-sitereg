@@ -1,7 +1,7 @@
-import { FormControl } from '@angular/forms';
+import { FormControl } from "@angular/forms";
 
 export interface IUser {
-  userTitle?: UserTitle | FormControl;
+  userTitle?: string | FormControl;
   firstName: string | FormControl;
   initial?: string | FormControl;
   lastName: string | FormControl;
@@ -12,4 +12,4 @@ export interface IUser {
   fax: string | FormControl;
   administeringFor: string | FormControl;
 }
-export type UserTitle = 'mr' | 'mrs';
+export type UserTitle = "mr" | "mrs";

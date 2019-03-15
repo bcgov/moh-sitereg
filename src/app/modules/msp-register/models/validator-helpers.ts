@@ -1,0 +1,69 @@
+import {
+  ValidatorFn,
+  Validators,
+  FormControl,
+  AbstractControl,
+  FormGroup
+} from '@angular/forms';
+
+export type validatorOpts = 'req' | 'min' | 'max';
+export interface IValidatorConfig {
+  options: validatorOpts;
+  num?: number;
+}
+
+export interface IValidator {
+  name: string;
+  opts: IValidatorConfig[];
+}
+
+export class ValidatorHelpers {
+  organization = [
+    { name: 'name', opts: [{ options: 'req', num: 10 }] }
+  ] as IValidator[];
+
+  *genValidators(
+    option: validatorOpts,
+    num: number = 0
+  ): Iterator<ValidatorFn> {
+    yield Validators.required;
+    yield Validators.minLength(num);
+    yield Validators.maxLength(num);
+  }
+}
+
+export function postalCodeValidator(): ValidatorFn {
+  return (control: AbstractControl): { [key: string]: any } | null => {
+    const forbidden = !/^[V][0-9][ABCEGHJ-NPRSTV-Z][0-9][ABCEGHJ-NPRSTV-Z][0-9]$/.test(
+      control.value
+    );
+    return forbidden ? { invalidPostalCode: { value: control.value } } : null;
+  };
+}
+
+export function administeringForValidator(): ValidatorFn {
+  return (control: AbstractControl): { [key: string]: any } | null => {
+    const forbidden = !/^[EIB]$/.test(control.value);
+    return forbidden
+      ? { invalid: { value: `${control.value} is not valid` } }
+      : null;
+  };
+}
+
+export function phoneValidator() {
+  return (control: AbstractControl): { [key: string]: any } | null => {
+    const forbidden = !/^[EIB]$/.test(control.value);
+    return forbidden
+      ? { invalid: { value: `${control.value} is not valid` } }
+      : null;
+  };
+}
+
+export function validFormControl(name: string) {
+  if (this.fg.controls[name].pristine) return false;
+  return this.fg.controls[name].invalid;
+}
+
+export const required = Validators.required;
+export const maxLength = (num: number = 100) => Validators.maxLength(num);
+export const minLength = (num: number = 3) => Validators.minLength(num);

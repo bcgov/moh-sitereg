@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MspRegisterStateService } from '@msp-register/services/msp-register-state.service';
 import { Router } from '@angular/router';
+import { validFormControl } from '@msp-register/models/validator-helpers';
 
 @Component({
   selector: 'sitereg-msp-register-access-admins',
@@ -11,27 +12,30 @@ import { Router } from '@angular/router';
 })
 export class MspRegisterAccessAdminsComponent implements OnInit {
   fgs: FormGroup[];
-
+  validFormControl: () => boolean;
+  get validForms() {
+    if (!this.fgs) return false;
+    return this.mspRegisterStateSvc.validFormGroup(this.fgs);
+  }
   constructor(
     public mspRegisterStateSvc: MspRegisterStateService,
     private router: Router
   ) {
     this.fgs = this.mspRegisterStateSvc.mspRegisterAccessAdminsForm;
+    this.validFormControl = validFormControl.bind(this);
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   continue() {
     this.router.navigate(['msp-registration/users']);
   }
 
   addAdmin() {
-    this.mspRegisterStateSvc.addAdmin()
+    this.mspRegisterStateSvc.addAdmin();
   }
 
   delete(i: number) {
     this.mspRegisterStateSvc.removeAdmin(i);
   }
-
 }

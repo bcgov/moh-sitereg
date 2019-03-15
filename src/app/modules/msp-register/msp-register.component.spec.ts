@@ -11,9 +11,8 @@ describe('MspRegisterComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [SharedCoreModule, RouterTestingModule],
-      declarations: [ MspRegisterComponent ]
-    })
-    .compileComponents();
+      declarations: [MspRegisterComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

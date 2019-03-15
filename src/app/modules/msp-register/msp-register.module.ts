@@ -23,13 +23,9 @@ import { MspRegisterAuthorizeAccessComponent } from './components/msp-register-a
     MspRegisterSigningAuthorityComponent,
     MspRegisterUsersComponent,
     MspRegisterPersonComponent,
-    MspRegisterAuthorizeAccessComponent,
+    MspRegisterAuthorizeAccessComponent
   ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    MspRegisterRoutingModule
-  ],
+  imports: [CommonModule, SharedModule, MspRegisterRoutingModule],
   exports: [MspRegisterAuthorizeAccessComponent]
 })
-export class MspRegisterModule { }
+export class MspRegisterModule {}

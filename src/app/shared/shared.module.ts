@@ -5,9 +5,10 @@ import { CoreBreadcrumbComponent } from 'moh-common-lib/lib/components/core-brea
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { PageSectionsComponent } from './components/page-sections/page-sections.component';
 import { CaptchaComponent } from './components/captcha/captcha.component';
+import { ErrorBoxComponent } from './components/error-box/error-box.component';
 
 @NgModule({
-  declarations: [PageSectionsComponent, CaptchaComponent],
+  declarations: [PageSectionsComponent, CaptchaComponent, ErrorBoxComponent],
   imports: [
     CommonModule,
     SharedCoreModule,
@@ -19,6 +20,7 @@ import { CaptchaComponent } from './components/captcha/captcha.component';
     ReactiveFormsModule,
     PageSectionsComponent,
     CaptchaComponent,
+    ErrorBoxComponent,
   ],
 })
 export class SharedModule { }

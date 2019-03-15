@@ -4,32 +4,35 @@
   <form [formGroup]="fg">
     <div class="form-group col-sm-8 p-sm-0">
       <label class="control-label" for="name">Organization</label>
-      <input id="name" formControlName="name" class="form-control">
-      <div class="text-danger" *ngIf="fg.invalid">
-        {{ fg.errors}}
+      <input id="name" formControlName="name" class="form-control" placeholder="Organization Name">
+      <div class="text-danger" *ngIf="validFormControl('name')">
+        Please enter your first name.
       </div>
       <label class="control-label" for="address">Street Address</label>
-      <input id="adddress" formControlName="address" class="form-control">
-      <div class="text-danger" *ngIf="fg.invalid">
-        {{ fg.errors}}
+      <input id="adddress" formControlName="address" class="form-control" placeholder="111 Fake Street">
+      <div class="text-danger" *ngIf="validFormControl('address')">
+        Please enter a valid address.
       </div>
 
       <label class="control-label" for="city">City</label>
-      <input id="city" formControlName="city" class="form-control">
-      <div class="text-danger" *ngIf="">
-        {{ fg.errors}}
+      <input id="city" formControlName="city" class="form-control" placeholder="Victoria">
+      <div class="text-danger" *ngIf="validFormControl('city')">
+        Please enter your city.
       </div>
 
       <label class="control-label" for="city">Province</label>
-      <select class="form-control" *ngIf="provinces | async as provinces">
+      <select class="form-control" *ngIf="provinces | async as provinces" formControlName="province">
         <option value="null" label="-- Select Province --" selected></option>
         <option *ngFor="let province of provinces " [value]="province.provCode">{{province.description}}</option>
       </select>
+      <div class="text-danger" *ngIf="validFormControl('postalCode')">
+        Please select a valid province.
+      </div>
 
       <label class="control-label" for="postalCode">PostalCode</label>
-      <input id="postalCode" formControlName="postalCode" class="form-control">
-      <div class="text-danger" *ngIf="fg.invalid">š
-        {{ fg.errors}}
+      <input id="postalCode" formControlName="postalCode" class="form-control" placeholder="A1A1A1">
+      <div class="text-danger" *ngIf="validFormControl('postalCode')">
+        Please enter your postal code in the format A1A1A1.
       </div>
 
       <label class="control-label">Are you contracting a 3rd party to administer MSP direct on you
@@ -37,47 +40,52 @@
       </label>
 
 
-      <div class="text-danger" *ngIf="fg.invalid">
+      <div class="text-danger" *ngIf="validFormControl('city')">
         {{ fg.errors}}
       </div>
       <div class="form-check">
 
 
 
-        <input class='form-check-input' formControlName="thirdParty" type="radio" id="thirdPartyFalse" [checked]="!fg.controls['thirdParty']"
-          tabindex="0" [value]="false">
+        <input class='form-check-input' formControlName="thirdParty" type="radio" id="thirdPartyFalse" tabindex="0"
+          [value]="false">
         <label class='form-check-label' for="thirdPartyFalse">
           No
         </label>
-        <input class='form-check-input' formControlName="thirdParty" type="radio" name="" id="thirdPartyTrue" [checked]="fg.controls['thirdParty']"
-          tabindex="0" [value]="true">
+        <input class='form-check-input' formControlName="thirdParty" type="radio" name="" id="thirdPartyTrue" tabindex="0"
+          [value]="true">
         <label class='form-check-label' for="aatrue">
           Yes
         </label>
+      </div>
+      <div class="text-danger" *ngIf="validFormControl('thirdParty')">
+        Please select a valid option
       </div>
 
       <label class="control-label">Are you applying to access MSP Direct through Blue Cross?
       </label>
       <div class="form-check">
-
-
-
-        <input class='form-check-input' formControlName="blueCross" type="radio" id="aafalse" [checked]="!fg.controls['blueCross']"
-          tabindex="0" [value]="false">
+        <input class='form-check-input' formControlName="blueCross" type="radio" id="aafalse" tabindex="0" [value]="false">
         <label class='form-check-label' for="aafalse">
           No
         </label>
-        <input class='form-check-input' formControlName="blueCross" type="radio" name="" id="aatruev" [checked]="fg.controls['blueCross']"
-          tabindex="0" [value]="true">
+        <input class='form-check-input' formControlName="blueCross" type="radio" name="" id="aatruev" tabindex="0"
+          [value]="true">
         <label class='form-check-label' for="aatrue">
           Yes
         </label>
       </div>
+      <div class="text-danger" *ngIf="validFormControl('blueCross')">
+        Please select a valid option
+      </div>
       <label class="control-label" for="city">This organization will be adminstering MSP for</label>
-      <select class="form-control" *ngIf="administeringFor | async as administering">
+      <select class="form-control" *ngIf="administeringFor | async as administering" formControlName="administeringFor">
         <option value="null" label="-- Select Organization --" selected></option>
         <option *ngFor="let a of administering " [value]="a">{{a}}</option>
       </select>
+      <div class="text-danger" *ngIf="validFormControl('administeringFor')">
+        Please select a valid option
+      </div>
     </div>
   </form>
 </sitereg-page-sections>

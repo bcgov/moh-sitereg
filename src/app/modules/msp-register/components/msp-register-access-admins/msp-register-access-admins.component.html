@@ -11,9 +11,9 @@
 </div>
 
 <sitereg-page-sections *ngFor="let fg of fgs; index as i">
-    <!-- <ng-container *ngTemplateOutlet="addAdmins"> -->
-    <h2 class="border-bottom">Add New Access Admin</h2>
-    <button (click)="delete(i)">Delete</button>
+  <!-- <ng-container *ngTemplateOutlet="addAdmins"> -->
+  <h2 class="border-bottom">Add New Access Admin</h2>
+  <button (click)="delete(i)">Delete</button>
   <form [formGroup]="fg">
     <sitereg-msp-register-person [fg]="fg"></sitereg-msp-register-person>
     <div class="form-group col-sm-8 p-sm-0">
@@ -21,21 +21,21 @@
       </label>
       <div class="form-check">
 
-        <input class='form-check-input' formControlName="directAccess" type="radio" name="" id="bctrue" [checked]="fg.controls['directAccess']"
-          tabindex="0" [value]="true">
+        <input class='form-check-input' formControlName="directAccess" type="radio" name="" id="bctrue" tabindex="0"
+          [value]="true">
         <label class='form-check-label' for="bctrue">
           Yes
         </label>
-        <input class='form-check-input' formControlName="directAccess" type="radio" id="bcfalse" [checked]="!fg.controls['directAccess']"
-          tabindex="0" [value]="false">
+        <input class='form-check-input' formControlName="directAccess" type="radio" id="bcfalse" tabindex="0" [value]="false">
         <label class='form-check-label' for="bcfalse">
           No
         </label>
+        <sitereg-error-box [error]="validFormControl('directAccess')" errorMessage="Invalid"></sitereg-error-box>
       </div>
     </div>
   </form>
-<!-- </ng-container> -->
+  <!-- </ng-container> -->
 </sitereg-page-sections>
-<common-form-action-bar (btnClick)="continue()" [canContinue]="mspRegisterStateSvc.accessAdminsValid">
+<common-form-action-bar (btnClick)="continue()" [canContinue]="validForms">
 
 </common-form-action-bar>
