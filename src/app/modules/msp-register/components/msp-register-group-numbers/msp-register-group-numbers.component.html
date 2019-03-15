@@ -17,7 +17,7 @@
     <div class="form-group col-sm-6 p-sm-0">
       <label class="control-label" for="groupNumber">MSP Group Number</label>
       <input id="groupNumber" formControlName="groupNumber" class="form-control">
-      <sitereg-error-box [error]="validFormControl('groupNumber')" errorMessage="Invalid"></sitereg-error-box>
+      <sitereg-error-box [error]="validFormControl(fg, 'groupNumber')" errorMessage="Invalid"></sitereg-error-box>
 
     </div>
   </form>

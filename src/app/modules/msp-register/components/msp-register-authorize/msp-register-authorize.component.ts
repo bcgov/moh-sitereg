@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import {
   MspRegisterStateService,
@@ -13,7 +13,8 @@ export type AccessType = 'admin' | 'user';
 @Component({
   selector: 'sitereg-msp-register-authorize',
   templateUrl: './msp-register-authorize.component.html',
-  styleUrls: ['./msp-register-authorize.component.scss']
+  styleUrls: ['./msp-register-authorize.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MspRegisterAuthorizeComponent implements OnInit {
   fg: FormGroup;

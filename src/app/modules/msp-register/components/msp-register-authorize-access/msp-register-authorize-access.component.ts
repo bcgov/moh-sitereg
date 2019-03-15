@@ -7,7 +7,10 @@ import {
   EventEmitter
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { validFormControl } from '@msp-register/models/validator-helpers';
+import {
+  validFormControl,
+  validMultiFormControl
+} from '@msp-register/models/validator-helpers';
 
 @Component({
   selector: 'sitereg-msp-register-authorize-access',
@@ -24,7 +27,7 @@ export class MspRegisterAuthorizeAccessComponent implements OnInit {
 
   constructor() {
     this.fc = new FormControl(this.checked);
-    this.validFormControl = validFormControl.bind(this);
+    this.validFormControl = validMultiFormControl.bind(this);
   }
 
   ngOnInit() {

@@ -30,7 +30,9 @@ export class MspRegisterStateService {
   get accessAdminsValid() {
     return true;
   }
-
+  // validMultiFormGroup(fgs: FormGroup[]): any {
+  // console.log(fgs);
+  // }
   addAdmin() {
     this.mspRegisterAccessAdminsForm.unshift(
       this.createMspRegisterSigningAuthorityForm(this.gf, this.fb)
@@ -81,9 +83,9 @@ export class MspRegisterStateService {
     return users;
   }
 
-  validFormGroup(forms: FormGroup[]): boolean {
-    console.log(forms);
-    forms.forEach(fg => {
+  validFormGroup(fgs: FormGroup[]): boolean {
+    console.log(fgs);
+    fgs.forEach(fg => {
       if (fg.valid) return true;
     });
     return false;

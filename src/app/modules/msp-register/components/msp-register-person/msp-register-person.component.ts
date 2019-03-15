@@ -13,7 +13,10 @@ import { MspRegisterPerson } from '@msp-register/models/msp-register-person';
 import { GenerateForm } from '@msp-register/models/generate-form';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
-import { validFormControl } from '@msp-register/models/validator-helpers';
+import {
+  validFormControl,
+  validMultiFormControl
+} from '@msp-register/models/validator-helpers';
 
 @Component({
   selector: 'sitereg-msp-register-person',
@@ -27,6 +30,6 @@ export class MspRegisterPersonComponent {
   validFormControl: () => boolean;
 
   constructor(private router: Router) {
-    this.validFormControl = validFormControl.bind(this);
+    this.validFormControl = validMultiFormControl.bind(this);
   }
 }
