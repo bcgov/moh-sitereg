@@ -21,6 +21,7 @@ export class MspRegisterSigningAuthorityComponent implements OnInit {
   ) {
     this.fg = this.mspRegisterStateSvc.mspRegisterSigningAuthorityForm;
     this.validFormControl = validFormControl.bind(this);
+    this.fg.valueChanges.subscribe(obs => console.log(this.fg));
   }
 
   ngOnInit() {}

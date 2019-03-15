@@ -55,7 +55,18 @@ export function phoneValidator() {
     const forbidden = !/^[0-9]{3}[-]{1}[0-9]{3}[-]{1}[0-9]{4}$/.test(
       control.value
     );
-    console.log(forbidden);
+    return forbidden
+      ? { invalid: { value: `${control.value} is not valid` } }
+      : null;
+  };
+}
+
+export function faxValidator() {
+  return (control: AbstractControl): { [key: string]: any } | null => {
+    if (!control.value) return null;
+    const forbidden = !/^[0-9]{3}[-]{1}[0-9]{3}[-]{1}[0-9]{4}$/.test(
+      control.value
+    );
     return forbidden
       ? { invalid: { value: `${control.value} is not valid` } }
       : null;

@@ -5,7 +5,8 @@ import {
   required,
   minLength,
   maxLength,
-  phoneValidator
+  phoneValidator,
+  faxValidator
 } from './validator-helpers';
 
 export class MspRegisterAccessAdmins extends GenerateForm<IMspAccessAdmin>
@@ -35,7 +36,7 @@ export class MspRegisterAccessAdmins extends GenerateForm<IMspAccessAdmin>
       confirmEmail: [required, Validators.email, maxLength()],
       phone: [required, phoneValidator()],
       ext: [maxLength()],
-      fax: [phoneValidator()]
+      fax: [faxValidator()]
     };
   }
 

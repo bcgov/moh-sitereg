@@ -15,7 +15,8 @@ import {
   required,
   minLength,
   maxLength,
-  phoneValidator
+  phoneValidator,
+  faxValidator
 } from './validator-helpers';
 
 export class MspRegisterUsers extends GenerateForm<IMspUsers> implements IUser {
@@ -42,7 +43,7 @@ export class MspRegisterUsers extends GenerateForm<IMspUsers> implements IUser {
       confirmEmail: [required, Validators.email, maxLength()],
       phone: [required, phoneValidator()],
       ext: [maxLength()],
-      fax: [phoneValidator()],
+      fax: [faxValidator()],
       administeringFor: [required, maxLength()]
     };
   }

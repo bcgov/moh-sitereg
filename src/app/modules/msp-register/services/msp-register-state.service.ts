@@ -23,16 +23,6 @@ export class MspRegisterStateService {
   public mspRegisterUsersForm: FormGroup[];
   public mspRegisterAuthorizeForm: FormGroup;
 
-  get formBuilder() {
-    return this.fb;
-  }
-
-  get accessAdminsValid() {
-    return true;
-  }
-  // validMultiFormGroup(fgs: FormGroup[]): any {
-  // console.log(fgs);
-  // }
   addAdmin() {
     this.mspRegisterAccessAdminsForm.unshift(
       this.createMspRegisterSigningAuthorityForm(this.gf, this.fb)
@@ -84,10 +74,9 @@ export class MspRegisterStateService {
   }
 
   validFormGroup(fgs: FormGroup[]): boolean {
-    let bool = false;
+    let bool = true;
     fgs.forEach(fg => {
-      console.log(fg);
-      bool = fg.valid;
+      if (fg.invalid) return (bool = false);
     });
     console.log(bool);
     return bool;
@@ -164,13 +153,5 @@ export class MspRegisterStateService {
     return this.fb.group(
       mra.genForms(mra.generateArr(mra.genKeys, mra.validators))
     );
-  }
-
-  addUsersToList() {
-    const data = [this.mspRegisterUsersForm, this.mspRegisterAccessAdminsForm];
-    for (const group of data) {
-      for (const itm of group) {
-      }
-    }
   }
 }

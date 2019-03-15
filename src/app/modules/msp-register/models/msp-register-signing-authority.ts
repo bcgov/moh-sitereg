@@ -8,58 +8,10 @@ import {
   required,
   maxLength,
   minLength,
-  phoneValidator
+  phoneValidator,
+  faxValidator
 } from './validator-helpers';
-/*
-"sa_curtesy_title": {
-          "type": "string",
-          "maxLength": 5
-        },
-        "sa_last_name": {
-          "type": "string",
-          "maxLength": 100
-        },
-        "sa_first_name": {
-          "type": "string",
-          "maxLength": 100
-        },
-        "sa_initial": {
-          "type": "string",
-          "maxLength": 1
-        },
-        "sa_job_title": {
-          "type": "string",
-          "maxLength": 100
-        },
-        "sa_email": {
-          "type": "string",
-          "maxLength": 100
-        },
-        "sa_phone_num": {
-          "type": "string",
-          "pattern": "^[1-9]{3}-[0-9]{3}-[0-9]{4}$"
-        },
-        "sa_phone_ext": {
-          "type": "string",
-          "maxLength": 100
-        },
-        "sa_fax_num": {
-          "type": "string",
-          "pattern": "^[1-9]{3}-[0-9]{3}-[0-9]{4}$"
-        },
-        "sa_msp_access": {
-          "type": "string",
-          "pattern": "^[YN]"
-        },
-        "sa_spg": {
-          "type": "string",
-          "pattern": "^[EIB]$"
-        },
-        "sa_ldap_id": {
-          "type": "string",
-          "pattern": ""
-        }
-        */
+
 export class MspRegisterSigningAuthority
   extends GenerateForm<IMspSigningAuthority>
   implements IMspSigningAuthority {
@@ -79,7 +31,7 @@ export class MspRegisterSigningAuthority
   get validators() {
     return {
       directAccess: [required],
-      alsoAdmin: [required, minLength(), maxLength()],
+      alsoAdmin: [required],
       userTitle: [maxLength(5)],
       firstName: [required, minLength(), maxLength()],
       initial: [maxLength(1)],
@@ -89,7 +41,7 @@ export class MspRegisterSigningAuthority
       confirmEmail: [required, Validators.email, maxLength()],
       phone: [required, phoneValidator()],
       ext: [maxLength()],
-      fax: [maxLength(12), phoneValidator()]
+      fax: [faxValidator()]
     };
   }
 
