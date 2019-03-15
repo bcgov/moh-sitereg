@@ -21,8 +21,8 @@ import {
 @Component({
   selector: 'sitereg-msp-register-person',
   templateUrl: './msp-register-person.component.html',
-  styleUrls: ['./msp-register-person.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./msp-register-person.component.scss']
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MspRegisterPersonComponent {
   @Input() fg: FormGroup;

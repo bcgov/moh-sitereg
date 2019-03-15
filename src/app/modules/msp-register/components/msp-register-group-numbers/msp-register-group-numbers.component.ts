@@ -16,6 +16,7 @@ import {
 export class MspRegisterGroupNumbersComponent implements OnInit {
   fgs: FormGroup[];
   validFormControl: () => boolean;
+  validFormGroup = this.mspRegisterStateSvc.validFormGroup;
 
   constructor(
     public mspRegisterStateSvc: MspRegisterStateService,
@@ -27,7 +28,6 @@ export class MspRegisterGroupNumbersComponent implements OnInit {
 
   ngOnInit() {}
   continue() {
-    console.log('continue clicked');
     this.router.navigate(['msp-registration/authorize']);
   }
 

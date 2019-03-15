@@ -87,10 +87,9 @@ export class MspRegisterSigningAuthority
       jobTitle: [required, minLength(), maxLength()],
       emailAddress: [required, Validators.email, maxLength()],
       confirmEmail: [required, Validators.email, maxLength()],
-      phone: [required, minLength, maxLength(10), phoneValidator()],
+      phone: [required, phoneValidator()],
       ext: [maxLength()],
-      fax: [maxLength(10), phoneValidator()],
-      administeringFor: [required, maxLength()]
+      fax: [maxLength(10), phoneValidator()]
     };
   }
 

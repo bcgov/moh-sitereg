@@ -33,7 +33,6 @@ export class MspRegisterUsers extends GenerateForm<IMspUsers> implements IUser {
 
   get validators() {
     return {
-      alsoAdmin: [required, minLength(), maxLength()],
       userTitle: [maxLength(5)],
       firstName: [required, minLength(), maxLength()],
       initial: [maxLength(1)],
@@ -41,9 +40,9 @@ export class MspRegisterUsers extends GenerateForm<IMspUsers> implements IUser {
       jobTitle: [required, minLength(), maxLength()],
       emailAddress: [required, Validators.email, maxLength()],
       confirmEmail: [required, Validators.email, maxLength()],
-      phone: [required, minLength, maxLength(10), phoneValidator()],
+      phone: [required, phoneValidator()],
       ext: [maxLength()],
-      fax: [maxLength(10), phoneValidator()],
+      fax: [phoneValidator()],
       administeringFor: [required, maxLength()]
     };
   }

@@ -25,7 +25,7 @@ export class MspRegisterAccessAdmins extends GenerateForm<IMspAccessAdmin>
 
   get validators() {
     return {
-      alsoAdmin: [required, minLength(), maxLength()],
+      directAccess: [required],
       userTitle: [maxLength(5)],
       firstName: [required, minLength(), maxLength()],
       initial: [maxLength(1)],
@@ -33,10 +33,9 @@ export class MspRegisterAccessAdmins extends GenerateForm<IMspAccessAdmin>
       jobTitle: [required, minLength(), maxLength()],
       emailAddress: [required, maxLength()],
       confirmEmail: [required, Validators.email, maxLength()],
-      phone: [required, minLength, maxLength(10), phoneValidator()],
+      phone: [required, phoneValidator()],
       ext: [maxLength()],
-      fax: [maxLength(10), phoneValidator()],
-      administeringFor: [required, maxLength()]
+      fax: [phoneValidator()]
     };
   }
 

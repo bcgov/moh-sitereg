@@ -22,6 +22,6 @@
     </div>
   </form>
 </sitereg-page-sections>
-<common-form-action-bar (btnClick)="continue()" [canContinue]="mspRegisterStateSvc.accessAdminsValid">
+<common-form-action-bar (btnClick)="continue()" [canContinue]="validFormGroup(fgs)">
 
 </common-form-action-bar>

@@ -84,11 +84,13 @@ export class MspRegisterStateService {
   }
 
   validFormGroup(fgs: FormGroup[]): boolean {
-    console.log(fgs);
+    let bool = false;
     fgs.forEach(fg => {
-      if (fg.valid) return true;
+      console.log(fg);
+      bool = fg.valid;
     });
-    return false;
+    console.log(bool);
+    return bool;
   }
 
   constructor() {
