@@ -49,7 +49,7 @@ export interface ISiteregRequest {
   org_information: IOrgInformationDef;
   signing_authority_information: ISigningAuthorityInformationDef;
   access_administrator_present: IAccessAdministratorPresentDef[];
-  users: IUserDef;
+  users: IUserDef[];
   msp_group: IMspGroupDef;
 }
 

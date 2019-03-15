@@ -120,18 +120,34 @@ export class MspRegisterDataService {
     };
   }
 
-  mapUserDef(obj: IMspUsers): IUserDef {}
-
-  mapGroupDef(obj: IMspGroupNumbers): IMspGroupDef {}
+  mapUserDef(obj: IUser | IUser[]): IUserDef | IUserDef[] {
+    if (Array.isArray(obj)) {
+      const arr = [];
+      obj.forEach(itm => {
+        this.validateKeys(itm);
+        arr.push(this.mapUserDef(itm));
+      });
+      return arr;
+    }
+    const user = this.mapBaseUser(obj) as IUserDef;
+    user.user_spg = obj.administeringFor as string;
+    return user;
+  }
+  /*
+  SH: not sure if this is required atm.
+*/
+  // mapGroupDef(obj: IMspGroupNumbers): IMspGroupDef {
+  //   if (Array.isArray(obj)) {
+  //     return obj.map(itm => {})
+  //   }
+  // }
 
   mapSigningAuthorityInformationDef(
     obj: IMspSigningAuthority[] | IMspSigningAuthority
   ): ISigningAuthorityInformationDef | ISigningAuthorityInformationDef[] {
-    const arr = [];
-    console.log(typeof obj);
     if (Array.isArray(obj)) {
-      obj.forEach((itm, i, array) => {
-        console.log('index', i);
+      const arr = [];
+      obj.forEach(itm => {
         this.validateKeys(itm);
         arr.push(this.mapSigningAuthorityInformationDef(itm));
       });
@@ -140,14 +156,42 @@ export class MspRegisterDataService {
     const user = this.mapBaseUser(obj) as ISigningAuthorityInformationDef;
     user.sa_msp_access = this.mapYesNo(obj.alsoAdmin as boolean);
     user.sa_spg = obj.administeringFor as string;
-    return user;
+    return user as ISigningAuthorityInformationDef;
   }
 
   mapAccessAdministratorDef(
-    obj: IMspAccessAdmin
-  ): IAccessAdministratorPresentDef {}
+    obj: IMspAccessAdmin | IMspAccessAdmin[]
+  ): IAccessAdministratorPresentDef | IAccessAdministratorPresentDef[] {
+    if (Array.isArray(obj)) {
+      const arr = [];
+      obj.forEach(itm => {
+        this.validateKeys(obj);
+        arr.push(this.mapAccessAdministratorDef(itm));
+      });
+      return arr;
+    }
+    const user = this.mapBaseUser(obj) as IAccessAdministratorPresentDef;
+    user.aa_msp_access = this.mapYesNo(obj.directAccess as boolean);
+    user.aa_spg = obj.administeringFor as string;
+    return user;
+  }
 
-  mapSiteRegRequest(org: IMspOrganization, users: IUserDef[]): ISiteregRequest {
+  mapSiteRegRequest(
+    // tslint:disable-next-line: variable-name
+    org_information: IOrgInformationDef,
+    // tslint:disable-next-line: variable-name
+    signing_authority_information: ISigningAuthorityInformationDef,
+    // tslint:disable-next-line: variable-name
+    access_administrator_present: IAccessAdministratorPresentDef[],
+    users: IUserDef[]
+  ): ISiteregRequest {
+    return {
+      org_information,
+      signing_authority_information,
+      access_administrator_present,
+      users,
+      msp_group: org_information.contracting_out as any
+    };
     return;
   }
 }

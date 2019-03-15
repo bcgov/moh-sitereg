@@ -1,8 +1,18 @@
 import { TestBed } from '@angular/core/testing';
 
 import { MspRegisterDataService } from './msp-register-data.service';
-import { organization, coreUser, sa } from '@msp-register/mocks';
-import { ISigningAuthorityInformationDef } from '@core/interfaces/i-http-data';
+import {
+  organization,
+  coreUser,
+  sa,
+  users,
+  accessAdmins
+} from '@msp-register/mocks';
+import {
+  ISigningAuthorityInformationDef,
+  IUserDef,
+  IAccessAdministratorPresentDef
+} from '@core/interfaces/i-http-data';
 
 describe('MspRegisterDataService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
@@ -40,30 +50,48 @@ describe('MspRegisterDataService', () => {
   });
 
   it('should return a valid IUserDef', () => {
-    const org = organization;
     const service: MspRegisterDataService = TestBed.get(MspRegisterDataService);
-    expect(service).toBeDefined();
-    // expect(service.mapOrgInformation(org)).toContain('org_name');
+    const user = users;
+    const res = service.mapUserDef(user) as IUserDef[];
+    expect(res).toBeDefined();
+    expect(res.length).toBe(3);
+    expect(res[0].sa_last_name).toEqual('Papi');
   });
 
   it('should return a valid IAccessAdministratorPresentDef', () => {
-    const org = organization;
     const service: MspRegisterDataService = TestBed.get(MspRegisterDataService);
-    expect(service).toBeDefined();
-    // expect(service.mapOrgInformation(org)).toContain('org_name');
+    const objs = accessAdmins;
+    const res = service.mapAccessAdministratorDef(
+      objs
+    ) as IAccessAdministratorPresentDef[];
+
+    expect(res).toBeDefined();
+    expect(res.length).toBe(3);
+    expect(res[0].sa_last_name).toEqual('Franke');
   });
 
   it('should return a valid IMspGroupDef', () => {
     const org = organization;
     const service: MspRegisterDataService = TestBed.get(MspRegisterDataService);
     expect(service).toBeDefined();
-    // expect(service.mapOrgInformation(org)).toContain('org_name');
   });
 
   it('should return a valid ISiteRegRequest', () => {
-    const org = organization;
     const service: MspRegisterDataService = TestBed.get(MspRegisterDataService);
+    const org = organization;
+    const sas = sa;
+    const user = users;
+    const aas = accessAdmins;
+    const form = service.mapSiteRegRequest(
+      service.mapOrgInformation(org),
+      service.mapSigningAuthorityInformationDef(
+        sas
+      ) as ISigningAuthorityInformationDef,
+      service.mapAccessAdministratorDef(
+        aas
+      ) as IAccessAdministratorPresentDef[],
+      service.mapUserDef(user) as IUserDef[]
+    );
     expect(service).toBeDefined();
-    // expect(service.mapOrgInformation(org)).toContain('org_name');
   });
 });

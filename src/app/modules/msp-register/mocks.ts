@@ -76,7 +76,7 @@ export const users: IUser[] = [
   }
 ];
 
-const accessAdmins: IMspAccessAdmin[] = [
+export const accessAdmins: IMspAccessAdmin[] = [
   {
     userTitle: 'Dr.',
     firstName: 'Emilie',
