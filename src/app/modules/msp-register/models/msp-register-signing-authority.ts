@@ -89,7 +89,7 @@ export class MspRegisterSigningAuthority
       confirmEmail: [required, Validators.email, maxLength()],
       phone: [required, phoneValidator()],
       ext: [maxLength()],
-      fax: [maxLength(10), phoneValidator()]
+      fax: [maxLength(12), phoneValidator()]
     };
   }
 
