@@ -19,6 +19,10 @@ import {
   YesNo,
   ISigningAuthorityInformationDef
 } from '@core/interfaces/i-http-data';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+
+const apiUrl = environment.apiUrl;
 
 const text =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus pronin sapien nunc accuan eget.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus pronin sapien nunc accuan eget.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus pronin sapien nunc accuan eget.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus pronin sapien nunc accuan eget.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus pronin sapien nunc accuan eget.pronin sapien nunc accuan eget.';
@@ -61,7 +65,7 @@ export class MspRegisterDataService {
     this.signingAuthorityAddress$.next(addr);
   }
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
   validateKeys(obj) {
     for (const key in Object.keys(obj)) {
       if (obj[key] === typeof obj) throw Error('invalid type');
@@ -192,20 +196,9 @@ export class MspRegisterDataService {
       users,
       msp_group: org_information.contracting_out as any
     };
-    return;
+  }
+
+  createSiteregRequest(obj: ISiteregRequest) {
+    return this.http.put(`${apiUrl}/sitereg`, obj).toPromise();
   }
 }
-
-/*
-export interface IOrgInformationDef {
-  org_name: string;
-  org_num: string;
-  suite_num: string;
-  street_num: string;
-  address_2: string;
-  city: string;
-  province: string;
-  postal_code: string;
-  contracting_out: IContractingOut;
-}
-*/

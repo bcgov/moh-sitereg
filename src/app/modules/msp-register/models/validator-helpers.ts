@@ -34,7 +34,7 @@ export class ValidatorHelpers {
 
 export function postalCodeValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
-    const forbidden = !/^[V][0-9][ABCEGHJ-NPRSTV-Z][0-9][ABCEGHJ-NPRSTV-Z][0-9]$/.test(
+    const forbidden = !/^[ABCEGHJ-NPRSTV-Z][0-9][ABCEGHJ-NPRSTV-Z][0-9][ABCEGHJ-NPRSTV-Z][0-9]$/.test(
       control.value
     );
     return forbidden ? { invalidPostalCode: { value: control.value } } : null;
