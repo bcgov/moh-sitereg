@@ -9,19 +9,16 @@ import { MspRegisterGroupNumbersComponent } from './components/msp-register-grou
 import { MspRegisterUsersComponent } from './components/msp-register-users/msp-register-users.component';
 import { subRoutes } from './models/sub-routes';
 
-const routes: Routes = [{
-  path: '',
-  component: MspRegisterComponent,
-  children: subRoutes,
-  },
-
-
-
+const routes: Routes = [
+  {
+    path: '',
+    component: MspRegisterComponent,
+    children: subRoutes
+  }
 ];
-
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class MspRegisterRoutingModule { }
+export class MspRegisterRoutingModule {}

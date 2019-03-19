@@ -11,7 +11,11 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class MspRegisterUsersComponent implements OnInit {
   fgs: FormGroup[];
-  administeringFor: BehaviorSubject<string[]> = new BehaviorSubject<string[]>(['me', 'you']);
+  administeringFor: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([
+    'me',
+    'you'
+  ]);
+  validateFormGroup = this.mspRegisterStateSvc.validFormGroup;
 
   constructor(
     public mspRegisterStateSvc: MspRegisterStateService,
@@ -20,8 +24,7 @@ export class MspRegisterUsersComponent implements OnInit {
     this.fgs = this.mspRegisterStateSvc.mspRegisterUsersForm;
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   continue() {
     this.router.navigate(['msp-registration/group-numbers']);
@@ -34,5 +37,4 @@ export class MspRegisterUsersComponent implements OnInit {
   delete(i: number) {
     this.mspRegisterStateSvc.removeUser(i);
   }
-
 }

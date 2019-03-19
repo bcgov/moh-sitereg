@@ -2,14 +2,14 @@
 
 <h2 class="border-bottom">Group Numbers</h2>
 <div class='row mb-4'>
-    <div class='col-md-3 p-4'>
-      <a (click)='addGroupNumber()'>
-        <button class="btn btn-block btn-lg btn-secondary">
-          Add Group Number
-        </button>
-      </a>
-    </div>
+  <div class='col-md-3 p-4'>
+    <a (click)='addGroupNumber()'>
+      <button class="btn btn-block btn-lg btn-secondary">
+        Add Group Number
+      </button>
+    </a>
   </div>
+</div>
 <sitereg-page-sections *ngFor="let fg of fgs; index as i">
   <h3 class="border-bottom">Group Number #{{i+1}}</h3>
   <button (click)="delete(i)">Delete</button>
@@ -17,12 +17,11 @@
     <div class="form-group col-sm-6 p-sm-0">
       <label class="control-label" for="groupNumber">MSP Group Number</label>
       <input id="groupNumber" formControlName="groupNumber" class="form-control">
-      <div class="text-danger" *ngIf="fg.invalid">
-        {{ fg.errors}}
-      </div>
+      <sitereg-error-box [error]="validFormControl(fg, 'groupNumber')" errorMessage="Invalid"></sitereg-error-box>
+
     </div>
   </form>
 </sitereg-page-sections>
-<common-form-action-bar (btnClick)="continue()" [canContinue]="mspRegisterStateSvc.accessAdminsValid">
+<common-form-action-bar (btnClick)="continue()" [canContinue]="validFormGroup(fgs)">
 
 </common-form-action-bar>

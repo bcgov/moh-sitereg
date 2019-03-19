@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MspRegisterAuthorizeComponent } from './msp-register-authorize.component';
+import { SharedModule } from '@shared/shared.module';
+import { RouterTestingModule } from '@angular/router/testing';
+import { MspRegisterAuthorizeAccessComponent } from '../msp-register-authorize-access/msp-register-authorize-access.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('MspRegisterAuthorizeComponent', () => {
   let component: MspRegisterAuthorizeComponent;
@@ -8,7 +12,9 @@ describe('MspRegisterAuthorizeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MspRegisterAuthorizeComponent ]
+      declarations: [ MspRegisterAuthorizeComponent, MspRegisterAuthorizeAccessComponent ],
+      imports: [SharedModule, RouterTestingModule, HttpClientTestingModule],
+
     })
     .compileComponents();
   }));
