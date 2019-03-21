@@ -8,10 +8,31 @@
       <div class="text-danger" *ngIf="validFormControl('name')">
         Please enter your first name.
       </div>
+
+       <!-- Suite Number -->
+      <div class="row">
+        <div class="col-sm-6">
+          <label class="control-label" for="suite">Suite</label>
+          <input id="suite" formControlName="suite" class="form-control" placeholder="Suite Number">
+          <div class="text-danger" *ngIf="validFormControl('suite')">
+            Please enter a valid suite number.
+          </div>
+        </div>
+        
+        <!-- Street Number -->
+        <div class="col-sm-6">
+          <label class="control-label" for="street">Street Number</label>
+          <input id="street" formControlName="street" class="form-control" placeholder="128a">
+          <div class="text-danger" *ngIf="validFormControl('street')">
+            Please enter a valid street number.
+          </div>
+        </div>
+      </div>
+
       <label class="control-label" for="address">Street Address</label>
       <input id="adddress" formControlName="address" class="form-control" placeholder="111 Fake Street">
       <div class="text-danger" *ngIf="validFormControl('address')">
-        Please enter a valid address.
+        Please enter a valid street address.
       </div>
 
       <label class="control-label" for="city">City</label>

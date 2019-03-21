@@ -128,6 +128,9 @@ export const groupNumbers: IMspGroupNumbers[] = [
 
 export const organization: IMspOrganization = {
   name: 'Kellwood Company',
+  suite: '1034',
+  street: '128',
+  streetName: 'Bayt Street',
   address: '1034 Birik Grove',
   city: 'Bepkelfoj',
   province: 'NS',

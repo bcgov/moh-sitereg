@@ -12,11 +12,17 @@ export class MspRegisterOrganization extends GenerateForm<IMspOrganization>
   thirdParty: boolean | FormControl = false;
   blueCross: boolean | FormControl = false;
   administeringFor: string | FormControl = '';
+  suite: string | FormControl = '';
+  street: string | FormControl = '';
+  streetName: string | FormControl = '';
   address: string | FormControl = '';
   // validators = new Map();
   get validators() {
     return {
       name: [required, Validators.maxLength(100)],
+      suite: [Validators.maxLength(10)],
+      street: [Validators.maxLength(10)],
+      streetName: [Validators.maxLength(75)],
       address: [required, minLength(), maxLength(200)],
       city: [required, minLength(), maxLength(25)],
       province: [required, minLength(2), maxLength(3)],
