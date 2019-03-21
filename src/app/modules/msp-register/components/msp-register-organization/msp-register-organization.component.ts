@@ -38,7 +38,16 @@ export class MspRegisterOrganizationComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.fg.valueChanges.subscribe(obs => console.log(this.fg));
+    this.fg.valueChanges.subscribe(
+      obs => {
+
+            console.log(this.fg);
+
+            // converts postalcode in upper case
+            const postalCode = this.fg.get('postalCode');
+            postalCode.setValue(postalCode.value.toUpperCase(), {emitEvent: false});
+      }
+      );
   }
 
   continue() {
