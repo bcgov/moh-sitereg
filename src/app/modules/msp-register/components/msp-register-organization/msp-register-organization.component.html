@@ -20,12 +20,12 @@
         Please enter your city.
       </div>
 
-      <label class="control-label" for="city">Province</label>
+      <label class="control-label" for="province">Province</label>
       <select class="form-control" *ngIf="provinces | async as provinces" formControlName="province">
         <option value="null" label="-- Select Province --" selected></option>
         <option *ngFor="let province of provinces " [value]="province.provCode">{{province.description}}</option>
       </select>
-      <div class="text-danger" *ngIf="validFormControl('postalCode')">
+      <div class="text-danger" *ngIf="validFormControl('province')">
         Please select a valid province.
       </div>
 
