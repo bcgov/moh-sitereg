@@ -47,7 +47,7 @@ export function postalCodeValidator(): ValidatorFn {
  */
 export function addressValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
-    const forbidden = !/^[0-9A-Za-z\s\-\/():.]+$/.test(
+    const forbidden = !/^[0-9A-Za-z\s\-\/():.,]+$/.test(
       control.value
     );
     return forbidden ? { invalidAddress: { value: control.value } } : null;
