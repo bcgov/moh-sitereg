@@ -9,10 +9,10 @@
         Please enter your first name.
       </div>
 
-       <!-- Suite Number -->
+       <!-- Suite -->
       <div class="row">
         <div class="col-sm-6">
-          <label class="control-label" for="suite">Suite</label>
+          <label class="control-label" for="suite">Suite #</label>
           <input id="suite" formControlName="suite" class="form-control" placeholder="Suite Number">
           <div class="text-danger" *ngIf="validFormControl('suite')">
             Please enter a valid suite number.
@@ -21,18 +21,18 @@
         
         <!-- Street Number -->
         <div class="col-sm-6">
-          <label class="control-label" for="street">Street</label>
+          <label class="control-label" for="street">Street #</label>
           <input id="street" formControlName="street" class="form-control" placeholder="Street Number">
           <div class="text-danger" *ngIf="validFormControl('street')">
             Please enter a valid street number.
           </div>
-        </div>
-      </div>
-
+        </div>        
+    </div>
+  
       <label class="control-label" for="streetName">Street Address</label>
-      <input id="streetName" formControlName="streetName" class="form-control" placeholder="Street or Avenue name i.e Yates street">
-      <div class="text-danger" *ngIf="validFormControl('streetName')">
-        Please enter a valid street address.
+          <input id="streetName" formControlName="streetName" class="form-control" placeholder="Street or Avenue name i.e Yates street">
+          <div class="text-danger" *ngIf="validFormControl('streetName')">
+            Please enter a valid street address.
       </div>
 
       <label class="control-label" for="city">City</label>
@@ -41,21 +41,27 @@
         Please enter your city.
       </div>
 
-      <label class="control-label" for="province">Province</label>
-      <select class="form-control" *ngIf="provinces | async as provinces" formControlName="province">
-        <option value="null" label="-- Select Province --" selected></option>
-        <option *ngFor="let province of provinces " [value]="province.provCode">{{province.description}}</option>
-      </select>
-      <div class="text-danger" *ngIf="validFormControl('province')">
-        Please select a valid province.
-      </div>
+      <div class="row">
+        <div class="col-sm-8">
+            <label class="control-label" for="province">Province</label>
+            <select class="form-control" *ngIf="provinces | async as provinces" formControlName="province">
+              <option value="null" label="-- Select Province --" selected></option>
+              <option *ngFor="let province of provinces " [value]="province.provCode">{{province.description}}</option>
+            </select>
+            <div class="text-danger" *ngIf="validFormControl('province')">
+              Please select a valid province.
+            </div>
+        </div>
+        <div class="col-sm-4">
+          <label class="control-label" for="postalCode">Postal Code</label>
+          <input id="postalCode" formControlName="postalCode" class="form-control" placeholder="A1A1A1">
+          <div class="text-danger" *ngIf="validFormControl('postalCode')">
+            Please enter your postal code in the format A1A1A1.
+          </div>
+        </div>          
+      </div>     
 
-      <label class="control-label" for="postalCode">Postal Code</label>
-      <input id="postalCode" formControlName="postalCode" class="form-control" placeholder="A1A1A1">
-      <div class="text-danger" *ngIf="validFormControl('postalCode')">
-        Please enter your postal code in the format A1A1A1.
-      </div>
-
+    
       <label class="control-label">Are you contracting a 3rd party to administer MSP direct on you
         behalf?
       </label>
