@@ -117,7 +117,8 @@ export class MspRegisterDataService {
       org_num: obj.administeringFor as string,
       suite_num: obj.suite as string,
       street_num: obj.street as string,
-      address_2: obj.streetName as string,
+      street_name: obj.streetName as string,
+      address_2: obj.address as string,
       city: obj.city as string,
       province: obj.province as string,
       postal_code: obj.postalCode as string

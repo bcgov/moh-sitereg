@@ -20,10 +20,9 @@ export class MspRegisterOrganization extends GenerateForm<IMspOrganization>
   get validators() {
     return {
       name: [required, Validators.maxLength(100)],
-      suite: [Validators.maxLength(10), addressValidator()],
-      street: [Validators.maxLength(10), addressValidator()],
-      streetName: [Validators.maxLength(75), addressValidator()],
-      address: [required, minLength(), maxLength(200), addressValidator()],
+      suite: [required, Validators.maxLength(10), addressValidator()],
+      street: [required, Validators.maxLength(10), addressValidator()],
+      streetName: [required, Validators.maxLength(75), addressValidator()],
       city: [required, minLength(), maxLength(25)],
       province: [required, minLength(2), maxLength(3)],
       postalCode: [required, maxLength(6), postalCodeValidator()],
