@@ -3,6 +3,7 @@ export interface IOrgInformationDef {
   org_num: string;
   suite_num: string;
   street_num: string;
+  street_name: string;
   address_2: string;
   city: string;
   province: string;
