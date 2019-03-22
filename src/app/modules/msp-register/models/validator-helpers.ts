@@ -41,6 +41,19 @@ export function postalCodeValidator(): ValidatorFn {
   };
 }
 
+
+/**
+ * Validates number, alphabetics, small braces, slash ,hyphen, colon, full stop
+ */
+export function addressValidator(): ValidatorFn {
+  return (control: AbstractControl): { [key: string]: any } | null => {
+    const forbidden = !/^[0-9A-Za-z\s\-\/():.]+$/.test(
+      control.value
+    );
+    return forbidden ? { invalidAddress: { value: control.value } } : null;
+  };
+}
+
 export function administeringForValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
     const forbidden = !/^[EIB]$/.test(control.value);

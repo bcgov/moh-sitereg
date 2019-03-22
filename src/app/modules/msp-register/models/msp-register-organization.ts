@@ -1,7 +1,7 @@
 import { GenerateForm } from './generate-form';
 import { IMspOrganization } from '@msp-register/interfaces';
 import { FormControl, FormBuilder, Validators } from '@angular/forms';
-import { postalCodeValidator, maxLength, required } from './validator-helpers';
+import { postalCodeValidator, addressValidator, maxLength, required } from './validator-helpers';
 import { minLength } from './validator-helpers';
 export class MspRegisterOrganization extends GenerateForm<IMspOrganization>
   implements IMspOrganization {
@@ -20,10 +20,10 @@ export class MspRegisterOrganization extends GenerateForm<IMspOrganization>
   get validators() {
     return {
       name: [required, Validators.maxLength(100)],
-      suite: [Validators.maxLength(10)],
-      street: [Validators.maxLength(10)],
-      streetName: [Validators.maxLength(75)],
-      address: [required, minLength(), maxLength(200)],
+      suite: [Validators.maxLength(10), addressValidator()],
+      street: [Validators.maxLength(10), addressValidator()],
+      streetName: [Validators.maxLength(75), addressValidator()],
+      address: [required, minLength(), maxLength(200), addressValidator()],
       city: [required, minLength(), maxLength(25)],
       province: [required, minLength(2), maxLength(3)],
       postalCode: [required, maxLength(6), postalCodeValidator()],
