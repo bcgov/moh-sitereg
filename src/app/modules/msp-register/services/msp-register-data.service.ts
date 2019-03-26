@@ -79,6 +79,15 @@ export class MspRegisterDataService {
         return 'no';
     }
 
+    /**
+     * Maps boolean value to middleware defination ^[YN]$
+     * @param val Boolean Parameter
+     */
+    mapDefYesNo(val: boolean): string {
+        if (val) return 'Y';
+        return 'N';
+    }
+
     mapContractingOut(
         // tslint:disable-next-line: variable-name
         contracting_third_party: YesNo,
@@ -106,26 +115,35 @@ export class MspRegisterDataService {
         };
     }
 
+    //#region Orgnaization
+
     mapOrgInformation(obj: IMspOrganization): IOrgInformationDef {
         this.validateKeys(obj);
         if (!obj) throw Error('no organizaiton provided');
         // tslint:disable-next-line: variable-name
         const contracting_out = this.mapContractingOut(
             this.mapYesNo(obj.thirdParty as boolean),
-            obj.administeringFor as string
+            obj.organizationNumber as string
         );
         return {
             contracting_out,
             org_name: obj.name as string,
-            org_num: obj.administeringFor as string,
+            org_num: obj.organizationNumber as string,
             suite_num: obj.suite as string,
             street_num: obj.street as string,
             street_name: obj.streetName as string,
-            address_2: obj.address as string,
+            address_2: obj.secondaryAddress as string,
             city: obj.city as string,
             province: obj.province as string,
             postal_code: obj.postalCode as string,
+            blue_cross: this.mapDefYesNo(obj.blueCross as boolean),
+            // todo: unclear what is this org_spg and whom it should map?
+            // todo: org_spg value must maps to RegEx ^[EIB]$
+            org_spg: 'todo:not sure what is that and related to what'
         };
+
+    //#endregion
+
     }
 
     mapUserDef(obj: IUser | IUser[]): IUserDef | IUserDef[] {
@@ -205,4 +223,6 @@ export class MspRegisterDataService {
     createSiteregRequest(obj: ISiteregRequest) {
         return this.http.put(`${apiUrl}/sitereg`, obj).toPromise();
     }
+
+    
 }

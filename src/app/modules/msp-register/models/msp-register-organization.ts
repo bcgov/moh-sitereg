@@ -6,10 +6,12 @@ import {
     addressValidator,
     maxLength,
     required,
+    groupNumberValidator,
 } from './validator-helpers';
 import { minLength } from './validator-helpers';
 export class MspRegisterOrganization extends GenerateForm<IMspOrganization>
     implements IMspOrganization {
+    organizationNumber: string | FormControl = '';
     name: string | FormControl = '';
     city: string | FormControl = '';
     province: string | FormControl = '';
@@ -20,10 +22,15 @@ export class MspRegisterOrganization extends GenerateForm<IMspOrganization>
     suite: string | FormControl = '';
     street: string | FormControl = '';
     streetName: string | FormControl = '';
-    address: string | FormControl = '';
+    secondaryAddress: string | FormControl = '';
     // validators = new Map();
     get validators() {
         return {
+
+            // todo: non-required fields invalids forms even left blank, which in return stop forms to continue to next screen
+            // possible remedy: these validators are added as required , must be removed before validating.
+
+            organizationNumber: [groupNumberValidator()], // todo: test blank behaviour and validate form
             name: [required, Validators.maxLength(100)],
             suite: [required, Validators.maxLength(10), addressValidator()],
             street: [required, Validators.maxLength(10), addressValidator()],
@@ -32,6 +39,7 @@ export class MspRegisterOrganization extends GenerateForm<IMspOrganization>
                 Validators.maxLength(75),
                 addressValidator(),
             ],
+            secondaryAddress: [ Validators.maxLength(200), addressValidator()],  // todo: test blank behaviour and validate form
             city: [required, minLength(), maxLength(25)],
             province: [required, minLength(2), maxLength(3)],
             postalCode: [required, maxLength(6), postalCodeValidator()],

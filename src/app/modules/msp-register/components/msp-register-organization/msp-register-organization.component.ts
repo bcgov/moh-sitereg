@@ -6,6 +6,7 @@ import { CountryData } from '@shared/models/country-data';
 import { BehaviorSubject } from 'rxjs';
 import { IProvince } from '@shared/interfaces/i-provinces';
 import { validFormControl } from '@msp-register/models/validator-helpers';
+import { MspRegisterDataService } from '@msp-register/services/msp-register-data.service';
 
 @Component({
     selector: 'sitereg-msp-register-organization',
@@ -26,7 +27,8 @@ export class MspRegisterOrganizationComponent implements OnInit {
 
     constructor(
         private router: Router,
-        public mspRegisterStateSvc: MspRegisterStateService
+        public mspRegisterStateSvc: MspRegisterStateService,
+        public mspRegDataSvc: MspRegisterDataService,
     ) {
         this.fg = this.mspRegisterStateSvc.mspRegisterOrganizationForm;
         this.validFormControl = validFormControl.bind(this);
@@ -51,6 +53,12 @@ export class MspRegisterOrganizationComponent implements OnInit {
     }
 
     continue() {
-        this.router.navigate(['msp-registration/signing-authority']);
+
+        const orgForm = this.mspRegisterStateSvc.mspRegisterOrganizationForm;
+        console.log(orgForm);
+        const objOrg = this.mspRegDataSvc.mapOrgInformation(orgForm.value);
+        console.log(objOrg);
+
+        // this.router.navigate(['msp-registration/signing-authority']);
     }
 }

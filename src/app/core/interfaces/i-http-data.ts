@@ -8,6 +8,8 @@ export interface IOrgInformationDef {
     city: string;
     province: string;
     postal_code: string;
+    blue_cross: string;
+    org_spg: string;
     contracting_out: IContractingOut;
 }
 

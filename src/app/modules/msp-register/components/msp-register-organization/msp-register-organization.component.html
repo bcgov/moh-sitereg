@@ -9,6 +9,12 @@
         Please enter your first name.
       </div>
 
+      <label class="control-label" for="name">Organization Number(optional)</label>
+      <input id="name" formControlName="organizationNumber" class="form-control" placeholder="Organization Number-7 digits long i.e 1128071">
+      <div class="text-danger" *ngIf="validFormControl('organizationNumber')">
+        Please enter a valid Organization Number (7 digits long).
+      </div>
+
        <!-- Suite -->
       <div class="row">
         <div class="col-sm-6">
@@ -34,6 +40,13 @@
           <div class="text-danger" *ngIf="validFormControl('streetName')">
             Please enter a valid street address.
       </div>
+
+      <label class="control-label" for="secondaryAddress">Secondary Address (optional)</label>
+      <input id="secondaryAddress" formControlName="secondaryAddress" class="form-control" placeholder="Secondary Address">
+      <div class="text-danger" *ngIf="validFormControl('secondaryAddress')">
+        Please enter a valid secondary address.
+  </div>
+      
 
       <label class="control-label" for="city">City</label>
       <input id="city" formControlName="city" class="form-control" placeholder="Victoria">
