@@ -559,6 +559,7 @@ const typeMap: any = {
 };
 
 function transform(valc: any, typc: any, getProps: any): any {
+
     function transformPrimitive(typ: string, val: any): any {
         if (typeof typ === typeof val) return val;
         return invalidValue(typ, val);
@@ -622,30 +623,30 @@ function transform(valc: any, typc: any, getProps: any): any {
         return result;
     }
 
-    if (typ === 'any') return val;
-    if (typ === null) {
-        if (val === null) return val;
-        return invalidValue(typ, val);
+    if (typc === 'any') return valc;
+    if (typc === null) {
+        if (valc === null) return valc;
+        return invalidValue(typc, valc);
     }
-    if (typ === false) return invalidValue(typ, val);
-    while (typeof typ === 'object' && typ.ref !== undefined) {
-        typ = typeMap[typ.ref];
+    if (typc === false) return invalidValue(typc, valc);
+    while (typeof typc === 'object' && typc.ref !== undefined) {
+        typc = typeMap[typc.ref];
     }
-    if (Array.isArray(typ)) return transformEnum(typ, val);
-    if (typeof typ === 'object') {
-        return typ.hasOwnProperty('unionMembers')
-            ? transformUnion(typ.unionMembers, val)
-            : typ.hasOwnProperty('arrayItems')
-            ? transformArray(typ.arrayItems, val)
-            : typ.hasOwnProperty('props')
-            ? transformObject(getProps(typ), typ.additional, val)
-            : invalidValue(typ, val);
+    if (Array.isArray(typc)) return transformEnum(typc, valc);
+    if (typeof typc === 'object') {
+        return typc.hasOwnProperty('unionMembers')
+            ? transformUnion(typc.unionMembers, valc)
+            : typc.hasOwnProperty('arrayItems')
+            ? transformArray(typc.arrayItems, valc)
+            : typc.hasOwnProperty('props')
+            ? transformObject(getProps(typc), typc.additional, valc)
+            : invalidValue(typc, valc);
     }
     // Numbers can be parsed by Date but shouldn't be.
-    if (typ === Date && typeof val !== 'number') {
-        return transformDate(typ, val);
+    if (typc === Date && typeof valc !== 'number') {
+        return transformDate(typc, valc);
     }
-    return transformPrimitive(typ, val);
+    return transformPrimitive(typc, valc);
 }
 
 function cast<T>(val: any, typ: any): T {
