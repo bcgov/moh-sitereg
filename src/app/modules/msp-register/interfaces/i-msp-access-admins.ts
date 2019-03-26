@@ -1,5 +1,5 @@
-import { IUser } from './i-user';
-import { FormControl } from '@angular/forms';
+import { IUser } from "./i-user";
+import { FormControl } from "@angular/forms";
 
 export interface IMspAccessAdmins {
   admins: IMspAccessAdmin[];
@@ -8,4 +8,3 @@ export interface IMspAccessAdmins {
 export interface IMspAccessAdmin extends IUser {
   directAccess: boolean | FormControl;
 }
-

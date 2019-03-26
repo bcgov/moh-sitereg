@@ -1,18 +1,18 @@
-import { IMspAccessAdmin } from '@msp-register/interfaces/i-msp-access-admins';
-import { GenerateForm } from './generate-form';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { IMspAccessAdmin } from "@msp-register/interfaces/i-msp-access-admins";
+import { GenerateForm } from "./generate-form";
+import { FormBuilder, FormControl, Validators } from "@angular/forms";
 import {
   required,
   minLength,
   maxLength,
   phoneValidator,
   faxValidator
-} from './validator-helpers';
+} from "./validator-helpers";
 
 export class MspRegisterAccessAdmins extends GenerateForm<IMspAccessAdmin>
   implements IMspAccessAdmin {
   directAccess: boolean | FormControl = false;
-  userTitle?: FormControl | 'mr' | 'mrs' = null;
+  userTitle?: FormControl | "mr" | "mrs" = null;
   firstName: string | FormControl = null;
   initial?: string | FormControl = null;
   lastName: string | FormControl = null;

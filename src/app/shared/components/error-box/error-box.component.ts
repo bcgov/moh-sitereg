@@ -3,12 +3,12 @@ import {
   OnInit,
   ChangeDetectionStrategy,
   Input
-} from '@angular/core';
+} from "@angular/core";
 
 @Component({
-  selector: 'sitereg-error-box',
-  templateUrl: './error-box.component.html',
-  styleUrls: ['./error-box.component.scss'],
+  selector: "sitereg-error-box",
+  templateUrl: "./error-box.component.html",
+  styleUrls: ["./error-box.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ErrorBoxComponent implements OnInit {

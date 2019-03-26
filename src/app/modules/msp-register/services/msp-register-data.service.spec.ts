@@ -1,45 +1,45 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from "@angular/core/testing";
 
-import { MspRegisterDataService } from './msp-register-data.service';
+import { MspRegisterDataService } from "./msp-register-data.service";
 import {
   organization,
   coreUser,
   sa,
   users,
   accessAdmins
-} from '@msp-register/mocks';
+} from "@msp-register/mocks";
 import {
   ISigningAuthorityInformationDef,
   IUserDef,
   IAccessAdministratorPresentDef
-} from '@core/interfaces/i-http-data';
+} from "@core/interfaces/i-http-data";
 
-describe('MspRegisterDataService', () => {
+describe("MspRegisterDataService", () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
-  it('should be created', () => {
+  it("should be created", () => {
     const service: MspRegisterDataService = TestBed.get(MspRegisterDataService);
     expect(service).toBeTruthy();
   });
 
-  it('should return a valid ICoreUser', () => {
+  it("should return a valid ICoreUser", () => {
     const service: MspRegisterDataService = TestBed.get(MspRegisterDataService);
     const user = coreUser;
     const coreUserDef = service.mapBaseUser(user);
     expect(coreUserDef).toBeDefined();
-    expect(coreUserDef.sa_last_name).toEqual('Mason');
+    expect(coreUserDef.sa_last_name).toEqual("Mason");
     // expect(service.mapOrgInformation(org)).toContain('org_name');
   });
 
-  it('should return a valid IOrganizationDef', () => {
+  it("should return a valid IOrganizationDef", () => {
     const service: MspRegisterDataService = TestBed.get(MspRegisterDataService);
     const org = organization;
     const orgDef = service.mapOrgInformation(org);
     expect(orgDef).toBeDefined();
-    expect(orgDef.org_name).toEqual('Kellwood Company');
+    expect(orgDef.org_name).toEqual("Kellwood Company");
   });
 
-  it('should return a valid ISigningAuthorityDef', () => {
+  it("should return a valid ISigningAuthorityDef", () => {
     const service: MspRegisterDataService = TestBed.get(MspRegisterDataService);
     const obj = sa;
     const res = service.mapSigningAuthorityInformationDef(
@@ -49,16 +49,16 @@ describe('MspRegisterDataService', () => {
     expect(res.length).toBe(2);
   });
 
-  it('should return a valid IUserDef', () => {
+  it("should return a valid IUserDef", () => {
     const service: MspRegisterDataService = TestBed.get(MspRegisterDataService);
     const user = users;
     const res = service.mapUserDef(user) as IUserDef[];
     expect(res).toBeDefined();
     expect(res.length).toBe(3);
-    expect(res[0].sa_last_name).toEqual('Papi');
+    expect(res[0].sa_last_name).toEqual("Papi");
   });
 
-  it('should return a valid IAccessAdministratorPresentDef', () => {
+  it("should return a valid IAccessAdministratorPresentDef", () => {
     const service: MspRegisterDataService = TestBed.get(MspRegisterDataService);
     const objs = accessAdmins;
     const res = service.mapAccessAdministratorDef(
@@ -67,16 +67,16 @@ describe('MspRegisterDataService', () => {
 
     expect(res).toBeDefined();
     expect(res.length).toBe(3);
-    expect(res[0].sa_last_name).toEqual('Franke');
+    expect(res[0].sa_last_name).toEqual("Franke");
   });
 
-  it('should return a valid IMspGroupDef', () => {
+  it("should return a valid IMspGroupDef", () => {
     const org = organization;
     const service: MspRegisterDataService = TestBed.get(MspRegisterDataService);
     expect(service).toBeDefined();
   });
 
-  it('should return a valid ISiteRegRequest', () => {
+  it("should return a valid ISiteRegRequest", () => {
     const service: MspRegisterDataService = TestBed.get(MspRegisterDataService);
     const org = organization;
     const sas = sa;

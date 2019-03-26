@@ -1,2 +1,1 @@
-export interface IMspPerson {
-}
+export interface IMspPerson {}

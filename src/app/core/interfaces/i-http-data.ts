@@ -54,4 +54,4 @@ export interface ISiteregRequest {
   msp_group: IMspGroupDef;
 }
 
-export type YesNo = 'yes' | 'no';
+export type YesNo = "yes" | "no";

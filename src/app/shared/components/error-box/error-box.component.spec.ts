@@ -1,16 +1,15 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ErrorBoxComponent } from './error-box.component';
+import { ErrorBoxComponent } from "./error-box.component";
 
-describe('ErrorBoxComponent', () => {
+describe("ErrorBoxComponent", () => {
   let component: ErrorBoxComponent;
   let fixture: ComponentFixture<ErrorBoxComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ErrorBoxComponent ]
-    })
-    .compileComponents();
+      declarations: [ErrorBoxComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('ErrorBoxComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

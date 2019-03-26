@@ -1,20 +1,22 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { MspRegisterSigningAuthorityComponent } from './msp-register-signing-authority.component';
-import { RouterTestingModule } from '@angular/router/testing';
-import { SharedModule } from '@shared/shared.module';
-import { MspRegisterPersonComponent } from '../msp-register-person/msp-register-person.component';
+import { MspRegisterSigningAuthorityComponent } from "./msp-register-signing-authority.component";
+import { RouterTestingModule } from "@angular/router/testing";
+import { SharedModule } from "@shared/shared.module";
+import { MspRegisterPersonComponent } from "../msp-register-person/msp-register-person.component";
 
-describe('MspRegisterSigningAuthorityComponent', () => {
+describe("MspRegisterSigningAuthorityComponent", () => {
   let component: MspRegisterSigningAuthorityComponent;
   let fixture: ComponentFixture<MspRegisterSigningAuthorityComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, SharedModule],
-      declarations: [ MspRegisterSigningAuthorityComponent, MspRegisterPersonComponent ]
-    })
-    .compileComponents();
+      declarations: [
+        MspRegisterSigningAuthorityComponent,
+        MspRegisterPersonComponent
+      ]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -23,7 +25,7 @@ describe('MspRegisterSigningAuthorityComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

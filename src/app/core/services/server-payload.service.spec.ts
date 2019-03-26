@@ -1,11 +1,11 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from "@angular/core/testing";
 
-import { ServerPayload } from './server-payload.service';
+import { ServerPayload } from "./server-payload.service";
 
-describe('ServerPayloadService', () => {
+describe("ServerPayloadService", () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
-  it('should be created', () => {
+  it("should be created", () => {
     const service: ServerPayload = TestBed.get(ServerPayload);
     expect(service).toBeTruthy();
   });

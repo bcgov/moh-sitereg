@@ -1,18 +1,17 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { MspRegisterAuthorizeAccessComponent } from './msp-register-authorize-access.component';
-import { SharedModule } from '@shared/shared.module';
+import { MspRegisterAuthorizeAccessComponent } from "./msp-register-authorize-access.component";
+import { SharedModule } from "@shared/shared.module";
 
-describe('MspRegisterAuthorizeAccessComponent', () => {
+describe("MspRegisterAuthorizeAccessComponent", () => {
   let component: MspRegisterAuthorizeAccessComponent;
   let fixture: ComponentFixture<MspRegisterAuthorizeAccessComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [SharedModule],
-      declarations: [ MspRegisterAuthorizeAccessComponent ]
-    })
-    .compileComponents();
+      declarations: [MspRegisterAuthorizeAccessComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -21,7 +20,7 @@ describe('MspRegisterAuthorizeAccessComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

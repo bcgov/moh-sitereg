@@ -1,22 +1,18 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { HomePageComponent } from './home-page.component';
-import { SharedModule } from '@shared/shared.module';
-import { RouterTestingModule } from '@angular/router/testing';
+import { HomePageComponent } from "./home-page.component";
+import { SharedModule } from "@shared/shared.module";
+import { RouterTestingModule } from "@angular/router/testing";
 
-describe('HomePageComponent', () => {
+describe("HomePageComponent", () => {
   let component: HomePageComponent;
   let fixture: ComponentFixture<HomePageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        SharedModule,
-        RouterTestingModule
-      ],
-      declarations: [ HomePageComponent ],
-    })
-    .compileComponents();
+      imports: [SharedModule, RouterTestingModule],
+      declarations: [HomePageComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -25,7 +21,7 @@ describe('HomePageComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

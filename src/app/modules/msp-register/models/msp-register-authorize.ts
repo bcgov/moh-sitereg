@@ -1,7 +1,7 @@
-import { IMspAccessAdmin } from '@msp-register/interfaces/i-msp-access-admins';
-import { GenerateForm } from './generate-form';
-import { FormBuilder, FormControl } from '@angular/forms';
-import { IMspAuthorize, IMspSigningAuthority } from '@msp-register/interfaces';
+import { IMspAccessAdmin } from "@msp-register/interfaces/i-msp-access-admins";
+import { GenerateForm } from "./generate-form";
+import { FormBuilder, FormControl } from "@angular/forms";
+import { IMspAuthorize, IMspSigningAuthority } from "@msp-register/interfaces";
 
 export class MspRegisterAuthorize extends GenerateForm<IMspAuthorize>
   implements IMspAuthorize {

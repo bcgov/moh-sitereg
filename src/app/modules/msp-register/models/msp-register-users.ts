@@ -1,36 +1,36 @@
-import { GenerateForm } from './generate-form';
+import { GenerateForm } from "./generate-form";
 import {
   IMspOrganization,
   IMspSigningAuthority,
   IMspUsers,
   IUser
-} from '@msp-register/interfaces';
+} from "@msp-register/interfaces";
 import {
   FormControl,
   FormBuilder,
   Validators,
   Validator
-} from '@angular/forms';
+} from "@angular/forms";
 import {
   required,
   minLength,
   maxLength,
   phoneValidator,
   faxValidator
-} from './validator-helpers';
+} from "./validator-helpers";
 
 export class MspRegisterUsers extends GenerateForm<IMspUsers> implements IUser {
-  userTitle?: 'mr' | 'mrs' | FormControl = 'mr';
-  firstName: string | FormControl = '';
-  initial?: string | FormControl = '';
-  lastName: string | FormControl = '';
-  jobTitle: string | FormControl = '';
-  emailAddress: string | FormControl = '';
-  confirmEmail: string | FormControl = '';
-  phone: string | FormControl = '';
-  ext?: string | FormControl = '';
-  fax: string | FormControl = '';
-  administeringFor: string | FormControl = '';
+  userTitle?: "mr" | "mrs" | FormControl = "mr";
+  firstName: string | FormControl = "";
+  initial?: string | FormControl = "";
+  lastName: string | FormControl = "";
+  jobTitle: string | FormControl = "";
+  emailAddress: string | FormControl = "";
+  confirmEmail: string | FormControl = "";
+  phone: string | FormControl = "";
+  ext?: string | FormControl = "";
+  fax: string | FormControl = "";
+  administeringFor: string | FormControl = "";
 
   get validators() {
     return {
@@ -53,6 +53,6 @@ export class MspRegisterUsers extends GenerateForm<IMspUsers> implements IUser {
     private newFb: FormBuilder
   ) {
     super(newFb);
-    const valid = new FormControl('', Validators.required);
+    const valid = new FormControl("", Validators.required);
   }
 }

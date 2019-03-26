@@ -1,33 +1,33 @@
-import { GenerateForm } from './generate-form';
+import { GenerateForm } from "./generate-form";
 import {
   IMspOrganization,
   IMspSigningAuthority
-} from '@msp-register/interfaces';
-import { FormControl, FormBuilder, Validators } from '@angular/forms';
+} from "@msp-register/interfaces";
+import { FormControl, FormBuilder, Validators } from "@angular/forms";
 import {
   required,
   maxLength,
   minLength,
   phoneValidator,
   faxValidator
-} from './validator-helpers';
+} from "./validator-helpers";
 
 export class MspRegisterSigningAuthority
   extends GenerateForm<IMspSigningAuthority>
   implements IMspSigningAuthority {
   directAccess: boolean | FormControl = false;
   alsoAdmin: boolean | FormControl = false;
-  userTitle?: FormControl | 'mr' | 'mrs' = null;
-  firstName: string | FormControl = '';
-  initial?: string | FormControl = '';
-  lastName: string | FormControl = '';
-  jobTitle: string | FormControl = '';
-  emailAddress: string | FormControl = '';
-  phone: string | FormControl = '';
-  ext?: string | FormControl = '';
-  fax: string | FormControl = '';
+  userTitle?: FormControl | "mr" | "mrs" = null;
+  firstName: string | FormControl = "";
+  initial?: string | FormControl = "";
+  lastName: string | FormControl = "";
+  jobTitle: string | FormControl = "";
+  emailAddress: string | FormControl = "";
+  phone: string | FormControl = "";
+  ext?: string | FormControl = "";
+  fax: string | FormControl = "";
   administeringFor: string | FormControl;
-  confirmEmail: string | FormControl = '';
+  confirmEmail: string | FormControl = "";
   get validators() {
     return {
       directAccess: [required],

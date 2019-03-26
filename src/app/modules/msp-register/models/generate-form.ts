@@ -4,18 +4,18 @@ import {
   Validators,
   FormGroup,
   ValidatorFn
-} from '@angular/forms';
-import { IMspOrganization, MSPValidForms } from '@msp-register/interfaces';
-import { validatorOpts } from './validator-helpers';
+} from "@angular/forms";
+import { IMspOrganization, MSPValidForms } from "@msp-register/interfaces";
+import { validatorOpts } from "./validator-helpers";
 type valueof<T> = T[keyof T];
-const ctrKeys = ['fb', 'gf', 'newFb'];
+const ctrKeys = ["fb", "gf", "newFb"];
 
 interface IControls {
   name: string;
   control: FormControl;
 }
 
-const validKeys = ['string'];
+const validKeys = ["string"];
 
 export class GenerateForm<T> {
   keys: string[];
@@ -27,7 +27,7 @@ export class GenerateForm<T> {
   generateArr(keys: string[], validators): IControls[] {
     let arr = [];
     for (const key of keys) {
-      arr = this.genControls(key, arr, new FormControl('', validators[key]));
+      arr = this.genControls(key, arr, new FormControl("", validators[key]));
     }
     return arr;
   }
@@ -42,7 +42,7 @@ export class GenerateForm<T> {
   genControls(
     name: string,
     arr: IControls[],
-    control: FormControl = new FormControl('', [])
+    control: FormControl = new FormControl("", [])
   ): IControls[] {
     arr.push({ name, control } as IControls);
     return arr;

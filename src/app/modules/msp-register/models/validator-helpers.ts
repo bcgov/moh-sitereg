@@ -4,9 +4,9 @@ import {
   FormControl,
   AbstractControl,
   FormGroup
-} from '@angular/forms';
+} from "@angular/forms";
 
-export type validatorOpts = 'req' | 'min' | 'max';
+export type validatorOpts = "req" | "min" | "max";
 export interface IValidatorConfig {
   options: validatorOpts;
   num?: number;
@@ -19,7 +19,7 @@ export interface IValidator {
 
 export class ValidatorHelpers {
   organization = [
-    { name: 'name', opts: [{ options: 'req', num: 10 }] }
+    { name: "name", opts: [{ options: "req", num: 10 }] }
   ] as IValidator[];
 
   *genValidators(
@@ -41,15 +41,12 @@ export function postalCodeValidator(): ValidatorFn {
   };
 }
 
-
 /**
  * Validates number, alphabetics, small braces, slash ,hyphen, colon, full stop
  */
 export function addressValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
-    const forbidden = !/^[0-9A-Za-z\s\-\/():.,]+$/.test(
-      control.value
-    );
+    const forbidden = !/^[0-9A-Za-z\s\-\/():.,]+$/.test(control.value);
     return forbidden ? { invalidAddress: { value: control.value } } : null;
   };
 }

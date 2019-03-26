@@ -1,4 +1,4 @@
-import { FormControl } from '@angular/forms';
+import { FormControl } from "@angular/forms";
 
 export interface IMspOrganization {
   name: string | FormControl;
@@ -13,4 +13,3 @@ export interface IMspOrganization {
   blueCross: boolean | FormControl;
   administeringFor: string | FormControl;
 }
-

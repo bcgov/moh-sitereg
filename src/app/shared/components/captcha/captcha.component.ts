@@ -10,25 +10,25 @@ import {
   EventEmitter,
   ChangeDetectorRef,
   NgZone,
-  SimpleChanges } from '@angular/core';
-import { CaptchaDataService } from '@core/services/captcha-data.service';
-import { HttpResponse } from '@angular/common/http';
+  SimpleChanges
+} from "@angular/core";
+import { CaptchaDataService } from "@core/services/captcha-data.service";
+import { HttpResponse } from "@angular/common/http";
 
 @Component({
-  selector: 'sitereg-captcha',
-  templateUrl: './captcha.component.html',
-  styleUrls: ['./captcha.component.scss']
+  selector: "sitereg-captcha",
+  templateUrl: "./captcha.component.html",
+  styleUrls: ["./captcha.component.scss"]
 })
 export class CaptchaComponent implements AfterViewInit, OnInit, OnChanges {
-
-  @ViewChild('image') imageContainer: ElementRef;
-  @ViewChild('audioElement') audioElement: ElementRef;
+  @ViewChild("image") imageContainer: ElementRef;
+  @ViewChild("audioElement") audioElement: ElementRef;
   @Input() apiBaseUrl: string;
   @Input() nonce: string;
   @Output() onValidToken = new EventEmitter<string>();
   @Input() successMessage: string;
   @Input() eagerFetchAudio: string;
-  @Input() language: string = 'en';
+  @Input() language: string = "en";
   @Input() userPromptMessage: string;
 
   /**
@@ -41,9 +41,9 @@ export class CaptchaComponent implements AfterViewInit, OnInit, OnChanges {
    */
   errorVerifyAnswer = null;
 
-  private validation = '';
-  public audio = '';
-  public answer = '';
+  private validation = "";
+  public audio = "";
+  public answer = "";
 
   state: CAPTCHA_STATE;
   incorrectAnswer: boolean;
@@ -52,81 +52,90 @@ export class CaptchaComponent implements AfterViewInit, OnInit, OnChanges {
 
   public translatedMessages = {
     playAudio: {
-      en: 'Play Audio',
-      zh: '播放声音',
-      fr: 'Lecture audio',
-      pa: 'ਆਡੀਓ ਚਲਾਓ',
+      en: "Play Audio",
+      zh: "播放声音",
+      fr: "Lecture audio",
+      pa: "ਆਡੀਓ ਚਲਾਓ"
     },
     tryAnotherImg: {
-      en: 'Try another image',
-      zh: '换个图像',
-      fr: 'Essayez une autre image',
-      pa: 'ਕੋਈ ਹੋਰ ਚਿੱਤਰ ਅਜ਼ਮਾਓ',
+      en: "Try another image",
+      zh: "换个图像",
+      fr: "Essayez une autre image",
+      pa: "ਕੋਈ ਹੋਰ ਚਿੱਤਰ ਅਜ਼ਮਾਓ"
     },
     userPromptMessage: {
-      en: 'Enter the text you either see in the box or you hear in the audio',
-      zh: '请输入看到或听到的文字',
-      fr: 'Entrez le texte que vous voyez dans la case ou que vous entendez dans le son',
-      pa: 'ਉਹ ਟੈਕਸਟ ਦਾਖਲ ਕਰੋ ਜੋ ਤੁਸੀਂ ਬਕਸੇ ਵਿੱਚ ਦੇਖਦੇ ਹੋ ਜਾਂ ਤੁਸੀਂ ਆਡੀਓ ਵਿੱਚ ਸੁਣਦੇ ਹੋ',
+      en: "Enter the text you either see in the box or you hear in the audio",
+      zh: "请输入看到或听到的文字",
+      fr:
+        "Entrez le texte que vous voyez dans la case ou que vous entendez dans le son",
+      pa:
+        "ਉਹ ਟੈਕਸਟ ਦਾਖਲ ਕਰੋ ਜੋ ਤੁਸੀਂ ਬਕਸੇ ਵਿੱਚ ਦੇਖਦੇ ਹੋ ਜਾਂ ਤੁਸੀਂ ਆਡੀਓ ਵਿੱਚ ਸੁਣਦੇ ਹੋ"
     },
     incorrectAnswer: {
-      en: 'Incorrect answer, please try again.',
-      zh: '答案不对。请重试。',
-      fr: 'Mauvaise réponse, veuillez réessayer.',
-      pa: 'ਗਲਤ ਜਵਾਬ, ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ.',
+      en: "Incorrect answer, please try again.",
+      zh: "答案不对。请重试。",
+      fr: "Mauvaise réponse, veuillez réessayer.",
+      pa: "ਗਲਤ ਜਵਾਬ, ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ."
     },
     successMessage: {
-      en: 'You can submit your application now.',
-      zh: '你现在可以提交申请了。',
-      fr: 'Vous pouvez soumettre votre candidature maintenant.',
-      pa: 'ਤੁਸੀਂ ਆਪਣੀ ਅਰਜ਼ੀ ਹੁਣੇ ਪੇਸ਼ ਕਰ ਸਕਦੇ ਹੋ',
+      en: "You can submit your application now.",
+      zh: "你现在可以提交申请了。",
+      fr: "Vous pouvez soumettre votre candidature maintenant.",
+      pa: "ਤੁਸੀਂ ਆਪਣੀ ਅਰਜ਼ੀ ਹੁਣੇ ਪੇਸ਼ ਕਰ ਸਕਦੇ ਹੋ"
     },
     correct: {
-      en: 'Correct.',
-      zh: '正确。',
-      fr: 'Correct.',
-      pa: 'ਸਹੀ ਕਰੋ',
+      en: "Correct.",
+      zh: "正确。",
+      fr: "Correct.",
+      pa: "ਸਹੀ ਕਰੋ"
     },
     loadingImage: {
-      en: 'Loading CAPTCHA image',
-      zh: '正在下载验证码',
-      fr: 'Chargement de l\'image CAPTCHA',
-      pa: 'ਕੈਪਟਚਾ ਚਿੱਤਰ ਲੋਡ ਕਰ ਰਿਹਾ ਹੈ',
+      en: "Loading CAPTCHA image",
+      zh: "正在下载验证码",
+      fr: "Chargement de l'image CAPTCHA",
+      pa: "ਕੈਪਟਚਾ ਚਿੱਤਰ ਲੋਡ ਕਰ ਰਿਹਾ ਹੈ"
     },
     browserNotSupportAudio: {
-      en: 'Your browser does not support the audio element.',
-      zh: '你的浏览器不支持播音',
-      fr: 'Votre navigateur ne supporte pas l\'élément audio.',
-      pa: 'ਤੁਹਾਡਾ ਬ੍ਰਾਉਜ਼ਰ ਆਡੀਓ ਐਲੀਮੈਂਟ ਦਾ ਸਮਰਥਨ ਨਹੀਂ ਕਰਦਾ.',
+      en: "Your browser does not support the audio element.",
+      zh: "你的浏览器不支持播音",
+      fr: "Votre navigateur ne supporte pas l'élément audio.",
+      pa: "ਤੁਹਾਡਾ ਬ੍ਰਾਉਜ਼ਰ ਆਡੀਓ ਐਲੀਮੈਂਟ ਦਾ ਸਮਰਥਨ ਨਹੀਂ ਕਰਦਾ."
     },
     verifyingAnswer: {
-      en: 'Verifying your answer...',
-      zh: '正在验证答案...',
-      fr: 'Vérification de votre réponse ...',
-      pa: 'ਤੁਹਾਡਾ ਜਵਾਬ ਤਸਦੀਕ ਕਰ ਰਿਹਾ ਹੈ ...',
+      en: "Verifying your answer...",
+      zh: "正在验证答案...",
+      fr: "Vérification de votre réponse ...",
+      pa: "ਤੁਹਾਡਾ ਜਵਾਬ ਤਸਦੀਕ ਕਰ ਰਿਹਾ ਹੈ ..."
     },
     errorRetrievingImg: {
-      en: 'Error happened while retrieving CAPTCHA image. please {{click here}} to try again',
-      zh: '验证码下载错误。请{{点击这里}}重试',
-      fr: "Une erreur s'est produite lors de la récupération de l'image CAPTCHA. s'il vous plaît {{cliquez ici}} pour réessayer",
-      pa: 'ਕੈਪਟਚਾ ਚਿੱਤਰ ਨੂੰ ਪ੍ਰਾਪਤ ਕਰਦੇ ਸਮੇਂ ਤਰੁੱਟੀ ਉਤਪੰਨ ਹੋਈ. ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰਨ ਲਈ {{ਇੱਥੇ ਕਲਿਕ ਕਰੋ}}',
+      en:
+        "Error happened while retrieving CAPTCHA image. please {{click here}} to try again",
+      zh: "验证码下载错误。请{{点击这里}}重试",
+      fr:
+        "Une erreur s'est produite lors de la récupération de l'image CAPTCHA. s'il vous plaît {{cliquez ici}} pour réessayer",
+      pa:
+        "ਕੈਪਟਚਾ ਚਿੱਤਰ ਨੂੰ ਪ੍ਰਾਪਤ ਕਰਦੇ ਸਮੇਂ ਤਰੁੱਟੀ ਉਤਪੰਨ ਹੋਈ. ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰਨ ਲਈ {{ਇੱਥੇ ਕਲਿਕ ਕਰੋ}}"
     },
     errorVerifyingAnswer: {
-      en: 'Error happened while verifying your answer. please {{click here}} to try again',
-      zh: '验证答案过程发生错误。请{{点击这里}}重试',
-      fr: "Une erreur s'est produite lors de la vérification de votre réponse. s'il vous plaît {{cliquez ici}} pour réessayer",
-      pa: 'ਤੁਹਾਡਾ ਜਵਾਬ ਤਸਦੀਕ ਕਰਨ ਵੇਲੇ ਗਲਤੀ ਆਈ ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰਨ ਲਈ {{ਇੱਥੇ ਕਲਿਕ ਕਰੋ}}',
-    },
-  }
+      en:
+        "Error happened while verifying your answer. please {{click here}} to try again",
+      zh: "验证答案过程发生错误。请{{点击这里}}重试",
+      fr:
+        "Une erreur s'est produite lors de la vérification de votre réponse. s'il vous plaît {{cliquez ici}} pour réessayer",
+      pa:
+        "ਤੁਹਾਡਾ ਜਵਾਬ ਤਸਦੀਕ ਕਰਨ ਵੇਲੇ ਗਲਤੀ ਆਈ ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰਨ ਲਈ {{ਇੱਥੇ ਕਲਿਕ ਕਰੋ}}"
+    }
+  };
 
-  constructor(private dataService: CaptchaDataService,
+  constructor(
+    private dataService: CaptchaDataService,
     private cd: ChangeDetectorRef,
-    private ngZone: NgZone) {
-  }
+    private ngZone: NgZone
+  ) {}
 
   ngOnInit() {
     this.forceRefresh.bind(this);
-    window['ca.bcgov.captchaRefresh'] = this.publicForceRefresh.bind(this);
+    window["ca.bcgov.captchaRefresh"] = this.publicForceRefresh.bind(this);
 
     // if(!this.userPromptMessage){
     //   this.userPromptMessage = "Enter the text you either see in the box or you hear in the audio";
@@ -138,9 +147,15 @@ export class CaptchaComponent implements AfterViewInit, OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     // when changing language, if audio is empty then no need to refetch
     if (!changes.language || !this.audio || this.audio.length === 0) {
-      if (!(changes.reloadCaptcha && (true === changes.reloadCaptcha.previousValue
-        || false === changes.reloadCaptcha.previousValue)
-        && (changes.reloadCaptcha.currentValue !== changes.reloadCaptcha.previousValue))) {
+      if (
+        !(
+          changes.reloadCaptcha &&
+          (true === changes.reloadCaptcha.previousValue ||
+            false === changes.reloadCaptcha.previousValue) &&
+          changes.reloadCaptcha.currentValue !==
+            changes.reloadCaptcha.previousValue
+        )
+      ) {
         return;
       }
     }
@@ -163,21 +178,29 @@ export class CaptchaComponent implements AfterViewInit, OnInit, OnChanges {
     if (this.answer.length === 6) {
       this.state = CAPTCHA_STATE.VERIFYING_ANSWER;
       this.incorrectAnswer = null;
-      this.dataService.verifyCaptcha(this.apiBaseUrl, this.nonce, this.answer, this.validation).subscribe(response => {
-        const payload = response.body;
-        if (this.isValidPayload(payload)) {
-          this.handleVerify(payload);
-        } else {
-          this.state = CAPTCHA_STATE.ERROR_VERIFY;
-          this.errorVerifyAnswer = this.createErrorTextLine(response);
-        }
-      },
-        (error) => {
-          this.state = CAPTCHA_STATE.ERROR_VERIFY;
-          this.errorVerifyAnswer = this.createErrorTextLine(error);
-          console.log('Error response from verifying user answer: %o', error);
-        }
-      );
+      this.dataService
+        .verifyCaptcha(
+          this.apiBaseUrl,
+          this.nonce,
+          this.answer,
+          this.validation
+        )
+        .subscribe(
+          response => {
+            const payload = response.body;
+            if (this.isValidPayload(payload)) {
+              this.handleVerify(payload);
+            } else {
+              this.state = CAPTCHA_STATE.ERROR_VERIFY;
+              this.errorVerifyAnswer = this.createErrorTextLine(response);
+            }
+          },
+          error => {
+            this.state = CAPTCHA_STATE.ERROR_VERIFY;
+            this.errorVerifyAnswer = this.createErrorTextLine(error);
+            console.log("Error response from verifying user answer: %o", error);
+          }
+        );
     }
   }
 
@@ -189,8 +212,8 @@ export class CaptchaComponent implements AfterViewInit, OnInit, OnChanges {
       this.onValidToken.emit(payload.jwt);
     } else {
       this.incorrectAnswer = true;
-      this.answer = '';
-      this.audio = '';
+      this.answer = "";
+      this.audio = "";
       // They failed - try a new one.
       this.getNewCaptcha(true);
     }
@@ -204,12 +227,12 @@ export class CaptchaComponent implements AfterViewInit, OnInit, OnChanges {
   private isValidPayload(payload) {
     // console.debug('Response payload: %o', payload);
     if (!payload) {
-      console.error('payload cannot be null or undefined or 0');
+      console.error("payload cannot be null or undefined or 0");
       return false;
     } else {
-      const hasValueProp = payload.hasOwnProperty('valid');
+      const hasValueProp = payload.hasOwnProperty("valid");
       if (!hasValueProp) {
-        console.error('payload must have its own property named \'valid\'');
+        console.error("payload must have its own property named 'valid'");
         return false;
       } else {
         return true;
@@ -218,7 +241,7 @@ export class CaptchaComponent implements AfterViewInit, OnInit, OnChanges {
   }
 
   public retryFetchCaptcha() {
-    console.log('Retry captcha');
+    console.log("Retry captcha");
     this.state = undefined;
 
     /**
@@ -240,26 +263,32 @@ export class CaptchaComponent implements AfterViewInit, OnInit, OnChanges {
   private fetchAudio(playImmediately: boolean = false) {
     if (!this.fetchingAudioInProgress) {
       this.fetchingAudioInProgress = true;
-      this.dataService.fetchAudio(this.apiBaseUrl, this.validation, this.language).subscribe((response: HttpResponse<any>) => {
-        this.fetchingAudioInProgress = false;
-        this.audio = response.body.audio;
-        this.cd.detectChanges();
-        if (playImmediately) {
-          this.audioElement.nativeElement.play();
-        }
-      },
-        (error) => {
-          this.fetchingAudioInProgress = false;
-          console.log('Error response from fetching audio CAPTCHA: %o', error);
-          this.cd.detectChanges();
-        }
-      );
+      this.dataService
+        .fetchAudio(this.apiBaseUrl, this.validation, this.language)
+        .subscribe(
+          (response: HttpResponse<any>) => {
+            this.fetchingAudioInProgress = false;
+            this.audio = response.body.audio;
+            this.cd.detectChanges();
+            if (playImmediately) {
+              this.audioElement.nativeElement.play();
+            }
+          },
+          error => {
+            this.fetchingAudioInProgress = false;
+            console.log(
+              "Error response from fetching audio CAPTCHA: %o",
+              error
+            );
+            this.cd.detectChanges();
+          }
+        );
     }
   }
 
   public getNewCaptcha(errorCase: any) {
     this.state = CAPTCHA_STATE.FETCHING_CAPTCHA_IMG;
-    this.audio = '';
+    this.audio = "";
 
     // Reset things
     if (!errorCase) {
@@ -268,42 +297,39 @@ export class CaptchaComponent implements AfterViewInit, OnInit, OnChanges {
       this.incorrectAnswer = null;
     }
 
+    this.dataService.fetchData(this.apiBaseUrl, this.nonce).subscribe(
+      response => {
+        this.state = CAPTCHA_STATE.SUCCESS_FETCH_IMG;
 
-    this.dataService.fetchData(this.apiBaseUrl, this.nonce).subscribe(response => {
-      this.state = CAPTCHA_STATE.SUCCESS_FETCH_IMG;
+        const payload = response.body;
+        this.imageContainer.nativeElement.innerHTML = payload.captcha;
+        this.validation = payload.validation;
+        this.cd.detectChanges();
 
-      const payload = response.body;
-      this.imageContainer.nativeElement.innerHTML = payload.captcha;
-      this.validation = payload.validation;
-      this.cd.detectChanges();
+        if (this.eagerFetchAudio === "true") {
+          // console.log('Fetch audio eagerly');
+          this.fetchAudio();
+        } else {
+          // console.log('Not to fetch audio eagerly');
+        }
+      },
 
-      if (this.eagerFetchAudio === 'true') {
-        // console.log('Fetch audio eagerly');
-        this.fetchAudio();
-      } else {
-        // console.log('Not to fetch audio eagerly');
-      }
-    },
-
-      (error) => {
+      error => {
         this.state = CAPTCHA_STATE.ERROR_FETCH_IMG;
         this.errorFetchingImg = this.createErrorTextLine(error);
-        console.log('Error esponse from fetching CAPTCHA text: %o', error);
+        console.log("Error esponse from fetching CAPTCHA text: %o", error);
         this.cd.detectChanges();
       }
     );
   }
 
   private createErrorTextLine(error) {
-
-    let line = 'Error status: ' + error.status;
+    let line = "Error status: " + error.status;
     if (error.statusText) {
-      line = line + ', status text: ' + error.statusText;
+      line = line + ", status text: " + error.statusText;
     }
     return line;
   }
-
-
 }
 
 /**
@@ -317,6 +343,6 @@ enum CAPTCHA_STATE {
   VERIFYING_ANSWER = 4,
   SUCCESS_VERIFY_ANSWER_CORRECT = 5,
   // http error during verification call.
-  ERROR_VERIFY = 6,
+  ERROR_VERIFY = 6
   // SUCCESS_VERIFY_ANSWER_INCORRECT = 6,
 }

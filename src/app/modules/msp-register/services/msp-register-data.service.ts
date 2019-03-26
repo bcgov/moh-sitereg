@@ -1,13 +1,13 @@
-import { Injectable } from '@angular/core';
-import { Observable, of, BehaviorSubject } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { Observable, of, BehaviorSubject } from "rxjs";
 import {
   IMspOrganization,
   IMspUsers,
   IMspGroupNumbers,
   IMspSigningAuthority,
   IUser
-} from '@msp-register/interfaces';
-import { IMspAccessAdmin } from '@msp-register/interfaces/i-msp-access-admins';
+} from "@msp-register/interfaces";
+import { IMspAccessAdmin } from "@msp-register/interfaces/i-msp-access-admins";
 import {
   ISiteregRequest,
   IOrgInformationDef,
@@ -18,28 +18,28 @@ import {
   IContractingOut,
   YesNo,
   ISigningAuthorityInformationDef
-} from '@core/interfaces/i-http-data';
-import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+} from "@core/interfaces/i-http-data";
+import { HttpClient } from "@angular/common/http";
+import { environment } from "src/environments/environment";
 
 const apiUrl = environment.apiUrl;
 
 const text =
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus pronin sapien nunc accuan eget.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus pronin sapien nunc accuan eget.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus pronin sapien nunc accuan eget.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus pronin sapien nunc accuan eget.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus pronin sapien nunc accuan eget.pronin sapien nunc accuan eget.';
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus pronin sapien nunc accuan eget.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus pronin sapien nunc accuan eget.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus pronin sapien nunc accuan eget.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus pronin sapien nunc accuan eget.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus pronin sapien nunc accuan eget.pronin sapien nunc accuan eget.";
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class MspRegisterDataService {
   private agreementNumber$: BehaviorSubject<string> = new BehaviorSubject(
-    '8986GG43'
+    "8986GG43"
   );
   private signingAuthorityName$: BehaviorSubject<string> = new BehaviorSubject(
-    'Sean'
+    "Sean"
   );
   private agreementText$: BehaviorSubject<string> = new BehaviorSubject(text);
   private signingAuthorityAddress$: BehaviorSubject<
     string
-  > = new BehaviorSubject('Here');
+  > = new BehaviorSubject("Here");
 
   get agreementNumber() {
     return this.agreementNumber$.asObservable();
@@ -68,12 +68,12 @@ export class MspRegisterDataService {
   constructor(private http: HttpClient) {}
   validateKeys(obj) {
     for (const key in Object.keys(obj)) {
-      if (obj[key] === typeof obj) throw Error('invalid type');
+      if (obj[key] === typeof obj) throw Error("invalid type");
     }
   }
   mapYesNo(bool: boolean): YesNo {
-    if (bool) return 'yes';
-    return 'no';
+    if (bool) return "yes";
+    return "no";
   }
 
   mapContractingOut(
@@ -105,7 +105,7 @@ export class MspRegisterDataService {
 
   mapOrgInformation(obj: IMspOrganization): IOrgInformationDef {
     this.validateKeys(obj);
-    if (!obj) throw Error('no organizaiton provided');
+    if (!obj) throw Error("no organizaiton provided");
     // tslint:disable-next-line: variable-name
     const contracting_out = this.mapContractingOut(
       this.mapYesNo(obj.thirdParty as boolean),

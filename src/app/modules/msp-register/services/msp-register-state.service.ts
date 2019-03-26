@@ -1,17 +1,17 @@
-import { Injectable } from '@angular/core';
-import { MspRegisterOrganization } from '@msp-register/models/msp-register-organization';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import { GenerateForm } from '@msp-register/models/generate-form';
-import { BehaviorSubject } from 'rxjs';
-import { MspRegisterAccessAdmins } from '@msp-register/models/msp-register-access-admins';
-import { MspRegisterSigningAuthority } from '@msp-register/models/msp-register-signing-authority';
-import { MspRegisterGroupNumbers } from '@msp-register/models/msp-register-group-numbers';
-import { MspRegisterUsers } from '@msp-register/models/msp-register-users';
-import { MspRegisterAuthorize } from '@msp-register/models/msp-register-authorize';
+import { Injectable } from "@angular/core";
+import { MspRegisterOrganization } from "@msp-register/models/msp-register-organization";
+import { FormBuilder, FormGroup, FormControl } from "@angular/forms";
+import { GenerateForm } from "@msp-register/models/generate-form";
+import { BehaviorSubject } from "rxjs";
+import { MspRegisterAccessAdmins } from "@msp-register/models/msp-register-access-admins";
+import { MspRegisterSigningAuthority } from "@msp-register/models/msp-register-signing-authority";
+import { MspRegisterGroupNumbers } from "@msp-register/models/msp-register-group-numbers";
+import { MspRegisterUsers } from "@msp-register/models/msp-register-users";
+import { MspRegisterAuthorize } from "@msp-register/models/msp-register-authorize";
 
-export type UserTypes = 'admin' | 'user';
+export type UserTypes = "admin" | "user";
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class MspRegisterStateService {
   private fb = new FormBuilder();

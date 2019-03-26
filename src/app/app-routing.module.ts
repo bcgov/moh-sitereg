@@ -1,17 +1,17 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { HomePageComponent } from './core/components/home-page/home-page.component';
-import { MspRegisterComponent } from './modules/msp-register/msp-register.component';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
+import { HomePageComponent } from "./core/components/home-page/home-page.component";
+import { MspRegisterComponent } from "./modules/msp-register/msp-register.component";
 
 const routes: Routes = [
   {
-    path: '',
+    path: "",
     component: HomePageComponent,
-    data: {title: 'Home'}
+    data: { title: "Home" }
   },
   {
-    path: 'msp-registration',
-    loadChildren: './modules/msp-register/msp-register.module#MspRegisterModule'
+    path: "msp-registration",
+    loadChildren: "./modules/msp-register/msp-register.module#MspRegisterModule"
   }
 ];
 
@@ -19,4 +19,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

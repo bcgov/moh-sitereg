@@ -1,14 +1,14 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Router } from '@angular/router';
-import { FormGroup } from '@angular/forms';
-import { MspRegisterStateService } from '@msp-register/services/msp-register-state.service';
-import { IUser } from '@msp-register/interfaces';
-import { validFormControl } from '@msp-register/models/validator-helpers';
+import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
+import { Router } from "@angular/router";
+import { FormGroup } from "@angular/forms";
+import { MspRegisterStateService } from "@msp-register/services/msp-register-state.service";
+import { IUser } from "@msp-register/interfaces";
+import { validFormControl } from "@msp-register/models/validator-helpers";
 
 @Component({
-  selector: 'sitereg-msp-register-signing-authority',
-  templateUrl: './msp-register-signing-authority.component.html',
-  styleUrls: ['./msp-register-signing-authority.component.scss'],
+  selector: "sitereg-msp-register-signing-authority",
+  templateUrl: "./msp-register-signing-authority.component.html",
+  styleUrls: ["./msp-register-signing-authority.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MspRegisterSigningAuthorityComponent implements OnInit {
@@ -35,6 +35,6 @@ export class MspRegisterSigningAuthorityComponent implements OnInit {
   }
 
   continue() {
-    this.router.navigate(['msp-registration/access-admins']);
+    this.router.navigate(["msp-registration/access-admins"]);
   }
 }

@@ -1,16 +1,16 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Router } from '@angular/router';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { MspRegisterStateService } from '@msp-register/services/msp-register-state.service';
-import { CountryData } from '@shared/models/country-data';
-import { BehaviorSubject } from 'rxjs';
-import { IProvince } from '@shared/interfaces/i-provinces';
-import { validFormControl } from '@msp-register/models/validator-helpers';
+import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
+import { Router } from "@angular/router";
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { MspRegisterStateService } from "@msp-register/services/msp-register-state.service";
+import { CountryData } from "@shared/models/country-data";
+import { BehaviorSubject } from "rxjs";
+import { IProvince } from "@shared/interfaces/i-provinces";
+import { validFormControl } from "@msp-register/models/validator-helpers";
 
 @Component({
-  selector: 'sitereg-msp-register-organization',
-  templateUrl: './msp-register-organization.component.html',
-  styleUrls: ['./msp-register-organization.component.scss'],
+  selector: "sitereg-msp-register-organization",
+  templateUrl: "./msp-register-organization.component.html",
+  styleUrls: ["./msp-register-organization.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MspRegisterOrganizationComponent implements OnInit {
@@ -19,8 +19,8 @@ export class MspRegisterOrganizationComponent implements OnInit {
     null
   );
   administeringFor: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([
-    'me',
-    'you'
+    "me",
+    "you"
   ]);
 
   validFormControl: () => boolean;
@@ -33,24 +33,23 @@ export class MspRegisterOrganizationComponent implements OnInit {
     this.validFormControl = validFormControl.bind(this);
     const formData = new CountryData();
     // console.log(formData);
-    const options = formData.provinces.filter(itm => itm.country === 'CAN');
+    const options = formData.provinces.filter(itm => itm.country === "CAN");
     this.provinces.next(options);
   }
 
   ngOnInit() {
-    this.fg.valueChanges.subscribe(
-      obs => {
+    this.fg.valueChanges.subscribe(obs => {
+      console.log(this.fg);
 
-            console.log(this.fg);
-
-            // converts postalcode in upper case
-            const postalCode = this.fg.get('postalCode');
-            postalCode.patchValue(postalCode.value.toUpperCase(), {emitEvent: false});
-      }
-      );
+      // converts postalcode in upper case
+      const postalCode = this.fg.get("postalCode");
+      postalCode.patchValue(postalCode.value.toUpperCase(), {
+        emitEvent: false
+      });
+    });
   }
 
   continue() {
-    this.router.navigate(['msp-registration/signing-authority']);
+    this.router.navigate(["msp-registration/signing-authority"]);
   }
 }

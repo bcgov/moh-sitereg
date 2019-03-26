@@ -1,19 +1,18 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { MspRegisterOrganizationComponent } from './msp-register-organization.component';
-import { SharedModule } from '@shared/shared.module';
-import { RouterTestingModule } from '@angular/router/testing';
+import { MspRegisterOrganizationComponent } from "./msp-register-organization.component";
+import { SharedModule } from "@shared/shared.module";
+import { RouterTestingModule } from "@angular/router/testing";
 
-describe('MspRegisterOrganizationComponent', () => {
+describe("MspRegisterOrganizationComponent", () => {
   let component: MspRegisterOrganizationComponent;
   let fixture: ComponentFixture<MspRegisterOrganizationComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [SharedModule, RouterTestingModule],
-      declarations: [ MspRegisterOrganizationComponent ]
-    })
-    .compileComponents();
+      declarations: [MspRegisterOrganizationComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -22,7 +21,7 @@ describe('MspRegisterOrganizationComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

@@ -5,17 +5,17 @@ import {
   Input,
   Output,
   EventEmitter
-} from '@angular/core';
-import { FormControl } from '@angular/forms';
+} from "@angular/core";
+import { FormControl } from "@angular/forms";
 import {
   validFormControl,
   validMultiFormControl
-} from '@msp-register/models/validator-helpers';
+} from "@msp-register/models/validator-helpers";
 
 @Component({
-  selector: 'sitereg-msp-register-authorize-access',
-  templateUrl: './msp-register-authorize-access.component.html',
-  styleUrls: ['./msp-register-authorize-access.component.scss'],
+  selector: "sitereg-msp-register-authorize-access",
+  templateUrl: "./msp-register-authorize-access.component.html",
+  styleUrls: ["./msp-register-authorize-access.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MspRegisterAuthorizeAccessComponent implements OnInit {

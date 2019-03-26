@@ -1,10 +1,10 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { MspRegisterComponent } from './msp-register.component';
-import { SharedCoreModule } from 'moh-common-lib';
-import { RouterTestingModule } from '@angular/router/testing';
+import { MspRegisterComponent } from "./msp-register.component";
+import { SharedCoreModule } from "moh-common-lib";
+import { RouterTestingModule } from "@angular/router/testing";
 
-describe('MspRegisterComponent', () => {
+describe("MspRegisterComponent", () => {
   let component: MspRegisterComponent;
   let fixture: ComponentFixture<MspRegisterComponent>;
 
@@ -21,7 +21,7 @@ describe('MspRegisterComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
