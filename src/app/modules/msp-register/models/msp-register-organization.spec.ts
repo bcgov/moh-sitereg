@@ -1,7 +1,7 @@
-import { MspRegisterOrganization } from "./msp-register-organization";
-import { FormBuilder } from "@angular/forms";
-import { GenerateForm } from "./generate-form";
-import { MspRegisterAccessAdmins } from "./msp-register-access-admins";
+import { MspRegisterOrganization } from './msp-register-organization';
+import { FormBuilder } from '@angular/forms';
+import { GenerateForm } from './generate-form';
+import { MspRegisterAccessAdmins } from './msp-register-access-admins';
 
 const fb = new FormBuilder();
 const mro = new MspRegisterAccessAdmins(new GenerateForm(fb), fb);
@@ -14,12 +14,12 @@ const mro = new MspRegisterAccessAdmins(new GenerateForm(fb), fb);
   I don't think there's a functional solution to this but open to suggestions.
   You can alwaqys create a version of each of the classes in this test file - don't see the point right now.
 */
-describe("MspRegisterOrganization", () => {
-  it("should create an instance", () => {
-    expect(mro).toBeTruthy();
-  });
-  it("should generate an array of the objects values", () => {
-    const keys = mro.genKeys;
-    expect(keys).toBeDefined();
-  });
+describe('MspRegisterOrganization', () => {
+    it('should create an instance', () => {
+        expect(mro).toBeTruthy();
+    });
+    it('should generate an array of the objects values', () => {
+        const keys = mro.genKeys;
+        expect(keys).toBeDefined();
+    });
 });
