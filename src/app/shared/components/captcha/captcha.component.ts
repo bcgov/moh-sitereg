@@ -1,3 +1,4 @@
+/* tslint:disable */
 import {
     Component,
     OnInit,
@@ -93,13 +94,13 @@ export class CaptchaComponent implements AfterViewInit, OnInit, OnChanges {
         loadingImage: {
             en: 'Loading CAPTCHA image',
             zh: '正在下载验证码',
-            fr: 'Chargement de l\'image CAPTCHA',
+            fr: "Chargement de l'image CAPTCHA",
             pa: 'ਕੈਪਟਚਾ ਚਿੱਤਰ ਲੋਡ ਕਰ ਰਿਹਾ ਹੈ',
         },
         browserNotSupportAudio: {
             en: 'Your browser does not support the audio element.',
             zh: '你的浏览器不支持播音',
-            fr: "Votre navigateur ne supporte pas l\'élément audio.",
+            fr: "Votre navigateur ne supporte pas l'élément audio.",
             pa: 'ਤੁਹਾਡਾ ਬ੍ਰਾਉਜ਼ਰ ਆਡੀਓ ਐਲੀਮੈਂਟ ਦਾ ਸਮਰਥਨ ਨਹੀਂ ਕਰਦਾ.',
         },
         verifyingAnswer: {
@@ -113,7 +114,7 @@ export class CaptchaComponent implements AfterViewInit, OnInit, OnChanges {
                 'Error happened while retrieving CAPTCHA image. please {{click here}} to try again',
             zh: '验证码下载错误。请{{点击这里}}重试',
             fr:
-                "Une erreur s'est produite lors de la récupération de l\'image CAPTCHA. s'il vous plaît {{cliquez ici}} pour réessayer",
+                "Une erreur s'est produite lors de la récupération de l'image CAPTCHA. s'il vous plaît {{cliquez ici}} pour réessayer",
             pa:
                 'ਕੈਪਟਚਾ ਚਿੱਤਰ ਨੂੰ ਪ੍ਰਾਪਤ ਕਰਦੇ ਸਮੇਂ ਤਰੁੱਟੀ ਉਤਪੰਨ ਹੋਈ. ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰਨ ਲਈ {{ਇੱਥੇ ਕਲਿਕ ਕਰੋ}}',
         },
@@ -122,7 +123,7 @@ export class CaptchaComponent implements AfterViewInit, OnInit, OnChanges {
                 'Error happened while verifying your answer. please {{click here}} to try again',
             zh: '验证答案过程发生错误。请{{点击这里}}重试',
             fr:
-                "Une erreur s'est produite lors de la vérification de votre réponse. s\'il vous plaît {{cliquez ici}} pour réessayer",
+                "Une erreur s'est produite lors de la vérification de votre réponse. s'il vous plaît {{cliquez ici}} pour réessayer",
             pa:
                 'ਤੁਹਾਡਾ ਜਵਾਬ ਤਸਦੀਕ ਕਰਨ ਵੇਲੇ ਗਲਤੀ ਆਈ ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰਨ ਲਈ {{ਇੱਥੇ ਕਲਿਕ ਕਰੋ}}',
         },

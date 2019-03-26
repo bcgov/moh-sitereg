@@ -1,3 +1,5 @@
+//#region Interfaces
+
 // To parse this data:
 //
 //   import { Convert, Welcome } from "./file";
@@ -163,511 +165,517 @@ export interface Items {
     ref: string;
 }
 
+//#endregion
+
+//#region Convert(namespace previously)
+
 // Converts JSON strings to/from your types
 // and asserts the results of JSON.parse at runtime
-export namespace Convert {
-    export function toWelcome(json: string): Welcome {
-        return cast(JSON.parse(json), r('Welcome'));
-    }
+// export namespace Convert {
 
-    export function welcomeToJson(value: Welcome): string {
-        return JSON.stringify(uncast(value, r('Welcome')), null, 2);
-    }
-
-    function invalidValue(typ: any, val: any): never {
-        throw Error(
-            `Invalid value ${JSON.stringify(val)} for type ${JSON.stringify(
-                typ
-            )}`
-        );
-    }
-
-    function jsonToJSProps(typ: any): any {
-        if (typ.jsonToJS === undefined) {
-            var map: any = {};
-            typ.props.forEach(
-                (p: any) => (map[p.json] = { key: p.js, typ: p.typ })
-            );
-            typ.jsonToJS = map;
-        }
-        return typ.jsonToJS;
-    }
-
-    function jsToJSONProps(typ: any): any {
-        if (typ.jsToJSON === undefined) {
-            var map: any = {};
-            typ.props.forEach(
-                (p: any) => (map[p.js] = { key: p.json, typ: p.typ })
-            );
-            typ.jsToJSON = map;
-        }
-        return typ.jsToJSON;
-    }
-
-    function transform(val: any, typ: any, getProps: any): any {
-        function transformPrimitive(typ: string, val: any): any {
-            if (typeof typ === typeof val) return val;
-            return invalidValue(typ, val);
-        }
-
-        function transformUnion(typs: any[], val: any): any {
-            // val must validate against one typ in typs
-            var l = typs.length;
-            for (var i = 0; i < l; i++) {
-                var typ = typs[i];
-                try {
-                    return transform(val, typ, getProps);
-                } catch (_) {}
-            }
-            return invalidValue(typs, val);
-        }
-
-        function transformEnum(cases: string[], val: any): any {
-            if (cases.indexOf(val) !== -1) return val;
-            return invalidValue(cases, val);
-        }
-
-        function transformArray(typ: any, val: any): any {
-            // val must be an array with no invalid elements
-            if (!Array.isArray(val)) return invalidValue('array', val);
-            return val.map((el) => transform(el, typ, getProps));
-        }
-
-        function transformDate(typ: any, val: any): any {
-            if (val === null) {
-                return null;
-            }
-            const d = new Date(val);
-            if (isNaN(d.valueOf())) {
-                return invalidValue('Date', val);
-            }
-            return d;
-        }
-
-        function transformObject(
-            props: { [k: string]: any },
-            additional: any,
-            val: any
-        ): any {
-            if (val === null || typeof val !== 'object' || Array.isArray(val)) {
-                return invalidValue('object', val);
-            }
-            var result: any = {};
-            Object.getOwnPropertyNames(props).forEach((key) => {
-                const prop = props[key];
-                const v = Object.prototype.hasOwnProperty.call(val, key)
-                    ? val[key]
-                    : undefined;
-                result[prop.key] = transform(v, prop.typ, getProps);
-            });
-            Object.getOwnPropertyNames(val).forEach((key) => {
-                if (!Object.prototype.hasOwnProperty.call(props, key)) {
-                    result[key] = transform(val[key], additional, getProps);
-                }
-            });
-            return result;
-        }
-
-        if (typ === 'any') return val;
-        if (typ === null) {
-            if (val === null) return val;
-            return invalidValue(typ, val);
-        }
-        if (typ === false) return invalidValue(typ, val);
-        while (typeof typ === 'object' && typ.ref !== undefined) {
-            typ = typeMap[typ.ref];
-        }
-        if (Array.isArray(typ)) return transformEnum(typ, val);
-        if (typeof typ === 'object') {
-            return typ.hasOwnProperty('unionMembers')
-                ? transformUnion(typ.unionMembers, val)
-                : typ.hasOwnProperty('arrayItems')
-                ? transformArray(typ.arrayItems, val)
-                : typ.hasOwnProperty('props')
-                ? transformObject(getProps(typ), typ.additional, val)
-                : invalidValue(typ, val);
-        }
-        // Numbers can be parsed by Date but shouldn't be.
-        if (typ === Date && typeof val !== 'number') {
-            return transformDate(typ, val);
-        }
-        return transformPrimitive(typ, val);
-    }
-
-    function cast<T>(val: any, typ: any): T {
-        return transform(val, typ, jsonToJSProps);
-    }
-
-    function uncast<T>(val: T, typ: any): any {
-        return transform(val, typ, jsToJSONProps);
-    }
-
-    function a(typ: any) {
-        return { arrayItems: typ };
-    }
-
-    function u(...typs: any[]) {
-        return { unionMembers: typs };
-    }
-
-    function o(props: any[], additional: any) {
-        return { props, additional };
-    }
-
-    function m(additional: any) {
-        return { props: [], additional };
-    }
-
-    function r(name: string) {
-        return { ref: name };
-    }
-
-    const typeMap: any = {
-        Welcome: o(
-            [
-                { json: '$id', js: 'id', typ: '' },
-                { json: '$schema', js: 'schema', typ: '' },
-                {
-                    json: 'definitions',
-                    js: 'definitions',
-                    typ: r('Definitions'),
-                },
-                { json: 'title', js: 'title', typ: '' },
-                { json: 'type', js: 'type', typ: '' },
-                {
-                    json: 'properties',
-                    js: 'properties',
-                    typ: r('WelcomeProperties'),
-                },
-                { json: 'required', js: 'required', typ: a('') },
-            ],
-            false
-        ),
-        Definitions: o(
-            [
-                {
-                    json: 'org_information_def',
-                    js: 'orgInformationDef',
-                    typ: r('OrgInformationDef'),
-                },
-                {
-                    json: 'signing_authority_information_def',
-                    js: 'signingAuthorityInformationDef',
-                    typ: r('SigningAuthorityInformationDef'),
-                },
-                {
-                    json: 'access_administrator_present_def',
-                    js: 'accessAdministratorPresentDef',
-                    typ: r('AccessAdministratorPresentDef'),
-                },
-                { json: 'user_def', js: 'userDef', typ: r('UserDef') },
-                {
-                    json: 'msp_group_def',
-                    js: 'mspGroupDef',
-                    typ: r('MspGroupDef'),
-                },
-            ],
-            false
-        ),
-        AccessAdministratorPresentDef: o(
-            [
-                { json: 'type', js: 'type', typ: '' },
-                {
-                    json: 'properties',
-                    js: 'properties',
-                    typ: r('AccessAdministratorPresentDefProperties'),
-                },
-                { json: 'required', js: 'required', typ: a('') },
-            ],
-            false
-        ),
-        AccessAdministratorPresentDefProperties: o(
-            [
-                {
-                    json: 'aa_curtesy_title',
-                    js: 'aaCurtesyTitle',
-                    typ: r('PuneHedgehog'),
-                },
-                {
-                    json: 'aa_last_name',
-                    js: 'aaLastName',
-                    typ: r('PuneHedgehog'),
-                },
-                {
-                    json: 'aa_first_name',
-                    js: 'aaFirstName',
-                    typ: r('PuneHedgehog'),
-                },
-                { json: 'aa_initial', js: 'aaInitial', typ: r('PuneHedgehog') },
-                {
-                    json: 'aa_job_title',
-                    js: 'aaJobTitle',
-                    typ: r('PuneHedgehog'),
-                },
-                { json: 'aa_email', js: 'aaEmail', typ: r('PuneHedgehog') },
-                { json: 'aa_phone_num', js: 'aaPhoneNum', typ: r('AaFaxNum') },
-                {
-                    json: 'aa_phone_ext',
-                    js: 'aaPhoneEXT',
-                    typ: r('PuneHedgehog'),
-                },
-                { json: 'aa_fax_num', js: 'aaFaxNum', typ: r('AaFaxNum') },
-                {
-                    json: 'aa_msp_access',
-                    js: 'aaMspAccess',
-                    typ: r('AaFaxNum'),
-                },
-                { json: 'aa_spg', js: 'aaSpg', typ: r('AaFaxNum') },
-                { json: 'aa_ldap_id', js: 'aaLDAPID', typ: r('AaFaxNum') },
-            ],
-            false
-        ),
-        PuneHedgehog: o(
-            [
-                { json: 'type', js: 'type', typ: r('Type') },
-                { json: 'maxLength', js: 'maxLength', typ: 0 },
-            ],
-            false
-        ),
-        AaFaxNum: o(
-            [
-                { json: 'type', js: 'type', typ: r('Type') },
-                { json: 'pattern', js: 'pattern', typ: '' },
-            ],
-            false
-        ),
-        MspGroupDef: o(
-            [
-                { json: 'type', js: 'type', typ: '' },
-                {
-                    json: 'properties',
-                    js: 'properties',
-                    typ: r('MspGroupDefProperties'),
-                },
-                { json: 'required', js: 'required', typ: a('') },
-            ],
-            false
-        ),
-        MspGroupDefProperties: o(
-            [
-                {
-                    json: 'mspgroup_num',
-                    js: 'mspgroupNum',
-                    typ: r('PuneHedgehog'),
-                },
-                { json: 'third_party', js: 'thirdParty', typ: r('AaFaxNum') },
-            ],
-            false
-        ),
-        OrgInformationDef: o(
-            [
-                { json: 'type', js: 'type', typ: '' },
-                {
-                    json: 'properties',
-                    js: 'properties',
-                    typ: r('OrgInformationDefProperties'),
-                },
-                { json: 'required', js: 'required', typ: a('') },
-            ],
-            false
-        ),
-        OrgInformationDefProperties: o(
-            [
-                { json: 'org_name', js: 'orgName', typ: r('PuneHedgehog') },
-                { json: 'org_num', js: 'orgNum', typ: r('PuneHedgehog') },
-                { json: 'suite_num', js: 'suiteNum', typ: r('PuneHedgehog') },
-                { json: 'street_num', js: 'streetNum', typ: r('PuneHedgehog') },
-                {
-                    json: 'street_name',
-                    js: 'streetName',
-                    typ: r('PuneHedgehog'),
-                },
-                { json: 'address_2', js: 'address2', typ: r('PuneHedgehog') },
-                { json: 'city', js: 'city', typ: r('PuneHedgehog') },
-                { json: 'province', js: 'province', typ: r('PuneHedgehog') },
-                { json: 'postal_code', js: 'postalCode', typ: r('AaFaxNum') },
-                {
-                    json: 'contracting_out',
-                    js: 'contractingOut',
-                    typ: r('ContractingOut'),
-                },
-                { json: 'blue_cross', js: 'blueCross', typ: r('AaFaxNum') },
-                { json: 'org_spg', js: 'orgSpg', typ: r('AaFaxNum') },
-            ],
-            false
-        ),
-        ContractingOut: o(
-            [
-                { json: 'type', js: 'type', typ: '' },
-                {
-                    json: 'properties',
-                    js: 'properties',
-                    typ: r('ContractingOutProperties'),
-                },
-                { json: 'required', js: 'required', typ: a('') },
-            ],
-            false
-        ),
-        ContractingOutProperties: o(
-            [
-                {
-                    json: 'contracting_third_party',
-                    js: 'contractingThirdParty',
-                    typ: r('AaFaxNum'),
-                },
-                {
-                    json: 'third_party_org_num',
-                    js: 'thirdPartyOrgNum',
-                    typ: r('PuneHedgehog'),
-                },
-            ],
-            false
-        ),
-        SigningAuthorityInformationDef: o(
-            [
-                { json: 'type', js: 'type', typ: '' },
-                {
-                    json: 'properties',
-                    js: 'properties',
-                    typ: r('SigningAuthorityInformationDefProperties'),
-                },
-                { json: 'required', js: 'required', typ: a('') },
-            ],
-            false
-        ),
-        SigningAuthorityInformationDefProperties: o(
-            [
-                {
-                    json: 'sa_curtesy_title',
-                    js: 'saCurtesyTitle',
-                    typ: r('PuneHedgehog'),
-                },
-                {
-                    json: 'sa_last_name',
-                    js: 'saLastName',
-                    typ: r('PuneHedgehog'),
-                },
-                {
-                    json: 'sa_first_name',
-                    js: 'saFirstName',
-                    typ: r('PuneHedgehog'),
-                },
-                { json: 'sa_initial', js: 'saInitial', typ: r('PuneHedgehog') },
-                {
-                    json: 'sa_job_title',
-                    js: 'saJobTitle',
-                    typ: r('PuneHedgehog'),
-                },
-                { json: 'sa_email', js: 'saEmail', typ: r('PuneHedgehog') },
-                { json: 'sa_phone_num', js: 'saPhoneNum', typ: r('AaFaxNum') },
-                {
-                    json: 'sa_phone_ext',
-                    js: 'saPhoneEXT',
-                    typ: r('PuneHedgehog'),
-                },
-                { json: 'sa_fax_num', js: 'saFaxNum', typ: r('AaFaxNum') },
-                {
-                    json: 'sa_msp_access',
-                    js: 'saMspAccess',
-                    typ: r('AaFaxNum'),
-                },
-                { json: 'sa_spg', js: 'saSpg', typ: r('AaFaxNum') },
-                { json: 'sa_ldap_id', js: 'saLDAPID', typ: r('AaFaxNum') },
-            ],
-            false
-        ),
-        UserDef: o(
-            [
-                { json: 'type', js: 'type', typ: '' },
-                {
-                    json: 'properties',
-                    js: 'properties',
-                    typ: r('UserDefProperties'),
-                },
-                { json: 'required', js: 'required', typ: a('') },
-            ],
-            false
-        ),
-        UserDefProperties: o(
-            [
-                {
-                    json: 'user_curtesy_title',
-                    js: 'userCurtesyTitle',
-                    typ: r('PuneHedgehog'),
-                },
-                {
-                    json: 'user_last_name',
-                    js: 'userLastName',
-                    typ: r('PuneHedgehog'),
-                },
-                {
-                    json: 'user_first_name',
-                    js: 'userFirstName',
-                    typ: r('PuneHedgehog'),
-                },
-                {
-                    json: 'user_initial',
-                    js: 'userInitial',
-                    typ: r('PuneHedgehog'),
-                },
-                {
-                    json: 'user_job_title',
-                    js: 'userJobTitle',
-                    typ: r('PuneHedgehog'),
-                },
-                { json: 'user_email', js: 'userEmail', typ: r('PuneHedgehog') },
-                {
-                    json: 'user_phone_num',
-                    js: 'userPhoneNum',
-                    typ: r('AaFaxNum'),
-                },
-                {
-                    json: 'user_phone_ext',
-                    js: 'userPhoneEXT',
-                    typ: r('PuneHedgehog'),
-                },
-                { json: 'user_fax_num', js: 'userFaxNum', typ: r('AaFaxNum') },
-                { json: 'user_spg', js: 'userSpg', typ: r('AaFaxNum') },
-            ],
-            false
-        ),
-        WelcomeProperties: o(
-            [
-                {
-                    json: 'org_information',
-                    js: 'orgInformation',
-                    typ: r('Items'),
-                },
-                {
-                    json: 'signing_authority_information',
-                    js: 'signingAuthorityInformation',
-                    typ: r('Items'),
-                },
-                {
-                    json: 'access_administrator_present',
-                    js: 'accessAdministratorPresent',
-                    typ: r('AccessAdministratorPresent'),
-                },
-                {
-                    json: 'users',
-                    js: 'users',
-                    typ: r('AccessAdministratorPresent'),
-                },
-                { json: 'type', js: 'type', typ: '' },
-                { json: 'items', js: 'items', typ: r('Items') },
-                { json: 'default', js: 'default', typ: a('any') },
-            ],
-            false
-        ),
-        AccessAdministratorPresent: o(
-            [
-                { json: 'type', js: 'type', typ: '' },
-                { json: 'items', js: 'items', typ: r('Items') },
-                { json: 'default', js: 'default', typ: a('any') },
-            ],
-            false
-        ),
-        Items: o([{ json: '$ref', js: 'ref', typ: '' }], false),
-        Type: ['string'],
-    };
+export function toWelcome(json: string): Welcome {
+    return cast(JSON.parse(json), r('Welcome'));
 }
+
+export function welcomeToJson(value: Welcome): string {
+    return JSON.stringify(uncast(value, r('Welcome')), null, 2);
+}
+
+function invalidValue(typ: any, val: any): never {
+    throw Error(
+        `Invalid value ${JSON.stringify(val)} for type ${JSON.stringify(typ)}`
+    );
+}
+
+function jsonToJSProps(typ: any): any {
+    if (typ.jsonToJS === undefined) {
+        const map: any = {};
+        typ.props.forEach(
+            (p: any) => (map[p.json] = { key: p.js, typ: p.typ })
+        );
+        typ.jsonToJS = map;
+    }
+    return typ.jsonToJS;
+}
+
+function jsToJSONProps(typ: any): any {
+    if (typ.jsToJSON === undefined) {
+        const map: any = {};
+        typ.props.forEach(
+            (p: any) => (map[p.js] = { key: p.json, typ: p.typ })
+        );
+        typ.jsToJSON = map;
+    }
+    return typ.jsToJSON;
+}
+
+const typeMap: any = {
+    Welcome: o(
+        [
+            { json: '$id', js: 'id', typ: '' },
+            { json: '$schema', js: 'schema', typ: '' },
+            {
+                json: 'definitions',
+                js: 'definitions',
+                typ: r('Definitions'),
+            },
+            { json: 'title', js: 'title', typ: '' },
+            { json: 'type', js: 'type', typ: '' },
+            {
+                json: 'properties',
+                js: 'properties',
+                typ: r('WelcomeProperties'),
+            },
+            { json: 'required', js: 'required', typ: a('') },
+        ],
+        false
+    ),
+    Definitions: o(
+        [
+            {
+                json: 'org_information_def',
+                js: 'orgInformationDef',
+                typ: r('OrgInformationDef'),
+            },
+            {
+                json: 'signing_authority_information_def',
+                js: 'signingAuthorityInformationDef',
+                typ: r('SigningAuthorityInformationDef'),
+            },
+            {
+                json: 'access_administrator_present_def',
+                js: 'accessAdministratorPresentDef',
+                typ: r('AccessAdministratorPresentDef'),
+            },
+            { json: 'user_def', js: 'userDef', typ: r('UserDef') },
+            {
+                json: 'msp_group_def',
+                js: 'mspGroupDef',
+                typ: r('MspGroupDef'),
+            },
+        ],
+        false
+    ),
+    AccessAdministratorPresentDef: o(
+        [
+            { json: 'type', js: 'type', typ: '' },
+            {
+                json: 'properties',
+                js: 'properties',
+                typ: r('AccessAdministratorPresentDefProperties'),
+            },
+            { json: 'required', js: 'required', typ: a('') },
+        ],
+        false
+    ),
+    AccessAdministratorPresentDefProperties: o(
+        [
+            {
+                json: 'aa_curtesy_title',
+                js: 'aaCurtesyTitle',
+                typ: r('PuneHedgehog'),
+            },
+            {
+                json: 'aa_last_name',
+                js: 'aaLastName',
+                typ: r('PuneHedgehog'),
+            },
+            {
+                json: 'aa_first_name',
+                js: 'aaFirstName',
+                typ: r('PuneHedgehog'),
+            },
+            { json: 'aa_initial', js: 'aaInitial', typ: r('PuneHedgehog') },
+            {
+                json: 'aa_job_title',
+                js: 'aaJobTitle',
+                typ: r('PuneHedgehog'),
+            },
+            { json: 'aa_email', js: 'aaEmail', typ: r('PuneHedgehog') },
+            { json: 'aa_phone_num', js: 'aaPhoneNum', typ: r('AaFaxNum') },
+            {
+                json: 'aa_phone_ext',
+                js: 'aaPhoneEXT',
+                typ: r('PuneHedgehog'),
+            },
+            { json: 'aa_fax_num', js: 'aaFaxNum', typ: r('AaFaxNum') },
+            {
+                json: 'aa_msp_access',
+                js: 'aaMspAccess',
+                typ: r('AaFaxNum'),
+            },
+            { json: 'aa_spg', js: 'aaSpg', typ: r('AaFaxNum') },
+            { json: 'aa_ldap_id', js: 'aaLDAPID', typ: r('AaFaxNum') },
+        ],
+        false
+    ),
+    PuneHedgehog: o(
+        [
+            { json: 'type', js: 'type', typ: r('Type') },
+            { json: 'maxLength', js: 'maxLength', typ: 0 },
+        ],
+        false
+    ),
+    AaFaxNum: o(
+        [
+            { json: 'type', js: 'type', typ: r('Type') },
+            { json: 'pattern', js: 'pattern', typ: '' },
+        ],
+        false
+    ),
+    MspGroupDef: o(
+        [
+            { json: 'type', js: 'type', typ: '' },
+            {
+                json: 'properties',
+                js: 'properties',
+                typ: r('MspGroupDefProperties'),
+            },
+            { json: 'required', js: 'required', typ: a('') },
+        ],
+        false
+    ),
+    MspGroupDefProperties: o(
+        [
+            {
+                json: 'mspgroup_num',
+                js: 'mspgroupNum',
+                typ: r('PuneHedgehog'),
+            },
+            { json: 'third_party', js: 'thirdParty', typ: r('AaFaxNum') },
+        ],
+        false
+    ),
+    OrgInformationDef: o(
+        [
+            { json: 'type', js: 'type', typ: '' },
+            {
+                json: 'properties',
+                js: 'properties',
+                typ: r('OrgInformationDefProperties'),
+            },
+            { json: 'required', js: 'required', typ: a('') },
+        ],
+        false
+    ),
+    OrgInformationDefProperties: o(
+        [
+            { json: 'org_name', js: 'orgName', typ: r('PuneHedgehog') },
+            { json: 'org_num', js: 'orgNum', typ: r('PuneHedgehog') },
+            { json: 'suite_num', js: 'suiteNum', typ: r('PuneHedgehog') },
+            { json: 'street_num', js: 'streetNum', typ: r('PuneHedgehog') },
+            {
+                json: 'street_name',
+                js: 'streetName',
+                typ: r('PuneHedgehog'),
+            },
+            { json: 'address_2', js: 'address2', typ: r('PuneHedgehog') },
+            { json: 'city', js: 'city', typ: r('PuneHedgehog') },
+            { json: 'province', js: 'province', typ: r('PuneHedgehog') },
+            { json: 'postal_code', js: 'postalCode', typ: r('AaFaxNum') },
+            {
+                json: 'contracting_out',
+                js: 'contractingOut',
+                typ: r('ContractingOut'),
+            },
+            { json: 'blue_cross', js: 'blueCross', typ: r('AaFaxNum') },
+            { json: 'org_spg', js: 'orgSpg', typ: r('AaFaxNum') },
+        ],
+        false
+    ),
+    ContractingOut: o(
+        [
+            { json: 'type', js: 'type', typ: '' },
+            {
+                json: 'properties',
+                js: 'properties',
+                typ: r('ContractingOutProperties'),
+            },
+            { json: 'required', js: 'required', typ: a('') },
+        ],
+        false
+    ),
+    ContractingOutProperties: o(
+        [
+            {
+                json: 'contracting_third_party',
+                js: 'contractingThirdParty',
+                typ: r('AaFaxNum'),
+            },
+            {
+                json: 'third_party_org_num',
+                js: 'thirdPartyOrgNum',
+                typ: r('PuneHedgehog'),
+            },
+        ],
+        false
+    ),
+    SigningAuthorityInformationDef: o(
+        [
+            { json: 'type', js: 'type', typ: '' },
+            {
+                json: 'properties',
+                js: 'properties',
+                typ: r('SigningAuthorityInformationDefProperties'),
+            },
+            { json: 'required', js: 'required', typ: a('') },
+        ],
+        false
+    ),
+    SigningAuthorityInformationDefProperties: o(
+        [
+            {
+                json: 'sa_curtesy_title',
+                js: 'saCurtesyTitle',
+                typ: r('PuneHedgehog'),
+            },
+            {
+                json: 'sa_last_name',
+                js: 'saLastName',
+                typ: r('PuneHedgehog'),
+            },
+            {
+                json: 'sa_first_name',
+                js: 'saFirstName',
+                typ: r('PuneHedgehog'),
+            },
+            { json: 'sa_initial', js: 'saInitial', typ: r('PuneHedgehog') },
+            {
+                json: 'sa_job_title',
+                js: 'saJobTitle',
+                typ: r('PuneHedgehog'),
+            },
+            { json: 'sa_email', js: 'saEmail', typ: r('PuneHedgehog') },
+            { json: 'sa_phone_num', js: 'saPhoneNum', typ: r('AaFaxNum') },
+            {
+                json: 'sa_phone_ext',
+                js: 'saPhoneEXT',
+                typ: r('PuneHedgehog'),
+            },
+            { json: 'sa_fax_num', js: 'saFaxNum', typ: r('AaFaxNum') },
+            {
+                json: 'sa_msp_access',
+                js: 'saMspAccess',
+                typ: r('AaFaxNum'),
+            },
+            { json: 'sa_spg', js: 'saSpg', typ: r('AaFaxNum') },
+            { json: 'sa_ldap_id', js: 'saLDAPID', typ: r('AaFaxNum') },
+        ],
+        false
+    ),
+    UserDef: o(
+        [
+            { json: 'type', js: 'type', typ: '' },
+            {
+                json: 'properties',
+                js: 'properties',
+                typ: r('UserDefProperties'),
+            },
+            { json: 'required', js: 'required', typ: a('') },
+        ],
+        false
+    ),
+    UserDefProperties: o(
+        [
+            {
+                json: 'user_curtesy_title',
+                js: 'userCurtesyTitle',
+                typ: r('PuneHedgehog'),
+            },
+            {
+                json: 'user_last_name',
+                js: 'userLastName',
+                typ: r('PuneHedgehog'),
+            },
+            {
+                json: 'user_first_name',
+                js: 'userFirstName',
+                typ: r('PuneHedgehog'),
+            },
+            {
+                json: 'user_initial',
+                js: 'userInitial',
+                typ: r('PuneHedgehog'),
+            },
+            {
+                json: 'user_job_title',
+                js: 'userJobTitle',
+                typ: r('PuneHedgehog'),
+            },
+            { json: 'user_email', js: 'userEmail', typ: r('PuneHedgehog') },
+            {
+                json: 'user_phone_num',
+                js: 'userPhoneNum',
+                typ: r('AaFaxNum'),
+            },
+            {
+                json: 'user_phone_ext',
+                js: 'userPhoneEXT',
+                typ: r('PuneHedgehog'),
+            },
+            { json: 'user_fax_num', js: 'userFaxNum', typ: r('AaFaxNum') },
+            { json: 'user_spg', js: 'userSpg', typ: r('AaFaxNum') },
+        ],
+        false
+    ),
+    WelcomeProperties: o(
+        [
+            {
+                json: 'org_information',
+                js: 'orgInformation',
+                typ: r('Items'),
+            },
+            {
+                json: 'signing_authority_information',
+                js: 'signingAuthorityInformation',
+                typ: r('Items'),
+            },
+            {
+                json: 'access_administrator_present',
+                js: 'accessAdministratorPresent',
+                typ: r('AccessAdministratorPresent'),
+            },
+            {
+                json: 'users',
+                js: 'users',
+                typ: r('AccessAdministratorPresent'),
+            },
+            { json: 'type', js: 'type', typ: '' },
+            { json: 'items', js: 'items', typ: r('Items') },
+            { json: 'default', js: 'default', typ: a('any') },
+        ],
+        false
+    ),
+    AccessAdministratorPresent: o(
+        [
+            { json: 'type', js: 'type', typ: '' },
+            { json: 'items', js: 'items', typ: r('Items') },
+            { json: 'default', js: 'default', typ: a('any') },
+        ],
+        false
+    ),
+    Items: o([{ json: '$ref', js: 'ref', typ: '' }], false),
+    Type: ['string'],
+};
+
+function transform(valc: any, typc: any, getProps: any): any {
+    function transformPrimitive(typ: string, val: any): any {
+        if (typeof typ === typeof val) return val;
+        return invalidValue(typ, val);
+    }
+
+    function transformUnion(typs: any[], val: any): any {
+        // val must validate against one typ in typs
+        const l = typs.length;
+        for (let i = 0; i < l; i++) {
+            const typ = typs[i];
+            try {
+                return transform(val, typ, getProps);
+            } catch (_) {}
+        }
+        return invalidValue(typs, val);
+    }
+
+    function transformEnum(cases: string[], val: any): any {
+        if (cases.indexOf(val) !== -1) return val;
+        return invalidValue(cases, val);
+    }
+
+    function transformArray(typ: any, val: any): any {
+        // val must be an array with no invalid elements
+        if (!Array.isArray(val)) return invalidValue('array', val);
+        return val.map((el) => transform(el, typ, getProps));
+    }
+
+    function transformDate(typ: any, val: any): any {
+        if (val === null) {
+            return null;
+        }
+        const d = new Date(val);
+        if (isNaN(d.valueOf())) {
+            return invalidValue('Date', val);
+        }
+        return d;
+    }
+
+    function transformObject(
+        props: { [k: string]: any },
+        additional: any,
+        val: any
+    ): any {
+        if (val === null || typeof val !== 'object' || Array.isArray(val)) {
+            return invalidValue('object', val);
+        }
+        const result: any = {};
+        Object.getOwnPropertyNames(props).forEach((key) => {
+            const prop = props[key];
+            const v = Object.prototype.hasOwnProperty.call(val, key)
+                ? val[key]
+                : undefined;
+            result[prop.key] = transform(v, prop.typ, getProps);
+        });
+        Object.getOwnPropertyNames(val).forEach((key) => {
+            if (!Object.prototype.hasOwnProperty.call(props, key)) {
+                result[key] = transform(val[key], additional, getProps);
+            }
+        });
+        return result;
+    }
+
+    if (typ === 'any') return val;
+    if (typ === null) {
+        if (val === null) return val;
+        return invalidValue(typ, val);
+    }
+    if (typ === false) return invalidValue(typ, val);
+    while (typeof typ === 'object' && typ.ref !== undefined) {
+        typ = typeMap[typ.ref];
+    }
+    if (Array.isArray(typ)) return transformEnum(typ, val);
+    if (typeof typ === 'object') {
+        return typ.hasOwnProperty('unionMembers')
+            ? transformUnion(typ.unionMembers, val)
+            : typ.hasOwnProperty('arrayItems')
+            ? transformArray(typ.arrayItems, val)
+            : typ.hasOwnProperty('props')
+            ? transformObject(getProps(typ), typ.additional, val)
+            : invalidValue(typ, val);
+    }
+    // Numbers can be parsed by Date but shouldn't be.
+    if (typ === Date && typeof val !== 'number') {
+        return transformDate(typ, val);
+    }
+    return transformPrimitive(typ, val);
+}
+
+function cast<T>(val: any, typ: any): T {
+    return transform(val, typ, jsonToJSProps);
+}
+
+function uncast<T>(val: T, typ: any): any {
+    return transform(val, typ, jsToJSONProps);
+}
+
+function a(typ: any) {
+    return { arrayItems: typ };
+}
+
+function u(...typs: any[]) {
+    return { unionMembers: typs };
+}
+
+function o(props: any[], additional: any) {
+    return { props, additional };
+}
+
+function m(additional: any) {
+    return { props: [], additional };
+}
+
+function r(name: string) {
+    return { ref: name };
+}
+
+// }
+
+//#region

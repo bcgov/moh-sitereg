@@ -28,7 +28,7 @@ export class MspRegisterSigningAuthorityComponent implements OnInit {
 
     updateFormData(obj: IUser) {
         // tslint:disable-next-line: forin
-        for (let key in obj) {
+        for (const key in obj) {
             if (!this.fg.controls[key]) return;
             this.fg.controls[key].setValue(obj[key]);
         }

@@ -20,7 +20,7 @@ import {
 })
 export class MspRegisterAuthorizeAccessComponent implements OnInit {
     @Input() label: string;
-    @Input() checked: boolean = false;
+    @Input() checked = false;
     @Output() value: EventEmitter<boolean> = new EventEmitter<boolean>();
     fc: FormControl;
     validFormControl: () => boolean;
