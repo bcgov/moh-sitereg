@@ -3,6 +3,8 @@
 
   <form [formGroup]="fg">
     <div class="form-group col-sm-8 p-sm-0">
+
+      <!-- Organization Name -->
       <label class="control-label" for="name">Organization</label>
       <input id="name" formControlName="name" class="form-control" placeholder="Organization Name">
       <div class="text-danger" *ngIf="validFormControl('name')">
@@ -43,11 +45,11 @@
             Please enter a valid street address.
       </div>
 
-      <!-- Street Address -->
-      <label class="control-label" for="secondaryAddress">Secondary Address (optional)</label>
-      <input id="secondaryAddress" formControlName="secondaryAddress" class="form-control" placeholder="Secondary Address">
-      <div class="text-danger" *ngIf="validFormControl('secondaryAddress')">
-        Please enter a valid secondary address.
+      <!-- Address Line 2 -->
+      <label class="control-label" for="addressLine2">Address Line 2 (optional)</label>
+      <input id="addressLine2" formControlName="addressLine2" class="form-control" placeholder="Address Line 2">
+      <div class="text-danger" *ngIf="validFormControl('addressLine2')">
+        Please enter a valid address line 2.
   </div>
       
       <!-- City -->
