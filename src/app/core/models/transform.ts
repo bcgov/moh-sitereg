@@ -559,7 +559,6 @@ const typeMap: any = {
 };
 
 function transform(valc: any, typc: any, getProps: any): any {
-
     function transformPrimitive(typ: string, val: any): any {
         if (typeof typ === typeof val) return val;
         return invalidValue(typ, val);
