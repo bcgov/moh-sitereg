@@ -35,19 +35,21 @@
         </div>        
     </div>
   
+      <!-- Street Name -->
       <label class="control-label" for="streetName">Street Address</label>
           <input id="streetName" formControlName="streetName" class="form-control" placeholder="Street or Avenue name i.e Yates street">
           <div class="text-danger" *ngIf="validFormControl('streetName')">
             Please enter a valid street address.
       </div>
 
+      <!-- Street Address -->
       <label class="control-label" for="secondaryAddress">Secondary Address (optional)</label>
       <input id="secondaryAddress" formControlName="secondaryAddress" class="form-control" placeholder="Secondary Address">
       <div class="text-danger" *ngIf="validFormControl('secondaryAddress')">
         Please enter a valid secondary address.
   </div>
       
-
+      <!-- City -->
       <label class="control-label" for="city">City</label>
       <input id="city" formControlName="city" class="form-control" placeholder="Victoria">
       <div class="text-danger" *ngIf="validFormControl('city')">
@@ -56,6 +58,7 @@
 
       <div class="row">
         <div class="col-sm-8">
+            <!-- Province -->
             <label class="control-label" for="province">Province</label>
             <select class="form-control" *ngIf="provinces | async as provinces" formControlName="province">
               <option value="null" label="-- Select Province --" selected></option>
@@ -66,6 +69,7 @@
             </div>
         </div>
         <div class="col-sm-4">
+          <!-- Postal Code -->
           <label class="control-label" for="postalCode">Postal Code</label>
           <input id="postalCode" formControlName="postalCode" class="form-control" placeholder="A1A1A1">
           <div class="text-danger" *ngIf="validFormControl('postalCode')">
