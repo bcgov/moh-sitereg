@@ -132,7 +132,7 @@ export const organization: IMspOrganization = {
     suite: '1034',
     street: '128',
     streetName: 'Bayt Street',
-    secondaryAddress: '1034 Birik Grove',
+    addressLine2: '1034 Birik Grove',
     city: 'Bepkelfoj',
     province: 'NS',
     postalCode: 'R2Q 6B0',

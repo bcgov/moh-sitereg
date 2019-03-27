@@ -22,7 +22,7 @@ export class MspRegisterOrganization extends GenerateForm<IMspOrganization>
     suite: string | FormControl = '';
     street: string | FormControl = '';
     streetName: string | FormControl = '';
-    secondaryAddress: string | FormControl = '';
+    addressLine2: string | FormControl = '';
     // validators = new Map();
     get validators() {
         return {
@@ -38,7 +38,7 @@ export class MspRegisterOrganization extends GenerateForm<IMspOrganization>
                 Validators.maxLength(75),
                 addressValidator(),
             ],
-            secondaryAddress: [Validators.maxLength(200), addressValidator()], // todo: test blank behaviour and validate form
+            addressLine2: [Validators.maxLength(200), addressValidator()], // todo: test blank behaviour and validate form
             city: [required, minLength(), maxLength(25)],
             province: [required, minLength(2), maxLength(3)],
             postalCode: [required, maxLength(6), postalCodeValidator()],

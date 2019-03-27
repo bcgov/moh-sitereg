@@ -6,7 +6,7 @@ export interface IMspOrganization {
     suite: string | FormControl;
     street: string | FormControl;
     streetName: string | FormControl;
-    secondaryAddress: string | FormControl;
+    addressLine2: string | FormControl;
     city: string | FormControl;
     province: string | FormControl;
     postalCode: string | FormControl;
