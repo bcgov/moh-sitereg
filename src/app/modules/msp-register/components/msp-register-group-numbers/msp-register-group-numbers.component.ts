@@ -35,7 +35,6 @@ export class MspRegisterGroupNumbersComponent implements OnInit {
         // console.log(orgForm);
         // const middleWareObject = this.mspRegDataSvc.map(orgForm.value);
         // console.log( 'Organization Middlware Object:', middleWareObject);
-
         // this.router.navigate(['msp-registration/authorize']);
     }
 

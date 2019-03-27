@@ -119,7 +119,7 @@
         Please select a valid option
       </div>
       <!-- Administrating For-->
-      <label class="control-label" for="city">This organization will be adminstering MSP for</label>
+      <label class="control-label" for="administeringFor">This organization will be adminstering MSP for</label>
       <select class="form-control" *ngIf="administeringFor | async as administering" formControlName="administeringFor">
         <option value="null" label="-- Select Option --" selected></option>
         <option *ngFor="let a of administering " [value]="a">{{a}}</option>

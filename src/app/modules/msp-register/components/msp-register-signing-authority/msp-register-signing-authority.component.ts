@@ -5,6 +5,7 @@ import { MspRegisterStateService } from '@msp-register/services/msp-register-sta
 import { IUser } from '@msp-register/interfaces';
 import { validFormControl } from '@msp-register/models/validator-helpers';
 import { MspRegisterDataService } from '@msp-register/services/msp-register-data.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
     selector: 'sitereg-msp-register-signing-authority',
@@ -16,6 +17,13 @@ export class MspRegisterSigningAuthorityComponent implements OnInit {
     [x: string]: any;
     fg: FormGroup;
     validFormControl: () => boolean;
+    administeringFor: BehaviorSubject<string[]> = new BehaviorSubject<string[]>(
+        [
+            'Employees',
+            'International Students',
+            'Employees and International Students',
+        ]
+    );
 
     constructor(
         private router: Router,
@@ -29,22 +37,23 @@ export class MspRegisterSigningAuthorityComponent implements OnInit {
 
     ngOnInit() {}
 
-    updateFormData(obj: IUser) {
-        // tslint:disable-next-line: forin
-        for (const key in obj) {
-            if (!this.fg.controls[key]) return;
-            this.fg.controls[key].setValue(obj[key]);
-        }
-    }
+    // updateFormData(obj: IUser) {
+    //     // tslint:disable-next-line: forin
+    //     for (const key in obj) {
+    //         if (!this.fg.controls[key]) return;
+    //         this.fg.controls[key].setValue(obj[key]);
+    //     }
+    // }
 
     continue() {
         console.clear();
         const form = this.mspRegisterStateSvc.mspRegisterSigningAuthorityForm;
-        console.log(form);
+        console.log('FormGroup: ', form);
         const middleWareObject = this.mspRegDataSvc.mapSigningAuthorityInformationDef(
             form.value
         );
-        console.log('Signing Authority Middlware Object:', middleWareObject);
+        console.log('MO - Signing Authority:', middleWareObject);
+
         // this.router.navigate(['msp-registration/access-admins']);
     }
 }

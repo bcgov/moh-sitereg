@@ -33,7 +33,6 @@ export class MspRegisterUsersComponent implements OnInit {
         // console.log(form);
         // const middleWareObject = this.mspRegDataSvc.mapUserDef(form.value);
         // console.log( 'Signing Authority Middlware Object:', middleWareObject);
-
         // this.router.navigate(['msp-registration/group-numbers']);
     }
 

@@ -13,4 +13,4 @@ export interface IUser {
     administeringFor: string | FormControl;
 }
 
-export type UserTitle = 'mr' | 'mrs';
+export type UserTitle = 'Mr.' | 'Mrs.' | 'Ms.' | 'Dr.' | 'Prof.' | 'Rev.';

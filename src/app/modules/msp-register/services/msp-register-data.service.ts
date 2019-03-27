@@ -97,6 +97,7 @@ export class MspRegisterDataService {
         return {
             sa_curtesy_title: obj.userTitle as string,
             sa_last_name: obj.lastName as string,
+            sa_first_name: obj.firstName as string,
             sa_initial: obj.initial as string,
             sa_job_title: obj.jobTitle as string,
             sa_email: obj.emailAddress as string,
@@ -106,7 +107,7 @@ export class MspRegisterDataService {
         };
     }
 
-    //#region Orgnaization
+    //#region Common Defination Mappsing
 
     /**
      * Maps boolean value to middleware defination ^[YN]$
@@ -146,6 +147,10 @@ export class MspRegisterDataService {
         return result;
     }
 
+    //#endregion
+
+    //#region Orgnaization
+
     mapOrgInformation(obj: IMspOrganization): IOrgInformationDef {
         this.validateKeys(obj);
         if (!obj) throw Error('no organizaiton provided');
@@ -174,6 +179,31 @@ export class MspRegisterDataService {
 
     //#endregion
 
+    //#region Singing Authority
+
+    mapSigningAuthorityInformationDef(
+        obj: IMspSigningAuthority[] | IMspSigningAuthority
+    ): ISigningAuthorityInformationDef | ISigningAuthorityInformationDef[] {
+        if (Array.isArray(obj)) {
+            // actual UI has not array for singing authority users, array seems unnecessary
+            console.log('ARRAY mapSigningAuthorityInformationDef');
+            const arr = [];
+            obj.forEach((itm) => {
+                this.validateKeys(itm);
+                arr.push(this.mapSigningAuthorityInformationDef(itm));
+            });
+            return arr;
+        }
+        const user = this.mapBaseUser(obj) as ISigningAuthorityInformationDef;
+        user.sa_msp_access = this.mapYesNoDef(obj.directAccess as boolean);
+        user.sa_spg = this.mapAdministeringForDef(
+            obj.administeringFor as string
+        );
+        return user as ISigningAuthorityInformationDef;
+    }
+
+    //#endregion
+
     mapUserDef(obj: IUser | IUser[]): IUserDef | IUserDef[] {
         if (Array.isArray(obj)) {
             const arr = [];
@@ -187,6 +217,7 @@ export class MspRegisterDataService {
         user.user_spg = obj.administeringFor as string;
         return user;
     }
+
     /*
   SH: not sure if this is required atm.
 */
@@ -195,23 +226,6 @@ export class MspRegisterDataService {
     //     return obj.map(itm => {})
     //   }
     // }
-
-    mapSigningAuthorityInformationDef(
-        obj: IMspSigningAuthority[] | IMspSigningAuthority
-    ): ISigningAuthorityInformationDef | ISigningAuthorityInformationDef[] {
-        if (Array.isArray(obj)) {
-            const arr = [];
-            obj.forEach((itm) => {
-                this.validateKeys(itm);
-                arr.push(this.mapSigningAuthorityInformationDef(itm));
-            });
-            return arr;
-        }
-        const user = this.mapBaseUser(obj) as ISigningAuthorityInformationDef;
-        user.sa_msp_access = this.mapYesNo(obj.alsoAdmin as boolean);
-        user.sa_spg = obj.administeringFor as string;
-        return user as ISigningAuthorityInformationDef;
-    }
 
     mapAccessAdministratorDef(
         obj: IMspAccessAdmin | IMspAccessAdmin[]

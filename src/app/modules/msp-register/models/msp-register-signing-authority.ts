@@ -15,33 +15,40 @@ import {
 export class MspRegisterSigningAuthority
     extends GenerateForm<IMspSigningAuthority>
     implements IMspSigningAuthority {
-    directAccess: boolean | FormControl = false;
-    alsoAdmin: boolean | FormControl = false;
-    userTitle?: FormControl | 'mr' | 'mrs' = null;
+    userTitle?:
+        | FormControl
+        | 'Mr.'
+        | 'Mrs.'
+        | 'Ms.'
+        | 'Dr.'
+        | 'Prof.'
+        | 'Rev.' = null;
     firstName: string | FormControl = '';
     initial?: string | FormControl = '';
     lastName: string | FormControl = '';
     jobTitle: string | FormControl = '';
     emailAddress: string | FormControl = '';
+    confirmEmail: string | FormControl = '';
     phone: string | FormControl = '';
     ext?: string | FormControl = '';
     fax: string | FormControl = '';
-    administeringFor: string | FormControl;
-    confirmEmail: string | FormControl = '';
+    administeringFor: string | FormControl = '';
+    directAccess: boolean | FormControl = false;
+
     get validators() {
         return {
-            directAccess: [required],
-            alsoAdmin: [required],
             userTitle: [maxLength(5)],
-            firstName: [required, minLength(), maxLength()],
+            firstName: [required, minLength(), maxLength(100)],
             initial: [maxLength(1)],
-            lastName: [required, minLength(), maxLength()],
-            jobTitle: [required, minLength(), maxLength()],
-            emailAddress: [required, Validators.email, maxLength()],
-            confirmEmail: [required, Validators.email, maxLength()],
+            lastName: [required, minLength(), maxLength(100)],
+            jobTitle: [required, minLength(), maxLength(100)],
+            emailAddress: [required, Validators.email, maxLength(100)],
+            confirmEmail: [required, Validators.email, maxLength(100)],
             phone: [required, phoneValidator()],
-            ext: [maxLength()],
+            ext: [maxLength(100)],
             fax: [faxValidator()],
+            administeringFor: [required],
+            directAccess: [required],
         };
     }
 

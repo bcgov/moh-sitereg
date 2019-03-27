@@ -3,7 +3,7 @@ import { IUser, IMspOrganization } from '@msp-register/interfaces';
 import { FormControl, FormBuilder } from '@angular/forms';
 
 export class MspRegisterPerson extends GenerateForm<IUser> implements IUser {
-    userTitle?: 'mr' | 'mrs' | FormControl = 'mr';
+    userTitle?: 'Mr.' | 'Mrs.' | 'Ms.' | 'Dr.' | 'Prof.' | 'Rev.' | FormControl;
     initial?: string | FormControl = '';
     firstName: string | FormControl = '';
     lastName: string | FormControl = '';

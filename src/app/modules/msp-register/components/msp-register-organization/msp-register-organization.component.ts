@@ -58,12 +58,12 @@ export class MspRegisterOrganizationComponent implements OnInit {
 
     continue() {
         console.clear();
-        const orgForm = this.mspRegisterStateSvc.mspRegisterOrganizationForm;
-        console.log(orgForm);
+        const form = this.mspRegisterStateSvc.mspRegisterOrganizationForm;
+        console.log('FormGroup: ', form);
         const middleWareObject = this.mspRegDataSvc.mapOrgInformation(
-            orgForm.value
+            form.value
         );
-        console.log('Organization Middlware Object:', middleWareObject);
+        console.log('MO - Organization info:', middleWareObject);
 
         // this.router.navigate(['msp-registration/signing-authority']);
     }

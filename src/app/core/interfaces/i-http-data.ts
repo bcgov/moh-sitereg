@@ -21,6 +21,7 @@ export interface IContractingOut {
 export interface ICoreUserDef {
     sa_curtesy_title?: string;
     sa_last_name: string;
+    sa_first_name: string;
     sa_initial?: string;
     sa_job_title: string;
     sa_email: string;
@@ -29,10 +30,15 @@ export interface ICoreUserDef {
     sa_fax_num?: string;
 }
 
+//#region signing_authority_def
+
 export interface ISigningAuthorityInformationDef extends ICoreUserDef {
-    sa_msp_access: YesNo;
+    sa_msp_access: string;
     sa_spg: string;
+    sa_ldap_id: string;
 }
+
+//#endregion
 
 export interface IAccessAdministratorPresentDef extends ICoreUserDef {
     aa_msp_access: YesNo;

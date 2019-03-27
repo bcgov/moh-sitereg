@@ -26,7 +26,7 @@ import {
 })
 export class MspRegisterPersonComponent {
     @Input() fg: FormGroup;
-    userTitles: UserTitle[] = ['mr', 'mrs'];
+    userTitles: UserTitle[] = ['Mr.', 'Mrs.', 'Ms.', 'Dr.', 'Prof.', 'Rev.'];
     validFormControl: () => boolean;
 
     constructor(private router: Router) {

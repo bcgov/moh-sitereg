@@ -6,9 +6,8 @@
   <!-- Does the Signing Authority require access to MSP Direct?; radio(yes/no) -->
   <!-- Will the Signing Authority also be performing the Access Administrator's function?; radio(yes/no) -->
   <form [formGroup]="fg">
-
     <div class="form-group col-sm-8 p-sm-0">
-      <label class="control-label">Are you applying to access MSP Direct through Blue Cross?
+      <label class="control-label">Does the Signing Authority require access to MSP Direct? *
       </label>
       <div class="form-check">
 
@@ -23,6 +22,18 @@
         </label>
         <sitereg-error-box [error]="validFormControl('directAccess')" errorMessage="Please select an option"></sitereg-error-box>
       </div>
+
+       <!-- Administrating For-->
+       <label class="control-label" for="administeringFor">This organization will be adminstering MSP for</label>
+       <select class="form-control" *ngIf="administeringFor | async as administering" formControlName="administeringFor">
+         <option value="null" label="-- Select Option --" selected></option>
+         <option *ngFor="let a of administering " [value]="a">{{a}}</option>
+       </select>
+       <div class="text-danger" *ngIf="validFormControl('administeringFor')">
+         Please select a valid option
+       </div>    
+
+      <!-- 
       <label class="control-label">Will the Signing Authority also be performing the Access Administrator's function?
       </label>
       <div class="form-check">
@@ -37,8 +48,8 @@
           No
         </label>
         <sitereg-error-box [error]="validFormControl('alsoAdmin')" errorMessage="Please select an option"></sitereg-error-box>
-
-      </div>
+      </div> 
+      -->
     </div>
   </form>
 </sitereg-page-sections>

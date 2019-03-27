@@ -19,7 +19,6 @@ export const sa: IMspSigningAuthority[] = [
         ext: '2974',
         fax: '(780) 500-2589',
         administeringFor: '',
-        alsoAdmin: true,
         directAccess: true,
     },
     {
@@ -32,8 +31,7 @@ export const sa: IMspSigningAuthority[] = [
         phone: '(702) 914-2954',
         ext: '2974',
         fax: '(780) 500-2589',
-        administeringFor: '',
-        alsoAdmin: true,
+        administeringFor: 'E',
         directAccess: true,
     },
 ];
@@ -48,7 +46,7 @@ export const users: IUser[] = [
         phone: '(980) 601-2633',
         ext: '8520',
         fax: '(577) 734-8123',
-        administeringFor: '',
+        administeringFor: 'I',
     },
     {
         userTitle: 'Mr.',
@@ -60,7 +58,7 @@ export const users: IUser[] = [
         phone: '(370) 389-9367',
         ext: '4060',
         fax: '(841) 258-8250',
-        administeringFor: '',
+        administeringFor: 'B',
     },
     {
         userTitle: 'Mrs.',
@@ -72,7 +70,7 @@ export const users: IUser[] = [
         phone: '(206) 296-6454',
         ext: '9676',
         fax: '(856) 992-9903',
-        administeringFor: '',
+        administeringFor: 'E',
     },
 ];
 
@@ -87,7 +85,7 @@ export const accessAdmins: IMspAccessAdmin[] = [
         phone: '(643) 748-1098',
         ext: '8127',
         fax: '(937) 567-1938',
-        administeringFor: '',
+        administeringFor: 'I',
         directAccess: false,
     },
 
@@ -101,7 +99,7 @@ export const accessAdmins: IMspAccessAdmin[] = [
         phone: '(572) 909-9185',
         ext: '750',
         fax: '(965) 998-3504',
-        administeringFor: '',
+        administeringFor: 'B',
         directAccess: false,
     },
 
@@ -115,7 +113,7 @@ export const accessAdmins: IMspAccessAdmin[] = [
         phone: '(853) 316-7444',
         ext: '6770',
         fax: '(973) 287-1441',
-        administeringFor: '',
+        administeringFor: 'E',
         directAccess: true,
     },
 ];
@@ -138,7 +136,7 @@ export const organization: IMspOrganization = {
     postalCode: 'R2Q 6B0',
     thirdParty: true,
     blueCross: true,
-    administeringFor: 'yes',
+    administeringFor: 'E',
 };
 
 export const coreUser: IUser = {
@@ -151,5 +149,5 @@ export const coreUser: IUser = {
     phone: '(572) 909-9185',
     ext: '750',
     fax: '(965) 998-3504',
-    administeringFor: '',
+    administeringFor: 'I',
 };
