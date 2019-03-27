@@ -17,7 +17,6 @@ export * from './i-msp-users';
 export * from './i-user';
 export * from './';
 
-
 export type MSPValidForms =
     | IMspAuthorize
     | IMspForm

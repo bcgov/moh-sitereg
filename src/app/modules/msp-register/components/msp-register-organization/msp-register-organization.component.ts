@@ -28,7 +28,7 @@ export class MspRegisterOrganizationComponent implements OnInit {
     constructor(
         private router: Router,
         public mspRegisterStateSvc: MspRegisterStateService,
-        public mspRegDataSvc: MspRegisterDataService,
+        public mspRegDataSvc: MspRegisterDataService
     ) {
         this.fg = this.mspRegisterStateSvc.mspRegisterOrganizationForm;
         this.validFormControl = validFormControl.bind(this);
@@ -53,7 +53,6 @@ export class MspRegisterOrganizationComponent implements OnInit {
     }
 
     continue() {
-
         const orgForm = this.mspRegisterStateSvc.mspRegisterOrganizationForm;
         console.log(orgForm);
         const objOrg = this.mspRegDataSvc.mapOrgInformation(orgForm.value);

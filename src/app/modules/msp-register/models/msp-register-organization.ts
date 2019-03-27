@@ -26,7 +26,6 @@ export class MspRegisterOrganization extends GenerateForm<IMspOrganization>
     // validators = new Map();
     get validators() {
         return {
-
             // todo: non-required fields invalids forms even left blank, which in return stop forms to continue to next screen
             // possible remedy: these validators are added as required , must be removed before validating.
 
@@ -39,7 +38,7 @@ export class MspRegisterOrganization extends GenerateForm<IMspOrganization>
                 Validators.maxLength(75),
                 addressValidator(),
             ],
-            secondaryAddress: [ Validators.maxLength(200), addressValidator()],  // todo: test blank behaviour and validate form
+            secondaryAddress: [Validators.maxLength(200), addressValidator()], // todo: test blank behaviour and validate form
             city: [required, minLength(), maxLength(25)],
             province: [required, minLength(2), maxLength(3)],
             postalCode: [required, maxLength(6), postalCodeValidator()],
