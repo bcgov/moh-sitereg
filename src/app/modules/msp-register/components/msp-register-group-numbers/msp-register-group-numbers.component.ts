@@ -6,6 +6,7 @@ import {
     validFormControl,
     validMultiFormControl,
 } from '@msp-register/models/validator-helpers';
+import { MspRegisterDataService } from '@msp-register/services/msp-register-data.service';
 // TODO: initialize componenet with an array of the formgroups and then use NGFor to dynamically render them and add them.
 @Component({
     selector: 'sitereg-msp-register-group-numbers',
@@ -20,7 +21,8 @@ export class MspRegisterGroupNumbersComponent implements OnInit {
 
     constructor(
         public mspRegisterStateSvc: MspRegisterStateService,
-        private router: Router
+        private router: Router,
+        public mspRegDataSvc: MspRegisterDataService
     ) {
         this.fgs = this.mspRegisterStateSvc.mspRegisterGroupNumbersForm;
         this.validFormControl = validMultiFormControl.bind(this);
@@ -28,7 +30,13 @@ export class MspRegisterGroupNumbersComponent implements OnInit {
 
     ngOnInit() {}
     continue() {
-        this.router.navigate(['msp-registration/authorize']);
+        // console.clear();
+        // const orgForm = this.mspRegisterStateSvc.mspRegisterGroupNumbersForm;
+        // console.log(orgForm);
+        // const middleWareObject = this.mspRegDataSvc.map(orgForm.value);
+        // console.log( 'Organization Middlware Object:', middleWareObject);
+
+        // this.router.navigate(['msp-registration/authorize']);
     }
 
     addGroupNumber() {

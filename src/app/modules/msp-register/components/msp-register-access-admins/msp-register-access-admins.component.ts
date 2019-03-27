@@ -6,6 +6,7 @@ import {
     validFormControl,
     validMultiFormControl,
 } from '@msp-register/models/validator-helpers';
+import { MspRegisterDataService } from '@msp-register/services/msp-register-data.service';
 
 @Component({
     selector: 'sitereg-msp-register-access-admins',
@@ -22,7 +23,8 @@ export class MspRegisterAccessAdminsComponent implements OnInit {
     }
     constructor(
         public mspRegisterStateSvc: MspRegisterStateService,
-        private router: Router
+        private router: Router,
+        public mspRegDataSvc: MspRegisterDataService
     ) {
         this.fgs = this.mspRegisterStateSvc.mspRegisterAccessAdminsForm;
         this.validFormControl = validMultiFormControl.bind(this);
@@ -31,7 +33,15 @@ export class MspRegisterAccessAdminsComponent implements OnInit {
     ngOnInit() {}
 
     continue() {
-        this.router.navigate(['msp-registration/users']);
+        console.clear();
+        // const orgForm = this.mspRegisterStateSvc.mspRegisterAuthorizeForm;
+        // console.log(orgForm);
+        // const middleWareObject = this.mspRegDataSvc.mapSigningAuthorityInformationDef(
+        //     orgForm.value
+        // );
+        // console.log('Authorization Middlware Object:', middleWareObject);
+
+        // this.router.navigate(['msp-registration/users']);
     }
 
     addAdmin() {

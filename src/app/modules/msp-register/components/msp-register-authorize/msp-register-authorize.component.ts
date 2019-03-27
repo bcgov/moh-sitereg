@@ -51,7 +51,13 @@ export class MspRegisterAuthorizeComponent implements OnInit {
         }
     }
     continue() {
-        console.log('continue clicked');
+        // console.clear();
+        // const orgForm = this.mspRegisterStateSvc.mspRegisterAuthorizeForm;
+        // console.log(orgForm);
+        // const middleWareObject = this.mspRegDataSvc.mapSigningAuthorityInformationDef(
+        //     orgForm.value
+        // );
+        // console.log('Authorization Middlware Object:', middleWareObject);
     }
     validToken($event) {
         console.log($event);
