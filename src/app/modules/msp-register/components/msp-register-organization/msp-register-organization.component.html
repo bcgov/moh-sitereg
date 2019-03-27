@@ -9,13 +9,14 @@
         Please enter your first name.
       </div>
 
-      <label class="control-label" for="name">Organization Number(optional)</label>
+      <!-- Organization Number - opt out - this is Group Number-->
+      <!-- <label class="control-label" for="name">Organization Number(optional)</label>
       <input id="name" formControlName="organizationNumber" class="form-control" placeholder="Organization Number-7 digits long i.e 1128071">
       <div class="text-danger" *ngIf="validFormControl('organizationNumber')">
         Please enter a valid Organization Number (7 digits long).
-      </div>
+      </div> -->
 
-       <!-- Suite -->
+       <!-- Suite Number-->
       <div class="row">
         <div class="col-sm-6">
           <label class="control-label" for="suite">Suite #</label>
@@ -78,19 +79,11 @@
         </div>          
       </div>     
 
-    
+      <!-- Question Third Party Administering -->
       <label class="control-label">Are you contracting a 3rd party to administer MSP direct on you
         behalf?
       </label>
-
-
-      <div class="text-danger" *ngIf="validFormControl('city')">
-        {{ fg.errors}}
-      </div>
       <div class="form-check">
-
-
-
         <input class='form-check-input' formControlName="thirdParty" type="radio" id="thirdPartyFalse" tabindex="0"
           [value]="false">
         <label class='form-check-label' for="thirdPartyFalse">
@@ -106,6 +99,7 @@
         Please select a valid option
       </div>
 
+      <!-- Question Blue Cross -->
       <label class="control-label">Are you applying to access MSP Direct through Blue Cross?
       </label>
       <div class="form-check">
@@ -122,9 +116,10 @@
       <div class="text-danger" *ngIf="validFormControl('blueCross')">
         Please select a valid option
       </div>
+      <!-- Administrating For-->
       <label class="control-label" for="city">This organization will be adminstering MSP for</label>
       <select class="form-control" *ngIf="administeringFor | async as administering" formControlName="administeringFor">
-        <option value="null" label="-- Select Organization --" selected></option>
+        <option value="null" label="-- Select Option --" selected></option>
         <option *ngFor="let a of administering " [value]="a">{{a}}</option>
       </select>
       <div class="text-danger" *ngIf="validFormControl('administeringFor')">

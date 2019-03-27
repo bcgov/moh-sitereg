@@ -1,7 +1,7 @@
 import { FormControl } from '@angular/forms';
 
 export interface IMspOrganization {
-    organizationNumber: string | FormControl;
+    // organizationNumber: string | FormControl; // TBD: opt-out, this is MSP group number
     name: string | FormControl;
     suite: string | FormControl;
     street: string | FormControl;

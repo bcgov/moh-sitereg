@@ -79,15 +79,6 @@ export class MspRegisterDataService {
         return 'no';
     }
 
-    /**
-     * Maps boolean value to middleware defination ^[YN]$
-     * @param val Boolean Parameter
-     */
-    mapDefYesNo(val: boolean): string {
-        if (val) return 'Y';
-        return 'N';
-    }
-
     mapContractingOut(
         // tslint:disable-next-line: variable-name
         contracting_third_party: YesNo,
@@ -117,18 +108,56 @@ export class MspRegisterDataService {
 
     //#region Orgnaization
 
+    /**
+     * Maps boolean value to middleware defination ^[YN]$
+     * @param val Boolean Parameter
+     */
+    mapYesNoDef(val: boolean): string {
+        if (val) return 'Y';
+        return 'N';
+    }
+
+    /**
+     * Maps Administring for selected value to middleware defination ^[EIB]$
+     * @param val string Parameter
+     */
+    mapAdministeringForDef(val: string): string {
+        let result = '';
+        switch (val) {
+            case 'Employees': {
+                result = 'E';
+                break;
+            }
+            case 'International Students': {
+                result = 'I';
+                break;
+            }
+            case 'Employees and International Students': {
+                result = 'B';
+                break;
+            }
+        }
+        console.log(
+            'mapDefAdministeringFor- selected=',
+            val,
+            ' translatedForDef=',
+            result
+        );
+        return result;
+    }
+
     mapOrgInformation(obj: IMspOrganization): IOrgInformationDef {
         this.validateKeys(obj);
         if (!obj) throw Error('no organizaiton provided');
         // tslint:disable-next-line: variable-name
         const contracting_out = this.mapContractingOut(
             this.mapYesNo(obj.thirdParty as boolean),
-            obj.organizationNumber as string
+            '' // obj.organizationNumber as string  // TBD: opt-out, this is MSP group number
         );
         return {
             contracting_out,
             org_name: obj.name as string,
-            org_num: obj.organizationNumber as string,
+            org_num: '', // obj.organizationNumber as string, // TBD: opt-out, this is MSP group number
             suite_num: obj.suite as string,
             street_num: obj.street as string,
             street_name: obj.streetName as string,
@@ -136,14 +165,14 @@ export class MspRegisterDataService {
             city: obj.city as string,
             province: obj.province as string,
             postal_code: obj.postalCode as string,
-            blue_cross: this.mapDefYesNo(obj.blueCross as boolean),
-            // todo: unclear what is this org_spg and whom it should map?
-            // todo: org_spg value must maps to RegEx ^[EIB]$
-            org_spg: 'todo:not sure what is that and related to what',
+            blue_cross: this.mapYesNoDef(obj.blueCross as boolean),
+            org_spg: this.mapAdministeringForDef(
+                obj.administeringFor as string
+            ),
         };
-
-        //#endregion
     }
+
+    //#endregion
 
     mapUserDef(obj: IUser | IUser[]): IUserDef | IUserDef[] {
         if (Array.isArray(obj)) {

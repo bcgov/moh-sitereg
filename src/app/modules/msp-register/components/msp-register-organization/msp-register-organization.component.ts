@@ -20,7 +20,11 @@ export class MspRegisterOrganizationComponent implements OnInit {
         null
     );
     administeringFor: BehaviorSubject<string[]> = new BehaviorSubject<string[]>(
-        ['me', 'you']
+        [
+            'Employees',
+            'International Students',
+            'Employees and International Students',
+        ]
     );
 
     validFormControl: () => boolean;
