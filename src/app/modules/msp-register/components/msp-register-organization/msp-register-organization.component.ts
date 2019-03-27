@@ -20,7 +20,11 @@ export class MspRegisterOrganizationComponent implements OnInit {
         null
     );
     administeringFor: BehaviorSubject<string[]> = new BehaviorSubject<string[]>(
-        ['me', 'you']
+        [
+            'Employees',
+            'International Students',
+            'Employees and International Students',
+        ]
     );
 
     validFormControl: () => boolean;
@@ -53,6 +57,7 @@ export class MspRegisterOrganizationComponent implements OnInit {
     }
 
     continue() {
+        console.clear();
         const orgForm = this.mspRegisterStateSvc.mspRegisterOrganizationForm;
         console.log(orgForm);
         const objOrg = this.mspRegDataSvc.mapOrgInformation(orgForm.value);

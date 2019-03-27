@@ -128,7 +128,7 @@ export const groupNumbers: IMspGroupNumbers[] = [
 
 export const organization: IMspOrganization = {
     name: 'Kellwood Company',
-    organizationNumber: '11246942',
+    // organizationNumber: '11246942',  // TBD: opt-out, this is MSP group number
     suite: '1034',
     street: '128',
     streetName: 'Bayt Street',

@@ -11,7 +11,7 @@ import {
 import { minLength } from './validator-helpers';
 export class MspRegisterOrganization extends GenerateForm<IMspOrganization>
     implements IMspOrganization {
-    organizationNumber: string | FormControl = '';
+    // organizationNumber: string | FormControl = ''; // TBD: opt-out, this is MSP group number
     name: string | FormControl = '';
     city: string | FormControl = '';
     province: string | FormControl = '';
@@ -29,7 +29,7 @@ export class MspRegisterOrganization extends GenerateForm<IMspOrganization>
             // todo: non-required fields invalids forms even left blank, which in return stop forms to continue to next screen
             // possible remedy: these validators are added as required , must be removed before validating.
 
-            organizationNumber: [groupNumberValidator()], // todo: test blank behaviour and validate form
+            // organizationNumber: [groupNumberValidator()], // TBD: opt-out, this is MSP group number
             name: [required, Validators.maxLength(100)],
             suite: [required, Validators.maxLength(10), addressValidator()],
             street: [required, Validators.maxLength(10), addressValidator()],
