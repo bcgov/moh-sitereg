@@ -49,10 +49,11 @@ export function postalCodeValidator(): ValidatorFn {
 export function groupNumberValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
         const forbidden = !/^[0-9]{7}$/.test(control.value);
-        return forbidden ? { invalidGroupNumber: { value: control.value } } : null;
+        return forbidden
+            ? { invalidGroupNumber: { value: control.value } }
+            : null;
     };
 }
-
 
 /**
  * Validates number, alphabetics, small braces, slash ,hyphen, colon, full stop
@@ -75,9 +76,7 @@ export function administeringForValidator(): ValidatorFn {
 
 export function phoneValidator() {
     return (control: AbstractControl): { [key: string]: any } | null => {
-        const forbidden = !/^[0-9]{3}[-]{1}[0-9]{3}[-]{1}[0-9]{4}$/.test(
-            control.value
-        );
+        const forbidden = !/^[1-9][0-9]{2}[0-9]{7}$|^$/.test(control.value);
         return forbidden
             ? { invalid: { value: `${control.value} is not valid` } }
             : null;
@@ -87,9 +86,7 @@ export function phoneValidator() {
 export function faxValidator() {
     return (control: AbstractControl): { [key: string]: any } | null => {
         if (!control.value) return null;
-        const forbidden = !/^[0-9]{3}[-]{1}[0-9]{3}[-]{1}[0-9]{4}$/.test(
-            control.value
-        );
+        const forbidden = !/^[1-9][0-9]{2}[0-9]{7}$|^$/.test(control.value);
         return forbidden
             ? { invalid: { value: `${control.value} is not valid` } }
             : null;
