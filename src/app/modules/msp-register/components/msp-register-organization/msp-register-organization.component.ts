@@ -65,6 +65,6 @@ export class MspRegisterOrganizationComponent implements OnInit {
         );
         console.log('MO - Organization info:', middleWareObject);
 
-        // this.router.navigate(['msp-registration/signing-authority']);
+        this.router.navigate(['msp-registration/signing-authority']);
     }
 }

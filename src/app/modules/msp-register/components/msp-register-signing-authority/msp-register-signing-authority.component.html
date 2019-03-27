@@ -3,8 +3,8 @@
 
   <sitereg-msp-register-person [fg]="fg"></sitereg-msp-register-person>
 
-  <!-- Does the Signing Authority require access to MSP Direct?; radio(yes/no) -->
-  <!-- Will the Signing Authority also be performing the Access Administrator's function?; radio(yes/no) -->
+
+ 
   <form [formGroup]="fg">
     <div class="form-group col-sm-8 p-sm-0">
       <label class="control-label">Does the Signing Authority require access to MSP Direct? *
@@ -24,7 +24,7 @@
       </div>
 
        <!-- Administrating For-->
-       <label class="control-label" for="administeringFor">This organization will be adminstering MSP for</label>
+       <label class="control-label" for="administeringFor">This Signing Authority will be adminstering MSP for</label>
        <select class="form-control" *ngIf="administeringFor | async as administering" formControlName="administeringFor">
          <option value="null" label="-- Select Option --" selected></option>
          <option *ngFor="let a of administering " [value]="a">{{a}}</option>
@@ -33,6 +33,7 @@
          Please select a valid option
        </div>    
 
+      <!-- Will the Signing Authority also be performing the Access Administrator's function?; radio(yes/no) -->
       <!-- 
       <label class="control-label">Will the Signing Authority also be performing the Access Administrator's function?
       </label>
