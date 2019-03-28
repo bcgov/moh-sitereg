@@ -54,6 +54,6 @@ export class MspRegisterSigningAuthorityComponent implements OnInit {
         );
         console.log('MO - Signing Authority:', middleWareObject);
 
-        // this.router.navigate(['msp-registration/access-admins']);
+        this.router.navigate(['msp-registration/access-admins']);
     }
 }

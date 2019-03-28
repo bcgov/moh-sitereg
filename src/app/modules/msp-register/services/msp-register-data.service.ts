@@ -17,7 +17,7 @@ import {
     ICoreUserDef,
     IContractingOut,
     YesNo,
-    ISigningAuthorityInformationDef,
+    ISigningAuthorityDef,
 } from '@core/interfaces/i-http-data';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -183,7 +183,7 @@ export class MspRegisterDataService {
 
     mapSigningAuthorityInformationDef(
         obj: IMspSigningAuthority[] | IMspSigningAuthority
-    ): ISigningAuthorityInformationDef | ISigningAuthorityInformationDef[] {
+    ): ISigningAuthorityDef | ISigningAuthorityDef[] {
         if (Array.isArray(obj)) {
             // actual UI has not array for singing authority users, array seems unnecessary
             console.log('ARRAY mapSigningAuthorityInformationDef');
@@ -194,12 +194,12 @@ export class MspRegisterDataService {
             });
             return arr;
         }
-        const user = this.mapBaseUser(obj) as ISigningAuthorityInformationDef;
+        const user = this.mapBaseUser(obj) as ISigningAuthorityDef;
         user.sa_msp_access = this.mapYesNoDef(obj.directAccess as boolean);
         user.sa_spg = this.mapAdministeringForDef(
             obj.administeringFor as string
         );
-        return user as ISigningAuthorityInformationDef;
+        return user as ISigningAuthorityDef;
     }
 
     //#endregion
@@ -248,14 +248,14 @@ export class MspRegisterDataService {
         // tslint:disable-next-line: variable-name
         org_information: IOrgInformationDef,
         // tslint:disable-next-line: variable-name
-        signing_authority_information: ISigningAuthorityInformationDef,
+        signing_authority: ISigningAuthorityDef,
         // tslint:disable-next-line: variable-name
         access_administrator_present: IAccessAdministratorPresentDef[],
         users: IUserDef[]
     ): ISiteregRequest {
         return {
             org_information,
-            signing_authority_information,
+            signing_authority,
             access_administrator_present,
             users,
             msp_group: org_information.contracting_out as any,
