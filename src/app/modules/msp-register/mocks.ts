@@ -86,7 +86,7 @@ export const accessAdmins: IMspAccessAdmin[] = [
         ext: '8127',
         fax: '(937) 567-1938',
         administeringFor: 'I',
-        directAccess: false,
+        directMspAccess: false,
     },
 
     {
@@ -100,7 +100,7 @@ export const accessAdmins: IMspAccessAdmin[] = [
         ext: '750',
         fax: '(965) 998-3504',
         administeringFor: 'B',
-        directAccess: false,
+        directMspAccess: false,
     },
 
     {
@@ -114,7 +114,7 @@ export const accessAdmins: IMspAccessAdmin[] = [
         ext: '6770',
         fax: '(973) 287-1441',
         administeringFor: 'E',
-        directAccess: true,
+        directMspAccess: true,
     },
 ];
 export const groupNumbers: IMspGroupNumbers[] = [

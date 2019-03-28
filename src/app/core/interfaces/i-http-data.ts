@@ -1,3 +1,37 @@
+//#region Core / Common
+
+export interface ICoreUserDef {
+    curtesy_title?: string;
+    last_name: string;
+    first_name: string;
+    initial?: string;
+    job_title: string;
+    email: string;
+    phone_num: string;
+    phone_ext?: string;
+    fax_num?: string;
+    spg: string;
+}
+
+export interface ICoreUserMspDef extends ICoreUserDef {
+    msp_access: string;
+    ldap_id: string;
+}
+
+export interface IContractingOut {
+    contracting_third_party: YesNo;
+    third_party_org_num?: string;
+}
+
+//** should be removed with latest defination */
+export interface IUserDef extends ICoreUserMspDef {
+    user_spg: string;
+}
+
+//#endregion
+
+//#region Organization
+
 export interface IOrgInformationDef {
     org_name: string;
     org_num: string;
@@ -13,46 +47,23 @@ export interface IOrgInformationDef {
     contracting_out: IContractingOut;
 }
 
-export interface IContractingOut {
-    contracting_third_party: YesNo;
-    third_party_org_num?: string;
-}
-
-export interface ICoreUserDef {
-    sa_curtesy_title?: string;
-    sa_last_name: string;
-    sa_first_name: string;
-    sa_initial?: string;
-    sa_job_title: string;
-    sa_email: string;
-    sa_phone_num: string;
-    sa_phone_ext?: string;
-    sa_fax_num?: string;
-}
-
-//#region signing_authority_def
-
-export interface ISigningAuthorityDef extends ICoreUserDef {
-    sa_msp_access: string;
-    sa_spg: string;
-    sa_ldap_id: string;
-}
-
 //#endregion
 
 //#region signing_authority_def
 
-export interface IAccessAdministratorDef extends ICoreUserDef {
-    aa_msp_access: string;
-    aa_spg: string;
-    aa_ldap_id: string;
+export interface ISigningAuthorityDef extends ICoreUserMspDef {
+    getDefObject(): any;
 }
 
 //#endregion
 
-export interface IUserDef extends ICoreUserDef {
-    user_spg: string;
+//#region Access Admin
+
+export interface IAccessAdministratorDef extends ICoreUserMspDef {
+    getDefObject(): any;
 }
+
+//#endregion
 
 export interface IMspGroupDef {
     mspgroup_num: string;

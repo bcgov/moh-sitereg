@@ -8,6 +8,7 @@ import { MspRegisterSigningAuthority } from '@msp-register/models/msp-register-s
 import { MspRegisterGroupNumbers } from '@msp-register/models/msp-register-group-numbers';
 import { MspRegisterUsers } from '@msp-register/models/msp-register-users';
 import { MspRegisterAuthorize } from '@msp-register/models/msp-register-authorize';
+import { MspRegisterUserMsp } from '@msp-register/models/msp-register-user-msp';
 
 export type UserTypes = 'admin' | 'user';
 @Injectable({
@@ -19,6 +20,7 @@ export class MspRegisterStateService {
     public mspRegisterOrganizationForm: FormGroup;
     public mspRegisterAccessAdminsForm: FormGroup[];
     public mspRegisterSigningAuthorityForm: FormGroup;
+    public mspRegisterUserMspForm: FormGroup;
     public mspRegisterGroupNumbersForm: FormGroup[];
     public mspRegisterUsersForm: FormGroup[];
     public mspRegisterAuthorizeForm: FormGroup;
@@ -96,6 +98,12 @@ export class MspRegisterStateService {
             gf,
             fb
         );
+
+        this.mspRegisterUserMspForm = this.createMspRegisterUserMspFormReusable(
+            gf,
+            fb
+        );
+
         this.mspRegisterGroupNumbersForm = [
             this.createMspRegisterGroupNumbersForm(gf, fb),
         ];
@@ -132,6 +140,16 @@ export class MspRegisterStateService {
         fb: FormBuilder
     ) {
         const mrsa = new MspRegisterSigningAuthority(gf, fb);
+        return this.fb.group(
+            mrsa.genForms(mrsa.generateArr(mrsa.genKeys, mrsa.validators))
+        );
+    }
+
+    createMspRegisterUserMspFormReusable(
+        gf: GenerateForm<any>,
+        fb: FormBuilder
+    ) {
+        const mrsa = new MspRegisterUserMsp(gf, fb);
         return this.fb.group(
             mrsa.genForms(mrsa.generateArr(mrsa.genKeys, mrsa.validators))
         );

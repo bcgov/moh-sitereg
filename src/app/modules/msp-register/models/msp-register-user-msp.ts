@@ -1,16 +1,17 @@
-import { IMspAccessAdmin } from '@msp-register/interfaces/i-msp-access-admins';
 import { GenerateForm } from './generate-form';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { IUser, IMspOrganization } from '@msp-register/interfaces';
+import { FormControl, FormBuilder, Validators } from '@angular/forms';
+import { IUserMsp } from '@msp-register/interfaces/i-user-msp';
 import {
+    maxLength,
     required,
     minLength,
-    maxLength,
     phoneValidator,
     faxValidator,
 } from './validator-helpers';
 
-export class MspRegisterAccessAdmins extends GenerateForm<IMspAccessAdmin>
-    implements IMspAccessAdmin {
+export class MspRegisterUserMsp extends GenerateForm<IUserMsp>
+    implements IUserMsp {
     userTitle?:
         | FormControl
         | 'Mr.'
@@ -49,7 +50,7 @@ export class MspRegisterAccessAdmins extends GenerateForm<IMspAccessAdmin>
     }
 
     constructor(
-        private gf: GenerateForm<IMspAccessAdmin>,
+        private gf: GenerateForm<IUserMsp>,
         private newFb: FormBuilder
     ) {
         super(newFb);

@@ -90,21 +90,22 @@ export class MspRegisterDataService {
     }
 
     mapBaseUser(obj: IUser): ICoreUserDef {
-        this.validateKeys(obj);
-        if (!obj.fax) obj.fax = null;
-        if (!obj.ext) obj.ext = null;
-        if (!obj.userTitle) obj.userTitle = null;
-        return {
-            sa_curtesy_title: obj.userTitle as string,
-            sa_last_name: obj.lastName as string,
-            sa_first_name: obj.firstName as string,
-            sa_initial: obj.initial as string,
-            sa_job_title: obj.jobTitle as string,
-            sa_email: obj.emailAddress as string,
-            sa_phone_num: obj.phone as string,
-            sa_phone_ext: obj.ext as string,
-            sa_fax_num: obj.fax as string,
-        };
+        // this.validateKeys(obj);
+        // if (!obj.fax) obj.fax = null;
+        // if (!obj.ext) obj.ext = null;
+        // if (!obj.userTitle) obj.userTitle = null;
+        // return {
+        //     sa_curtesy_title: obj.userTitle as string,
+        //     sa_last_name: obj.lastName as string,
+        //     sa_first_name: obj.firstName as string,
+        //     sa_initial: obj.initial as string,
+        //     sa_job_title: obj.jobTitle as string,
+        //     sa_email: obj.emailAddress as string,
+        //     sa_phone_num: obj.phone as string,
+        //     sa_phone_ext: obj.ext as string,
+        //     sa_fax_num: obj.fax as string,
+        // };
+        return null;
     }
 
     //#region Common Defination Mappsing
@@ -195,8 +196,8 @@ export class MspRegisterDataService {
             return arr;
         }
         const user = this.mapBaseUser(obj) as ISigningAuthorityDef;
-        user.sa_msp_access = this.mapYesNoDef(obj.directAccess as boolean);
-        user.sa_spg = this.mapAdministeringForDef(
+        user.msp_access = this.mapYesNoDef(obj.directAccess as boolean);
+        user.spg = this.mapAdministeringForDef(
             obj.administeringFor as string
         );
         return user as ISigningAuthorityDef;
@@ -241,8 +242,8 @@ export class MspRegisterDataService {
             return arr;
         }
         const user = this.mapBaseUser(obj) as IAccessAdministratorDef;
-        user.aa_msp_access = this.mapYesNoDef(obj.directAccess as boolean);
-        user.aa_spg = this.mapAdministeringForDef(
+        user.msp_access = this.mapYesNoDef(obj.directMspAccess as boolean);
+        user.spg = this.mapAdministeringForDef(
             obj.administeringFor as string
         );
         return user as IAccessAdministratorDef;
