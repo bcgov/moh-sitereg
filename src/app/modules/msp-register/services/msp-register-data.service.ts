@@ -13,7 +13,7 @@ import {
     IOrgInformationDef,
     IUserDef,
     IMspGroupDef,
-    IAccessAdministratorPresentDef,
+    IAccessAdministratorDef,
     ICoreUserDef,
     IContractingOut,
     YesNo,
@@ -227,9 +227,11 @@ export class MspRegisterDataService {
     //   }
     // }
 
+    //#region Singing Authority
+
     mapAccessAdministratorDef(
         obj: IMspAccessAdmin | IMspAccessAdmin[]
-    ): IAccessAdministratorPresentDef | IAccessAdministratorPresentDef[] {
+    ): IAccessAdministratorDef | IAccessAdministratorDef[] {
         if (Array.isArray(obj)) {
             const arr = [];
             obj.forEach((itm) => {
@@ -238,11 +240,15 @@ export class MspRegisterDataService {
             });
             return arr;
         }
-        const user = this.mapBaseUser(obj) as IAccessAdministratorPresentDef;
-        user.aa_msp_access = this.mapYesNo(obj.directAccess as boolean);
-        user.aa_spg = obj.administeringFor as string;
-        return user;
+        const user = this.mapBaseUser(obj) as IAccessAdministratorDef;
+        user.aa_msp_access = this.mapYesNoDef(obj.directAccess as boolean);
+        user.aa_spg = this.mapAdministeringForDef(
+            obj.administeringFor as string
+        );
+        return user as IAccessAdministratorDef;
     }
+
+    //#endregion
 
     mapSiteRegRequest(
         // tslint:disable-next-line: variable-name
@@ -250,7 +256,7 @@ export class MspRegisterDataService {
         // tslint:disable-next-line: variable-name
         signing_authority: ISigningAuthorityDef,
         // tslint:disable-next-line: variable-name
-        access_administrator_present: IAccessAdministratorPresentDef[],
+        access_administrator_present: IAccessAdministratorDef[],
         users: IUserDef[]
     ): ISiteregRequest {
         return {

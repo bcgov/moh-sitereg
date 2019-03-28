@@ -34,12 +34,12 @@ export class MspRegisterAccessAdminsComponent implements OnInit {
 
     continue() {
         console.clear();
-        // const orgForm = this.mspRegisterStateSvc.mspRegisterAuthorizeForm;
-        // console.log(orgForm);
-        // const middleWareObject = this.mspRegDataSvc.mapSigningAuthorityInformationDef(
-        //     orgForm.value
-        // );
-        // console.log('Authorization Middlware Object:', middleWareObject);
+        const form = this.mspRegisterStateSvc.mspRegisterAccessAdminsForm;
+        console.log('FormGroup: ', form);
+        const middleWareObject = this.mspRegDataSvc.mapAccessAdministratorDef(
+            form[0].value
+        );
+        console.log('MO - Access Admins:', middleWareObject);
 
         // this.router.navigate(['msp-registration/users']);
     }

@@ -11,32 +11,40 @@ import {
 
 export class MspRegisterAccessAdmins extends GenerateForm<IMspAccessAdmin>
     implements IMspAccessAdmin {
+    userTitle?:
+        | FormControl
+        | 'Mr.'
+        | 'Mrs.'
+        | 'Ms.'
+        | 'Dr.'
+        | 'Prof.'
+        | 'Rev.' = null;
+    firstName: string | FormControl = '';
+    initial?: string | FormControl = '';
+    lastName: string | FormControl = '';
+    jobTitle: string | FormControl = '';
+    emailAddress: string | FormControl = '';
+    confirmEmail: string | FormControl = '';
+    phone: string | FormControl = '';
+    ext?: string | FormControl = '';
+    fax: string | FormControl = '';
+    administeringFor: string | FormControl = '';
     directAccess: boolean | FormControl = false;
-    userTitle?: FormControl | 'mr' | 'mrs' = null;
-    firstName: string | FormControl = null;
-    initial?: string | FormControl = null;
-    lastName: string | FormControl = null;
-    jobTitle: string | FormControl = null;
-    emailAddress: string | FormControl = null;
-    confirmEmail: string | FormControl = null;
-    phone: string | FormControl = null;
-    ext?: string | FormControl = null;
-    fax: string | FormControl = null;
-    administeringFor = null;
 
     get validators() {
         return {
-            directAccess: [required],
             userTitle: [maxLength(5)],
-            firstName: [required, minLength(), maxLength()],
+            firstName: [required, minLength(), maxLength(100)],
             initial: [maxLength(1)],
-            lastName: [required, minLength(), maxLength()],
-            jobTitle: [required, minLength(), maxLength()],
-            emailAddress: [required, maxLength()],
-            confirmEmail: [required, Validators.email, maxLength()],
+            lastName: [required, minLength(), maxLength(100)],
+            jobTitle: [required, minLength(), maxLength(100)],
+            emailAddress: [required, Validators.email, maxLength(100)],
+            confirmEmail: [required, Validators.email, maxLength(100)],
             phone: [required, phoneValidator()],
-            ext: [maxLength()],
+            ext: [maxLength(100)],
             fax: [faxValidator()],
+            administeringFor: [required],
+            directAccess: [required],
         };
     }
 

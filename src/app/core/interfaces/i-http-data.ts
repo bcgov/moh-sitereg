@@ -40,10 +40,15 @@ export interface ISigningAuthorityDef extends ICoreUserDef {
 
 //#endregion
 
-export interface IAccessAdministratorPresentDef extends ICoreUserDef {
-    aa_msp_access: YesNo;
+//#region signing_authority_def
+
+export interface IAccessAdministratorDef extends ICoreUserDef {
+    aa_msp_access: string;
     aa_spg: string;
+    aa_ldap_id: string;
 }
+
+//#endregion
 
 export interface IUserDef extends ICoreUserDef {
     user_spg: string;
@@ -57,7 +62,7 @@ export interface IMspGroupDef {
 export interface ISiteregRequest {
     org_information: IOrgInformationDef;
     signing_authority: ISigningAuthorityDef;
-    access_administrator_present: IAccessAdministratorPresentDef[];
+    access_administrator_present: IAccessAdministratorDef[];
     users: IUserDef[];
     msp_group: IMspGroupDef;
 }

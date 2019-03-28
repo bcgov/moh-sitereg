@@ -71,5 +71,16 @@
     <input id="fax" formControlName="fax" class="form-control" placeholder="Fax number (optional)">
     <sitereg-error-box [error]="validFormControl(fg,'fax')" errorMessage="Invalid"></sitereg-error-box>
 
+
+    <!-- Administrating For-->
+    <label class="control-label" for="administeringFor">This user will be adminstering MSP for</label>
+    <select class="form-control" *ngIf="administeringFor | async as administering" formControlName="administeringFor"> 
+      <option value="null" label="-- Select Option --" selected></option>
+      <option *ngFor="let a of administering " [value]="a">{{a}}</option>
+    </select>
+    <!-- <div class="text-danger" *ngIf="validFormControl('administeringFor')">
+      Please select a valid option
+    </div>  -->
+
   </div>
 </form>
