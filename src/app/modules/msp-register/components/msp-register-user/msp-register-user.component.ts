@@ -1,7 +1,4 @@
-import {
-    Component,
-    Input,
-} from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { UserTitle } from '@msp-register/interfaces';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';

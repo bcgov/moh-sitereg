@@ -18,9 +18,11 @@ import {
     IContractingOut,
     YesNo,
     ISigningAuthorityDef,
+    ICoreUserMspDef,
 } from '@core/interfaces/i-http-data';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { IUserMsp } from '@msp-register/interfaces/i-user-msp';
 
 const apiUrl = environment.apiUrl;
 
@@ -108,7 +110,7 @@ export class MspRegisterDataService {
         return null;
     }
 
-    //#region Common Defination Mappsing
+    //#region Common Defination Mapping
 
     /**
      * Maps boolean value to middleware defination ^[YN]$
@@ -148,6 +150,71 @@ export class MspRegisterDataService {
         return result;
     }
 
+    /**
+     * Maps application type to middleware types
+     * @param obj application object
+     */
+    mapCoreUserDef(
+        obj: IUser | IUserMsp | IMspSigningAuthority | IMspAccessAdmin
+    ): ICoreUserDef {
+        // console.log('mapCoreUserDef', obj);
+        this.validateKeys(obj);
+        const baseUser: ICoreUserDef = {
+            curtesy_title: obj.userTitle as string,
+            last_name: obj.lastName as string,
+            first_name: obj.firstName as string,
+            initial: obj.initial as string,
+            job_title: obj.jobTitle as string,
+            email: obj.emailAddress as string,
+            phone_num: obj.phone as string,
+            phone_ext: obj.phone as string,
+            fax_num: obj.fax as string,
+            spg: this.mapAdministeringForDef(obj.administeringFor as string),
+        };
+
+        return baseUser as ICoreUserDef;
+    }
+
+    /**
+     * Maps application type to middleware types
+     * @param obj application object
+     */
+    mapCoreUserMspDef(
+        obj: IUserMsp | IMspSigningAuthority | IMspAccessAdmin
+    ): ICoreUserMspDef {
+        // console.log('mapCoreUserMspDef', obj);
+        const baseUserMsp = this.mapCoreUserDef(obj) as ICoreUserMspDef;
+
+        if (this.isTypeOfIUserMsp(obj)) {
+            baseUserMsp.msp_access = this.mapYesNoDef(
+                obj.directMspAccess as boolean
+            );
+        }
+
+        return baseUserMsp;
+    }
+
+    /**
+     * verifies Object possess the directMspAccess property
+     */
+    isTypeOfIUserMsp(
+        obj: IUserMsp | IMspSigningAuthority | IMspAccessAdmin
+    ): obj is IUserMsp {
+        return (
+            (obj as IUserMsp).directMspAccess !== undefined
+            // (obj as IUserMsp).ldap_id !== undefined // TBD: should be in IUserMSP
+        );
+    }
+
+    deepCopy(obj: any, prefixProperty: string = ''): any {
+        const newObject = {};
+        Object.keys(obj).forEach((k) => {
+            const newPropertyName = `${prefixProperty}${k}`;
+            newObject[newPropertyName] = obj[k];
+        });
+        return newObject;
+    }
+
     //#endregion
 
     //#region Orgnaization
@@ -182,6 +249,17 @@ export class MspRegisterDataService {
 
     //#region Singing Authority
 
+    mapObjectSigningAuthorityInformationDef(
+        obj: IMspSigningAuthority[] | IMspSigningAuthority
+    ): ISigningAuthorityDef {
+        console.log('mapSigningAuthorityInformationDef', obj);
+        const coreUserMspDef = this.mapCoreUserMspDef(
+            obj as IMspSigningAuthority
+        );
+        const user = this.deepCopy(coreUserMspDef, 'sa_');
+        return user as ISigningAuthorityDef;
+    }
+
     mapSigningAuthorityInformationDef(
         obj: IMspSigningAuthority[] | IMspSigningAuthority
     ): ISigningAuthorityDef | ISigningAuthorityDef[] {
@@ -195,11 +273,10 @@ export class MspRegisterDataService {
             });
             return arr;
         }
+        console.log('mapSigningAuthorityInformationDef', obj);
         const user = this.mapBaseUser(obj) as ISigningAuthorityDef;
-        user.msp_access = this.mapYesNoDef(obj.directAccess as boolean);
-        user.spg = this.mapAdministeringForDef(
-            obj.administeringFor as string
-        );
+        // user.msp_access = this.mapYesNoDef(obj.directMspAccess as boolean);
+        // user.spg = this.mapAdministeringForDef(obj.administeringFor as string);
         return user as ISigningAuthorityDef;
     }
 
@@ -243,9 +320,7 @@ export class MspRegisterDataService {
         }
         const user = this.mapBaseUser(obj) as IAccessAdministratorDef;
         user.msp_access = this.mapYesNoDef(obj.directMspAccess as boolean);
-        user.spg = this.mapAdministeringForDef(
-            obj.administeringFor as string
-        );
+        user.spg = this.mapAdministeringForDef(obj.administeringFor as string);
         return user as IAccessAdministratorDef;
     }
 

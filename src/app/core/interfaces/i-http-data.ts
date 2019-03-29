@@ -23,7 +23,9 @@ export interface IContractingOut {
     third_party_org_num?: string;
 }
 
-//** should be removed with latest defination */
+/**
+ * should be removed with latest defination
+ */
 export interface IUserDef extends ICoreUserMspDef {
     user_spg: string;
 }

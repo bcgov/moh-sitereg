@@ -33,7 +33,7 @@ export class MspRegisterSigningAuthority
     ext?: string | FormControl = '';
     fax: string | FormControl = '';
     administeringFor: string | FormControl = '';
-    directAccess: boolean | FormControl = false;
+    directMspAccess: boolean | FormControl = false;
 
     get validators() {
         return {
@@ -48,7 +48,7 @@ export class MspRegisterSigningAuthority
             ext: [maxLength(100)],
             fax: [faxValidator()],
             administeringFor: [required],
-            directAccess: [required],
+            directMspAccess: [required],
         };
     }
 

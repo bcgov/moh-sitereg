@@ -19,7 +19,7 @@ export const sa: IMspSigningAuthority[] = [
         ext: '2974',
         fax: '(780) 500-2589',
         administeringFor: '',
-        directAccess: true,
+        directMspAccess: true,
     },
     {
         userTitle: 'Mrs.',
@@ -32,7 +32,7 @@ export const sa: IMspSigningAuthority[] = [
         ext: '2974',
         fax: '(780) 500-2589',
         administeringFor: 'E',
-        directAccess: true,
+        directMspAccess: true,
     },
 ];
 export const users: IUser[] = [

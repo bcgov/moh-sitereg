@@ -1,58 +1,8 @@
 <h2 class="border-bottom">Signing Authority</h2>
 <sitereg-page-sections *ngIf="fg">
 
-  <sitereg-msp-register-person [fg]="fg"></sitereg-msp-register-person>
+  <sitereg-msp-register-user-msp [fg]="fg"></sitereg-msp-register-user-msp>
 
-
- 
-  <form [formGroup]="fg">
-    <div class="form-group col-sm-8 p-sm-0">
-      <label class="control-label">Does the Signing Authority require access to MSP Direct? *
-      </label>
-      <div class="form-check">
-
-        <input class='form-check-input' formControlName="directAccess" type="radio" name="" id="bctrue" tabindex="0"
-          [value]="true">
-        <label class='form-check-label' for="bctrue">
-          Yes
-        </label>
-        <input class='form-check-input' formControlName="directAccess" type="radio" id="bcfalse" tabindex="0" [value]="false">
-        <label class='form-check-label' for="bcfalse">
-          No
-        </label>
-        <sitereg-error-box [error]="validFormControl('directAccess')" errorMessage="Please select an option"></sitereg-error-box>
-      </div>
-
-       <!-- Administrating For-->
-       <label class="control-label" for="administeringFor">This Signing Authority will be adminstering MSP for</label>
-       <select class="form-control" *ngIf="administeringFor | async as administering" formControlName="administeringFor">
-         <option value="null" label="-- Select Option --" selected></option>
-         <option *ngFor="let a of administering " [value]="a">{{a}}</option>
-       </select>
-       <div class="text-danger" *ngIf="validFormControl('administeringFor')">
-         Please select a valid option
-       </div>    
-
-      <!-- Will the Signing Authority also be performing the Access Administrator's function?; radio(yes/no) -->
-      <!-- 
-      <label class="control-label">Will the Signing Authority also be performing the Access Administrator's function?
-      </label>
-      <div class="form-check">
-
-        <input class='form-check-input' formControlName="alsoAdmin" type="radio" name="" id="aatruev" tabindex="0"
-          [value]="true">
-        <label class='form-check-label' for="aatrue">
-          Yes
-        </label>
-        <input class='form-check-input' formControlName="alsoAdmin" type="radio" id="aafalse" tabindex="0" [value]="false">
-        <label class='form-check-label' for="aafalse">
-          No
-        </label>
-        <sitereg-error-box [error]="validFormControl('alsoAdmin')" errorMessage="Please select an option"></sitereg-error-box>
-      </div> 
-      -->
-    </div>
-  </form>
 </sitereg-page-sections>
 <common-form-action-bar (btnClick)="continue()" [canContinue]="fg.valid">
 

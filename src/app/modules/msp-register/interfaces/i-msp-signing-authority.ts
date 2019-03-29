@@ -1,6 +1,4 @@
-import { IUser } from './i-user';
-import { FormControl } from '@angular/forms';
+import { IUserMsp } from './i-user-msp';
 
-export interface IMspSigningAuthority extends IUser {
-    directAccess: boolean | FormControl;
-}
+// tslint:disable-next-line: no-empty-interface
+export interface IMspSigningAuthority extends IUserMsp {}
