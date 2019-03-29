@@ -247,10 +247,10 @@ export class MspRegisterDataService {
 
     //#endregion
 
-    //#region Singing Authority
+    //#region   Signing Authority
 
     mapObjectSigningAuthorityInformationDef(
-        obj: IMspSigningAuthority[] | IMspSigningAuthority
+        obj: IMspSigningAuthority
     ): ISigningAuthorityDef {
         console.log('mapSigningAuthorityInformationDef', obj);
         const coreUserMspDef = this.mapCoreUserMspDef(
@@ -282,6 +282,40 @@ export class MspRegisterDataService {
 
     //#endregion
 
+    //#region Access Administrators
+
+    mapObjectAccessAdministratorDef(
+        obj: IMspAccessAdmin
+    ): IMspAccessAdmin {
+        console.log('mapObjectAccessAdministratorDef', obj);
+        const coreUserMspDef = this.mapCoreUserMspDef(
+            obj as IMspAccessAdmin
+        );
+        const user = this.deepCopy(coreUserMspDef, 'aa_');
+        return user as IMspAccessAdmin;
+    }
+
+
+    mapAccessAdministratorDef(
+        obj: IMspAccessAdmin | IMspAccessAdmin[]
+    ): IAccessAdministratorDef | IAccessAdministratorDef[] {
+        if (Array.isArray(obj)) {
+            const arr = [];
+            obj.forEach((itm) => {
+                this.validateKeys(obj);
+                arr.push(this.mapAccessAdministratorDef(itm));
+            });
+            return arr;
+        }
+        const user = this.mapBaseUser(obj) as IAccessAdministratorDef;
+        user.msp_access = this.mapYesNoDef(obj.directMspAccess as boolean);
+        user.spg = this.mapAdministeringForDef(obj.administeringFor as string);
+        return user as IAccessAdministratorDef;
+    }
+
+    //#endregion
+
+
     mapUserDef(obj: IUser | IUser[]): IUserDef | IUserDef[] {
         if (Array.isArray(obj)) {
             const arr = [];
@@ -305,26 +339,7 @@ export class MspRegisterDataService {
     //   }
     // }
 
-    //#region Singing Authority
-
-    mapAccessAdministratorDef(
-        obj: IMspAccessAdmin | IMspAccessAdmin[]
-    ): IAccessAdministratorDef | IAccessAdministratorDef[] {
-        if (Array.isArray(obj)) {
-            const arr = [];
-            obj.forEach((itm) => {
-                this.validateKeys(obj);
-                arr.push(this.mapAccessAdministratorDef(itm));
-            });
-            return arr;
-        }
-        const user = this.mapBaseUser(obj) as IAccessAdministratorDef;
-        user.msp_access = this.mapYesNoDef(obj.directMspAccess as boolean);
-        user.spg = this.mapAdministeringForDef(obj.administeringFor as string);
-        return user as IAccessAdministratorDef;
-    }
-
-    //#endregion
+   
 
     mapSiteRegRequest(
         // tslint:disable-next-line: variable-name
