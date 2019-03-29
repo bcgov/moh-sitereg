@@ -1,0 +1,86 @@
+<form [formGroup]="fg" style="border-style:dotted; border-color:rgb(176, 236, 176)">
+  <div class="form-group col-sm-8 p-sm-0">
+    <!-- Title (optional); multi-select -->
+    <div class="row">
+      <div class="col-sm-4">
+        <label class="control-label" for="userTitle">Title (optional)</label>
+        <select class="form-control" *ngIf="userTitles" formControlName="userTitle">
+          <option value="null" label="" selected></option>
+          <option *ngFor="let title of userTitles " [value]="title">{{title}}</option>
+        </select>
+      </div>
+      <!-- First Name -->
+      <div class="col-sm-8">
+        <label class="control-label" for="firstName">First Name</label>
+        <input id="firstName" formControlName="firstName" class="form-control" placeholder="First Name">
+        <sitereg-error-box [error]="validFormControl(fg,'firstName')" errorMessage="Minimum of 3 letters"></sitereg-error-box>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+
+          <!-- Int -->
+          <label class="control-label" for="initial">Initial (optional)</label>
+          <input id="initial" formControlName="initial" class="form-control" placeholder="Initial">
+          <sitereg-error-box [error]="validFormControl(fg,'initial')" errorMessage="One character"></sitereg-error-box>
+
+      </div>
+      <div class="col-sm-8">
+        
+          <!-- Last Name -->
+          <label class="control-label" for="lastName">Last Name</label>
+          <input id="lastName" formControlName="lastName" class="form-control" placeholder="Last Name">
+          <sitereg-error-box [error]="validFormControl(fg,'firstName')" errorMessage="Minimum of 3 letters"></sitereg-error-box>
+      </div>
+    </div>
+    
+    <!-- Job Title -->
+    <label class="control-label" for="jobTitle">Job Title</label>
+    <input id="jobTitle" formControlName="jobTitle" class="form-control" placeholder="Job Title">
+    <sitereg-error-box [error]="validFormControl(fg,'jobTitle')" errorMessage="Please enter a valid name"></sitereg-error-box>
+
+    <!-- Email Address -->
+    <label class="control-label" for="emailAddress">Email Address</label>
+    <input id="emailAddress" formControlName="emailAddress" class="form-control" placeholder="Email address">
+    <sitereg-error-box [error]="validFormControl(fg,'emailAddress')" errorMessage="Must be in the format test@example.com"></sitereg-error-box>
+
+    <!-- Confirm Email Address -->
+    <!-- TODO: make this a validator -->
+    <label class="control-label" for="confirmEmail">Confirm Email Address</label>
+    <input id="confirmEmail" formControlName="confirmEmail" class="form-control" placeholder="Confirm Email">
+    <sitereg-error-box [error]="validFormControl(fg, 'confirmEmail')" errorMessage="Must match email address"></sitereg-error-box>
+
+    <!-- Phone -->
+    <div class="row">
+      <div class="col-sm-8">
+        <label class="control-label" for="phone">Phone</label>
+        <input id="phone" formControlName="phone" class="form-control" placeholder="Phone number">
+        <sitereg-error-box [error]="validFormControl(fg,'phone')" errorMessage="Must be in the format XXX-XXX-XXXX"></sitereg-error-box>
+
+      </div>
+      <!-- Ext (optional) -->
+      <div class="col-sm-4">
+        <label class="control-label" for="ext">Ext (optional)</label>
+        <input id="ext" formControlName="ext" class="form-control" placeholder="Extension (optional)">
+        <sitereg-error-box [error]="validFormControl(fg,'ext')" errorMessage="Invalid"></sitereg-error-box>
+
+      </div>
+    </div>
+    <!-- Fax -->
+    <label class="control-label" for="fax">Fax</label>
+    <input id="fax" formControlName="fax" class="form-control" placeholder="Fax number (optional)">
+    <sitereg-error-box [error]="validFormControl(fg,'fax')" errorMessage="Invalid"></sitereg-error-box>
+
+
+    <!-- Administrating For-->
+    <label class="control-label" for="administeringFor">This user will be adminstering MSP for</label>
+    <select class="form-control" *ngIf="administeringFor | async as administering" formControlName="administeringFor"> 
+      <option value="null" label="-- Select Option --" selected></option>
+      <option *ngFor="let a of administering " [value]="a">{{a}}</option>
+    </select>
+    <!-- <div class="text-danger" *ngIf="validFormControl('administeringFor')">
+      Please select a valid option
+    </div>  -->
+
+  </div>
+</form>
