@@ -4,6 +4,7 @@ import { MspRegisterStateService } from '@msp-register/services/msp-register-sta
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { MspRegisterDataService } from '@msp-register/services/msp-register-data.service';
+import { validMultiFormControl } from '@msp-register/models/validator-helpers';
 
 @Component({
     selector: 'sitereg-msp-register-users',
@@ -12,8 +13,13 @@ import { MspRegisterDataService } from '@msp-register/services/msp-register-data
 })
 export class MspRegisterUsersComponent implements OnInit {
     fgs: FormGroup[];
+    validFormControl: () => boolean;
     administeringFor: BehaviorSubject<string[]> = new BehaviorSubject<string[]>(
-        ['me', 'you']
+        [
+            'Employees',
+            'International Students',
+            'Employees and International Students',
+        ]
     );
     validateFormGroup = this.mspRegisterStateSvc.validFormGroup;
 
@@ -23,17 +29,27 @@ export class MspRegisterUsersComponent implements OnInit {
         public mspRegDataSvc: MspRegisterDataService
     ) {
         this.fgs = this.mspRegisterStateSvc.mspRegisterUsersForm;
+        // this.fg = this.mspRegisterStateSvc.mspRegisterSigningAuthorityForm;
+        this.validFormControl = validMultiFormControl.bind(this);
+        this.fgs.forEach(fg => {
+            fg.valueChanges.subscribe((obs) => console.log(fg));
+        });
+
+
     }
 
     ngOnInit() {}
 
     continue() {
-        // console.clear();
-        // const form = this.mspRegisterStateSvc.mspRegisterUsersForm;
-        // console.log(form);
-        // const middleWareObject = this.mspRegDataSvc.mapUserDef(form.value);
-        // console.log( 'Signing Authority Middlware Object:', middleWareObject);
-        // this.router.navigate(['msp-registration/group-numbers']);
+        console.clear();
+        const form = this.mspRegisterStateSvc.mspRegisterUsersForm;
+        console.log('FormGroup: ', form);
+        const middleWareObject = this.mspRegDataSvc.mapObjectUserDef(
+            form[0].value
+        );
+        console.log('MO - Users:', middleWareObject);
+
+        this.router.navigate(['msp-registration/group-numbers']);
     }
 
     addUser() {

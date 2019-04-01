@@ -1,6 +1,4 @@
-import { MspRegisterPerson } from './msp-register-person';
-import { GenerateForm } from './generate-form';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { ValidatorHelpers, postalCodeValidator } from './validator-helpers';
 
 describe('Validator Helpers', () => {

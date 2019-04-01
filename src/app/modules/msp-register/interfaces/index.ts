@@ -5,7 +5,7 @@ import { IMspRegisterState } from './i-msp-register-state';
 import { IMspGroupNumbers } from './i-msp-group-numbers';
 import { IMspSigningAuthority } from './i-msp-signing-authority';
 import { IMspUsers } from './i-msp-users';
-import { IUser } from './i-user';
+import { IUser } from './base/i-user';
 
 export * from './i-msp-authorize';
 export * from './i-msp-form';
@@ -14,7 +14,7 @@ export * from './i-msp-register-state';
 export * from './i-msp-group-numbers';
 export * from './i-msp-signing-authority';
 export * from './i-msp-users';
-export * from './i-user';
+export * from './base/i-user';
 export * from './';
 
 export type MSPValidForms =

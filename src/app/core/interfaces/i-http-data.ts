@@ -67,6 +67,14 @@ export interface IAccessAdministratorDef extends ICoreUserMspDef {
 
 //#endregion
 
+//#region Users
+
+export interface IUserDef extends ICoreUserDef {
+    getDefObject(): any;
+}
+
+//#endregion
+
 export interface IMspGroupDef {
     mspgroup_num: string;
     third_party: YesNo;

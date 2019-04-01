@@ -1,4 +1,4 @@
-import { MspRegisterPerson } from './msp-register-person';
+import { MspRegisterPerson } from './core/msp-register-person';
 import { GenerateForm } from './generate-form';
 import { FormBuilder } from '@angular/forms';
 

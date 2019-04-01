@@ -12,8 +12,8 @@ import { MspRegisterSigningAuthorityComponent } from './components/msp-register-
 import { MspRegisterUsersComponent } from './components/msp-register-users/msp-register-users.component';
 import { MspRegisterPersonComponent } from './components/msp-register-person/msp-register-person.component';
 import { MspRegisterAuthorizeAccessComponent } from './components/msp-register-authorize-access/msp-register-authorize-access.component';
-import { MspRegisterUserMspComponent } from './components/msp-register-user-msp/msp-register-user-msp.component';
-import { MspRegisterUserComponent } from './components/msp-register-user/msp-register-user.component';
+import { MspRegisterUserMspComponent } from './components/core/msp-register-user-msp/msp-register-user-msp.component';
+import { MspRegisterUserComponent } from './components/core/msp-register-user/msp-register-user.component';
 
 @NgModule({
     declarations: [

@@ -1,8 +1,10 @@
 import { GenerateForm } from './generate-form';
-import { IUser, IMspOrganization } from '@msp-register/interfaces';
+import { IUser } from '@msp-register/interfaces';
 import { FormControl, FormBuilder } from '@angular/forms';
+import { IMspUser } from '@msp-register/interfaces/i-msp-user';
 
-export class MspRegisterUser extends GenerateForm<IUser> implements IUser {
+export class MspRegisterUser extends GenerateForm<IMspUser>
+    implements IMspUser {
     userTitle?: 'Mr.' | 'Mrs.' | 'Ms.' | 'Dr.' | 'Prof.' | 'Rev.' | FormControl;
     initial?: string | FormControl = '';
     firstName: string | FormControl = '';

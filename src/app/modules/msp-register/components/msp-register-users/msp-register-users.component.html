@@ -12,16 +12,7 @@
   <h2 class="border-bottom">User #{{fgs.length-i}}</h2>
   <button (click)="delete(i)">Delete</button>
 
-  <sitereg-msp-register-person [fg]="fg"></sitereg-msp-register-person>
-  <div class="form-group col-sm-8 p-sm-0">
-    <form [formGroup]="fg">
-      <label class="control-label" for="city">This person will be adminstering MSP for</label>
-      <select class="form-control" *ngIf="administeringFor | async as administering" formControlName="administeringFor">
-        <option value="null" label="-- Select Organization --" selected></option>
-        <option *ngFor="let a of administering " [value]="a">{{a}}</option>
-      </select>
-    </form>
-  </div>
+  <sitereg-msp-register-user [fg]="fg"></sitereg-msp-register-user>
 </sitereg-page-sections>
 <common-form-action-bar (btnClick)="continue()" [canContinue]="validateFormGroup(fgs)">
 

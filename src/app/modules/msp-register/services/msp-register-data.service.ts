@@ -12,7 +12,6 @@ import {
     ISiteregRequest,
     IOrgInformationDef,
     IUserDef,
-    IMspGroupDef,
     IAccessAdministratorDef,
     ICoreUserDef,
     IContractingOut,
@@ -22,7 +21,8 @@ import {
 } from '@core/interfaces/i-http-data';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { IUserMsp } from '@msp-register/interfaces/i-user-msp';
+import { IUserMsp } from '@msp-register/interfaces/base/i-user-msp';
+import { IMspUser } from '@msp-register/interfaces/i-msp-user';
 
 const apiUrl = environment.apiUrl;
 
@@ -142,20 +142,20 @@ export class MspRegisterDataService {
             }
         }
         console.log(
-            'mapDefAdministeringFor- selected=',
+            'mapDefAdministeringFor - translates(selected) "',
             val,
-            ' translatedForDef=',
-            result
-        );
+            ' = ',
+            result , '"',
+            );
         return result;
     }
 
     /**
-     * Maps application type to middleware types
+     * Maps application types to middleware user
      * @param obj application object
      */
     mapCoreUserDef(
-        obj: IUser | IUserMsp | IMspSigningAuthority | IMspAccessAdmin
+        obj: IUser | IUserMsp | IMspSigningAuthority | IMspAccessAdmin | IMspUser
     ): ICoreUserDef {
         // console.log('mapCoreUserDef', obj);
         this.validateKeys(obj);
@@ -176,7 +176,7 @@ export class MspRegisterDataService {
     }
 
     /**
-     * Maps application type to middleware types
+     * This maps application Signing Authority, Access Admins to Middleware 
      * @param obj application object
      */
     mapCoreUserMspDef(
@@ -284,22 +284,18 @@ export class MspRegisterDataService {
 
     //#region Access Administrators
 
-    mapObjectAccessAdministratorDef(
-        obj: IMspAccessAdmin
-    ): IMspAccessAdmin {
+    mapObjectAccessAdministratorDef(obj: IMspAccessAdmin): IAccessAdministratorDef {
         console.log('mapObjectAccessAdministratorDef', obj);
-        const coreUserMspDef = this.mapCoreUserMspDef(
-            obj as IMspAccessAdmin
-        );
+        const coreUserMspDef = this.mapCoreUserMspDef(obj as IMspAccessAdmin);
         const user = this.deepCopy(coreUserMspDef, 'aa_');
-        return user as IMspAccessAdmin;
+        return user as IAccessAdministratorDef;
     }
-
 
     mapAccessAdministratorDef(
         obj: IMspAccessAdmin | IMspAccessAdmin[]
     ): IAccessAdministratorDef | IAccessAdministratorDef[] {
         if (Array.isArray(obj)) {
+            console.log('ARRAY mapAccessAdministratorDef');
             const arr = [];
             obj.forEach((itm) => {
                 this.validateKeys(obj);
@@ -307,6 +303,7 @@ export class MspRegisterDataService {
             });
             return arr;
         }
+        console.log('mapAccessAdministratorDef', obj);
         const user = this.mapBaseUser(obj) as IAccessAdministratorDef;
         user.msp_access = this.mapYesNoDef(obj.directMspAccess as boolean);
         user.spg = this.mapAdministeringForDef(obj.administeringFor as string);
@@ -316,8 +313,20 @@ export class MspRegisterDataService {
     //#endregion
 
 
+     //#region Users
+
+     mapObjectUserDef(obj: IMspUser): IUserDef {
+        console.log('mapObjectUserDef', obj);
+        const coreUserMspDef = this.mapCoreUserDef(obj as IMspUser);
+        const user = this.deepCopy(coreUserMspDef, 'user_');
+        return user as IUserDef;
+    }
+
+    //#endregion
+
     mapUserDef(obj: IUser | IUser[]): IUserDef | IUserDef[] {
         if (Array.isArray(obj)) {
+            console.log('ARRAY mapUserDef');
             const arr = [];
             obj.forEach((itm) => {
                 this.validateKeys(itm);
@@ -325,6 +334,7 @@ export class MspRegisterDataService {
             });
             return arr;
         }
+        console.log('mapObjectUserDef', obj);
         const user = this.mapBaseUser(obj) as IUserDef;
         user.user_spg = obj.administeringFor as string;
         return user;
@@ -338,8 +348,6 @@ export class MspRegisterDataService {
     //     return obj.map(itm => {})
     //   }
     // }
-
-   
 
     mapSiteRegRequest(
         // tslint:disable-next-line: variable-name
