@@ -16,7 +16,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class MspRegisterUserComponent {
     @Input() fg: FormGroup;
-    validFormControl: () => boolean;
+    validFormControl: (fg: FormGroup, name: string) => boolean;
 
     userTitles: UserTitle[] = ['Mr.', 'Mrs.', 'Ms.', 'Dr.', 'Prof.', 'Rev.'];
     administeringFor: BehaviorSubject<string[]> = new BehaviorSubject<string[]>(

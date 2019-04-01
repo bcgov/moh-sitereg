@@ -13,7 +13,7 @@ import {
 })
 export class MspRegisterUserMspComponent implements OnInit {
     @Input() fg: FormGroup;
-    validFormControl: () => boolean;
+    validFormControl: (name: string) => boolean;
 
     constructor(private router: Router) {
         this.validFormControl = validFormControl.bind(this);

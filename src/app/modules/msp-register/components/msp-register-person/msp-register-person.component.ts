@@ -15,7 +15,7 @@ export class MspRegisterPersonComponent {
     @Input() fg: FormGroup;
 
     userTitles: UserTitle[] = ['Mr.', 'Mrs.', 'Ms.', 'Dr.', 'Prof.', 'Rev.'];
-    validFormControl: () => boolean;
+    validFormControl: (fg: FormGroup, name: string) => boolean;
     administeringFor: BehaviorSubject<string[]> = new BehaviorSubject<string[]>(
         [
             'Employees',
