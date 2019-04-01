@@ -2,7 +2,7 @@ import {
     IUser,
     IMspSigningAuthority,
     IMspUsers,
-    IMspGroupNumbers,
+    IMspGroup,
     IMspOrganization,
 } from './interfaces';
 import { IMspAccessAdmin } from './interfaces/i-msp-access-admins';
@@ -117,11 +117,11 @@ export const accessAdmins: IMspAccessAdmin[] = [
         directMspAccess: true,
     },
 ];
-export const groupNumbers: IMspGroupNumbers[] = [
-    { groupNumber: 'atasipe' },
-    { groupNumber: 'hamillo' },
-    { groupNumber: 'vohadwu' },
-    { groupNumber: 'kubfiwu' },
+export const groupNumbers: IMspGroup[] = [
+    { groupNumber: '1234567', groupName : 'maximus', thirdParty : true },
+    { groupNumber: '1234567', groupName : 'google', thirdParty : true },
+    {  groupNumber: '1234567', groupName : 'microsoft', thirdParty : true },
+    {  groupNumber: '1234567', groupName : 'oracleclear', thirdParty : true  },
 ];
 
 export const organization: IMspOrganization = {

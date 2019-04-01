@@ -9,12 +9,12 @@ import {
 import { MspRegisterDataService } from '@msp-register/services/msp-register-data.service';
 // TODO: initialize componenet with an array of the formgroups and then use NGFor to dynamically render them and add them.
 @Component({
-    selector: 'sitereg-msp-register-group-numbers',
-    templateUrl: './msp-register-group-numbers.component.html',
-    styleUrls: ['./msp-register-group-numbers.component.scss'],
+    selector: 'sitereg-msp-register-group',
+    templateUrl: './msp-register-group.component.html',
+    styleUrls: ['./msp-register-group.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MspRegisterGroupNumbersComponent implements OnInit {
+export class MspRegisterGroupComponent implements OnInit {
     fgs: FormGroup[];
     validFormControl: () => boolean;
     validFormGroup = this.mspRegisterStateSvc.validFormGroup;
@@ -24,17 +24,20 @@ export class MspRegisterGroupNumbersComponent implements OnInit {
         private router: Router,
         public mspRegDataSvc: MspRegisterDataService
     ) {
-        this.fgs = this.mspRegisterStateSvc.mspRegisterGroupNumbersForm;
+        this.fgs = this.mspRegisterStateSvc.mspRegisterGroupForm;
         this.validFormControl = validMultiFormControl.bind(this);
     }
 
     ngOnInit() {}
     continue() {
-        // console.clear();
-        // const orgForm = this.mspRegisterStateSvc.mspRegisterGroupNumbersForm;
-        // console.log(orgForm);
-        // const middleWareObject = this.mspRegDataSvc.map(orgForm.value);
-        // console.log( 'Organization Middlware Object:', middleWareObject);
+        console.clear();
+        const form = this.mspRegisterStateSvc.mspRegisterGroupForm;
+        console.log('FormGroup: ', form);
+        const middleWareObject = this.mspRegDataSvc.mapObjectGroupDef(
+            form[0].value
+        );
+        console.log('MO - Group:', middleWareObject);
+
         this.router.navigate(['msp-registration/authorize']);
     }
 

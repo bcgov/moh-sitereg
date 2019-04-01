@@ -4,7 +4,7 @@ import { MspRegisterOrganizationComponent } from '@msp-register/components/msp-r
 import { MspRegisterSigningAuthorityComponent } from '@msp-register/components/msp-register-signing-authority/msp-register-signing-authority.component';
 import { MspRegisterAccessAdminsComponent } from '@msp-register/components/msp-register-access-admins/msp-register-access-admins.component';
 import { MspRegisterUsersComponent } from '@msp-register/components/msp-register-users/msp-register-users.component';
-import { MspRegisterGroupNumbersComponent } from '@msp-register/components/msp-register-group-numbers/msp-register-group-numbers.component';
+import { MspRegisterGroupComponent } from '@msp-register/components/msp-register-group/msp-register-group.component';
 import { MspRegisterAuthorizeComponent } from '@msp-register/components/msp-register-authorize/msp-register-authorize.component';
 
 export const subRoutes: Routes = [
@@ -30,7 +30,7 @@ export const subRoutes: Routes = [
     },
     {
         path: 'group-numbers',
-        component: MspRegisterGroupNumbersComponent,
+        component: MspRegisterGroupComponent,
         data: { title: 'Group Numbers' },
     },
     {

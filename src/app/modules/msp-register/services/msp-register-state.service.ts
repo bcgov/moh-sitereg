@@ -5,7 +5,7 @@ import { GenerateForm } from '@msp-register/models/generate-form';
 import { BehaviorSubject } from 'rxjs';
 import { MspRegisterAccessAdmins } from '@msp-register/models/msp-register-access-admins';
 import { MspRegisterSigningAuthority } from '@msp-register/models/msp-register-signing-authority';
-import { MspRegisterGroupNumbers } from '@msp-register/models/msp-register-group-numbers';
+import { MspRegisterGroup } from '@msp-register/models/msp-register-group';
 import { MspRegisterUsers } from '@msp-register/models/msp-register-users';
 import { MspRegisterAuthorize } from '@msp-register/models/msp-register-authorize';
 // import { MspRegisterUserMsp } from '@msp-register/models/core/msp-register-user-msp';
@@ -21,7 +21,7 @@ export class MspRegisterStateService {
     public mspRegisterAccessAdminsForm: FormGroup[];
     public mspRegisterSigningAuthorityForm: FormGroup;
     public mspRegisterUserMspForm: FormGroup;
-    public mspRegisterGroupNumbersForm: FormGroup[];
+    public mspRegisterGroupForm: FormGroup[];
     public mspRegisterUsersForm: FormGroup[];
     public mspRegisterAuthorizeForm: FormGroup;
 
@@ -46,13 +46,13 @@ export class MspRegisterStateService {
     }
 
     addGroupNumber() {
-        this.mspRegisterGroupNumbersForm.unshift(
+        this.mspRegisterGroupForm.unshift(
             this.createMspRegisterGroupNumbersForm(this.gf, this.fb)
         );
     }
 
     removeGroupNumber(i: number) {
-        this.mspRegisterGroupNumbersForm.splice(i, 1);
+        this.mspRegisterGroupForm.splice(i, 1);
     }
 
     get signingAuthorityName() {
@@ -104,7 +104,7 @@ export class MspRegisterStateService {
         //     fb
         // );
 
-        this.mspRegisterGroupNumbersForm = [
+        this.mspRegisterGroupForm = [
             this.createMspRegisterGroupNumbersForm(gf, fb),
         ];
         this.mspRegisterUsersForm = [this.createMspRegisterUsersForm(gf, fb)];
@@ -156,7 +156,7 @@ export class MspRegisterStateService {
     // }
 
     createMspRegisterGroupNumbersForm(gf: GenerateForm<any>, fb: FormBuilder) {
-        const mrgn = new MspRegisterGroupNumbers(gf, fb);
+        const mrgn = new MspRegisterGroup(gf, fb);
         return this.fb.group(
             mrgn.genForms(mrgn.generateArr(mrgn.genKeys, mrgn.validators))
         );

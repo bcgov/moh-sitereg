@@ -31,11 +31,9 @@ export class MspRegisterUsersComponent implements OnInit {
         this.fgs = this.mspRegisterStateSvc.mspRegisterUsersForm;
         // this.fg = this.mspRegisterStateSvc.mspRegisterSigningAuthorityForm;
         this.validFormControl = validMultiFormControl.bind(this);
-        this.fgs.forEach(fg => {
+        this.fgs.forEach((fg) => {
             fg.valueChanges.subscribe((obs) => console.log(fg));
         });
-
-
     }
 
     ngOnInit() {}

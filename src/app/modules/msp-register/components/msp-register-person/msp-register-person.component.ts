@@ -1,14 +1,9 @@
-import {
-    Component,
-    Input,
-} from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { UserTitle } from '@msp-register/interfaces';
 import { FormGroup } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
-import {
-    validMultiFormControl,
-} from '@msp-register/models/validator-helpers';
+import { validMultiFormControl } from '@msp-register/models/validator-helpers';
 
 @Component({
     selector: 'sitereg-msp-register-person',

@@ -1,0 +1,55 @@
+<!-- TODO: bit of thinking as to how to make the component work for this. -->
+
+<h2 class="border-bottom">Group Numbers</h2>
+<div class='row mb-4'>
+  <div class='col-md-3 p-4'>
+    <a (click)='addGroupNumber()'>
+      <button class="btn btn-block btn-lg btn-secondary">
+        Add Group Number
+      </button>
+    </a>
+  </div>
+</div>
+<sitereg-page-sections *ngFor="let fg of fgs; index as i">
+  <h3 class="border-bottom">Group Number #{{i+1}}</h3>
+  <button (click)="delete(i)">Delete</button>
+  <form [formGroup]="fg">
+
+    <!--Group Name-->
+    <div class="form-group col-sm-8 p-sm-0">
+      <label class="control-label" for="groupName">Group Name</label>
+      <input id="groupName" formControlName="groupName" class="form-control">
+      <sitereg-error-box [error]="validFormControl(fg, 'groupName')" errorMessage="Invalid"></sitereg-error-box>
+    </div>
+
+    <!--Group Number-->
+    <div class="form-group col-sm-6 p-sm-0">
+      <label class="control-label" for="groupNumber">MSP Group Number #</label>
+      <input id="groupNumber" formControlName="groupNumber" class="form-control">
+      <sitereg-error-box [error]="validFormControl(fg, 'groupNumber')" errorMessage="Invalid Group Number, Group number must be 7 digits long."></sitereg-error-box>
+    </div>
+
+    <!--Question Third Party -->
+    <div class="form-group col-sm-6 p-sm-0">
+    <label class="control-label">Third Party? *
+    </label>
+    <div class="form-check">
+      <input class='form-check-input' formControlName="thirdParty" type="radio" name="" id="bctrue" tabindex="0"
+        [value]="true">
+      <label class='form-check-label' for="bctrue">
+        Yes
+      </label>
+      <input class='form-check-input' formControlName="thirdParty" type="radio" id="bcfalse" tabindex="0"
+        [value]="false">
+      <label class='form-check-label' for="bcfalse">
+        No
+      </label>
+      <!-- <sitereg-error-box [error]="validFormControl('thirdParty')" errorMessage="Please select an option">
+      </sitereg-error-box> -->
+    </div>
+  </div>
+  </form>
+</sitereg-page-sections>
+<common-form-action-bar (btnClick)="continue()" [canContinue]="validFormGroup(fgs)">
+
+</common-form-action-bar>

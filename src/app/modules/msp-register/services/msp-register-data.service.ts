@@ -3,7 +3,7 @@ import { Observable, of, BehaviorSubject } from 'rxjs';
 import {
     IMspOrganization,
     IMspUsers,
-    IMspGroupNumbers,
+    IMspGroup,
     IMspSigningAuthority,
     IUser,
 } from '@msp-register/interfaces';
@@ -18,6 +18,7 @@ import {
     YesNo,
     ISigningAuthorityDef,
     ICoreUserMspDef,
+    IMspGroupDef,
 } from '@core/interfaces/i-http-data';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -145,8 +146,9 @@ export class MspRegisterDataService {
             'mapDefAdministeringFor - translates(selected) "',
             val,
             ' = ',
-            result , '"',
-            );
+            result,
+            '"'
+        );
         return result;
     }
 
@@ -155,7 +157,12 @@ export class MspRegisterDataService {
      * @param obj application object
      */
     mapCoreUserDef(
-        obj: IUser | IUserMsp | IMspSigningAuthority | IMspAccessAdmin | IMspUser
+        obj:
+            | IUser
+            | IUserMsp
+            | IMspSigningAuthority
+            | IMspAccessAdmin
+            | IMspUser
     ): ICoreUserDef {
         // console.log('mapCoreUserDef', obj);
         this.validateKeys(obj);
@@ -176,7 +183,7 @@ export class MspRegisterDataService {
     }
 
     /**
-     * This maps application Signing Authority, Access Admins to Middleware 
+     * This maps application Signing Authority, Access Admins to Middleware
      * @param obj application object
      */
     mapCoreUserMspDef(
@@ -284,7 +291,9 @@ export class MspRegisterDataService {
 
     //#region Access Administrators
 
-    mapObjectAccessAdministratorDef(obj: IMspAccessAdmin): IAccessAdministratorDef {
+    mapObjectAccessAdministratorDef(
+        obj: IMspAccessAdmin
+    ): IAccessAdministratorDef {
         console.log('mapObjectAccessAdministratorDef', obj);
         const coreUserMspDef = this.mapCoreUserMspDef(obj as IMspAccessAdmin);
         const user = this.deepCopy(coreUserMspDef, 'aa_');
@@ -312,17 +321,14 @@ export class MspRegisterDataService {
 
     //#endregion
 
+    //#region Users
 
-     //#region Users
-
-     mapObjectUserDef(obj: IMspUser): IUserDef {
+    mapObjectUserDef(obj: IMspUser): IUserDef {
         console.log('mapObjectUserDef', obj);
         const coreUserMspDef = this.mapCoreUserDef(obj as IMspUser);
         const user = this.deepCopy(coreUserMspDef, 'user_');
         return user as IUserDef;
     }
-
-    //#endregion
 
     mapUserDef(obj: IUser | IUser[]): IUserDef | IUserDef[] {
         if (Array.isArray(obj)) {
@@ -339,6 +345,41 @@ export class MspRegisterDataService {
         user.user_spg = obj.administeringFor as string;
         return user;
     }
+
+    //#endregion
+
+    //#region Group Numbers
+
+    mapObjectGroupDef(obj: IMspGroup): IMspGroupDef {
+        console.log('mapObjectGroupDef', obj);
+
+        this.validateKeys(obj);
+        const groupDef: IMspGroupDef = {
+            mspgroup_num: obj.groupNumber as string,
+            mspgroup_name: obj.groupName as string,
+            third_party: this.mapYesNoDef(obj.thirdParty as boolean),
+        };
+
+        return groupDef as IMspGroupDef;
+    }
+
+    mapGroupDef(obj: IUser | IUser[]): IUserDef | IUserDef[] {
+        if (Array.isArray(obj)) {
+            console.log('ARRAY mapGroupDef');
+            const arr = [];
+            obj.forEach((itm) => {
+                this.validateKeys(itm);
+                arr.push(this.mapUserDef(itm));
+            });
+            return arr;
+        }
+        console.log('mapGroupDef', obj);
+        const user = this.mapBaseUser(obj) as IUserDef;
+        user.user_spg = obj.administeringFor as string;
+        return user;
+    }
+
+    //#endregion
 
     /*
   SH: not sure if this is required atm.

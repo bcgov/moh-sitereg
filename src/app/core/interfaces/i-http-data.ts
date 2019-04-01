@@ -61,24 +61,29 @@ export interface ISigningAuthorityDef extends ICoreUserMspDef {
 
 //#region Access Admin
 
+// tslint:disable-next-line: no-empty-interface
 export interface IAccessAdministratorDef extends ICoreUserMspDef {
-    getDefObject(): any;
 }
 
 //#endregion
 
 //#region Users
 
+// tslint:disable-next-line: no-empty-interface
 export interface IUserDef extends ICoreUserDef {
-    getDefObject(): any;
 }
 
 //#endregion
 
+//#region Msp Group
+
 export interface IMspGroupDef {
     mspgroup_num: string;
-    third_party: YesNo;
+    mspgroup_name: string;
+    third_party: string;
 }
+
+//#endregion
 
 export interface ISiteregRequest {
     org_information: IOrgInformationDef;

@@ -1,5 +1,5 @@
 import { IMspAccessAdmins } from './i-msp-access-admins';
-import { IMspGroupNumbers } from './i-msp-group-numbers';
+import { IMspGroup } from './i-msp-group';
 import { IMspOrganization } from './i-msp-organization';
 import { IMspAuthorize } from './i-msp-authorize';
 import { IMspUsers } from './i-msp-users';
@@ -8,7 +8,7 @@ import { FormControl } from '@angular/forms';
 
 export interface IMspForm {
     accessAdmins: IMspAccessAdmins | FormControl;
-    groupNumbers: IMspGroupNumbers | FormControl;
+    groupNumbers: IMspGroup | FormControl;
     organization: IMspOrganization | FormControl;
     authorize: IMspAuthorize | FormControl;
     users: IMspUsers | FormControl;
