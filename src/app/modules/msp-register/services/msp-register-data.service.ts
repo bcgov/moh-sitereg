@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, BehaviorSubject } from 'rxjs';
+import { Observable, of, BehaviorSubject, throwError } from 'rxjs';
 import {
     IMspOrganization,
     IMspUsers,
@@ -9,7 +9,6 @@ import {
 } from '@msp-register/interfaces';
 import { IMspAccessAdmin } from '@msp-register/interfaces/i-msp-access-admins';
 import {
-    ISiteregRequest,
     IOrgInformationDef,
     IUserDef,
     IAccessAdministratorDef,
@@ -19,6 +18,7 @@ import {
     ISigningAuthorityDef,
     ICoreUserMspDef,
     IMspGroupDef,
+    ISiteRegRequest,
 } from '@core/interfaces/i-http-data';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -391,24 +391,36 @@ export class MspRegisterDataService {
     // }
 
     mapSiteRegRequest(
-        // tslint:disable-next-line: variable-name
-        org_information: IOrgInformationDef,
-        // tslint:disable-next-line: variable-name
-        signing_authority: ISigningAuthorityDef,
-        // tslint:disable-next-line: variable-name
-        access_administrator_present: IAccessAdministratorDef[],
-        users: IUserDef[]
-    ): ISiteregRequest {
-        return {
-            org_information,
-            signing_authority,
-            access_administrator_present,
-            users,
-            msp_group: org_information.contracting_out as any,
+        requestNumber: any,
+        organizationInfo: IOrgInformationDef,
+        signingAuthority: ISigningAuthorityDef,
+        accessAdministrators: IAccessAdministratorDef[],
+        OrganizationUsers: IUserDef[],
+        mspGroups: IMspGroupDef[],
+        AccessAdmminSameAsSigningAuthority?: boolean
+    ): ISiteRegRequest {
+        const registerationRequest: ISiteRegRequest = {
+            request_num: 'test',
+            org_information: organizationInfo ? organizationInfo : null,
+            signing_authority_information: signingAuthority
+                ? signingAuthority
+                : null,
+            aa_same_as_sa: AccessAdmminSameAsSigningAuthority
+                ? this.mapYesNoDef(
+                      AccessAdmminSameAsSigningAuthority as boolean
+                  )
+                : 'N',
+            access_administrator: accessAdministrators
+                ? accessAdministrators
+                : [],
+            users: OrganizationUsers ? OrganizationUsers : [],
+            msp_group: mspGroups ? mspGroups : null,
         };
+
+        return registerationRequest;
     }
 
-    createSiteregRequest(obj: ISiteregRequest) {
+    createSiteregRequest(obj: ISiteRegRequest) {
         return this.http.put(`${apiUrl}/sitereg`, obj).toPromise();
     }
 }

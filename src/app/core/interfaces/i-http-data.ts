@@ -62,16 +62,14 @@ export interface ISigningAuthorityDef extends ICoreUserMspDef {
 //#region Access Admin
 
 // tslint:disable-next-line: no-empty-interface
-export interface IAccessAdministratorDef extends ICoreUserMspDef {
-}
+export interface IAccessAdministratorDef extends ICoreUserMspDef {}
 
 //#endregion
 
 //#region Users
 
 // tslint:disable-next-line: no-empty-interface
-export interface IUserDef extends ICoreUserDef {
-}
+export interface IUserDef extends ICoreUserDef {}
 
 //#endregion
 
@@ -85,12 +83,14 @@ export interface IMspGroupDef {
 
 //#endregion
 
-export interface ISiteregRequest {
+export interface ISiteRegRequest {
+    request_num: any;
     org_information: IOrgInformationDef;
-    signing_authority: ISigningAuthorityDef;
-    access_administrator_present: IAccessAdministratorDef[];
+    signing_authority_information: ISigningAuthorityDef;
+    aa_same_as_sa: string; // ^[YN]$
+    access_administrator: IAccessAdministratorDef[];
     users: IUserDef[];
-    msp_group: IMspGroupDef;
+    msp_group: IMspGroupDef[];
 }
 
 export type YesNo = 'yes' | 'no';

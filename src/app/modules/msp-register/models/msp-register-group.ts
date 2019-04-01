@@ -2,7 +2,12 @@ import { IMspAccessAdmin } from '@msp-register/interfaces/i-msp-access-admins';
 import { GenerateForm } from './generate-form';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { IMspGroup } from '@msp-register/interfaces';
-import { required, minLength, maxLength, groupNumberValidator} from './validator-helpers';
+import {
+    required,
+    minLength,
+    maxLength,
+    groupNumberValidator,
+} from './validator-helpers';
 
 export class MspRegisterGroup extends GenerateForm<IMspGroup>
     implements IMspGroup {
@@ -11,7 +16,12 @@ export class MspRegisterGroup extends GenerateForm<IMspGroup>
     thirdParty: boolean | FormControl = false;
     get validators() {
         return {
-            groupNumber: [required, minLength(), maxLength(7), groupNumberValidator()],
+            groupNumber: [
+                required,
+                minLength(),
+                maxLength(7),
+                groupNumberValidator(),
+            ],
             groupName: [required, minLength(), maxLength(100)],
             thirdParty: [required],
         };
