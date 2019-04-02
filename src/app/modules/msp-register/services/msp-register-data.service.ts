@@ -308,15 +308,12 @@ export class MspRegisterDataService {
             const arr = [];
             obj.forEach((itm) => {
                 this.validateKeys(obj);
-                arr.push(this.mapAccessAdministratorDef(itm));
+                arr.push(this.mapObjectAccessAdministratorDef(itm));
             });
             return arr;
         }
-        console.log('mapAccessAdministratorDef', obj);
-        const user = this.mapBaseUser(obj) as IAccessAdministratorDef;
-        user.msp_access = this.mapYesNoDef(obj.directMspAccess as boolean);
-        user.spg = this.mapAdministeringForDef(obj.administeringFor as string);
-        return user as IAccessAdministratorDef;
+        const user = this.mapObjectAccessAdministratorDef(obj) as IAccessAdministratorDef;
+        return [user];
     }
 
     //#endregion
@@ -330,20 +327,18 @@ export class MspRegisterDataService {
         return user as IUserDef;
     }
 
-    mapUserDef(obj: IUser | IUser[]): IUserDef | IUserDef[] {
+    mapUserDef(obj: IMspUser | IMspUser[]): IUserDef | IUserDef[] {
         if (Array.isArray(obj)) {
             console.log('ARRAY mapUserDef');
             const arr = [];
             obj.forEach((itm) => {
                 this.validateKeys(itm);
-                arr.push(this.mapUserDef(itm));
+                arr.push(this.mapObjectUserDef(itm));
             });
             return arr;
         }
-        console.log('mapObjectUserDef', obj);
-        const user = this.mapBaseUser(obj) as IUserDef;
-        user.user_spg = obj.administeringFor as string;
-        return user;
+        const user = this.mapObjectUserDef(obj) as IUserDef;
+        return [user];
     }
 
     //#endregion
@@ -363,32 +358,23 @@ export class MspRegisterDataService {
         return groupDef as IMspGroupDef;
     }
 
-    mapGroupDef(obj: IUser | IUser[]): IUserDef | IUserDef[] {
+    mapGroupDef(obj: IMspGroup | IMspGroup[]): IMspGroupDef | IMspGroupDef[] {
         if (Array.isArray(obj)) {
             console.log('ARRAY mapGroupDef');
             const arr = [];
             obj.forEach((itm) => {
                 this.validateKeys(itm);
-                arr.push(this.mapUserDef(itm));
+                arr.push(this.mapObjectGroupDef(itm));
             });
             return arr;
         }
-        console.log('mapGroupDef', obj);
-        const user = this.mapBaseUser(obj) as IUserDef;
-        user.user_spg = obj.administeringFor as string;
-        return user;
+        const group = this.mapObjectGroupDef(obj) as IMspGroupDef;
+        return [group];
     }
 
     //#endregion
 
-    /*
-  SH: not sure if this is required atm.
-*/
-    // mapGroupDef(obj: IMspGroupNumbers): IMspGroupDef {
-    //   if (Array.isArray(obj)) {
-    //     return obj.map(itm => {})
-    //   }
-    // }
+    //#region Site Request
 
     mapSiteRegRequest(
         requestNumber: any,
@@ -400,7 +386,7 @@ export class MspRegisterDataService {
         AccessAdmminSameAsSigningAuthority?: boolean
     ): ISiteRegRequest {
         const registerationRequest: ISiteRegRequest = {
-            request_num: 'test',
+            request_num: requestNumber,
             org_information: organizationInfo ? organizationInfo : null,
             signing_authority_information: signingAuthority
                 ? signingAuthority
@@ -423,4 +409,15 @@ export class MspRegisterDataService {
     createSiteregRequest(obj: ISiteRegRequest) {
         return this.http.put(`${apiUrl}/sitereg`, obj).toPromise();
     }
+
+    //#endregion
+
+     /*
+    SH: not sure if this is required atm.
+    */
+    // mapGroupDef(obj: IMspGroupNumbers): IMspGroupDef {
+    //   if (Array.isArray(obj)) {
+    //     return obj.map(itm => {})
+    //   }
+    // }
 }

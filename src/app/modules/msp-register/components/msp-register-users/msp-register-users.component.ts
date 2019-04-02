@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { MspRegisterDataService } from '@msp-register/services/msp-register-data.service';
 import { validMultiFormControl } from '@msp-register/models/validator-helpers';
+import { IMspUser } from '@msp-register/interfaces/i-msp-user';
 
 @Component({
     selector: 'sitereg-msp-register-users',
@@ -40,12 +41,15 @@ export class MspRegisterUsersComponent implements OnInit {
 
     continue() {
         console.clear();
-        const form = this.mspRegisterStateSvc.mspRegisterUsersForm;
-        console.log('FormGroup: ', form);
-        const middleWareObject = this.mspRegDataSvc.mapObjectUserDef(
-            form[0].value
-        );
-        console.log('MO - Users:', middleWareObject);
+
+         // Users
+        const mspUsers: IMspUser[] = [];
+        this.mspRegisterStateSvc.mspRegisterUsersForm.forEach(v => v.value ? mspUsers.push(v.value) : '');
+
+        const moUsers = this.mspRegDataSvc.mapUserDef(
+             mspUsers
+         );
+        console.log('MO - Users:', moUsers);
 
         this.router.navigate(['msp-registration/group-numbers']);
     }
