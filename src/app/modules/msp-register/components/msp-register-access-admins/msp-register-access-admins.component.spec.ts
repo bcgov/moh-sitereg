@@ -8,25 +8,27 @@ import { MspRegisterUsersComponent } from '../msp-register-users/msp-register-us
 import { MspRegisterPersonComponent } from '../msp-register-person/msp-register-person.component';
 
 describe('MspRegisterAccessAdminsComponent', () => {
-  let component: MspRegisterAccessAdminsComponent;
-  let fixture: ComponentFixture<MspRegisterAccessAdminsComponent>;
+    let component: MspRegisterAccessAdminsComponent;
+    let fixture: ComponentFixture<MspRegisterAccessAdminsComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [RouterTestingModule, SharedModule],
-      providers: [MspRegisterStateService],
-      declarations: [ MspRegisterAccessAdminsComponent, MspRegisterPersonComponent ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            imports: [RouterTestingModule, SharedModule],
+            providers: [MspRegisterStateService],
+            declarations: [
+                MspRegisterAccessAdminsComponent,
+                MspRegisterPersonComponent,
+            ],
+        }).compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(MspRegisterAccessAdminsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(MspRegisterAccessAdminsComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

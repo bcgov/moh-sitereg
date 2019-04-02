@@ -7,25 +7,30 @@ import { MspRegisterAuthorizeAccessComponent } from '../msp-register-authorize-a
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('MspRegisterAuthorizeComponent', () => {
-  let component: MspRegisterAuthorizeComponent;
-  let fixture: ComponentFixture<MspRegisterAuthorizeComponent>;
+    let component: MspRegisterAuthorizeComponent;
+    let fixture: ComponentFixture<MspRegisterAuthorizeComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ MspRegisterAuthorizeComponent, MspRegisterAuthorizeAccessComponent ],
-      imports: [SharedModule, RouterTestingModule, HttpClientTestingModule],
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [
+                MspRegisterAuthorizeComponent,
+                MspRegisterAuthorizeAccessComponent,
+            ],
+            imports: [
+                SharedModule,
+                RouterTestingModule,
+                HttpClientTestingModule,
+            ],
+        }).compileComponents();
+    }));
 
-    })
-    .compileComponents();
-  }));
+    beforeEach(() => {
+        fixture = TestBed.createComponent(MspRegisterAuthorizeComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(MspRegisterAuthorizeComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

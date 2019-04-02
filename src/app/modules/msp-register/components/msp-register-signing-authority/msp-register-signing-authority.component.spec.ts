@@ -6,24 +6,26 @@ import { SharedModule } from '@shared/shared.module';
 import { MspRegisterPersonComponent } from '../msp-register-person/msp-register-person.component';
 
 describe('MspRegisterSigningAuthorityComponent', () => {
-  let component: MspRegisterSigningAuthorityComponent;
-  let fixture: ComponentFixture<MspRegisterSigningAuthorityComponent>;
+    let component: MspRegisterSigningAuthorityComponent;
+    let fixture: ComponentFixture<MspRegisterSigningAuthorityComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [RouterTestingModule, SharedModule],
-      declarations: [ MspRegisterSigningAuthorityComponent, MspRegisterPersonComponent ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            imports: [RouterTestingModule, SharedModule],
+            declarations: [
+                MspRegisterSigningAuthorityComponent,
+                MspRegisterPersonComponent,
+            ],
+        }).compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(MspRegisterSigningAuthorityComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(MspRegisterSigningAuthorityComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

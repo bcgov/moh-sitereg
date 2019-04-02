@@ -9,19 +9,10 @@ import { SharedCoreModule } from 'moh-common-lib';
 import { SharedModule } from '@shared/shared.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
-
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-
-    CoreModule,
-    SharedModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [AppComponent],
+    imports: [BrowserModule, AppRoutingModule, CoreModule, SharedModule],
+    providers: [],
+    bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

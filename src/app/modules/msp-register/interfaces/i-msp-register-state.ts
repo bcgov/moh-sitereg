@@ -1,6 +1,12 @@
 export interface IMspRegisterState {
-  state: currentState;
-  valid: boolean;
+    state: currentState;
+    valid: boolean;
 }
 
-type currentState = 'organization' | 'signingAuthority' | 'accessAdmin' | 'users' | 'mspGroupNumbers' | 'authorize';
+type currentState =
+    | 'organization'
+    | 'signingAuthority'
+    | 'accessAdmin'
+    | 'users'
+    | 'mspGroupNumbers'
+    | 'authorize';

@@ -5,23 +5,23 @@ import { SharedCoreModule } from 'moh-common-lib';
 import { RouterTestingModule } from '@angular/router/testing';
 
 describe('MspRegisterComponent', () => {
-  let component: MspRegisterComponent;
-  let fixture: ComponentFixture<MspRegisterComponent>;
+    let component: MspRegisterComponent;
+    let fixture: ComponentFixture<MspRegisterComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [SharedCoreModule, RouterTestingModule],
-      declarations: [MspRegisterComponent]
-    }).compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            imports: [SharedCoreModule, RouterTestingModule],
+            declarations: [MspRegisterComponent],
+        }).compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(MspRegisterComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(MspRegisterComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

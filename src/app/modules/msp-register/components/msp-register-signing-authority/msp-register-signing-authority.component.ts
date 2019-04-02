@@ -3,38 +3,51 @@ import { Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 import { MspRegisterStateService } from '@msp-register/services/msp-register-state.service';
 import { IUser } from '@msp-register/interfaces';
-import { validFormControl } from '@msp-register/models/validator-helpers';
+import {
+    validFormControl,
+    validMultiFormControl,
+} from '@msp-register/models/validator-helpers';
+import { MspRegisterDataService } from '@msp-register/services/msp-register-data.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
-  selector: 'sitereg-msp-register-signing-authority',
-  templateUrl: './msp-register-signing-authority.component.html',
-  styleUrls: ['./msp-register-signing-authority.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'sitereg-msp-register-signing-authority',
+    templateUrl: './msp-register-signing-authority.component.html',
+    styleUrls: ['./msp-register-signing-authority.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MspRegisterSigningAuthorityComponent implements OnInit {
-  fg: FormGroup;
-  validFormControl: () => boolean;
+    [x: string]: any;
+    fg: FormGroup;
+    validFormControl: () => boolean;
+    administeringFor: BehaviorSubject<string[]> = new BehaviorSubject<string[]>(
+        [
+            'Employees',
+            'International Students',
+            'Employees and International Students',
+        ]
+    );
 
-  constructor(
-    private router: Router,
-    private mspRegisterStateSvc: MspRegisterStateService
-  ) {
-    this.fg = this.mspRegisterStateSvc.mspRegisterSigningAuthorityForm;
-    this.validFormControl = validFormControl.bind(this);
-    this.fg.valueChanges.subscribe(obs => console.log(this.fg));
-  }
-
-  ngOnInit() {}
-
-  updateFormData(obj: IUser) {
-    // tslint:disable-next-line: forin
-    for (let key in obj) {
-      if (!this.fg.controls[key]) return;
-      this.fg.controls[key].setValue(obj[key]);
+    constructor(
+        private router: Router,
+        private mspRegisterStateSvc: MspRegisterStateService,
+        public mspRegDataSvc: MspRegisterDataService
+    ) {
+        this.fg = this.mspRegisterStateSvc.mspRegisterSigningAuthorityForm;
+        this.validFormControl = validMultiFormControl.bind(this);
+        this.fg.valueChanges.subscribe((obs) => console.log(this.fg));
     }
-  }
 
-  continue() {
-    this.router.navigate(['msp-registration/access-admins']);
-  }
+    ngOnInit() {}
+
+    continue() {
+        console.clear();
+        const form = this.mspRegisterStateSvc.mspRegisterSigningAuthorityForm;
+        console.log('FormGroup: ', form);
+        const middleWareObject = this.mspRegDataSvc.mapObjectSigningAuthorityInformationDef(
+            form.value
+        );
+        console.log('MO - Signing Authority:', middleWareObject);
+        this.router.navigate(['msp-registration/access-admins']);
+    }
 }

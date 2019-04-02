@@ -4,17 +4,8 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { SharedModule } from '@shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 @NgModule({
-  declarations: [
-    HomePageComponent
-  ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    HttpClientModule,
-
-  ],
-  exports: [
-  HomePageComponent,
-  ]
+    declarations: [HomePageComponent],
+    imports: [CommonModule, SharedModule, HttpClientModule],
+    exports: [HomePageComponent],
 })
-export class CoreModule { }
+export class CoreModule {}

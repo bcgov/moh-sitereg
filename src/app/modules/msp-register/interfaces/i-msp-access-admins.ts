@@ -1,11 +1,8 @@
-import { IUser } from './i-user';
-import { FormControl } from '@angular/forms';
+import { IUserMsp } from './base/i-user-msp';
 
 export interface IMspAccessAdmins {
-  admins: IMspAccessAdmin[];
+    admins: IMspAccessAdmin[];
 }
 
-export interface IMspAccessAdmin extends IUser {
-  directAccess: boolean | FormControl;
-}
-
+// tslint:disable-next-line: no-empty-interface
+export interface IMspAccessAdmin extends IUserMsp {}

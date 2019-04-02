@@ -1,56 +1,96 @@
-export interface IOrgInformationDef {
-  org_name: string;
-  org_num: string;
-  suite_num: string;
-  street_num: string;
-  address_2: string;
-  city: string;
-  province: string;
-  postal_code: string;
-  contracting_out: IContractingOut;
+//#region Core / Common
+
+export interface ICoreUserDef {
+    curtesy_title?: string;
+    last_name: string;
+    first_name: string;
+    initial?: string;
+    job_title: string;
+    email: string;
+    phone_num: string;
+    phone_ext?: string;
+    fax_num?: string;
+    spg: string;
+}
+
+export interface ICoreUserMspDef extends ICoreUserDef {
+    msp_access: string;
+    ldap_id: string;
 }
 
 export interface IContractingOut {
-  contracting_third_party: YesNo;
-  third_party_org_num?: string;
+    contracting_third_party: YesNo;
+    third_party_org_num?: string;
 }
 
-export interface ICoreUserDef {
-  sa_curtesy_title?: string;
-  sa_last_name: string;
-  sa_initial?: string;
-  sa_job_title: string;
-  sa_email: string;
-  sa_phone_num: string;
-  sa_phone_ext?: string;
-  sa_fax_num?: string;
+/**
+ * should be removed with latest defination
+ */
+export interface IUserDef extends ICoreUserMspDef {
+    user_spg: string;
 }
 
-export interface ISigningAuthorityInformationDef extends ICoreUserDef {
-  sa_msp_access: YesNo;
-  sa_spg: string;
+//#endregion
+
+//#region Organization
+
+export interface IOrgInformationDef {
+    org_name: string;
+    org_num: string;
+    suite_num: string;
+    street_num: string;
+    street_name: string;
+    address_2: string;
+    city: string;
+    province: string;
+    postal_code: string;
+    blue_cross: string;
+    org_spg: string;
+    contracting_out: IContractingOut;
 }
 
-export interface IAccessAdministratorPresentDef extends ICoreUserDef {
-  aa_msp_access: YesNo;
-  aa_spg: string;
+//#endregion
+
+//#region signing_authority_def
+
+export interface ISigningAuthorityDef extends ICoreUserMspDef {
+    getDefObject(): any;
 }
 
-export interface IUserDef extends ICoreUserDef {
-  user_spg: string;
-}
+//#endregion
+
+//#region Access Admin
+
+// tslint:disable-next-line: no-empty-interface
+export interface IAccessAdministratorDef extends ICoreUserMspDef {}
+
+//#endregion
+
+//#region Users
+
+// tslint:disable-next-line: no-empty-interface
+export interface IUserDef extends ICoreUserDef {}
+
+//#endregion
+
+//#region Msp Group
 
 export interface IMspGroupDef {
-  mspgroup_num: string;
-  third_party: YesNo;
+    mspgroup_num: string;
+    mspgroup_name: string;
+    third_party: string;
 }
 
-export interface ISiteregRequest {
-  org_information: IOrgInformationDef;
-  signing_authority_information: ISigningAuthorityInformationDef;
-  access_administrator_present: IAccessAdministratorPresentDef[];
-  users: IUserDef[];
-  msp_group: IMspGroupDef;
+//#endregion
+
+export interface ISiteRegRequest {
+    request_num: any;
+    org_information: IOrgInformationDef;
+    signing_authority_information: ISigningAuthorityDef;
+    aa_same_as_sa: string; // ^[YN]$
+    access_administrator: IAccessAdministratorDef[];
+    users: IUserDef[];
+    msp_group: IMspGroupDef[];
 }
 
 export type YesNo = 'yes' | 'no';

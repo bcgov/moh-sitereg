@@ -15,12 +15,11 @@ const mro = new MspRegisterAccessAdmins(new GenerateForm(fb), fb);
   You can alwaqys create a version of each of the classes in this test file - don't see the point right now.
 */
 describe('MspRegisterOrganization', () => {
-  it('should create an instance', () => {
-
-    expect(mro).toBeTruthy();
-  });
-  it('should generate an array of the objects values', () => {
-    const keys = mro.genKeys;
-    expect(keys).toBeDefined();
-  })
+    it('should create an instance', () => {
+        expect(mro).toBeTruthy();
+    });
+    it('should generate an array of the objects values', () => {
+        const keys = mro.genKeys;
+        expect(keys).toBeDefined();
+    });
 });

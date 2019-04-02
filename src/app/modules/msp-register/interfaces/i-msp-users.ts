@@ -1,5 +1,5 @@
-import { IUser } from './i-user';
+import { IUser } from './base/i-user';
 
 export interface IMspUsers {
-  users: IUser[];
+    users: IUser[];
 }
