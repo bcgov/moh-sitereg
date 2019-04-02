@@ -20,7 +20,7 @@ import {
     IMspGroupDef,
     ISiteRegRequest,
 } from '@core/interfaces/i-http-data';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { IUserMsp } from '@msp-register/interfaces/base/i-user-msp';
 import { IMspUser } from '@msp-register/interfaces/i-msp-user';
@@ -312,7 +312,9 @@ export class MspRegisterDataService {
             });
             return arr;
         }
-        const user = this.mapObjectAccessAdministratorDef(obj) as IAccessAdministratorDef;
+        const user = this.mapObjectAccessAdministratorDef(
+            obj
+        ) as IAccessAdministratorDef;
         return [user];
     }
 
@@ -407,12 +409,33 @@ export class MspRegisterDataService {
     }
 
     createSiteregRequest(obj: ISiteRegRequest) {
-        return this.http.put(`${apiUrl}/sitereg`, obj).toPromise();
+        // http headers
+        const contentHeaders = new HttpHeaders();
+        contentHeaders.append('Accept', 'application/json; charset=utf-8');
+        contentHeaders.append(
+            'Content-Type',
+            'application/json; charset=utf-8'
+        );
+        const body = obj;
+        console.log(`%c SiteregRequest`, 'color: green;' );
+        console.log(body);
+
+        // http request
+        return this.http
+            .put(`${apiUrl}/sitereg`, body, {
+                headers: contentHeaders,
+                responseType: 'json',
+            })
+            .toPromise()
+            .catch((e) => {
+                console.error(e);
+            });
     }
+    // return this.http.put(`${apiUrl}/sitereg`, obj).toPromise();
 
     //#endregion
 
-     /*
+    /*
     SH: not sure if this is required atm.
     */
     // mapGroupDef(obj: IMspGroupNumbers): IMspGroupDef {

@@ -35,11 +35,11 @@ export class MspRegisterGroupComponent implements OnInit {
 
         // Msp Groups
         const mspGroups: IMspGroup[] = [];
-        this.mspRegisterStateSvc.mspRegisterGroupForm.forEach(v => v.value ? mspGroups.push(v.value) : '');
-
-        const moMspGroups = this.mspRegDataSvc.mapGroupDef(
-            mspGroups
+        this.mspRegisterStateSvc.mspRegisterGroupForm.forEach((v) =>
+            v.value ? mspGroups.push(v.value) : ''
         );
+
+        const moMspGroups = this.mspRegDataSvc.mapGroupDef(mspGroups);
         console.log('MO - Group:', moMspGroups);
 
         this.router.navigate(['msp-registration/authorize']);
