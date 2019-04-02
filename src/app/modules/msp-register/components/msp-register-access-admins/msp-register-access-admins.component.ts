@@ -36,13 +36,15 @@ export class MspRegisterAccessAdminsComponent implements OnInit {
     continue() {
         console.clear();
 
-       // Access Administrators
+        // Access Administrators
         const accessAdmins: IMspAccessAdmin[] = [];
-        this.mspRegisterStateSvc.mspRegisterAccessAdminsForm.forEach(v => v.value ? accessAdmins.push(v.value) : '');
+        this.mspRegisterStateSvc.mspRegisterAccessAdminsForm.forEach((v) =>
+            v.value ? accessAdmins.push(v.value) : ''
+        );
 
         const moAccessAdministrators = this.mspRegDataSvc.mapAccessAdministratorDef(
-           accessAdmins
-       );
+            accessAdmins
+        );
         console.log('MO - Access Admins:', moAccessAdministrators);
 
         this.router.navigate(['msp-registration/users']);

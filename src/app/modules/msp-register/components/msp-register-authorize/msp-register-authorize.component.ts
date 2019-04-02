@@ -7,7 +7,11 @@ import {
 import { MspRegisterDataService } from '@msp-register/services/msp-register-data.service';
 import { Observable } from 'rxjs';
 import { validFormControl } from '@msp-register/models/validator-helpers';
-import { IMspGroupDef, IUserDef, IAccessAdministratorDef } from '@core/interfaces/i-http-data';
+import {
+    IMspGroupDef,
+    IUserDef,
+    IAccessAdministratorDef,
+} from '@core/interfaces/i-http-data';
 import { IMspGroup } from '@msp-register/interfaces';
 import { IMspUser } from '@msp-register/interfaces/i-msp-user';
 import { IMspAccessAdmin } from '@msp-register/interfaces/i-msp-access-admins';
@@ -55,10 +59,12 @@ export class MspRegisterAuthorizeComponent implements OnInit {
         }
     }
     continue() {
-
         console.clear();
         const regRequest = this.registerationObject();
 
+        this.mspRegDataSvc.createSiteregRequest(regRequest).catch((e) => {
+            console.log(e);
+        });
     }
 
     validToken($event) {
@@ -67,10 +73,8 @@ export class MspRegisterAuthorizeComponent implements OnInit {
     }
 
     registerationObject() {
-
         // Request Numer
         const requestNumber = '12345678';
-
 
         // Orgnaization Info
         const moOrganizationInformation = this.mspRegDataSvc.mapOrgInformation(
@@ -86,31 +90,31 @@ export class MspRegisterAuthorizeComponent implements OnInit {
 
         // Access Administrators
         const accessAdmins: IMspAccessAdmin[] = [];
-        this.mspRegisterStateSvc.mspRegisterAccessAdminsForm.forEach(v => v.value ? accessAdmins.push(v.value) : '');
+        this.mspRegisterStateSvc.mspRegisterAccessAdminsForm.forEach((v) =>
+            v.value ? accessAdmins.push(v.value) : ''
+        );
 
         const moAccessAdministrators = this.mspRegDataSvc.mapAccessAdministratorDef(
             accessAdmins
         );
         console.log('MO - Access Admins:', moAccessAdministrators);
 
-
         // Users
         const mspUsers: IMspUser[] = [];
-        this.mspRegisterStateSvc.mspRegisterUsersForm.forEach(v => v.value ? mspUsers.push(v.value) : '');
-
-        const moUsers = this.mspRegDataSvc.mapUserDef(
-            mspUsers
+        this.mspRegisterStateSvc.mspRegisterUsersForm.forEach((v) =>
+            v.value ? mspUsers.push(v.value) : ''
         );
-        console.log('MO - Users:', moUsers);
 
+        const moUsers = this.mspRegDataSvc.mapUserDef(mspUsers);
+        console.log('MO - Users:', moUsers);
 
         // Msp Groups
         const mspGroups: IMspGroup[] = [];
-        this.mspRegisterStateSvc.mspRegisterGroupForm.forEach(v => v.value ? mspGroups.push(v.value) : '');
-
-        const moMspGroups = this.mspRegDataSvc.mapGroupDef(
-            mspGroups
+        this.mspRegisterStateSvc.mspRegisterGroupForm.forEach((v) =>
+            v.value ? mspGroups.push(v.value) : ''
         );
+
+        const moMspGroups = this.mspRegDataSvc.mapGroupDef(mspGroups);
         console.log('MO - Group:', moMspGroups);
 
         // Authorize

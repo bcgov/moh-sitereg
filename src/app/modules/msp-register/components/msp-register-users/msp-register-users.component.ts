@@ -42,13 +42,13 @@ export class MspRegisterUsersComponent implements OnInit {
     continue() {
         console.clear();
 
-         // Users
+        // Users
         const mspUsers: IMspUser[] = [];
-        this.mspRegisterStateSvc.mspRegisterUsersForm.forEach(v => v.value ? mspUsers.push(v.value) : '');
+        this.mspRegisterStateSvc.mspRegisterUsersForm.forEach((v) =>
+            v.value ? mspUsers.push(v.value) : ''
+        );
 
-        const moUsers = this.mspRegDataSvc.mapUserDef(
-             mspUsers
-         );
+        const moUsers = this.mspRegDataSvc.mapUserDef(mspUsers);
         console.log('MO - Users:', moUsers);
 
         this.router.navigate(['msp-registration/group-numbers']);
