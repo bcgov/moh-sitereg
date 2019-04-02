@@ -9,9 +9,9 @@ import {
     accessAdmins,
 } from '@msp-register/mocks';
 import {
-    ISigningAuthorityInformationDef,
+    ISigningAuthorityDef,
     IUserDef,
-    IAccessAdministratorPresentDef,
+    IAccessAdministratorDef,
 } from '@core/interfaces/i-http-data';
 
 describe('MspRegisterDataService', () => {
@@ -31,7 +31,7 @@ describe('MspRegisterDataService', () => {
         const user = coreUser;
         const coreUserDef = service.mapBaseUser(user);
         expect(coreUserDef).toBeDefined();
-        expect(coreUserDef.sa_last_name).toEqual('Mason');
+        expect(coreUserDef.last_name).toEqual('Mason');
         // expect(service.mapOrgInformation(org)).toContain('org_name');
     });
 
@@ -52,7 +52,7 @@ describe('MspRegisterDataService', () => {
         const obj = sa;
         const res = service.mapSigningAuthorityInformationDef(
             obj
-        ) as ISigningAuthorityInformationDef[];
+        ) as ISigningAuthorityDef[];
         expect(res).toBeDefined();
         expect(res.length).toBe(2);
     });
@@ -65,7 +65,7 @@ describe('MspRegisterDataService', () => {
         const res = service.mapUserDef(user) as IUserDef[];
         expect(res).toBeDefined();
         expect(res.length).toBe(3);
-        expect(res[0].sa_last_name).toEqual('Papi');
+        expect(res[0].last_name).toEqual('Papi');
     });
 
     it('should return a valid IAccessAdministratorPresentDef', () => {
@@ -75,11 +75,11 @@ describe('MspRegisterDataService', () => {
         const objs = accessAdmins;
         const res = service.mapAccessAdministratorDef(
             objs
-        ) as IAccessAdministratorPresentDef[];
+        ) as IAccessAdministratorDef[];
 
         expect(res).toBeDefined();
         expect(res.length).toBe(3);
-        expect(res[0].sa_last_name).toEqual('Franke');
+        expect(res[0].last_name).toEqual('Franke');
     });
 
     it('should return a valid IMspGroupDef', () => {
@@ -98,16 +98,16 @@ describe('MspRegisterDataService', () => {
         const sas = sa;
         const user = users;
         const aas = accessAdmins;
-        const form = service.mapSiteRegRequest(
-            service.mapOrgInformation(org),
-            service.mapSigningAuthorityInformationDef(
-                sas
-            ) as ISigningAuthorityInformationDef,
-            service.mapAccessAdministratorDef(
-                aas
-            ) as IAccessAdministratorPresentDef[],
-            service.mapUserDef(user) as IUserDef[]
-        );
+        // const form = service.mapSiteRegRequest(
+        //     service.mapOrgInformation(org),
+        //     service.mapSigningAuthorityInformationDef(
+        //         sas
+        //     ) as ISigningAuthorityInformationDef,
+        //     service.mapAccessAdministratorDef(
+        //         aas
+        //     ) as IAccessAdministratorPresentDef[],
+        //     service.mapUserDef(user) as IUserDef[]
+        // );
         expect(service).toBeDefined();
     });
 });

@@ -7,6 +7,7 @@ import {
     validMultiFormControl,
 } from '@msp-register/models/validator-helpers';
 import { MspRegisterDataService } from '@msp-register/services/msp-register-data.service';
+import { IMspAccessAdmin } from '@msp-register/interfaces/i-msp-access-admins';
 
 @Component({
     selector: 'sitereg-msp-register-access-admins',
@@ -34,12 +35,15 @@ export class MspRegisterAccessAdminsComponent implements OnInit {
 
     continue() {
         console.clear();
-        const form = this.mspRegisterStateSvc.mspRegisterAccessAdminsForm;
-        console.log('FormGroup: ', form);
-        const middleWareObject = this.mspRegDataSvc.mapObjectAccessAdministratorDef(
-            form[0].value
-        );
-        console.log('MO - Access Admins:', middleWareObject);
+
+       // Access Administrators
+        const accessAdmins: IMspAccessAdmin[] = [];
+        this.mspRegisterStateSvc.mspRegisterAccessAdminsForm.forEach(v => v.value ? accessAdmins.push(v.value) : '');
+
+        const moAccessAdministrators = this.mspRegDataSvc.mapAccessAdministratorDef(
+           accessAdmins
+       );
+        console.log('MO - Access Admins:', moAccessAdministrators);
 
         this.router.navigate(['msp-registration/users']);
     }
