@@ -420,9 +420,11 @@ export class MspRegisterDataService {
         console.log(`%c SiteregRequest`, 'color: green;' );
         console.log(body);
 
+        const uuid = UUID.toString();
+
         // http request
         return this.http
-            .put(`${apiUrl}/sitereg`, body, {
+            .put(environment.baseAPIUrl + '/sitereg/' + 'UUID', body, {
                 headers: contentHeaders,
                 responseType: 'json',
             })

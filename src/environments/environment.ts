@@ -4,7 +4,18 @@
 
 export const environment = {
     production: false,
-    apiUrl: 'http://localhost:3000',
+    useDummyData: false,
+    useMockBackend: false,
+    baseAPIUrl: '/sitereg/api/siteregIntegration/rest/',
+    loggingURL: '/sitereg/api/logging',
+    captchaApiBaseUrl: '/sitereg/api/captcha',
+    envServerUrl: '/sitereg/api/env',
+    logHTTPRequestsToConsole: true,
+    bypassGuards: true,
+    bypassSplashPage: false,
+    promptOnExit: false,
+    purgeWhenInactive: false,
+    enableLogging: true
 };
 
 /*
