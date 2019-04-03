@@ -25,7 +25,6 @@ import { environment } from 'src/environments/environment';
 import { IUserMsp } from '@msp-register/interfaces/base/i-user-msp';
 import { IMspUser } from '@msp-register/interfaces/i-msp-user';
 
-const apiUrl = environment.apiUrl;
 
 /* tslint:disable */
 const text =
@@ -419,8 +418,6 @@ export class MspRegisterDataService {
         const body = obj;
         console.log(`%c SiteregRequest`, 'color: green;' );
         console.log(body);
-
-        const uuid = UUID.toString();
 
         // http request
         return this.http
