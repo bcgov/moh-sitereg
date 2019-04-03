@@ -1,7 +1,12 @@
 <h2>Authorize</h2>
 <div class="row">
-  <span class="border-bottom col-sm-8">These are the MSP Group Numbers you will be administering for MSP Direct.</span>
+  <span class="border-bottom col-sm-8">These are the MSP Group you will be administering for MSP Direct.</span>
   <span class="end col-sm-4 border-bottom">{{date | date: 'yyyy-MMM-dd' }}</span>
+  <ul *ngIf="isValidGroups()">
+    <li *ngFor="let g of groupsMSP">
+      {{ g.groupName }} - {{g.groupNumber}} 
+    </li>
+  </ul>
 </div>
 <sitereg-page-sections *ngIf="fg">
   <h2 *ngIf="mspRegDataSvc.agreementNumber | async as num">Agreement number: {{ num}}</h2>
@@ -34,20 +39,20 @@
     </div> 
 -->
 
-<!-- Consent -->
-<!-- 
-  <div >
-    <input class='form-check-input' formControlName="consent" type="radio" name="" id="bctrue" tabindex="0"
+<!-- Consent  -->
+
+  <div class="form-check form-check-inline mb-5">
+    <input class='form-check-input'  type="radio" name="consent" id="bctrue" tabindex="0"
       [value]="true">
     <label class='form-check-label' for="bctrue">
       I agree
     </label>
-    <input class='form-check-input' formControlName="consent" type="radio" id="bcfalse" tabindex="0"
+    <input class='form-check-input'  type="radio"  name="consent" id="bcfalse" tabindex="0"
       [value]="false">
     <label class='form-check-label' for="bcfalse">
-      I do not agree
+      I disagree
     </label>
-  </div>  -->
+  </div> 
 
 
 </sitereg-page-sections>
