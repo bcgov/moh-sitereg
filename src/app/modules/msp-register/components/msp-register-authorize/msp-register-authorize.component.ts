@@ -1,5 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, OnInit, ChangeDetectionStrategy, OnChanges, SimpleChanges } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {
     MspRegisterStateService,
     UserTypes,
@@ -36,7 +36,8 @@ export class MspRegisterAuthorizeComponent implements OnInit {
 
     constructor(
         public mspRegisterStateSvc: MspRegisterStateService,
-        public mspRegDataSvc: MspRegisterDataService
+        public mspRegDataSvc: MspRegisterDataService,
+        private formBuilder: FormBuilder,
     ) {
         this.validFormControl = validFormControl.bind(this);
     }
@@ -49,7 +50,28 @@ export class MspRegisterAuthorizeComponent implements OnInit {
         this.mspRegDataSvc.updateSigningAuthorityAddress(address);
         this.adminFgs = this.mspRegisterStateSvc.mspRegisterAccessAdminsForm;
         this.userFgs = this.mspRegisterStateSvc.mspRegisterUsersForm;
+
+        this.genConsentForm();
     }
+
+
+    private genConsentForm() {
+
+        this.fg = this.formBuilder.group({
+            consent: ['', [Validators.required]]
+        });
+
+        // temporary - if user click on disagree, this invalids required field
+        this.fg.valueChanges.subscribe(data => {
+            const consentState = this.fg.get('consent');
+            if (consentState.value === false) {
+               this.fg.setErrors({consentFailed: true});
+               // this.fg.updateValueAndValidity();
+            }
+        }
+        );
+    }
+
 
     updateAccess($event: string, i: number, type: UserTypes) {
         switch (type) {
@@ -80,7 +102,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
         this.mspRegisterStateSvc.mspRegisterGroupForm.forEach((v) =>
             v.value ? mspGroups.push(v.value) : ''
         );
-        return  mspGroups;
+        return mspGroups;
     }
 
     registerationObject() {
@@ -144,9 +166,9 @@ export class MspRegisterAuthorizeComponent implements OnInit {
     }
 
     isValidGroups() {
-        return (    this.groupsMSP.length > 0
+        return (this.groupsMSP.length > 0
             && (
                 ((this.groupsMSP[0].groupNumber as string) &&
-                (this.groupsMSP[0].groupNumber as string).length > 3 ) ? true : false ));
+                    (this.groupsMSP[0].groupNumber as string).length > 3) ? true : false));
     }
 }
