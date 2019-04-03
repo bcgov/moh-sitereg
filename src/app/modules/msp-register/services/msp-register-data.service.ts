@@ -420,7 +420,7 @@ export class MspRegisterDataService {
         console.log(`%c SiteregRequest`, 'color: green;' );
         console.log(body);
 
-        const uuid = UUID.toString();
+        // const uuid = UUID.toString();
 
         // http request
         return this.http
