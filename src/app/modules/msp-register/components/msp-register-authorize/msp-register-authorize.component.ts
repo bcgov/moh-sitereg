@@ -142,4 +142,11 @@ export class MspRegisterAuthorizeComponent implements OnInit {
         console.log('MO - Site Registeration Request Object:', regRequest);
         return regRequest;
     }
+
+    isValidGroups() {
+        return (    this.groupsMSP.length > 0
+            && (
+                ((this.groupsMSP[0].groupNumber as string) &&
+                (this.groupsMSP[0].groupNumber as string).length > 3 ) ? true : false ));
+    }
 }

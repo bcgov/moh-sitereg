@@ -2,7 +2,7 @@
 <div class="row">
   <span class="border-bottom col-sm-8">These are the MSP Group you will be administering for MSP Direct.</span>
   <span class="end col-sm-4 border-bottom">{{date | date: 'yyyy-MMM-dd' }}</span>
-  <ul *ngIf="groupsMSP.length>0 && ((groupsMSP[0].groupNumber && groupsMSP[0].groupNumber.length>3)? true: false)">
+  <ul *ngIf="isValidGroups()">
     <li *ngFor="let g of groupsMSP">
       {{ g.groupName }} - {{g.groupNumber}} 
     </li>
