@@ -32,6 +32,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
     adminFgs: FormGroup[];
     userFgs: FormGroup[];
     validFormControl: () => boolean;
+    groupsMSP: IMspGroup[] = this.getGroupsInfo();
 
     constructor(
         public mspRegisterStateSvc: MspRegisterStateService,
@@ -70,6 +71,16 @@ export class MspRegisterAuthorizeComponent implements OnInit {
     validToken($event) {
         console.log($event);
         if (!$event.ok) console.log('error');
+    }
+
+    getGroupsInfo() {
+
+        // Msp Groups
+        const mspGroups: IMspGroup[] = [];
+        this.mspRegisterStateSvc.mspRegisterGroupForm.forEach((v) =>
+            v.value ? mspGroups.push(v.value) : ''
+        );
+        return  mspGroups;
     }
 
     registerationObject() {
@@ -113,7 +124,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
         this.mspRegisterStateSvc.mspRegisterGroupForm.forEach((v) =>
             v.value ? mspGroups.push(v.value) : ''
         );
-
+        this.groupsMSP = mspGroups;
         const moMspGroups = this.mspRegDataSvc.mapGroupDef(mspGroups);
         console.log('MO - Group:', moMspGroups);
 

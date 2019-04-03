@@ -1,7 +1,12 @@
 <h2>Authorize</h2>
 <div class="row">
-  <span class="border-bottom col-sm-8">These are the MSP Group Numbers you will be administering for MSP Direct.</span>
+  <span class="border-bottom col-sm-8">These are the MSP Group you will be administering for MSP Direct.</span>
   <span class="end col-sm-4 border-bottom">{{date | date: 'yyyy-MMM-dd' }}</span>
+  <ul *ngIf="groupsMSP.length>0">
+    <li *ngFor="let g of groupsMSP">
+      {{ g.groupName }} - {{g.groupNumber}} 
+    </li>
+  </ul>
 </div>
 <sitereg-page-sections *ngIf="fg">
   <h2 *ngIf="mspRegDataSvc.agreementNumber | async as num">Agreement number: {{ num}}</h2>
