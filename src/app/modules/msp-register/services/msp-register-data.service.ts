@@ -419,9 +419,6 @@ export class MspRegisterDataService {
         const body = obj;
         console.log(`%c SiteregRequest`, 'color: green;' );
         console.log(body);
-
-        // const uuid = UUID.toString();
-
         // http request
         return this.http
             .put(environment.baseAPIUrl + '/sitereg/' + 'UUID', body, {

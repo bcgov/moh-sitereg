@@ -1,35 +1,59 @@
-
-<h2 >Authorize</h2>
+<h2>Authorize</h2>
 <div class="row">
-<span class="border-bottom col-sm-8">These are the MSP Group Numbers you will be administering for MSP Direct.</span>
-<span class="end col-sm-4 border-bottom">{{date | date: 'yyyy-MMM-dd' }}</span>
+  <span class="border-bottom col-sm-8">These are the MSP Group you will be administering for MSP Direct.</span>
+  <span class="end col-sm-4 border-bottom">{{date | date: 'yyyy-MMM-dd' }}</span>
+  <ul *ngIf="isValidGroups()">
+    <li *ngFor="let g of groupsMSP">
+      {{ g.groupName }} - {{g.groupNumber}} 
+    </li>
+  </ul>
 </div>
 <sitereg-page-sections *ngIf="fg">
   <h2 *ngIf="mspRegDataSvc.agreementNumber | async as num">Agreement number: {{ num}}</h2>
   <p *ngIf="mspRegDataSvc.agreementText | async as text">{{text}}</p>
-  <p *ngIf="mspRegDataSvc.signingAuthorityName | async as name">{{name}}</p>
-  <p *ngIf="mspRegDataSvc.signingAuthorityAddress | async as addr">{{addr}}</p>
+  <!-- <p *ngIf="mspRegDataSvc.signingAuthorityName | async as name">{{name}}</p>
+  <p *ngIf="mspRegDataSvc.signingAuthorityAddress | async as addr">{{addr}}</p> -->
 
-  <div class="form-check form-check-inline mb-5" *ngIf="adminFgs">
+
+
+  <!-- <div class="form-check form-check-inline mb-5" *ngIf="adminFgs">
     <ng-container *ngFor="let adminFg of adminFgs; index as i">
-    <sitereg-msp-register-authorize-access checked="adminFg.values['directAccess']" [label]="adminFg.value.firstName" (value)="updateAccess($event, i, 'admin')"></sitereg-msp-register-authorize-access>
-  </ng-container>
+      <sitereg-msp-register-authorize-access checked="adminFg.values['directAccess']" [label]="adminFg.value.firstName"
+        (value)="updateAccess($event, i, 'admin')"></sitereg-msp-register-authorize-access>
+    </ng-container>
   </div>
   <div class="form-check form-check-inline mb-5" *ngIf="userFgs">
-      <ng-container *ngFor="let userFg of userFgs; index as i">
-      <sitereg-msp-register-authorize-access checked="userFg.values['directAccess']" [label]="userFg.value.firstName" (value)="updateAccess($event, i, 'user')"></sitereg-msp-register-authorize-access>
+    <ng-container *ngFor="let userFg of userFgs; index as i">
+      <sitereg-msp-register-authorize-access checked="userFg.values['directAccess']" [label]="userFg.value.firstName"
+        (value)="updateAccess($event, i, 'user')"></sitereg-msp-register-authorize-access>
     </ng-container>
-</div>
+  </div> -->
 
-  <div class="row">
-    <sitereg-captcha [apiBaseUrl]=""
-             [nonce]=""
-             (onValidToken)="validToken($event)"
-             successMessage="You can save the form now.">
-    </sitereg-captcha>
-<!-- 
-    <common-captcha></common-captcha> -->
-</div>
+  <!-- 
+    <div class="row">
+      <sitereg-captcha [apiBaseUrl]=""
+              [nonce]=""
+              (onValidToken)="validToken($event)"
+              successMessage="You can save the form now.">
+      </sitereg-captcha>
+    </div> 
+-->
+
+<!-- Consent  -->
+
+  <div class="form-check form-check-inline mb-5" [formGroup]="fg">
+    <input class='form-check-input'  type="radio" form  name="consent" formControlName="consent" id="bctrue" tabindex="0"
+      [value]="true">
+    <label class='form-check-label' for="bctrue">
+      I agree
+    </label>
+    <input class='form-check-input'  type="radio"  name="consent" formControlName="consent" id="bcfalse" tabindex="0"
+      [value]="false">
+    <label class='form-check-label' for="bcfalse">
+      I disagree
+    </label>
+  </div> 
+
 
 </sitereg-page-sections>
 <common-form-action-bar (btnClick)="continue()" [canContinue]="fg.valid">
