@@ -2,7 +2,7 @@
 <div class="row">
   <span class="border-bottom col-sm-8">These are the MSP Group you will be administering for MSP Direct.</span>
   <span class="end col-sm-4 border-bottom">{{date | date: 'yyyy-MMM-dd' }}</span>
-  <ul *ngIf="groupsMSP.length>0">
+  <ul *ngIf="groupsMSP.length>0 && ((groupsMSP[0].groupNumber && groupsMSP[0].groupNumber.length>3)? true: false)">
     <li *ngFor="let g of groupsMSP">
       {{ g.groupName }} - {{g.groupNumber}} 
     </li>
@@ -39,20 +39,20 @@
     </div> 
 -->
 
-<!-- Consent -->
-<!-- 
-  <div >
-    <input class='form-check-input' formControlName="consent" type="radio" name="" id="bctrue" tabindex="0"
+<!-- Consent  -->
+
+  <div class="form-check form-check-inline mb-5">
+    <input class='form-check-input'  type="radio" name="consent" id="bctrue" tabindex="0"
       [value]="true">
     <label class='form-check-label' for="bctrue">
       I agree
     </label>
-    <input class='form-check-input' formControlName="consent" type="radio" id="bcfalse" tabindex="0"
+    <input class='form-check-input'  type="radio"  name="consent" id="bcfalse" tabindex="0"
       [value]="false">
     <label class='form-check-label' for="bcfalse">
-      I do not agree
+      I disagree
     </label>
-  </div>  -->
+  </div> 
 
 
 </sitereg-page-sections>
