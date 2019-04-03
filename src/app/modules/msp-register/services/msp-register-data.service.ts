@@ -25,7 +25,7 @@ import { environment } from 'src/environments/environment';
 import { IUserMsp } from '@msp-register/interfaces/base/i-user-msp';
 import { IMspUser } from '@msp-register/interfaces/i-msp-user';
 
-const apiUrl = environment.apiUrl;
+const apiUrl = environment.baseAPIUrl;
 
 /* tslint:disable */
 const text =
