@@ -118,10 +118,10 @@ export const accessAdmins: IMspAccessAdmin[] = [
     },
 ];
 export const groupNumbers: IMspGroup[] = [
-    { groupNumber: '1234567', groupName: 'maximus', thirdParty: true },
-    { groupNumber: '1234567', groupName: 'google', thirdParty: true },
-    { groupNumber: '1234567', groupName: 'microsoft', thirdParty: true },
-    { groupNumber: '1234567', groupName: 'oracleclear', thirdParty: true },
+    { groupNumber: '1234567', thirdParty: true },
+    { groupNumber: '1234567', thirdParty: true },
+    { groupNumber: '1234567', thirdParty: true },
+    { groupNumber: '1234567', thirdParty: true },
 ];
 
 export const organization: IMspOrganization = {

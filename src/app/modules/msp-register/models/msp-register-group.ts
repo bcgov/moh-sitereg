@@ -12,7 +12,6 @@ import {
 export class MspRegisterGroup extends GenerateForm<IMspGroup>
     implements IMspGroup {
     groupNumber: FormControl | string = '';
-    groupName: FormControl | string = '';
     thirdParty: boolean | FormControl = false;
     get validators() {
         return {
@@ -22,7 +21,6 @@ export class MspRegisterGroup extends GenerateForm<IMspGroup>
                 maxLength(7),
                 groupNumberValidator(),
             ],
-            groupName: [required, minLength(), maxLength(100)],
             thirdParty: [required],
         };
     }

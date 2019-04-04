@@ -281,9 +281,9 @@ export class MspRegisterDataService {
             return arr;
         }
         console.log('mapSigningAuthorityInformationDef', obj);
-        const user = this.mapBaseUser(obj) as ISigningAuthorityDef;
-        // user.msp_access = this.mapYesNoDef(obj.directMspAccess as boolean);
-        // user.spg = this.mapAdministeringForDef(obj.administeringFor as string);
+        const user = this.mapSigningAuthorityInformationDef(
+            obj
+        ) as ISigningAuthorityDef;
         return user as ISigningAuthorityDef;
     }
 
@@ -353,7 +353,9 @@ export class MspRegisterDataService {
         this.validateKeys(obj);
         const groupDef: IMspGroupDef = {
             mspgroup_num: obj.groupNumber as string,
-            mspgroup_name: obj.groupName as string,
+            // feedback-2019-04-03
+            // mspgroup_name will always be null
+            mspgroup_name: '',
             third_party: this.mapYesNoDef(obj.thirdParty as boolean),
         };
 
@@ -417,7 +419,7 @@ export class MspRegisterDataService {
             'application/json; charset=utf-8'
         );
         const body = obj;
-        console.log(`%c SiteregRequest`, 'color: green;' );
+        console.log(`%c SiteregRequest`, 'color: green;');
         console.log(body);
         // http request
         return this.http

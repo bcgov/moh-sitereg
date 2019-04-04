@@ -11,5 +11,5 @@ export const environment = {
     bypassGuards: false,
     promptOnExit: true,
     purgeWhenInactive: true,
-    enableLogging: true
+    enableLogging: true,
 };

@@ -53,9 +53,8 @@ export interface IOrgInformationDef {
 
 //#region signing_authority_def
 
-export interface ISigningAuthorityDef extends ICoreUserMspDef {
-    getDefObject(): any;
-}
+// tslint:disable-next-line: no-empty-interface
+export interface ISigningAuthorityDef extends ICoreUserMspDef {}
 
 //#endregion
 

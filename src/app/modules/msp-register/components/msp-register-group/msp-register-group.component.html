@@ -15,13 +15,6 @@
   <button (click)="delete(i)">Delete</button>
   <form [formGroup]="fg">
 
-    <!--Group Name-->
-    <div class="form-group col-sm-8 p-sm-0">
-      <label class="control-label" for="groupName">Group Name</label>
-      <input id="groupName" formControlName="groupName" class="form-control">
-      <sitereg-error-box [error]="validFormControl(fg, 'groupName')" errorMessage="Invalid"></sitereg-error-box>
-    </div>
-
     <!--Group Number-->
     <div class="form-group col-sm-6 p-sm-0">
       <label class="control-label" for="groupNumber">MSP Group Number #</label>
