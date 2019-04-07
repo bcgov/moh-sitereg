@@ -8,7 +8,7 @@ import {
 } from '@msp-register/models/validator-helpers';
 import { MspRegisterDataService } from '@msp-register/services/msp-register-data.service';
 import { IMspGroup } from '@msp-register/interfaces';
-// TODO: initialize componenet with an array of the formgroups and then use NGFor to dynamically render them and add them.
+
 @Component({
     selector: 'sitereg-msp-register-group',
     templateUrl: './msp-register-group.component.html',
@@ -16,7 +16,7 @@ import { IMspGroup } from '@msp-register/interfaces';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MspRegisterGroupComponent implements OnInit {
-    fgs: FormGroup[];
+    fgs: FormGroup[] = [];
     validFormControl: () => boolean;
     validFormGroup = this.mspRegisterStateSvc.validFormGroup;
 
@@ -25,14 +25,33 @@ export class MspRegisterGroupComponent implements OnInit {
         private router: Router,
         public mspRegDataSvc: MspRegisterDataService
     ) {
-        this.fgs = this.mspRegisterStateSvc.mspRegisterGroupForm;
+        this.updateFormGroups();
         this.validFormControl = validMultiFormControl.bind(this);
     }
 
     ngOnInit() {}
+
     continue() {
         console.clear();
+        this.logMiddleWareObjects();
+        this.router.navigate(['msp-registration/authorize']);
+    }
 
+    addFormGroup() {
+        this.mspRegisterStateSvc.addGroup();
+        this.updateFormGroups();
+    }
+
+    updateFormGroups() {
+        this.fgs = this.mspRegisterStateSvc.mspRegisterGroupForm;
+    }
+
+    deleteFormGroup(i: number) {
+        this.mspRegisterStateSvc.removeGroup(i);
+        this.updateFormGroups();
+    }
+
+    logMiddleWareObjects() {
         // Msp Groups
         const mspGroups: IMspGroup[] = [];
         this.mspRegisterStateSvc.mspRegisterGroupForm.forEach((v) =>
@@ -41,15 +60,5 @@ export class MspRegisterGroupComponent implements OnInit {
 
         const moMspGroups = this.mspRegDataSvc.mapGroupDef(mspGroups);
         console.log('MO - Group:', moMspGroups);
-
-        this.router.navigate(['msp-registration/authorize']);
-    }
-
-    addGroupNumber() {
-        this.mspRegisterStateSvc.addGroupNumber();
-    }
-
-    delete(i: number) {
-        this.mspRegisterStateSvc.removeGroupNumber(i);
     }
 }

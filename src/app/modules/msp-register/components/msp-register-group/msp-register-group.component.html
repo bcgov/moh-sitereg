@@ -3,7 +3,7 @@
 <h2 class="border-bottom">Group Numbers</h2>
 <div class='row mb-4'>
   <div class='col-md-3 p-4'>
-    <a (click)='addGroupNumber()'>
+    <a (click)='addFormGroup()'>
       <button class="btn btn-block btn-lg btn-secondary">
         Add Group Number
       </button>
@@ -11,8 +11,10 @@
   </div>
 </div>
 <sitereg-page-sections *ngFor="let fg of fgs; index as i">
-  <h3 class="border-bottom">Group Number #{{i+1}}</h3>
-  <button (click)="delete(i)">Delete</button>
+    <div class="row border-bottom">
+        <div class="col-auto mr-auto"><h3> Group Number #{{i+1}}</h3></div>
+        <div class="col-auto"><button (click)="deleteFormGroup(i)" type="button" class="btn btn-block btn-warning btn-lg btn-secondary">&#215;</button></div>
+    </div>
   <form [formGroup]="fg">
 
     <!--Group Number-->
@@ -24,7 +26,7 @@
 
     <!--Question Third Party -->
     <div class="form-group col-sm-6 p-sm-0">
-    <label class="control-label">Third Party? *
+    <label class="control-label">Third Party?
     </label>
     <div class="form-check">
       <input class='form-check-input' formControlName="thirdParty" type="radio" name="" id="bctrue" tabindex="0"
@@ -37,8 +39,6 @@
       <label class='form-check-label' for="bcfalse">
         No
       </label>
-      <!-- <sitereg-error-box [error]="validFormControl('thirdParty')" errorMessage="Please select an option">
-      </sitereg-error-box> -->
     </div>
   </div>
   </form>
