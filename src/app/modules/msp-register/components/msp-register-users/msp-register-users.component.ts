@@ -6,6 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 import { MspRegisterDataService } from '@msp-register/services/msp-register-data.service';
 import { validMultiFormControl } from '@msp-register/models/validator-helpers';
 import { IMspUser } from '@msp-register/interfaces/i-msp-user';
+import { cAdministeringFor } from '../../models/core/core-types';
 
 @Component({
     selector: 'sitereg-msp-register-users',
@@ -13,35 +14,50 @@ import { IMspUser } from '@msp-register/interfaces/i-msp-user';
     styleUrls: ['./msp-register-users.component.scss'],
 })
 export class MspRegisterUsersComponent implements OnInit {
-    fgs: FormGroup[];
+    fgs: FormGroup[] = [];
     validFormControl: () => boolean;
-    administeringFor: BehaviorSubject<string[]> = new BehaviorSubject<string[]>(
-        [
-            'Employees',
-            'International Students',
-            'Employees and International Students',
-        ]
-    );
     validateFormGroup = this.mspRegisterStateSvc.validFormGroup;
+    administeringFor: BehaviorSubject<string[]> = new BehaviorSubject<string[]>(
+        cAdministeringFor
+    );
 
     constructor(
-        public mspRegisterStateSvc: MspRegisterStateService,
         private router: Router,
+        public mspRegisterStateSvc: MspRegisterStateService,
         public mspRegDataSvc: MspRegisterDataService
     ) {
-        this.fgs = this.mspRegisterStateSvc.mspRegisterUsersForm;
-        // this.fg = this.mspRegisterStateSvc.mspRegisterSigningAuthorityForm;
+        this.updateFormGroups();
         this.validFormControl = validMultiFormControl.bind(this);
-        this.fgs.forEach((fg) => {
-            fg.valueChanges.subscribe((obs) => console.log(fg));
-        });
+
+        // // debug only
+        // this.fgs.forEach((fg) => {
+        //     fg.valueChanges.subscribe((obs) => console.log(fg));
+        // });
     }
 
     ngOnInit() {}
 
     continue() {
         console.clear();
+        this.logMiddleWareObjects();
+        this.router.navigate(['msp-registration/group-numbers']);
+    }
 
+    addFormGroup() {
+        this.mspRegisterStateSvc.addUser();
+        this.updateFormGroups();
+    }
+
+    updateFormGroups() {
+        this.fgs = this.mspRegisterStateSvc.mspRegisterUsersForm;
+    }
+
+    deleteFormGroup(i: number) {
+        this.mspRegisterStateSvc.removeUser(i);
+        this.updateFormGroups();
+    }
+
+    logMiddleWareObjects() {
         // Users
         const mspUsers: IMspUser[] = [];
         this.mspRegisterStateSvc.mspRegisterUsersForm.forEach((v) =>
@@ -50,15 +66,5 @@ export class MspRegisterUsersComponent implements OnInit {
 
         const moUsers = this.mspRegDataSvc.mapUserDef(mspUsers);
         console.log('MO - Users:', moUsers);
-
-        this.router.navigate(['msp-registration/group-numbers']);
-    }
-
-    addUser() {
-        this.mspRegisterStateSvc.addUser();
-    }
-
-    delete(i: number) {
-        this.mspRegisterStateSvc.removeUser(i);
     }
 }

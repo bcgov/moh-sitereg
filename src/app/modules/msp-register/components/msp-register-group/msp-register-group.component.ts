@@ -2,10 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MspRegisterStateService } from '@msp-register/services/msp-register-state.service';
 import { Router } from '@angular/router';
-import {
-    validFormControl,
-    validMultiFormControl,
-} from '@msp-register/models/validator-helpers';
+import { validMultiFormControl } from '@msp-register/models/validator-helpers';
 import { MspRegisterDataService } from '@msp-register/services/msp-register-data.service';
 import { IMspGroup } from '@msp-register/interfaces';
 
@@ -21,12 +18,17 @@ export class MspRegisterGroupComponent implements OnInit {
     validFormGroup = this.mspRegisterStateSvc.validFormGroup;
 
     constructor(
-        public mspRegisterStateSvc: MspRegisterStateService,
         private router: Router,
+        public mspRegisterStateSvc: MspRegisterStateService,
         public mspRegDataSvc: MspRegisterDataService
     ) {
         this.updateFormGroups();
         this.validFormControl = validMultiFormControl.bind(this);
+
+        // // debug only
+        // this.fgs.forEach((fg) => {
+        //     fg.valueChanges.subscribe((obs) => console.log(fg));
+        // });
     }
 
     ngOnInit() {}

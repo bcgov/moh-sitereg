@@ -2,56 +2,54 @@ import { IMspAccessAdmin } from '@msp-register/interfaces/i-msp-access-admins';
 import { GenerateForm } from './generate-form';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import {
-    required,
-    minLength,
-    maxLength,
-    phoneValidator,
-    faxValidator,
-} from './validator-helpers';
+    ctFormControlString,
+    ctFormControlUserTitle,
+    ctFormControlBoolean,
+    cUserMspValidators,
+    applyMixins,
+} from './core/core-types';
+import { MspAccessAdmin } from './imodels/msp-register-access-admins';
 
 export class MspRegisterAccessAdmins extends GenerateForm<IMspAccessAdmin>
-    implements IMspAccessAdmin {
-    userTitle?:
-        | FormControl
-        | 'Mr.'
-        | 'Mrs.'
-        | 'Ms.'
-        | 'Dr.'
-        | 'Prof.'
-        | 'Rev.' = null;
-    firstName: string | FormControl = '';
-    initial?: string | FormControl = '';
-    lastName: string | FormControl = '';
-    jobTitle: string | FormControl = '';
-    emailAddress: string | FormControl = '';
-    confirmEmail: string | FormControl = '';
-    phone: string | FormControl = '';
-    ext?: string | FormControl = '';
-    fax: string | FormControl = '';
-    administeringFor: string | FormControl = '';
-    directMspAccess: boolean | FormControl = false;
+    implements MspAccessAdmin {
+    // userTitle?: ctFormControlUserTitle = null;
+    // firstName: ctFormControlString = null;
+    // initial?: ctFormControlString = null;
+    // lastName: ctFormControlString = null;
+    // jobTitle: ctFormControlString = null;
+    // emailAddress: ctFormControlString = null;
+    // confirmEmail: ctFormControlString = null;
+    // phone: ctFormControlString = null;
+    // ext?: ctFormControlString = null;
+    // fax: ctFormControlString = null;
+    // administeringFor: ctFormControlString = null;
+    // directMspAccess: ctFormControlBoolean = false;
+
+    // REMOVEME Defaults
+    userTitle?: ctFormControlUserTitle = 'Mr.';
+    firstName: ctFormControlString = 'Faheem';
+    initial?: ctFormControlString = 'A';
+    lastName: ctFormControlString = 'Wattoo';
+    jobTitle: ctFormControlString = 'Angular Develoiper';
+    emailAddress: ctFormControlString = 'faheemfactor@gmail.com';
+    confirmEmail: ctFormControlString = 'faheemfactor@gmail.com';
+    phone: ctFormControlString = '7787917432';
+    ext?: ctFormControlString = '125';
+    fax: ctFormControlString = '7787917432';
+    administeringFor: ctFormControlString = 'International Students';
+    directMspAccess: ctFormControlBoolean = false;
 
     get validators() {
-        return {
-            userTitle: [maxLength(5)],
-            firstName: [required, minLength(), maxLength(100)],
-            initial: [maxLength(1)],
-            lastName: [required, minLength(), maxLength(100)],
-            jobTitle: [required, minLength(), maxLength(100)],
-            emailAddress: [required, Validators.email, maxLength(100)],
-            confirmEmail: [required, Validators.email, maxLength(100)],
-            phone: [required, phoneValidator()],
-            ext: [maxLength(100)],
-            fax: [faxValidator()],
-            administeringFor: [required],
-            directMspAccess: [required],
-        };
+        return cUserMspValidators;
     }
 
     constructor(
         private gf: GenerateForm<IMspAccessAdmin>,
-        private newFb: FormBuilder
+        public newFb: FormBuilder
     ) {
         super(newFb);
+        const valid = new FormControl('', Validators.required);
     }
 }
+
+applyMixins(MspRegisterAccessAdmins, [MspAccessAdmin, GenerateForm]);

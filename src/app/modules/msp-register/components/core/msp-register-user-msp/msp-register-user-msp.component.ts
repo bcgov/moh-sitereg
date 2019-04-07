@@ -13,11 +13,11 @@ import {
 })
 export class MspRegisterUserMspComponent implements OnInit {
     @Input() fg: FormGroup;
-    validFormControl: (name: string) => boolean;
+    validFormControl: (fg: FormGroup, name: string) => boolean;
 
     constructor(private router: Router) {
-        this.validFormControl = validFormControl.bind(this);
-        // this.validFormControl = validMultiFormControl.bind(this);
+        // this.validFormControl = validFormControl.bind(this);
+        this.validFormControl = validMultiFormControl.bind(this);
     }
 
     ngOnInit() {}

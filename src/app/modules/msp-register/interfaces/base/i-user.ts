@@ -12,5 +12,3 @@ export interface IUser {
     fax: string | FormControl;
     administeringFor: string | FormControl;
 }
-
-export type UserTitle = 'Mr.' | 'Mrs.' | 'Ms.' | 'Dr.' | 'Prof.' | 'Rev.';

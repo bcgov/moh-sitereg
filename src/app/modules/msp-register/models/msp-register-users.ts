@@ -1,58 +1,49 @@
 import { GenerateForm } from './generate-form';
+import { FormControl, FormBuilder, Validators } from '@angular/forms';
 import {
-    IMspOrganization,
-    IMspSigningAuthority,
-    IMspUsers,
-    IUser,
-} from '@msp-register/interfaces';
-import {
-    FormControl,
-    FormBuilder,
-    Validators,
-    Validator,
-} from '@angular/forms';
-import {
-    required,
-    minLength,
-    maxLength,
-    phoneValidator,
-    faxValidator,
-} from './validator-helpers';
+    ctFormControlString,
+    ctFormControlUserTitle,
+    applyMixins,
+    cUserValidators,
+} from './core/core-types';
+import { MspUser } from './imodels/msp-register-user';
+import { IMspUser } from '@msp-register/interfaces/i-msp-user';
 
-export class MspRegisterUsers extends GenerateForm<IMspUsers> implements IUser {
-    userTitle?: 'mr' | 'mrs' | FormControl = 'mr';
-    firstName: string | FormControl = '';
-    initial?: string | FormControl = '';
-    lastName: string | FormControl = '';
-    jobTitle: string | FormControl = '';
-    emailAddress: string | FormControl = '';
-    confirmEmail: string | FormControl = '';
-    phone: string | FormControl = '';
-    ext?: string | FormControl = '';
-    fax: string | FormControl = '';
-    administeringFor: string | FormControl = '';
+export class MspRegisterUsers extends GenerateForm<IMspUser>
+    implements MspUser {
+    // userTitle?: ctFormControlUserTitle = null;
+    // firstName: ctFormControlString = null;
+    // initial?: ctFormControlString = null;
+    // lastName: ctFormControlString = null;
+    // jobTitle: ctFormControlString = null;
+    // emailAddress: ctFormControlString = null;
+    // confirmEmail: ctFormControlString = null;
+    // phone: ctFormControlString = null;
+    // ext?: ctFormControlString = null;
+    // fax: ctFormControlString = null;
+    // administeringFor: ctFormControlString = null;
 
-    get validators() {
-        return {
-            userTitle: [maxLength(5)],
-            firstName: [required, minLength(), maxLength()],
-            initial: [maxLength(1)],
-            lastName: [required, minLength(), maxLength()],
-            jobTitle: [required, minLength(), maxLength()],
-            emailAddress: [required, Validators.email, maxLength()],
-            confirmEmail: [required, Validators.email, maxLength()],
-            phone: [required, phoneValidator()],
-            ext: [maxLength()],
-            fax: [faxValidator()],
-            administeringFor: [required, maxLength()],
-        };
+    // REMOVEME Defaults
+    userTitle?: ctFormControlUserTitle = 'Mr.';
+    firstName: ctFormControlString = 'Faheem';
+    initial?: ctFormControlString = 'A';
+    lastName: ctFormControlString = 'Wattoo';
+    jobTitle: ctFormControlString = 'Angular Develoiper';
+    emailAddress: ctFormControlString = 'faheemfactor@gmail.com';
+    confirmEmail: ctFormControlString = 'faheemfactor@gmail.com';
+    phone: ctFormControlString = '7787917432';
+    ext?: ctFormControlString = '125';
+    fax: ctFormControlString = '7787917432';
+    administeringFor: ctFormControlString = 'International Students';
+
+    validators() {
+        return cUserValidators;
     }
 
-    constructor(
-        private gf: GenerateForm<IMspOrganization>,
-        private newFb: FormBuilder
-    ) {
+    constructor(private gf: GenerateForm<IMspUser>, public newFb: FormBuilder) {
         super(newFb);
         const valid = new FormControl('', Validators.required);
     }
 }
+
+applyMixins(MspRegisterUsers, [MspUser, GenerateForm]);

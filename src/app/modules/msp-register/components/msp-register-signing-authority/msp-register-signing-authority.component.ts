@@ -9,6 +9,7 @@ import {
 } from '@msp-register/models/validator-helpers';
 import { MspRegisterDataService } from '@msp-register/services/msp-register-data.service';
 import { BehaviorSubject } from 'rxjs';
+import { cAdministeringFor } from '../../models/core/core-types';
 
 @Component({
     selector: 'sitereg-msp-register-signing-authority',
@@ -21,11 +22,7 @@ export class MspRegisterSigningAuthorityComponent implements OnInit {
     fg: FormGroup;
     validFormControl: () => boolean;
     administeringFor: BehaviorSubject<string[]> = new BehaviorSubject<string[]>(
-        [
-            'Employees',
-            'International Students',
-            'Employees and International Students',
-        ]
+        cAdministeringFor
     );
 
     constructor(
