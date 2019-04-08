@@ -18,7 +18,11 @@ interface IControls {
 const validKeys = ['string'];
 
 export class GenerateForm<T> {
+    consolePrintForm = 'MspRegisterGroup';
+
     keys: string[];
+    values = {};
+
     validateKeys([...args]): string[] {
         const keys = args.filter((itm) => validKeys.includes(itm)) as string[];
         return keys;
@@ -27,10 +31,17 @@ export class GenerateForm<T> {
     generateArr(keys: string[], validators): IControls[] {
         let arr = [];
         for (const key of keys) {
+            if (this.constructor.name === this.consolePrintForm) {
+                console.log(
+                    `%c ${key} - %o <=  generateArr`,
+                    `color:lightgreen`,
+                    validators
+                );
+            }
             arr = this.genControls(
                 key,
                 arr,
-                new FormControl('', validators[key])
+                new FormControl(this.values[key], validators[key])
             );
         }
         return arr;
@@ -61,10 +72,66 @@ export class GenerateForm<T> {
         fg.controls[control].setValidators(validators);
     }
 
-    constructor(private fb: FormBuilder) {}
+    constructor(private fb: FormBuilder) {
+        if (this.constructor.name === this.consolePrintForm) {
+            // console.clear();
+            console.log(
+                `%c %o <= GenerateForm`,
+                `color:darkgreen`,
+                this.constructor.name
+            );
+        }
+    }
 
+    /**
+     * generate class members as keys including GenerateForm
+     */
     get genKeys() {
         const keys = Object.keys(this).filter((key) => !ctrKeys.includes(key));
+
+        // updating default values if specified
+        keys.forEach((element) => {
+            Object.entries(this).filter((entry) => {
+                if (entry.includes(element)) {
+                    this.values[element] =
+                        entry.length > 1 && typeof (entry[1] === 'string')
+                            ? entry[1]
+                            : null;
+                }
+            });
+
+            // REMOVEME
+            if (element === 'consolePrintForm') {
+                keys.splice(keys.indexOf(element), 1);
+            }
+        });
+
+        // REMOVEME
+        if (this.constructor.name === this.consolePrintForm) {
+            // console.clear();
+            console.log(`%c %o <= values: genKeys`, `color:darkgreen`, this);
+
+            console.log(
+                `%c %o <= values: genKeys`,
+                `color:darkgreen`,
+                Object.values(this)
+            );
+
+            // Object.entries(this).filter((entry) => {
+            //     console.log(`%c %o <= entry: genKeys`,
+            //         `color:darkgreen`,
+            //         // entry.includes('groupNumber')
+            //         entry
+            //     );
+            // });
+
+            console.log(
+                `%c %o <= values: genKeys`,
+                `color:darkgreen`,
+                // entry.includes('groupNumber')
+                this.values
+            );
+        }
         return keys;
     }
 }

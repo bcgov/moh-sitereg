@@ -1,4 +1,10 @@
-import { Component, OnInit, ChangeDetectionStrategy, OnChanges, SimpleChanges } from '@angular/core';
+import {
+    Component,
+    OnInit,
+    ChangeDetectionStrategy,
+    OnChanges,
+    SimpleChanges,
+} from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {
     MspRegisterStateService,
@@ -12,9 +18,15 @@ import {
     IUserDef,
     IAccessAdministratorDef,
 } from '@core/interfaces/i-http-data';
-import { IMspGroup } from '@msp-register/interfaces';
+import {
+    IMspGroup,
+    IMspSigningAuthority,
+    IMspOrganization,
+} from '@msp-register/interfaces';
 import { IMspUser } from '@msp-register/interfaces/i-msp-user';
 import { IMspAccessAdmin } from '@msp-register/interfaces/i-msp-access-admins';
+import { Router } from '@angular/router';
+import { cAdministeringFor } from '@msp-register/models/core/core-types';
 // import {  } from 'moh-common-lib/captcha';
 
 export type AccessType = 'admin' | 'user';
@@ -27,51 +39,59 @@ export type AccessType = 'admin' | 'user';
 })
 export class MspRegisterAuthorizeComponent implements OnInit {
     fg: FormGroup;
-    signingAuthorityName: Observable<string>;
+    // signingAuthorityName: Observable<string>;
     date: Date = new Date();
     adminFgs: FormGroup[];
     userFgs: FormGroup[];
     validFormControl: () => boolean;
     groupsMSP: IMspGroup[] = this.getGroupsInfo();
 
+    // signingAuthority : IMspSigningAuthority;
+    groupNumbers: IMspGroup[];
+
     constructor(
+        private router: Router,
         public mspRegisterStateSvc: MspRegisterStateService,
         public mspRegDataSvc: MspRegisterDataService,
-        private formBuilder: FormBuilder,
+        private formBuilder: FormBuilder
     ) {
         this.validFormControl = validFormControl.bind(this);
     }
 
+    public get signingAuthority(): IMspSigningAuthority {
+        return this.mspRegisterStateSvc.signingAuthority;
+    }
+
+    public get organization(): IMspOrganization {
+        return this.mspRegisterStateSvc.organization;
+    }
+
     ngOnInit() {
         this.fg = this.mspRegisterStateSvc.mspRegisterAuthorizeForm;
-        const name = this.mspRegisterStateSvc.signingAuthorityName;
+        // const name = this.mspRegisterStateSvc.signingAuthorityName;
         this.mspRegDataSvc.updateSigningAuthorityName(name);
-        const address = this.mspRegisterStateSvc.signingAuthorityAddress;
-        this.mspRegDataSvc.updateSigningAuthorityAddress(address);
+        // const address = this.mspRegisterStateSvc.signingAuthorityAddress;
+        // this.mspRegDataSvc.updateSigningAuthorityAddress(address);
         this.adminFgs = this.mspRegisterStateSvc.mspRegisterAccessAdminsForm;
         this.userFgs = this.mspRegisterStateSvc.mspRegisterUsersForm;
 
         this.genConsentForm();
     }
 
-
     private genConsentForm() {
-
         this.fg = this.formBuilder.group({
-            consent: ['', [Validators.required]]
+            consent: ['', [Validators.required]],
         });
 
         // temporary - if user click on disagree, this invalids required field
-        this.fg.valueChanges.subscribe(data => {
+        this.fg.valueChanges.subscribe((data) => {
             const consentState = this.fg.get('consent');
             if (consentState.value === false) {
-               this.fg.setErrors({consentFailed: true});
-               // this.fg.updateValueAndValidity();
+                this.fg.setErrors({ consentFailed: true });
+                // this.fg.updateValueAndValidity();
             }
-        }
-        );
+        });
     }
-
 
     updateAccess($event: string, i: number, type: UserTypes) {
         switch (type) {
@@ -96,7 +116,6 @@ export class MspRegisterAuthorizeComponent implements OnInit {
     }
 
     getGroupsInfo() {
-
         // Msp Groups
         const mspGroups: IMspGroup[] = [];
         this.mspRegisterStateSvc.mspRegisterGroupForm.forEach((v) =>
@@ -166,9 +185,27 @@ export class MspRegisterAuthorizeComponent implements OnInit {
     }
 
     isValidGroups() {
-        return (this.groupsMSP.length > 0
-            && (
-                ((this.groupsMSP[0].groupNumber as string) &&
-                    (this.groupsMSP[0].groupNumber as string).length > 3) ? true : false));
+        return (
+            this.groupsMSP.length > 0 &&
+            ((this.groupsMSP[0].groupNumber as string) &&
+            (this.groupsMSP[0].groupNumber as string).length > 3
+                ? true
+                : false)
+        );
     }
+
+    public navigateTo(route: string) {
+        this.router.navigate([`msp-registration/${route}`]);
+    }
+
+    // /**
+    //  *
+    //  * @param exp
+    //  */
+    // public isAdministeringFor(exp: string): boolean {
+
+    //     const options = cAdministeringFor.filter( element => element.includes(exp) );
+    //     console.log('%o : %o <= isAdministeringFor', exp, options.length );
+    //     return options && options.length > 0 ? true : false;
+    // }
 }

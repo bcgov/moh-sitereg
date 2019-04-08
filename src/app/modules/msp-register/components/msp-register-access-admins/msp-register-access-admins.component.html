@@ -2,23 +2,22 @@
 <h2 class="border-bottom">Access Admins</h2>
 <div class='row mb-4'>
   <div class='col-md-3 p-4'>
-    <a (click)='addAdmin()'>
+    <a (click)='addFormGroup()'>
       <button class="btn btn-block btn-lg btn-secondary">
         Add Access Admin
       </button>
     </a>
   </div>
 </div>
-
 <sitereg-page-sections *ngFor="let fg of fgs; index as i">
-  <!-- <ng-container *ngTemplateOutlet="addAdmins"> -->
-  <h2 class="border-bottom">Add New Access Admin</h2>
-  <button (click)="delete(i)">Delete</button>
-  <form [formGroup]="fg">
-    <sitereg-msp-register-user-msp  [fg]="fg"  ></sitereg-msp-register-user-msp>
-  </form>
-  <!-- </ng-container> -->
+  <div class="row border-bottom">
+    <div class="col-auto mr-auto">
+      <h3> Access Admin #{{fgs.length-i}}</h3>
+    </div>
+    <div class="col-auto"><button (click)="deleteFormGroup(i)" type="button"
+        class="btn btn-block btn-warning btn-lg btn-secondary">&#215;</button></div>
+  </div>
+  <sitereg-msp-register-user-msp [fg]="fg"></sitereg-msp-register-user-msp>
 </sitereg-page-sections>
-<common-form-action-bar (btnClick)="continue()" [canContinue]="validForms">
-
+<common-form-action-bar (btnClick)="continue()" [canContinue]="validFormGroup(fgs)">
 </common-form-action-bar>

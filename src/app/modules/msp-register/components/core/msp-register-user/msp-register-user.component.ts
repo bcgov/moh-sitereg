@@ -1,12 +1,12 @@
 import { Component, Input } from '@angular/core';
-import { UserTitle } from '@msp-register/interfaces';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import {
-    validFormControl,
-    validMultiFormControl,
-} from '@msp-register/models/validator-helpers';
+import { validMultiFormControl } from '@msp-register/models/validator-helpers';
 import { BehaviorSubject } from 'rxjs';
+import {
+    cAdministeringFor,
+    cUserTitles,
+} from '@msp-register/models/core/core-types';
 
 @Component({
     selector: 'sitereg-msp-register-user',
@@ -18,13 +18,9 @@ export class MspRegisterUserComponent {
     @Input() fg: FormGroup;
     validFormControl: (fg: FormGroup, name: string) => boolean;
 
-    userTitles: UserTitle[] = ['Mr.', 'Mrs.', 'Ms.', 'Dr.', 'Prof.', 'Rev.'];
+    userTitles = cUserTitles;
     administeringFor: BehaviorSubject<string[]> = new BehaviorSubject<string[]>(
-        [
-            'Employees',
-            'International Students',
-            'Employees and International Students',
-        ]
+        cAdministeringFor
     );
 
     constructor(private router: Router) {

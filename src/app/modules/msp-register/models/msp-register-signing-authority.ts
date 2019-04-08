@@ -35,6 +35,30 @@ export class MspRegisterSigningAuthority
     administeringFor: string | FormControl = '';
     directMspAccess: boolean | FormControl = false;
 
+    //#region REMOVEME - Delete me
+   
+    // userTitle?:
+    //     | FormControl
+    //     | 'Mr.'
+    //     | 'Mrs.'
+    //     | 'Ms.'
+    //     | 'Dr.'
+    //     | 'Prof.'
+    //     | 'Rev.' = 'Mr.';
+    // firstName: string | FormControl = 'Faheem';
+    // initial?: string | FormControl = 'A';
+    // lastName: string | FormControl = 'Wattoo';
+    // jobTitle: string | FormControl = 'Angular Developer';
+    // emailAddress: string | FormControl = 'faheem.wattoo@maximusbc.ca';
+    // confirmEmail: string | FormControl = 'faheem.wattoo@maximusbc.ca';
+    // phone: string | FormControl = '7787917432';
+    // ext?: string | FormControl = '111';
+    // fax: string | FormControl = '7787917432';
+    // administeringFor: string | FormControl = 'Employees';
+    // directMspAccess: boolean | FormControl = true;
+
+    //#endregion
+
     get validators() {
         return {
             userTitle: [maxLength(5)],

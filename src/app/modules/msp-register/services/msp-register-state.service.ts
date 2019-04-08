@@ -8,6 +8,10 @@ import { MspRegisterSigningAuthority } from '@msp-register/models/msp-register-s
 import { MspRegisterGroup } from '@msp-register/models/msp-register-group';
 import { MspRegisterUsers } from '@msp-register/models/msp-register-users';
 import { MspRegisterAuthorize } from '@msp-register/models/msp-register-authorize';
+import {
+    IMspSigningAuthority,
+    IMspOrganization,
+} from '@msp-register/interfaces';
 // import { MspRegisterUserMsp } from '@msp-register/models/core/msp-register-user-msp';
 
 export type UserTypes = 'admin' | 'user';
@@ -15,65 +19,48 @@ export type UserTypes = 'admin' | 'user';
     providedIn: 'root',
 })
 export class MspRegisterStateService {
+    consolePrintForm = 'MspRegisterStateService';
+
     private fb = new FormBuilder();
     private gf = new GenerateForm(this.fb);
     public mspRegisterOrganizationForm: FormGroup;
-    public mspRegisterAccessAdminsForm: FormGroup[];
     public mspRegisterSigningAuthorityForm: FormGroup;
     public mspRegisterUserMspForm: FormGroup;
-    public mspRegisterGroupForm: FormGroup[];
-    public mspRegisterUsersForm: FormGroup[];
+    public mspRegisterAccessAdminsForm: FormGroup[] = [];
+    public mspRegisterUsersForm: FormGroup[] = [];
+    public mspRegisterGroupForm: FormGroup[] = [];
     public mspRegisterAuthorizeForm: FormGroup;
 
-    addAdmin() {
-        this.mspRegisterAccessAdminsForm.unshift(
-            this.createMspRegisterSigningAuthorityForm(this.gf, this.fb)
-        );
-    }
-
-    removeAdmin(i: number) {
-        this.mspRegisterAccessAdminsForm.splice(i, 1);
-    }
-
-    addUser() {
-        this.mspRegisterUsersForm.unshift(
-            this.createMspRegisterUsersForm(this.gf, this.fb)
-        );
-    }
-
-    removeUser(i: number) {
-        this.mspRegisterUsersForm.splice(i, 1);
-    }
-
-    addGroupNumber() {
-        this.mspRegisterGroupForm.unshift(
-            this.createMspRegisterGroupNumbersForm(this.gf, this.fb)
-        );
-    }
-
-    removeGroupNumber(i: number) {
-        this.mspRegisterGroupForm.splice(i, 1);
-    }
-
-    get signingAuthorityName() {
-        const formVal = this.mspRegisterSigningAuthorityForm.value;
-        return `${formVal.firstName} ${formVal.lastName} `;
-    }
-
-    get signingAuthorityAddress() {
-        const formVal = this.mspRegisterOrganizationForm.value;
-        return `${formVal.address} `;
-    }
-
-    authorizeUsersList(group: FormGroup[]) {
-        const users = [];
-        if (group.length < 1) return;
-        for (const control of group) {
-            if (!control) return;
-            users.push(control.value);
+    constructor() {
+        if (this.constructor.name === this.consolePrintForm) {
+            // console.clear();
+            console.log(`%c %o`, `color:darkgreen`, this.constructor.name);
         }
-        return users;
+
+        const fb = this.fb;
+        const gf = this.gf;
+
+        this.mspRegisterOrganizationForm = this.createMspRegisterOrganizationForm(
+            gf,
+            fb
+        );
+        this.mspRegisterSigningAuthorityForm = this.createMspRegisterSigningAuthorityForm(
+            gf,
+            fb
+        );
+
+        this.mspRegisterAuthorizeForm = this.createMspRegisterAuthorizeForm(
+            gf,
+            fb
+        );
+
+        // // REMOVEME Debug Only
+        // this.mspRegisterOrganizationForm.valueChanges.subscribe((obs) =>
+        //     console.log(obs)
+        // );
     }
+
+    //#region Common
 
     validFormGroup(fgs: FormGroup[]): boolean {
         let bool = true;
@@ -84,37 +71,12 @@ export class MspRegisterStateService {
         return bool;
     }
 
-    constructor() {
-        const fb = this.fb;
-        const gf = this.gf;
-        this.mspRegisterOrganizationForm = this.createMspRegisterOrganizationForm(
-            gf,
-            fb
-        );
-        this.mspRegisterAccessAdminsForm = [
-            this.createMspRegisterAccessAdminsForm(gf, fb),
-        ];
-        this.mspRegisterSigningAuthorityForm = this.createMspRegisterSigningAuthorityForm(
-            gf,
-            fb
-        );
+    //#endregion
 
-        // this.mspRegisterUserMspForm = this.createMspRegisterUserMspFormReusable(
-        //     gf,
-        //     fb
-        // );
+    //#region Organizatoin
 
-        this.mspRegisterGroupForm = [
-            this.createMspRegisterGroupNumbersForm(gf, fb),
-        ];
-        this.mspRegisterUsersForm = [this.createMspRegisterUsersForm(gf, fb)];
-        this.mspRegisterAuthorizeForm = this.createMspRegisterAuthorizeForm(
-            gf,
-            fb
-        );
-        this.mspRegisterOrganizationForm.valueChanges.subscribe((obs) =>
-            console.log(obs)
-        );
+    get organization() {
+        return this.mspRegisterOrganizationForm.value as IMspOrganization;
     }
 
     createMspRegisterOrganizationForm(gf: GenerateForm<any>, fb: FormBuilder) {
@@ -124,15 +86,13 @@ export class MspRegisterStateService {
         );
     }
 
-    createMspRegisterAccessAdminsForm(gf: GenerateForm<any>, fb: FormBuilder) {
-        const mraa = new MspRegisterAccessAdmins(gf, fb);
-        const form = this.fb.group(
-            mraa.genForms(mraa.generateArr(mraa.genKeys, mraa.validators))
-        );
-        // for (const control in form.controls) {
-        //   form.controls[control].setValue('zzzzz');
-        // }
-        return form;
+    //#endregion
+
+    //#region Signing Authority
+
+    get signingAuthority() {
+        return this.mspRegisterSigningAuthorityForm
+            .value as IMspSigningAuthority;
     }
 
     createMspRegisterSigningAuthorityForm(
@@ -145,6 +105,127 @@ export class MspRegisterStateService {
         );
     }
 
+    //#endregion
+
+    //#region AccessAdmins
+
+    addAdmin() {
+        if (this.mspRegisterAccessAdminsForm.length === 0) {
+            this.mspRegisterAccessAdminsForm = [
+                this.createMspRegisterAccessAdminsForm(this.gf, this.fb),
+            ];
+            return;
+        }
+
+        this.mspRegisterAccessAdminsForm.unshift(
+            this.createMspRegisterAccessAdminsForm(this.gf, this.fb)
+        );
+    }
+
+    removeAdmin(i: number) {
+        this.mspRegisterAccessAdminsForm.splice(i, 1);
+    }
+
+    createMspRegisterAccessAdminsForm(gf: GenerateForm<any>, fb: FormBuilder) {
+        const mr = new MspRegisterAccessAdmins(gf, fb);
+
+        // REMOVEME
+        this.logFormAndValidators(gf, mr);
+
+        return this.fb.group(
+            mr.genForms(mr.generateArr(mr.genKeys, mr.validators))
+        );
+    }
+
+    //#endregion
+
+    //#region Users
+
+    addUser() {
+        if (this.mspRegisterUsersForm.length === 0) {
+            this.mspRegisterUsersForm = [
+                this.createMspRegisterUsersForm(this.gf, this.fb),
+            ];
+            return;
+        }
+
+        this.mspRegisterUsersForm.unshift(
+            this.createMspRegisterUsersForm(this.gf, this.fb)
+        );
+    }
+
+    removeUser(i: number) {
+        this.mspRegisterUsersForm.splice(i, 1);
+    }
+
+    createMspRegisterUsersForm(gf: GenerateForm<any>, fb: FormBuilder) {
+        const mr = new MspRegisterUsers(gf, fb);
+
+        // REMOVEME
+        this.logFormAndValidators(gf, mr);
+
+        return this.fb.group(
+            mr.genForms(mr.generateArr(mr.genKeys, mr.validators))
+        );
+    }
+
+    //#endregion
+
+    //#region MspGroup
+
+    addGroup() {
+        if (this.mspRegisterGroupForm.length === 0) {
+            this.mspRegisterGroupForm = [
+                this.createMspRegisterGroupNumbersForm(this.gf, this.fb),
+            ];
+            return;
+        }
+
+        this.mspRegisterGroupForm.unshift(
+            this.createMspRegisterGroupNumbersForm(this.gf, this.fb)
+        );
+    }
+
+    removeGroup(i: number) {
+        this.mspRegisterGroupForm.splice(i, 1);
+    }
+
+    createMspRegisterGroupNumbersForm(gf: GenerateForm<any>, fb: FormBuilder) {
+        const mr = new MspRegisterGroup(gf, fb);
+
+        // REMOVEME
+        this.logFormAndValidators(gf, mr);
+
+        return this.fb.group(
+            mr.genForms(mr.generateArr(mr.genKeys, mr.validators))
+        );
+    }
+
+    //#endregion
+
+    //#region Authorization
+
+    authorizeUsersList(group: FormGroup[]) {
+        const users = [];
+        if (group.length < 1) return;
+        for (const control of group) {
+            if (!control) return;
+            users.push(control.value);
+        }
+        return users;
+    }
+
+    createMspRegisterAuthorizeForm(gf: GenerateForm<any>, fb: FormBuilder) {
+        const mra = new MspRegisterAuthorize(gf, fb);
+        return this.fb.group(
+            mra.genForms(mra.generateArr(mra.genKeys, mra.validators))
+        );
+    }
+
+    //#endregion
+
+    //#region RufCommits
+
     // createMspRegisterUserMspFormReusable(
     //     gf: GenerateForm<any>,
     //     fb: FormBuilder
@@ -155,24 +236,30 @@ export class MspRegisterStateService {
     //     );
     // }
 
-    createMspRegisterGroupNumbersForm(gf: GenerateForm<any>, fb: FormBuilder) {
-        const mrgn = new MspRegisterGroup(gf, fb);
-        return this.fb.group(
-            mrgn.genForms(mrgn.generateArr(mrgn.genKeys, mrgn.validators))
-        );
+    // REMOVEME
+    logFormAndValidators(gf: any, mr: any) {
+        // REMOVEME
+        if (this.constructor.name === this.consolePrintForm) {
+            console.clear();
+            {
+                console.log(
+                    `%c:  %o <= gf : createMspRegisterGroupNumbersForm`,
+                    `color:lightgreen`,
+                    gf
+                );
+                console.log(
+                    `%c  %o <= mrgn: instance returned for reactive forms`,
+                    `color:lightgreen`,
+                    mr
+                );
+                console.log(
+                    `%c  Users =>  VALIDATORS .. %o`,
+                    `color:green`,
+                    mr.validators ? mr.validators : 'NO VALIDATORS FOUND'
+                );
+            }
+        }
     }
 
-    createMspRegisterUsersForm(gf: GenerateForm<any>, fb: FormBuilder) {
-        const mru = new MspRegisterUsers(gf, fb);
-        return this.fb.group(
-            mru.genForms(mru.generateArr(mru.genKeys, mru.validators))
-        );
-    }
-
-    createMspRegisterAuthorizeForm(gf: GenerateForm<any>, fb: FormBuilder) {
-        const mra = new MspRegisterAuthorize(gf, fb);
-        return this.fb.group(
-            mra.genForms(mra.generateArr(mra.genKeys, mra.validators))
-        );
-    }
+    //#endregion
 }

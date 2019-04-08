@@ -1,3 +1,5 @@
+// import { PayloadInterface } from '@core/models/api.models';
+
 //#region Core / Common
 
 export interface ICoreUserDef {
@@ -53,9 +55,8 @@ export interface IOrgInformationDef {
 
 //#region signing_authority_def
 
-export interface ISigningAuthorityDef extends ICoreUserMspDef {
-    getDefObject(): any;
-}
+// tslint:disable-next-line: no-empty-interface
+export interface ISigningAuthorityDef extends ICoreUserMspDef {}
 
 //#endregion
 

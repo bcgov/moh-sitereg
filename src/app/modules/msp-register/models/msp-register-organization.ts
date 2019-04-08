@@ -23,7 +23,23 @@ export class MspRegisterOrganization extends GenerateForm<IMspOrganization>
     street: string | FormControl = '';
     streetName: string | FormControl = '';
     addressLine2: string | FormControl = '';
-    // validators = new Map();
+
+    //#region REMOVEME - DEFAULTS
+
+    // name: string | FormControl = 'Maximus Canada';
+    // city: string | FormControl = 'Victoria';
+    // province: string | FormControl = 'British Columbia';
+    // postalCode: string | FormControl = 'V8W1L4';
+    // thirdParty: boolean | FormControl = false;
+    // blueCross: boolean | FormControl = true;
+    // administeringFor: string | FormControl = 'Employees';
+    // suite: string | FormControl = '716';
+    // street: string | FormControl = '01';
+    // streetName: string | FormControl = 'Yates Street';
+    // addressLine2: string | FormControl = '';
+
+    //#endregion
+
     get validators() {
         return {
             // todo: non-required fields invalids forms even left blank, which in return stop forms to continue to next screen

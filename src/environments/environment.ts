@@ -15,7 +15,7 @@ export const environment = {
     bypassSplashPage: false,
     promptOnExit: false,
     purgeWhenInactive: false,
-    enableLogging: true
+    enableLogging: true,
 };
 
 /*
