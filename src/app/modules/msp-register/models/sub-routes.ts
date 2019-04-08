@@ -38,4 +38,11 @@ export const subRoutes: Routes = [
         component: MspRegisterAuthorizeComponent,
         data: { title: 'Authorize' },
     },
+
+    // REMOVEME
+    // Testing - moving default to group numbers for testing only
+    {
+        path: '',
+        redirectTo: 'group-numbers',
+    },
 ];

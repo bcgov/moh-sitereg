@@ -5,9 +5,15 @@
   <!-- <h2>Authorize</h2> -->
 <div class="row">
   
-  <span class="border-bottom col-sm-8"><h2 *ngIf="mspRegDataSvc.agreementNumber | async as num">Agreement number: {{num}}</h2></span> 
-  <span class="end col-sm-4 border-bottom">{{date | date: 'yyyy-MMM-dd' }}</span>
+  <!-- <span class="border-bottom col-sm-8"><h5 *ngIf="mspRegDataSvc.agreementNumber | async as num">Agreement number: {{num}}</h5></span>  -->
+  <!-- <span class="end col-sm-4 border-bottom">{{date | date: 'yyyy-MMM-dd' }}</span> -->
 
+  <span class="border-bottom col-sm-8"></span>
+  <span class="end col-sm-4 border-bottom"><h5 *ngIf="mspRegDataSvc.agreementNumber | async as num">Agreement No: 87654321</h5></span> 
+
+  <h3>MINISTRY OF HEALTH DATA ACCESS AGREEMENT</h3>
+
+  <p>THIS AGREMENT is made between <b>Her Majesty the Queen in right of the Province of British Columbia, as represented by the Minister of Health</b> (the "<b>Province</b>") and <b>{{signingAuthority.firstName}} {{signingAuthority.lastName}}</b> (the "<b>Applicant</b>") and witnesses that, for good and valueable consideration (the reciept and sufficiency of which is hereby acknowledged), the Parties agree as follows: </p>
   <!--   -->
   <ol class="aggrement-ol">
     <!--1-->
@@ -52,14 +58,14 @@
         <ul class="list-no-bullets">
           <li>
             <!-- <input type="checkbox" name="checkMspDirectWeb" id="checkMspDirectWeb" [value]="true"> -->
-            <span > {{ (signingAuthority.directMspAccess && signingAuthority.directMspAccess===true)  ? "&#10004;": "&#10006;" }} </span>
+            <span > {{ (signingAuthority.directMspAccess && signingAuthority.directMspAccess===true)  ? "[&#10004;]": "[&#10006;]" }} </span>
             <label for="checkMspDirectWeb" class="label-right" title="click to edit"  (click)="navigateTo('signing-authority');">
               The Applicant will Administer MSP using the MSP Direct Web Interface.
             </label>
           </li>
           <li>
             <!-- <input type="checkbox" name="checkPacificBlueCross" id="checkPacificBlueCross" [value]="organization.blueCross"> -->
-            <span > {{ organization.blueCross ? "&#10004;": "&#10006;" }} </span>
+            <span > {{ organization.blueCross ? "[&#10004;]": "[&#10006;]" }} </span>
             <label for="checkPacificBlueCross" class="label-right" title="click to edit" (click)="navigateTo('organization');">
               The Applicant will Administer MSP using software supported by Pacific Blue Cross.
             </label>
@@ -67,7 +73,7 @@
           <li>
             <div  title="click to edit"  (click)="navigateTo('group-numbers');">
             <!-- <input type="checkbox" name="checkMspApplicantBehalf" id="checkMspApplicantBehalf" [value]="true"> -->
-            <span > {{ groupsMSP.length>0? "&#10004;": "&#10006;" }} </span>
+            <span > {{ groupsMSP.length>0? "[&#10004;]": "[&#10006;]" }} </span>
             <label for="checkMspApplicantBehalf" class="label-right">
               The following organization will Administer MSP on the Applicant`s behalf:
             </label>
@@ -89,21 +95,21 @@
       <ul class="list-no-bullets"  title="click to edit"  (click)="navigateTo('signing-authority');">
           <li class="li-inline"> 
             <!-- <input type="checkbox" [value]="true"> -->
-            <span > {{ (signingAuthority.administeringFor && signingAuthority.administeringFor.includes('Employees'))? "&#10004;": "&#10006;" }} </span>
+            <span > {{ (signingAuthority.administeringFor && signingAuthority.administeringFor.includes('Employees'))? "[&#10004;]": "[&#10006;]" }} </span>
             <label class="label-right">
                 Employees
             </label>
           </li>
           <li class="li-inline"> 
               <!-- <input type="checkbox" [value]="true"> -->
-              <span > {{ (signingAuthority.administeringFor && signingAuthority.administeringFor.includes('International Students') )? "&#10004;": "&#10006;" }}  </span>
+              <span > {{ (signingAuthority.administeringFor && signingAuthority.administeringFor.includes('International Students') )? "[&#10004;]": "[&#10006;]" }}  </span>
               <label class="label-right">
                   International Students
               </label>
           </li>          
           <li class="li-inline">
               <!-- <input type="checkbox" [value]="true"> -->
-              <span > {{ (signingAuthority.administeringFor && signingAuthority.administeringFor.includes('Other') )? "&#10004;": "&#10006;" }} </span>
+              <span > {{ (signingAuthority.administeringFor && signingAuthority.administeringFor.includes('Other') )? "[&#10004;]": "[&#10006;]" }} </span>
               <label class="label-right">
                   Other (require further approval)
               </label>
@@ -118,8 +124,26 @@
     <li class="aggrement-li">
       This Agreement may executed in conterparts, which when taken together will consitute one and the same agreement.
     </li>
-    
   </ol>
+
+<!-- <ul>
+  <li>
+    <span class="label"> Print Name : </span> <span class="labelValue"></span>
+  </li>
+  <li>
+    <span class="end col-sm-4 border-bottom">{{date | date: 'yyyy-MMM-dd' }}</span> 
+    <span class="label"> Date : </span> <span class="labelValue"></span>
+  </li>
+</ul> -->
+<!-- <div class="row">Print Name:  <span class="border-bottom col-sm-8"> {{signingAuthority.firstName}} {{signingAuthority.lastName}}</span> </div>
+
+<div class="row">Date:  <span class="border-bottom col-sm-8"> {{date | date: 'yyyy-MMM-dd' }}</span> </div
+ -->
+<ul class="list-no-bullets">
+  <li><span class="col-sm-4">Print Name:</span><span class="border-bottom col-sm-8"> {{signingAuthority.firstName}} {{signingAuthority.lastName}}</span></li>
+  <li><span class="col-sm-4">Date :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> <span class="border-bottom col-sm-8"> {{date | date: 'yyyy-MMM-dd' }}</span> </li>
+</ul>
+
 </div>
 
   <!-- Consent  -->
