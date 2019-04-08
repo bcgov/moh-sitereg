@@ -39,10 +39,10 @@ export const subRoutes: Routes = [
         data: { title: 'Authorize' },
     },
 
-    // REMOVEME
-    // Testing - moving default to group numbers for testing only
-    {
-        path: '',
-        redirectTo: 'group-numbers',
-    },
+    // // REMOVEME
+    // // Testing - moving default to group numbers for testing only
+    // {
+    //     path: '',
+    //     redirectTo: 'group-numbers',
+    // },
 ];
