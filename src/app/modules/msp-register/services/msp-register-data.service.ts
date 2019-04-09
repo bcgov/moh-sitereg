@@ -410,29 +410,29 @@ export class MspRegisterDataService {
         return registerationRequest;
     }
 
-    createSiteregRequest(obj: ISiteRegRequest) {
-        // http headers
-        const contentHeaders = new HttpHeaders();
-        contentHeaders.append('Accept', 'application/json; charset=utf-8');
-        contentHeaders.append(
-            'Content-Type',
-            'application/json; charset=utf-8'
-        );
-        const body = obj;
-        console.log(`%c SiteregRequest`, 'color: green;');
-        console.log(body);
-        // http request
-        return this.http
-            .put(environment.baseAPIUrl + '/sitereg/' + 'UUID', body, {
-                headers: contentHeaders,
-                responseType: 'json',
-            })
-            .toPromise()
-            .catch((e) => {
-                console.error(e);
-            });
-    }
-    // return this.http.put(`${apiUrl}/sitereg`, obj).toPromise();
+    // createSiteregRequest(obj: ISiteRegRequest) {
+    //     // http headers
+    //     const contentHeaders = new HttpHeaders();
+    //     contentHeaders.append('Accept', 'application/json; charset=utf-8');
+    //     contentHeaders.append(
+    //         'Content-Type',
+    //         'application/json; charset=utf-8'
+    //     );
+    //     const body = obj;
+    //     console.log(`%c SiteregRequest`, 'color: green;');
+    //     console.log(body);
+    //     // http request
+    //     return this.http
+    //         .put(environment.baseAPIUrl + '/sitereg/' + 'UUID', body, {
+    //             headers: contentHeaders,
+    //             responseType: 'json',
+    //         })
+    //         .toPromise()
+    //         .catch((e) => {
+    //             console.error(e);
+    //         });
+    // }
+    // // return this.http.put(`${apiUrl}/sitereg`, obj).toPromise();
 
     //#endregion
 

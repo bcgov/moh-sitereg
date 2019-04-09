@@ -11,30 +11,17 @@ import { minLength } from './validator-helpers';
 import { ctFormControlString, ctFormControlBoolean } from './core/core-types';
 export class MspRegisterOrganization extends GenerateForm<IMspOrganization>
     implements IMspOrganization {
-    // name: ctFormControlString = null ;
-    // city: ctFormControlString = null;
-    // province: ctFormControlString = null;
-    // postalCode: ctFormControlString = null;
-    // thirdParty: ctFormControlBoolean = false;
-    // blueCross: ctFormControlBoolean = false;
-    // administeringFor: ctFormControlString = null;
-    // suite: ctFormControlString = null;
-    // street: ctFormControlString = null;
-    // streetName: ctFormControlString = null;
-    // addressLine2: ctFormControlString = null;
 
-    //#region REMOVEME - DEFAULTS
-
-    name: ctFormControlString = 'Maximus Canada';
-    city: ctFormControlString = 'Victoria';
-    province: ctFormControlString = 'British Columbia';
-    postalCode: ctFormControlString = 'V8W1L4';
+    name: ctFormControlString = null ;
+    city: ctFormControlString = null;
+    province: ctFormControlString = null;
+    postalCode: ctFormControlString = null;
     thirdParty: ctFormControlBoolean = false;
-    blueCross: ctFormControlBoolean = true;
-    administeringFor: ctFormControlString = 'Employees';
-    suite: ctFormControlString = '716';
-    street: ctFormControlString = '01';
-    streetName: ctFormControlString = 'Yates Street';
+    blueCross: ctFormControlBoolean = false;
+    administeringFor: ctFormControlString = null;
+    suite: ctFormControlString = null;
+    street: ctFormControlString = null;
+    streetName: ctFormControlString = null;
     addressLine2: ctFormControlString = null;
 
     //#endregion

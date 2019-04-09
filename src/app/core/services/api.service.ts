@@ -12,7 +12,6 @@ import { throwError, Observable } from 'rxjs';
 import * as moment from 'moment';
 import { PayloadInterface } from '@core/models/api-base.model';
 import { environment } from '../../../environments/environment';
-import { SiteRegRequest2, ISiteRegRequest2 } from '@core/models/mo-api.model';
 import { UUID } from 'angular2-uuid';
 import { ISiteRegRequest } from '@core/interfaces/i-http-data';
 
@@ -73,59 +72,30 @@ export class MspRegisterApiService extends AbstractHttpService {
     siteRegisterationRequest(siteRegRequest: ISiteRegRequest, processDate = this.getProcessDate()): Observable<PayloadInterface> {
 
         this.eventUUID = UUID.UUID();
+        console.log(this.eventUUID);
+
 
         // const url = environment.baseAPIUrl + `${this.eventUUID}`;
 
-        // REMOVEME
+
+        // // REMOVEME
         const testMiddlewareURL = 'http://localhost:5200';
         const url = testMiddlewareURL + environment.baseAPIUrl + `${this.eventUUID}`;
+        console.log(url);
 
-        // const params: SiteRegRequest2 = {
-        //     eventUUID: this.eventUUID,
-        //     clientName: this.clientName,
-        // };
-        const params  = {
+        const body  = {
             eventUUID: this.eventUUID,
             clientName: this.clientName,
+            request_num: siteRegRequest.request_num,
+            org_information: siteRegRequest.org_information,
+            signing_authority_information: siteRegRequest.signing_authority_information,
+            aa_same_as_sa: siteRegRequest.aa_same_as_sa ,
+            access_administrator: siteRegRequest.access_administrator,
+            users: siteRegRequest.users,
+            msp_group: siteRegRequest.msp_group
         };
 
-        return this.post<PayloadInterface>(url, params);
+        return this.post<PayloadInterface>(url, body);
+        // return this.post<ISiteRegRequest>(url, params);
     }
-
-    //     /**
-    //      * Get request from the front end to verify user
-    //      * based on Middlware Object
-    //      * @param input
-    //      *    uuid:   Event UUID
-    //      */
-    //     postMiddleWare(uuid: string): Observable<ISiteRegRequest> {
-
-    //         const url = environment.baseAPIUrl + 'validateUser';
-
-    //         const params = {
-
-    //         }
-    //         // const params = (registrant.credType === RegCredTypes.MOH ? {
-    //         //     eventUUID: uuid,
-    //         //     clientName: this._clientName,
-    //         //     processDate: this.getProcessDate(),
-    //         //     providerCode: registrant.credType,
-    //         //     userID: registrant.userAccountName,
-    //         //     email: registrant.emailAddress,
-    //         //     mobile: registrant.smsPhone
-    //         // } : {
-    //         //         eventUUID: uuid,
-    //         //         clientName: this._clientName,
-    //         //         processDate: this.getProcessDate(),
-    //         //         providerCode: registrant.credType,
-    //         //         pdid: registrant.userAccountName,
-    //         //         email: registrant.emailAddress,
-    //         //         mobile: registrant.smsPhone
-    //         //     });
-
-    //         // return this.post<UserAttrInterface>(url, params);
-
-    //         return this.post<ISiteRegRequest>(url, params);
-    //     }
-
 }

@@ -27,7 +27,7 @@ import { IMspUser } from '@msp-register/interfaces/i-msp-user';
 import { IMspAccessAdmin } from '@msp-register/interfaces/i-msp-access-admins';
 import { Router } from '@angular/router';
 import { cAdministeringFor } from '@msp-register/models/core/core-types';
-import { MspRegisterApiService } from '@core/services/api2.service';
+import { MspRegisterApiService } from '@core/services/api.service';
 // import {  } from 'moh-common-lib/captcha';
 
 export type AccessType = 'admin' | 'user';
@@ -54,7 +54,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
         private formBuilder: FormBuilder,
         public mspRegisterStateSvc: MspRegisterStateService,
         public mspRegDataSvc: MspRegisterDataService,
-        public mspRegApi: MspRegisterApiService
+        public mspRegApiSvc: MspRegisterApiService
     ) {
         this.validFormControl = validFormControl.bind(this);
     }
@@ -105,10 +105,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
     continue() {
         console.clear();
         const regRequest = this.registerationObject();
-
-        this.mspRegDataSvc.createSiteregRequest(regRequest).catch((e) => {
-            console.log(e);
-        });
+        this.mspRegApiSvc.siteRegisterationRequest(regRequest, this.date.toDateString()).toPromise();
     }
 
     validToken($event) {
@@ -180,8 +177,6 @@ export class MspRegisterAuthorizeComponent implements OnInit {
             moMspGroups as IMspGroupDef[],
             false
         );
-
-        this.mspRegApi.siteRegisterationRequest(regRequest, this.date.toString());
 
         console.log('MO - Site Registeration Request Object:', regRequest);
         return regRequest;

@@ -6,12 +6,8 @@ import { ctFormControlString, ctFormControlBoolean } from './core/core-types';
 
 export class MspRegisterGroup extends GenerateForm<IMspGroup>
     implements IMspGroup {
-    // groupNumber: ctFormControlString = null;
-    // thirdParty: ctFormControlBoolean = false;
-
-    // REMOVEME
-    groupNumber: ctFormControlString = '1234567';
-    thirdParty: ctFormControlBoolean = true;
+    groupNumber: ctFormControlString = null;
+    thirdParty: ctFormControlBoolean = false;
 
     get validators() {
         return {
