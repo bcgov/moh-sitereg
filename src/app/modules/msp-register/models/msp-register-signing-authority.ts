@@ -11,69 +11,29 @@ import {
     phoneValidator,
     faxValidator,
 } from './validator-helpers';
+import { ctFormControlString, ctFormControlBoolean, ctFormControlUserTitle, cUserMspValidators } from './core/core-types';
 
 export class MspRegisterSigningAuthority
     extends GenerateForm<IMspSigningAuthority>
     implements IMspSigningAuthority {
-    userTitle?:
-        | FormControl
-        | 'Mr.'
-        | 'Mrs.'
-        | 'Ms.'
-        | 'Dr.'
-        | 'Prof.'
-        | 'Rev.' = null;
-    firstName: string | FormControl = '';
-    initial?: string | FormControl = '';
-    lastName: string | FormControl = '';
-    jobTitle: string | FormControl = '';
-    emailAddress: string | FormControl = '';
-    confirmEmail: string | FormControl = '';
-    phone: string | FormControl = '';
-    ext?: string | FormControl = '';
-    fax: string | FormControl = '';
-    administeringFor: string | FormControl = '';
-    directMspAccess: boolean | FormControl = false;
 
-    //#region REMOVEME - Delete me
-   
-    // userTitle?:
-    //     | FormControl
-    //     | 'Mr.'
-    //     | 'Mrs.'
-    //     | 'Ms.'
-    //     | 'Dr.'
-    //     | 'Prof.'
-    //     | 'Rev.' = 'Mr.';
-    // firstName: string | FormControl = 'Faheem';
-    // initial?: string | FormControl = 'A';
-    // lastName: string | FormControl = 'Wattoo';
-    // jobTitle: string | FormControl = 'Angular Developer';
-    // emailAddress: string | FormControl = 'faheem.wattoo@maximusbc.ca';
-    // confirmEmail: string | FormControl = 'faheem.wattoo@maximusbc.ca';
-    // phone: string | FormControl = '7787917432';
-    // ext?: string | FormControl = '111';
-    // fax: string | FormControl = '7787917432';
-    // administeringFor: string | FormControl = 'Employees';
-    // directMspAccess: boolean | FormControl = true;
+    userTitle?: ctFormControlUserTitle = null;
+    firstName: ctFormControlString = null;
+    initial?: ctFormControlString = null;
+    lastName: ctFormControlString = null;
+    jobTitle: ctFormControlString = null;
+    emailAddress: ctFormControlString = null;
+    confirmEmail: ctFormControlString = null;
+    phone: ctFormControlString = null;
+    ext?: ctFormControlString = null;
+    fax: ctFormControlString = null;
+    administeringFor: ctFormControlString = null;
+    directMspAccess: ctFormControlBoolean = false;
 
     //#endregion
 
     get validators() {
-        return {
-            userTitle: [maxLength(5)],
-            firstName: [required, minLength(), maxLength(100)],
-            initial: [maxLength(1)],
-            lastName: [required, minLength(), maxLength(100)],
-            jobTitle: [required, minLength(), maxLength(100)],
-            emailAddress: [required, Validators.email, maxLength(100)],
-            confirmEmail: [required, Validators.email, maxLength(100)],
-            phone: [required, phoneValidator()],
-            ext: [maxLength(100)],
-            fax: [faxValidator()],
-            administeringFor: [required],
-            directMspAccess: [required],
-        };
+        return cUserMspValidators;
     }
 
     constructor(

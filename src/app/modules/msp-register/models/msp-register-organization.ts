@@ -1,42 +1,28 @@
 import { GenerateForm } from './generate-form';
 import { IMspOrganization } from '@msp-register/interfaces';
-import { FormControl, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import {
     postalCodeValidator,
     addressValidator,
     maxLength,
     required,
-    groupNumberValidator,
 } from './validator-helpers';
 import { minLength } from './validator-helpers';
+import { ctFormControlString, ctFormControlBoolean } from './core/core-types';
 export class MspRegisterOrganization extends GenerateForm<IMspOrganization>
     implements IMspOrganization {
-    // organizationNumber: string | FormControl = ''; // TBD: opt-out, this is MSP group number
-    name: string | FormControl = '';
-    city: string | FormControl = '';
-    province: string | FormControl = '';
-    postalCode: string | FormControl = '';
-    thirdParty: boolean | FormControl = false;
-    blueCross: boolean | FormControl = false;
-    administeringFor: string | FormControl = '';
-    suite: string | FormControl = '';
-    street: string | FormControl = '';
-    streetName: string | FormControl = '';
-    addressLine2: string | FormControl = '';
 
-    //#region REMOVEME - DEFAULTS
-
-    // name: string | FormControl = 'Maximus Canada';
-    // city: string | FormControl = 'Victoria';
-    // province: string | FormControl = 'British Columbia';
-    // postalCode: string | FormControl = 'V8W1L4';
-    // thirdParty: boolean | FormControl = false;
-    // blueCross: boolean | FormControl = true;
-    // administeringFor: string | FormControl = 'Employees';
-    // suite: string | FormControl = '716';
-    // street: string | FormControl = '01';
-    // streetName: string | FormControl = 'Yates Street';
-    // addressLine2: string | FormControl = '';
+    name: ctFormControlString = null ;
+    city: ctFormControlString = null;
+    province: ctFormControlString = null;
+    postalCode: ctFormControlString = null;
+    thirdParty: ctFormControlBoolean = false;
+    blueCross: ctFormControlBoolean = false;
+    administeringFor: ctFormControlString = null;
+    suite: ctFormControlString = null;
+    street: ctFormControlString = null;
+    streetName: ctFormControlString = null;
+    addressLine2: ctFormControlString = null;
 
     //#endregion
 
@@ -55,9 +41,9 @@ export class MspRegisterOrganization extends GenerateForm<IMspOrganization>
                 addressValidator(),
             ],
             addressLine2: [Validators.maxLength(200), addressValidator()], // todo: test blank behaviour and validate form
-            city: [required, minLength(), maxLength(25)],
-            province: [required, minLength(2), maxLength(3)],
-            postalCode: [required, maxLength(6), postalCodeValidator()],
+            city: [required, Validators.minLength(1), maxLength(25)],
+            province: [required, Validators.minLength(2), maxLength(3)],
+            postalCode: [required, Validators.maxLength(6), postalCodeValidator()],
             blueCross: [required],
             administeringFor: [required],
         };

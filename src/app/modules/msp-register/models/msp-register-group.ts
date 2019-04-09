@@ -2,11 +2,12 @@ import { GenerateForm } from './generate-form';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { IMspGroup } from '@msp-register/interfaces';
 import { groupNumberValidator } from './validator-helpers';
+import { ctFormControlString, ctFormControlBoolean } from './core/core-types';
 
 export class MspRegisterGroup extends GenerateForm<IMspGroup>
     implements IMspGroup {
-    groupNumber: FormControl | string = null;
-    thirdParty: boolean | FormControl = false;
+    groupNumber: ctFormControlString = null;
+    thirdParty: ctFormControlBoolean = false;
 
     get validators() {
         return {
