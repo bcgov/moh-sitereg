@@ -1,10 +1,10 @@
-import { PayloadInterface, ServerPayload } from './api-base.model';
+// import { PayloadInterface, ServerPayload } from './api-base.model';
 
-export interface RegRequestInterface {
-    eventUUID: string;
-    clientName: string;
-    processDate: string;
-}
+// export interface RegRequestInterface {
+//     eventUUID: string;
+//     clientName: string;
+//     processDate: string;
+// }
 
 // /**
 //  *

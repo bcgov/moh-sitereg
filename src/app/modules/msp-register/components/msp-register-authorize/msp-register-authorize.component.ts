@@ -27,6 +27,7 @@ import { IMspUser } from '@msp-register/interfaces/i-msp-user';
 import { IMspAccessAdmin } from '@msp-register/interfaces/i-msp-access-admins';
 import { Router } from '@angular/router';
 import { cAdministeringFor } from '@msp-register/models/core/core-types';
+import { MspRegisterApiService } from '@core/services/api2.service';
 // import {  } from 'moh-common-lib/captcha';
 
 export type AccessType = 'admin' | 'user';
@@ -39,7 +40,6 @@ export type AccessType = 'admin' | 'user';
 })
 export class MspRegisterAuthorizeComponent implements OnInit {
     fg: FormGroup;
-    // signingAuthorityName: Observable<string>;
     date: Date = new Date();
     adminFgs: FormGroup[];
     userFgs: FormGroup[];
@@ -51,9 +51,10 @@ export class MspRegisterAuthorizeComponent implements OnInit {
 
     constructor(
         private router: Router,
+        private formBuilder: FormBuilder,
         public mspRegisterStateSvc: MspRegisterStateService,
         public mspRegDataSvc: MspRegisterDataService,
-        private formBuilder: FormBuilder
+        public mspRegApi: MspRegisterApiService
     ) {
         this.validFormControl = validFormControl.bind(this);
     }
@@ -180,6 +181,8 @@ export class MspRegisterAuthorizeComponent implements OnInit {
             false
         );
 
+        this.mspRegApi.siteRegisterationRequest(regRequest, this.date.toString());
+
         console.log('MO - Site Registeration Request Object:', regRequest);
         return regRequest;
     }
@@ -197,15 +200,4 @@ export class MspRegisterAuthorizeComponent implements OnInit {
     public navigateTo(route: string) {
         this.router.navigate([`msp-registration/${route}`]);
     }
-
-    // /**
-    //  *
-    //  * @param exp
-    //  */
-    // public isAdministeringFor(exp: string): boolean {
-
-    //     const options = cAdministeringFor.filter( element => element.includes(exp) );
-    //     console.log('%o : %o <= isAdministeringFor', exp, options.length );
-    //     return options && options.length > 0 ? true : false;
-    // }
 }

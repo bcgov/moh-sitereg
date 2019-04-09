@@ -32,7 +32,7 @@ export class Logger extends AbstractHttpService {
         applicationId: UUID.UUID().toString(),
         logsource: window.location.hostname,
         http_x_forwarded_host: window.location.hostname,
-        program: 'fpc',
+        program: 'sitereg',
         request_method: 'POST',
     });
 
