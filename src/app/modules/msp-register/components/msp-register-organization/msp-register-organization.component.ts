@@ -7,6 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 import { IProvince } from '@shared/interfaces/i-provinces';
 import { validFormControl } from '@msp-register/models/validator-helpers';
 import { MspRegisterDataService } from '@msp-register/services/msp-register-data.service';
+import { Logger } from '../../../../../app/core/services/logger.service';
 
 @Component({
     selector: 'sitereg-msp-register-organization',
@@ -32,7 +33,8 @@ export class MspRegisterOrganizationComponent implements OnInit {
     constructor(
         private router: Router,
         public mspRegisterStateSvc: MspRegisterStateService,
-        public mspRegDataSvc: MspRegisterDataService
+        public mspRegDataSvc: MspRegisterDataService,
+        public logger: Logger
     ) {
         this.fg = this.mspRegisterStateSvc.mspRegisterOrganizationForm;
         this.validFormControl = validFormControl.bind(this);
@@ -54,6 +56,12 @@ export class MspRegisterOrganizationComponent implements OnInit {
                 emitEvent: false,
             });
         });
+        console.log('navigation: organization');
+        this.logger.log({
+          event: 'navigation',
+          component: 'organization'
+        });
+
     }
 
     continue() {
