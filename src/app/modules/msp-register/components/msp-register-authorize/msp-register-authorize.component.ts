@@ -2,8 +2,6 @@ import {
     Component,
     OnInit,
     ChangeDetectionStrategy,
-    OnChanges,
-    SimpleChanges,
 } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {
@@ -11,7 +9,6 @@ import {
     UserTypes,
 } from '@msp-register/services/msp-register-state.service';
 import { MspRegisterDataService } from '@msp-register/services/msp-register-data.service';
-import { Observable } from 'rxjs';
 import { validFormControl } from '@msp-register/models/validator-helpers';
 import {
     IMspGroupDef,
@@ -26,7 +23,6 @@ import {
 import { IMspUser } from '@msp-register/interfaces/i-msp-user';
 import { IMspAccessAdmin } from '@msp-register/interfaces/i-msp-access-admins';
 import { Router } from '@angular/router';
-import { cAdministeringFor } from '@msp-register/models/core/core-types';
 import { MspRegisterApiService } from '@core/services/api.service';
 // import {  } from 'moh-common-lib/captcha';
 
@@ -69,10 +65,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
 
     ngOnInit() {
         this.fg = this.mspRegisterStateSvc.mspRegisterAuthorizeForm;
-        // const name = this.mspRegisterStateSvc.signingAuthorityName;
         this.mspRegDataSvc.updateSigningAuthorityName(name);
-        // const address = this.mspRegisterStateSvc.signingAuthorityAddress;
-        // this.mspRegDataSvc.updateSigningAuthorityAddress(address);
         this.adminFgs = this.mspRegisterStateSvc.mspRegisterAccessAdminsForm;
         this.userFgs = this.mspRegisterStateSvc.mspRegisterUsersForm;
 
@@ -123,7 +116,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
     }
 
     registerationObject() {
-        // Request Numer
+        // Request Numer - todo - autgenerate
         const requestNumber = '12345678';
 
         // Orgnaization Info
