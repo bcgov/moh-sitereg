@@ -33,8 +33,8 @@ export class MspRegisterOrganizationComponent implements OnInit {
     constructor(
         private router: Router,
         public mspRegisterStateSvc: MspRegisterStateService,
-        public mspRegDataSvc: MspRegisterDataService,
-        public logger: Logger
+        public mspRegDataSvc: MspRegisterDataService
+        // public logger: Logger
     ) {
         this.fg = this.mspRegisterStateSvc.mspRegisterOrganizationForm;
         this.validFormControl = validFormControl.bind(this);
@@ -56,11 +56,11 @@ export class MspRegisterOrganizationComponent implements OnInit {
                 emitEvent: false,
             });
         });
-        console.log('navigation: organization');
-        this.logger.log({
-          event: 'navigation',
-          component: 'organization'
-        });
+        // console.log('navigation: organization');
+        // this.logger.log({
+        //   event: 'navigation',
+        //   component: 'organization'
+        // });
 
     }
 
