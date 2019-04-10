@@ -11,14 +11,7 @@
         Please enter your first name.
       </div>
 
-      <!-- Organization Number - opt out - this is Group Number-->
-      <!-- <label class="control-label" for="name">Organization Number(optional)</label>
-      <input id="name" formControlName="organizationNumber" class="form-control" placeholder="Organization Number-7 digits long i.e 1128071">
-      <div class="text-danger" *ngIf="validFormControl('organizationNumber')">
-        Please enter a valid Organization Number (7 digits long).
-      </div> -->
-
-       <!-- Suite Number-->
+      <!-- Suite Number-->
       <div class="row">
         <div class="col-sm-6">
           <label class="control-label" for="suite">Suite #</label>
@@ -27,7 +20,7 @@
             Please enter a valid suite number.
           </div>
         </div>
-        
+
         <!-- Street Number -->
         <div class="col-sm-6">
           <label class="control-label" for="street">Street #</label>
@@ -35,14 +28,15 @@
           <div class="text-danger" *ngIf="validFormControl('street')">
             Please enter a valid street number.
           </div>
-        </div>        
-    </div>
-  
+        </div>
+      </div>
+
       <!-- Street Name -->
       <label class="control-label" for="streetName">Street Address</label>
-          <input id="streetName" formControlName="streetName" class="form-control" placeholder="Street or Avenue name i.e Yates street">
-          <div class="text-danger" *ngIf="validFormControl('streetName')">
-            Please enter a valid street address.
+      <input id="streetName" formControlName="streetName" class="form-control"
+        placeholder="Street or Avenue name i.e Yates street">
+      <div class="text-danger" *ngIf="validFormControl('streetName')">
+        Please enter a valid street address.
       </div>
 
       <!-- Address Line 2 -->
@@ -50,8 +44,8 @@
       <input id="addressLine2" formControlName="addressLine2" class="form-control" placeholder="Address Line 2">
       <div class="text-danger" *ngIf="validFormControl('addressLine2')">
         Please enter a valid address line 2.
-  </div>
-      
+      </div>
+
       <!-- City -->
       <label class="control-label" for="city">City</label>
       <input id="city" formControlName="city" class="form-control" placeholder="Victoria">
@@ -61,15 +55,15 @@
 
       <div class="row">
         <div class="col-sm-8">
-            <!-- Province -->
-            <label class="control-label" for="province">Province</label>
-            <select class="form-control" *ngIf="provinces | async as provinces" formControlName="province">
-              <option value="null" label="-- Select Province --" selected></option>
-              <option *ngFor="let province of provinces " [value]="province.provCode">{{province.description}}</option>
-            </select>
-            <div class="text-danger" *ngIf="validFormControl('province')">
-              Please select a valid province.
-            </div>
+          <!-- Province -->
+          <label class="control-label" for="province">Province</label>
+          <select class="form-control" *ngIf="provinces | async as provinces" formControlName="province">
+            <option value="null" label="-- Select Province --" selected></option>
+            <option *ngFor="let province of provinces " [value]="province.provCode">{{province.description}}</option>
+          </select>
+          <div class="text-danger" *ngIf="validFormControl('province')">
+            Please select a valid province.
+          </div>
         </div>
         <div class="col-sm-4">
           <!-- Postal Code -->
@@ -78,21 +72,23 @@
           <div class="text-danger" *ngIf="validFormControl('postalCode')">
             Please enter your postal code in the format A1A1A1.
           </div>
-        </div>          
-      </div>     
+        </div>
+      </div>
 
       <!-- Question Third Party Administering -->
       <label class="control-label">Are you contracting a 3rd party to administer MSP direct on you
         behalf?
       </label>
       <div class="form-check">
+        <!--No-->
         <input class='form-check-input' formControlName="thirdParty" type="radio" id="thirdPartyFalse" tabindex="0"
           [value]="false">
         <label class='form-check-label' for="thirdPartyFalse">
           No
         </label>
-        <input class='form-check-input' formControlName="thirdParty" type="radio" name="" id="thirdPartyTrue" tabindex="0"
-          [value]="true">
+        <!--Yes-->
+        <input class='form-check-input' formControlName="thirdParty" type="radio" name="" id="thirdPartyTrue"
+          tabindex="0" [value]="true">
         <label class='form-check-label' for="aatrue">
           Yes
         </label>
@@ -105,10 +101,13 @@
       <label class="control-label">Are you applying to access MSP Direct through Blue Cross?
       </label>
       <div class="form-check">
-        <input class='form-check-input' formControlName="blueCross" type="radio" id="aafalse" tabindex="0" [value]="false">
+        <!--No-->
+        <input class='form-check-input' formControlName="blueCross" type="radio" id="aafalse" tabindex="0"
+          [value]="false">
         <label class='form-check-label' for="aafalse">
           No
         </label>
+        <!--Yes-->
         <input class='form-check-input' formControlName="blueCross" type="radio" name="" id="aatruev" tabindex="0"
           [value]="true">
         <label class='form-check-label' for="aatrue">
