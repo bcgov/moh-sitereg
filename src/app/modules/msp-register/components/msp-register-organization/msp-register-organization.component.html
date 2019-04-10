@@ -14,36 +14,36 @@
       <!-- Suite Number-->
       <div class="row">
         <div class="col-sm-6">
-          <label class="control-label" for="suite">Suite #</label>
-          <input id="suite" formControlName="suite" class="form-control" placeholder="Suite Number">
+          <label class="control-label" for="suite">Suite# (optional)</label>
+          <input id="suite" formControlName="suite" class="form-control" placeholder="Suite# (optional)">
           <div class="text-danger" *ngIf="validFormControl('suite')">
-            Please enter a valid suite number.
+            Enter valid Suite# (optional)
           </div>
         </div>
 
         <!-- Street Number -->
         <div class="col-sm-6">
-          <label class="control-label" for="street">Street #</label>
-          <input id="street" formControlName="street" class="form-control" placeholder="Street Number">
+          <label class="control-label" for="street">Street#</label>
+          <input id="street" formControlName="street" class="form-control" placeholder="Street#">
           <div class="text-danger" *ngIf="validFormControl('street')">
-            Please enter a valid street number.
+            Enter valid Street#
           </div>
         </div>
       </div>
 
       <!-- Street Name -->
-      <label class="control-label" for="streetName">Street Address</label>
-      <input id="streetName" formControlName="streetName" class="form-control"
-        placeholder="Street or Avenue name i.e Yates street">
+      <label class="control-label" for="streetName">Street Address Line 1</label>
+      <input id="streetName" formControlName="streetName" class="form-control" placeholder="Street Address Line 1">
       <div class="text-danger" *ngIf="validFormControl('streetName')">
-        Please enter a valid street address.
+        Enter valid Street Address Line 1
       </div>
 
       <!-- Address Line 2 -->
-      <label class="control-label" for="addressLine2">Address Line 2 (optional)</label>
-      <input id="addressLine2" formControlName="addressLine2" class="form-control" placeholder="Address Line 2">
+      <label class="control-label" for="addressLine2">Street Address Line 2 (optional)</label>
+      <input id="addressLine2" formControlName="addressLine2" class="form-control"
+        placeholder="Street Address Line 2 (optional)">
       <div class="text-danger" *ngIf="validFormControl('addressLine2')">
-        Please enter a valid address line 2.
+        Enter valid Street Address Line 2 (optional)
       </div>
 
       <!-- City -->
