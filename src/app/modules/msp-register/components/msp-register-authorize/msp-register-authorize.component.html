@@ -67,7 +67,7 @@
             <li>
               <!-- <input type="checkbox" name="checkMspDirectWeb" id="checkMspDirectWeb" [value]="true"> -->
               <span>
-                {{ (signingAuthority.directMspAccess && signingAuthority.directMspAccess===true)  ? "[&#10004;]": "[&#10006;]" }}
+                {{ (signingAuthority.directMspAccess && signingAuthority.directMspAccess===true)  ? "&#10004;": "&#10006;" }}
               </span>
               <label for="checkMspDirectWeb" class="label-right" title="click to edit"
                 (click)="navigateTo('signing-authority');">
