@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { GlobalConfigService } from './global-config.service';
 
+
 export interface LogMessage {
     event: string;
     [key: string]: any;
@@ -15,7 +16,7 @@ export interface LogMessage {
 })
 export class LoggerService extends CommonLogger {
 
-    protected isProduction: boolean;
+    protected isProduction: boolean = true;
     protected loggingUri: string;
     public programName: string;
     constructor(
@@ -25,10 +26,12 @@ export class LoggerService extends CommonLogger {
         super(http);
 
         // todo: program name should be from enviornment
-        this.programName = 'sitereg';
-        this.isProduction = this.globalConfigSvc.currentEnironment.production;
-        this.loggingUri = this.globalConfigSvc.currentEnironment.loggingURL;
 
+        // this.isProduction = this.globalConfigSvc.currentEnironment.production;
+        this.isProduction = true;
+        this.programName = this.globalConfigSvc.logMspApplicationName;
+        this.loggingUri = this.globalConfigSvc.currentEnironment.loggingURL;
+        this.applicationId = this.globalConfigSvc.logMspApplicationUUID;
         this._headers = this._headers.set('program', this.programName);
         this.setURL(this.loggingUri);
     }
