@@ -7,7 +7,8 @@ import { BehaviorSubject } from 'rxjs';
 import { IProvince } from '@shared/interfaces/i-provinces';
 import { validFormControl } from '@msp-register/models/validator-helpers';
 import { MspRegisterDataService } from '@msp-register/services/msp-register-data.service';
-import { Logger } from '../../../../../app/core/services/logger.service';
+import { LoggerService } from '@shared/services/logger.service';
+import { GlobalConfigService } from '@shared/services/global-config.service';
 
 @Component({
     selector: 'sitereg-msp-register-organization',
@@ -32,14 +33,15 @@ export class MspRegisterOrganizationComponent implements OnInit {
 
     constructor(
         private router: Router,
+        public loggerSvc: LoggerService,
+        private globalConfigSvc: GlobalConfigService,
         public mspRegisterStateSvc: MspRegisterStateService,
-        public mspRegDataSvc: MspRegisterDataService
-        // public logger: Logger
+        public mspRegDataSvc: MspRegisterDataService,
+
     ) {
         this.fg = this.mspRegisterStateSvc.mspRegisterOrganizationForm;
         this.validFormControl = validFormControl.bind(this);
         const formData = new CountryData();
-        // console.log(formData);
         const options = formData.provinces.filter(
             (itm) => itm.country === 'CAN'
         );
@@ -48,31 +50,33 @@ export class MspRegisterOrganizationComponent implements OnInit {
 
     ngOnInit() {
         this.fg.valueChanges.subscribe((obs) => {
-            console.log(this.fg);
+
+            // console.log(this.fg);
 
             // converts postalcode in upper case
             const postalCode = this.fg.get('postalCode');
-            postalCode.patchValue(postalCode.value.toUpperCase(), {
-                emitEvent: false,
-            });
+            if ( postalCode.value ) {
+                postalCode.patchValue(postalCode.value.toUpperCase(), { emitEvent: false });
+            }
         });
-        // console.log('navigation: organization');
-        // this.logger.log({
-        //   event: 'navigation',
-        //   component: 'organization'
-        // });
-
     }
 
     continue() {
-        console.clear();
-        const form = this.mspRegisterStateSvc.mspRegisterOrganizationForm;
-        console.log('FormGroup: ', form);
-        const middleWareObject = this.mspRegDataSvc.mapOrgInformation(
-            form.value
-        );
-        console.log('MO - Organization info:', middleWareObject);
-
+        this.loggerSvc.logNavigation(this.constructor.name, 'ValidForm' );
+        this.debugOnly();
         this.router.navigate(['msp-registration/signing-authority']);
+    }
+
+
+    debugOnly() {
+
+        if (this.globalConfigSvc.currentEnironment.production === false) {
+            const form = this.mspRegisterStateSvc.mspRegisterOrganizationForm;
+            console.log('FormGroup: ', form);
+            const middleWareObject = this.mspRegDataSvc.mapOrgInformation(
+                form.value
+            );
+            console.log('MO - Organization info:', middleWareObject);
+        }
     }
 }

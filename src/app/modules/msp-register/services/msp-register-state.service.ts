@@ -19,7 +19,7 @@ export type UserTypes = 'admin' | 'user';
     providedIn: 'root',
 })
 export class MspRegisterStateService {
-    consolePrintForm = 'MspRegisterStateService';
+    consolePrintForm = '';
 
     private fb = new FormBuilder();
     private gf = new GenerateForm(this.fb);
@@ -33,7 +33,6 @@ export class MspRegisterStateService {
 
     constructor() {
         if (this.constructor.name === this.consolePrintForm) {
-            // console.clear();
             console.log(`%c %o`, `color:darkgreen`, this.constructor.name);
         }
 
@@ -221,21 +220,10 @@ export class MspRegisterStateService {
 
     //#region RufCommits
 
-    // createMspRegisterUserMspFormReusable(
-    //     gf: GenerateForm<any>,
-    //     fb: FormBuilder
-    // ) {
-    //     const mrsa = new MspRegisterUserMsp(gf, fb);
-    //     return this.fb.group(
-    //         mrsa.genForms(mrsa.generateArr(mrsa.genKeys, mrsa.validators))
-    //     );
-    // }
-
     // REMOVEME
     logFormAndValidators(gf: any, mr: any) {
         // REMOVEME
         if (this.constructor.name === this.consolePrintForm) {
-            console.clear();
             {
                 console.log(
                     `%c:  %o <= gf : createMspRegisterGroupNumbersForm`,

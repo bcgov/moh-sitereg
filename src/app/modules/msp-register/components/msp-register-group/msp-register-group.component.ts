@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { validMultiFormControl } from '@msp-register/models/validator-helpers';
 import { MspRegisterDataService } from '@msp-register/services/msp-register-data.service';
 import { IMspGroup } from '@msp-register/interfaces';
+import { LoggerService } from '@shared/services/logger.service';
+import { GlobalConfigService } from '@shared/services/global-config.service';
 
 @Component({
     selector: 'sitereg-msp-register-group',
@@ -19,6 +21,8 @@ export class MspRegisterGroupComponent implements OnInit {
 
     constructor(
         private router: Router,
+        public loggerSvc: LoggerService,
+        private globalConfigSvc: GlobalConfigService,
         public mspRegisterStateSvc: MspRegisterStateService,
         public mspRegDataSvc: MspRegisterDataService
     ) {
@@ -34,8 +38,8 @@ export class MspRegisterGroupComponent implements OnInit {
     ngOnInit() {}
 
     continue() {
-        console.clear();
-        this.logMiddleWareObjects();
+        this.loggerSvc.logNavigation(this.constructor.name, 'ValidForm' );
+        this.debugOnly();
         this.router.navigate(['msp-registration/authorize']);
     }
 
@@ -53,7 +57,10 @@ export class MspRegisterGroupComponent implements OnInit {
         this.updateFormGroups();
     }
 
-    logMiddleWareObjects() {
+    debugOnly() {
+
+        if (this.globalConfigSvc.currentEnironment.production === false) {
+
         // Msp Groups
         const mspGroups: IMspGroup[] = [];
         this.mspRegisterStateSvc.mspRegisterGroupForm.forEach((v) =>
@@ -62,5 +69,6 @@ export class MspRegisterGroupComponent implements OnInit {
 
         const moMspGroups = this.mspRegDataSvc.mapGroupDef(mspGroups);
         console.log('MO - Group:', moMspGroups);
+        }
     }
 }

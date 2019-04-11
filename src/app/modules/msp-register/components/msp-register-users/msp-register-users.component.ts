@@ -38,7 +38,6 @@ export class MspRegisterUsersComponent implements OnInit {
     ngOnInit() {}
 
     continue() {
-        console.clear();
         this.logMiddleWareObjects();
         this.router.navigate(['msp-registration/group-numbers']);
     }

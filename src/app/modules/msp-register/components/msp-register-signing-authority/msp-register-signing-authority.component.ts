@@ -10,6 +10,8 @@ import {
 import { MspRegisterDataService } from '@msp-register/services/msp-register-data.service';
 import { BehaviorSubject } from 'rxjs';
 import { cAdministeringFor } from '../../models/core/core-types';
+import { LoggerService } from '@shared/services/logger.service';
+import { GlobalConfigService } from '@shared/services/global-config.service';
 
 @Component({
     selector: 'sitereg-msp-register-signing-authority',
@@ -27,24 +29,36 @@ export class MspRegisterSigningAuthorityComponent implements OnInit {
 
     constructor(
         private router: Router,
+        public loggerSvc: LoggerService,
+        private globalConfigSvc: GlobalConfigService,
         private mspRegisterStateSvc: MspRegisterStateService,
         public mspRegDataSvc: MspRegisterDataService
     ) {
         this.fg = this.mspRegisterStateSvc.mspRegisterSigningAuthorityForm;
         this.validFormControl = validMultiFormControl.bind(this);
-        this.fg.valueChanges.subscribe((obs) => console.log(this.fg));
+
+        // debug only
+        // this.fg.valueChanges.subscribe((obs) => {
+        //     console.log(this.fg)
+        // });
     }
 
     ngOnInit() {}
 
     continue() {
-        console.clear();
-        const form = this.mspRegisterStateSvc.mspRegisterSigningAuthorityForm;
-        console.log('FormGroup: ', form);
-        const middleWareObject = this.mspRegDataSvc.mapObjectSigningAuthorityInformationDef(
-            form.value
-        );
-        console.log('MO - Signing Authority:', middleWareObject);
+        this.loggerSvc.logNavigation(this.constructor.name, 'ValidForm' );
+        this.debugOnly();
         this.router.navigate(['msp-registration/access-admins']);
+    }
+
+    debugOnly() {
+        if (this.globalConfigSvc.currentEnironment.production === false) {
+            const form = this.mspRegisterStateSvc.mspRegisterSigningAuthorityForm;
+            console.log('FormGroup: ', form);
+            const middleWareObject = this.mspRegDataSvc.mapObjectSigningAuthorityInformationDef(
+                form.value
+            );
+            console.log('MO - Signing Authority:', middleWareObject);
+        }
     }
 }

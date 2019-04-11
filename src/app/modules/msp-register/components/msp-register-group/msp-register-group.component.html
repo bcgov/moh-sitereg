@@ -5,7 +5,7 @@
   <div class='col-md-3 p-4'>
     <a (click)='addFormGroup()'>
       <button class="btn btn-block btn-lg btn-secondary">
-        Add Group Number
+        Add New Group Number
       </button>
     </a>
   </div>
@@ -16,7 +16,7 @@
       <h3> Group Number #{{i+1}}</h3>
     </div>
     <div class="col-auto"><button (click)="deleteFormGroup(i)" type="button"
-        class="btn btn-block btn-warning btn-lg btn-secondary">&#215;</button></div>
+        class="btn btn-block btn-warning btn-lg btn-secondary">Remove</button></div>
   </div>
   <form [formGroup]="fg">
 
@@ -30,18 +30,20 @@
 
     <!--Question Third Party -->
     <div class="form-group col-sm-6 p-sm-0">
-      <label class="control-label">Third Party?
+      <label class="control-label">Will this group be administered by a 3rd Party Administrator?
       </label>
+      <!--No-->
       <div class="form-check">
-        <input class='form-check-input' formControlName="thirdParty" type="radio" name="" id="bctrue" tabindex="0"
-          [value]="true">
-        <label class='form-check-label' for="bctrue">
-          Yes
-        </label>
         <input class='form-check-input' formControlName="thirdParty" type="radio" id="bcfalse" tabindex="0"
           [value]="false">
         <label class='form-check-label' for="bcfalse">
           No
+        </label>
+        <!--Yes-->
+        <input class='form-check-input' formControlName="thirdParty" type="radio" name="" id="bctrue" tabindex="0"
+          [value]="true">
+        <label class='form-check-label' for="bctrue">
+          Yes
         </label>
       </div>
     </div>
