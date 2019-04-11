@@ -149,17 +149,13 @@
 
   <!-- Consent  -->
 
-  <div [formGroup]="fg">
+  <div class="row" [formGroup]="fg">
     <span class="consent">
-      <input class='form-check-input' type="radio" form name="consent" formControlName="consent" id="bctrue"
-        tabindex="0" [value]="true">
-      <label class='form-check-label' for="bctrue">
-        I accept
-      </label>
-      <input class='form-check-input' type="radio" name="consent" formControlName="consent" id="bcfalse" tabindex="0"
-        [value]="false">
-      <label class='form-check-label' for="bcfalse">
-        I do not accept
+      <input type="checkbox" form name="consent" formControlName="consent" id="consent" tabindex="0"
+        [value]="true">&nbsp;
+      <label>
+        I, {{signingAuthority.firstName}} {{signingAuthority.lastName}} have read and agreed to above terms and
+        conditions.
       </label>
     </span>
   </div>
