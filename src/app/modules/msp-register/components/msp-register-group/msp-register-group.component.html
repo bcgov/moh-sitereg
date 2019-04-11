@@ -5,7 +5,7 @@
   <div class='col-md-3 p-4'>
     <a (click)='addFormGroup()'>
       <button class="btn btn-block btn-lg btn-secondary">
-        Add Group Number
+        Add New Group Number
       </button>
     </a>
   </div>
@@ -16,7 +16,7 @@
       <h3> Group Number #{{i+1}}</h3>
     </div>
     <div class="col-auto"><button (click)="deleteFormGroup(i)" type="button"
-        class="btn btn-block btn-warning btn-lg btn-secondary">&#215;</button></div>
+        class="btn btn-block btn-warning btn-lg btn-secondary">Remove</button></div>
   </div>
   <form [formGroup]="fg">
 
@@ -30,7 +30,7 @@
 
     <!--Question Third Party -->
     <div class="form-group col-sm-6 p-sm-0">
-      <label class="control-label">Third Party?
+      <label class="control-label">Will this group be administered by a 3rd Party Administrator?
       </label>
       <!--No-->
       <div class="form-check">
