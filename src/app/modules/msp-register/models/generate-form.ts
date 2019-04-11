@@ -18,7 +18,7 @@ interface IControls {
 const validKeys = ['string'];
 
 export class GenerateForm<T> {
-    consolePrintForm = 'MspRegisterGroup';
+    consolePrintForm = '';
 
     keys: string[];
     values = {};
@@ -74,7 +74,6 @@ export class GenerateForm<T> {
 
     constructor(private fb: FormBuilder) {
         if (this.constructor.name === this.consolePrintForm) {
-            // console.clear();
             console.log(
                 `%c %o <= GenerateForm`,
                 `color:darkgreen`,

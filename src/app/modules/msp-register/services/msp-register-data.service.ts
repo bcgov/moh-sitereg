@@ -37,7 +37,7 @@ const text =
 })
 export class MspRegisterDataService {
     private agreementNumber$: BehaviorSubject<string> = new BehaviorSubject(
-        '8986GG43'
+        '12345678'
     );
     private signingAuthorityName$: BehaviorSubject<
         string

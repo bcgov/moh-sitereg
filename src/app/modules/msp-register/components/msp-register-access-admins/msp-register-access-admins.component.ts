@@ -7,6 +7,8 @@ import { MspRegisterDataService } from '@msp-register/services/msp-register-data
 import { IMspAccessAdmin } from '@msp-register/interfaces/i-msp-access-admins';
 import { cAdministeringFor } from '@msp-register/models/core/core-types';
 import { BehaviorSubject } from 'rxjs';
+import { LoggerService } from '@shared/services/logger.service';
+import { GlobalConfigService } from '@shared/services/global-config.service';
 
 @Component({
     selector: 'sitereg-msp-register-access-admins',
@@ -28,6 +30,8 @@ export class MspRegisterAccessAdminsComponent implements OnInit {
 
     constructor(
         private router: Router,
+        public loggerSvc: LoggerService,
+        private globalConfigSvc: GlobalConfigService,
         public mspRegisterStateSvc: MspRegisterStateService,
         public mspRegDataSvc: MspRegisterDataService
     ) {
@@ -43,8 +47,8 @@ export class MspRegisterAccessAdminsComponent implements OnInit {
     ngOnInit() {}
 
     continue() {
-        console.clear();
-        this.logMiddleWareObjects();
+        this.loggerSvc.logNavigation(this.constructor.name, 'ValidForm' );
+        this.debugOnly();
         this.router.navigate(['msp-registration/users']);
     }
 
@@ -62,16 +66,18 @@ export class MspRegisterAccessAdminsComponent implements OnInit {
         this.updateFormGroups();
     }
 
-    logMiddleWareObjects() {
-        // Access Administrators
-        const accessAdmins: IMspAccessAdmin[] = [];
-        this.mspRegisterStateSvc.mspRegisterAccessAdminsForm.forEach((v) =>
-            v.value ? accessAdmins.push(v.value) : ''
-        );
+    debugOnly() {
+        if (this.globalConfigSvc.currentEnironment.production === false) {
+            // Access Administrators
+            const accessAdmins: IMspAccessAdmin[] = [];
+            this.mspRegisterStateSvc.mspRegisterAccessAdminsForm.forEach((v) =>
+                v.value ? accessAdmins.push(v.value) : ''
+            );
 
-        const moAccessAdministrators = this.mspRegDataSvc.mapAccessAdministratorDef(
-            accessAdmins
-        );
-        console.log('MO - Access Admins:', moAccessAdministrators);
+            const moAccessAdministrators = this.mspRegDataSvc.mapAccessAdministratorDef(
+                accessAdmins
+            );
+            console.log('MO - Access Admins:', moAccessAdministrators);
+        }
     }
 }

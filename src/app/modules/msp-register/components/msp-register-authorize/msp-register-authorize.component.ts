@@ -24,6 +24,8 @@ import { IMspUser } from '@msp-register/interfaces/i-msp-user';
 import { IMspAccessAdmin } from '@msp-register/interfaces/i-msp-access-admins';
 import { Router } from '@angular/router';
 import { MspRegisterApiService } from '@core/services/api.service';
+import { LoggerService } from '@shared/services/logger.service';
+import { GlobalConfigService } from '@shared/services/global-config.service';
 // import {  } from 'moh-common-lib/captcha';
 
 export type AccessType = 'admin' | 'user';
@@ -47,6 +49,8 @@ export class MspRegisterAuthorizeComponent implements OnInit {
 
     constructor(
         private router: Router,
+        public loggerSvc: LoggerService,
+        private globalConfigSvc: GlobalConfigService,
         private formBuilder: FormBuilder,
         public mspRegisterStateSvc: MspRegisterStateService,
         public mspRegDataSvc: MspRegisterDataService,
@@ -96,7 +100,8 @@ export class MspRegisterAuthorizeComponent implements OnInit {
         }
     }
     continue() {
-        console.clear();
+        this.loggerSvc.logNavigation(this.constructor.name, 'ValidForm' );
+        this.debugOnly();
         const regRequest = this.registerationObject();
         this.mspRegApiSvc.siteRegisterationRequest(regRequest, this.date.toDateString()).toPromise();
     }
@@ -117,6 +122,76 @@ export class MspRegisterAuthorizeComponent implements OnInit {
 
     registerationObject() {
         // Request Numer - todo - autgenerate
+        const requestNumber = '12345678';
+
+        // Orgnaization Info
+        const moOrganizationInformation = this.mspRegDataSvc.mapOrgInformation(
+            this.mspRegisterStateSvc.mspRegisterOrganizationForm.value
+        );
+
+        // Signing Authority
+        const moSigningAuthority = this.mspRegDataSvc.mapObjectSigningAuthorityInformationDef(
+            this.mspRegisterStateSvc.mspRegisterSigningAuthorityForm.value
+        );
+
+        // Access Administrators
+        const accessAdmins: IMspAccessAdmin[] = [];
+        this.mspRegisterStateSvc.mspRegisterAccessAdminsForm.forEach((v) =>
+            v.value ? accessAdmins.push(v.value) : ''
+        );
+
+        const moAccessAdministrators = this.mspRegDataSvc.mapAccessAdministratorDef(
+            accessAdmins
+        );
+
+        // Users
+        const mspUsers: IMspUser[] = [];
+        this.mspRegisterStateSvc.mspRegisterUsersForm.forEach((v) =>
+            v.value ? mspUsers.push(v.value) : ''
+        );
+
+        const moUsers = this.mspRegDataSvc.mapUserDef(mspUsers);
+
+        // Msp Groups
+        const mspGroups: IMspGroup[] = [];
+        this.mspRegisterStateSvc.mspRegisterGroupForm.forEach((v) =>
+            v.value ? mspGroups.push(v.value) : ''
+        );
+        this.groupsMSP = mspGroups;
+        const moMspGroups = this.mspRegDataSvc.mapGroupDef(mspGroups);
+
+        // Authorize
+        const regRequest = this.mspRegDataSvc.mapSiteRegRequest(
+            requestNumber,
+            moOrganizationInformation,
+            moSigningAuthority,
+            moAccessAdministrators as IAccessAdministratorDef[],
+            moUsers as IUserDef[],
+            moMspGroups as IMspGroupDef[],
+            false
+        );
+
+        return regRequest;
+    }
+
+    isValidGroups() {
+        return (
+            this.groupsMSP.length > 0 &&
+            ((this.groupsMSP[0].groupNumber as string) &&
+            (this.groupsMSP[0].groupNumber as string).length > 3
+                ? true
+                : false)
+        );
+    }
+
+    public navigateTo(route: string) {
+        this.router.navigate([`msp-registration/${route}`]);
+    }
+
+    debugOnly() {
+
+        if (this.globalConfigSvc.currentEnironment.production === false) {
+           // Request Numer - todo - autgenerate
         const requestNumber = '12345678';
 
         // Orgnaization Info
@@ -172,20 +247,6 @@ export class MspRegisterAuthorizeComponent implements OnInit {
         );
 
         console.log('MO - Site Registeration Request Object:', regRequest);
-        return regRequest;
-    }
-
-    isValidGroups() {
-        return (
-            this.groupsMSP.length > 0 &&
-            ((this.groupsMSP[0].groupNumber as string) &&
-            (this.groupsMSP[0].groupNumber as string).length > 3
-                ? true
-                : false)
-        );
-    }
-
-    public navigateTo(route: string) {
-        this.router.navigate([`msp-registration/${route}`]);
+        }
     }
 }
