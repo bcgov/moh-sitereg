@@ -31,16 +31,20 @@ export class LoggerService extends CommonLogger {
         // this.isProduction = this.globalConfigSvc.currentEnironment.production;
         this.isProduction = true;
 
-        this.program = this.globalConfigSvc.logMspApplicationName;
-        this.applicationId = this.globalConfigSvc.logMspApplicationUUID;
-        this.loggingUri = this.globalConfigSvc.currentEnironment.loggingURL;
+        // this.program = this.globalConfigSvc.logMspApplicationName;
+        // this.applicationId = this.globalConfigSvc.logMspApplicationUUID;
+        // this.loggingUri = this.globalConfigSvc.currentEnironment.loggingURL;
 
-        this._headers = this._headers.set('name', this.program);
-        this._headers = this._headers.set('applicationId', this.applicationId);
-        this._headers = this._headers.set('request_method', 'POST');
-        this._headers = this._headers.set('logsource', window.location.hostname);
-        this._headers = this._headers.set('http_x_forwarded_host', window.location.hostname);
-        this.setURL(this.loggingUri);
+        // this.programName = this.program;
+        this.programName =  this.globalConfigSvc.logMspApplicationName;
+        this.applicationId = this.globalConfigSvc.logMspApplicationUUID;
+        this.setURL(this.globalConfigSvc.currentEnironment.loggingURL);
+        
+        // this._headers = this._headers.set('applicationId', this.applicationId);
+        // this._headers = this._headers.set('request_method', 'POST');
+        // this._headers = this._headers.set('logsource', window.location.hostname);
+        // this._headers = this._headers.set('http_x_forwarded_host', window.location.hostname);
+        // this.setURL(this.loggingUri);
     }
 
 
