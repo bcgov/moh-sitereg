@@ -18,7 +18,8 @@ export class LoggerService extends CommonLogger {
 
     protected isProduction: boolean = true;
     protected loggingUri: string;
-    public programName: string;
+    public program: string;
+   
     constructor(
         protected http: HttpClient,
         private globalConfigSvc: GlobalConfigService) {
@@ -29,12 +30,19 @@ export class LoggerService extends CommonLogger {
 
         // this.isProduction = this.globalConfigSvc.currentEnironment.production;
         this.isProduction = true;
-        this.programName = this.globalConfigSvc.logMspApplicationName;
-        this.loggingUri = this.globalConfigSvc.currentEnironment.loggingURL;
+
+        this.program = this.globalConfigSvc.logMspApplicationName;
         this.applicationId = this.globalConfigSvc.logMspApplicationUUID;
-        this._headers = this._headers.set('program', this.programName);
+        this.loggingUri = this.globalConfigSvc.currentEnironment.loggingURL;
+
+        this._headers = this._headers.set('name', this.program);
+        this._headers = this._headers.set('applicationId', this.applicationId);
+        this._headers = this._headers.set('request_method', 'POST');
+        this._headers = this._headers.set('logsource', window.location.hostname);
+        this._headers = this._headers.set('http_x_forwarded_host', window.location.hostname);
         this.setURL(this.loggingUri);
     }
+
 
     /**
      * Overrided function - must have event within the interface
@@ -42,6 +50,7 @@ export class LoggerService extends CommonLogger {
      */
     public log(message: LogMessage) {
         try {
+            console.log(`%c Logger Object => %o`, 'color:orange', this);
             this.isProduction
             ? this._log(message as CommonLogMessage)
             : console.log(`%c Splunk Log: %o`, 'color:green', message);
