@@ -63,7 +63,7 @@
           <ul class="list-no-bullets">
             <li>
               <span class="selectedOption">
-                {{ (signingAuthority.directMspAccess && signingAuthority.directMspAccess===true)  ? "&#10003;": "&#8271;" }}
+                {{ (signingAuthority.directMspAccess && signingAuthority.directMspAccess===true)  ? "&#10003;": "&#9634;" }}
               </span>
               <label for="checkMspDirectWeb" class="label-right" title="click to edit"
                 (click)="navigateTo('signing-authority');">
@@ -71,7 +71,7 @@
               </label>
             </li>
             <li>
-              <span class="selectedOption"> {{ organization.blueCross ? "&#10003;": "&#8271;"  }} </span>
+              <span class="selectedOption"> {{ organization.blueCross ? "&#10003;": "&#9634;"  }} </span>
               <label for="checkPacificBlueCross" class="label-right" title="click to edit"
                 (click)="navigateTo('organization');">
                 The Applicant will Administer MSP using software supported by Pacific Blue Cross.
@@ -79,7 +79,7 @@
             </li>
             <li>
               <div title="click to edit" (click)="navigateTo('group-numbers');">
-                <span> {{ groupsMSP.length>0? "&#10003;": "&#8271;" }} </span>
+                <span> {{ groupsMSP.length>0? "&#10003;": "&#9634;" }} </span>
                 <label for="checkMspApplicantBehalf" class="label-right">
                   The following organization will Administer MSP on the Applicant`s behalf:
                 </label>
@@ -101,7 +101,7 @@
         <ul class="list-no-bullets" title="click to edit" (click)="navigateTo('signing-authority');">
           <li class="li-inline">
             <span>
-              {{ (signingAuthority.administeringFor && signingAuthority.administeringFor.includes('Employees'))? "&#10003;": "&#8271;" }}
+              {{ (signingAuthority.administeringFor && signingAuthority.administeringFor.includes('Employees'))? "&#10003;": "&#9634;" }}
             </span>
             <label class="label-right">
               Employees
@@ -109,7 +109,7 @@
           </li>
           <li class="li-inline">
             <span>
-              {{ (signingAuthority.administeringFor && signingAuthority.administeringFor.includes('International Students') )? "&#10003;": "&#8271;" }}
+              {{ (signingAuthority.administeringFor && signingAuthority.administeringFor.includes('International Students') )? "&#10003;": "&#9634;" }}
             </span>
             <label class="label-right">
               International Students
@@ -117,7 +117,7 @@
           </li>
           <li class="li-inline">
             <span>
-              {{ (signingAuthority.administeringFor && signingAuthority.administeringFor.includes('Other') )? "&#10003;": "&#8271;" }}
+              {{ (signingAuthority.administeringFor && signingAuthority.administeringFor.includes('Other') )? "&#10003;": "&#9634;" }}
             </span>
             <label class="label-right">
               Other (require further approval)

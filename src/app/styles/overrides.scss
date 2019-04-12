@@ -180,3 +180,9 @@ h1, h2, h3,
   opacity: 1; // Accessibility standards
   color: #494949cc; // Font is eqivalent to opacity 0.8, meeting AA standard
 }
+
+.bg-grey {
+  color: #fff;
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
