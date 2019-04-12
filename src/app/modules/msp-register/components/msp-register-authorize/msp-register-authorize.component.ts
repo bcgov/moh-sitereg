@@ -23,7 +23,7 @@ import {
 import { IMspUser } from '@msp-register/interfaces/i-msp-user';
 import { IMspAccessAdmin } from '@msp-register/interfaces/i-msp-access-admins';
 import { Router } from '@angular/router';
-import { MspRegisterApiService } from '@core/services/api.service';
+import { MspRegisterApiService } from '@shared/services/api.service';
 import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
 // import {  } from 'moh-common-lib/captcha';
@@ -47,6 +47,9 @@ export class MspRegisterAuthorizeComponent implements OnInit {
     // signingAuthority : IMspSigningAuthority;
     groupNumbers: IMspGroup[];
 
+    captchaApiBaseUrl: string ;
+    nonce: string;
+
     constructor(
         private router: Router,
         public loggerSvc: LoggerService,
@@ -54,9 +57,13 @@ export class MspRegisterAuthorizeComponent implements OnInit {
         private formBuilder: FormBuilder,
         public mspRegisterStateSvc: MspRegisterStateService,
         public mspRegDataSvc: MspRegisterDataService,
-        public mspRegApiSvc: MspRegisterApiService
+        public mspRegApiSvc: MspRegisterApiService,
+        public apiSvc: MspRegisterApiService
     ) {
         this.validFormControl = validFormControl.bind(this);
+
+        this.captchaApiBaseUrl = this.globalConfigSvc.currentEnironment.captchaApiBaseUrl;
+        this.nonce = this.globalConfigSvc.applicationId;
     }
 
     public get signingAuthority(): IMspSigningAuthority {
@@ -248,5 +255,9 @@ export class MspRegisterAuthorizeComponent implements OnInit {
 
         console.log('MO - Site Registeration Request Object:', regRequest);
         }
+    }
+
+    setToken(token): void {
+        this.apiSvc.setCaptchaToken(token);
     }
 }

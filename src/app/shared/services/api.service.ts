@@ -14,27 +14,53 @@ import { PayloadInterface } from '@core/models/api-base.model';
 import { environment } from '../../../environments/environment';
 import { UUID } from 'angular2-uuid';
 import { ISiteRegRequest } from '@core/interfaces/i-http-data';
+import { LoggerService } from './logger.service';
+import { GlobalConfigService } from './global-config.service';
 
 @Injectable({
     providedIn: 'root',
 })
 export class MspRegisterApiService extends AbstractHttpService {
 
+    //#region Captcha
+
     /**
      *  Default hardcoded header values.  Note: Authentication headers are added
      *  at runtime in the httpOptions() method.
      */
-    protected _headers: HttpHeaders = new HttpHeaders();
+    protected _headers: HttpHeaders = new HttpHeaders({
+        'Cache-Control': 'private'
+    });
+    private _token: string;
+    private _clientName: string = 'sitereg';
+    private apiURL: string;
 
-    // Client name retrieved from parameter in cache
-    public clientName: string;
+    constructor(
+        protected http: HttpClient,
+        private globalConfigSvc: GlobalConfigService,
+        public logService: LoggerService) {
+        super(http);
+        this.apiURL = this.globalConfigSvc.currentEnironment.baseAPIUrl;
+    }
+
+    public setCaptchaToken(token: string) {
+        this._token = token;
+        this._headers = this._headers.set('X-Authorization', `Bearer ${this._token}`);
+
+        if (!environment.production) {
+            console.log('ApiService token set:', {
+                token: this._token,
+                headers: this._headers
+            });
+        }
+    }
+
+
+    //#endregion
+
 
     // Session identifier
     public eventUUID: string;
-
-    constructor(protected http: HttpClient) {
-        super(http);
-    }
 
     /**
      *
@@ -75,27 +101,27 @@ export class MspRegisterApiService extends AbstractHttpService {
         console.log(this.eventUUID);
 
 
-        // const url = environment.baseAPIUrl + `${this.eventUUID}`;
+        const url = environment.baseAPIUrl + `${this.eventUUID}`;
 
 
         // // REMOVEME
-        const testMiddlewareURL = 'http://localhost:5200';
-        const url = testMiddlewareURL + environment.baseAPIUrl + `${this.eventUUID}`;
-        console.log(url);
+        // const testMiddlewareURL = 'http://localhost:5200';
+        // const url = testMiddlewareURL + environment.baseAPIUrl + `${this.eventUUID}`;
+        // console.log(url);
 
-        const body  = {
+        const body = {
             eventUUID: this.eventUUID,
-            clientName: this.clientName,
+            clientName: this._clientName,
             request_num: siteRegRequest.request_num,
             org_information: siteRegRequest.org_information,
             signing_authority_information: siteRegRequest.signing_authority_information,
-            aa_same_as_sa: siteRegRequest.aa_same_as_sa ,
+            aa_same_as_sa: siteRegRequest.aa_same_as_sa,
             access_administrator: siteRegRequest.access_administrator,
             users: siteRegRequest.users,
             msp_group: siteRegRequest.msp_group
         };
 
-        return this.post<PayloadInterface>(url, body);
+        return this.post<PayloadInterface>(this.apiURL, body);
         // return this.post<ISiteRegRequest>(url, params);
     }
 }
