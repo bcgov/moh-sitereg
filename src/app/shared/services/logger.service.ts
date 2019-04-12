@@ -28,24 +28,11 @@ export class LoggerService extends CommonLogger {
 
         // todo: program name should be from enviornment
 
-        // this.isProduction = this.globalConfigSvc.currentEnironment.production;
-        this.isProduction = true;
-
-        // this.program = this.globalConfigSvc.logMspApplicationName;
-        // this.applicationId = this.globalConfigSvc.logMspApplicationUUID;
-        // this.loggingUri = this.globalConfigSvc.currentEnironment.loggingURL;
-
-        // this.programName = this.program;
+        this.isProduction = this.globalConfigSvc.currentEnironment.production;
         this.programName =  this.globalConfigSvc.logMspApplicationName;
         this.applicationId = this.globalConfigSvc.logMspApplicationUUID;
         this.setURL(this.globalConfigSvc.currentEnironment.loggingURL);
-        
-        // this._headers = this._headers.set('applicationId', this.applicationId);
-        // this._headers = this._headers.set('request_method', 'POST');
-        // this._headers = this._headers.set('logsource', window.location.hostname);
-        // this._headers = this._headers.set('http_x_forwarded_host', window.location.hostname);
-        // this.setURL(this.loggingUri);
-    }
+   }
 
 
     /**
