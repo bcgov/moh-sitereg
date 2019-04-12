@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedCoreModule } from 'moh-common-lib';
+import { CaptchaModule } from 'moh-common-lib/captcha';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { PageSectionsComponent } from './components/page-sections/page-sections.component';
 import { CaptchaComponent } from './components/captcha/captcha.component';
@@ -17,7 +18,8 @@ import { GlobalConfigService } from './services/global-config.service';
         CommonModule,
         SharedCoreModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        CaptchaModule
     ],
     providers : [
         GlobalConfigService
