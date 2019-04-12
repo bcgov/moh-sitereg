@@ -185,7 +185,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
     }
 
     public navigateTo(route: string) {
-        this.router.navigate([`msp-registration/${route}`]);
+        // this.router.navigate([`msp-registration/${route}`]);
     }
 
     debugOnly() {
