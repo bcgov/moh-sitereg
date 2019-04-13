@@ -149,12 +149,14 @@
 
 
   <div class="row">
+    <span class="captcha">
      <common-captcha 
      [apiBaseUrl]="captchaApiBaseUrl"
      [nonce]="nonce"
      (onValidToken)="setToken($event)"
      [successMessage]="'  '"
     ></common-captcha> 
+    </span>
   </div>
 
   <!-- Consent  -->
