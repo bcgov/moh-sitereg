@@ -42,7 +42,12 @@ export class LoggerService extends CommonLogger {
     public log(message: LogMessage) {
         try {
 
+            console.log(`%c Splunk Logger Object => %o`, 'color:orange', this);
+            const clog = message as CommonLogMessage;
+            console.log(`%c  Splunk Log: => %o`, 'color:orange', clog);
+
             this._log(message as CommonLogMessage);
+
 
             // console.log(`%c Logger Object => %o`, 'color:orange', this);
             // this.isProduction
@@ -58,6 +63,9 @@ export class LoggerService extends CommonLogger {
      * @param errorMessage
      */
     public logError(errorMessage: LogMessage) {
+
+        const elog = errorMessage as CommonLogMessage;
+        console.log(`%c  Splunk Log (error): => %o`, 'color:orange', elog);
 
         this._logError(errorMessage as CommonLogMessage);
         // this.isProduction
