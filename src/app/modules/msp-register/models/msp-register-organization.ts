@@ -33,7 +33,7 @@ export class MspRegisterOrganization extends GenerateForm<IMspOrganization>
 
             // organizationNumber: [groupNumberValidator()], // TBD: opt-out, this is MSP group number
             name: [required, Validators.maxLength(100)],
-            suite: [required, Validators.maxLength(10), addressValidator()],
+            suite: [Validators.maxLength(10), addressValidator()],
             street: [required, Validators.maxLength(10), addressValidator()],
             streetName: [
                 required,
