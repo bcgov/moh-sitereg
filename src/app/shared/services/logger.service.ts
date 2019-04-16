@@ -28,7 +28,7 @@ export class LoggerService extends CommonLogger {
 
         // todo: program name should be from enviornment
 
-        this.isProduction = this.globalConfigSvc.currentEnironment.production;
+        // this.isProduction = this.globalConfigSvc.currentEnironment.production;
         this.programName =  this.globalConfigSvc.logMspApplicationName;
         this.applicationId = this.globalConfigSvc.logMspApplicationUUID;
         this.setURL(this.globalConfigSvc.currentEnironment.loggingURL);
@@ -41,10 +41,13 @@ export class LoggerService extends CommonLogger {
      */
     public log(message: LogMessage) {
         try {
-            console.log(`%c Logger Object => %o`, 'color:orange', this);
-            this.isProduction
-            ? this._log(message as CommonLogMessage)
-            : console.log(`%c Splunk Log: %o`, 'color:green', message);
+
+            this._log(message as CommonLogMessage);
+
+            // console.log(`%c Logger Object => %o`, 'color:orange', this);
+            // this.isProduction
+            // ? this._log(message as CommonLogMessage)
+            // : console.log(`%c Splunk Log: %o`, 'color:green', message);
         } catch (e) {
             console.log(`%c Error while Logging [ %o ] : exception:  %o`, 'color:red', message, e);
         }
@@ -55,9 +58,11 @@ export class LoggerService extends CommonLogger {
      * @param errorMessage
      */
     public logError(errorMessage: LogMessage) {
-        this.isProduction
-            ? this._logError(errorMessage as CommonLogMessage)
-            : console.log(`%c Splunk Error: %o`, 'color:red', errorMessage);
+
+        this._logError(errorMessage as CommonLogMessage);
+        // this.isProduction
+        //     ? this._logError(errorMessage as CommonLogMessage)
+        //     : console.log(`%c Splunk Error: %o`, 'color:red', errorMessage);
     }
 
     /** Log Navigation */
