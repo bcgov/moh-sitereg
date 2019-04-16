@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 import { MspRegisterStateService } from '@msp-register/services/msp-register-state.service';
-import { IUser } from '@msp-register/interfaces';
+import { IUser, IMspSigningAuthority } from '@msp-register/interfaces';
 import {
     validFormControl,
     validMultiFormControl,
@@ -37,18 +37,51 @@ export class MspRegisterSigningAuthorityComponent implements OnInit {
         this.fg = this.mspRegisterStateSvc.mspRegisterSigningAuthorityForm;
         this.validFormControl = validMultiFormControl.bind(this);
 
-        // debug only
+        // // debug only
         // this.fg.valueChanges.subscribe((obs) => {
-        //     console.log(this.fg)
+        //     console.log(obs);
         // });
     }
 
-    ngOnInit() {}
+    ngOnInit() { }
 
     continue() {
-        this.loggerSvc.logNavigation(this.constructor.name, 'ValidForm' );
+        this.loggerSvc.logNavigation(this.constructor.name, 'ValidForm');
         this.debugOnly();
+        this.addSingingAuthorityAsAdmin();
         this.router.navigate(['msp-registration/access-admins']);
+    }
+
+    addSingingAuthorityAsAdmin(): void {
+
+        const directMspAccess = this.fg.get('directMspAccess');
+        if (directMspAccess) {
+            this.mspRegisterStateSvc.addAdmin();
+            const admins = this.mspRegisterStateSvc.mspRegisterAccessAdminsForm;
+            if (admins && admins.length > 0) {
+                const sa = this.mspRegisterStateSvc.mspRegisterSigningAuthorityForm.value;
+                // console.log(sa);
+                // todo - verify is signing authority is already in the admin lists
+                // TBD - remove signing authority, or click no - 
+                //       what should be happening in case if user already have users,
+                //       should i use email
+                const saAdmin = admins[0];
+                saAdmin.patchValue({
+                    userTitle: sa.userTitle,
+                    firstName: sa.firstName,
+                    initial: sa.initial,
+                    lastName: sa.lastName,
+                    jobTitle: sa.jobTitle,
+                    emailAddress: sa.emailAddress,
+                    confirmEmail: sa.confirmEmail,
+                    phone: sa.phone,
+                    ext: sa.ext,
+                    fax: sa.fax,
+                    administeringFor: sa.administeringFor,
+                    directMspAccess: true,
+                });
+            }
+        }
     }
 
     debugOnly() {
