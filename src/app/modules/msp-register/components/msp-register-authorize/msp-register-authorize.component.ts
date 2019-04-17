@@ -115,17 +115,18 @@ export class MspRegisterAuthorizeComponent implements OnInit {
         this.mspRegApiSvc
             .siteRegisterationRequest(regRequest, this.date.toDateString())
             .toPromise()
-            .catch( err => {
-                this.loggerSvc.logError(
-                    {
-                        event: 'http-exception',
-                        exceptionMessage : `${err}`
-                    } as  LogMessage
-                );
+            .catch((err) => {
+                this.loggerSvc.logError({
+                    event: 'http-exception',
+                    exceptionMessage: `${err}`,
+                } as LogMessage);
                 this.loggerSvc.logHttpError(err);
             })
-            .then(result => {
-                this.loggerSvc.logNavigation('middleware-request-status:', 'completed');
+            .then((result) => {
+                this.loggerSvc.logNavigation(
+                    'middleware-request-status:',
+                    'completed'
+                );
             });
     }
 
@@ -205,6 +206,19 @@ export class MspRegisterAuthorizeComponent implements OnInit {
                 ? true
                 : false)
         );
+    }
+
+    public get isWebEnabled() {
+        if (
+            this.mspRegisterStateSvc.mspRegisterAccessAdminsForm &&
+            this.mspRegisterStateSvc.mspRegisterAccessAdminsForm.length === 0 &&
+            (this.mspRegisterStateSvc.mspRegisterUsersForm &&
+                this.mspRegisterStateSvc.mspRegisterUsersForm.length === 0)
+        ) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     public navigateTo(route: string) {

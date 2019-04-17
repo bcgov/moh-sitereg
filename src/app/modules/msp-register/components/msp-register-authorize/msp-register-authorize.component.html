@@ -14,7 +14,7 @@
   <div class="row">
     <p>THIS AGREMENT is made between <b>Her Majesty the Queen in right of the Province of British Columbia, as
         represented by the Minister of Health</b> (the "<b>Province</b>") and <b>{{signingAuthority.firstName}}
-        {{signingAuthority.lastName}}</b> (the "<b>Applicant</b>") and witnesses that, for good and valueable
+        {{organization.name}}</b> (the "<b>Applicant</b>") and witnesses that, for good and valueable
       consideration (the reciept and sufficiency of which is hereby acknowledged), the Parties agree as follows: </p>
     <!--   -->
     <ol class="aggrement-ol">
@@ -41,12 +41,12 @@
           <table class="list-table">
             <tr class="aggrement-table">
               <td class="column-label">Signing Authority </td>
-              <td class="aggrement-table" title="click to edit" (click)="navigateTo('signing-authority');">
+              <td class="aggrement-table" title="" (click)="navigateTo('signing-authority');">
                 {{signingAuthority.firstName}} {{signingAuthority.lastName}} </td>
             </tr>
             <tr class="aggrement-table">
               <td class="column-label">Authorized Sites</td>
-              <td class="aggrement-table" title="click to edit" (click)="navigateTo('organization');">
+              <td class="aggrement-table" title="" (click)="navigateTo('organization');">
                 {{organization.suite}} {{organization.street? organization.street: ''}} {{organization.streetName}}
                 <br />
                 {{organization.city}}, {{organization.province}}. {{organization.postalCode}}
@@ -59,26 +59,26 @@
       <!--3 group numbers-->
       <li class="aggrement-li">
         <div>
-          [click to edit]
+          [Select one or more as applicable:]
           <ul class="list-no-bullets">
             <li>
               <span class="selectedOption">
-                {{ (signingAuthority.directMspAccess && signingAuthority.directMspAccess===true)  ? "&#10003;": "&#9634;" }}
+                {{ isWebEnabled===true ? "&#10003;": "&#9634;" }}
               </span>
-              <label for="checkMspDirectWeb" class="label-right" title="click to edit"
+              <label for="checkMspDirectWeb" class="label-right" title=""
                 (click)="navigateTo('signing-authority');">
                 The Applicant will Administer MSP using the MSP Direct Web Interface.
               </label>
             </li>
             <li>
               <span class="selectedOption"> {{ organization.blueCross ? "&#10003;": "&#9634;"  }} </span>
-              <label for="checkPacificBlueCross" class="label-right" title="click to edit"
+              <label for="checkPacificBlueCross" class="label-right" title=""
                 (click)="navigateTo('organization');">
                 The Applicant will Administer MSP using software supported by Pacific Blue Cross.
               </label>
             </li>
             <li>
-              <div title="click to edit" (click)="navigateTo('group-numbers');">
+              <div title="" (click)="navigateTo('group-numbers');">
                 <span> {{ groupsMSP.length>0? "&#10003;": "&#9634;" }} </span>
                 <label for="checkMspApplicantBehalf" class="label-right">
                   The following organization will Administer MSP on the Applicant`s behalf:
@@ -97,8 +97,8 @@
       </li>
       <!--4 Administer For-->
       <li class="aggrement-li">
-        The Application will Administer MSP for [click to edit]
-        <ul class="list-no-bullets" title="click to edit" (click)="navigateTo('signing-authority');">
+        The Application will Administer MSP for []
+        <ul class="list-no-bullets" title="" (click)="navigateTo('signing-authority');">
           <li class="li-inline">
             <span>
               {{ (signingAuthority.administeringFor && signingAuthority.administeringFor.includes('Employees'))? "&#10003;": "&#9634;" }}

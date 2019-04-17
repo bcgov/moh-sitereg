@@ -102,7 +102,6 @@ export class MspRegisterApiService extends AbstractHttpService {
         siteRegRequest: ISiteRegRequest,
         processDate = this.getProcessDate()
     ): Observable<PayloadInterface> {
-
         // disabled to keep log of the application all steps.
         // this.eventUUID = UUID.UUID();
 
