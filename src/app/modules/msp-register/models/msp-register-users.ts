@@ -11,7 +11,6 @@ import { IMspUser } from '@msp-register/interfaces/i-msp-user';
 
 export class MspRegisterUsers extends GenerateForm<IMspUser>
     implements MspUser {
-
     userTitle?: ctFormControlUserTitle = null;
     firstName: ctFormControlString = null;
     initial?: ctFormControlString = null;
@@ -23,7 +22,6 @@ export class MspRegisterUsers extends GenerateForm<IMspUser>
     ext?: ctFormControlString = null;
     fax: ctFormControlString = null;
     administeringFor: ctFormControlString = null;
-
 
     validators() {
         return cUserValidators;

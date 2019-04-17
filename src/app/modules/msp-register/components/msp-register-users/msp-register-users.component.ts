@@ -7,6 +7,7 @@ import { MspRegisterDataService } from '@msp-register/services/msp-register-data
 import { validMultiFormControl } from '@msp-register/models/validator-helpers';
 import { IMspUser } from '@msp-register/interfaces/i-msp-user';
 import { cAdministeringFor } from '../../models/core/core-types';
+import { LoggerService } from '@shared/services/logger.service';
 
 @Component({
     selector: 'sitereg-msp-register-users',
@@ -23,6 +24,7 @@ export class MspRegisterUsersComponent implements OnInit {
 
     constructor(
         private router: Router,
+        public loggerSvc: LoggerService,
         public mspRegisterStateSvc: MspRegisterStateService,
         public mspRegDataSvc: MspRegisterDataService
     ) {
@@ -38,6 +40,10 @@ export class MspRegisterUsersComponent implements OnInit {
     ngOnInit() {}
 
     continue() {
+        this.loggerSvc.logNavigation(
+            this.constructor.name,
+            'valid data - continue clicked'
+        );
         this.logMiddleWareObjects();
         this.router.navigate(['msp-registration/group-numbers']);
     }

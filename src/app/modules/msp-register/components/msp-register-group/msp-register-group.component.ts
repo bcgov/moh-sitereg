@@ -38,7 +38,10 @@ export class MspRegisterGroupComponent implements OnInit {
     ngOnInit() {}
 
     continue() {
-        this.loggerSvc.logNavigation(this.constructor.name, 'ValidForm' );
+        this.loggerSvc.logNavigation(
+            this.constructor.name,
+            'valid data - continue clicked'
+        );
         this.debugOnly();
         this.router.navigate(['msp-registration/authorize']);
     }
@@ -58,17 +61,15 @@ export class MspRegisterGroupComponent implements OnInit {
     }
 
     debugOnly() {
-
         if (this.globalConfigSvc.currentEnironment.production === false) {
+            // Msp Groups
+            const mspGroups: IMspGroup[] = [];
+            this.mspRegisterStateSvc.mspRegisterGroupForm.forEach((v) =>
+                v.value ? mspGroups.push(v.value) : ''
+            );
 
-        // Msp Groups
-        const mspGroups: IMspGroup[] = [];
-        this.mspRegisterStateSvc.mspRegisterGroupForm.forEach((v) =>
-            v.value ? mspGroups.push(v.value) : ''
-        );
-
-        const moMspGroups = this.mspRegDataSvc.mapGroupDef(mspGroups);
-        console.log('MO - Group:', moMspGroups);
+            const moMspGroups = this.mspRegDataSvc.mapGroupDef(mspGroups);
+            console.log('MO - Group:', moMspGroups);
         }
     }
 }

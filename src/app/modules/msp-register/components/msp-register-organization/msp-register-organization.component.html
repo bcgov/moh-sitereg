@@ -48,7 +48,7 @@
 
       <!-- City -->
       <label class="control-label" for="city">City</label>
-      <input id="city" formControlName="city" class="form-control" placeholder="Victoria">
+      <input id="city" formControlName="city" class="form-control" placeholder="City Name">
       <div class="text-danger" *ngIf="validFormControl('city')">
         Please enter your city.
       </div>
@@ -75,48 +75,50 @@
         </div>
       </div>
 
-      <!-- Question Third Party Administering -->
-      <label class="control-label">
-        Are you contracting a 3rd party to administer MSP Direct on your behalf?
-      </label>
-      <div class="form-check">
-        <!--No-->
-        <input class='form-check-input' formControlName="thirdParty" type="radio" id="thirdPartyFalse" tabindex="0"
-          [value]="false">
-        <label class='form-check-label' for="thirdPartyFalse">
-          No
+        <!-- Question Third Party Administering -->
+        <label class="control-label">
+          Are you contracting a 3rd party to administer MSP Direct on your behalf?
         </label>
-        <!--Yes-->
-        <input class='form-check-input' formControlName="thirdParty" type="radio" name="" id="thirdPartyTrue"
-          tabindex="0" [value]="true">
-        <label class='form-check-label' for="aatrue">
-          Yes
-        </label>
-      </div>
-      <div class="text-danger" *ngIf="validFormControl('thirdParty')">
-        Please select a valid option
-      </div>
+        <div class="form-check">
+          <!--No-->
+          <input class='form-check-input' formControlName="thirdParty" type="radio" id="thirdPartyFalse" tabindex="0"
+            [value]="false">
+          <label class='form-check-label' for="thirdPartyFalse">
+            No
+          </label>
+          <!--Yes-->
+          <input class='form-check-input' formControlName="thirdParty" type="radio" name="" id="thirdPartyTrue"
+            tabindex="0" [value]="true">
+          <label class='form-check-label' for="aatrue">
+            Yes
+          </label>
+        </div>
+        <div class="text-danger" *ngIf="validFormControl('thirdParty')">
+          Please select a valid option
+        </div>
 
-      <!-- Question Blue Cross -->
-      <label class="control-label">Are you applying to access MSP Direct through Blue Cross?
-      </label>
-      <div class="form-check">
-        <!--No-->
-        <input class='form-check-input' formControlName="blueCross" type="radio" id="aafalse" tabindex="0"
-          [value]="false">
-        <label class='form-check-label' for="aafalse">
-          No
+        <!-- Question Blue Cross -->
+        <label class="control-label">Are you applying to access MSP Direct through Blue Cross?
         </label>
-        <!--Yes-->
-        <input class='form-check-input' formControlName="blueCross" type="radio" name="" id="aatruev" tabindex="0"
-          [value]="true">
-        <label class='form-check-label' for="aatrue">
-          Yes
-        </label>
-      </div>
-      <div class="text-danger" *ngIf="validFormControl('blueCross')">
-        Please select a valid option
-      </div>
+        <div class="form-check">
+          <!--No-->
+          <input class='form-check-input' formControlName="blueCross" type="radio" id="aafalse" tabindex="0"
+            [value]="false">
+          <label class='form-check-label' for="aafalse">
+            No
+          </label>
+          <!--Yes-->
+          <input class='form-check-input' formControlName="blueCross" type="radio" name="" id="aatruev" tabindex="0"
+            [value]="true">
+          <label class='form-check-label' for="aatrue">
+            Yes
+          </label>
+        </div>
+        <div class="text-danger" *ngIf="validFormControl('blueCross')">
+          Please select a valid option
+        </div>
+      
+
       <!-- Administrating For-->
       <label class="control-label" for="administeringFor">This organization will be adminstering MSP for</label>
       <select class="form-control" *ngIf="administeringFor | async as administering" formControlName="administeringFor">

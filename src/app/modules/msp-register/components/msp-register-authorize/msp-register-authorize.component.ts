@@ -1,8 +1,4 @@
-import {
-    Component,
-    OnInit,
-    ChangeDetectionStrategy,
-} from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {
     MspRegisterStateService,
@@ -24,7 +20,7 @@ import { IMspUser } from '@msp-register/interfaces/i-msp-user';
 import { IMspAccessAdmin } from '@msp-register/interfaces/i-msp-access-admins';
 import { Router } from '@angular/router';
 import { MspRegisterApiService } from '@shared/services/api.service';
-import { LoggerService } from '@shared/services/logger.service';
+import { LoggerService, LogMessage } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
 // import {  } from 'moh-common-lib/captcha';
 
@@ -47,7 +43,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
     // signingAuthority : IMspSigningAuthority;
     groupNumbers: IMspGroup[];
 
-    captchaApiBaseUrl: string ;
+    captchaApiBaseUrl: string;
     nonce: string;
 
     constructor(
@@ -107,10 +103,30 @@ export class MspRegisterAuthorizeComponent implements OnInit {
         }
     }
     continue() {
-        this.loggerSvc.logNavigation(this.constructor.name, 'ValidForm' );
+        this.loggerSvc.logNavigation(
+            this.constructor.name,
+            'valid data - continue clicked'
+        );
         this.debugOnly();
         const regRequest = this.registerationObject();
-        this.mspRegApiSvc.siteRegisterationRequest(regRequest, this.date.toDateString()).toPromise();
+
+        console.log(regRequest);
+
+        this.mspRegApiSvc
+            .siteRegisterationRequest(regRequest, this.date.toDateString())
+            .toPromise()
+            .catch( err => {
+                this.loggerSvc.logError(
+                    {
+                        event: 'http-exception',
+                        exceptionMessage : `${err}`
+                    } as  LogMessage
+                );
+                this.loggerSvc.logHttpError(err);
+            })
+            .then(result => {
+                this.loggerSvc.logNavigation('middleware-request-status:', 'completed');
+            });
     }
 
     validToken($event) {
@@ -196,64 +212,63 @@ export class MspRegisterAuthorizeComponent implements OnInit {
     }
 
     debugOnly() {
-
         if (this.globalConfigSvc.currentEnironment.production === false) {
-           // Request Numer - todo - autgenerate
-        const requestNumber = '12345678';
+            // Request Numer - todo - autgenerate
+            const requestNumber = '12345678';
 
-        // Orgnaization Info
-        const moOrganizationInformation = this.mspRegDataSvc.mapOrgInformation(
-            this.mspRegisterStateSvc.mspRegisterOrganizationForm.value
-        );
-        console.log('MO - Organization info:', moOrganizationInformation);
+            // Orgnaization Info
+            const moOrganizationInformation = this.mspRegDataSvc.mapOrgInformation(
+                this.mspRegisterStateSvc.mspRegisterOrganizationForm.value
+            );
+            console.log('MO - Organization info:', moOrganizationInformation);
 
-        // Signing Authority
-        const moSigningAuthority = this.mspRegDataSvc.mapObjectSigningAuthorityInformationDef(
-            this.mspRegisterStateSvc.mspRegisterSigningAuthorityForm.value
-        );
-        console.log('MO - Signing Authority:', moSigningAuthority);
+            // Signing Authority
+            const moSigningAuthority = this.mspRegDataSvc.mapObjectSigningAuthorityInformationDef(
+                this.mspRegisterStateSvc.mspRegisterSigningAuthorityForm.value
+            );
+            console.log('MO - Signing Authority:', moSigningAuthority);
 
-        // Access Administrators
-        const accessAdmins: IMspAccessAdmin[] = [];
-        this.mspRegisterStateSvc.mspRegisterAccessAdminsForm.forEach((v) =>
-            v.value ? accessAdmins.push(v.value) : ''
-        );
+            // Access Administrators
+            const accessAdmins: IMspAccessAdmin[] = [];
+            this.mspRegisterStateSvc.mspRegisterAccessAdminsForm.forEach((v) =>
+                v.value ? accessAdmins.push(v.value) : ''
+            );
 
-        const moAccessAdministrators = this.mspRegDataSvc.mapAccessAdministratorDef(
-            accessAdmins
-        );
-        console.log('MO - Access Admins:', moAccessAdministrators);
+            const moAccessAdministrators = this.mspRegDataSvc.mapAccessAdministratorDef(
+                accessAdmins
+            );
+            console.log('MO - Access Admins:', moAccessAdministrators);
 
-        // Users
-        const mspUsers: IMspUser[] = [];
-        this.mspRegisterStateSvc.mspRegisterUsersForm.forEach((v) =>
-            v.value ? mspUsers.push(v.value) : ''
-        );
+            // Users
+            const mspUsers: IMspUser[] = [];
+            this.mspRegisterStateSvc.mspRegisterUsersForm.forEach((v) =>
+                v.value ? mspUsers.push(v.value) : ''
+            );
 
-        const moUsers = this.mspRegDataSvc.mapUserDef(mspUsers);
-        console.log('MO - Users:', moUsers);
+            const moUsers = this.mspRegDataSvc.mapUserDef(mspUsers);
+            console.log('MO - Users:', moUsers);
 
-        // Msp Groups
-        const mspGroups: IMspGroup[] = [];
-        this.mspRegisterStateSvc.mspRegisterGroupForm.forEach((v) =>
-            v.value ? mspGroups.push(v.value) : ''
-        );
-        this.groupsMSP = mspGroups;
-        const moMspGroups = this.mspRegDataSvc.mapGroupDef(mspGroups);
-        console.log('MO - Group:', moMspGroups);
+            // Msp Groups
+            const mspGroups: IMspGroup[] = [];
+            this.mspRegisterStateSvc.mspRegisterGroupForm.forEach((v) =>
+                v.value ? mspGroups.push(v.value) : ''
+            );
+            this.groupsMSP = mspGroups;
+            const moMspGroups = this.mspRegDataSvc.mapGroupDef(mspGroups);
+            console.log('MO - Group:', moMspGroups);
 
-        // Authorize
-        const regRequest = this.mspRegDataSvc.mapSiteRegRequest(
-            requestNumber,
-            moOrganizationInformation,
-            moSigningAuthority,
-            moAccessAdministrators as IAccessAdministratorDef[],
-            moUsers as IUserDef[],
-            moMspGroups as IMspGroupDef[],
-            false
-        );
+            // Authorize
+            const regRequest = this.mspRegDataSvc.mapSiteRegRequest(
+                requestNumber,
+                moOrganizationInformation,
+                moSigningAuthority,
+                moAccessAdministrators as IAccessAdministratorDef[],
+                moUsers as IUserDef[],
+                moMspGroups as IMspGroupDef[],
+                false
+            );
 
-        console.log('MO - Site Registeration Request Object:', regRequest);
+            console.log('MO - Site Registeration Request Object:', regRequest);
         }
     }
 

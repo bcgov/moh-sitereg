@@ -11,12 +11,16 @@ import {
     phoneValidator,
     faxValidator,
 } from './validator-helpers';
-import { ctFormControlString, ctFormControlBoolean, ctFormControlUserTitle, cUserMspValidators } from './core/core-types';
+import {
+    ctFormControlString,
+    ctFormControlBoolean,
+    ctFormControlUserTitle,
+    cUserMspValidators,
+} from './core/core-types';
 
 export class MspRegisterSigningAuthority
     extends GenerateForm<IMspSigningAuthority>
     implements IMspSigningAuthority {
-
     userTitle?: ctFormControlUserTitle = null;
     firstName: ctFormControlString = null;
     initial?: ctFormControlString = null;
@@ -29,8 +33,6 @@ export class MspRegisterSigningAuthority
     fax: ctFormControlString = null;
     administeringFor: ctFormControlString = null;
     directMspAccess: ctFormControlBoolean = false;
-
-    //#endregion
 
     get validators() {
         return cUserMspValidators;

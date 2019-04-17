@@ -47,7 +47,10 @@ export class MspRegisterAccessAdminsComponent implements OnInit {
     ngOnInit() {}
 
     continue() {
-        this.loggerSvc.logNavigation(this.constructor.name, 'ValidForm' );
+        this.loggerSvc.logNavigation(
+            this.constructor.name,
+            'valid data - continue clicked'
+        );
         this.debugOnly();
         this.router.navigate(['msp-registration/users']);
     }
