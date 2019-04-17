@@ -37,7 +37,8 @@ export class MspRegisterSigningAuthorityComponent implements OnInit {
         this.fg = this.mspRegisterStateSvc.mspRegisterSigningAuthorityForm;
         this.validFormControl = validMultiFormControl.bind(this);
 
-        this.fg.valueChanges.subscribe((obs) => {
+        const mspAccess = 'directMspAccess';
+        this.fg.controls[mspAccess].valueChanges.subscribe((obs) => {
             // console.log(obs);
             this.updateSingingAuthorityAsAdmin();
         });
@@ -84,13 +85,14 @@ export class MspRegisterSigningAuthorityComponent implements OnInit {
                     return this.compare(admin.value, this.fg.value);
                 });
 
-                saAdmins.forEach((element) => {
-                    console.log(
-                        `%c existing SA as Admin %o`,
-                        'color:orange',
-                        element.value
-                    );
-                });
+                // // debug only
+                // saAdmins.forEach((element) => {
+                //     console.log(
+                //         `%c existing SA as Admin %o`,
+                //         'color:orange',
+                //         element.value
+                //     );
+                // });
 
                 // if SA Admin already existing fetch otherwise add new
                 saAdmin =
@@ -126,7 +128,8 @@ export class MspRegisterSigningAuthorityComponent implements OnInit {
                 const index = this.mspRegisterStateSvc.mspRegisterAccessAdminsForm.indexOf(
                     saAdmin
                 );
-                console.log(`index to remove SA as Admin ${index}`);
+                // debug only
+                // console.log(`index to remove SA as Admin ${index}`);
                 this.mspRegisterStateSvc.mspRegisterAccessAdminsForm.splice(
                     index
                 );
