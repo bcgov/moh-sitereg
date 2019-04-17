@@ -32,11 +32,9 @@ import { CaptchaModule } from 'moh-common-lib/captcha';
         CommonModule,
         SharedModule,
         CaptchaModule,
-        MspRegisterRoutingModule
+        MspRegisterRoutingModule,
     ],
     providers: [],
-    exports: [
-        MspRegisterAuthorizeAccessComponent
-    ],
+    exports: [MspRegisterAuthorizeAccessComponent],
 })
-export class MspRegisterModule { }
+export class MspRegisterModule {}

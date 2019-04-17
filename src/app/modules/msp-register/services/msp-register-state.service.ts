@@ -104,14 +104,16 @@ export class MspRegisterStateService {
     //#region AccessAdmins
 
     addAdmin() {
-
-        const newAdmin = this.createMspRegisterAccessAdminsForm(this.gf, this.fb);
+        const newAdmin = this.createMspRegisterAccessAdminsForm(
+            this.gf,
+            this.fb
+        );
         if (this.mspRegisterAccessAdminsForm.length === 0) {
-            this.mspRegisterAccessAdminsForm = [ newAdmin ];
+            this.mspRegisterAccessAdminsForm = [newAdmin];
             return newAdmin;
         }
 
-        this.mspRegisterAccessAdminsForm.unshift( newAdmin );
+        this.mspRegisterAccessAdminsForm.unshift(newAdmin);
         return newAdmin;
     }
 

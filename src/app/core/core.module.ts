@@ -5,12 +5,8 @@ import { SharedModule } from '@shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 @NgModule({
     declarations: [HomePageComponent],
-    imports: [
-        CommonModule,
-        SharedModule,
-        HttpClientModule
-    ],
+    imports: [CommonModule, SharedModule, HttpClientModule],
     providers: [],
-    exports: [HomePageComponent]
+    exports: [HomePageComponent],
 })
-export class CoreModule { }
+export class CoreModule {}

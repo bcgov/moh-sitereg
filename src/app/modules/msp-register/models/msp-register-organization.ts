@@ -11,8 +11,7 @@ import { minLength } from './validator-helpers';
 import { ctFormControlString, ctFormControlBoolean } from './core/core-types';
 export class MspRegisterOrganization extends GenerateForm<IMspOrganization>
     implements IMspOrganization {
-
-    name: ctFormControlString = null ;
+    name: ctFormControlString = null;
     city: ctFormControlString = null;
     province: ctFormControlString = null;
     postalCode: ctFormControlString = null;
@@ -43,7 +42,11 @@ export class MspRegisterOrganization extends GenerateForm<IMspOrganization>
             addressLine2: [Validators.maxLength(200), addressValidator()], // todo: test blank behaviour and validate form
             city: [required, Validators.minLength(1), maxLength(25)],
             province: [required, Validators.minLength(2), maxLength(3)],
-            postalCode: [required, Validators.maxLength(6), postalCodeValidator()],
+            postalCode: [
+                required,
+                Validators.maxLength(6),
+                postalCodeValidator(),
+            ],
             blueCross: [required],
             administeringFor: [required],
         };

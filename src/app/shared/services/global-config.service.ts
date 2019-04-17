@@ -3,41 +3,38 @@ import { environment } from 'src/environments/environment';
 import { UUID } from 'angular2-uuid';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class GlobalConfigService {
+    constructor() {}
 
-  constructor() { }
+    public applicationId: string;
 
-  public applicationId: string;
+    public get currentEnironment() {
+        return environment;
+    }
 
-  public get currentEnironment() {
-    return environment;
-  }
+    //#region msp ApplicationId specific
 
+    private mspApplicationId: string;
 
-  //#region msp ApplicationId specific
+    public logRefreshMspApplicationUUID(): string {
+        this.mspApplicationId = UUID.UUID();
+        return this.mspApplicationId;
+    }
 
-  private mspApplicationId: string;
+    /**
+     * Application UUID refers to Application of MSP, means the each application user apply will have a specific uuid
+     */
+    public get logMspApplicationUUID() {
+        return this.mspApplicationId
+            ? this.mspApplicationId
+            : this.logRefreshMspApplicationUUID();
+    }
 
-  public logRefreshMspApplicationUUID(): string {
-    this.mspApplicationId = UUID.UUID();
-    return this.mspApplicationId;
-  }
+    public get logMspApplicationName() {
+        return 'sitereg';
+    }
 
-  /**
-   * Application UUID refers to Application of MSP, means the each application user apply will have a specific uuid
-   */
-  public get logMspApplicationUUID() {
-    return this.mspApplicationId ? this.mspApplicationId : this.logRefreshMspApplicationUUID();
-  }
-
-
-  public get logMspApplicationName() {
-    return 'sitereg';
-  }
-
-  //#endregion
-
+    //#endregion
 }
-

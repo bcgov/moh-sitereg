@@ -36,8 +36,7 @@ export class MspRegisterOrganizationComponent implements OnInit {
         public loggerSvc: LoggerService,
         private globalConfigSvc: GlobalConfigService,
         public mspRegisterStateSvc: MspRegisterStateService,
-        public mspRegDataSvc: MspRegisterDataService,
-
+        public mspRegDataSvc: MspRegisterDataService
     ) {
         this.fg = this.mspRegisterStateSvc.mspRegisterOrganizationForm;
         this.validFormControl = validFormControl.bind(this);
@@ -50,26 +49,28 @@ export class MspRegisterOrganizationComponent implements OnInit {
 
     ngOnInit() {
         this.fg.valueChanges.subscribe((obs) => {
-
             // console.log(this.fg);
 
             // converts postalcode in upper case
             const postalCode = this.fg.get('postalCode');
-            if ( postalCode.value ) {
-                postalCode.patchValue(postalCode.value.toUpperCase(), { emitEvent: false });
+            if (postalCode.value) {
+                postalCode.patchValue(postalCode.value.toUpperCase(), {
+                    emitEvent: false,
+                });
             }
         });
     }
 
     continue() {
-        this.loggerSvc.logNavigation(this.constructor.name, 'ValidForm' );
+        this.loggerSvc.logNavigation(
+            this.constructor.name,
+            'valid data - continue clicked'
+        );
         this.debugOnly();
         this.router.navigate(['msp-registration/signing-authority']);
     }
 
-
     debugOnly() {
-
         if (this.globalConfigSvc.currentEnironment.production === false) {
             const form = this.mspRegisterStateSvc.mspRegisterOrganizationForm;
             console.log('FormGroup: ', form);

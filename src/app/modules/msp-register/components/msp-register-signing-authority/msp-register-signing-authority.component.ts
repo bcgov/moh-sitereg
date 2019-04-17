@@ -43,12 +43,15 @@ export class MspRegisterSigningAuthorityComponent implements OnInit {
         });
     }
 
-    ngOnInit() { }
+    ngOnInit() {}
 
     continue() {
-        this.loggerSvc.logNavigation(this.constructor.name, 'ValidForm');
+        this.loggerSvc.logNavigation(
+            this.constructor.name,
+            'valid data - continue clicked'
+        );
+        this.updateSingingAuthorityAsAdmin();
         this.debugOnly();
-        this.addSingingAuthorityAsAdmin();
         this.router.navigate(['msp-registration/access-admins']);
     }
 
@@ -72,32 +75,36 @@ export class MspRegisterSigningAuthorityComponent implements OnInit {
     }
 
     updateSingingAuthorityAsAdmin(): void {
-
         const directMspAccess = this.fg.get('directMspAccess');
         if (directMspAccess) {
-
             let saAdmin: any;
             const admins = this.mspRegisterStateSvc.mspRegisterAccessAdminsForm;
             if (admins) {
-
-                const saAdmins = admins.filter(admin => {
+                const saAdmins = admins.filter((admin) => {
                     return this.compare(admin.value, this.fg.value);
                 });
 
-                saAdmins.forEach(element => {
-                    console.log(`%c existing SA as Admin %o`, 'color:orange', element.value);
+                saAdmins.forEach((element) => {
+                    console.log(
+                        `%c existing SA as Admin %o`,
+                        'color:orange',
+                        element.value
+                    );
                 });
 
                 // if SA Admin already existing fetch otherwise add new
-                saAdmin = saAdmins && saAdmins.length === 1 ? saAdmins[0] :
-                    (directMspAccess.value === true ? this.mspRegisterStateSvc.addAdmin() : null);
-
+                saAdmin =
+                    saAdmins && saAdmins.length === 1
+                        ? saAdmins[0]
+                        : directMspAccess.value === true
+                        ? this.mspRegisterStateSvc.addAdmin()
+                        : null;
             }
 
             // block - updating values
             if (saAdmin && directMspAccess.value === true) {
-
-                const sa = this.mspRegisterStateSvc.mspRegisterSigningAuthorityForm.value;
+                const sa = this.mspRegisterStateSvc
+                    .mspRegisterSigningAuthorityForm.value;
                 saAdmin.patchValue({
                     userTitle: sa.userTitle,
                     firstName: sa.firstName,
@@ -116,19 +123,23 @@ export class MspRegisterSigningAuthorityComponent implements OnInit {
 
             if (saAdmin && directMspAccess.value === false) {
                 // remove SA as Admin
-                const index = this.mspRegisterStateSvc.mspRegisterAccessAdminsForm.indexOf(saAdmin);
+                const index = this.mspRegisterStateSvc.mspRegisterAccessAdminsForm.indexOf(
+                    saAdmin
+                );
                 console.log(`index to remove SA as Admin ${index}`);
-                this.mspRegisterStateSvc.mspRegisterAccessAdminsForm.splice(index);
+                this.mspRegisterStateSvc.mspRegisterAccessAdminsForm.splice(
+                    index
+                );
             }
         }
-
     }
 
     //#endregion
 
     debugOnly() {
         if (this.globalConfigSvc.currentEnironment.production === false) {
-            const form = this.mspRegisterStateSvc.mspRegisterSigningAuthorityForm;
+            const form = this.mspRegisterStateSvc
+                .mspRegisterSigningAuthorityForm;
             console.log('FormGroup: ', form);
             const middleWareObject = this.mspRegDataSvc.mapObjectSigningAuthorityInformationDef(
                 form.value

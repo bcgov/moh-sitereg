@@ -9,21 +9,15 @@ import { ErrorBoxComponent } from './components/error-box/error-box.component';
 import { GlobalConfigService } from './services/global-config.service';
 
 @NgModule({
-    declarations: [
-        PageSectionsComponent,
-        CaptchaComponent,
-        ErrorBoxComponent
-    ],
+    declarations: [PageSectionsComponent, CaptchaComponent, ErrorBoxComponent],
     imports: [
         CommonModule,
         SharedCoreModule,
         FormsModule,
         ReactiveFormsModule,
-        CaptchaModule
+        CaptchaModule,
     ],
-    providers : [
-        GlobalConfigService
-    ],
+    providers: [GlobalConfigService],
     exports: [
         SharedCoreModule,
         ReactiveFormsModule,
