@@ -20,7 +20,7 @@ import { IMspUser } from '@msp-register/interfaces/i-msp-user';
 import { IMspAccessAdmin } from '@msp-register/interfaces/i-msp-access-admins';
 import { Router } from '@angular/router';
 import { MspRegisterApiService } from '@shared/services/api.service';
-import { LoggerService } from '@shared/services/logger.service';
+import { LoggerService, LogMessage } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
 // import {  } from 'moh-common-lib/captcha';
 
@@ -109,9 +109,24 @@ export class MspRegisterAuthorizeComponent implements OnInit {
         );
         this.debugOnly();
         const regRequest = this.registerationObject();
+
+        console.log(regRequest);
+
         this.mspRegApiSvc
             .siteRegisterationRequest(regRequest, this.date.toDateString())
-            .toPromise();
+            .toPromise()
+            .catch( err => {
+                this.loggerSvc.logError(
+                    {
+                        event: 'http-exception',
+                        exceptionMessage : `${err}`
+                    } as  LogMessage
+                );
+                this.loggerSvc.logHttpError(err);
+            })
+            .then(result => {
+                this.loggerSvc.logNavigation('middleware-request-status:', 'completed');
+            });
     }
 
     validToken($event) {

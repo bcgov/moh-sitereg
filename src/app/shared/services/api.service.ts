@@ -44,6 +44,7 @@ export class MspRegisterApiService extends AbstractHttpService {
     ) {
         super(http);
         this.apiURL = this.globalConfigSvc.currentEnironment.baseAPIUrl;
+        this.eventUUID = this.globalConfigSvc.applicationId;
     }
 
     public setCaptchaToken(token: string) {
@@ -101,8 +102,9 @@ export class MspRegisterApiService extends AbstractHttpService {
         siteRegRequest: ISiteRegRequest,
         processDate = this.getProcessDate()
     ): Observable<PayloadInterface> {
-        this.eventUUID = UUID.UUID();
-        console.log(this.eventUUID);
+
+        // disabled to keep log of the application all steps.
+        // this.eventUUID = UUID.UUID();
 
         const url = environment.baseAPIUrl + `${this.eventUUID}`;
 
@@ -124,7 +126,9 @@ export class MspRegisterApiService extends AbstractHttpService {
             msp_group: siteRegRequest.msp_group,
         };
 
-        return this.post<PayloadInterface>(this.apiURL, body);
+        console.log(`%c  url: %o body: %o `, 'color:blue', url, body);
+
+        return this.post<PayloadInterface>(url, body);
         // return this.post<ISiteRegRequest>(url, params);
     }
 }

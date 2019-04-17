@@ -8,7 +8,9 @@ import { UUID } from 'angular2-uuid';
 export class GlobalConfigService {
     constructor() {}
 
-    public applicationId: string;
+    public get applicationId(): string {
+        return this.mspApplicationId ? this.mspApplicationId : this.logRefreshMspApplicationUUID();
+    }
 
     public get currentEnironment() {
         return environment;

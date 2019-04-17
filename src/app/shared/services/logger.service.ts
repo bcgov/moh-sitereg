@@ -40,7 +40,6 @@ export class LoggerService extends CommonLogger {
             console.log(`%c Splunk Logger Object => %o`, 'color:orange', this);
             const clog = message as CommonLogMessage;
             console.log(`%c  Splunk Log: => %o`, 'color:orange', clog);
-
             this._log(message as CommonLogMessage);
 
             // console.log(`%c Logger Object => %o`, 'color:orange', this);
