@@ -65,15 +65,13 @@
               <span class="selectedOption">
                 {{ isWebEnabled===true ? "&#10003;": "&#9634;" }}
               </span>
-              <label for="checkMspDirectWeb" class="label-right" title=""
-                (click)="navigateTo('signing-authority');">
+              <label for="checkMspDirectWeb" class="label-right" title="" (click)="navigateTo('signing-authority');">
                 The Applicant will Administer MSP using the MSP Direct Web Interface.
               </label>
             </li>
             <li>
               <span class="selectedOption"> {{ organization.blueCross ? "&#10003;": "&#9634;"  }} </span>
-              <label for="checkPacificBlueCross" class="label-right" title=""
-                (click)="navigateTo('organization');">
+              <label for="checkPacificBlueCross" class="label-right" title="" (click)="navigateTo('organization');">
                 The Applicant will Administer MSP using software supported by Pacific Blue Cross.
               </label>
             </li>
@@ -97,7 +95,7 @@
       </li>
       <!--4 Administer For-->
       <li class="aggrement-li">
-        The Application will Administer MSP for []
+        The Application will Administer MSP for [select one or more as applicable:]
         <ul class="list-no-bullets" title="" (click)="navigateTo('signing-authority');">
           <li class="li-inline">
             <span>
@@ -147,28 +145,27 @@
     </ul>
   </div>
 
-
-  <div class="row">
-    <span class="captcha">
-     <common-captcha 
-     [apiBaseUrl]="captchaApiBaseUrl"
-     [nonce]="nonce"
-     (onValidToken)="setToken($event)"
-     [successMessage]="'  '"
-    ></common-captcha> 
-    </span>
-  </div>
-
   <!-- Consent  -->
-  <div class="row" [formGroup]="fg">
-    <span class="consent">
-      <input type="checkbox" form name="consent" formControlName="consent" id="consent" tabindex="0"
-        [value]="true">&nbsp;
-      <label>
-        I, {{signingAuthority.firstName}} {{signingAuthority.lastName}} have read and agreed to above terms and
-        conditions.
-      </label>
-    </span>
+  <div [formGroup]="fg">
+    
+    <div class="row">
+      <span class="consent">
+        <input type="checkbox" form name="consent" formControlName="consent" id="consent" tabindex="0"
+          [value]="true">&nbsp;
+        <label>
+          I, {{signingAuthority.firstName}} {{signingAuthority.lastName}} have read and agreed to above terms and
+          conditions.
+        </label>
+      </span>
+    </div>
+
+    <div class="row" *ngIf="showCaptcha" formControlName="captchaStatus">
+      <span class="captcha">
+        <common-captcha [apiBaseUrl]="captchaApiBaseUrl" [nonce]="nonce" (onValidToken)="setToken($event)"
+          [successMessage]="'  '"></common-captcha>
+      </span>
+    </div>
+
   </div>
 
 </sitereg-page-sections>
