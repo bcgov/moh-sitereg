@@ -37,7 +37,6 @@ export class MspRegisterSigningAuthorityComponent implements OnInit {
         this.fg = this.mspRegisterStateSvc.mspRegisterSigningAuthorityForm;
         this.validFormControl = validMultiFormControl.bind(this);
 
-        // debug only
         this.fg.valueChanges.subscribe((obs) => {
             // console.log(obs);
             this.updateSingingAuthorityAsAdmin();
