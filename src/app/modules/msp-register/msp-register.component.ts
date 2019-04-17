@@ -12,13 +12,13 @@ import { GlobalConfigService } from '@shared/services/global-config.service';
 export class MspRegisterComponent extends Container implements OnInit {
     constructor(
         private router: Router,
-        private globalConfigSvc: GlobalConfigService,
-        ) {
+        private globalConfigSvc: GlobalConfigService
+    ) {
         super();
         this.setProgressSteps(subRoutes);
 
         this.globalConfigSvc.logRefreshMspApplicationUUID();
-        console.log(`Application UUID: %o`, this.globalConfigSvc.applicationId );
+        console.log(`Application UUID: %o`, this.globalConfigSvc.applicationId);
     }
 
     ngOnInit() {

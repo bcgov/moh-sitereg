@@ -9,7 +9,9 @@ export class GlobalConfigService {
     constructor() {}
 
     public get applicationId(): string {
-        return this.mspApplicationId ? this.mspApplicationId : this.logRefreshMspApplicationUUID();
+        return this.mspApplicationId
+            ? this.mspApplicationId
+            : this.logRefreshMspApplicationUUID();
     }
 
     public get currentEnironment() {
