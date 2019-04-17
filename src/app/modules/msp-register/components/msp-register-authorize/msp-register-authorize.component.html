@@ -159,7 +159,7 @@
       </span>
     </div>
 
-    <div class="row" *ngIf="showCaptcha" formControlName="captchaStatus">
+    <div class="row" *ngIf="showCaptcha">
       <span class="captcha">
         <common-captcha [apiBaseUrl]="captchaApiBaseUrl" [nonce]="nonce" (onValidToken)="setToken($event)"
           [successMessage]="'  '"></common-captcha>

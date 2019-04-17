@@ -61,6 +61,8 @@ export class MspRegisterAuthorizeComponent implements OnInit {
 
         this.captchaApiBaseUrl = this.globalConfigSvc.currentEnironment.captchaApiBaseUrl;
         this.nonce = this.globalConfigSvc.applicationId;
+
+        this.debugOnly();
     }
 
     public get signingAuthority(): IMspSigningAuthority {
@@ -82,8 +84,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
 
     private genConsentForm() {
         this.fg = this.formBuilder.group({
-            consent: ['', [Validators.required]],
-            captchaStatus: ['', [Validators.required]],
+            consent: ['', [Validators.required]]
         });
 
         // temporary - if user click on disagree, this invalids required field
@@ -92,10 +93,10 @@ export class MspRegisterAuthorizeComponent implements OnInit {
             if (consentState.value === false) {
                 this.fg.setErrors({ consentFailed: true });
                 this.showCaptcha = false;
-                this.fg.setErrors({ captchaFailed: true });
                 // this.fg.updateValueAndValidity();
             } else {
                 this.showCaptcha = true;
+                this.fg.setErrors({ captchaFailed: true });
             }
 
         });
@@ -137,10 +138,10 @@ export class MspRegisterAuthorizeComponent implements OnInit {
             });
     }
 
-    validToken($event) {
-        console.log($event);
-        if (!$event.ok) console.log('error');
-    }
+    // validToken($event) {
+    //     console.log($event);
+    //     if (!$event.ok) console.log('error');
+    // }
 
     getGroupsInfo() {
         // Msp Groups
@@ -294,11 +295,10 @@ export class MspRegisterAuthorizeComponent implements OnInit {
     }
 
     setToken(token): void {
-        
         // REMOVEME - debug only
         console.log(token);
-
-        this.fg.setErrors({ captchaFailed: false });
+        this.debugOnly();
+        this.fg.setErrors(null);
         this.fg.updateValueAndValidity();
         this.apiSvc.setCaptchaToken(token);
     }
