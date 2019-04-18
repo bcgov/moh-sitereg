@@ -118,8 +118,9 @@ export class MspRegisterAuthorizeComponent implements OnInit {
             this.constructor.name,
             'valid data - continue clicked'
         );
-        this.debugOnly();
+        // this.debugOnly();
         const regRequest = this.registerationObject();
+        this.copyJsonSchema(regRequest);
 
         console.log(regRequest);
 
@@ -141,6 +142,17 @@ export class MspRegisterAuthorizeComponent implements OnInit {
             });
     }
 
+    private copyJsonSchema(schema: any) {
+        if (!this.globalConfigSvc.currentEnironment.production) {
+            document.addEventListener('copy', (e: ClipboardEvent) => {
+                e.clipboardData.setData('text/plain', schema);
+                e.preventDefault();
+                document.removeEventListener('copy', null);
+            });
+            document.execCommand('copy');
+        }
+    }
+
     // validToken($event) {
     //     console.log($event);
     //     if (!$event.ok) console.log('error');
@@ -157,7 +169,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
 
     registerationObject() {
         // Request Numer - todo - autgenerate
-        const requestNumber = '12345678';
+        const requestNumber = this.genRandomNumber();
 
         // Orgnaization Info
         const moOrganizationInformation = this.mspRegDataSvc.mapOrgInformation(
@@ -213,7 +225,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
         return (
             this.groupsMSP.length > 0 &&
             ((this.groupsMSP[0].groupNumber as string) &&
-            (this.groupsMSP[0].groupNumber as string).length > 3
+                (this.groupsMSP[0].groupNumber as string).length > 3
                 ? true
                 : false)
         );
@@ -236,10 +248,14 @@ export class MspRegisterAuthorizeComponent implements OnInit {
         // this.router.navigate([`msp-registration/${route}`]);
     }
 
+    genRandomNumber() {
+        return Math.floor(Math.random() * 89999999 + 10000000).toString();
+    }
+
     debugOnly() {
         if (this.globalConfigSvc.currentEnironment.production === false) {
-            // Request Numer - todo - autgenerate
-            const requestNumber = '12345678';
+            // Request Numer
+            const requestNumber = this.genRandomNumber();
 
             // Orgnaization Info
             const moOrganizationInformation = this.mspRegDataSvc.mapOrgInformation(
