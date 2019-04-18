@@ -61,9 +61,11 @@ export class MspRegisterAuthorizeComponent implements OnInit {
         this.validFormControl = validFormControl.bind(this);
 
         this.captchaApiBaseUrl = this.globalConfigSvc.currentEnironment.captchaApiBaseUrl;
-        this.nonce = this.globalConfigSvc.applicationId;
+        this.nonce = GlobalConfigService.uuid;
 
         this.debugOnly();
+
+        console.log(`nonce: %o`, this.nonce );
     }
 
     public get signingAuthority(): IMspSigningAuthority {

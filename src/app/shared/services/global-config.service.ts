@@ -1,11 +1,34 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { UUID } from 'angular2-uuid';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
     providedIn: 'root',
 })
 export class GlobalConfigService {
+
+    // private static instance: GlobalConfigService;
+    // private globalConfigServiceSubject = new BehaviorSubject<GlobalConfigService>(null);
+
+    // static getInstance(): GlobalConfigService {
+    //     if (!GlobalConfigService.instance) {
+    //         GlobalConfigService.instance = new GlobalConfigService();
+    //     }
+    //     return GlobalConfigService.instance;
+    // }
+    public static internalUUID: string ;
+    public static get uuid(): string {
+
+        if ( GlobalConfigService.internalUUID ) {
+            return GlobalConfigService.internalUUID;
+        } else {
+            GlobalConfigService.internalUUID = UUID.UUID();
+        }
+
+        return GlobalConfigService.internalUUID;
+    }
+
     constructor() {}
 
     public get applicationId(): string {
