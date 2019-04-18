@@ -46,6 +46,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
     captchaApiBaseUrl: string;
     nonce: string;
     showCaptcha = false;
+    validCaptch = false;
 
     constructor(
         private router: Router,
@@ -90,13 +91,15 @@ export class MspRegisterAuthorizeComponent implements OnInit {
         // temporary - if user click on disagree, this invalids required field
         this.fg.valueChanges.subscribe((data) => {
             const consentState = this.fg.get('consent');
+            this.validCaptch = false;
+            this.showCaptcha = false;
+
             if (consentState.value === false) {
                 this.fg.setErrors({ consentFailed: true });
                 this.showCaptcha = false;
                 // this.fg.updateValueAndValidity();
             } else {
                 this.showCaptcha = true;
-                this.fg.setErrors({ captchaFailed: true });
             }
 
         });
@@ -298,8 +301,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
         // REMOVEME - debug only
         console.log(token);
         this.debugOnly();
-        this.fg.setErrors(null);
-        this.fg.updateValueAndValidity();
+        this.validCaptch = true;
         this.apiSvc.setCaptchaToken(token);
     }
 }
