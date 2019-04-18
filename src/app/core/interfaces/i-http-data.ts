@@ -85,6 +85,7 @@ export interface IMspGroupDef {
 //#endregion
 
 export interface ISiteRegRequest {
+    applicationType: string;
     request_num: any;
     org_information: IOrgInformationDef;
     signing_authority_information: ISigningAuthorityDef;
