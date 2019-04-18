@@ -144,7 +144,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
     private copyJsonSchema(schema: any) {
         // if (!this.globalConfigSvc.currentEnironment.production) {
         document.addEventListener('copy', (e: ClipboardEvent) => {
-            e.clipboardData.setData('text/plain', schema);
+            e.clipboardData.setData('text/plain', JSON.stringify(schema));
             e.preventDefault();
             document.removeEventListener('copy', null);
         });
