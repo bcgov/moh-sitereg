@@ -85,7 +85,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
 
     private genConsentForm() {
         this.fg = this.formBuilder.group({
-            consent: ['', [Validators.required]]
+            consent: ['', [Validators.required]],
         });
 
         // temporary - if user click on disagree, this invalids required field
@@ -101,7 +101,6 @@ export class MspRegisterAuthorizeComponent implements OnInit {
             } else {
                 this.showCaptcha = true;
             }
-
         });
     }
 
@@ -143,14 +142,14 @@ export class MspRegisterAuthorizeComponent implements OnInit {
     }
 
     private copyJsonSchema(schema: any) {
-        if (!this.globalConfigSvc.currentEnironment.production) {
-            document.addEventListener('copy', (e: ClipboardEvent) => {
-                e.clipboardData.setData('text/plain', schema);
-                e.preventDefault();
-                document.removeEventListener('copy', null);
-            });
-            document.execCommand('copy');
-        }
+        // if (!this.globalConfigSvc.currentEnironment.production) {
+        document.addEventListener('copy', (e: ClipboardEvent) => {
+            e.clipboardData.setData('text/plain', schema);
+            e.preventDefault();
+            document.removeEventListener('copy', null);
+        });
+        document.execCommand('copy');
+        // }
     }
 
     // validToken($event) {
@@ -225,7 +224,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
         return (
             this.groupsMSP.length > 0 &&
             ((this.groupsMSP[0].groupNumber as string) &&
-                (this.groupsMSP[0].groupNumber as string).length > 3
+            (this.groupsMSP[0].groupNumber as string).length > 3
                 ? true
                 : false)
         );

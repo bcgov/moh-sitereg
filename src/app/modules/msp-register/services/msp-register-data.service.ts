@@ -167,15 +167,15 @@ export class MspRegisterDataService {
         // console.log('mapCoreUserDef', obj);
         this.validateKeys(obj);
         const baseUser: ICoreUserDef = {
-            curtesy_title: obj.userTitle ? obj.userTitle as string : '',
+            curtesy_title: obj.userTitle ? (obj.userTitle as string) : '',
             last_name: obj.lastName as string,
             first_name: obj.firstName as string,
-            initial: obj.initial ? obj.initial as string : '',
+            initial: obj.initial ? (obj.initial as string) : '',
             job_title: obj.jobTitle as string,
             email: obj.emailAddress as string,
             phone_num: obj.phone as string,
-            phone_ext: obj.ext ? obj.ext as string : '',
-            fax_num: obj.fax ? obj.fax as string : '',
+            phone_ext: obj.ext ? (obj.ext as string) : '',
+            fax_num: obj.fax ? (obj.fax as string) : '',
             spg: this.mapAdministeringForDef(obj.administeringFor as string),
         };
 
@@ -238,10 +238,10 @@ export class MspRegisterDataService {
             contracting_out,
             org_name: obj.name as string,
             org_num: '', // obj.organizationNumber as string, // TBD: opt-out, this is MSP group number
-            suite_num: obj.suite ? obj.suite as string : '',
+            suite_num: obj.suite ? (obj.suite as string) : '',
             street_num: obj.street as string,
             street_name: obj.streetName as string,
-            address_2: obj.addressLine2 ? obj.addressLine2 as string : '',
+            address_2: obj.addressLine2 ? (obj.addressLine2 as string) : '',
             city: obj.city as string,
             province: obj.province as string,
             postal_code: obj.postalCode as string,
@@ -390,7 +390,7 @@ export class MspRegisterDataService {
         AccessAdmminSameAsSigningAuthority?: boolean
     ): ISiteRegRequest {
         const registerationRequest: ISiteRegRequest = {
-            applicationType : 'mspdRegisteration',
+            applicationType: 'mspdRegisteration',
             request_num: requestNumber,
             org_information: organizationInfo ? organizationInfo : null,
             signing_authority_information: signingAuthority
