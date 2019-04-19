@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { IMspGroup } from '@msp-register/interfaces';
 import { groupNumberValidator } from './validator-helpers';
 import { ctFormControlString, ctFormControlBoolean } from './core/core-types';
+import { GlobalConfigService } from '@shared/services/global-config.service';
 
 export class MspRegisterGroup extends GenerateForm<IMspGroup>
     implements IMspGroup {
@@ -25,5 +26,19 @@ export class MspRegisterGroup extends GenerateForm<IMspGroup>
         private newFb: FormBuilder
     ) {
         super(newFb);
+
+        // REMOVEME - debug only
+        this.setDefaultValues();
     }
+
+    //#region REMOVE ME - Default Values
+
+    private setDefaultValues() {
+        if (GlobalConfigService.setDefaults) {
+            this.groupNumber = '7654321';
+            this.thirdParty = true;
+        }
+    }
+
+    //#endregion
 }

@@ -9,6 +9,7 @@ import { cAdministeringFor } from '@msp-register/models/core/core-types';
 import { BehaviorSubject } from 'rxjs';
 import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
+import { funcRemoveStrings } from '@msp-register/constants';
 
 @Component({
     selector: 'sitereg-msp-register-access-admins',
@@ -23,10 +24,6 @@ export class MspRegisterAccessAdminsComponent implements OnInit {
     administeringFor: BehaviorSubject<string[]> = new BehaviorSubject<string[]>(
         cAdministeringFor
     );
-    // get validForms() {
-    //     if (!this.fgs) return false;
-    //     return this.mspRegisterStateSvc.validFormGroup(this.fgs);
-    // }
 
     constructor(
         private router: Router,
@@ -44,14 +41,28 @@ export class MspRegisterAccessAdminsComponent implements OnInit {
         // });
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+        console.log(
+            `%c%o : %o`,
+            'color:green',
+            funcRemoveStrings(
+                ['MspRegister', 'Component'],
+                this.constructor.name
+            ).toUpperCase(),
+            this.globalConfigSvc.applicationId
+        );
+    }
 
     continue() {
+        // splunk-log
         this.loggerSvc.logNavigation(
             this.constructor.name,
-            'valid data - continue clicked'
+            'Valid Data - Continue button clicked.'
         );
+
+        // REMOVEME debug-only
         this.debugOnly();
+
         this.router.navigate(['msp-registration/users']);
     }
 
@@ -69,9 +80,9 @@ export class MspRegisterAccessAdminsComponent implements OnInit {
         this.updateFormGroups();
     }
 
+    // REMOVEME - debug only
     debugOnly() {
-        if (this.globalConfigSvc.currentEnironment.production === false) {
-            // Access Administrators
+        if (!this.globalConfigSvc.isProduction) {
             const accessAdmins: IMspAccessAdmin[] = [];
             this.mspRegisterStateSvc.mspRegisterAccessAdminsForm.forEach((v) =>
                 v.value ? accessAdmins.push(v.value) : ''
@@ -80,7 +91,15 @@ export class MspRegisterAccessAdminsComponent implements OnInit {
             const moAccessAdministrators = this.mspRegDataSvc.mapAccessAdministratorDef(
                 accessAdmins
             );
-            console.log('MO - Access Admins:', moAccessAdministrators);
+            console.log(
+                `%c middleware object <= %o\n\t%o`,
+                'color:lightgreen',
+                funcRemoveStrings(
+                    ['MspRegister', 'Component'],
+                    this.constructor.name
+                ),
+                moAccessAdministrators
+            );
         }
     }
 }

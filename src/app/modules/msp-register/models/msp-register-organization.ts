@@ -9,6 +9,7 @@ import {
 } from './validator-helpers';
 import { minLength } from './validator-helpers';
 import { ctFormControlString, ctFormControlBoolean } from './core/core-types';
+import { GlobalConfigService } from '@shared/services/global-config.service';
 export class MspRegisterOrganization extends GenerateForm<IMspOrganization>
     implements IMspOrganization {
     name: ctFormControlString = null;
@@ -23,8 +24,6 @@ export class MspRegisterOrganization extends GenerateForm<IMspOrganization>
     streetName: ctFormControlString = null;
     addressLine2: ctFormControlString = null;
 
-    //#endregion
-
     get validators() {
         return {
             // todo: non-required fields invalids forms even left blank, which in return stop forms to continue to next screen
@@ -32,14 +31,10 @@ export class MspRegisterOrganization extends GenerateForm<IMspOrganization>
 
             // organizationNumber: [groupNumberValidator()], // TBD: opt-out, this is MSP group number
             name: [required, Validators.maxLength(100)],
-            suite: [Validators.maxLength(10), addressValidator()],
-            street: [required, Validators.maxLength(10), addressValidator()],
-            streetName: [
-                required,
-                Validators.maxLength(75),
-                addressValidator(),
-            ],
-            addressLine2: [Validators.maxLength(200), addressValidator()], // todo: test blank behaviour and validate form
+            suite: [Validators.maxLength(10)],
+            street: [required, Validators.maxLength(10)],
+            streetName: [required, Validators.maxLength(75)],
+            addressLine2: [Validators.maxLength(200)], // todo: test blank behaviour and validate form
             city: [required, Validators.minLength(1), maxLength(25)],
             province: [required, Validators.minLength(2), maxLength(3)],
             postalCode: [
@@ -58,5 +53,28 @@ export class MspRegisterOrganization extends GenerateForm<IMspOrganization>
     ) {
         super(newFb);
         // this.validators = Object.keys(this);
+
+        // REMOVEME - debug only
+        this.setDefaultValues();
     }
+
+    //#region REMOVE ME - Default Values
+
+    private setDefaultValues() {
+        if (GlobalConfigService.setDefaults) {
+            this.name = 'MAXIMUS Canada';
+            this.province = 'British Columbia';
+            this.city = 'Victoria';
+            this.postalCode = 'V3V6A5';
+            this.suite = '101';
+            this.street = '716';
+            this.streetName = 'Yates Street';
+            this.addressLine2 = 'Head Office';
+            this.thirdParty = true;
+            this.blueCross = true;
+            this.administeringFor = 'Employees';
+        }
+    }
+
+    //#endregion
 }

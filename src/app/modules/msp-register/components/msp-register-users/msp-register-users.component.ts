@@ -8,6 +8,8 @@ import { validMultiFormControl } from '@msp-register/models/validator-helpers';
 import { IMspUser } from '@msp-register/interfaces/i-msp-user';
 import { cAdministeringFor } from '../../models/core/core-types';
 import { LoggerService } from '@shared/services/logger.service';
+import { funcRemoveStrings } from '@msp-register/constants';
+import { GlobalConfigService } from '@shared/services/global-config.service';
 
 @Component({
     selector: 'sitereg-msp-register-users',
@@ -25,6 +27,7 @@ export class MspRegisterUsersComponent implements OnInit {
     constructor(
         private router: Router,
         public loggerSvc: LoggerService,
+        private globalConfigSvc: GlobalConfigService,
         public mspRegisterStateSvc: MspRegisterStateService,
         public mspRegDataSvc: MspRegisterDataService
     ) {
@@ -37,14 +40,28 @@ export class MspRegisterUsersComponent implements OnInit {
         // });
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+        console.log(
+            `%c%o : %o`,
+            'color:green',
+            funcRemoveStrings(
+                ['MspRegister', 'Component'],
+                this.constructor.name
+            ).toUpperCase(),
+            this.globalConfigSvc.applicationId
+        );
+    }
 
     continue() {
+        // splunk-log
         this.loggerSvc.logNavigation(
             this.constructor.name,
-            'valid data - continue clicked'
+            'Valid Data - Continue button clicked.'
         );
-        this.logMiddleWareObjects();
+
+        // REMOVEME debug-only
+        this.debugOnly();
+
         this.router.navigate(['msp-registration/group-numbers']);
     }
 
@@ -62,14 +79,23 @@ export class MspRegisterUsersComponent implements OnInit {
         this.updateFormGroups();
     }
 
-    logMiddleWareObjects() {
+    // REMOVEME - debug only
+    debugOnly() {
         // Users
         const mspUsers: IMspUser[] = [];
         this.mspRegisterStateSvc.mspRegisterUsersForm.forEach((v) =>
             v.value ? mspUsers.push(v.value) : ''
         );
 
-        const moUsers = this.mspRegDataSvc.mapUserDef(mspUsers);
-        console.log('MO - Users:', moUsers);
+        const middleWareObject = this.mspRegDataSvc.mapUserDef(mspUsers);
+        console.log(
+            `%c middleware object <= %o\n\t%o`,
+            'color:lightgreen',
+            funcRemoveStrings(
+                ['MspRegister', 'Component'],
+                this.constructor.name
+            ),
+            middleWareObject
+        );
     }
 }

@@ -142,13 +142,13 @@ export class MspRegisterDataService {
                 break;
             }
         }
-        console.log(
-            'mapDefAdministeringFor - translates(selected) "',
-            val,
-            ' = ',
-            result,
-            '"'
-        );
+        // console.log(
+        //     'mapDefAdministeringFor - translates(selected) "',
+        //     val,
+        //     ' = ',
+        //     result,
+        //     '"'
+        // );
         return result;
     }
 
@@ -259,7 +259,7 @@ export class MspRegisterDataService {
     mapObjectSigningAuthorityInformationDef(
         obj: IMspSigningAuthority
     ): ISigningAuthorityDef {
-        console.log('mapSigningAuthorityInformationDef', obj);
+        // console.log('mapSigningAuthorityInformationDef', obj);
         const coreUserMspDef = this.mapCoreUserMspDef(
             obj as IMspSigningAuthority
         );
@@ -294,7 +294,7 @@ export class MspRegisterDataService {
     mapObjectAccessAdministratorDef(
         obj: IMspAccessAdmin
     ): IAccessAdministratorDef {
-        console.log('mapObjectAccessAdministratorDef', obj);
+        // console.log('mapObjectAccessAdministratorDef', obj);
         const coreUserMspDef = this.mapCoreUserMspDef(obj as IMspAccessAdmin);
         const user = this.deepCopy(coreUserMspDef, 'aa_');
         return user as IAccessAdministratorDef;
@@ -304,7 +304,7 @@ export class MspRegisterDataService {
         obj: IMspAccessAdmin | IMspAccessAdmin[]
     ): IAccessAdministratorDef | IAccessAdministratorDef[] {
         if (Array.isArray(obj)) {
-            console.log('ARRAY mapAccessAdministratorDef');
+            // console.log('ARRAY mapAccessAdministratorDef');
             const arr = [];
             obj.forEach((itm) => {
                 this.validateKeys(obj);
@@ -323,7 +323,7 @@ export class MspRegisterDataService {
     //#region Users
 
     mapObjectUserDef(obj: IMspUser): IUserDef {
-        console.log('mapObjectUserDef', obj);
+        // console.log('mapObjectUserDef', obj);
         const coreUserMspDef = this.mapCoreUserDef(obj as IMspUser);
         const user = this.deepCopy(coreUserMspDef, 'user_');
         return user as IUserDef;
@@ -331,7 +331,7 @@ export class MspRegisterDataService {
 
     mapUserDef(obj: IMspUser | IMspUser[]): IUserDef | IUserDef[] {
         if (Array.isArray(obj)) {
-            console.log('ARRAY mapUserDef');
+            // console.log('ARRAY mapUserDef');
             const arr = [];
             obj.forEach((itm) => {
                 this.validateKeys(itm);
@@ -348,7 +348,7 @@ export class MspRegisterDataService {
     //#region Group Numbers
 
     mapObjectGroupDef(obj: IMspGroup): IMspGroupDef {
-        console.log('mapObjectGroupDef', obj);
+        // console.log('mapObjectGroupDef', obj);
 
         this.validateKeys(obj);
         const groupDef: IMspGroupDef = {
@@ -364,7 +364,7 @@ export class MspRegisterDataService {
 
     mapGroupDef(obj: IMspGroup | IMspGroup[]): IMspGroupDef | IMspGroupDef[] {
         if (Array.isArray(obj)) {
-            console.log('ARRAY mapGroupDef');
+            // console.log('ARRAY mapGroupDef');
             const arr = [];
             obj.forEach((itm) => {
                 this.validateKeys(itm);
@@ -390,7 +390,7 @@ export class MspRegisterDataService {
         AccessAdmminSameAsSigningAuthority?: boolean
     ): ISiteRegRequest {
         const registerationRequest: ISiteRegRequest = {
-            applicationType: 'mspdRegisteration',
+            applicationType: 'mspdRegistration',
             request_num: requestNumber,
             org_information: organizationInfo ? organizationInfo : null,
             signing_authority_information: signingAuthority
@@ -410,39 +410,4 @@ export class MspRegisterDataService {
 
         return registerationRequest;
     }
-
-    // createSiteregRequest(obj: ISiteRegRequest) {
-    //     // http headers
-    //     const contentHeaders = new HttpHeaders();
-    //     contentHeaders.append('Accept', 'application/json; charset=utf-8');
-    //     contentHeaders.append(
-    //         'Content-Type',
-    //         'application/json; charset=utf-8'
-    //     );
-    //     const body = obj;
-    //     console.log(`%c SiteregRequest`, 'color: green;');
-    //     console.log(body);
-    //     // http request
-    //     return this.http
-    //         .put(environment.baseAPIUrl + '/sitereg/' + 'UUID', body, {
-    //             headers: contentHeaders,
-    //             responseType: 'json',
-    //         })
-    //         .toPromise()
-    //         .catch((e) => {
-    //             console.error(e);
-    //         });
-    // }
-    // // return this.http.put(`${apiUrl}/sitereg`, obj).toPromise();
-
-    //#endregion
-
-    /*
-    SH: not sure if this is required atm.
-    */
-    // mapGroupDef(obj: IMspGroupNumbers): IMspGroupDef {
-    //   if (Array.isArray(obj)) {
-    //     return obj.map(itm => {})
-    //   }
-    // }
 }

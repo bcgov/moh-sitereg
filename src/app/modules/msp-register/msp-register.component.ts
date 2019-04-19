@@ -3,6 +3,7 @@ import { Container } from 'moh-common-lib/models';
 import { subRoutes } from '@msp-register/models/sub-routes';
 import { Router } from '@angular/router';
 import { GlobalConfigService } from '@shared/services/global-config.service';
+import { funcRemoveStrings } from './constants';
 
 @Component({
     selector: 'sitereg-msp-register',
@@ -16,12 +17,15 @@ export class MspRegisterComponent extends Container implements OnInit {
     ) {
         super();
         this.setProgressSteps(subRoutes);
-
-        this.globalConfigSvc.logRefreshMspApplicationUUID();
-        console.log(`Application UUID: %o`, this.globalConfigSvc.applicationId);
     }
 
     ngOnInit() {
-        // this.router.navigate(['msp-registration/organization']);
+        // this.globalConfigSvc.logRefreshMspApplicationUUID();
+        console.log(
+            `%c %o \n MSP Application id: %o`,
+            'color:green',
+            funcRemoveStrings(['Component'], this.constructor.name),
+            this.globalConfigSvc.applicationId
+        );
     }
 }

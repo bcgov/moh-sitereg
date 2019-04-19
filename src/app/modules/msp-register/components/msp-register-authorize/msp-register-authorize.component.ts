@@ -22,6 +22,7 @@ import { Router } from '@angular/router';
 import { MspRegisterApiService } from '@shared/services/api.service';
 import { LoggerService, LogMessage } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
+import { funcRemoveStrings } from '@msp-register/constants';
 // import {  } from 'moh-common-lib/captcha';
 
 export type AccessType = 'admin' | 'user';
@@ -61,11 +62,9 @@ export class MspRegisterAuthorizeComponent implements OnInit {
         this.validFormControl = validFormControl.bind(this);
 
         this.captchaApiBaseUrl = this.globalConfigSvc.currentEnironment.captchaApiBaseUrl;
-        this.nonce = GlobalConfigService.uuid;
 
-        this.debugOnly();
-
-        console.log(`nonce: %o`, this.nonce );
+        this.nonce = this.globalConfigSvc.applicationId;
+        // this.nonce = GlobalConfigService.uuid;
     }
 
     public get signingAuthority(): IMspSigningAuthority {
@@ -77,12 +76,67 @@ export class MspRegisterAuthorizeComponent implements OnInit {
     }
 
     ngOnInit() {
+        console.log(
+            `%c%o : %o`,
+            'color:green',
+            funcRemoveStrings(
+                ['MspRegister', 'Component'],
+                this.constructor.name
+            ).toUpperCase(),
+            this.globalConfigSvc.applicationId
+        );
+
         this.fg = this.mspRegisterStateSvc.mspRegisterAuthorizeForm;
         this.mspRegDataSvc.updateSigningAuthorityName(name);
         this.adminFgs = this.mspRegisterStateSvc.mspRegisterAccessAdminsForm;
         this.userFgs = this.mspRegisterStateSvc.mspRegisterUsersForm;
 
         this.genConsentForm();
+    }
+
+    continue() {
+        // splunk-log
+        this.loggerSvc.logNavigation(
+            this.constructor.name,
+            'Valid Data - Continue button clicked.'
+        );
+
+        // REMOVEME debug-only
+        // this.debugOnly();
+
+        const middleWareObject = this.registerationObject();
+
+        console.log(
+            `%c middleware object <= %o\n\t%o`,
+            'color:lightgreen',
+            funcRemoveStrings(
+                ['MspRegister', 'Component'],
+                this.constructor.name
+            ),
+            middleWareObject
+        );
+
+        this.copyJsonSchema(middleWareObject);
+
+        this.mspRegApiSvc
+            .siteRegisterationRequest(
+                middleWareObject,
+                this.date.toDateString()
+            )
+            .toPromise()
+            .catch((err) => {
+                this.loggerSvc.logError({
+                    event: 'http-exception',
+                    exceptionMessage: `${err}`,
+                } as LogMessage);
+                this.loggerSvc.logHttpError(err);
+            })
+            .then((result) => {
+                this.loggerSvc.logNavigation(
+                    'middleware-request-status:',
+                    'completed'
+                );
+            });
     }
 
     private genConsentForm() {
@@ -102,6 +156,10 @@ export class MspRegisterAuthorizeComponent implements OnInit {
                 // this.fg.updateValueAndValidity();
             } else {
                 this.showCaptcha = true;
+
+                // REMOVEME - debug only - LOCAL-ONLY
+                this.continue();
+                this.debugOnly();
             }
         });
     }
@@ -114,50 +172,17 @@ export class MspRegisterAuthorizeComponent implements OnInit {
                 return console.log(i, $event);
         }
     }
-    continue() {
-        this.loggerSvc.logNavigation(
-            this.constructor.name,
-            'valid data - continue clicked'
-        );
-        // this.debugOnly();
-        const regRequest = this.registerationObject();
-        this.copyJsonSchema(regRequest);
-
-        console.log(regRequest);
-
-        this.mspRegApiSvc
-            .siteRegisterationRequest(regRequest, this.date.toDateString())
-            .toPromise()
-            .catch((err) => {
-                this.loggerSvc.logError({
-                    event: 'http-exception',
-                    exceptionMessage: `${err}`,
-                } as LogMessage);
-                this.loggerSvc.logHttpError(err);
-            })
-            .then((result) => {
-                this.loggerSvc.logNavigation(
-                    'middleware-request-status:',
-                    'completed'
-                );
-            });
-    }
 
     private copyJsonSchema(schema: any) {
-        // if (!this.globalConfigSvc.currentEnironment.production) {
-        document.addEventListener('copy', (e: ClipboardEvent) => {
-            e.clipboardData.setData('text/plain', JSON.stringify(schema));
-            e.preventDefault();
-            document.removeEventListener('copy', null);
-        });
-        document.execCommand('copy');
-        // }
+        if (!this.globalConfigSvc.isProduction) {
+            document.addEventListener('copy', (e: ClipboardEvent) => {
+                e.clipboardData.setData('text/plain', JSON.stringify(schema));
+                e.preventDefault();
+                document.removeEventListener('copy', null);
+            });
+            document.execCommand('copy');
+        }
     }
-
-    // validToken($event) {
-    //     console.log($event);
-    //     if (!$event.ok) console.log('error');
-    // }
 
     getGroupsInfo() {
         // Msp Groups
@@ -262,13 +287,13 @@ export class MspRegisterAuthorizeComponent implements OnInit {
             const moOrganizationInformation = this.mspRegDataSvc.mapOrgInformation(
                 this.mspRegisterStateSvc.mspRegisterOrganizationForm.value
             );
-            console.log('MO - Organization info:', moOrganizationInformation);
+            console.log('\tMO - Organization info:', moOrganizationInformation);
 
             // Signing Authority
             const moSigningAuthority = this.mspRegDataSvc.mapObjectSigningAuthorityInformationDef(
                 this.mspRegisterStateSvc.mspRegisterSigningAuthorityForm.value
             );
-            console.log('MO - Signing Authority:', moSigningAuthority);
+            console.log('\tMO - Signing Authority:', moSigningAuthority);
 
             // Access Administrators
             const accessAdmins: IMspAccessAdmin[] = [];
@@ -279,7 +304,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
             const moAccessAdministrators = this.mspRegDataSvc.mapAccessAdministratorDef(
                 accessAdmins
             );
-            console.log('MO - Access Admins:', moAccessAdministrators);
+            console.log('\tMO - Access Admins:', moAccessAdministrators);
 
             // Users
             const mspUsers: IMspUser[] = [];
@@ -288,7 +313,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
             );
 
             const moUsers = this.mspRegDataSvc.mapUserDef(mspUsers);
-            console.log('MO - Users:', moUsers);
+            console.log('\tMO - Users:', moUsers);
 
             // Msp Groups
             const mspGroups: IMspGroup[] = [];
@@ -297,7 +322,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
             );
             this.groupsMSP = mspGroups;
             const moMspGroups = this.mspRegDataSvc.mapGroupDef(mspGroups);
-            console.log('MO - Group:', moMspGroups);
+            console.log('\tMO - Group:', moMspGroups);
 
             // Authorize
             const regRequest = this.mspRegDataSvc.mapSiteRegRequest(
@@ -310,7 +335,10 @@ export class MspRegisterAuthorizeComponent implements OnInit {
                 false
             );
 
-            console.log('MO - Site Registeration Request Object:', regRequest);
+            console.log(
+                '\tMO - Site Registeration Request Object:',
+                regRequest
+            );
         }
     }
 
