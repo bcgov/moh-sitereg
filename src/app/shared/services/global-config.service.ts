@@ -34,8 +34,8 @@ export class GlobalConfigService {
     // }
 
     // REMOVE ME - debug only - to put default value
-    public static setDefaults() {
-        return true;
+    public static setDefaults(): boolean {
+        return false;
     }
 
     //#endregion

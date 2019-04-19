@@ -61,7 +61,7 @@ export class MspRegisterOrganization extends GenerateForm<IMspOrganization>
     //#region REMOVE ME - Default Values
 
     private setDefaultValues() {
-        if (GlobalConfigService.setDefaults) {
+        if (GlobalConfigService.setDefaults() === true) {
             this.name = 'MAXIMUS Canada';
             this.province = 'British Columbia';
             this.city = 'Victoria';

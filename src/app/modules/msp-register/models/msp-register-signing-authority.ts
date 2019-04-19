@@ -53,7 +53,7 @@ export class MspRegisterSigningAuthority
     //#region REMOVE ME - Default Values
 
     private setDefaultValues() {
-        if (GlobalConfigService.setDefaults) {
+        if (GlobalConfigService.setDefaults() === true) {
             this.userTitle = 'Mr.';
             this.firstName = 'Josh';
             this.initial = 'K';

@@ -39,7 +39,7 @@ export class MspRegisterUsers extends GenerateForm<IMspUser>
     //#region REMOVE ME - Default Values
 
     private setDefaultValues() {
-        if (GlobalConfigService.setDefaults) {
+        if (GlobalConfigService.setDefaults() === true) {
             this.userTitle = 'Mr.';
             this.firstName = 'John';
             this.initial = 'R';

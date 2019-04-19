@@ -34,7 +34,7 @@ export class MspRegisterGroup extends GenerateForm<IMspGroup>
     //#region REMOVE ME - Default Values
 
     private setDefaultValues() {
-        if (GlobalConfigService.setDefaults) {
+        if (GlobalConfigService.setDefaults() === true) {
             this.groupNumber = '7654321';
             this.thirdParty = true;
         }
