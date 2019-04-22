@@ -7,7 +7,6 @@ import { BehaviorSubject } from 'rxjs';
     providedIn: 'root',
 })
 export class GlobalConfigService {
-
     // private static instance: GlobalConfigService;
     // private globalConfigServiceSubject = new BehaviorSubject<GlobalConfigService>(null);
 
@@ -17,17 +16,29 @@ export class GlobalConfigService {
     //     }
     //     return GlobalConfigService.instance;
     // }
-    public static internalUUID: string ;
-    public static get uuid(): string {
 
-        if ( GlobalConfigService.internalUUID ) {
-            return GlobalConfigService.internalUUID;
-        } else {
-            GlobalConfigService.internalUUID = UUID.UUID();
-        }
+    private mspApplicationId: string;
 
-        return GlobalConfigService.internalUUID;
+    //#region static
+
+    // public static internalUUID: string ;
+    // public static get uuid(): string {
+
+    //     if ( GlobalConfigService.internalUUID ) {
+    //         return GlobalConfigService.internalUUID;
+    //     } else {
+    //         GlobalConfigService.internalUUID = UUID.UUID();
+    //     }
+
+    //     return GlobalConfigService.internalUUID;
+    // }
+
+    // REMOVE ME - debug only - to put default value
+    public static setDefaults(): boolean {
+        return false;
     }
+
+    //#endregion
 
     constructor() {}
 
@@ -41,9 +52,12 @@ export class GlobalConfigService {
         return environment;
     }
 
-    //#region msp ApplicationId specific
+    public get isProduction() {
+        return false;
+        return environment.production;
+    }
 
-    private mspApplicationId: string;
+    //#region msp ApplicationId specific
 
     public logRefreshMspApplicationUUID(): string {
         this.mspApplicationId = UUID.UUID();

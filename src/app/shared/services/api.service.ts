@@ -44,9 +44,8 @@ export class MspRegisterApiService extends AbstractHttpService {
     ) {
         super(http);
         this.apiURL = this.globalConfigSvc.currentEnironment.baseAPIUrl;
-        this.eventUUID = GlobalConfigService.uuid;
-        console.log(`nonce & applicationid: %o`, GlobalConfigService.uuid);
 
+        this.eventUUID = this.globalConfigSvc.applicationId;
     }
 
     public setCaptchaToken(token: string) {
@@ -107,9 +106,9 @@ export class MspRegisterApiService extends AbstractHttpService {
         // disabled to keep log of the application all steps.
         // this.eventUUID = UUID.UUID();
 
-        const url = environment.baseAPIUrl + `${GlobalConfigService.uuid}`;
+        const url = environment.baseAPIUrl + `${this.eventUUID}`;
 
-        console.log(`nonce & applicationid: %o`, GlobalConfigService.uuid );
+        // console.log(`nonce & applicationid: %o`, GlobalConfigService.uuid );
 
         // // REMOVEME
         // const testMiddlewareURL = 'http://localhost:5200';

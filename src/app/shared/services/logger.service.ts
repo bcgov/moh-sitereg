@@ -37,18 +37,22 @@ export class LoggerService extends CommonLogger {
      */
     public log(message: LogMessage) {
         try {
-            console.log(`%c Splunk Logger Object => %o`, 'color:orange', this);
-            const clog = message as CommonLogMessage;
-            console.log(`%c  Splunk Log: => %o`, 'color:orange', clog);
-            this._log(message as CommonLogMessage);
+            // console.log(`%c Splunk Logger Object => %o`, 'color:orange', this);
 
-            // console.log(`%c Logger Object => %o`, 'color:orange', this);
-            // this.isProduction
-            // ? this._log(message as CommonLogMessage)
-            // : console.log(`%c Splunk Log: %o`, 'color:green', message);
+            // const clog = message as CommonLogMessage;
+            // console.log(`%c  Splunk Log: => %o`, 'color:orange', clog);
+            // this._log(message as CommonLogMessage);
+
+            this.globalConfigSvc.isProduction
+                ? this._log(message as CommonLogMessage)
+                : console.log(
+                      `%c splunk-log \n\t %o`,
+                      'color:lightgreen',
+                      message
+                  );
         } catch (e) {
             console.log(
-                `%c Error while Logging [ %o ] : exception:  %o`,
+                `%c splunk-log-error [ %o ] : exception:  %o`,
                 'color:red',
                 message,
                 e

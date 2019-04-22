@@ -1,13 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { MspRegisterOrganizationComponent } from './components/msp-register-organization/msp-register-organization.component';
 import { MspRegisterComponent } from './msp-register.component';
-import { MspRegisterAccessAdminsComponent } from './components/msp-register-access-admins/msp-register-access-admins.component';
-import { MspRegisterAuthorizeComponent } from './components/msp-register-authorize/msp-register-authorize.component';
-import { MspRegisterSigningAuthorityComponent } from './components/msp-register-signing-authority/msp-register-signing-authority.component';
-import { MspRegisterGroupComponent } from './components/msp-register-group/msp-register-group.component';
-import { MspRegisterUsersComponent } from './components/msp-register-users/msp-register-users.component';
 import { subRoutes } from './models/sub-routes';
+import { GlobalConfigService } from '@shared/services/global-config.service';
 
 const routes: Routes = [
     {
@@ -19,6 +14,7 @@ const routes: Routes = [
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],
+    providers: [GlobalConfigService],
     exports: [RouterModule],
 })
 export class MspRegisterRoutingModule {}
