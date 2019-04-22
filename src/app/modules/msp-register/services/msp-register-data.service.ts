@@ -24,6 +24,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { IUserMsp } from '@msp-register/interfaces/base/i-user-msp';
 import { IMspUser } from '@msp-register/interfaces/i-msp-user';
+import { funcRandomNumber7Digit } from '@msp-register/constants';
 
 const apiUrl = environment.baseAPIUrl;
 
@@ -84,11 +85,14 @@ export class MspRegisterDataService {
 
     mapContractingOut(
         // tslint:disable-next-line: variable-name
-        contracting_third_party: YesNo,
+        contracting_third_party: string,
         // tslint:disable-next-line: variable-name
         third_party_org_num?: string
     ): IContractingOut {
-        if (!third_party_org_num) return { contracting_third_party };
+
+        third_party_org_num = third_party_org_num ?  third_party_org_num : '';
+
+        // if (!third_party_org_num) return { contracting_third_party, third_party_org_num? '' };
         return { contracting_third_party, third_party_org_num };
     }
 
@@ -229,15 +233,19 @@ export class MspRegisterDataService {
     mapOrgInformation(obj: IMspOrganization): IOrgInformationDef {
         this.validateKeys(obj);
         if (!obj) throw Error('no organizaiton provided');
+
+        // todo - frontend will provide value
+        const orgNumber = ((obj.thirdParty as boolean) === true ?  funcRandomNumber7Digit() : '');
+
         // tslint:disable-next-line: variable-name
         const contracting_out = this.mapContractingOut(
-            this.mapYesNo(obj.thirdParty as boolean),
-            '' // obj.organizationNumber as string  // TBD: opt-out, this is MSP group number
+            this.mapYesNoDef(obj.thirdParty as boolean),
+            orgNumber
         );
         return {
             contracting_out,
             org_name: obj.name as string,
-            org_num: '', // obj.organizationNumber as string, // TBD: opt-out, this is MSP group number
+            org_num: orgNumber,
             suite_num: obj.suite ? (obj.suite as string) : '',
             street_num: obj.street as string,
             street_name: obj.streetName as string,

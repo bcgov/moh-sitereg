@@ -22,7 +22,7 @@ import { Router } from '@angular/router';
 import { MspRegisterApiService } from '@shared/services/api.service';
 import { LoggerService, LogMessage } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
-import { funcRemoveStrings } from '@msp-register/constants';
+import { funcRemoveStrings, funcRandomNumber8Digit } from '@msp-register/constants';
 // import {  } from 'moh-common-lib/captcha';
 
 export type AccessType = 'admin' | 'user';
@@ -195,8 +195,8 @@ export class MspRegisterAuthorizeComponent implements OnInit {
     }
 
     registerationObject() {
-        // Request Numer - todo - autgenerate
-        const requestNumber = this.genRandomNumber();
+        // Request Numer
+        const requestNumber = funcRandomNumber8Digit();
 
         // Orgnaization Info
         const moOrganizationInformation = this.mspRegDataSvc.mapOrgInformation(
@@ -279,9 +279,9 @@ export class MspRegisterAuthorizeComponent implements OnInit {
         // this.router.navigate([`msp-registration/${route}`]);
     }
 
-    genRandomNumber() {
-        return Math.floor(Math.random() * 89999999 + 10000000).toString();
-    }
+    // genRandomNumber() {
+    //     return Math.floor(Math.random() * 89999999 + 10000000).toString();
+    // }
 
     setToken(token): void {
         // REMOVEME - debug only
@@ -294,7 +294,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
     debugOnly() {
         if (this.globalConfigSvc.currentEnironment.production === false) {
             // Request Numer
-            const requestNumber = this.genRandomNumber();
+            const requestNumber = funcRandomNumber8Digit();
 
             // Orgnaization Info
             const moOrganizationInformation = this.mspRegDataSvc.mapOrgInformation(
