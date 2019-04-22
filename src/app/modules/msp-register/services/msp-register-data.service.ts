@@ -171,7 +171,7 @@ export class MspRegisterDataService {
         // console.log('mapCoreUserDef', obj);
         this.validateKeys(obj);
         const baseUser: ICoreUserDef = {
-            curtesy_title: obj.userTitle ? (obj.userTitle as string) : '',
+            curtesy_title: (obj.userTitle as string) && !( obj.userTitle as string === 'null') ? (obj.userTitle as string) : '',
             last_name: obj.lastName as string,
             first_name: obj.firstName as string,
             initial: obj.initial ? (obj.initial as string) : '',
