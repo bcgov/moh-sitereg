@@ -232,7 +232,9 @@ export class MspRegisterAuthorizeComponent implements OnInit {
             v.value ? mspGroups.push(v.value) : ''
         );
         this.groupsMSP = mspGroups;
-        const moMspGroups = this.mspRegDataSvc.mapGroupDef(mspGroups);
+        const isThirdPartyManamentAllowed = this.mspRegDataSvc.isThirdyPartyManagmentEnabled(moOrganizationInformation);
+
+        const moMspGroups = this.mspRegDataSvc.mapGroupDef(mspGroups, isThirdPartyManamentAllowed);
 
         // Authorize
         const regRequest = this.mspRegDataSvc.mapSiteRegRequest(
@@ -334,7 +336,9 @@ export class MspRegisterAuthorizeComponent implements OnInit {
                 v.value ? mspGroups.push(v.value) : ''
             );
             this.groupsMSP = mspGroups;
-            const moMspGroups = this.mspRegDataSvc.mapGroupDef(mspGroups);
+            const isThirdPartyManamentAllowed = this.mspRegDataSvc.isThirdyPartyManagmentEnabled(moOrganizationInformation);
+
+            const moMspGroups = this.mspRegDataSvc.mapGroupDef(mspGroups, isThirdPartyManamentAllowed);
             console.log('\tMO - Group:', moMspGroups);
 
             // Authorize
