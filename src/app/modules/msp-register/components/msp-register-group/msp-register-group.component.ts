@@ -84,7 +84,13 @@ export class MspRegisterGroupComponent implements OnInit {
                 v.value ? mspGroups.push(v.value) : ''
             );
 
-            const middleWareObject = this.mspRegDataSvc.mapGroupDef(mspGroups);
+            // Orgnaization Info
+            const moOrganizationInformation = this.mspRegDataSvc.mapOrgInformation(
+                this.mspRegisterStateSvc.mspRegisterOrganizationForm.value
+            );
+
+            const isThirdPartyManamentAllowed = this.mspRegDataSvc.isThirdyPartyManagmentEnabled(moOrganizationInformation);
+            const middleWareObject = this.mspRegDataSvc.mapGroupDef(mspGroups, isThirdPartyManamentAllowed);
             console.log(
                 `%c middleware object <= %o\n\t%o`,
                 'color:lightgreen',

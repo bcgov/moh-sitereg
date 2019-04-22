@@ -171,7 +171,7 @@ export class MspRegisterDataService {
         // console.log('mapCoreUserDef', obj);
         this.validateKeys(obj);
         const baseUser: ICoreUserDef = {
-            curtesy_title: obj.userTitle ? (obj.userTitle as string) : '',
+            curtesy_title: (obj.userTitle as string) && !( obj.userTitle as string === 'null') ? (obj.userTitle as string) : '',
             last_name: obj.lastName as string,
             first_name: obj.firstName as string,
             initial: obj.initial ? (obj.initial as string) : '',
@@ -200,6 +200,7 @@ export class MspRegisterDataService {
             baseUserMsp.msp_access = this.mapYesNoDef(
                 obj.directMspAccess as boolean
             );
+            baseUserMsp.ldap_id = '';
         }
 
         return baseUserMsp;
@@ -355,14 +356,23 @@ export class MspRegisterDataService {
 
     //#region Group Numbers
 
+
+    /**
+     * verfies if the organization is managed by thrid party
+     * and a valid Organization Number is supplied
+     */
+    isThirdyPartyManagmentEnabled(obj: IOrgInformationDef) {
+        return (obj.org_num && obj.org_num.length > 0) // should be 7 instead of 0 as per schema
+        && (obj.contracting_out && obj.contracting_out.contracting_third_party
+            && obj.contracting_out.contracting_third_party === 'Y');
+    }
+
     mapObjectGroupDef(obj: IMspGroup): IMspGroupDef {
         // console.log('mapObjectGroupDef', obj);
 
         this.validateKeys(obj);
         const groupDef: IMspGroupDef = {
             mspgroup_num: obj.groupNumber as string,
-            // feedback-2019-04-03
-            // mspgroup_name will always be null
             mspgroup_name: '',
             third_party: this.mapYesNoDef(obj.thirdParty as boolean),
         };
@@ -370,16 +380,21 @@ export class MspRegisterDataService {
         return groupDef as IMspGroupDef;
     }
 
-    mapGroupDef(obj: IMspGroup | IMspGroup[]): IMspGroupDef | IMspGroupDef[] {
+    mapGroupDef(obj: IMspGroup | IMspGroup[], isThirdyPartyManagmentEnabled: boolean): IMspGroupDef | IMspGroupDef[] {
         if (Array.isArray(obj)) {
             // console.log('ARRAY mapGroupDef');
             const arr = [];
             obj.forEach((itm) => {
                 this.validateKeys(itm);
+                // map rule: if organization provided group number of third party to manage msp
+                itm.thirdParty = isThirdyPartyManagmentEnabled ? itm.thirdParty : false;
                 arr.push(this.mapObjectGroupDef(itm));
             });
             return arr;
         }
+
+        // map rule: if organization provided group number of third party to manage msp
+        obj.thirdParty = isThirdyPartyManagmentEnabled ? obj.thirdParty : false;
         const group = this.mapObjectGroupDef(obj) as IMspGroupDef;
         return [group];
     }
