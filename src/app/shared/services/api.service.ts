@@ -115,18 +115,34 @@ export class MspRegisterApiService extends AbstractHttpService {
         // const url = testMiddlewareURL + environment.baseAPIUrl + `${this.eventUUID}`;
         // console.log(url);
 
+        // const body = {
+        //     // eventUUID: this.eventUUID,
+        //     clientName: this._clientName,
+        //     request_num: siteRegRequest.request_num,
+        //     org_information: siteRegRequest.org_information,
+        //     signing_authority_information:
+        //         siteRegRequest.signing_authority_information,
+        //     aa_same_as_sa: siteRegRequest.aa_same_as_sa,
+        //     access_administrator: siteRegRequest.access_administrator,
+        //     users: siteRegRequest.users,
+        //     msp_group: siteRegRequest.msp_group,
+        // };
+
         const body = {
-            eventUUID: this.eventUUID,
-            clientName: this._clientName,
+            // clientName: this._clientName,
+            request_uuid: siteRegRequest.request_uuid,
             request_num: siteRegRequest.request_num,
             org_information: siteRegRequest.org_information,
-            signing_authority_information:
-                siteRegRequest.signing_authority_information,
+            signing_authority_information: siteRegRequest.signing_authority_information,
             aa_same_as_sa: siteRegRequest.aa_same_as_sa,
             access_administrator: siteRegRequest.access_administrator,
             users: siteRegRequest.users,
             msp_group: siteRegRequest.msp_group,
+            authorizedBySA: siteRegRequest.authorizedBySA,
+            authorizedDate: siteRegRequest.authorizedDate,
+            applicationType: siteRegRequest.applicationType,
         };
+
 
         console.log(`%c  url: %o body: %o `, 'color:blue', url, body);
 
