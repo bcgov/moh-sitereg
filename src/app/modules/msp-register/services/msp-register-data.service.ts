@@ -200,6 +200,7 @@ export class MspRegisterDataService {
             baseUserMsp.msp_access = this.mapYesNoDef(
                 obj.directMspAccess as boolean
             );
+            baseUserMsp.ldap_id = '';
         }
 
         return baseUserMsp;
