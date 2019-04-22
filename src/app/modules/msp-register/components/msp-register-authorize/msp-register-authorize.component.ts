@@ -159,8 +159,8 @@ export class MspRegisterAuthorizeComponent implements OnInit {
                 this.showCaptcha = true;
 
                 // REMOVEME - debug only - LOCAL-ONLY
-                this.continue();
-                this.debugOnly();
+                // this.continue();
+                // this.debugOnly();
             }
         });
     }
@@ -281,14 +281,10 @@ export class MspRegisterAuthorizeComponent implements OnInit {
         // this.router.navigate([`msp-registration/${route}`]);
     }
 
-    // genRandomNumber() {
-    //     return Math.floor(Math.random() * 89999999 + 10000000).toString();
-    // }
-
     setToken(token): void {
         // REMOVEME - debug only
         console.log(token);
-        this.debugOnly();
+        // this.debugOnly();
         this.validCaptch = true;
         this.apiSvc.setCaptchaToken(token);
     }
@@ -353,7 +349,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
                 moAccessAdministrators as IAccessAdministratorDef[],
                 moUsers as IUserDef[],
                 moMspGroups as IMspGroupDef[],
-                false
+                (moSigningAuthority.msp_access && moSigningAuthority.msp_access === 'Y' ? true : false )
             );
 
             console.log(
