@@ -353,7 +353,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
                 moAccessAdministrators as IAccessAdministratorDef[],
                 moUsers as IUserDef[],
                 moMspGroups as IMspGroupDef[],
-                false
+                (moSigningAuthority.msp_access && moSigningAuthority.msp_access === 'Y' ? true : false )
             );
 
             console.log(
