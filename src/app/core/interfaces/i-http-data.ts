@@ -85,7 +85,7 @@ export interface IMspGroupDef {
 //#endregion
 
 export interface ISiteRegRequest {
-    applicationType: string;
+    request_uuid: string;
     request_num: any;
     org_information: IOrgInformationDef;
     signing_authority_information: ISigningAuthorityDef;
@@ -93,6 +93,9 @@ export interface ISiteRegRequest {
     access_administrator: IAccessAdministratorDef[];
     users: IUserDef[];
     msp_group: IMspGroupDef[];
+    authorizedBySA: string;
+    authorizedDate: string;
+    applicationType: string;
 }
 
 export type YesNo = 'yes' | 'no';

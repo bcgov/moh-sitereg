@@ -380,8 +380,34 @@ export class MspRegisterDataService {
 
     //#region Site Request
 
+    /**
+     * get Date in MM-DD-YYYY format
+     * @param date Date
+     */
+    getDateinMMDDYYYY(date: Date) {
+        let mm: string;
+        let dd: string;
+        let yyyy: string;
+
+        let dateString: string;
+
+        dd = date.getDate().toString();
+        mm = (date.getMonth() + 1).toString();
+        yyyy = date.getFullYear().toString();
+
+        dateString =
+            `${mm.length > 1 ? mm : '0' + mm}` +
+            `-${dd.length > 1 ? dd : '0' + dd}` +
+            `-${yyyy}`;
+
+        return dateString;
+    }
+
     mapSiteRegRequest(
+        requestUUID: string,
         requestNumber: any,
+        authorizedBySA: boolean,
+        authorizedDate: Date,
         organizationInfo: IOrgInformationDef,
         signingAuthority: ISigningAuthorityDef,
         accessAdministrators: IAccessAdministratorDef[],
@@ -389,8 +415,9 @@ export class MspRegisterDataService {
         mspGroups: IMspGroupDef[],
         AccessAdmminSameAsSigningAuthority?: boolean
     ): ISiteRegRequest {
+        const dateAuthorize = this.getDateinMMDDYYYY(authorizedDate);
         const registerationRequest: ISiteRegRequest = {
-            applicationType: 'mspdRegistration',
+            request_uuid: requestUUID,
             request_num: requestNumber,
             org_information: organizationInfo ? organizationInfo : null,
             signing_authority_information: signingAuthority
@@ -406,6 +433,11 @@ export class MspRegisterDataService {
                 : [],
             users: OrganizationUsers ? OrganizationUsers : [],
             msp_group: mspGroups ? mspGroups : null,
+            authorizedBySA: authorizedBySA
+                ? this.mapYesNoDef(authorizedBySA)
+                : 'N',
+            authorizedDate: dateAuthorize,
+            applicationType: 'mspdRegistration',
         };
 
         return registerationRequest;

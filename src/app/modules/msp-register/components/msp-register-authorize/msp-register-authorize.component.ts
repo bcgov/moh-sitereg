@@ -35,6 +35,7 @@ export type AccessType = 'admin' | 'user';
 })
 export class MspRegisterAuthorizeComponent implements OnInit {
     fg: FormGroup;
+    requestUUID: string;
     date: Date = new Date();
     adminFgs: FormGroup[];
     userFgs: FormGroup[];
@@ -63,7 +64,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
 
         this.captchaApiBaseUrl = this.globalConfigSvc.currentEnironment.captchaApiBaseUrl;
 
-        this.nonce = this.globalConfigSvc.applicationId;
+        this.requestUUID = this.nonce = this.globalConfigSvc.applicationId;
         // this.nonce = GlobalConfigService.uuid;
     }
 
@@ -235,7 +236,11 @@ export class MspRegisterAuthorizeComponent implements OnInit {
 
         // Authorize
         const regRequest = this.mspRegDataSvc.mapSiteRegRequest(
+            this.requestUUID,
             requestNumber,
+            // this.validCaptch
+            true, // REMOVEME - debug only - sending authorize by SA as true,
+            this.date,
             moOrganizationInformation,
             moSigningAuthority,
             moAccessAdministrators as IAccessAdministratorDef[],
@@ -276,6 +281,14 @@ export class MspRegisterAuthorizeComponent implements OnInit {
 
     genRandomNumber() {
         return Math.floor(Math.random() * 89999999 + 10000000).toString();
+    }
+
+    setToken(token): void {
+        // REMOVEME - debug only
+        console.log(token);
+        this.debugOnly();
+        this.validCaptch = true;
+        this.apiSvc.setCaptchaToken(token);
     }
 
     debugOnly() {
@@ -326,7 +339,11 @@ export class MspRegisterAuthorizeComponent implements OnInit {
 
             // Authorize
             const regRequest = this.mspRegDataSvc.mapSiteRegRequest(
+                this.requestUUID,
                 requestNumber,
+                // this.validCaptch
+                true, // REMOVEME - debug only - sending authorize by SA as true
+                this.date,
                 moOrganizationInformation,
                 moSigningAuthority,
                 moAccessAdministrators as IAccessAdministratorDef[],
@@ -340,13 +357,5 @@ export class MspRegisterAuthorizeComponent implements OnInit {
                 regRequest
             );
         }
-    }
-
-    setToken(token): void {
-        // REMOVEME - debug only
-        console.log(token);
-        this.debugOnly();
-        this.validCaptch = true;
-        this.apiSvc.setCaptchaToken(token);
     }
 }
