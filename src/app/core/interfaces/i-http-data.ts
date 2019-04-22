@@ -21,7 +21,7 @@ export interface ICoreUserMspDef extends ICoreUserDef {
 }
 
 export interface IContractingOut {
-    contracting_third_party: YesNo;
+    contracting_third_party: string;
     third_party_org_num?: string;
 }
 
