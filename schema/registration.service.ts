@@ -9,6 +9,16 @@ export interface RegistrationItem {
   isComplete: boolean;
 }
 
+    // // Registration items to be completed
+    // this.registrationService.registrationItems = pageRoutes.map( page => {
+    //   if ( page.path !== '' ) {
+    //     return {
+    //       route: page.path,
+    //       isComplete: false
+    //     };
+    //   }
+    // }).filter( x => x );
+
 @Injectable()
 export class RegistrationService {
 
