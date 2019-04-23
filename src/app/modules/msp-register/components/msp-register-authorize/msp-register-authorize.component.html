@@ -166,7 +166,7 @@
     <div class="row" *ngIf="showCaptcha">
       <span class="captcha">
         <common-captcha [apiBaseUrl]="captchaApiBaseUrl" [nonce]="nonce" (onValidToken)="setToken($event)"
-          [successMessage]="'  '"></common-captcha>
+          [successMessage]="'  '" autocomplete="off" ></common-captcha>
       </span>
     </div>
 
