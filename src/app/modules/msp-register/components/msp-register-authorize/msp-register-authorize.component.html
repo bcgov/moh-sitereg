@@ -87,6 +87,10 @@
                     <td class="column-label">{{ (g.thirdParty) ? "3rd Party Organization Number" : ""  }}</td>
                     <td class="aggrement-table">{{g.groupNumber}} </td>
                   </tr>
+                  <!-- <tr *ngFor="let g of groupsMSP" class="aggrement-table">
+                    <td class="column-label">{{ (g.thirdParty) ? "3rd Party Organization Number" : ""  }}</td>
+                    <td class="aggrement-table">{{g.groupNumber}} </td>
+                  </tr> -->
                 </table>
               </div>
             </li>
@@ -147,12 +151,12 @@
 
   <!-- Consent  -->
   <div [formGroup]="fg">
-    
+
     <div class="row">
       <span class="consent">
         <input type="checkbox" form name="consent" formControlName="consent" id="consent" tabindex="0"
           [value]="true">&nbsp;
-        <label>
+        <label (click)="toggleConsent()">
           I, {{signingAuthority.firstName}} {{signingAuthority.lastName}} have read and agreed to above terms and
           conditions.
         </label>
