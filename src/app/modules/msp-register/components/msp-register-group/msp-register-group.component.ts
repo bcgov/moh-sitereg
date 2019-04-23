@@ -7,6 +7,7 @@ import { MspRegisterDataService } from '@msp-register/services/msp-register-data
 import { IMspGroup } from '@msp-register/interfaces';
 import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
+import { funcRemoveStrings } from '@msp-register/constants';
 
 @Component({
     selector: 'sitereg-msp-register-group',
@@ -35,14 +36,28 @@ export class MspRegisterGroupComponent implements OnInit {
         // });
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+        console.log(
+            `%c%o : %o`,
+            'color:green',
+            funcRemoveStrings(
+                ['MspRegister', 'Component'],
+                this.constructor.name
+            ).toUpperCase(),
+            this.globalConfigSvc.applicationId
+        );
+    }
 
     continue() {
+        // splunk-log
         this.loggerSvc.logNavigation(
             this.constructor.name,
-            'valid data - continue clicked'
+            'Valid Data - Continue button clicked.'
         );
+
+        // REMOVEME debug-only
         this.debugOnly();
+
         this.router.navigate(['msp-registration/authorize']);
     }
 
@@ -60,6 +75,7 @@ export class MspRegisterGroupComponent implements OnInit {
         this.updateFormGroups();
     }
 
+    // REMOVEME - debug only
     debugOnly() {
         if (this.globalConfigSvc.currentEnironment.production === false) {
             // Msp Groups
@@ -68,8 +84,22 @@ export class MspRegisterGroupComponent implements OnInit {
                 v.value ? mspGroups.push(v.value) : ''
             );
 
-            const moMspGroups = this.mspRegDataSvc.mapGroupDef(mspGroups);
-            console.log('MO - Group:', moMspGroups);
+            // Orgnaization Info
+            const moOrganizationInformation = this.mspRegDataSvc.mapOrgInformation(
+                this.mspRegisterStateSvc.mspRegisterOrganizationForm.value
+            );
+
+            const isThirdPartyManamentAllowed = this.mspRegDataSvc.isThirdyPartyManagmentEnabled(moOrganizationInformation);
+            const middleWareObject = this.mspRegDataSvc.mapGroupDef(mspGroups, isThirdPartyManamentAllowed);
+            console.log(
+                `%c middleware object <= %o\n\t%o`,
+                'color:lightgreen',
+                funcRemoveStrings(
+                    ['MspRegister', 'Component'],
+                    this.constructor.name
+                ),
+                middleWareObject
+            );
         }
     }
 }

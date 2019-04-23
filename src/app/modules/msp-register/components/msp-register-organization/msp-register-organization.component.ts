@@ -9,6 +9,7 @@ import { validFormControl } from '@msp-register/models/validator-helpers';
 import { MspRegisterDataService } from '@msp-register/services/msp-register-data.service';
 import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
+import { funcRemoveStrings } from '@msp-register/constants';
 
 @Component({
     selector: 'sitereg-msp-register-organization',
@@ -48,9 +49,17 @@ export class MspRegisterOrganizationComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.fg.valueChanges.subscribe((obs) => {
-            // console.log(this.fg);
+        console.log(
+            `%c%o : %o`,
+            'color:green',
+            funcRemoveStrings(
+                ['MspRegister', 'Component'],
+                this.constructor.name
+            ).toUpperCase(),
+            this.globalConfigSvc.applicationId
+        );
 
+        this.fg.valueChanges.subscribe((obs) => {
             // converts postalcode in upper case
             const postalCode = this.fg.get('postalCode');
             if (postalCode.value) {
@@ -62,22 +71,35 @@ export class MspRegisterOrganizationComponent implements OnInit {
     }
 
     continue() {
+        // splunk-log
         this.loggerSvc.logNavigation(
             this.constructor.name,
-            'valid data - continue clicked'
+            'Valid Data - Continue button clicked.'
         );
+
+        // REMOVEME debug-only
         this.debugOnly();
+
         this.router.navigate(['msp-registration/signing-authority']);
     }
 
+    // REMOVEME - debug only
     debugOnly() {
-        if (this.globalConfigSvc.currentEnironment.production === false) {
+        if (!this.globalConfigSvc.isProduction) {
             const form = this.mspRegisterStateSvc.mspRegisterOrganizationForm;
-            console.log('FormGroup: ', form);
+            // console.log('FormGroup: ', form);
             const middleWareObject = this.mspRegDataSvc.mapOrgInformation(
                 form.value
             );
-            console.log('MO - Organization info:', middleWareObject);
+            console.log(
+                `%c middleware object <= %o\n\t%o`,
+                'color:lightgreen',
+                funcRemoveStrings(
+                    ['MspRegister', 'Component'],
+                    this.constructor.name
+                ),
+                middleWareObject
+            );
         }
     }
 }

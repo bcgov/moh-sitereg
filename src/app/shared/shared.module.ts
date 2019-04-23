@@ -7,6 +7,7 @@ import { PageSectionsComponent } from './components/page-sections/page-sections.
 import { CaptchaComponent } from './components/captcha/captcha.component';
 import { ErrorBoxComponent } from './components/error-box/error-box.component';
 import { GlobalConfigService } from './services/global-config.service';
+import { MspRegisterApiService } from './services/api.service';
 
 @NgModule({
     declarations: [PageSectionsComponent, CaptchaComponent, ErrorBoxComponent],
@@ -17,7 +18,7 @@ import { GlobalConfigService } from './services/global-config.service';
         ReactiveFormsModule,
         CaptchaModule,
     ],
-    providers: [GlobalConfigService],
+    providers: [GlobalConfigService, MspRegisterApiService],
     exports: [
         SharedCoreModule,
         ReactiveFormsModule,

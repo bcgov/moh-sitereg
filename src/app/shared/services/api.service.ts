@@ -44,9 +44,8 @@ export class MspRegisterApiService extends AbstractHttpService {
     ) {
         super(http);
         this.apiURL = this.globalConfigSvc.currentEnironment.baseAPIUrl;
-        this.eventUUID = GlobalConfigService.uuid;
-        console.log(`nonce & applicationid: %o`, GlobalConfigService.uuid);
 
+        this.eventUUID = this.globalConfigSvc.applicationId;
     }
 
     public setCaptchaToken(token: string) {
@@ -107,27 +106,43 @@ export class MspRegisterApiService extends AbstractHttpService {
         // disabled to keep log of the application all steps.
         // this.eventUUID = UUID.UUID();
 
-        const url = environment.baseAPIUrl + `${GlobalConfigService.uuid}`;
+        const url = environment.baseAPIUrl + `${this.eventUUID}`;
 
-        console.log(`nonce & applicationid: %o`, GlobalConfigService.uuid );
+        // console.log(`nonce & applicationid: %o`, GlobalConfigService.uuid );
 
         // // REMOVEME
         // const testMiddlewareURL = 'http://localhost:5200';
         // const url = testMiddlewareURL + environment.baseAPIUrl + `${this.eventUUID}`;
         // console.log(url);
 
+        // const body = {
+        //     // eventUUID: this.eventUUID,
+        //     clientName: this._clientName,
+        //     request_num: siteRegRequest.request_num,
+        //     org_information: siteRegRequest.org_information,
+        //     signing_authority_information:
+        //         siteRegRequest.signing_authority_information,
+        //     aa_same_as_sa: siteRegRequest.aa_same_as_sa,
+        //     access_administrator: siteRegRequest.access_administrator,
+        //     users: siteRegRequest.users,
+        //     msp_group: siteRegRequest.msp_group,
+        // };
+
         const body = {
-            eventUUID: this.eventUUID,
-            clientName: this._clientName,
+            // clientName: this._clientName,
+            request_uuid: siteRegRequest.request_uuid,
             request_num: siteRegRequest.request_num,
             org_information: siteRegRequest.org_information,
-            signing_authority_information:
-                siteRegRequest.signing_authority_information,
+            signing_authority_information: siteRegRequest.signing_authority_information,
             aa_same_as_sa: siteRegRequest.aa_same_as_sa,
             access_administrator: siteRegRequest.access_administrator,
             users: siteRegRequest.users,
             msp_group: siteRegRequest.msp_group,
+            authorizedBySA: siteRegRequest.authorizedBySA,
+            authorizedDate: siteRegRequest.authorizedDate,
+            applicationType: siteRegRequest.applicationType,
         };
+
 
         console.log(`%c  url: %o body: %o `, 'color:blue', url, body);
 
