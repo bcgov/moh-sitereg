@@ -12,30 +12,32 @@
       </div>
 
       <!-- Suite Number-->
+      <label class="control-label" for="suite">Suite# (optional)</label>
+      <input id="suite" formControlName="suite" class="form-control" placeholder="Suite# (optional)">
+      <div class="text-danger" *ngIf="validFormControl('suite')">
+        Enter valid Suite# (optional)
+      </div>
+
       <div class="row">
-        <div class="col-sm-6">
-          <label class="control-label" for="suite">Suite# (optional)</label>
-          <input id="suite" formControlName="suite" class="form-control" placeholder="Suite# (optional)">
-          <div class="text-danger" *ngIf="validFormControl('suite')">
-            Enter valid Suite# (optional)
-          </div>
-        </div>
 
         <!-- Street Number -->
-        <div class="col-sm-6">
+        <div class="col-sm-4">
           <label class="control-label" for="street">Street#</label>
           <input id="street" formControlName="street" class="form-control" placeholder="Street#">
           <div class="text-danger" *ngIf="validFormControl('street')">
             Enter valid Street#
           </div>
         </div>
-      </div>
 
-      <!-- Street Name -->
-      <label class="control-label" for="streetName">Street Address Line 1</label>
-      <input id="streetName" formControlName="streetName" class="form-control" placeholder="Street Address Line 1">
-      <div class="text-danger" *ngIf="validFormControl('streetName')">
-        Enter valid Street Address Line 1
+        <!-- Street Name -->
+        <div class="col-sm-8">
+          <label class="control-label" for="streetName">Street Name</label>
+          <input id="streetName" formControlName="streetName" class="form-control" placeholder="Street Name">
+          <div class="text-danger" *ngIf="validFormControl('streetName')">
+            Enter valid Street Name
+          </div>
+        </div>
+
       </div>
 
       <!-- Address Line 2 -->
@@ -75,49 +77,49 @@
         </div>
       </div>
 
-        <!-- Question Third Party Administering -->
-        <label class="control-label">
-          Are you contracting a 3rd party to administer MSP Direct on your behalf?
+      <!-- Question Third Party Administering -->
+      <label class="control-label">
+        Are you contracting a 3rd party to administer MSP Direct on your behalf?
+      </label>
+      <div class="form-check">
+        <!--No-->
+        <input class='form-check-input' formControlName="thirdParty" type="radio" id="thirdPartyFalse" tabindex="0"
+          [value]="false">
+        <label class='form-check-label' for="thirdPartyFalse">
+          No
         </label>
-        <div class="form-check">
-          <!--No-->
-          <input class='form-check-input' formControlName="thirdParty" type="radio" id="thirdPartyFalse" tabindex="0"
-            [value]="false">
-          <label class='form-check-label' for="thirdPartyFalse">
-            No
-          </label>
-          <!--Yes-->
-          <input class='form-check-input' formControlName="thirdParty" type="radio" name="" id="thirdPartyTrue"
-            tabindex="0" [value]="true">
-          <label class='form-check-label' for="aatrue">
-            Yes
-          </label>
-        </div>
-        <div class="text-danger" *ngIf="validFormControl('thirdParty')">
-          Please select a valid option
-        </div>
+        <!--Yes-->
+        <input class='form-check-input' formControlName="thirdParty" type="radio" name="" id="thirdPartyTrue"
+          tabindex="0" [value]="true">
+        <label class='form-check-label' for="aatrue">
+          Yes
+        </label>
+      </div>
+      <div class="text-danger" *ngIf="validFormControl('thirdParty')">
+        Please select a valid option
+      </div>
 
-        <!-- Question Blue Cross -->
-        <label class="control-label">Are you applying to access MSP Direct through Blue Cross?
+      <!-- Question Blue Cross -->
+      <label class="control-label">Are you applying to access MSP Direct through Blue Cross?
+      </label>
+      <div class="form-check">
+        <!--No-->
+        <input class='form-check-input' formControlName="blueCross" type="radio" id="aafalse" tabindex="0"
+          [value]="false">
+        <label class='form-check-label' for="aafalse">
+          No
         </label>
-        <div class="form-check">
-          <!--No-->
-          <input class='form-check-input' formControlName="blueCross" type="radio" id="aafalse" tabindex="0"
-            [value]="false">
-          <label class='form-check-label' for="aafalse">
-            No
-          </label>
-          <!--Yes-->
-          <input class='form-check-input' formControlName="blueCross" type="radio" name="" id="aatruev" tabindex="0"
-            [value]="true">
-          <label class='form-check-label' for="aatrue">
-            Yes
-          </label>
-        </div>
-        <div class="text-danger" *ngIf="validFormControl('blueCross')">
-          Please select a valid option
-        </div>
-      
+        <!--Yes-->
+        <input class='form-check-input' formControlName="blueCross" type="radio" name="" id="aatruev" tabindex="0"
+          [value]="true">
+        <label class='form-check-label' for="aatrue">
+          Yes
+        </label>
+      </div>
+      <div class="text-danger" *ngIf="validFormControl('blueCross')">
+        Please select a valid option
+      </div>
+
 
       <!-- Administrating For-->
       <label class="control-label" for="administeringFor">This organization will be adminstering MSP for</label>

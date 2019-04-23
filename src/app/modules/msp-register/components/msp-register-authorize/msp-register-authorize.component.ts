@@ -142,7 +142,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
 
     private genConsentForm() {
         this.fg = this.formBuilder.group({
-            consent: ['', [Validators.required]],
+            consent: [false, [Validators.required]],
         });
 
         // temporary - if user click on disagree, this invalids required field
@@ -287,6 +287,14 @@ export class MspRegisterAuthorizeComponent implements OnInit {
         // this.debugOnly();
         this.validCaptch = true;
         this.apiSvc.setCaptchaToken(token);
+    }
+
+    toggleConsent() {
+
+        const val = this.fg.get('consent').value;
+        this.fg.patchValue({
+            consent: ( val && val === true ? false : true)
+        });
     }
 
     debugOnly() {
