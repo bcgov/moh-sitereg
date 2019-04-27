@@ -54,6 +54,14 @@ export class MspRegisterAuthorizeComponent implements OnInit {
     showCaptcha = false;
     validCaptch = false;
 
+    public get signingAuthority(): IMspSigningAuthority {
+        return this.mspRegisterStateSvc.signingAuthority;
+    }
+
+    public get organization(): IMspOrganization {
+        return this.mspRegisterStateSvc.organization;
+    }
+
     constructor(
         private router: Router,
         public loggerSvc: LoggerService,
@@ -73,13 +81,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
         // this.nonce = GlobalConfigService.uuid;
     }
 
-    public get signingAuthority(): IMspSigningAuthority {
-        return this.mspRegisterStateSvc.signingAuthority;
-    }
-
-    public get organization(): IMspOrganization {
-        return this.mspRegisterStateSvc.organization;
-    }
+    
 
     ngOnInit() {
         console.log(

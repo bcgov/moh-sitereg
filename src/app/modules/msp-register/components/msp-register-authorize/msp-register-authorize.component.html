@@ -77,21 +77,25 @@
             </li>
             <li>
               <div title="" (click)="navigateTo('group-numbers');">
-                <span> {{ groupsMSP.length>0? "&#10003;": "&#9634;" }} </span>
+                <span> {{ organization.thirdParty? "&#10003;": "&#9634;" }} </span>
                 <label for="checkMspApplicantBehalf" class="label-right">
                   The following organization will Administer MSP on the Applicant`s behalf:
-                </label>
-                <span *ngIf="!isValidGroups()"> No Group Numbers specified. </span>
+                </label>                
+                <!-- <span *ngIf="!isValidGroups()"> No Group Numbers specified. </span>
                 <table *ngIf="isValidGroups()" class="list-table">
                   <tr *ngFor="let g of groupsMSP" class="aggrement-table">
                     <td class="column-label">{{ (g.thirdParty) ? "3rd Party Organization Number" : ""  }}</td>
                     <td class="aggrement-table">{{g.groupNumber}} </td>
-                  </tr>
-                  <!-- <tr *ngFor="let g of groupsMSP" class="aggrement-table">
-                    <td class="column-label">{{ (g.thirdParty) ? "3rd Party Organization Number" : ""  }}</td>
-                    <td class="aggrement-table">{{g.groupNumber}} </td>
-                  </tr> -->
-                </table>
+                  </tr>                  
+                </table> -->
+                <!-- Updates: Here only Organization Number from Organization Page will be displayed and only in case 
+                if third party answer is Yes -->
+                 <table *ngIf="organization.thirdParty" class="list-table">
+                  <tr class="aggrement-table">
+                    <td class="column-label">{{ (organization.thirdParty) ? "3rd Party Organization Number" : ""  }}</td>
+                    <td class="aggrement-table">{{organization.organizationNumber}} </td>
+                  </tr>                  
+                </table> 
               </div>
             </li>
           </ul>
