@@ -241,7 +241,9 @@ export class MspRegisterDataService {
         // todo - frontend will provide value
         const orgNumber =
             (obj.thirdParty as boolean) === true
-                ? funcRandomNumber7Digit()
+                ? obj.organizationNumber
+                    ? (obj.organizationNumber as string)
+                    : funcRandomNumber7Digit()
                 : '';
 
         // tslint:disable-next-line: variable-name

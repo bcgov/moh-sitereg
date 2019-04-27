@@ -11,6 +11,7 @@ export interface IMspOrganization {
     province: string | FormControl;
     postalCode: string | FormControl;
     thirdParty: boolean | FormControl;
-    blueCross: boolean | FormControl;
     administeringFor: string | FormControl;
+    organizationNumber: string | FormControl;
+    blueCross: boolean | FormControl;
 }
