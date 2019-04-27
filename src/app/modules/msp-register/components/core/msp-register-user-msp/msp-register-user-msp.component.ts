@@ -13,6 +13,7 @@ import {
 })
 export class MspRegisterUserMspComponent implements OnInit {
     @Input() fg: FormGroup;
+    @Input() showMspDirectAccessQuestion = false;
     validFormControl: (fg: FormGroup, name: string) => boolean;
 
     constructor(private router: Router) {
