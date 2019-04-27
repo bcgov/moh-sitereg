@@ -6,6 +6,7 @@ import {
     addressValidator,
     maxLength,
     required,
+    groupNumberValidator,
 } from './validator-helpers';
 import { minLength } from './validator-helpers';
 import { ctFormControlString, ctFormControlBoolean } from './core/core-types';
@@ -44,7 +45,11 @@ export class MspRegisterOrganization extends GenerateForm<IMspOrganization>
                 postalCodeValidator(),
             ],
             blueCross: [required],
-            organizationNumber: [Validators.minLength(7), maxLength(7)],
+            organizationNumber: [
+                Validators.minLength(7),
+                Validators.maxLength(7),
+                groupNumberValidator(),
+            ],
             administeringFor: [required],
         };
     }
