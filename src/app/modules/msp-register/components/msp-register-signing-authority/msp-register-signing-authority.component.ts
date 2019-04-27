@@ -9,6 +9,7 @@ import { cAdministeringFor } from '../../models/core/core-types';
 import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
 import { funcRemoveStrings } from '@msp-register/constants';
+import { MspRegistrationService } from '@msp-register/msp-registration.service';
 
 @Component({
     selector: 'sitereg-msp-register-signing-authority',
@@ -29,7 +30,8 @@ export class MspRegisterSigningAuthorityComponent implements OnInit {
         public loggerSvc: LoggerService,
         private globalConfigSvc: GlobalConfigService,
         private mspRegisterStateSvc: MspRegisterStateService,
-        public mspRegDataSvc: MspRegisterDataService
+        public mspRegDataSvc: MspRegisterDataService,
+        private registrationService: MspRegistrationService
     ) {
         this.fg = this.mspRegisterStateSvc.mspRegisterSigningAuthorityForm;
         this.validFormControl = validMultiFormControl.bind(this);
@@ -51,6 +53,7 @@ export class MspRegisterSigningAuthorityComponent implements OnInit {
             ).toUpperCase(),
             this.globalConfigSvc.applicationId
         );
+        this.registrationService.setItemIncomplete();
     }
 
     continue() {
@@ -60,10 +63,12 @@ export class MspRegisterSigningAuthorityComponent implements OnInit {
             'Valid Data - Continue button clicked.'
         );
 
+        this.updateSingingAuthorityAsAdmin();
+
+        this.registrationService.setItemComplete();
+
         // REMOVEME debug-only
         this.debugOnly();
-
-        this.updateSingingAuthorityAsAdmin();
         this.router.navigate(['msp-registration/access-admins']);
     }
 

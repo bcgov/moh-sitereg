@@ -22,7 +22,11 @@ import { Router } from '@angular/router';
 import { MspRegisterApiService } from '@shared/services/api.service';
 import { LoggerService, LogMessage } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
-import { funcRemoveStrings, funcRandomNumber8Digit } from '@msp-register/constants';
+import {
+    funcRemoveStrings,
+    funcRandomNumber8Digit,
+} from '@msp-register/constants';
+import { MspRegistrationService } from '@msp-register/msp-registration.service';
 // import {  } from 'moh-common-lib/captcha';
 
 export type AccessType = 'admin' | 'user';
@@ -58,7 +62,8 @@ export class MspRegisterAuthorizeComponent implements OnInit {
         public mspRegisterStateSvc: MspRegisterStateService,
         public mspRegDataSvc: MspRegisterDataService,
         public mspRegApiSvc: MspRegisterApiService,
-        public apiSvc: MspRegisterApiService
+        public apiSvc: MspRegisterApiService,
+        private registrationService: MspRegistrationService
     ) {
         this.validFormControl = validFormControl.bind(this);
 
@@ -86,6 +91,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
             ).toUpperCase(),
             this.globalConfigSvc.applicationId
         );
+        this.registrationService.setItemIncomplete();
 
         this.fg = this.mspRegisterStateSvc.mspRegisterAuthorizeForm;
         this.mspRegDataSvc.updateSigningAuthorityName(name);
@@ -101,6 +107,8 @@ export class MspRegisterAuthorizeComponent implements OnInit {
             this.constructor.name,
             'Valid Data - Continue button clicked.'
         );
+
+        this.registrationService.setItemComplete();
 
         // REMOVEME debug-only
         // this.debugOnly();
@@ -232,9 +240,14 @@ export class MspRegisterAuthorizeComponent implements OnInit {
             v.value ? mspGroups.push(v.value) : ''
         );
         this.groupsMSP = mspGroups;
-        const isThirdPartyManamentAllowed = this.mspRegDataSvc.isThirdyPartyManagmentEnabled(moOrganizationInformation);
+        const isThirdPartyManamentAllowed = this.mspRegDataSvc.isThirdyPartyManagmentEnabled(
+            moOrganizationInformation
+        );
 
-        const moMspGroups = this.mspRegDataSvc.mapGroupDef(mspGroups, isThirdPartyManamentAllowed);
+        const moMspGroups = this.mspRegDataSvc.mapGroupDef(
+            mspGroups,
+            isThirdPartyManamentAllowed
+        );
 
         // Authorize
         const regRequest = this.mspRegDataSvc.mapSiteRegRequest(
@@ -290,10 +303,9 @@ export class MspRegisterAuthorizeComponent implements OnInit {
     }
 
     toggleConsent() {
-
         const val = this.fg.get('consent').value;
         this.fg.patchValue({
-            consent: ( val && val === true ? false : true)
+            consent: val && val === true ? false : true,
         });
     }
 
@@ -340,9 +352,14 @@ export class MspRegisterAuthorizeComponent implements OnInit {
                 v.value ? mspGroups.push(v.value) : ''
             );
             this.groupsMSP = mspGroups;
-            const isThirdPartyManamentAllowed = this.mspRegDataSvc.isThirdyPartyManagmentEnabled(moOrganizationInformation);
+            const isThirdPartyManamentAllowed = this.mspRegDataSvc.isThirdyPartyManagmentEnabled(
+                moOrganizationInformation
+            );
 
-            const moMspGroups = this.mspRegDataSvc.mapGroupDef(mspGroups, isThirdPartyManamentAllowed);
+            const moMspGroups = this.mspRegDataSvc.mapGroupDef(
+                mspGroups,
+                isThirdPartyManamentAllowed
+            );
             console.log('\tMO - Group:', moMspGroups);
 
             // Authorize
@@ -357,7 +374,10 @@ export class MspRegisterAuthorizeComponent implements OnInit {
                 moAccessAdministrators as IAccessAdministratorDef[],
                 moUsers as IUserDef[],
                 moMspGroups as IMspGroupDef[],
-                (moSigningAuthority.msp_access && moSigningAuthority.msp_access === 'Y' ? true : false )
+                moSigningAuthority.msp_access &&
+                    moSigningAuthority.msp_access === 'Y'
+                    ? true
+                    : false
             );
 
             console.log(

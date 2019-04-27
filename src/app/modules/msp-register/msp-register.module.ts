@@ -14,7 +14,6 @@ import { MspRegisterAuthorizeAccessComponent } from './components/msp-register-a
 import { MspRegisterUserMspComponent } from './components/core/msp-register-user-msp/msp-register-user-msp.component';
 import { MspRegisterUserComponent } from './components/core/msp-register-user/msp-register-user.component';
 import { CaptchaModule } from 'moh-common-lib/captcha';
-import { MspRegistrationService } from './msp-registration.service';
 
 @NgModule({
     declarations: [
@@ -35,7 +34,7 @@ import { MspRegistrationService } from './msp-registration.service';
         CaptchaModule,
         MspRegisterRoutingModule,
     ],
-    providers: [MspRegistrationService],
+    providers: [],
     exports: [MspRegisterAuthorizeAccessComponent],
 })
 export class MspRegisterModule {}

@@ -6,36 +6,43 @@ import { MspRegisterAccessAdminsComponent } from '@msp-register/components/msp-r
 import { MspRegisterUsersComponent } from '@msp-register/components/msp-register-users/msp-register-users.component';
 import { MspRegisterGroupComponent } from '@msp-register/components/msp-register-group/msp-register-group.component';
 import { MspRegisterAuthorizeComponent } from '@msp-register/components/msp-register-authorize/msp-register-authorize.component';
+import { MSP_REGISTERATION_ROUTES } from './constants';
 
 export const subRoutes: Routes = [
     {
-        path: 'organization',
+        // path: 'organization',
+        path: MSP_REGISTERATION_ROUTES.ORGANIZATION.path,
         component: MspRegisterOrganizationComponent,
-        data: { title: 'Register Organization' },
+        data: { title: MSP_REGISTERATION_ROUTES.ORGANIZATION.title },
     },
     {
-        path: 'signing-authority',
+        // path: 'signing-authority',
+        path: MSP_REGISTERATION_ROUTES.SIGNING_AUTHORITY.path,
         component: MspRegisterSigningAuthorityComponent,
-        data: { title: 'Signing Authority' },
+        data: { title: MSP_REGISTERATION_ROUTES.SIGNING_AUTHORITY.title },
     },
     {
-        path: 'access-admins',
+        // path: 'access-admins',
+        path: MSP_REGISTERATION_ROUTES.ACCESS_ADMINS.path,
         component: MspRegisterAccessAdminsComponent,
-        data: { title: 'Access Admins' },
+        data: { title: MSP_REGISTERATION_ROUTES.ACCESS_ADMINS.title },
     },
     {
-        path: 'users',
+        // path: 'users',
+        path: MSP_REGISTERATION_ROUTES.USERS.path,
         component: MspRegisterUsersComponent,
-        data: { title: 'Users' },
+        data: { title: MSP_REGISTERATION_ROUTES.USERS.title },
     },
     {
-        path: 'group-numbers',
+        // path: 'group-numbers',
+        path: MSP_REGISTERATION_ROUTES.GROUP_NUMBERS.path,
         component: MspRegisterGroupComponent,
-        data: { title: 'MSP Groups' },
+        data: { title: MSP_REGISTERATION_ROUTES.GROUP_NUMBERS.title },
     },
     {
-        path: 'authorize',
+        // path: 'authorize',
+        path: MSP_REGISTERATION_ROUTES.AUTHORIZE.path,
         component: MspRegisterAuthorizeComponent,
-        data: { title: 'Authorize' },
+        data: { title: MSP_REGISTERATION_ROUTES.AUTHORIZE.title },
     },
 ];

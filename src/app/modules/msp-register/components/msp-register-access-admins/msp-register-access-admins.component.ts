@@ -10,6 +10,7 @@ import { BehaviorSubject } from 'rxjs';
 import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
 import { funcRemoveStrings } from '@msp-register/constants';
+import { MspRegistrationService } from '@msp-register/msp-registration.service';
 
 @Component({
     selector: 'sitereg-msp-register-access-admins',
@@ -30,7 +31,8 @@ export class MspRegisterAccessAdminsComponent implements OnInit {
         public loggerSvc: LoggerService,
         private globalConfigSvc: GlobalConfigService,
         public mspRegisterStateSvc: MspRegisterStateService,
-        public mspRegDataSvc: MspRegisterDataService
+        public mspRegDataSvc: MspRegisterDataService,
+        private registrationService: MspRegistrationService
     ) {
         this.updateFormGroups();
         this.validFormControl = validMultiFormControl.bind(this);
@@ -51,6 +53,8 @@ export class MspRegisterAccessAdminsComponent implements OnInit {
             ).toUpperCase(),
             this.globalConfigSvc.applicationId
         );
+
+        this.registrationService.setItemIncomplete();
     }
 
     continue() {
@@ -59,6 +63,8 @@ export class MspRegisterAccessAdminsComponent implements OnInit {
             this.constructor.name,
             'Valid Data - Continue button clicked.'
         );
+
+        this.registrationService.setItemComplete();
 
         // REMOVEME debug-only
         this.debugOnly();

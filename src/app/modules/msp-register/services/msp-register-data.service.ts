@@ -89,8 +89,7 @@ export class MspRegisterDataService {
         // tslint:disable-next-line: variable-name
         third_party_org_num?: string
     ): IContractingOut {
-
-        third_party_org_num = third_party_org_num ?  third_party_org_num : '';
+        third_party_org_num = third_party_org_num ? third_party_org_num : '';
 
         // if (!third_party_org_num) return { contracting_third_party, third_party_org_num? '' };
         return { contracting_third_party, third_party_org_num };
@@ -171,7 +170,11 @@ export class MspRegisterDataService {
         // console.log('mapCoreUserDef', obj);
         this.validateKeys(obj);
         const baseUser: ICoreUserDef = {
-            curtesy_title: (obj.userTitle as string) && !( obj.userTitle as string === 'null') ? (obj.userTitle as string) : '',
+            curtesy_title:
+                (obj.userTitle as string) &&
+                !((obj.userTitle as string) === 'null')
+                    ? (obj.userTitle as string)
+                    : '',
             last_name: obj.lastName as string,
             first_name: obj.firstName as string,
             initial: obj.initial ? (obj.initial as string) : '',
@@ -236,7 +239,10 @@ export class MspRegisterDataService {
         if (!obj) throw Error('no organizaiton provided');
 
         // todo - frontend will provide value
-        const orgNumber = ((obj.thirdParty as boolean) === true ?  funcRandomNumber7Digit() : '');
+        const orgNumber =
+            (obj.thirdParty as boolean) === true
+                ? funcRandomNumber7Digit()
+                : '';
 
         // tslint:disable-next-line: variable-name
         const contracting_out = this.mapContractingOut(
@@ -356,15 +362,18 @@ export class MspRegisterDataService {
 
     //#region Group Numbers
 
-
     /**
      * verfies if the organization is managed by thrid party
      * and a valid Organization Number is supplied
      */
     isThirdyPartyManagmentEnabled(obj: IOrgInformationDef) {
-        return (obj.org_num && obj.org_num.length > 0) // should be 7 instead of 0 as per schema
-        && (obj.contracting_out && obj.contracting_out.contracting_third_party
-            && obj.contracting_out.contracting_third_party === 'Y');
+        return (
+            obj.org_num &&
+            obj.org_num.length > 0 && // should be 7 instead of 0 as per schema
+            (obj.contracting_out &&
+                obj.contracting_out.contracting_third_party &&
+                obj.contracting_out.contracting_third_party === 'Y')
+        );
     }
 
     mapObjectGroupDef(obj: IMspGroup): IMspGroupDef {
@@ -380,14 +389,19 @@ export class MspRegisterDataService {
         return groupDef as IMspGroupDef;
     }
 
-    mapGroupDef(obj: IMspGroup | IMspGroup[], isThirdyPartyManagmentEnabled: boolean): IMspGroupDef | IMspGroupDef[] {
+    mapGroupDef(
+        obj: IMspGroup | IMspGroup[],
+        isThirdyPartyManagmentEnabled: boolean
+    ): IMspGroupDef | IMspGroupDef[] {
         if (Array.isArray(obj)) {
             // console.log('ARRAY mapGroupDef');
             const arr = [];
             obj.forEach((itm) => {
                 this.validateKeys(itm);
                 // map rule: if organization provided group number of third party to manage msp
-                itm.thirdParty = isThirdyPartyManagmentEnabled ? itm.thirdParty : false;
+                itm.thirdParty = isThirdyPartyManagmentEnabled
+                    ? itm.thirdParty
+                    : false;
                 arr.push(this.mapObjectGroupDef(itm));
             });
             return arr;

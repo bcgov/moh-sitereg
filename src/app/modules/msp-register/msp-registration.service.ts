@@ -1,138 +1,185 @@
 import { Injectable } from '@angular/core';
-import {Router} from '@angular/router';
+import {
+    Router,
+    UrlTree,
+    UrlSegmentGroup,
+    PRIMARY_OUTLET,
+    UrlSegment,
+} from '@angular/router';
+import { MSP_REGISTERATION_ROUTES } from './constants';
 // import * as Md5 from 'js-md5';
 
-export interface RegistrationItem {
-  route: string;
-  isComplete: boolean;
+export interface ProgressItem {
+    route: string;
+    isComplete: boolean;
+    order: number;
 }
 
-@Injectable()
+@Injectable({
+    providedIn: 'root',
+})
 export class MspRegistrationService {
+    //#region properties
 
-  public registrationItems: RegistrationItem [] = [];
+    public registrationItems: ProgressItem[] = [];
 
-  /**
-   * Used for front-end errors.
-   */
-  public internalError: boolean = false;
+    /**
+     * url of the component using this service.
+     */
+    get getRouterURL(): string {
+        return this.getLastSegmentOfUrl(this.router.url);
+    }
 
-  constructor( private router: Router ) {}
+    //#endregion
 
-  /**
-   *  Sets page to not be completed, so applicants cannot complete application out of sequence
-   */
-  setItemIncomplete(): void {
-    const idx = this.getUrlIndex( this.router.url );
-    if ( !this.isEmpty() ) { // Check guards could be turned off in dev environment
-      this.registrationItems = this.registrationItems.map((item, index) => {
-        if (index >= idx) {
-          item.isComplete = false;
+    constructor(private router: Router) {}
+
+    //#region Methods
+
+    /**
+     * Updats ordered steps to complete registeration
+     */
+    getRegisterationItems() {
+        this.registrationItems = Object.values(MSP_REGISTERATION_ROUTES).map(
+            (routeInfo) => {
+                return {
+                    order: routeInfo.order,
+                    route: routeInfo.path,
+                    isComplete: false,
+                };
+            }
+        );
+        // console.log(`%c %o`, 'color:green', this.registrationItems);
+    }
+
+    /**
+     * validates is next component url route is ordered or not
+     */
+    moveNext(currentUrl: string, nextUrl: string): boolean {
+        const cUrl = this.getLastSegmentOfUrl(currentUrl);
+        const nUrl = this.getLastSegmentOfUrl(nextUrl);
+
+        const current = this.getProgressItem(cUrl);
+        const next = this.getProgressItem(nUrl);
+
+        // console.log('Current: %o', current);
+        // console.log('Next : %o', next);
+
+        // first time loading of registration
+        if (!(next && current)) return true;
+
+        // allows to jump at start and first step loading
+        if (next && next.order === 1) return true;
+
+        // allows to go back in registration steps
+        if (next && current && next.order < current.order) return true;
+
+        // allows to move forward to next step only in registration steps
+        if (
+            current &&
+            current.isComplete === true &&
+            current.order + 1 === next.order
+        ) {
+            return true;
         }
-        return item;
-      });
+
+        return false;
     }
-  }
 
-  /**
-   * Sets the page to completed, allowing applicant to proceed to next page.
-   */
-  setItemComplete(): void {
-    const idx = this.getUrlIndex( this.router.url );
-    if ( !this.isEmpty() ) { // Check guards could be turned in dev environment
-      this.registrationItems[idx].isComplete = true;
+    /**
+     *  Sets page to not be completed, so applicants cannot complete application out of sequence
+     */
+    setItemIncomplete(): void {
+        const idx = this.getUrlIndex(this.getRouterURL);
+        if (!this.isEmpty()) {
+            // Check guards could be turned off in dev environment
+            this.registrationItems = this.registrationItems.map(
+                (item, index) => {
+                    if (index >= idx) {
+                        item.isComplete = false;
+                    }
+                    return item;
+                }
+            );
+        }
+        // this.log('setItemIncomplete');
     }
-  }
 
-  /**
-   * Indicates whether page has been completed or not.
-   * @param {string} url
-   * @returns {boolean}
-   */
-  isComplete( url: string ): boolean {
-    const idx = this.getUrlIndex( url );
+    /**
+     * Sets the page to completed, allowing applicant to proceed to next page.
+     */
+    setItemComplete(): void {
+        const idx = this.getUrlIndex(this.getRouterURL);
+        if (!this.isEmpty()) {
+            // Check guards could be turned in dev environment
+            this.registrationItems[idx].isComplete = true;
+        }
+        // this.log('setItemComplete');
+    }
 
-    // returns previous items isComplete value
-    return (idx - 1 >= 0) ? this.registrationItems[idx - 1].isComplete : true;
-  }
+    /**
+     * returns Progress Item { order, path, title } based on provided url
+     * todo: instead of include use exact
+     * @param url component route url
+     */
+    private getProgressItem(url: string): ProgressItem | null {
+        const index = this.registrationItems.findIndex((x) =>
+            url.includes(x.route)
+        );
+        return index > -1 ? this.registrationItems[index] : null;
+    }
 
-  /**
-   * Checks if registration item list is present
-   * @returns {boolean}
-   */
-  isEmpty(): boolean {
-    return (this.registrationItems.length === 0);
-  }
+    /**
+     * Checks if registration item list is present
+     */
+    isEmpty(): boolean {
+        return this.registrationItems.length === 0;
+    }
 
-  /**
-   * Index of URL in the registration items list, -1 if not exist
-   * @param {string} url
-   * @returns {number}
-   */
-  private getUrlIndex( url: string ): number {
-    return this.registrationItems.findIndex( x => url.includes( x.route ) );
-  }
+    /**
+     * Check for incomplete registration pages
+     */
+    isRegistrationComplete(): boolean {
+        const incompletePages = this.registrationItems.filter(
+            (x) => x.isComplete !== true
+        );
+        return incompletePages.length !== 0 ? false : true;
+    }
 
-  /**
-   * Check for incomplete registration pages
-   * @returns {boolean}
-   */
-  isRegistrationComplete(): boolean {
+    //#endregion
 
-    const incompletePages = this.registrationItems.filter( x => x.isComplete !== true );
-    return (incompletePages.length !== 0 ? false : true );
-  }
+    //#region utitlity methods
 
-  // // Family structure verification
-  // /**
-  //  *
-  //  * @param {Person} person
-  //  * @param {PersonType} personType
-  //  * @param {string} netIncome
-  //  * @param {string} rdsp
-  //  * @returns {PersonInterface}
-  //  */
-  // setPersonInterfaceForReg( person: FPCPerson,
-  //                           personType: PersonType,
-  //                           netIncome: number = 0,
-  //                           rdsp: number = 0 ): PersonInterface {
+    /**
+     * returns the last segment of the route url i.e http://localhost/msp-registration/authorize returns authorize
+     * @param url component route url
+     */
+    private getLastSegmentOfUrl(url): string {
+        const tree: UrlTree = this.router.parseUrl(url);
+        const sg: UrlSegmentGroup = tree.root.children[PRIMARY_OUTLET];
+        if (sg) {
+            const s: UrlSegment[] = sg.segments;
+            return s.length > 1 ? s[1].path : '';
+        }
+        return '';
+    }
 
-  //   let famMember: PersonInterface;
+    /**
+     * Index of URL in the registration items list, -1 if not exist
+     */
+    private getUrlIndex(url: string): number {
+        return this.registrationItems.findIndex((x) => url.includes(x.route));
+    }
 
-  //   if ( personType !== PersonType.dependent ) {
+    // REMOVEME - debug only
+    log(msg) {
+        console.log(
+            '%o \n %o : %o',
+            msg,
+            this.getRouterURL,
+            this.registrationItems
+        );
+    }
 
-  //     famMember = {
-  //       perType: personType,
-  //       phn: person.getNonFormattedPhn(),
-  //       dateOfBirth: person.dateOfBirthShort,
-  //       givenName: person.firstName,
-  //       surname: person.lastName,
-  //       sin : person.getNonFormattedSin(),
-  //       netIncome: (netIncome ? netIncome.toFixed(2) : '0.00'),
-  //       rdsp: (rdsp ? rdsp.toFixed( 2 ) : '0.00' )
-  //     };
-  //   } else {
-  //     famMember = {
-  //       perType: personType,
-  //       phn: person.getNonFormattedPhn(),
-  //       dateOfBirth: person.dateOfBirthShort,
-  //       givenName: person.firstName,
-  //       surname: person.lastName,
-  //     };
-  //   }
-
-  //   return famMember;
-  // }
-
-  // /**
-  //  * Compare
-  //  * @param {string} value
-  //  * @param {string} hashed
-  //  * @returns {boolean}
-  //  */
-  // public compare( value: string, hashed: string ): boolean {
-  //   const hashedValue = Md5.base64( value );
-  //   //console.log( 'Compare: ' + hashedValue + ' - ' + hashed );
-  //   return (hashed === hashedValue);
-  // }
+    //#endregion
 }

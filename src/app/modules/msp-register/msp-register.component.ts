@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Container } from 'moh-common-lib/models';
-import { subRoutes } from '@msp-register/models/sub-routes';
+import { subRoutes } from '@msp-register/sub-routes';
 import { Router } from '@angular/router';
 import { GlobalConfigService } from '@shared/services/global-config.service';
 import { funcRemoveStrings } from './constants';
@@ -30,14 +30,6 @@ export class MspRegisterComponent extends Container implements OnInit {
             this.globalConfigSvc.applicationId
         );
 
-        // Registration items to be completed
-        this.registrationService.registrationItems = subRoutes.map(page => {
-            if (page.path !== '') {
-                return {
-                    route: page.path,
-                    isComplete: false
-                };
-            }
-        }).filter(x => x);
+        this.registrationService.getRegisterationItems();
     }
 }

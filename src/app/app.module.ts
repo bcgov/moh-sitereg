@@ -5,10 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from '@core/core.module';
-import { MspRegisterModule } from './modules/msp-register/msp-register.module';
-import { SharedCoreModule } from 'moh-common-lib';
 import { SharedModule } from '@shared/shared.module';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MspRegistrationService } from '@msp-register/msp-registration.service';
 
 @NgModule({
     declarations: [AppComponent],
@@ -19,7 +17,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
         CoreModule,
         SharedModule,
     ],
-    providers: [],
+    providers: [MspRegistrationService],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

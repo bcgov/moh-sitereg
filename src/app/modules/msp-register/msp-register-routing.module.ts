@@ -1,16 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MspRegisterComponent } from './msp-register.component';
-import { subRoutes } from './models/sub-routes';
+import { subRoutes } from './sub-routes';
 import { GlobalConfigService } from '@shared/services/global-config.service';
 import { MspRegistrationGuard } from './msp-registration.guard';
+import { MspRegistrationService } from './msp-registration.service';
 
 const routes: Routes = [
     {
         path: '',
         component: MspRegisterComponent,
         children: subRoutes,
-        canActivateChild: [MspRegistrationGuard]
+        canActivateChild: [MspRegistrationGuard],
     },
 ];
 
