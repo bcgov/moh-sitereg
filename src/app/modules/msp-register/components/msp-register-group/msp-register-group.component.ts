@@ -4,7 +4,7 @@ import { MspRegisterStateService } from '@msp-register/services/msp-register-sta
 import { Router } from '@angular/router';
 import { validMultiFormControl } from '@msp-register/models/validator-helpers';
 import { MspRegisterDataService } from '@msp-register/services/msp-register-data.service';
-import { IMspGroup } from '@msp-register/interfaces';
+import { IMspGroup, IMspOrganization } from '@msp-register/interfaces';
 import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
 import { funcRemoveStrings } from '@msp-register/constants';
@@ -20,7 +20,10 @@ export class MspRegisterGroupComponent implements OnInit {
     fgs: FormGroup[] = [];
     validFormControl: () => boolean;
     validFormGroup = this.mspRegisterStateSvc.validFormGroup;
-
+    
+    public get organization(): IMspOrganization {
+        return this.mspRegisterStateSvc.organization;
+    }
     constructor(
         private router: Router,
         public loggerSvc: LoggerService,
