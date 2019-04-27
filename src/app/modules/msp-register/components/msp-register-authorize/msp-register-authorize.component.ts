@@ -81,8 +81,6 @@ export class MspRegisterAuthorizeComponent implements OnInit {
         // this.nonce = GlobalConfigService.uuid;
     }
 
-    
-
     ngOnInit() {
         console.log(
             `%c%o : %o`,

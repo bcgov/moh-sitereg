@@ -20,7 +20,7 @@ export class MspRegisterGroupComponent implements OnInit {
     fgs: FormGroup[] = [];
     validFormControl: () => boolean;
     validFormGroup = this.mspRegisterStateSvc.validFormGroup;
-    
+
     public get organization(): IMspOrganization {
         return this.mspRegisterStateSvc.organization;
     }
