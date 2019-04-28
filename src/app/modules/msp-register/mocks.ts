@@ -135,6 +135,7 @@ export const organization: IMspOrganization = {
     province: 'NS',
     postalCode: 'R2Q 6B0',
     thirdParty: true,
+    organizationNumber: '1234567',
     blueCross: true,
     administeringFor: 'E',
 };

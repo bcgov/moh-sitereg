@@ -2,25 +2,27 @@
   <sitereg-msp-register-user [fg]="fg"></sitereg-msp-register-user>
   <div class="form-group col-sm-8 p-sm-0">
     <form [formGroup]="fg">
-      <label class="control-label">
-        Does the signing authority require access to MSP Direct?
-      </label>
-      <div class="form-check">
-        <!--No-->
-        <input class='form-check-input' formControlName="directMspAccess" type="radio" id="bcfalse" tabindex="0"
-          [value]="false">
-        <label class='form-check-label' for="bcfalse">
-          No
+      <span *ngIf="showMspDirectAccessQuestion">
+        <label class="control-label">
+          Does this person require access to MSP Direct?
         </label>
-        <!--Yes-->
-        <input class='form-check-input' formControlName="directMspAccess" type="radio" name="" id="bctrue" tabindex="0"
-          [value]="true">
-        <label class='form-check-label' for="bctrue">
-          Yes
-        </label>
-        <sitereg-error-box [error]="validFormControl(fg,'directMspAccess')" errorMessage="Please select an option">
-        </sitereg-error-box>
-      </div>
+        <div class="form-check">
+          <!--No-->
+          <input class='form-check-input' formControlName="directMspAccess" type="radio" id="bcfalse" tabindex="0"
+            [value]="false">
+          <label class='form-check-label' for="bcfalse">
+            No
+          </label>
+          <!--Yes-->
+          <input class='form-check-input' formControlName="directMspAccess" type="radio" name="" id="bctrue"
+            tabindex="0" [value]="true">
+          <label class='form-check-label' for="bctrue">
+            Yes
+          </label>
+          <sitereg-error-box [error]="validFormControl(fg,'directMspAccess')" errorMessage="Please select an option">
+          </sitereg-error-box>
+        </div>
+      </span>
     </form>
   </div>
 </div>

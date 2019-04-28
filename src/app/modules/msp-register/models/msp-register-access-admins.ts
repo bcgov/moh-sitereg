@@ -23,7 +23,7 @@ export class MspRegisterAccessAdmins extends GenerateForm<IMspAccessAdmin>
     ext?: ctFormControlString = null;
     fax: ctFormControlString = null;
     administeringFor: ctFormControlString = null;
-    directMspAccess: ctFormControlBoolean = false;
+    directMspAccess: ctFormControlBoolean = true;
 
     get validators() {
         return cUserMspValidators;

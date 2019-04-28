@@ -4,10 +4,11 @@ import { MspRegisterStateService } from '@msp-register/services/msp-register-sta
 import { Router } from '@angular/router';
 import { validMultiFormControl } from '@msp-register/models/validator-helpers';
 import { MspRegisterDataService } from '@msp-register/services/msp-register-data.service';
-import { IMspGroup } from '@msp-register/interfaces';
+import { IMspGroup, IMspOrganization } from '@msp-register/interfaces';
 import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
 import { funcRemoveStrings } from '@msp-register/constants';
+import { MspRegistrationService } from '@msp-register/msp-registration.service';
 
 @Component({
     selector: 'sitereg-msp-register-group',
@@ -20,12 +21,16 @@ export class MspRegisterGroupComponent implements OnInit {
     validFormControl: () => boolean;
     validFormGroup = this.mspRegisterStateSvc.validFormGroup;
 
+    public get organization(): IMspOrganization {
+        return this.mspRegisterStateSvc.organization;
+    }
     constructor(
         private router: Router,
         public loggerSvc: LoggerService,
         private globalConfigSvc: GlobalConfigService,
         public mspRegisterStateSvc: MspRegisterStateService,
-        public mspRegDataSvc: MspRegisterDataService
+        public mspRegDataSvc: MspRegisterDataService,
+        private registrationService: MspRegistrationService
     ) {
         this.updateFormGroups();
         this.validFormControl = validMultiFormControl.bind(this);
@@ -46,6 +51,7 @@ export class MspRegisterGroupComponent implements OnInit {
             ).toUpperCase(),
             this.globalConfigSvc.applicationId
         );
+        this.registrationService.setItemIncomplete();
     }
 
     continue() {
@@ -54,6 +60,7 @@ export class MspRegisterGroupComponent implements OnInit {
             this.constructor.name,
             'Valid Data - Continue button clicked.'
         );
+        this.registrationService.setItemComplete();
 
         // REMOVEME debug-only
         this.debugOnly();
@@ -89,8 +96,13 @@ export class MspRegisterGroupComponent implements OnInit {
                 this.mspRegisterStateSvc.mspRegisterOrganizationForm.value
             );
 
-            const isThirdPartyManamentAllowed = this.mspRegDataSvc.isThirdyPartyManagmentEnabled(moOrganizationInformation);
-            const middleWareObject = this.mspRegDataSvc.mapGroupDef(mspGroups, isThirdPartyManamentAllowed);
+            const isThirdPartyManamentAllowed = this.mspRegDataSvc.isThirdyPartyManagmentEnabled(
+                moOrganizationInformation
+            );
+            const middleWareObject = this.mspRegDataSvc.mapGroupDef(
+                mspGroups,
+                isThirdPartyManamentAllowed
+            );
             console.log(
                 `%c middleware object <= %o\n\t%o`,
                 'color:lightgreen',

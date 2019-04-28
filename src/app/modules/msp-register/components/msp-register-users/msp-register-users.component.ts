@@ -10,6 +10,7 @@ import { cAdministeringFor } from '../../models/core/core-types';
 import { LoggerService } from '@shared/services/logger.service';
 import { funcRemoveStrings } from '@msp-register/constants';
 import { GlobalConfigService } from '@shared/services/global-config.service';
+import { MspRegistrationService } from '@msp-register/msp-registration.service';
 
 @Component({
     selector: 'sitereg-msp-register-users',
@@ -29,7 +30,8 @@ export class MspRegisterUsersComponent implements OnInit {
         public loggerSvc: LoggerService,
         private globalConfigSvc: GlobalConfigService,
         public mspRegisterStateSvc: MspRegisterStateService,
-        public mspRegDataSvc: MspRegisterDataService
+        public mspRegDataSvc: MspRegisterDataService,
+        private registrationService: MspRegistrationService
     ) {
         this.updateFormGroups();
         this.validFormControl = validMultiFormControl.bind(this);
@@ -50,6 +52,7 @@ export class MspRegisterUsersComponent implements OnInit {
             ).toUpperCase(),
             this.globalConfigSvc.applicationId
         );
+        this.registrationService.setItemIncomplete();
     }
 
     continue() {
@@ -61,6 +64,7 @@ export class MspRegisterUsersComponent implements OnInit {
 
         // REMOVEME debug-only
         this.debugOnly();
+        this.registrationService.setItemComplete();
 
         this.router.navigate(['msp-registration/group-numbers']);
     }

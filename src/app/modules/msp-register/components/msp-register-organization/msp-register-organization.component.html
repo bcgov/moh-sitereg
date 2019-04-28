@@ -99,6 +99,31 @@
         Please select a valid option
       </div>
 
+
+      <div class="row">
+        <div *ngIf="fg.controls.thirdParty.value" class="col-sm-4">
+          <!-- Organization Number -->
+          <label class="control-label" for="organizationNumber">Organization Number</label>
+          <input id="organizationNumber" formControlName="organizationNumber" class="form-control" placeholder="Organization Number">
+          <div class="text-danger" *ngIf="validFormControl('organizationNumber')">
+            Please enter Organization Number.
+          </div>
+        </div>
+
+        <div *ngIf="fg.controls.thirdParty.value" class="col-sm-8">
+          <!-- Administrating For-->
+          <label class="control-label" for="administeringFor">This organization will be adminstering MSP for</label>
+          <select class="form-control" *ngIf="administeringFor | async as administering"
+            formControlName="administeringFor">
+            <option value="null" label="-- Select Option --" selected></option>
+            <option *ngFor="let a of administering " [value]="a">{{a}}</option>
+          </select>
+          <div class="text-danger" *ngIf="validFormControl('administeringFor')">
+            Please select a valid option
+          </div>
+        </div>
+      </div>
+
       <!-- Question Blue Cross -->
       <label class="control-label">Are you applying to access MSP Direct through Blue Cross?
       </label>
@@ -119,18 +144,8 @@
       <div class="text-danger" *ngIf="validFormControl('blueCross')">
         Please select a valid option
       </div>
-
-
-      <!-- Administrating For-->
-      <label class="control-label" for="administeringFor">This organization will be adminstering MSP for</label>
-      <select class="form-control" *ngIf="administeringFor | async as administering" formControlName="administeringFor">
-        <option value="null" label="-- Select Option --" selected></option>
-        <option *ngFor="let a of administering " [value]="a">{{a}}</option>
-      </select>
-      <div class="text-danger" *ngIf="validFormControl('administeringFor')">
-        Please select a valid option
-      </div>
     </div>
+
   </form>
 </sitereg-page-sections>
 <common-form-action-bar (btnClick)="continue()" [canContinue]="fg.valid">

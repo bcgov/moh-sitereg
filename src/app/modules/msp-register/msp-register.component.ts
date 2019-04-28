@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Container } from 'moh-common-lib/models';
-import { subRoutes } from '@msp-register/models/sub-routes';
+import { subRoutes } from '@msp-register/sub-routes';
 import { Router } from '@angular/router';
 import { GlobalConfigService } from '@shared/services/global-config.service';
 import { funcRemoveStrings } from './constants';
+import { MspRegistrationService } from './msp-registration.service';
 
 @Component({
     selector: 'sitereg-msp-register',
@@ -12,6 +13,7 @@ import { funcRemoveStrings } from './constants';
 })
 export class MspRegisterComponent extends Container implements OnInit {
     constructor(
+        private registrationService: MspRegistrationService,
         private router: Router,
         private globalConfigSvc: GlobalConfigService
     ) {
@@ -27,5 +29,7 @@ export class MspRegisterComponent extends Container implements OnInit {
             funcRemoveStrings(['Component'], this.constructor.name),
             this.globalConfigSvc.applicationId
         );
+
+        this.registrationService.getRegisterationItems();
     }
 }

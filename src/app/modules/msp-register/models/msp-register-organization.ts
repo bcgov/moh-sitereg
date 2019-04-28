@@ -6,6 +6,7 @@ import {
     addressValidator,
     maxLength,
     required,
+    groupNumberValidator,
 } from './validator-helpers';
 import { minLength } from './validator-helpers';
 import { ctFormControlString, ctFormControlBoolean } from './core/core-types';
@@ -23,6 +24,7 @@ export class MspRegisterOrganization extends GenerateForm<IMspOrganization>
     street: ctFormControlString = null;
     streetName: ctFormControlString = null;
     addressLine2: ctFormControlString = null;
+    organizationNumber: ctFormControlString = null;
 
     get validators() {
         return {
@@ -43,6 +45,11 @@ export class MspRegisterOrganization extends GenerateForm<IMspOrganization>
                 postalCodeValidator(),
             ],
             blueCross: [required],
+            organizationNumber: [
+                Validators.minLength(7),
+                Validators.maxLength(7),
+                groupNumberValidator(),
+            ],
             administeringFor: [required],
         };
     }
@@ -71,8 +78,9 @@ export class MspRegisterOrganization extends GenerateForm<IMspOrganization>
             this.streetName = 'Yates Street';
             this.addressLine2 = 'Head Office';
             this.thirdParty = true;
-            this.blueCross = true;
             this.administeringFor = 'Employees';
+            this.organizationNumber = '1234567';
+            this.blueCross = true;
         }
     }
 
