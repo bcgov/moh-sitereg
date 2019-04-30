@@ -1,9 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, AfterViewInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import {
-    validFormControl,
     validMultiFormControl,
+    matchFieldValidator,
 } from '@msp-register/models/validator-helpers';
 
 @Component({
@@ -11,7 +11,7 @@ import {
     templateUrl: './msp-register-user-msp.component.html',
     styleUrls: ['./msp-register-user-msp.component.scss'],
 })
-export class MspRegisterUserMspComponent implements OnInit {
+export class MspRegisterUserMspComponent implements AfterViewInit {
     @Input() fg: FormGroup;
     @Input() showMspDirectAccessQuestion = false;
     validFormControl: (fg: FormGroup, name: string) => boolean;
@@ -21,5 +21,7 @@ export class MspRegisterUserMspComponent implements OnInit {
         this.validFormControl = validMultiFormControl.bind(this);
     }
 
-    ngOnInit() {}
+    ngAfterViewInit() {
+        this.fg.setValidators( matchFieldValidator('confirmEmail', 'emailAddress') );
+    }
 }

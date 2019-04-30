@@ -60,7 +60,7 @@ export class MspRegisterSigningAuthority
             this.lastName = 'Bratchley';
             this.jobTitle = 'Senior Diver';
             this.emailAddress = 'josh.bratchley@maximusbc.ca';
-            this.confirmEmail = 'josh.bratchley@maximusbc.ca';
+            this.confirmEmail = 'josh.bratchley@maximusbc.caa';
             this.phone = '2508129651';
             this.ext = '3';
             this.fax = '2508129659';

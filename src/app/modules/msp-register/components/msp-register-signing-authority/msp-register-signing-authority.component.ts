@@ -115,8 +115,8 @@ export class MspRegisterSigningAuthorityComponent implements OnInit {
                     saAdmins && saAdmins.length === 1
                         ? saAdmins[0]
                         : directMspAccess.value === true
-                        ? this.mspRegisterStateSvc.addAdmin()
-                        : null;
+                            ? this.mspRegisterStateSvc.addAdmin()
+                            : null;
             }
 
             // block - updating values

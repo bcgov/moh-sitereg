@@ -116,6 +116,28 @@ export function validMultiFormControl(fg: FormGroup, name: string) {
     return fg.controls[name].invalid;
 }
 
+/**
+ * Matches field value with another field value.
+ * @param controlName Name of Control whom input must be matched like confirm email
+ * @param matchControlName  Name of Control whom value will be used to match.
+ */
+export function matchFieldValidator(controlName: string, matchControlName: string): ValidatorFn {
+    return (formGroup: FormGroup): ValidationErrors | null => {
+
+        const matchControl = formGroup.get(matchControlName);
+        const control = formGroup.get(controlName);
+        // console.log('Control: %o Matching Control: %o', control.value, matchControl.value);
+        if (!(control.value === matchControl.value)) {
+            control.setErrors({ match: true });
+            // console.log(formGroup);
+            return null;
+        }
+        control.setErrors({ match: null });
+        control.updateValueAndValidity({ onlySelf: true });
+        return null;
+    };
+}
+
 export const required = Validators.required;
 export const maxLength = (num: number = 100) => Validators.maxLength(num);
 export const minLength = (num: number = 3) => Validators.minLength(num);
