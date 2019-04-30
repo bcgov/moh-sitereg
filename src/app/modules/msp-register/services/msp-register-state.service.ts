@@ -196,6 +196,17 @@ export class MspRegisterStateService {
         );
     }
 
+    MspRegisterGroupFormNumbersContinueValid(fgs: FormGroup[]): boolean {
+        // console.log('caller : %o', this.MspRegisterGroupFormNumbersContinueValid.caller());
+
+        if (fgs && fgs.length === 0) return false;
+        let bool = true;
+        fgs.forEach((fg) => {
+            if (fg.invalid) return (bool = false);
+        });
+        // console.log(bool);
+        return bool;
+    }
     //#endregion
 
     //#region Authorization
