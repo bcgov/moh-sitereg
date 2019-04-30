@@ -80,7 +80,7 @@ export class MspRegisterOrganization extends GenerateForm<IMspOrganization>
             this.addressLine2 = 'Head Office';
             this.thirdParty = true;
             this.administeringFor = 'Employees';
-            this.organizationNumber = '1234567';
+            this.organizationNumber = '12345678';
             this.blueCross = true;
         }
     }

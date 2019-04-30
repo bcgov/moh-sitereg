@@ -5,13 +5,6 @@ import {
 } from '@msp-register/interfaces';
 import { FormControl, FormBuilder, Validators } from '@angular/forms';
 import {
-    required,
-    maxLength,
-    minLength,
-    phoneValidator,
-    faxValidator,
-} from './validator-helpers';
-import {
     ctFormControlString,
     ctFormControlBoolean,
     ctFormControlUserTitle,
@@ -60,7 +53,7 @@ export class MspRegisterSigningAuthority
             this.lastName = 'Bratchley';
             this.jobTitle = 'Senior Diver';
             this.emailAddress = 'josh.bratchley@maximusbc.ca';
-            this.confirmEmail = 'josh.bratchley@maximusbc.caa';
+            this.confirmEmail = 'josh.bratchley@maximusbc.ca';
             this.phone = '2508129651';
             this.ext = '3';
             this.fax = '2508129659';
