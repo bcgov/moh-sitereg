@@ -19,7 +19,7 @@ import { MspRegistrationService } from '@msp-register/msp-registration.service';
 export class MspRegisterGroupComponent implements OnInit {
     fgs: FormGroup[] = [];
     validFormControl: () => boolean;
-    validFormGroup = this.mspRegisterStateSvc.validFormGroup;
+    validFormGroup = this.mspRegisterStateSvc.MspRegisterGroupFormNumbersContinueValid;
 
     public get organization(): IMspOrganization {
         return this.mspRegisterStateSvc.organization;

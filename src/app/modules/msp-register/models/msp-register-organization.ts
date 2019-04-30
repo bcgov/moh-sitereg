@@ -7,6 +7,7 @@ import {
     maxLength,
     required,
     groupNumberValidator,
+    organizationNumberValidator,
 } from './validator-helpers';
 import { minLength } from './validator-helpers';
 import { ctFormControlString, ctFormControlBoolean } from './core/core-types';
@@ -46,9 +47,9 @@ export class MspRegisterOrganization extends GenerateForm<IMspOrganization>
             ],
             blueCross: [required],
             organizationNumber: [
-                Validators.minLength(7),
-                Validators.maxLength(7),
-                groupNumberValidator(),
+                Validators.minLength(8),
+                Validators.maxLength(8),
+                organizationNumberValidator(),
             ],
             administeringFor: [required],
         };
@@ -79,7 +80,7 @@ export class MspRegisterOrganization extends GenerateForm<IMspOrganization>
             this.addressLine2 = 'Head Office';
             this.thirdParty = true;
             this.administeringFor = 'Employees';
-            this.organizationNumber = '1234567';
+            this.organizationNumber = '12345678';
             this.blueCross = true;
         }
     }

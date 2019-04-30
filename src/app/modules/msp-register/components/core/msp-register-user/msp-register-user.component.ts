@@ -1,7 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit, AfterViewInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { validMultiFormControl } from '@msp-register/models/validator-helpers';
+import { validMultiFormControl, matchFieldValidator } from '@msp-register/models/validator-helpers';
 import { BehaviorSubject } from 'rxjs';
 import {
     cAdministeringFor,
@@ -14,7 +14,7 @@ import {
     styleUrls: ['./msp-register-user.component.scss'],
     // changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MspRegisterUserComponent {
+export class MspRegisterUserComponent implements AfterViewInit {
     @Input() fg: FormGroup;
     validFormControl: (fg: FormGroup, name: string) => boolean;
 
@@ -25,5 +25,9 @@ export class MspRegisterUserComponent {
 
     constructor(private router: Router) {
         this.validFormControl = validMultiFormControl.bind(this);
+    }
+
+    ngAfterViewInit() {
+        this.fg.setValidators( matchFieldValidator('confirmEmail', 'emailAddress') );
     }
 }

@@ -5,13 +5,6 @@ import {
 } from '@msp-register/interfaces';
 import { FormControl, FormBuilder, Validators } from '@angular/forms';
 import {
-    required,
-    maxLength,
-    minLength,
-    phoneValidator,
-    faxValidator,
-} from './validator-helpers';
-import {
     ctFormControlString,
     ctFormControlBoolean,
     ctFormControlUserTitle,
