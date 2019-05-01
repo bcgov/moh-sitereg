@@ -127,6 +127,13 @@ export class MspRegisterAuthorizeComponent implements OnInit {
 
         this.copyJsonSchema(middleWareObject);
 
+        const requestStatus = {
+            status : false,
+            schema: middleWareObject,
+            response: null,
+            exception : null
+        };
+
         this.mspRegApiSvc
             .siteRegisterationRequest(
                 middleWareObject,
@@ -139,12 +146,19 @@ export class MspRegisterAuthorizeComponent implements OnInit {
                     exceptionMessage: `${err}`,
                 } as LogMessage);
                 this.loggerSvc.logHttpError(err);
+                requestStatus.exception = err;
             })
             .then((result) => {
                 this.loggerSvc.logNavigation(
                     'middleware-request-status:',
                     'completed'
                 );
+                requestStatus.status = true;
+                requestStatus.response = result;
+
+                this.mspRegDataSvc.requestFinalStatus = requestStatus;
+
+                this.router.navigate(['msp-registration/complete']);
             });
     }
 
@@ -271,7 +285,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
         return (
             this.groupsMSP.length > 0 &&
             ((this.groupsMSP[0].groupNumber as string) &&
-            (this.groupsMSP[0].groupNumber as string).length > 3
+                (this.groupsMSP[0].groupNumber as string).length > 3
                 ? true
                 : false)
         );

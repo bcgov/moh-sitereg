@@ -7,6 +7,18 @@ import { BehaviorSubject } from 'rxjs';
     providedIn: 'root',
 })
 export class GlobalConfigService {
+
+     // REMOVE ME - debug only - to put default value
+     private static autofill = false;
+
+    public static autofillOn() {
+        GlobalConfigService.autofill = true;
+    }
+
+    public static setDefaults(): boolean {
+        return GlobalConfigService.autofill;
+    }
+
     // private static instance: GlobalConfigService;
     // private globalConfigServiceSubject = new BehaviorSubject<GlobalConfigService>(null);
 
@@ -33,14 +45,11 @@ export class GlobalConfigService {
     //     return GlobalConfigService.internalUUID;
     // }
 
-    // REMOVE ME - debug only - to put default value
-    public static setDefaults(): boolean {
-        return false;
-    }
+   
 
     //#endregion
 
-    constructor() {}
+    constructor() { }
 
     public get applicationId(): string {
         return this.mspApplicationId

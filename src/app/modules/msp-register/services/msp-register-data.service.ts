@@ -37,6 +37,8 @@ const text =
     providedIn: 'root',
 })
 export class MspRegisterDataService {
+    public requestFinalStatus: any;
+
     private agreementNumber$: BehaviorSubject<string> = new BehaviorSubject(
         '12345678'
     );

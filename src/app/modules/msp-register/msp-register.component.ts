@@ -18,7 +18,13 @@ export class MspRegisterComponent extends Container implements OnInit {
         private globalConfigSvc: GlobalConfigService
     ) {
         super();
-        this.setProgressSteps(subRoutes);
+
+        //REMOVEME
+        const progressItemRoute = subRoutes.filter((x) => {
+           return !(x.path.includes('_'));
+        });
+
+        this.setProgressSteps(progressItemRoute);
     }
 
     ngOnInit() {

@@ -1,0 +1,17 @@
+<h3>{{ (mspRegDataSvc.requestFinalStatus?.status===true? 'Successfull': 'Please try again') }}</h3>
+
+<hr />
+
+<div>
+    <h4>Response</h4>
+    <div class="row">{{mspRegDataSvc.requestFinalStatus?.response | json}}</div>
+    <hr />
+    <h4>Schema</h4>
+    <div class="row">{{mspRegDataSvc.requestFinalStatus?.schema | json}}</div>
+    <hr />
+    <h4>Exception</h4>
+    <div class="row">{{mspRegDataSvc.requestFinalStatus?.exception | json}}</div>
+    <hr />
+    <h4>All JSON</h4>
+    <div class="row">{{mspRegDataSvc.requestFinalStatus | json}}</div>
+</div>
