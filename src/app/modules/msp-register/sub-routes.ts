@@ -7,6 +7,8 @@ import { MspRegisterUsersComponent } from '@msp-register/components/msp-register
 import { MspRegisterGroupComponent } from '@msp-register/components/msp-register-group/msp-register-group.component';
 import { MspRegisterAuthorizeComponent } from '@msp-register/components/msp-register-authorize/msp-register-authorize.component';
 import { MSP_REGISTERATION_ROUTES } from './constants';
+import { MspRegistrationCompleteComponent } from './components/msp-registration-complete/msp-registration-complete.component';
+import { MspRegisterAutofillComponent } from './components/autofill/autofill.component';
 
 export const subRoutes: Routes = [
     {
@@ -44,5 +46,19 @@ export const subRoutes: Routes = [
         path: MSP_REGISTERATION_ROUTES.AUTHORIZE.path,
         component: MspRegisterAuthorizeComponent,
         data: { title: MSP_REGISTERATION_ROUTES.AUTHORIZE.title },
+    },
+
+    //REMOVEME 
+    {
+        // path: 'authorize',
+        path: 'complete',
+        component: MspRegistrationCompleteComponent,
+        data: { title: 'complete' },
+    },
+    {
+        // path: 'authorize',
+        path: '_autofill',
+        component: MspRegisterAutofillComponent,
+        data: { title: 'autofill' },
     },
 ];
