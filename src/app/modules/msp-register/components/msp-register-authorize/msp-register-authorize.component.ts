@@ -158,7 +158,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
 
                 this.mspRegDataSvc.requestFinalStatus = requestStatus;
 
-                this.router.navigate(['msp-registration/complete']);
+                this.router.navigate(['msp-registration/confirmation']);
             });
     }
 

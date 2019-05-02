@@ -45,4 +45,9 @@ export const MSP_REGISTERATION_ROUTES = {
         path: 'authorize',
         title: 'Authorize',
     },
+    CONFIRMATION: {
+        order: 7,
+        path: 'confirmation',
+        title: 'Confirmation',
+    },
 };

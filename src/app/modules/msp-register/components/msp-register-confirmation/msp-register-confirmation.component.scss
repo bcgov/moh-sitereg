@@ -1,0 +1,23 @@
+.message-container {
+    display: flexbox;
+    padding: 1rem;
+    min-height: 50px;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 2px!important;
+}
+
+.prime-icon--success::after {
+    content: 'Success';
+    margin-left: .5rem;
+    font-size: 1.5rem;
+}
+
+// .prime-icon--success {
+//     font-size: 1.5rem;
+    
+//     box-sizing: border-box;
+//     padding: 1rem;
+//     border-radius: 5px;
+//     margin-left: .5rem;
+// }
