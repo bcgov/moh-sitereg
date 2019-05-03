@@ -125,10 +125,11 @@ export class MspRegisterAuthorizeComponent implements OnInit {
             middleWareObject
         );
 
-        this.copyJsonSchema(middleWareObject);
+        // this.copyJsonSchema(middleWareObject);
 
         this.mspRegDataSvc.requestFinalStatus = null;
         const requestStatus = {
+            referenceId : null,
             status: false,
             confirmationNumber: null,
             schema: middleWareObject,
@@ -157,6 +158,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
                 );
                 requestStatus.status = true;
                 requestStatus.response = result;
+                requestStatus.referenceId = this.requestUUID;
 
                 if (result && requestStatus.exception === null) {
                         if (requestStatus.response.op_return_code && requestStatus.response.op_return_code === 'SUCCESS') {

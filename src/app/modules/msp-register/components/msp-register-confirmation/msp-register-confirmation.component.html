@@ -33,6 +33,11 @@
 
 <div class="card" *ngIf="showDetail && isTechnicalInfoAvaialble">
   <div class="card-body">
+      <h5 class="card-title">Reference Identifier</h5>
+      <p class="card-text">
+        {{mspRegDataSvc.requestFinalStatus?.referenceId}}
+      </p>
+  
     <h5 class="card-title">Response</h5>
     <p class="card-text">
       {{mspRegDataSvc.requestFinalStatus?.response | json}}
