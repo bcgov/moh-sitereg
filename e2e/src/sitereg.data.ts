@@ -27,9 +27,24 @@ export class FakeDataSiteReg {
             lastName: faker.name.lastName(),
             jobTitle: faker.name.jobTitle(),
             email: faker.internet.email(),
-            mobile: faker.phone.phoneNumberFormat(2),
+            mobile: faker.random.number({
+                min: 1000000000,
+                max: 9999999999
+            }),
             extension: faker.random.number(3),
-            fax: faker.phone.phoneNumberFormat(2)
+            fax: faker.random.number({
+                min: 1000000000,
+                max: 9999999999
+            }),
+        };
+    }
+
+    groupNumbersInfo(): GroupNumbersPageTest {
+        return {
+            groupNum: faker.random.number({
+                min: 1000000,
+                max: 9999999
+            })
         };
     }
 
@@ -55,8 +70,12 @@ export interface SigningAuthorityPageTest {
     lastName: string;
     jobTitle: string;
     email: string;
-    mobile: string;
+    mobile: number;
     extension: number;
-    fax: string;
+    fax: number;
+}
+
+export interface GroupNumbersPageTest {
+    groupNum: number;
 }
 

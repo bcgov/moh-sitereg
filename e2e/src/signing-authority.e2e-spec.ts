@@ -2,7 +2,7 @@ import { browser } from 'protractor';
 import { FakeDataSiteReg } from './sitereg.data';
 import { SigningAuthorityPage } from './sitereg.po';
 
-fdescribe('Moh SiteReg - Signing Authority Page', () => {
+describe('Moh SiteReg - Signing Authority Page', () => {
     let saPage: SigningAuthorityPage;
     const data = new FakeDataSiteReg();
     let saData;
@@ -23,15 +23,17 @@ fdescribe('Moh SiteReg - Signing Authority Page', () => {
 
     it('02. should NOT let user to continue without filling out any fields', () => {
         saPage.navigateTo();
+        saPage.scrollDown();
         saPage.continue();
         expect(browser.getCurrentUrl()).toContain(SA_PAGE_URL, 'should still be on the same page');
     });
 
-    xit('03. should let user to continue if all the required fields are filled out', () => {
+    it('03. should let user to continue if all the required fields are filled out', () => {
         saPage.navigateTo();
         saPage.fillInfo(saData);
         saPage.scrollDown();
         saPage.selectValue('administeringFor', 'Employees');
+        browser.sleep(1000 * 10);
         saPage.continue();
         expect(saPage.formErrors().count()).toBe(0, 'should be no errors after filling out');
         expect(browser.getCurrentUrl()).toContain(AA_PAGE_URL);

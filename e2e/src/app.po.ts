@@ -81,4 +81,12 @@ export class SiteRegTestPage {
   typeText(labelRefName: string, data: string) {
     element(by.css(`input[ng-reflect-name="${labelRefName}"]`)).sendKeys(data);
   }
+
+  clickButton(labelId: string, value: string) {
+    element(by.cssContainingText(`button[class^="${labelId}"]`, value)).click();
+  }
+
+  clickCheckBox(labelRefName: string) {
+    element(by.css(`input[ng-reflect-name="${labelRefName}"]`)).click();
+  }
 }

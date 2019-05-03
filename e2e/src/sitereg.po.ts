@@ -1,6 +1,6 @@
 import { browser, by, element, WebElement, protractor, $$ } from 'protractor';
 import { SiteRegTestPage } from './app.po';
-import { OrganizationPageTest, SigningAuthorityPageTest } from './sitereg.data';
+import { OrganizationPageTest, SigningAuthorityPageTest, GroupNumbersPageTest } from './sitereg.data';
 
 export class BaseSiteRegTestPage extends SiteRegTestPage {
 
@@ -78,7 +78,7 @@ export class SigningAuthorityPage extends BaseSiteRegTestPage {
         return browser.get('/msp-registration/signing-authority');
     }
 
-    fillTitle(){
+    fillTitle() {
 
     }
 
@@ -89,8 +89,59 @@ export class SigningAuthorityPage extends BaseSiteRegTestPage {
         this.typeText('jobTitle', data.jobTitle);
         this.typeText('emailAddress', data.email);
         this.typeText('confirmEmail', data.email);
-        this.typeText('phone', data.mobile);
-        this.typeText('ext', data.extension + ' ');
-        this.typeText('fax', data.fax);
+        this.typeText('phone', data.mobile + '');
+        this.typeText('ext', data.extension + '');
+        this.typeText('fax', data.fax + '');
     }
+}
+
+export class AccessAdminsPage extends SigningAuthorityPage {
+
+    constructor() {
+        super();
+    }
+
+    navigateTo() {
+        return browser.get('/msp-registration/access-admins');
+    }
+
+}
+
+export class UsersPage extends SigningAuthorityPage {
+
+    constructor() {
+        super();
+    }
+
+    navigateTo() {
+        return browser.get('/msp-registration/users');
+    }
+
+}
+
+export class GroupNumbersPage extends BaseSiteRegTestPage {
+
+    constructor() {
+        super();
+    }
+
+    navigateTo() {
+        return browser.get('/msp-registration/group-numbers');
+    }
+
+    fillGroupNum(data: GroupNumbersPageTest) {
+        this.typeText('groupNumber', data.groupNum + '');
+    }
+}
+
+export class AuthorizePage extends BaseSiteRegTestPage {
+
+    constructor() {
+        super();
+    }
+
+    navigateTo() {
+        return browser.get('/msp-registration/authorize');
+    }
+
 }

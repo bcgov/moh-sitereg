@@ -47,6 +47,4 @@ describe('Moh SiteReg - Organization Page', () => {
         expect(orgPage.formErrors().count()).toBe(0, 'should be no errors after filling out');
     });
 
-
-
 });
