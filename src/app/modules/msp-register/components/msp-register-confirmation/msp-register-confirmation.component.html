@@ -5,7 +5,7 @@
       <i aria-label="success" class="fa fa-2x fa-check-circle text-success"></i>
     </p>
     <!---->
-    <p>Your application has been submitted. Your confirmation number is  <b>{{mspRegDataSvc.requestFinalStatus?.confirmationNumber }}</b></p>
+    <p>Your application has been submitted. Your confirmation number is  <b>{{mspRegDataSvc.requestFinalStatus?.confirmationNumber }}</b>.</p>
     <!---->
   </div>
 </div>
@@ -33,6 +33,11 @@
 
 <div class="card" *ngIf="showDetail && isTechnicalInfoAvaialble">
   <div class="card-body">
+      <h5 class="card-title">Reference Identifier</h5>
+      <p class="card-text">
+        {{mspRegDataSvc.requestFinalStatus?.referenceId}}
+      </p>
+  
     <h5 class="card-title">Response</h5>
     <p class="card-text">
       {{mspRegDataSvc.requestFinalStatus?.response | json}}
