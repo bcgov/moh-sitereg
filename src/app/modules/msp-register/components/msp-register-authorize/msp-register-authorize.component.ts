@@ -127,11 +127,13 @@ export class MspRegisterAuthorizeComponent implements OnInit {
 
         this.copyJsonSchema(middleWareObject);
 
+        this.mspRegDataSvc.requestFinalStatus = null;
         const requestStatus = {
-            status : false,
+            status: false,
+            confirmationNumber: null,
             schema: middleWareObject,
             response: null,
-            exception : null
+            exception: null
         };
 
         this.mspRegApiSvc
@@ -155,6 +157,14 @@ export class MspRegisterAuthorizeComponent implements OnInit {
                 );
                 requestStatus.status = true;
                 requestStatus.response = result;
+
+                if (result && requestStatus.exception === null) {
+                        if (requestStatus.response.op_return_code && requestStatus.response.op_return_code === 'SUCCESS') {
+                            requestStatus.confirmationNumber = requestStatus.response.op_reference_number;
+                        } else {
+                            requestStatus.status = false;
+                        }
+                }
 
                 this.mspRegDataSvc.requestFinalStatus = requestStatus;
 
