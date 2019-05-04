@@ -3,13 +3,10 @@ import { IMspOrganization } from '@msp-register/interfaces';
 import { FormBuilder, Validators } from '@angular/forms';
 import {
     postalCodeValidator,
-    addressValidator,
     maxLength,
     required,
-    groupNumberValidator,
     organizationNumberValidator,
 } from './validator-helpers';
-import { minLength } from './validator-helpers';
 import { ctFormControlString, ctFormControlBoolean } from './core/core-types';
 import { GlobalConfigService } from '@shared/services/global-config.service';
 export class MspRegisterOrganization extends GenerateForm<IMspOrganization>
@@ -46,12 +43,12 @@ export class MspRegisterOrganization extends GenerateForm<IMspOrganization>
                 postalCodeValidator(),
             ],
             blueCross: [required],
-            organizationNumber: [
-                Validators.minLength(8),
-                Validators.maxLength(8),
-                organizationNumberValidator(),
-            ],
-            administeringFor: [required],
+            // organizationNumber: [
+            //     Validators.minLength(8),
+            //     Validators.maxLength(8),
+            //     organizationNumberValidator(),
+            // ],
+            // administeringFor: [required],
         };
     }
 
