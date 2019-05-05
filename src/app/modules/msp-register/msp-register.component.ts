@@ -12,6 +12,12 @@ import { MspRegistrationService } from './msp-registration.service';
     styleUrls: ['./msp-register.component.scss'],
 })
 export class MspRegisterComponent extends Container implements OnInit {
+
+    showStepper(): boolean {
+    return false;
+    return !this.registrationService.enableConfirmation;
+    }
+
     constructor(
         private registrationService: MspRegistrationService,
         private router: Router,
@@ -19,12 +25,7 @@ export class MspRegisterComponent extends Container implements OnInit {
     ) {
         super();
 
-        //REMOVEME
-        const progressItemRoute = subRoutes.filter((x) => {
-           return !(x.path.includes('_'));
-        });
-
-        this.setProgressSteps(progressItemRoute);
+        this.setProgressItems();
     }
 
     ngOnInit() {
@@ -37,5 +38,16 @@ export class MspRegisterComponent extends Container implements OnInit {
         );
 
         this.registrationService.getRegisterationItems();
+
+        console.log('ANSWER:%o', this.showStepper() );
+    }
+
+    setProgressItems() {
+        const progressItemRoute = subRoutes.filter((x) => {
+           return !((x.path.includes('_') || x.path.includes('confirmation')) );
+        });
+
+        this.setProgressSteps(progressItemRoute);
+        console.log('PATH: %o', this.router.url);
     }
 }
