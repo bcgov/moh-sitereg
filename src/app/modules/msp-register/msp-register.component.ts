@@ -14,7 +14,6 @@ import { MspRegistrationService } from './msp-registration.service';
 export class MspRegisterComponent extends Container implements OnInit {
 
     showStepper(): boolean {
-    return false;
     return !this.registrationService.enableConfirmation;
     }
 
