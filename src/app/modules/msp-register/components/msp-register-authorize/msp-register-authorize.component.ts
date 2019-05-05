@@ -53,6 +53,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
     nonce: string;
     showCaptcha = false;
     validCaptch = false;
+    isProcessing = false;
 
     public get signingAuthority(): IMspSigningAuthority {
         return this.mspRegisterStateSvc.signingAuthority;
@@ -102,6 +103,8 @@ export class MspRegisterAuthorizeComponent implements OnInit {
     }
 
     continue() {
+
+        this.isProcessing = true;
         // splunk-log
         this.loggerSvc.logNavigation(
             this.constructor.name,
@@ -150,6 +153,8 @@ export class MspRegisterAuthorizeComponent implements OnInit {
                 } as LogMessage);
                 this.loggerSvc.logHttpError(err);
                 requestStatus.exception = err;
+
+                this.isProcessing = false;
             })
             .then((result) => {
                 this.loggerSvc.logNavigation(
@@ -170,6 +175,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
 
                 this.mspRegDataSvc.requestFinalStatus = requestStatus;
 
+                this.isProcessing = false;
                 this.router.navigate(['msp-registration/confirmation']);
             });
     }
