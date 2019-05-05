@@ -81,19 +81,14 @@
       <label class="control-label">
         Are you contracting a 3rd party to administer MSP Direct on your behalf?
       </label>
-      <div class="form-check">
+      <br/>
+      <div class="md-radio md-radio-inline">
         <!--No-->
-        <input class='form-check-input' formControlName="thirdParty" type="radio" id="thirdPartyFalse" tabindex="0"
-          [value]="false" (click)="updateThirdPartyValidations(false)">
-        <label class='form-check-label' for="thirdPartyFalse">
-          No
-        </label>
+        <input formControlName="thirdParty" type="radio" id="thirdPartyFalse" tabindex="0" [value]="false" (click)="updateThirdPartyValidations(false)">
+        <label for="thirdPartyFalse">No</label>
         <!--Yes-->
-        <input class='form-check-input' formControlName="thirdParty" type="radio" name="" id="thirdPartyTrue"
-          tabindex="0" [value]="true"  (click)="updateThirdPartyValidations(true)">
-        <label class='form-check-label' for="thirdPartyTrue">
-          Yes
-        </label>
+        <input formControlName="thirdParty" type="radio" name="" id="thirdPartyTrue" tabindex="0" [value]="true"  (click)="updateThirdPartyValidations(true)">
+        <label for="thirdPartyTrue">Yes</label>
       </div>
       <div class="text-danger" *ngIf="validFormControl('thirdParty')">
         Please select a valid option
@@ -125,21 +120,15 @@
       </div>
 
       <!-- Question Blue Cross -->
-      <label class="control-label">Are you applying to access MSP Direct through Blue Cross?
-      </label>
-      <div class="form-check">
+      <label class="control-label">Are you applying to access MSP Direct through Blue Cross?</label>
+      <br/>
+      <div class="md-radio md-radio-inline">
         <!--No-->
-        <input class='form-check-input' formControlName="blueCross" type="radio" id="aafalse" tabindex="0"
-          [value]="false">
-        <label class='form-check-label' for="aafalse">
-          No
-        </label>
+        <input formControlName="blueCross" type="radio" id="aafalse" tabindex="0" [value]="false">
+        <label for="aafalse">No</label>
         <!--Yes-->
-        <input class='form-check-input' formControlName="blueCross" type="radio" name="" id="aatrue" tabindex="0"
-          [value]="true">
-        <label class='form-check-label' for="aatrue">
-          Yes
-        </label>
+        <input formControlName="blueCross" type="radio" name="" id="aatrue" tabindex="0" [value]="true">
+        <label for="aatrue">Yes</label>
       </div>
       <div class="text-danger" *ngIf="validFormControl('blueCross')">
         Please select a valid option
