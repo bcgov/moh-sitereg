@@ -1,167 +1,167 @@
 <sitereg-page-sections *ngIf="fg">
+  <!-- Consent  -->
+  <form [formGroup]="fg">
 
-  <div class="row">
-    <div class="col-auto mr-auto">
-      <!-- Logo for Agreement  - black and White -->
-      <!-- <img class="img-thumbnail" width="50 " height="50" src="" /> -->
+    <div class="row">
+      <div class="col-auto mr-auto">
+        <!-- Logo for Agreement  - black and White -->
+        <!-- <img class="img-thumbnail" width="50 " height="50" src="" /> -->
+      </div>
+      <div class="col-auto mr-auto align-items-end">
+        <h3>MINISTRY OF HEALTH DATA ACCESS AGREEMENT</h3>
+      </div>
+      <div class="col-auto" *ngIf="mspRegDataSvc.agreementNumber | async as num">Agreement No: 87654321</div>
     </div>
-    <div class="col-auto mr-auto align-items-end">
-      <h3>MINISTRY OF HEALTH DATA ACCESS AGREEMENT</h3>
-    </div>
-    <div class="col-auto" *ngIf="mspRegDataSvc.agreementNumber | async as num">Agreement No: 87654321</div>
-  </div>
 
-  <div class="row">
-    <p>THIS AGREMENT is made between <b>Her Majesty the Queen in right of the Province of British Columbia, as
-        represented by the Minister of Health</b> (the "<b>Province</b>") and <b>{{signingAuthority.firstName}}
-        {{organization.name}}</b> (the "<b>Applicant</b>") and witnesses that, for good and valueable
-      consideration (the reciept and sufficiency of which is hereby acknowledged), the Parties agree as follows: </p>
-    <!--   -->
-    <ol class="aggrement-ol">
-      <!--1-->
-      <li class="aggrement-li">
-        <div>
-          This Aggrement consists of:
-          <ol>
-            <li>this page (the "cover Sheet"), and</li>
-            <li>the "MSP Direct Terms and Conditions available online at
-              <a href="https://www.health.gov.bc.ca/exforms/das/MSPDirectTermAndConditions.pdf"
-                target="_blank">https://www.health.gov.bc.ca/exforms/das/MSPDirectTermAndConditions.pdf</a>
-            </li>
-          </ol>
-          all of the terms and conditions of which are binding upon the Province and Applicant upon execution of this
-          Cover Sheet by both Parties.
-        </div>
-      </li>
-      <!--2 signing authority-->
-      <li class="aggrement-li">
-        <div>
-          The Applicant`s signing authority and Authorized Site location for the purposes of this Agreement is:
+    <div class="row">
+      <p>THIS AGREMENT is made between <b>Her Majesty the Queen in right of the Province of British Columbia, as
+          represented by the Minister of Health</b> (the "<b>Province</b>") and <b>{{signingAuthority.firstName}}
+          {{organization.name}}</b> (the "<b>Applicant</b>") and witnesses that, for good and valueable
+        consideration (the reciept and sufficiency of which is hereby acknowledged), the Parties agree as follows: </p>
+      <!--   -->
+      <ol class="aggrement-ol">
+        <!--1-->
+        <li class="aggrement-li">
+          <div>
+            This Aggrement consists of:
+            <ol>
+              <li>this page (the "cover Sheet"), and</li>
+              <li>the "MSP Direct Terms and Conditions available online at
+                <a href="https://www.health.gov.bc.ca/exforms/das/MSPDirectTermAndConditions.pdf"
+                  target="_blank">https://www.health.gov.bc.ca/exforms/das/MSPDirectTermAndConditions.pdf</a>
+              </li>
+            </ol>
+            all of the terms and conditions of which are binding upon the Province and Applicant upon execution of this
+            Cover Sheet by both Parties.
+          </div>
+        </li>
+        <!--2 signing authority-->
+        <li class="aggrement-li">
+          <div>
+            The Applicant`s signing authority and Authorized Site location for the purposes of this Agreement is:
 
-          <table class="list-table">
-            <tr class="aggrement-table">
-              <td class="column-label">Signing Authority </td>
-              <td class="aggrement-table" title="" (click)="navigateTo('signing-authority');">
-                {{signingAuthority.firstName}} {{signingAuthority.lastName}} </td>
-            </tr>
-            <tr class="aggrement-table">
-              <td class="column-label">Authorized Sites</td>
-              <td class="aggrement-table" title="" (click)="navigateTo('organization');">
-                {{organization.suite}} {{organization.street? organization.street: ''}} {{organization.streetName}}
-                <br />
-                {{organization.city}}, {{organization.province}}. {{organization.postalCode}}
-              </td>
-            </tr>
-          </table>
-          Note that the Authorized Site must be located within Canada.
-        </div>
-      </li>
-      <!--3 group numbers-->
-      <li class="aggrement-li">
-        <div>
-          [selected options are:]
-          <ul class="list-no-bullets">
-            <li>
-              <span class="selectedOption">
-                {{ isWebEnabled===true ? "&#10003;": "&#9634;" }}
-              </span>
-              <label for="checkMspDirectWeb" class="label-right" title="" (click)="navigateTo('signing-authority');">
-                The Applicant will Administer MSP using the MSP Direct Web Interface.
-              </label>
-            </li>
-            <li>
-              <span class="selectedOption"> {{ organization.blueCross ? "&#10003;": "&#9634;"  }} </span>
-              <label for="checkPacificBlueCross" class="label-right" title="" (click)="navigateTo('organization');">
-                The Applicant will Administer MSP using software supported by Pacific Blue Cross.
-              </label>
-            </li>
-            <li>
-              <div title="" (click)="navigateTo('group-numbers');">
-                <span> {{ organization.thirdParty? "&#10003;": "&#9634;" }} </span>
-                <label for="checkMspApplicantBehalf" class="label-right">
-                  The following organization will Administer MSP on the Applicant`s behalf:
+            <table class="list-table">
+              <tr class="aggrement-table">
+                <td class="column-label">Signing Authority </td>
+                <td class="aggrement-table" title="" (click)="navigateTo('signing-authority');">
+                  {{signingAuthority.firstName}} {{signingAuthority.lastName}} </td>
+              </tr>
+              <tr class="aggrement-table">
+                <td class="column-label">Authorized Sites</td>
+                <td class="aggrement-table" title="" (click)="navigateTo('organization');">
+                  {{organization.suite}} {{organization.street? organization.street: ''}} {{organization.streetName}}
+                  <br />
+                  {{organization.city}}, {{organization.province}}. {{organization.postalCode}}
+                </td>
+              </tr>
+            </table>
+            Note that the Authorized Site must be located within Canada.
+          </div>
+        </li>
+        <!--3 group numbers-->
+        <li class="aggrement-li">
+          <div>
+            [selected options are:]
+            <ul class="list-no-bullets">
+              <li>
+                <span class="selectedOption">
+                  {{ isWebEnabled===true ? "&#10003;": "&#9634;" }}
+                </span>
+                <label for="checkMspDirectWeb" class="label-right" title="" (click)="navigateTo('signing-authority');">
+                  The Applicant will Administer MSP using the MSP Direct Web Interface.
                 </label>
-                <!-- <span *ngIf="!isValidGroups()"> No Group Numbers specified. </span>
+              </li>
+              <li>
+                <span class="selectedOption"> {{ organization.blueCross ? "&#10003;": "&#9634;"  }} </span>
+                <label for="checkPacificBlueCross" class="label-right" title="" (click)="navigateTo('organization');">
+                  The Applicant will Administer MSP using software supported by Pacific Blue Cross.
+                </label>
+              </li>
+              <li>
+                <div title="" (click)="navigateTo('group-numbers');">
+                  <span> {{ organization.thirdParty? "&#10003;": "&#9634;" }} </span>
+                  <label for="checkMspApplicantBehalf" class="label-right">
+                    The following organization will Administer MSP on the Applicant`s behalf:
+                  </label>
+                  <!-- <span *ngIf="!isValidGroups()"> No Group Numbers specified. </span>
                 <table *ngIf="isValidGroups()" class="list-table">
                   <tr *ngFor="let g of groupsMSP" class="aggrement-table">
                     <td class="column-label">{{ (g.thirdParty) ? "3rd Party Organization Number" : ""  }}</td>
                     <td class="aggrement-table">{{g.groupNumber}} </td>
                   </tr>                  
                 </table> -->
-                <!-- Updates: Here only Organization Number from Organization Page will be displayed and only in case 
+                  <!-- Updates: Here only Organization Number from Organization Page will be displayed and only in case 
                 if third party answer is Yes -->
-                <table *ngIf="organization.thirdParty" class="list-table">
-                  <tr class="aggrement-table">
-                    <td class="column-label">{{ (organization.thirdParty) ? "3rd Party Organization Number" : ""  }}
-                    </td>
-                    <td class="aggrement-table">{{organization.organizationNumber}} </td>
-                  </tr>
-                </table>
-              </div>
+                  <table *ngIf="organization.thirdParty" class="list-table">
+                    <tr class="aggrement-table">
+                      <td class="column-label">{{ (organization.thirdParty) ? "3rd Party Organization Number" : ""  }}
+                      </td>
+                      <td class="aggrement-table">{{organization.organizationNumber}} </td>
+                    </tr>
+                  </table>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <!--4 Administer For-->
+        <li class="aggrement-li">
+          The Application will Administer MSP for [selected options are:]
+          <ul class="list-no-bullets" title="" (click)="navigateTo('signing-authority');">
+            <li class="li-inline">
+              <span>
+                {{ (signingAuthority.administeringFor && signingAuthority.administeringFor.includes('Employees'))? "&#10003;": "&#9634;" }}
+              </span>
+              <label class="label-right">
+                Employees
+              </label>
+            </li>
+            <li class="li-inline">
+              <span>
+                {{ (signingAuthority.administeringFor && signingAuthority.administeringFor.includes('International Students') )? "&#10003;": "&#9634;" }}
+              </span>
+              <label class="label-right">
+                International Students
+              </label>
+            </li>
+            <li class="li-inline">
+              <span>
+                {{ (signingAuthority.administeringFor && signingAuthority.administeringFor.includes('Other') )? "&#10003;": "&#9634;" }}
+              </span>
+              <label class="label-right">
+                Other (require further approval)
+              </label>
             </li>
           </ul>
-        </div>
-      </li>
-      <!--4 Administer For-->
-      <li class="aggrement-li">
-        The Application will Administer MSP for [selected options are:]
-        <ul class="list-no-bullets" title="" (click)="navigateTo('signing-authority');">
-          <li class="li-inline">
-            <span>
-              {{ (signingAuthority.administeringFor && signingAuthority.administeringFor.includes('Employees'))? "&#10003;": "&#9634;" }}
-            </span>
-            <label class="label-right">
-              Employees
-            </label>
-          </li>
-          <li class="li-inline">
-            <span>
-              {{ (signingAuthority.administeringFor && signingAuthority.administeringFor.includes('International Students') )? "&#10003;": "&#9634;" }}
-            </span>
-            <label class="label-right">
-              International Students
-            </label>
-          </li>
-          <li class="li-inline">
-            <span>
-              {{ (signingAuthority.administeringFor && signingAuthority.administeringFor.includes('Other') )? "&#10003;": "&#9634;" }}
-            </span>
-            <label class="label-right">
-              Other (require further approval)
-            </label>
-          </li>
-        </ul>
-      </li>
-      <!--5 statement-->
-      <li class="aggrement-li">
-        The Applicant agrees with and represents and warrants to the Province that it has read, understood and agreed
-        to the terms and conditions of this Agreement, including this Cover Sheet and the Access Terms and Conditions,
-        and that this Agreement has been executed by a duly authorized signatory of the Applicant, and is a binding
-        agreement of the Applicant.
-      </li>
-      <!--6-->
-      <li class="aggrement-li">
-        This Agreement may executed in conterparts, which when taken together will consitute one and the same
-        agreement.
-      </li>
-    </ol>
+        </li>
+        <!--5 statement-->
+        <li class="aggrement-li">
+          The Applicant agrees with and represents and warrants to the Province that it has read, understood and agreed
+          to the terms and conditions of this Agreement, including this Cover Sheet and the Access Terms and Conditions,
+          and that this Agreement has been executed by a duly authorized signatory of the Applicant, and is a binding
+          agreement of the Applicant.
+        </li>
+        <!--6-->
+        <li class="aggrement-li">
+          This Agreement may executed in conterparts, which when taken together will consitute one and the same
+          agreement.
+        </li>
+      </ol>
 
-    <ul class="list-no-bullets marginLeft">
-      <li><span class="col-sm-4">Print Name:</span><span class="border-bottom col-sm-8">
-          {{signingAuthority.firstName}} {{signingAuthority.lastName}}</span></li>
-      <li><span class="col-sm-4">Date :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <span class="border-bottom col-sm-8"> {{date | date: 'MMM-dd-yyyy' }}</span> </li>
-    </ul>
-  </div>
+      <ul class="list-no-bullets marginLeft">
+        <li><span class="col-sm-4">Print Name:</span><span class="border-bottom col-sm-8">
+            {{signingAuthority.firstName}} {{signingAuthority.lastName}}</span></li>
+        <li><span class="col-sm-4">Date :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          <span class="border-bottom col-sm-8"> {{date | date: 'MMM-dd-yyyy' }}</span> </li>
+      </ul>
+    </div>
 
-  <!-- Consent  -->
-  <div [formGroup]="fg">
 
     <div class="row" *ngIf="showCaptcha">
-      <div class="captcha">
+      <span class="captcha">
         <common-captcha [apiBaseUrl]="captchaApiBaseUrl" [nonce]="nonce" (onValidToken)="setToken($event)"
           [successMessage]="'  '" autocomplete="off"></common-captcha>
-      </div>
+      </span>
     </div>
 
     <div class="row">
@@ -174,12 +174,11 @@
         </label>
       </span>
     </div>
+    <div style="display:block;width:100%;min-height:50px;"></div>
 
-
-  </div>
+  </form>
 
 </sitereg-page-sections>
 <common-form-action-bar class="fixed-bottom" (btnClick)="continue()" [defaultColor]="false" [canContinue]="validCaptch"
   [isLoading]="isProcessing | async" submitLabel="Submit Application">
-
 </common-form-action-bar>

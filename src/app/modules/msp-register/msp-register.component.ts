@@ -12,9 +12,8 @@ import { MspRegistrationService } from './msp-registration.service';
     styleUrls: ['./msp-register.component.scss'],
 })
 export class MspRegisterComponent extends Container implements OnInit {
-
     showStepper(): boolean {
-    return !this.registrationService.enableConfirmation;
+        return !this.registrationService.enableConfirmation;
     }
 
     constructor(
@@ -38,12 +37,12 @@ export class MspRegisterComponent extends Container implements OnInit {
 
         this.registrationService.getRegisterationItems();
 
-        console.log('ANSWER:%o', this.showStepper() );
+        console.log('ANSWER:%o', this.showStepper());
     }
 
     setProgressItems() {
         const progressItemRoute = subRoutes.filter((x) => {
-           return !((x.path.includes('_') || x.path.includes('confirmation')) );
+            return !(x.path.includes('_') || x.path.includes('confirmation'));
         });
 
         this.setProgressSteps(progressItemRoute);

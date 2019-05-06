@@ -103,7 +103,6 @@ export class MspRegisterAuthorizeComponent implements OnInit {
     }
 
     continue() {
-
         this.isProcessing = true;
         // splunk-log
         this.loggerSvc.logNavigation(
@@ -132,12 +131,12 @@ export class MspRegisterAuthorizeComponent implements OnInit {
 
         this.mspRegDataSvc.requestFinalStatus = null;
         const requestStatus = {
-            referenceId : null,
+            referenceId: null,
             status: false,
             confirmationNumber: null,
             schema: middleWareObject,
             response: null,
-            exception: null
+            exception: null,
         };
 
         this.mspRegApiSvc
@@ -166,11 +165,15 @@ export class MspRegisterAuthorizeComponent implements OnInit {
                 requestStatus.referenceId = this.requestUUID;
 
                 if (result && requestStatus.exception === null) {
-                        if (requestStatus.response.op_return_code && requestStatus.response.op_return_code === 'SUCCESS') {
-                            requestStatus.confirmationNumber = requestStatus.response.op_reference_number;
-                        } else {
-                            requestStatus.status = false;
-                        }
+                    if (
+                        requestStatus.response.op_return_code &&
+                        requestStatus.response.op_return_code === 'SUCCESS'
+                    ) {
+                        requestStatus.confirmationNumber =
+                            requestStatus.response.op_reference_number;
+                    } else {
+                        requestStatus.status = false;
+                    }
                 }
 
                 this.mspRegDataSvc.requestFinalStatus = requestStatus;
@@ -304,7 +307,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
         return (
             this.groupsMSP.length > 0 &&
             ((this.groupsMSP[0].groupNumber as string) &&
-                (this.groupsMSP[0].groupNumber as string).length > 3
+            (this.groupsMSP[0].groupNumber as string).length > 3
                 ? true
                 : false)
         );

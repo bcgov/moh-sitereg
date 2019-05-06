@@ -7,18 +7,6 @@ import { BehaviorSubject } from 'rxjs';
     providedIn: 'root',
 })
 export class GlobalConfigService {
-
-     // REMOVE ME - debug only - to put default value
-     private static autofill = false;
-
-    public static autofillOn() {
-        GlobalConfigService.autofill = true;
-    }
-
-    public static setDefaults(): boolean {
-        return GlobalConfigService.autofill;
-    }
-
     // private static instance: GlobalConfigService;
     // private globalConfigServiceSubject = new BehaviorSubject<GlobalConfigService>(null);
 
@@ -28,8 +16,6 @@ export class GlobalConfigService {
     //     }
     //     return GlobalConfigService.instance;
     // }
-
-    private mspApplicationId: string;
 
     //#region static
 
@@ -45,11 +31,9 @@ export class GlobalConfigService {
     //     return GlobalConfigService.internalUUID;
     // }
 
-   
-
     //#endregion
 
-    constructor() { }
+    constructor() {}
 
     public get applicationId(): string {
         return this.mspApplicationId
@@ -66,13 +50,6 @@ export class GlobalConfigService {
         return environment.production;
     }
 
-    //#region msp ApplicationId specific
-
-    public logRefreshMspApplicationUUID(): string {
-        this.mspApplicationId = UUID.UUID();
-        return this.mspApplicationId;
-    }
-
     /**
      * Application UUID refers to Application of MSP, means the each application user apply will have a specific uuid
      */
@@ -84,6 +61,25 @@ export class GlobalConfigService {
 
     public get logMspApplicationName() {
         return 'sitereg';
+    }
+    // REMOVE ME - debug only - to put default value
+    private static autofill = false;
+
+    private mspApplicationId: string;
+
+    public static autofillOn() {
+        GlobalConfigService.autofill = true;
+    }
+
+    public static setDefaults(): boolean {
+        return GlobalConfigService.autofill;
+    }
+
+    //#region msp ApplicationId specific
+
+    public logRefreshMspApplicationUUID(): string {
+        this.mspApplicationId = UUID.UUID();
+        return this.mspApplicationId;
     }
 
     //#endregion

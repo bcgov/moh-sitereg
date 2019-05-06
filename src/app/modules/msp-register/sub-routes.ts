@@ -13,7 +13,7 @@ import { MspRegisterConfirmationComponent } from './components/msp-register-conf
 export const subRoutes: Routes = [
     {
         path: '',
-        redirectTo: 'confirmation'
+        redirectTo: 'confirmation',
     },
     {
         // path: 'organization',
@@ -58,7 +58,7 @@ export const subRoutes: Routes = [
         data: { title: MSP_REGISTERATION_ROUTES.CONFIRMATION.title },
     },
 
-     // REMOVEME
+    // REMOVEME
     {
         // path: 'autofill',
         path: '_autofill',
