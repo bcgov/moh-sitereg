@@ -24,7 +24,7 @@ describe('Moh SiteReg - Group Numbers Page', () => {
     it('02. should NOT let user to continue without adding a group number', () => {
         groupPage.navigateTo();
         groupPage.continue();
-        expect(browser.getCurrentUrl()).toContain(GROUP_PAGE_URL, 'should stay on the same page');
+        expect(browser.getCurrentUrl()).toContain(GROUP_PAGE_URL, 'should stay on thesame page');
     });
 
     it('03. should let user to continue if at least one group number is added', () => {

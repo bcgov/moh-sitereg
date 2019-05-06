@@ -2,17 +2,21 @@ import * as faker from 'faker';
 
 export class FakeDataSiteReg {
 
+    constructor() {
+        // faker.setLocale('en_CA');
+    }
+
     organizationInfo(): OrganizationPageTest {
         return {
             orgName: faker.company.companyName(),
-            suiteNo: faker.random.number(100),
-            // suiteNo: Math.random() > 0.5 ? faker.random.number(3) : undefined,
+            // suiteNo: faker.random.number(100),
+            suiteNo: Math.random() > 0.5 ? faker.random.number(3) : undefined,
             streetNo: faker.random.number(100),
             streetName: faker.address.streetName(),
-            streetAddressLine: faker.address.streetAddress(),
-            // streetAddressLine: Math.random() > 0.5 ? faker.address.streetAddress() : undefined,
+            // streetAddressLine: faker.address.streetAddress(),
+            streetAddressLine: Math.random() > 0.5 ? faker.address.streetAddress() : undefined,
             city: faker.address.city(),
-            postal: faker.address.zipCode('?#?#?#'),
+            postal: faker.address.zipCode('A1A1A1'),
             orgNum: faker.random.number({
                 min: 10000000,
                 max: 99999999

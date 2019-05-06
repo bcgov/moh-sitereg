@@ -36,10 +36,14 @@ export class OrganizationPage extends BaseSiteRegTestPage {
     }
 
     fillAddress(data: OrganizationPageTest) {
-        this.typeText('suite', data.suiteNo + ' ');
+        if (data.suiteNo) {
+            this.typeText('suite', data.suiteNo + ' ');
+        }
         this.typeText('street', data.streetNo + ' ');
         this.typeText('streetName', data.streetName);
-        this.typeText('addressLine2', data.streetAddressLine);
+        if (data.streetAddressLine) {
+            this.typeText('addressLine2', data.streetAddressLine);
+        }
         this.typeText('city', data.city);
         this.selectValue('province', this.province[this.num]);
         this.typeText('postalCode', data.postal);
@@ -53,16 +57,16 @@ export class OrganizationPage extends BaseSiteRegTestPage {
     /*
     async fillAddress(data: OrganizationPageTest) {
         if (data.suiteNo) {
-            (await this.typeText('suite', data.suiteNo + ' '));
+            await this.typeText('suite', data.suiteNo + ' ');
         }
-        (await this.typeText('street', data.streetNo + ' '));
-        (await this.typeText('streetName', data.streetName));
+        await this.typeText('street', data.streetNo + ' ');
+        await this.typeText('streetName', data.streetName);
         if (data.streetAddressLine) {
             (await this.typeText('addressLine2', data.streetAddressLine));
         }
-        (await this.typeText('city', data.city));
-        (await this.fillProvince());
-        (await this.typeText('postalCode', data.postal));
+        await this.typeText('city', data.city);
+        await this.selectValue('province', this.province[this.num]);
+        await this.typeText('postalCode', data.postal);
     }
     */
 
@@ -76,10 +80,6 @@ export class SigningAuthorityPage extends BaseSiteRegTestPage {
 
     navigateTo() {
         return browser.get('/msp-registration/signing-authority');
-    }
-
-    fillTitle() {
-
     }
 
     fillInfo(data: SigningAuthorityPageTest) {
