@@ -172,13 +172,14 @@
           <common-captcha [apiBaseUrl]="captchaApiBaseUrl" [nonce]="nonce" (onValidToken)="setToken($event)"
             [successMessage]="'  '" autocomplete="off"></common-captcha>
         </span>
-      </div>
+    </div>
 
-    <div class="row extrablock"></div>
+    <!-- <div class="row extrablock"></div> -->
 
   </form>
 
 </sitereg-page-sections>
-<common-form-action-bar class="fixed-bottom" (btnClick)="continue()" [defaultColor]="false" [canContinue]="validCaptch"
+<!-- class="fixed-bottom" -->
+<common-form-action-bar  (btnClick)="continue()" [defaultColor]="false" [canContinue]="validCaptch"
   [isLoading]="isProcessing | async" submitLabel="Submit Application">
 </common-form-action-bar>
