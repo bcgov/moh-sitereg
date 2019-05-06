@@ -86,6 +86,8 @@ p {
 }
 
 .captcha {
+  display:flex;
+  min-height:150px;
   margin-top: 5px;
   // padding-bottom: 20px;
   margin-bottom: 5px;
@@ -95,6 +97,6 @@ p {
 .extrablock{
   display:block;width:100%;min-height:50px;  
 }
-.extrablock::before{
-  content:'&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>';
-}
+// .extrablock::before{
+//   content:'&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>';
+// }
