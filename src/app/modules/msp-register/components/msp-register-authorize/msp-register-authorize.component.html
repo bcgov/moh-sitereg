@@ -80,7 +80,7 @@
                 <span> {{ organization.thirdParty? "&#10003;": "&#9634;" }} </span>
                 <label for="checkMspApplicantBehalf" class="label-right">
                   The following organization will Administer MSP on the Applicant`s behalf:
-                </label>                
+                </label>
                 <!-- <span *ngIf="!isValidGroups()"> No Group Numbers specified. </span>
                 <table *ngIf="isValidGroups()" class="list-table">
                   <tr *ngFor="let g of groupsMSP" class="aggrement-table">
@@ -90,12 +90,13 @@
                 </table> -->
                 <!-- Updates: Here only Organization Number from Organization Page will be displayed and only in case 
                 if third party answer is Yes -->
-                 <table *ngIf="organization.thirdParty" class="list-table">
+                <table *ngIf="organization.thirdParty" class="list-table">
                   <tr class="aggrement-table">
-                    <td class="column-label">{{ (organization.thirdParty) ? "3rd Party Organization Number" : ""  }}</td>
+                    <td class="column-label">{{ (organization.thirdParty) ? "3rd Party Organization Number" : ""  }}
+                    </td>
                     <td class="aggrement-table">{{organization.organizationNumber}} </td>
-                  </tr>                  
-                </table> 
+                  </tr>
+                </table>
               </div>
             </li>
           </ul>
@@ -156,6 +157,13 @@
   <!-- Consent  -->
   <div [formGroup]="fg">
 
+    <div class="row" *ngIf="showCaptcha">
+      <div class="captcha">
+        <common-captcha [apiBaseUrl]="captchaApiBaseUrl" [nonce]="nonce" (onValidToken)="setToken($event)"
+          [successMessage]="'  '" autocomplete="off"></common-captcha>
+      </div>
+    </div>
+
     <div class="row">
       <span class="consent">
         <input type="checkbox" form name="consent" formControlName="consent" id="consent" tabindex="0"
@@ -167,16 +175,11 @@
       </span>
     </div>
 
-    <div class="row" *ngIf="showCaptcha">
-      <span class="captcha">
-        <common-captcha [apiBaseUrl]="captchaApiBaseUrl" [nonce]="nonce" (onValidToken)="setToken($event)"
-          [successMessage]="'  '" autocomplete="off" ></common-captcha>
-      </span>
-    </div>
 
   </div>
 
 </sitereg-page-sections>
-<common-form-action-bar  class="fixed-bottom" (btnClick)="continue()"  [defaultColor]="false" [canContinue]="validCaptch" [isLoading]="isProcessing | async" submitLabel="Submit Application">
+<common-form-action-bar class="fixed-bottom" (btnClick)="continue()" [defaultColor]="false" [canContinue]="validCaptch"
+  [isLoading]="isProcessing | async" submitLabel="Submit Application">
 
 </common-form-action-bar>

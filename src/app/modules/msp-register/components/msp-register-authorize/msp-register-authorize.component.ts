@@ -51,7 +51,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
 
     captchaApiBaseUrl: string;
     nonce: string;
-    showCaptcha = false;
+    showCaptcha = true;
     validCaptch = false;
     isProcessing = false;
 

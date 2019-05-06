@@ -81,8 +81,12 @@ p {
   font-style: bold;
 }
 .captcha {
-  margin-top: 10px;
-  padding-bottom: 5px;
-  margin-bottom: 20px;
+  margin-top: 5px;
+  // padding-bottom: 20px;
+  margin-bottom: 5px;
   margin-left: 25px;
+}
+.captcha::after {
+  margin-top: 20px;
+
 }
