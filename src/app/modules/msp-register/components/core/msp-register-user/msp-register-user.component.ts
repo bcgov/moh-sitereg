@@ -1,7 +1,10 @@
 import { Component, Input, OnInit, AfterViewInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { validMultiFormControl, matchFieldValidator } from '@msp-register/models/validator-helpers';
+import {
+    validMultiFormControl,
+    matchFieldValidator,
+} from '@msp-register/models/validator-helpers';
 import { BehaviorSubject } from 'rxjs';
 import {
     cAdministeringFor,
@@ -28,6 +31,8 @@ export class MspRegisterUserComponent implements AfterViewInit {
     }
 
     ngAfterViewInit() {
-        this.fg.setValidators( matchFieldValidator('confirmEmail', 'emailAddress') );
+        this.fg.setValidators(
+            matchFieldValidator('confirmEmail', 'emailAddress')
+        );
     }
 }

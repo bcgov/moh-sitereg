@@ -22,6 +22,8 @@ export class MspRegisterUserMspComponent implements AfterViewInit {
     }
 
     ngAfterViewInit() {
-        this.fg.setValidators( matchFieldValidator('confirmEmail', 'emailAddress') );
+        this.fg.setValidators(
+            matchFieldValidator('confirmEmail', 'emailAddress')
+        );
     }
 }

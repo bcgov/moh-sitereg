@@ -5,7 +5,10 @@ import { MspRegisterStateService } from '@msp-register/services/msp-register-sta
 import { CountryData } from '@shared/models/country-data';
 import { BehaviorSubject } from 'rxjs';
 import { IProvince } from '@shared/interfaces/i-provinces';
-import { validFormControl, organizationNumberValidator } from '@msp-register/models/validator-helpers';
+import {
+    validFormControl,
+    organizationNumberValidator,
+} from '@msp-register/models/validator-helpers';
 import { MspRegisterDataService } from '@msp-register/services/msp-register-data.service';
 import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
@@ -90,7 +93,6 @@ export class MspRegisterOrganizationComponent implements OnInit {
     }
 
     updateThirdPartyValidations(required: boolean) {
-
         const administeringForControl = this.fg.get('administeringFor');
         const organizationNumberControl = this.fg.get('organizationNumber');
 
@@ -99,10 +101,9 @@ export class MspRegisterOrganizationComponent implements OnInit {
             organizationNumberControl.setValidators([
                 Validators.minLength(8),
                 Validators.maxLength(8),
-                organizationNumberValidator()
+                organizationNumberValidator(),
             ]);
         } else {
-
             administeringForControl.clearValidators();
             organizationNumberControl.clearValidators();
 
