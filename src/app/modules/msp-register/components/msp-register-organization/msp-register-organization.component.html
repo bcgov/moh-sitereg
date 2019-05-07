@@ -1,6 +1,8 @@
-<h2 class="border-bottom">Organization</h2>
-<sitereg-page-sections *ngIf="fg">
 
+<!-- sitereg-page-sections -->
+<common-page-framework layout='blank'>
+<h2 class="border-bottom">Organization</h2>
+<div *ngIf="fg">
   <form [formGroup]="fg">
     <div class="form-group col-sm-8 p-sm-0">
 
@@ -134,8 +136,10 @@
         Please select a valid option
       </div>
     </div>
-
   </form>
-</sitereg-page-sections>
-<common-form-action-bar class="fixed-bottom" (btnClick)="continue()" [canContinue]="fg.valid">
+</div>
+</common-page-framework>
+
+<!-- class="fixed-bottom avoid-sliding"  -->
+<common-form-action-bar (btnClick)="continue()" [canContinue]="fg.valid">
 </common-form-action-bar>
