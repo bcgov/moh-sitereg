@@ -5,15 +5,14 @@ import { MspRegisterComponent } from './modules/msp-register/msp-register.compon
 
 const routes: Routes = [
     {
-        path: '',
-        component: HomePageComponent,
-        data: { title: 'Home' },
-    },
-    {
         path: 'msp-registration',
         loadChildren:
             './modules/msp-register/msp-register.module#MspRegisterModule',
     },
+    {
+        path: '**',
+        redirectTo: 'msp-registration'
+    }
 ];
 
 @NgModule({
