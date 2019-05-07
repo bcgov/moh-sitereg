@@ -24,6 +24,7 @@ describe('Moh SiteReg - Authorize Page', () => {
         expect(browser.getCurrentUrl()).toContain(AUTHORIZE_PAGE_URL, 'should stay on the same page');
     });
 
+    // Not yet working because waiting for captcha (back-end)
     xit('03. should let user to continue if the checkbox is clicked', () => {
         authPage.navigateTo();
         authPage.scrollDown();
