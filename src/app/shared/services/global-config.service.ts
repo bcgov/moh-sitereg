@@ -46,7 +46,6 @@ export class GlobalConfigService {
     }
 
     public get isProduction() {
-        return false;
         return environment.production;
     }
 
