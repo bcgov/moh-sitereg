@@ -47,7 +47,6 @@ describe('Moh SiteReg - Organization Page', () => {
         browser.sleep(1000 * 10);
         orgPage.continue();
         expect(orgPage.formErrors().count()).toBe(0, 'should be no errors after filling out');
-        // expect(browser.getCurrentUrl()).toContain(SA_PAGE_URL, 'should navigate to the next page');
     });
 
 });

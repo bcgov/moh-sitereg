@@ -37,9 +37,9 @@ export class OrganizationPage extends BaseSiteRegTestPage {
 
     fillAddress(data: OrganizationPageTest) {
         if (data.suiteNo) {
-            this.typeText('suite', data.suiteNo + ' ');
+            this.typeText('suite', data.suiteNo + '');
         }
-        this.typeText('street', data.streetNo + ' ');
+        this.typeTextFirstOccurrence('street', data.streetNo + '');
         this.typeText('streetName', data.streetName);
         if (data.streetAddressLine) {
             this.typeText('addressLine2', data.streetAddressLine);
@@ -50,7 +50,7 @@ export class OrganizationPage extends BaseSiteRegTestPage {
     }
 
     fillOrgNum(data: OrganizationPageTest) {
-        this.typeText('organizationNumber', data.orgNum + ' ');
+        this.typeText('organizationNumber', data.orgNum + '');
         this.selectValue('administeringFor', 'Employees');
     }
 
