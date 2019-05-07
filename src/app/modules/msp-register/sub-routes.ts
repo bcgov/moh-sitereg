@@ -13,7 +13,7 @@ import { MspRegisterConfirmationComponent } from './components/msp-register-conf
 export const subRoutes: Routes = [
     {
         path: '',
-        redirectTo: 'confirmation',
+        redirectTo: MSP_REGISTERATION_ROUTES.ORGANIZATION.path,
     },
     {
         // path: 'organization',
