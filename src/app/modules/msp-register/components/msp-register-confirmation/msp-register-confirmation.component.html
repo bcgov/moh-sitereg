@@ -24,14 +24,14 @@
 </div>
 
 
-<div class='row' *ngIf="isTechnicalInfoAvaialble">
+<div class='row' *ngIf="isTechnicalInfoAvaialble && debugMode">
   <div class='col-md-4 p-4'>
     <div  (click)="toggleDetail()">Technical information</div>
   </div>
 </div>
 
 
-<div class="card" *ngIf="showDetail && isTechnicalInfoAvaialble">
+<div class="card" *ngIf="showDetail && isTechnicalInfoAvaialble && debugMode">
   <div class="card-body">
       <h5 class="card-title">Reference Identifier</h5>
       <p class="card-text">

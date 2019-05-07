@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MspRegisterDataService } from '@msp-register/services/msp-register-data.service';
 import { Router } from '@angular/router';
+import { environment } from '../../../../../environments/environment';
+// import { environment } from '
 
 @Component({
     selector: 'sitereg-msp-register-confirmation',
@@ -11,6 +13,8 @@ export class MspRegisterConfirmationComponent implements OnInit {
     status = false;
     showDetail = false;
     isTechnicalInfoAvaialble = false;
+    debugMode = environment.debug;
+
     constructor(
         private router: Router,
         public mspRegDataSvc: MspRegisterDataService
