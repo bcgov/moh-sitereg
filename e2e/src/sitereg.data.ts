@@ -9,11 +9,9 @@ export class FakeDataSiteReg {
     organizationInfo(): OrganizationPageTest {
         return {
             orgName: faker.company.companyName(),
-            // suiteNo: faker.random.number(100),
             suiteNo: Math.random() > 0.5 ? faker.random.number(3) : undefined,
             streetNo: faker.random.number(100),
             streetName: faker.address.streetName(),
-            // streetAddressLine: faker.address.streetAddress(),
             streetAddressLine: Math.random() > 0.5 ? faker.address.streetAddress() : undefined,
             city: faker.address.city(),
             postal: faker.address.zipCode('A1A1A1'),
@@ -27,7 +25,6 @@ export class FakeDataSiteReg {
     signingAuthorityInfo(): SigningAuthorityPageTest {
         return {
             firstName: faker.name.firstName(),
-            // initial: faker.name.prefix(),
             lastName: faker.name.lastName(),
             jobTitle: faker.name.jobTitle(),
             email: faker.internet.email(),
@@ -70,7 +67,6 @@ export interface OrganizationPageTest {
 
 export interface SigningAuthorityPageTest {
     firstName: string;
-    // initial: string;
     lastName: string;
     jobTitle: string;
     email: string;

@@ -31,10 +31,18 @@ describe('Moh SiteReg - Group Numbers Page', () => {
         groupPage.navigateTo();
         groupPage.clickButton('btn btn-block', ' Add New Group Number ');
         groupPage.fillGroupNum(groupData);
-        browser.sleep(1000 * 10);
         groupPage.continue();
         expect(groupPage.formErrors().count()).toBe(0, 'should be no errors after filling out');
         expect(browser.getCurrentUrl()).toContain(AUTHORIZE_PAGE_URL, 'should navigate to the Authorize page');
+    });
+
+    it('04. should let user to delete a group number by clicking the x button', () => {
+        groupPage.navigateTo();
+        groupPage.clickButton('btn btn-block', ' Add New Group Number ');
+        groupPage.fillGroupNum(groupData);
+        groupPage.clickButton('btn delete', '');
+        expect(groupPage.formErrors().count()).toBe(0, 'should be no errors');
+        expect(browser.getCurrentUrl()).toContain(GROUP_PAGE_URL);
     });
 
 });

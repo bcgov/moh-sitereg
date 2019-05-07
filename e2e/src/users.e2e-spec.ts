@@ -33,7 +33,6 @@ describe('Moh SiteReg - Users Page', () => {
         usersPage.fillInfo(usersData);
         usersPage.scrollDown();
         usersPage.selectValue('administeringFor', 'Employees');
-        browser.sleep(1000 * 10);
         usersPage.continue();
         expect(usersPage.formErrors().count()).toBe(0, 'should be no errors after filling out');
         expect(browser.getCurrentUrl()).toContain(GROUP_PAGE_URL, 'should navigate to the Users page');
@@ -45,7 +44,7 @@ describe('Moh SiteReg - Users Page', () => {
         usersPage.fillInfo(usersData);
         usersPage.scrollDown();
         usersPage.selectValue('administeringFor', 'Employees');
-        usersPage.clickButton('btn btn-block btn-lg bg-grey', '');
+        usersPage.clickButton('btn delete', '');
         usersPage.continue();
         expect(usersPage.formErrors().count()).toBe(0, 'should be no errors after filling out');
         expect(browser.getCurrentUrl()).toContain(GROUP_PAGE_URL, 'should navigate to the Users page');

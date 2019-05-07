@@ -7,6 +7,7 @@ describe('Moh SiteReg - Organization Page', () => {
     const data = new FakeDataSiteReg();
     let orgData;
     const ORGANIZATION_PAGE_URL = `msp-registration/organization`;
+    const SA_PAGE_URL = `msp-registration/signing-authority`;
 
     beforeEach(() => {
         orgPage = new OrganizationPage();
@@ -30,9 +31,9 @@ describe('Moh SiteReg - Organization Page', () => {
         orgPage.navigateTo();
         orgPage.fillOrgName(orgData);
         orgPage.fillAddress(orgData);
-        browser.sleep(1000 * 10);
-        // orgPage.continue();
+        orgPage.continue();
         expect(orgPage.formErrors().count()).toBe(0, 'should be no errors after filling out');
+        expect(browser.getCurrentUrl()).toContain(SA_PAGE_URL, 'should navigate to the next page');
     });
 
     it('04. should let user to type organization num and select organization that will be administering', () => {
@@ -42,9 +43,11 @@ describe('Moh SiteReg - Organization Page', () => {
         orgPage.scrollDown();
         orgPage.clickOption('thirdPartyTrue');
         orgPage.fillOrgNum(orgData);
+        orgPage.selectValue('administeringFor', 'Employees');
         browser.sleep(1000 * 10);
-        // orgPage.continue();
+        orgPage.continue();
         expect(orgPage.formErrors().count()).toBe(0, 'should be no errors after filling out');
+        // expect(browser.getCurrentUrl()).toContain(SA_PAGE_URL, 'should navigate to the next page');
     });
 
 });

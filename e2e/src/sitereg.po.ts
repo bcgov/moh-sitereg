@@ -9,7 +9,7 @@ export class BaseSiteRegTestPage extends SiteRegTestPage {
     }
 
     clickOption(value: string) {
-        element(by.css(`input[id="${value}"]`)).click();
+        element(by.css(`label[for="${value}"]`)).click();
     }
 
     selectValue(label: string, value: string) {
@@ -54,22 +54,6 @@ export class OrganizationPage extends BaseSiteRegTestPage {
         this.selectValue('administeringFor', 'Employees');
     }
 
-    /*
-    async fillAddress(data: OrganizationPageTest) {
-        if (data.suiteNo) {
-            await this.typeText('suite', data.suiteNo + ' ');
-        }
-        await this.typeText('street', data.streetNo + ' ');
-        await this.typeText('streetName', data.streetName);
-        if (data.streetAddressLine) {
-            (await this.typeText('addressLine2', data.streetAddressLine));
-        }
-        await this.typeText('city', data.city);
-        await this.selectValue('province', this.province[this.num]);
-        await this.typeText('postalCode', data.postal);
-    }
-    */
-
 }
 
 export class SigningAuthorityPage extends BaseSiteRegTestPage {
@@ -84,7 +68,6 @@ export class SigningAuthorityPage extends BaseSiteRegTestPage {
 
     fillInfo(data: SigningAuthorityPageTest) {
         this.typeText('firstName', data.firstName);
-        // this.typeText('initial', data.initial);
         this.typeText('lastName', data.lastName);
         this.typeText('jobTitle', data.jobTitle);
         this.typeText('emailAddress', data.email);

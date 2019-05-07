@@ -33,7 +33,6 @@ describe('Moh SiteReg - Access Admins Page', () => {
         aaPage.fillInfo(aaData);
         aaPage.scrollDown();
         aaPage.selectValue('administeringFor', 'Employees');
-        browser.sleep(1000 * 10);
         aaPage.continue();
         expect(aaPage.formErrors().count()).toBe(0, 'should be no errors after filling out');
         expect(browser.getCurrentUrl()).toContain(USERS_PAGE_URL, 'should navigate to the Users page');
@@ -45,7 +44,7 @@ describe('Moh SiteReg - Access Admins Page', () => {
         aaPage.fillInfo(aaData);
         aaPage.scrollDown();
         aaPage.selectValue('administeringFor', 'Employees');
-        aaPage.clickButton('btn btn-block btn-lg bg-grey', '');
+        aaPage.clickButton('btn delete', '');
         aaPage.continue();
         expect(aaPage.formErrors().count()).toBe(0, 'should be no errors after filling out');
         expect(browser.getCurrentUrl()).toContain(USERS_PAGE_URL, 'should navigate to the Users page');
