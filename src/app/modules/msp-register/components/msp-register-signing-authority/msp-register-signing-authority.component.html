@@ -1,9 +1,12 @@
+<common-page-framework layout='blank'>
 <h2 class="border-bottom">Signing Authority</h2>
-<sitereg-page-sections *ngIf="fg">
+<div *ngIf="fg">
 
   <sitereg-msp-register-user-msp [fg]="fg" [showMspDirectAccessQuestion]="true" ></sitereg-msp-register-user-msp>
 
-</sitereg-page-sections>
-<common-form-action-bar  class="fixed-bottom" (btnClick)="continue()" [canContinue]="fg.valid">
+</div>
+
+</common-page-framework>
+<common-form-action-bar (btnClick)="continue()" [canContinue]="fg.valid">
 
 </common-form-action-bar>

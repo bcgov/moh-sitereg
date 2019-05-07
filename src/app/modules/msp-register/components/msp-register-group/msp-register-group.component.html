@@ -1,58 +1,59 @@
 <!-- TODO: bit of thinking as to how to make the component work for this. -->
-
-<h2 class="border-bottom">Group Numbers</h2>
-<div class='row mb-4'>
-  <div class='col-md-3 p-4'>
-    <a (click)='addFormGroup()'>
-      <button class="btn btn-block btn-lg btn-secondary">
-        Add New Group Number
-      </button>
-    </a>
-  </div>
-</div>
-<sitereg-page-sections *ngFor="let fg of fgs; index as i">
-  <div class="row border-bottom">
-    <div class="col-auto mr-auto">
-      <h3> Group Number #{{i+1}}</h3>
+<common-page-framework layout='blank'>
+  <h2 class="border-bottom">Group Numbers</h2>
+  <div class='row mb-4'>
+    <div class='col-md-3 p-4'>
+      <a (click)='addFormGroup()'>
+        <button class="btn btn-block btn-lg btn-secondary">
+          Add New Group Number
+        </button>
+      </a>
     </div>
-    <div class="col-auto">
-      <button (click)="deleteFormGroup(i)" type="button" class="btn delete">
+  </div>
+  <!-- <sitereg-page-sections *ngFor="let fg of fgs; index as i"> -->
+    <div *ngFor="let fg of fgs; index as i">
+    <div class="row border-bottom">
+      <div class="col-auto mr-auto">
+        <h3> Group Number #{{i+1}}</h3>
+      </div>
+      <div class="col-auto">
+        <button (click)="deleteFormGroup(i)" type="button" class="btn delete">
           <i style="color: red !important;" class="fa fa-2x fa-times-circle"></i>
-      </button>
-    </div>
-  </div>
-  <form [formGroup]="fg">
-
-    <!--Group Number-->
-    <div class="form-group col-sm-6 p-sm-0">
-      <label class="control-label" for="groupNumber">MSP Group Number #</label>
-      <input id="groupNumber" formControlName="groupNumber" class="form-control">
-      <sitereg-error-box [error]="validFormControl(fg, 'groupNumber')"
-        errorMessage="Invalid Group Number, Group number must be 7 digits long."></sitereg-error-box>
-    </div>
-
-    <!--Question Third Party -->
-    <div class="form-group col-sm-6 p-sm-0" *ngIf="organization.thirdParty">
-      <label class="control-label">Will this group be administered by a 3rd Party Administrator?
-      </label>
-      <br/>
-      <!--No -->
-      <div class="md-radio md-radio-inline">
-        <input formControlName="thirdParty" type="radio" id="bcfalse" tabindex="0"
-          [value]="false">
-        <label for="bcfalse">
-          No
-        </label>
-        <!--Yes-->
-        <input formControlName="thirdParty" type="radio" name="" id="bctrue" tabindex="0"
-          [value]="true">
-        <label for="bctrue">
-          Yes
-        </label>
+        </button>
       </div>
     </div>
-  </form>
-</sitereg-page-sections>
-<common-form-action-bar  class="fixed-bottom" (btnClick)="continue()" [canContinue]="validFormGroup(fgs)">
+    <form [formGroup]="fg">
 
+      <!--Group Number-->
+      <div class="form-group col-sm-6 p-sm-0">
+        <label class="control-label" for="groupNumber">MSP Group Number #</label>
+        <input id="groupNumber" formControlName="groupNumber" class="form-control">
+        <sitereg-error-box [error]="validFormControl(fg, 'groupNumber')"
+          errorMessage="Invalid Group Number, Group number must be 7 digits long."></sitereg-error-box>
+      </div>
+
+      <!--Question Third Party -->
+      <div class="form-group col-sm-6 p-sm-0" *ngIf="organization.thirdParty">
+        <label class="control-label">Will this group be administered by a 3rd Party Administrator?
+        </label>
+        <br />
+        <!--No -->
+        <div class="md-radio md-radio-inline">
+          <input formControlName="thirdParty" type="radio" id="bcfalse" tabindex="0" [value]="false">
+          <label for="bcfalse">
+            No
+          </label>
+          <!--Yes-->
+          <input formControlName="thirdParty" type="radio" name="" id="bctrue" tabindex="0" [value]="true">
+          <label for="bctrue">
+            Yes
+          </label>
+        </div>
+      </div>
+    </form>
+    </div>
+    <!-- </sitereg-page-sections> -->
+   
+</common-page-framework>
+<common-form-action-bar (btnClick)="continue()" [canContinue]="validFormGroup(fgs)">
 </common-form-action-bar>
