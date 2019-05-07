@@ -121,9 +121,11 @@ export function validMultiFormControl(fg: FormGroup, name: string) {
  * @param controlName Name of Control whom input must be matched like confirm email
  * @param matchControlName  Name of Control whom value will be used to match.
  */
-export function matchFieldValidator(controlName: string, matchControlName: string): ValidatorFn {
+export function matchFieldValidator(
+    controlName: string,
+    matchControlName: string
+): ValidatorFn {
     return (formGroup: FormGroup): ValidationErrors | null => {
-
         const matchControl = formGroup.get(matchControlName);
         const control = formGroup.get(controlName);
         // console.log('Control: %o Matching Control: %o', control.value, matchControl.value);

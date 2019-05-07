@@ -28,7 +28,7 @@ export class MspRegistrationGuard implements CanActivateChild {
         // );
 
         // // REMOVEME - debug only
-        // return false;
+        // return true;
         // console.log('%o: route guards', this.registrationService.registrationItems);
         return this.registrationService.moveNext(this.router.url, state.url);
     }

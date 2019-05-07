@@ -15,8 +15,11 @@
     <div class="col-auto mr-auto">
       <h3> Group Number #{{i+1}}</h3>
     </div>
-    <div class="col-auto"><button (click)="deleteFormGroup(i)" type="button"
-      class="btn btn-block btn-lg bg-grey">&#x02A2F;</button></div>
+    <div class="col-auto">
+      <button (click)="deleteFormGroup(i)" type="button" class="btn delete">
+          <i style="color: red !important;" class="fa fa-2x fa-times-circle"></i>
+      </button>
+    </div>
   </div>
   <form [formGroup]="fg">
 
@@ -32,23 +35,24 @@
     <div class="form-group col-sm-6 p-sm-0" *ngIf="organization.thirdParty">
       <label class="control-label">Will this group be administered by a 3rd Party Administrator?
       </label>
-      <!--No-->
-      <div class="form-check">
-        <input class='form-check-input' formControlName="thirdParty" type="radio" id="bcfalse" tabindex="0"
+      <br/>
+      <!--No -->
+      <div class="md-radio md-radio-inline">
+        <input formControlName="thirdParty" type="radio" id="bcfalse" tabindex="0"
           [value]="false">
-        <label class='form-check-label' for="bcfalse">
+        <label for="bcfalse">
           No
         </label>
         <!--Yes-->
-        <input class='form-check-input' formControlName="thirdParty" type="radio" name="" id="bctrue" tabindex="0"
+        <input formControlName="thirdParty" type="radio" name="" id="bctrue" tabindex="0"
           [value]="true">
-        <label class='form-check-label' for="bctrue">
+        <label for="bctrue">
           Yes
         </label>
       </div>
     </div>
   </form>
 </sitereg-page-sections>
-<common-form-action-bar (btnClick)="continue()" [canContinue]="validFormGroup(fgs)">
+<common-form-action-bar  class="fixed-bottom" (btnClick)="continue()" [canContinue]="validFormGroup(fgs)">
 
 </common-form-action-bar>

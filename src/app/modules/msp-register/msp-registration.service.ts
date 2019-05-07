@@ -21,6 +21,8 @@ export interface ProgressItem {
 export class MspRegistrationService {
     //#region properties
 
+    public enableConfirmation = false;
+
     public registrationItems: ProgressItem[] = [];
 
     /**

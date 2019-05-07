@@ -14,10 +14,13 @@
     <div class="col-auto mr-auto">
       <h3> Access Admin #{{fgs.length-i}}</h3>
     </div>
-    <div class="col-auto"><button (click)="deleteFormGroup(i)" type="button"
-      class="btn btn-block btn-lg bg-grey">&#x02A2F;</button></div>
+    <div class="col-auto">
+      <button  class="btn delete"  (click)="deleteFormGroup(i)" type="button">
+      <i style="color: red !important;" class="fa fa-2x fa-times-circle"></i>
+    </button>
+    </div>
   </div>
   <sitereg-msp-register-user-msp [fg]="fg"  [showMspDirectAccessQuestion]="false" ></sitereg-msp-register-user-msp>
 </sitereg-page-sections>
-<common-form-action-bar (btnClick)="continue()" [canContinue]="validFormGroup(fgs)">
+<common-form-action-bar  class="fixed-bottom" (btnClick)="continue()" [canContinue]="validFormGroup(fgs)">
 </common-form-action-bar>

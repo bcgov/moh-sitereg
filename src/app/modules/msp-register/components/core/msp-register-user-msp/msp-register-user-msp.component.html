@@ -6,19 +6,14 @@
         <label class="control-label">
           Does this person require access to MSP Direct?
         </label>
-        <div class="form-check">
+        <br/>
+        <div class="md-radio md-radio-inline">
           <!--No-->
-          <input class='form-check-input' formControlName="directMspAccess" type="radio" id="bcfalse" tabindex="0"
-            [value]="false">
-          <label class='form-check-label' for="bcfalse">
-            No
-          </label>
+          <input formControlName="directMspAccess" type="radio" id="bcfalse" tabindex="0" [value]="false">
+          <label for="bcfalse">No</label>
           <!--Yes-->
-          <input class='form-check-input' formControlName="directMspAccess" type="radio" name="" id="bctrue"
-            tabindex="0" [value]="true">
-          <label class='form-check-label' for="bctrue">
-            Yes
-          </label>
+          <input formControlName="directMspAccess" type="radio" name="" id="bctrue" tabindex="0" [value]="true">
+          <label for="bctrue">Yes</label>
           <sitereg-error-box [error]="validFormControl(fg,'directMspAccess')" errorMessage="Please select an option">
           </sitereg-error-box>
         </div>

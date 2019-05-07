@@ -1,11 +1,14 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MspRegisterStateService } from '@msp-register/services/msp-register-state.service';
 import { CountryData } from '@shared/models/country-data';
 import { BehaviorSubject } from 'rxjs';
 import { IProvince } from '@shared/interfaces/i-provinces';
-import { validFormControl } from '@msp-register/models/validator-helpers';
+import {
+    validFormControl,
+    organizationNumberValidator,
+} from '@msp-register/models/validator-helpers';
 import { MspRegisterDataService } from '@msp-register/services/msp-register-data.service';
 import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
@@ -87,6 +90,29 @@ export class MspRegisterOrganizationComponent implements OnInit {
         this.debugOnly();
 
         this.router.navigate(['msp-registration/signing-authority']);
+    }
+
+    updateThirdPartyValidations(required: boolean) {
+        const administeringForControl = this.fg.get('administeringFor');
+        const organizationNumberControl = this.fg.get('organizationNumber');
+
+        if (required === true) {
+            administeringForControl.setValidators(Validators.required);
+            organizationNumberControl.setValidators([
+                Validators.minLength(8),
+                Validators.maxLength(8),
+                organizationNumberValidator(),
+            ]);
+        } else {
+            administeringForControl.clearValidators();
+            organizationNumberControl.clearValidators();
+
+            administeringForControl.patchValue(null, { emitEvent: false });
+            organizationNumberControl.patchValue(null, { emitEvent: false });
+        }
+
+        administeringForControl.updateValueAndValidity();
+        organizationNumberControl.updateValueAndValidity();
     }
 
     // REMOVEME - debug only

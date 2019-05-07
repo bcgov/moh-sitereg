@@ -13,10 +13,13 @@
     <div class="col-auto mr-auto">
       <h3> User #{{fgs.length-i}}</h3>
     </div>
-    <div class="col-auto"><button (click)="deleteFormGroup(i)" type="button"
-      class="btn btn-block btn-lg bg-grey" alt>&#x02A2F;</button></div>
+    <div class="col-auto">
+      <button (click)="deleteFormGroup(i)" type="button" class="btn delete" alt>
+        <i style="color: red !important;" class="fa fa-2x fa-times-circle"></i>
+    </button>
+  </div>
   </div>
   <sitereg-msp-register-user [fg]="fg"></sitereg-msp-register-user>
 </sitereg-page-sections>
-<common-form-action-bar (btnClick)="continue()" [canContinue]="validateFormGroup(fgs)">
+<common-form-action-bar  class="fixed-bottom" (btnClick)="continue()" [canContinue]="validateFormGroup(fgs)">
 </common-form-action-bar>

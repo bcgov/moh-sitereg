@@ -7,10 +7,14 @@ import { MspRegisterUsersComponent } from '@msp-register/components/msp-register
 import { MspRegisterGroupComponent } from '@msp-register/components/msp-register-group/msp-register-group.component';
 import { MspRegisterAuthorizeComponent } from '@msp-register/components/msp-register-authorize/msp-register-authorize.component';
 import { MSP_REGISTERATION_ROUTES } from './constants';
-import { MspRegistrationCompleteComponent } from './components/msp-registration-complete/msp-registration-complete.component';
 import { MspRegisterAutofillComponent } from './components/autofill/autofill.component';
+import { MspRegisterConfirmationComponent } from './components/msp-register-confirmation/msp-register-confirmation.component';
 
 export const subRoutes: Routes = [
+    {
+        path: '',
+        redirectTo: 'confirmation',
+    },
     {
         // path: 'organization',
         path: MSP_REGISTERATION_ROUTES.ORGANIZATION.path,
@@ -47,16 +51,16 @@ export const subRoutes: Routes = [
         component: MspRegisterAuthorizeComponent,
         data: { title: MSP_REGISTERATION_ROUTES.AUTHORIZE.title },
     },
-
-    //REMOVEME 
     {
-        // path: 'authorize',
-        path: 'complete',
-        component: MspRegistrationCompleteComponent,
-        data: { title: 'complete' },
+        // path: 'confirmation',
+        path: MSP_REGISTERATION_ROUTES.CONFIRMATION.path,
+        component: MspRegisterConfirmationComponent,
+        data: { title: MSP_REGISTERATION_ROUTES.CONFIRMATION.title },
     },
+
+    // REMOVEME
     {
-        // path: 'authorize',
+        // path: 'autofill',
         path: '_autofill',
         component: MspRegisterAutofillComponent,
         data: { title: 'autofill' },

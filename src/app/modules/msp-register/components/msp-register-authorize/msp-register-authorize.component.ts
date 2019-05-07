@@ -53,6 +53,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
     nonce: string;
     showCaptcha = false;
     validCaptch = false;
+    isProcessing = false;
 
     public get signingAuthority(): IMspSigningAuthority {
         return this.mspRegisterStateSvc.signingAuthority;
@@ -102,6 +103,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
     }
 
     continue() {
+        this.isProcessing = true;
         // splunk-log
         this.loggerSvc.logNavigation(
             this.constructor.name,
@@ -125,13 +127,16 @@ export class MspRegisterAuthorizeComponent implements OnInit {
             middleWareObject
         );
 
-        this.copyJsonSchema(middleWareObject);
+        // this.copyJsonSchema(middleWareObject);
 
+        this.mspRegDataSvc.requestFinalStatus = null;
         const requestStatus = {
-            status : false,
+            referenceId: null,
+            status: false,
+            confirmationNumber: null,
             schema: middleWareObject,
             response: null,
-            exception : null
+            exception: null,
         };
 
         this.mspRegApiSvc
@@ -147,6 +152,8 @@ export class MspRegisterAuthorizeComponent implements OnInit {
                 } as LogMessage);
                 this.loggerSvc.logHttpError(err);
                 requestStatus.exception = err;
+
+                this.isProcessing = false;
             })
             .then((result) => {
                 this.loggerSvc.logNavigation(
@@ -155,10 +162,25 @@ export class MspRegisterAuthorizeComponent implements OnInit {
                 );
                 requestStatus.status = true;
                 requestStatus.response = result;
+                requestStatus.referenceId = this.requestUUID;
+
+                if (result && requestStatus.exception === null) {
+                    if (
+                        requestStatus.response.op_return_code &&
+                        requestStatus.response.op_return_code === 'SUCCESS'
+                    ) {
+                        requestStatus.confirmationNumber =
+                            requestStatus.response.op_reference_number;
+                    } else {
+                        requestStatus.status = false;
+                    }
+                }
 
                 this.mspRegDataSvc.requestFinalStatus = requestStatus;
 
-                this.router.navigate(['msp-registration/complete']);
+                this.isProcessing = false;
+                this.registrationService.enableConfirmation = true;
+                this.router.navigate(['msp-registration/confirmation']);
             });
     }
 
@@ -285,7 +307,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
         return (
             this.groupsMSP.length > 0 &&
             ((this.groupsMSP[0].groupNumber as string) &&
-                (this.groupsMSP[0].groupNumber as string).length > 3
+            (this.groupsMSP[0].groupNumber as string).length > 3
                 ? true
                 : false)
         );
