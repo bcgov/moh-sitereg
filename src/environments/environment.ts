@@ -16,6 +16,8 @@ export const environment = {
     promptOnExit: false,
     purgeWhenInactive: false,
     enableLogging: true,
+    /** Show additional debug information such as Technical Details on submission */
+    debug: true,
 };
 
 /*
