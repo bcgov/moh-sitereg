@@ -34,6 +34,7 @@ export class MspRegisterGroupComponent implements OnInit {
         private registrationService: MspRegistrationService
     ) {
         this.updateFormGroups();
+        this.addDefaultFormGroup();
         this.validFormControl = validMultiFormControl.bind(this);
 
         // // debug only
@@ -67,6 +68,13 @@ export class MspRegisterGroupComponent implements OnInit {
         this.debugOnly();
 
         this.router.navigate(['msp-registration/authorize']);
+    }
+
+    addDefaultFormGroup(): void {
+        if ( this.fgs && this.fgs.length === 0 ) {
+            this.addFormGroup();
+            this.updateFormGroups();
+        }
     }
 
     addFormGroup() {
