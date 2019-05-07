@@ -12,4 +12,12 @@ export class SiteRegTestPage extends AbstractTestPage{
     element.all(by.css(`input[ng-reflect-name^="${labelId}"]`)).first().sendKeys(text);
   }
 
+  clickLink(label: string, text: string) {
+    element(by.cssContainingText(label, text)).click();
+  }
+
+  countLength(label: string){
+    element.all(by.css(`select[ng-reflect-name^="${label}"] option`)).getSize();
+  }
+
 }

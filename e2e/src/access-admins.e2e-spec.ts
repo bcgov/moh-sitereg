@@ -49,4 +49,28 @@ describe('Moh SiteReg - Access Admins Page', () => {
         expect(aaPage.formErrors().count()).toBe(0, 'should be no errors after filling out');
         expect(browser.getCurrentUrl()).toContain(USERS_PAGE_URL, 'should navigate to the Users page');
     });
+
+    xit('05. should delete correct admin if user adds two admins and deletes one of them', () => {
+        aaPage.navigateTo();
+        aaPage.clickButton('btn btn-block', ' Add New Access Admin ');
+        aaPage.fillInfo(aaData);
+        aaPage.scrollDown();
+        aaPage.selectValue('administeringFor', 'Employees');
+        aaPage.clickButton('btn delete', '');
+        aaPage.continue();
+        expect(aaPage.formErrors().count()).toBe(0, 'should be no errors after filling out');
+        expect(browser.getCurrentUrl()).toContain(USERS_PAGE_URL, 'should navigate to the Users page');
+    });
+
+    it('06. should NOT be able to continue with an incomplete admin section even if another admin is complete', () => {
+        aaData.lastName = '';
+        aaPage.navigateTo();
+        aaPage.clickButton('btn btn-block', ' Add New Access Admin ');
+        aaPage.fillInfo(aaData);
+        aaPage.scrollDown();
+        aaPage.selectValue('administeringFor', 'Employees');
+        aaPage.continue();
+        expect(browser.getCurrentUrl()).toContain(AA_PAGE_URL);
+    });
+
 });

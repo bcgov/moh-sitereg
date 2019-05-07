@@ -7,6 +7,7 @@ describe('Moh SiteReg - Signing Authority Page', () => {
     const data = new FakeDataSiteReg();
     let saData;
     const SA_PAGE_URL = `msp-registration/signing-authority`;
+    const ORGANIZATION_PAGE_URL = `msp-registration/organization`;
     const AA_PAGE_URL = `msp-registration/access-admins`;
 
     beforeEach(() => {
@@ -36,6 +37,20 @@ describe('Moh SiteReg - Signing Authority Page', () => {
         saPage.continue();
         expect(saPage.formErrors().count()).toBe(0, 'should be no errors after filling out');
         expect(browser.getCurrentUrl()).toContain(AA_PAGE_URL);
+    });
+
+    it('04. should let users go back by clicking the stepper', () => {
+        saPage.navigateTo();
+        saPage.clickLink('span', 'Organization');
+        expect(saPage.formErrors().count()).toBe(0, 'should be no errors');
+        expect(browser.getCurrentUrl()).toContain(ORGANIZATION_PAGE_URL, 'should still be on the previous page');
+    });
+
+    it('05. should NOT let user continue by clicking the stepper', () => {
+        saPage.navigateTo();
+        saPage.clickLink('span', 'Access Admins');
+        expect(saPage.formErrors().count()).toBe(0, 'should be no errors');
+        expect(browser.getCurrentUrl()).toContain(SA_PAGE_URL, 'should still be on the same page');
     });
 
 });

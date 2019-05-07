@@ -44,9 +44,23 @@ describe('Moh SiteReg - Organization Page', () => {
         orgPage.clickOption('thirdPartyTrue');
         orgPage.fillOrgNum(orgData);
         orgPage.selectValue('administeringFor', 'Employees');
-        browser.sleep(1000 * 10);
         orgPage.continue();
         expect(orgPage.formErrors().count()).toBe(0, 'should be no errors after filling out');
     });
+
+    it('05. should not let user continue by clicking the stepper', () => {
+        orgPage.navigateTo();
+        orgPage.clickLink('span', 'Signing Authority')
+        expect(orgPage.formErrors().count()).toBe(0, 'should be no errors');
+        expect(browser.getCurrentUrl()).toContain(ORGANIZATION_PAGE_URL);
+    });
+
+    xit('06. should show all 13 provinces and territories', () => {
+        orgPage.navigateTo();
+        expect(orgPage.countLength('province')).toBe(13, 'should be 13 pronvinces and territories');
+    });
+
+
+    // should show all states when US is selected - no option to select a country
 
 });
