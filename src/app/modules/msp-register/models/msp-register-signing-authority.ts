@@ -26,7 +26,7 @@ export class MspRegisterSigningAuthority
     ext?: ctFormControlString = null;
     fax: ctFormControlString = null;
     administeringFor: ctFormControlString = null;
-    directMspAccess: ctFormControlBoolean = false;
+    directMspAccess: ctFormControlBoolean = null;
 
     get validators() {
         return cUserMspValidators;
