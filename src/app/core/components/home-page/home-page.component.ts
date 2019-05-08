@@ -13,6 +13,6 @@ export class HomePageComponent implements OnInit {
     ngOnInit() {}
 
     mspRegister() {
-        this.router.navigate(['/msp-registration/organization']);
+        this.router.navigate(['/register']);
     }
 }

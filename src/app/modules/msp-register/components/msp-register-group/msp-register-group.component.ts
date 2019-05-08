@@ -7,7 +7,7 @@ import { MspRegisterDataService } from '@msp-register/services/msp-register-data
 import { IMspGroup, IMspOrganization } from '@msp-register/interfaces';
 import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
-import { funcRemoveStrings } from '@msp-register/constants';
+import { funcRemoveStrings, MSP_REGISTER_ROUTES } from '@msp-register/constants';
 import { MspRegistrationService } from '@msp-register/msp-registration.service';
 
 @Component({
@@ -67,7 +67,7 @@ export class MspRegisterGroupComponent implements OnInit {
         // REMOVEME debug-only
         this.debugOnly();
 
-        this.router.navigate(['msp-registration/authorize']);
+        this.router.navigate([MSP_REGISTER_ROUTES.AUTHORIZE.fullpath]);
     }
 
     addDefaultFormGroup(): void {

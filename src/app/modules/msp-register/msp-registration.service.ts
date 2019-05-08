@@ -6,7 +6,7 @@ import {
     PRIMARY_OUTLET,
     UrlSegment,
 } from '@angular/router';
-import { MSP_REGISTERATION_ROUTES } from './constants';
+import { MSP_REGISTER_ROUTES } from './constants';
 // import * as Md5 from 'js-md5';
 
 export interface ProgressItem {
@@ -42,7 +42,7 @@ export class MspRegistrationService {
      * Updats ordered steps to complete registeration
      */
     getRegisterationItems() {
-        this.registrationItems = Object.values(MSP_REGISTERATION_ROUTES).map(
+        this.registrationItems = Object.values(MSP_REGISTER_ROUTES).map(
             (routeInfo) => {
                 return {
                     order: routeInfo.order,

@@ -25,6 +25,7 @@ import { GlobalConfigService } from '@shared/services/global-config.service';
 import {
     funcRemoveStrings,
     funcRandomNumber8Digit,
+    MSP_REGISTER_ROUTES,
 } from '@msp-register/constants';
 import { MspRegistrationService } from '@msp-register/msp-registration.service';
 // import {  } from 'moh-common-lib/captcha';
@@ -180,7 +181,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
 
                 this.isProcessing = false;
                 this.registrationService.enableConfirmation = true;
-                this.router.navigate(['msp-registration/confirmation']);
+                this.router.navigate([MSP_REGISTER_ROUTES.CONFIRMATION.fullpath]);
             });
     }
 

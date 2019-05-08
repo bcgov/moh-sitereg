@@ -9,7 +9,7 @@ import { cAdministeringFor } from '@msp-register/models/core/core-types';
 import { BehaviorSubject } from 'rxjs';
 import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
-import { funcRemoveStrings } from '@msp-register/constants';
+import { funcRemoveStrings, MSP_REGISTER_ROUTES } from '@msp-register/constants';
 import { MspRegistrationService } from '@msp-register/msp-registration.service';
 
 @Component({
@@ -69,7 +69,7 @@ export class MspRegisterAccessAdminsComponent implements OnInit {
         // REMOVEME debug-only
         this.debugOnly();
 
-        this.router.navigate(['msp-registration/users']);
+        this.router.navigate([MSP_REGISTER_ROUTES.USERS.fullpath]);
     }
 
     addFormGroup() {

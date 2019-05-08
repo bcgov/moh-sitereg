@@ -8,7 +8,7 @@ import { validMultiFormControl } from '@msp-register/models/validator-helpers';
 import { IMspUser } from '@msp-register/interfaces/i-msp-user';
 import { cAdministeringFor } from '../../models/core/core-types';
 import { LoggerService } from '@shared/services/logger.service';
-import { funcRemoveStrings } from '@msp-register/constants';
+import { funcRemoveStrings, MSP_REGISTER_ROUTES } from '@msp-register/constants';
 import { GlobalConfigService } from '@shared/services/global-config.service';
 import { MspRegistrationService } from '@msp-register/msp-registration.service';
 
@@ -66,7 +66,7 @@ export class MspRegisterUsersComponent implements OnInit {
         this.debugOnly();
         this.registrationService.setItemComplete();
 
-        this.router.navigate(['msp-registration/group-numbers']);
+        this.router.navigate([MSP_REGISTER_ROUTES.GROUP_NUMBERS.fullpath]);
     }
 
     addFormGroup() {
