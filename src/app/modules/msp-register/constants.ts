@@ -15,8 +15,8 @@ export function funcRandomNumber7Digit() {
 }
 
 export const APPLICATION_ROUTES = {
-    REGISTER : 'register',
-    UPDATE : 'update'
+    REGISTER: 'register',
+    UPDATE: 'update',
 };
 
 export const MSP_REGISTER_ROUTES = {

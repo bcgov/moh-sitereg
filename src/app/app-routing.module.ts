@@ -6,7 +6,7 @@ import { MspRegisterComponent } from './modules/msp-register/msp-register.compon
 const routes: Routes = [
     {
         path: 'home',
-        component: HomePageComponent
+        component: HomePageComponent,
     },
     {
         path: 'register',
@@ -15,8 +15,8 @@ const routes: Routes = [
     },
     {
         path: '**',
-        redirectTo: 'home'
-    }
+        redirectTo: 'home',
+    },
 ];
 
 @NgModule({

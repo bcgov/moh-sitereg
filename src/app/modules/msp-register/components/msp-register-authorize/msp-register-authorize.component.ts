@@ -181,7 +181,9 @@ export class MspRegisterAuthorizeComponent implements OnInit {
 
                 this.isProcessing = false;
                 this.registrationService.enableConfirmation = true;
-                this.router.navigate([MSP_REGISTER_ROUTES.CONFIRMATION.fullpath]);
+                this.router.navigate([
+                    MSP_REGISTER_ROUTES.CONFIRMATION.fullpath,
+                ]);
             });
     }
 

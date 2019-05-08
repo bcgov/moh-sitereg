@@ -12,5 +12,5 @@ export const environment = {
     promptOnExit: true,
     purgeWhenInactive: true,
     enableLogging: true,
-    debug: false
+    debug: false,
 };
