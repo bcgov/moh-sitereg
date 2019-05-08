@@ -8,7 +8,7 @@ import { GlobalConfigService } from '@shared/services/global-config.service';
 export class MspRegisterGroup extends GenerateForm<IMspGroup>
     implements IMspGroup {
     groupNumber: ctFormControlString = null;
-    thirdParty: ctFormControlBoolean = false;
+    thirdParty: ctFormControlBoolean = null;
 
     get validators() {
         return {

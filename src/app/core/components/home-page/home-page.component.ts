@@ -9,6 +9,10 @@ import { APPLICATION_ROUTES } from '@msp-register/constants';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomePageComponent implements OnInit {
+
+    public showUnderConstruction = false;
+    public underConstructionMessage = '';
+
     constructor(private router: Router) {}
 
     ngOnInit() {}
@@ -18,6 +22,13 @@ export class HomePageComponent implements OnInit {
     }
 
     update() {
-        this.router.navigate([`${APPLICATION_ROUTES.UPDATE}`]);
+        this.showMessage('Request for updating MSP Direct Access (Update)');
+        // this.router.navigate([`${APPLICATION_ROUTES.UPDATE}`]);
+    }
+
+    showMessage(featureName: string) {
+        this.showUnderConstruction = true;
+        this.underConstructionMessage = `<b>'${featureName}'</b> is in process of development, will be available later.`;
+        console.log(featureName);
     }
 }
