@@ -15,8 +15,8 @@ export class MspRegisterOrganization extends GenerateForm<IMspOrganization>
     city: ctFormControlString = null;
     province: ctFormControlString = null;
     postalCode: ctFormControlString = null;
-    thirdParty: ctFormControlBoolean = false;
-    blueCross: ctFormControlBoolean = false;
+    thirdParty: ctFormControlBoolean = null;
+    blueCross: ctFormControlBoolean = null;
     administeringFor: ctFormControlString = null;
     suite: ctFormControlString = null;
     street: ctFormControlString = null;

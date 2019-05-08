@@ -17,4 +17,9 @@
       </a>
     </div>
   </div>
+
+  <div class='row mb-4' *ngIf="showUnderConstruction">
+    <div class='col-12 col-sm-6 col-lg-8 p-4' [innerHTML]="underConstructionMessage">
+    </div>
+  </div>
 </common-page-framework>
