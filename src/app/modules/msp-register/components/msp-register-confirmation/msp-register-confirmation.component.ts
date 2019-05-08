@@ -40,7 +40,7 @@ export class MspRegisterConfirmationComponent implements OnInit {
             // splunk-log
         this.loggerSvc.logNavigation(
             this.constructor.name,
-            `Valid Data - Continue button clicked. ${this.globalConfigSvc.applicationId}`
+            `Confirmation Page loaded. ${this.globalConfigSvc.applicationId}`
         );
     }
 
