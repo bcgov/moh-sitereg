@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GlobalConfigService } from '@shared/services/global-config.service';
+import { MSP_REGISTER_ROUTES } from '@msp-register/constants';
 
 @Component({
     selector: 'sitereg-autofill',
@@ -15,6 +16,6 @@ export class MspRegisterAutofillComponent implements OnInit {
 
     ngOnInit() {
         GlobalConfigService.autofillOn();
-        this.router.navigate(['msp-registration/organization']);
+        this.router.navigate([MSP_REGISTER_ROUTES.ORGANIZATION.fullpath]);
     }
 }

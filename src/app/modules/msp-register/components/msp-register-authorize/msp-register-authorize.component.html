@@ -16,8 +16,7 @@
 
       <div class="row">
         <p>THIS AGREMENT is made between <b>Her Majesty the Queen in right of the Province of British Columbia, as
-            represented by the Minister of Health</b> (the "<b>Province</b>") and <b>{{signingAuthority.firstName}}
-            {{organization.name}}</b> (the "<b>Applicant</b>") and witnesses that, for good and valueable
+            represented by the Minister of Health</b> (the "<b>Province</b>") and <b>{{organization.name}}</b> (the "<b>Applicant</b>") and witnesses that, for good and valueable
           consideration (the reciept and sufficiency of which is hereby acknowledged), the Parties agree as follows:
         </p>
         <!--   -->
@@ -186,7 +185,7 @@
     </form>
   </div>
   <common-form-action-bar (btnClick)="continue()" [defaultColor]="false" [canContinue]="validCaptch"
-    [isLoading]="isProcessing | async" submitLabel="Submit Application">
+    [isLoading]="isProcessing" submitLabel="Submit Application">
   </common-form-action-bar>
 </common-page-framework>
 <!-- class="fixed-bottom" -->

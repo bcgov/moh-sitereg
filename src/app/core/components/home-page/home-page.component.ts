@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
+import { APPLICATION_ROUTES } from '@msp-register/constants';
 
 @Component({
     selector: 'sitereg-home-page',
@@ -12,7 +13,11 @@ export class HomePageComponent implements OnInit {
 
     ngOnInit() {}
 
-    mspRegister() {
-        this.router.navigate(['/msp-registration/organization']);
+    register() {
+        this.router.navigate([`${APPLICATION_ROUTES.REGISTER}`]);
+    }
+
+    update() {
+        this.router.navigate([`${APPLICATION_ROUTES.UPDATE}`]);
     }
 }

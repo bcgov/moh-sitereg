@@ -12,7 +12,10 @@ import {
 import { MspRegisterDataService } from '@msp-register/services/msp-register-data.service';
 import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
-import { funcRemoveStrings } from '@msp-register/constants';
+import {
+    funcRemoveStrings,
+    MSP_REGISTER_ROUTES,
+} from '@msp-register/constants';
 import { MspRegistrationService } from '@msp-register/msp-registration.service';
 
 @Component({
@@ -89,7 +92,7 @@ export class MspRegisterOrganizationComponent implements OnInit {
         // REMOVEME debug-only
         this.debugOnly();
 
-        this.router.navigate(['msp-registration/signing-authority']);
+        this.router.navigate([MSP_REGISTER_ROUTES.SIGNING_AUTHORITY.fullpath]);
     }
 
     updateThirdPartyValidations(required: boolean) {
