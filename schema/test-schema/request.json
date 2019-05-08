@@ -1,0 +1,63 @@
+{
+    "request_uuid": "e214b7fe-90de-9682-d350-38724da52dc8",
+    "request_num": "71301235",
+    "org_information": {
+        "contracting_out": {
+            "contracting_third_party": "Y",
+            "third_party_org_num": "12345678"
+        },
+        "org_name": "MAXIMUS Canada",
+        "org_num": "12345678",
+        "suite_num": "101",
+        "street_num": "716",
+        "street_name": "Yates Street",
+        "address_2": "Head Office",
+        "city": "Victoria",
+        "province": "BC",
+        "postal_code": "V3V6A5",
+        "blue_cross": "Y",
+        "org_spg": "E"
+    },
+    "signing_authority_information": {
+        "sa_curtesy_title": "Mr.",
+        "sa_last_name": "Bratchley",
+        "sa_first_name": "Josh",
+        "sa_initial": "K",
+        "sa_job_title": "Senior Diver",
+        "sa_email": "josh.bratchley@maximusbc.ca",
+        "sa_phone_num": "2508129651",
+        "sa_phone_ext": "3",
+        "sa_fax_num": "2508129659",
+        "sa_spg": "E",
+        "sa_msp_access": "Y",
+        "sa_ldap_id": ""
+    },
+    "aa_same_as_sa": "N",
+    "access_administrator": [
+        {
+            "aa_curtesy_title": "Mr.",
+            "aa_last_name": "Bratchley",
+            "aa_first_name": "Josh",
+            "aa_initial": "K",
+            "aa_job_title": "Senior Diver",
+            "aa_email": "josh.bratchley@maximusbc.ca",
+            "aa_phone_num": "2508129651",
+            "aa_phone_ext": "3",
+            "aa_fax_num": "2508129659",
+            "aa_spg": "E",
+            "aa_msp_access": "Y",
+            "aa_ldap_id": ""
+        }
+    ],
+    "users": [],
+    "msp_group": [
+        {
+            "mspgroup_num": "7654321",
+            "mspgroup_name": "",
+            "third_party": "Y"
+        }
+    ],
+    "authorizedBySA": "Y",
+    "authorizedDate": "05-02-2019",
+    "applicationType": "mspdRegistration"
+}

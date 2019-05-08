@@ -1,3 +1,4 @@
+<common-page-framework layout='blank'>
 <h2 class="border-bottom">Users</h2>
 <div class='row mb-4'>
   <div class='col-md-3 p-4'>
@@ -8,15 +9,19 @@
     </a>
   </div>
 </div>
-<sitereg-page-sections *ngFor="let fg of fgs; index as i">
+<div *ngFor="let fg of fgs; index as i">
   <div class="row border-bottom">
     <div class="col-auto mr-auto">
       <h3> User #{{fgs.length-i}}</h3>
     </div>
-    <div class="col-auto"><button (click)="deleteFormGroup(i)" type="button"
-      class="btn btn-block btn-lg bg-grey" alt>&#x02A2F;</button></div>
+    <div class="col-auto">
+      <button (click)="deleteFormGroup(i)" type="button" class="btn delete" alt>
+        <i style="color: red !important;" class="fa fa-2x fa-times-circle"></i>
+    </button>
+  </div>
   </div>
   <sitereg-msp-register-user [fg]="fg"></sitereg-msp-register-user>
-</sitereg-page-sections>
-<common-form-action-bar (btnClick)="continue()" [canContinue]="validateFormGroup(fgs)">
+</div>
+</common-page-framework>
+<common-form-action-bar  (btnClick)="continue()" [canContinue]="validateFormGroup(fgs)">
 </common-form-action-bar>

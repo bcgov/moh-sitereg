@@ -7,7 +7,6 @@ import { BehaviorSubject } from 'rxjs';
     providedIn: 'root',
 })
 export class GlobalConfigService {
-
     // private static instance: GlobalConfigService;
     // private globalConfigServiceSubject = new BehaviorSubject<GlobalConfigService>(null);
 
@@ -17,17 +16,22 @@ export class GlobalConfigService {
     //     }
     //     return GlobalConfigService.instance;
     // }
-    public static internalUUID: string ;
-    public static get uuid(): string {
 
-        if ( GlobalConfigService.internalUUID ) {
-            return GlobalConfigService.internalUUID;
-        } else {
-            GlobalConfigService.internalUUID = UUID.UUID();
-        }
+    //#region static
 
-        return GlobalConfigService.internalUUID;
-    }
+    // public static internalUUID: string ;
+    // public static get uuid(): string {
+
+    //     if ( GlobalConfigService.internalUUID ) {
+    //         return GlobalConfigService.internalUUID;
+    //     } else {
+    //         GlobalConfigService.internalUUID = UUID.UUID();
+    //     }
+
+    //     return GlobalConfigService.internalUUID;
+    // }
+
+    //#endregion
 
     constructor() {}
 
@@ -41,13 +45,9 @@ export class GlobalConfigService {
         return environment;
     }
 
-    //#region msp ApplicationId specific
-
-    private mspApplicationId: string;
-
-    public logRefreshMspApplicationUUID(): string {
-        this.mspApplicationId = UUID.UUID();
-        return this.mspApplicationId;
+    public get isProduction() {
+        return true;
+        // return environment.production;
     }
 
     /**
@@ -61,6 +61,25 @@ export class GlobalConfigService {
 
     public get logMspApplicationName() {
         return 'sitereg';
+    }
+    // REMOVE ME - debug only - to put default value
+    private static autofill = false;
+
+    private mspApplicationId: string;
+
+    public static autofillOn() {
+        GlobalConfigService.autofill = true;
+    }
+
+    public static setDefaults(): boolean {
+        return GlobalConfigService.autofill;
+    }
+
+    //#region msp ApplicationId specific
+
+    public logRefreshMspApplicationUUID(): string {
+        this.mspApplicationId = UUID.UUID();
+        return this.mspApplicationId;
     }
 
     //#endregion

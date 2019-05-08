@@ -5,14 +5,17 @@ import { MspRegisterComponent } from './modules/msp-register/msp-register.compon
 
 const routes: Routes = [
     {
-        path: '',
+        path: 'home',
         component: HomePageComponent,
-        data: { title: 'Home' },
     },
     {
-        path: 'msp-registration',
+        path: 'register',
         loadChildren:
             './modules/msp-register/msp-register.module#MspRegisterModule',
+    },
+    {
+        path: '**',
+        redirectTo: 'home',
     },
 ];
 

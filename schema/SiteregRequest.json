@@ -1,0 +1,351 @@
+{
+    "$comment": "3rd Schema - provided on 2019-04-18",
+    "$id": "moh-sitereg/SiteregRequest.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "request_num_def": {
+            "type": "string",
+            "pattern": "^[0-9]{8}$"
+        },
+        "group_num_def": {
+            "type": "string",
+            "pattern": "^[0-9]{7}$"
+        },
+        "org_information_def": {
+            "type": "object",
+            "properties": {
+                "org_name": {
+                    "type": "string",
+                    "maxLength": 100
+                },
+                "org_num": {
+                    "$ref": "#/definitions/group_num_def"
+                },
+                "suite_num": {
+                    "type": "string",
+                    "maxLength": 10
+                },
+                "street_num": {
+                    "type": "string",
+                    "maxLength": 10
+                },
+                "street_name": {
+                    "type": "string",
+                    "maxLength": 75
+                },
+                "address_2": {
+                    "type": "string",
+                    "maxLength": 200
+                },
+                "city": {
+                    "type": "string",
+                    "maxLength": 25
+                },
+                "province": {
+                    "type": "string",
+                    "maxLength": 3
+                },
+                "postal_code": {
+                    "type": "string",
+                    "pattern": "^ABCEGHJ-NPRSTV-Z][0-9][ABCEGHJ-NPRSTV-Z][0-9][ABCEGHJ-NPRSTV-Z][0-9]$"
+                },
+                "contracting_out": {
+                    "type": "object",
+                    "properties": {
+                        "contracting_third_party": {
+                            "type": "string",
+                            "pattern": "^[YN]$"
+                        },
+                        "third_party_org_num": {
+                            "$ref": "#/definitions/group_num_def"
+                        }
+                    },
+                    "required": [
+                        "contracting_third_party"
+                    ]
+                },
+                "blue_cross": {
+                    "type": "string",
+                    "pattern": "^[YN]$"
+                },
+                "org_spg": {
+                    "type": "string",
+                    "pattern": "^[EIB]$"
+                }
+            },
+            "required": [
+                "org_name",
+                "suite_num",
+                "street_num",
+                "street_name",
+                "city",
+                "province",
+                "postal_code",
+                "contracting_out",
+                "blue_cross",
+                "org_spg"
+            ]
+        },
+        "signing_authority_def": {
+            "type": "object",
+            "properties": {
+                "sa_curtesy_title": {
+                    "type": "string",
+                    "maxLength": 5
+                },
+                "sa_last_name": {
+                    "type": "string",
+                    "maxLength": 100
+                },
+                "sa_first_name": {
+                    "type": "string",
+                    "maxLength": 100
+                },
+                "sa_initial": {
+                    "type": "string",
+                    "maxLength": 1
+                },
+                "sa_job_title": {
+                    "type": "string",
+                    "maxLength": 100
+                },
+                "sa_email": {
+                    "type": "string",
+                    "maxLength": 100
+                },
+                "sa_phone_num": {
+                    "type": "string",
+                    "pattern": "^[1-9][0-9]{2}[0-9]{7}$|^$"
+                },
+                "sa_phone_ext": {
+                    "type": "string",
+                    "maxLength": 100
+                },
+                "sa_fax_num": {
+                    "type": "string",
+                    "pattern": "^[1-9][0-9]{2}[0-9]{7}$|^$"
+                },
+                "sa_msp_access": {
+                    "type": "string",
+                    "pattern": "^[YN]$"
+                },
+                "sa_spg": {
+                    "type": "string",
+                    "pattern": "^[EIB]$"
+                },
+                "sa_ldap_id": {
+                    "type": "string",
+                    "pattern": ""
+                }
+            },
+            "required": [
+                "sa_first_name",
+                "sa_last_name",
+                "sa_job_title",
+                "sa_email",
+                "sa_phone_num",
+                "sa_msp_access",
+                "sa_spg"
+            ]
+        },
+        "access_administrator_def": {
+            "type": "object",
+            "properties": {
+                "aa_curtesy_title": {
+                    "type": "string",
+                    "maxLength": 5
+                },
+                "aa_last_name": {
+                    "type": "string",
+                    "maxLength": 100
+                },
+                "aa_first_name": {
+                    "type": "string",
+                    "maxLength": 100
+                },
+                "aa_initial": {
+                    "type": "string",
+                    "maxLength": 1
+                },
+                "aa_job_title": {
+                    "type": "string",
+                    "maxLength": 100
+                },
+                "aa_email": {
+                    "type": "string",
+                    "maxLength": 100
+                },
+                "aa_phone_num": {
+                    "type": "string",
+                    "pattern": "^[1-9][0-9]{2}[0-9]{7}$|^$"
+                },
+                "aa_phone_ext": {
+                    "type": "string",
+                    "maxLength": 100
+                },
+                "aa_fax_num": {
+                    "type": "string",
+                    "pattern": "^[1-9][0-9]{2}[0-9]{7}$|^$"
+                },
+                "aa_msp_access": {
+                    "type": "string",
+                    "pattern": "^[YN]$"
+                },
+                "aa_spg": {
+                    "type": "string",
+                    "pattern": "^[EIB]$"
+                },
+                "aa_ldap_id": {
+                    "type": "string",
+                    "pattern": ""
+                }
+            },
+            "required": [
+                "aa_first_name",
+                "aa_last_name",
+                "aa_job_title",
+                "aa_email",
+                "aa_phone_num",
+                "aa_msp_access",
+                "aa_spg"
+            ]
+        },
+        "user_def": {
+            "type": "object",
+            "properties": {
+                "user_curtesy_title": {
+                    "type": "string",
+                    "maxLength": 5
+                },
+                "user_last_name": {
+                    "type": "string",
+                    "maxLength": 100
+                },
+                "user_first_name": {
+                    "type": "string",
+                    "maxLength": 100
+                },
+                "user_initial": {
+                    "type": "string",
+                    "maxLength": 1
+                },
+                "user_job_title": {
+                    "type": "string",
+                    "maxLength": 100
+                },
+                "user_email": {
+                    "type": "string",
+                    "maxLength": 100
+                },
+                "user_phone_num": {
+                    "type": "string",
+                    "pattern": "^[1-9][0-9]{2}[0-9]{7}$|^$"
+                },
+                "user_phone_ext": {
+                    "type": "string",
+                    "maxLength": 100
+                },
+                "user_fax_num": {
+                    "type": "string",
+                    "pattern": "^[1-9][0-9]{2}[0-9]{7}$|^$"
+                },
+                "user_spg": {
+                    "type": "string",
+                    "pattern": "^[EIB]$"
+                }
+            },
+            "required": [
+                "user_first_name",
+                "user_last_name",
+                "user_job_title",
+                "user_email",
+                "user_phone_num",
+                "user_spg"
+            ]
+        },
+        "msp_group_def": {
+            "type": "object",
+            "properties": {
+                "mspgroup_num": {
+                    "$ref": "#/definitions/group_num_def"
+                },
+                "mspgroup_name": {
+                    "type": "string",
+                    "maxLength": 100
+                },
+                "third_party": {
+                    "type": "string",
+                    "pattern": "^[YN]$"
+                }
+            },
+            "required": [
+                "mspgroup_num",
+                "mspgroup_name",
+                "third_party"
+            ]
+        }
+    },
+    "title": "SiteregRequest",
+    "type": "object",
+    "properties": {
+        "request_uuid": {
+            "type": "string"
+        },
+        "request_num": {
+            "$ref": "#/definitions/request_num_def"
+        },
+        "org_information": {
+            "$ref": "#/definitions/org_information_def"
+        },
+        "signing_authority_information": {
+            "$ref": "#/definitions/signing_authority_def"
+        },
+        "aa_same_as_sa": {
+            "type": "string",
+            "pattern": "^[YN]$"
+        },
+        "access_administrator": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/access_administrator_def"
+            },
+            "default": []
+        },
+        "users": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/user_def"
+            },
+            "default": []
+        },
+        "msp_group": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/msp_group_def"
+            },
+            "default": []
+        },
+        "authorizedBySA": {
+            "type": "string",
+            "pattern": "^[YN]$"
+        },
+        "authorizedDate": {
+            "type": "string",
+            "pattern": "^[0-9]{2}-[0-9]{2}-[12][0-9]{3}$"
+        },
+        "applicationType": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "request_uuid",
+        "request_num",
+        "org_information",
+        "signing_authority_information",
+        "access_administrator_present",
+        "users",
+        "msp_group",
+        "authorizedBySA",
+        "authorizedDate"
+    ]
+}

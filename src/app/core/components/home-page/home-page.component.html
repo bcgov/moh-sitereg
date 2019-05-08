@@ -1,11 +1,25 @@
 <common-page-framework>
   <div class='row mb-4'>
-    <div class='col-md-3 p-4'>
-      <a (click)='mspRegister()'>
+    <div class='col-12 col-sm-6 col-lg-8 p-4'>
+      <a (click)='register()'>
         <button class="btn btn-block btn-lg btn-secondary">
-          Request for MSP Direct Access
+          Request for MSP Direct Access (Register)
         </button>
       </a>
+    </div>
+  </div>
+  <div class='row mb-4'>
+    <div class='col-12 col-sm-6 col-lg-8 p-4'>
+      <a (click)='update()'>
+        <button class="btn btn-block btn-lg btn-secondary">
+          Request for updating MSP Direct Access (Update)
+        </button>
+      </a>
+    </div>
+  </div>
+
+  <div class='row mb-4' *ngIf="showUnderConstruction">
+    <div class='col-12 col-sm-6 col-lg-8 p-4' [innerHTML]="underConstructionMessage">
     </div>
   </div>
 </common-page-framework>

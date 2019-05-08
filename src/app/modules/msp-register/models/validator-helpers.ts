@@ -1,9 +1,10 @@
 import {
-    ValidatorFn,
     Validators,
     FormControl,
     AbstractControl,
     FormGroup,
+    ValidatorFn,
+    ValidationErrors,
 } from '@angular/forms';
 
 export type validatorOpts = 'req' | 'min' | 'max';
@@ -56,6 +57,18 @@ export function groupNumberValidator(): ValidatorFn {
 }
 
 /**
+ * Validates organization number
+ */
+export function organizationNumberValidator(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+        const forbidden = !/^[0-9]{8}$/.test(control.value);
+        return forbidden
+            ? { invalidGroupNumber: { value: control.value } }
+            : null;
+    };
+}
+
+/**
  * Validates number, alphabetics, small braces, slash ,hyphen, colon, full stop
  */
 export function addressValidator(): ValidatorFn {
@@ -101,6 +114,30 @@ export function validFormControl(name: string) {
 export function validMultiFormControl(fg: FormGroup, name: string) {
     if (fg.controls[name].pristine) return false;
     return fg.controls[name].invalid;
+}
+
+/**
+ * Matches field value with another field value.
+ * @param controlName Name of Control whom input must be matched like confirm email
+ * @param matchControlName  Name of Control whom value will be used to match.
+ */
+export function matchFieldValidator(
+    controlName: string,
+    matchControlName: string
+): ValidatorFn {
+    return (formGroup: FormGroup): ValidationErrors | null => {
+        const matchControl = formGroup.get(matchControlName);
+        const control = formGroup.get(controlName);
+        // console.log('Control: %o Matching Control: %o', control.value, matchControl.value);
+        if (!(control.value === matchControl.value)) {
+            control.setErrors({ match: true });
+            // console.log(formGroup);
+            return null;
+        }
+        control.setErrors({ match: null });
+        control.updateValueAndValidity({ onlySelf: true });
+        return null;
+    };
 }
 
 export const required = Validators.required;

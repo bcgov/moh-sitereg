@@ -1,0 +1,57 @@
+<div *ngIf="status">
+  <h2 class="border-bottom">Confirmation Message</h2>
+  <div class="message-container border border-success">
+    <p class="prime-icon--success">
+      <i aria-label="success" class="fa fa-2x fa-check-circle text-success"></i>
+    </p>
+    <!---->
+    <p>Your application has been submitted. Your confirmation number is  <b>{{mspRegDataSvc.requestFinalStatus?.confirmationNumber }}</b>.</p>
+    <!---->
+  </div>
+</div>
+
+<div *ngIf="!(status)">
+  <h2 class="border-bottom">Please fill application again</h2>
+  <div class='row'>
+    <div class='col-md-4 p-4'>
+      <a (click)='redirect()'>
+        <button class="btn btn-block btn-lg btn-secondary">
+          Request for MSP Direct Access
+        </button>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+<div class='row' *ngIf="isTechnicalInfoAvaialble && debugMode">
+  <div class='col-md-4 p-4'>
+    <div  (click)="toggleDetail()">Technical information</div>
+  </div>
+</div>
+
+
+<div class="card" *ngIf="showDetail && isTechnicalInfoAvaialble && debugMode">
+  <div class="card-body">
+      <h5 class="card-title">Reference Identifier</h5>
+      <p class="card-text">
+        {{mspRegDataSvc.requestFinalStatus?.referenceId}}
+      </p>
+  
+    <h5 class="card-title">Response</h5>
+    <p class="card-text">
+      {{mspRegDataSvc.requestFinalStatus?.response | json}}
+    </p>
+
+    <h5 class="card-title">Middleware Schema</h5>
+    <p class="card-text">
+      {{mspRegDataSvc.requestFinalStatus?.schema | json}}
+    </p>
+
+    <h5 class="card-title">Exception</h5>
+    <p class="card-text">
+      {{mspRegDataSvc.requestFinalStatus?.exception | json}}
+    </p>
+
+  </div>
+</div>

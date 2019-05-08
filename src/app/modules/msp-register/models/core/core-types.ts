@@ -10,8 +10,7 @@ export type ctFormControlUserTitle =
     | 'Ms.'
     | 'Dr.'
     | 'Prof.'
-    | 'Rev.'
-    | '';
+    | 'Rev.';
 
 // export type ctUserTitle = 'Mr.' | 'Mrs.' | 'Ms.' | 'Dr.' | 'Prof.' | 'Rev.';
 
@@ -21,7 +20,7 @@ export const cAdministeringFor = [
     'Employees and International Students',
 ];
 
-export const cUserTitles = ['Mr.', 'Mrs.', 'Ms.', 'Dr.', 'Prof.', 'Rev.', ''];
+export const cUserTitles = ['Mr.', 'Mrs.', 'Ms.', 'Dr.', 'Prof.', 'Rev.'];
 
 /**
  * Validators for user with 'NO directAccess to Msp' option
