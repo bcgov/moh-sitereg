@@ -76,6 +76,19 @@ export class SigningAuthorityPage extends BaseSiteRegTestPage {
         this.typeText('ext', data.extension + '');
         this.typeText('fax', data.fax + '');
     }
+
+    /*
+    fillInfor(index: string, data: SigningAuthorityPageTest) {
+        this.typeTextNthChild(index, 'firstName', data.firstName);
+        this.typeTextNthChild(index, 'lastName', data.lastName);
+        this.typeTextNthChild(index, 'jobTitle', data.jobTitle);
+        this.typeTextNthChild(index, 'emailAddress', data.email);
+        this.typeTextNthChild(index, 'confirmEmail', data.email);
+        this.typeTextNthChild(index, 'phone', data.mobile + '');
+        this.typeTextNthChild(index, 'ext', data.extension + '');
+        this.typeTextNthChild(index, 'fax', data.fax + '');
+    }
+    */
 }
 
 export class AccessAdminsPage extends SigningAuthorityPage {
@@ -125,6 +138,22 @@ export class AuthorizePage extends BaseSiteRegTestPage {
 
     navigateTo() {
         return browser.get('/msp-registration/authorize');
+    }
+
+}
+
+export class SpecialCasePage extends BaseSiteRegTestPage {
+
+    constructor() {
+        super();
+    }
+
+    navigateTo() {
+        return browser.get('/msp-registration/_autofill');
+    }
+
+    getTextFromField() {
+        return (element(by.css('input[ng-reflect-name="name"]')).getText());
     }
 
 }

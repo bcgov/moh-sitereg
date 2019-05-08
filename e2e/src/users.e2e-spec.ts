@@ -6,6 +6,7 @@ describe('Moh SiteReg - Users Page', () => {
     let usersPage: UsersPage;
     const data = new FakeDataSiteReg();
     let usersData;
+    let usersData2;
     const USERS_PAGE_URL = `msp-registration/users`;
     const GROUP_PAGE_URL = `msp-registration/group-numbers`;
 
@@ -47,7 +48,36 @@ describe('Moh SiteReg - Users Page', () => {
         usersPage.clickButton('btn delete', '');
         usersPage.continue();
         expect(usersPage.formErrors().count()).toBe(0, 'should be no errors after filling out');
-        expect(browser.getCurrentUrl()).toContain(GROUP_PAGE_URL, 'should navigate to the Users page');
+        expect(browser.getCurrentUrl()).toContain(GROUP_PAGE_URL, 'should navigate to the Group Numbers page');
+    });
+
+    // Additional Tests
+    it('05. should delete correct admin if user adds two admins and deletes one of them', () => {
+        usersData2 = data.signingAuthorityInfo();
+        usersPage.navigateTo();
+        usersPage.clickButton('btn btn-block', ' Add New User ');
+        usersPage.fillInfo(usersData);
+        usersPage.scrollDown();
+        usersPage.selectValue('administeringFor', 'Employees');
+        usersPage.clickButton('btn btn-block', ' Add New User ');
+        usersPage.fillInfo(usersData2);
+        usersPage.selectValue('administeringFor', 'Employees');
+        usersPage.scrollDown();
+        usersPage.clickButton('btn delete', ''); // deletes the second admin created (latest one)
+        usersPage.continue();
+        expect(usersPage.formErrors().count()).toBe(0, 'should be no errors after filling out');
+        expect(browser.getCurrentUrl()).toContain(GROUP_PAGE_URL, 'should navigate to the Group Numbers page');
+    });
+
+    it('06. should NOT be able to continue with an incomplete user section even if another admin is complete', () => {
+        usersData.lastName = '';
+        usersPage.navigateTo();
+        usersPage.clickButton('btn btn-block', ' Add New User ');
+        usersPage.fillInfo(usersData);
+        usersPage.scrollDown();
+        usersPage.selectValue('administeringFor', 'Employees');
+        usersPage.continue();
+        expect(browser.getCurrentUrl()).toContain(USERS_PAGE_URL);
     });
 
 });

@@ -6,6 +6,7 @@ describe('Moh SiteReg - Access Admins Page', () => {
     let aaPage: AccessAdminsPage;
     const data = new FakeDataSiteReg();
     let aaData;
+    let aaData2;
     const AA_PAGE_URL = `msp-registration/access-admins`;
     const USERS_PAGE_URL = `msp-registration/users`;
 
@@ -50,13 +51,19 @@ describe('Moh SiteReg - Access Admins Page', () => {
         expect(browser.getCurrentUrl()).toContain(USERS_PAGE_URL, 'should navigate to the Users page');
     });
 
-    xit('05. should delete correct admin if user adds two admins and deletes one of them', () => {
+    // Additional Tests
+    it('05. should delete correct admin if user adds two admins and deletes one of them', () => {
+        aaData2 = data.signingAuthorityInfo();
         aaPage.navigateTo();
         aaPage.clickButton('btn btn-block', ' Add New Access Admin ');
         aaPage.fillInfo(aaData);
         aaPage.scrollDown();
         aaPage.selectValue('administeringFor', 'Employees');
-        aaPage.clickButton('btn delete', '');
+        aaPage.clickButton('btn btn-block', ' Add New Access Admin ');
+        aaPage.fillInfo(aaData2);
+        aaPage.selectValue('administeringFor', 'Employees');
+        aaPage.scrollDown();
+        aaPage.clickButton('btn delete', ''); // deletes the second admin created (latest one)
         aaPage.continue();
         expect(aaPage.formErrors().count()).toBe(0, 'should be no errors after filling out');
         expect(browser.getCurrentUrl()).toContain(USERS_PAGE_URL, 'should navigate to the Users page');

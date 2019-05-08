@@ -17,7 +17,11 @@ export class SiteRegTestPage extends AbstractTestPage{
   }
 
   countLength(label: string){
-    element.all(by.css(`select[ng-reflect-name^="${label}"] option`)).getSize();
+    return $$(`select[ng-reflect-name^="${label}"] option`);
+  }
+
+  typeTextNthChild(index: string, labelId: string, text: string) {
+    element(by.css(`sitereg-msp-register-user-msp:nth-child(${index}) input[ng-reflect-name^="${labelId}"]`)).sendKeys(text);
   }
 
 }

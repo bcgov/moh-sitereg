@@ -1,6 +1,6 @@
 import { browser } from 'protractor';
 import { FakeDataSiteReg } from './sitereg.data';
-import { SigningAuthorityPage, OrganizationPage, AccessAdminsPage, UsersPage, GroupNumbersPage, AuthorizePage } from './sitereg.po';
+import { SigningAuthorityPage, OrganizationPage, AccessAdminsPage, UsersPage, GroupNumbersPage, AuthorizePage, SpecialCasePage } from './sitereg.po';
 
 describe('BCSC Enrollment - End to End', () => {
     let orgPage: OrganizationPage;
@@ -9,6 +9,7 @@ describe('BCSC Enrollment - End to End', () => {
     let usersPage: UsersPage;
     let groupPage: GroupNumbersPage;
     let authPage: AuthorizePage;
+    let scPage: SpecialCasePage;
     const data = new FakeDataSiteReg();
     let orgData;
     let saData;
@@ -21,6 +22,7 @@ describe('BCSC Enrollment - End to End', () => {
         usersPage = new UsersPage();
         groupPage = new GroupNumbersPage();
         authPage = new AuthorizePage();
+        scPage = new SpecialCasePage();
         orgData = data.organizationInfo();
         saData = data.signingAuthorityInfo();
         groupData = data.groupNumbersInfo();
@@ -62,6 +64,12 @@ describe('BCSC Enrollment - End to End', () => {
         authPage.scrollDown();
         authPage.clickCheckBox('consent');
     }, 60000);
+
+    // Test will fail since _autofill is still active in dev mode
+    xit('02. should not be able to access "_autofill" dev only URL', () => {
+        scPage.navigateTo();
+        expect(scPage.getTextFromField()).toBe('', 'should be empty');
+    });
 
 });
 

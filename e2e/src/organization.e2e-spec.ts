@@ -48,6 +48,7 @@ describe('Moh SiteReg - Organization Page', () => {
         expect(orgPage.formErrors().count()).toBe(0, 'should be no errors after filling out');
     });
 
+    // Additional tests
     it('05. should not let user continue by clicking the stepper', () => {
         orgPage.navigateTo();
         orgPage.clickLink('span', 'Signing Authority')
@@ -55,12 +56,11 @@ describe('Moh SiteReg - Organization Page', () => {
         expect(browser.getCurrentUrl()).toContain(ORGANIZATION_PAGE_URL);
     });
 
-    xit('06. should show all 13 provinces and territories', () => {
+    it('06. should show all 13 provinces and territories', () => {
         orgPage.navigateTo();
-        expect(orgPage.countLength('province')).toBe(13, 'should be 13 pronvinces and territories');
+        expect(orgPage.countLength('province').count()).toBe(14, 'should be 13 pronvinces and territories plus the Select Province option');
     });
 
-
-    // should show all states when US is selected - no option to select a country
+    // should show all states when US is selected - NO OPTION TO SELECT A COUNTRY
 
 });

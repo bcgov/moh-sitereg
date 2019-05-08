@@ -39,6 +39,7 @@ describe('Moh SiteReg - Signing Authority Page', () => {
         expect(browser.getCurrentUrl()).toContain(AA_PAGE_URL);
     });
 
+    // Additional Tests
     it('04. should let users go back by clicking the stepper', () => {
         saPage.navigateTo();
         saPage.clickLink('span', 'Organization');
