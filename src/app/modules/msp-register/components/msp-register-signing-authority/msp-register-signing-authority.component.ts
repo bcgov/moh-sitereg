@@ -63,7 +63,7 @@ export class MspRegisterSigningAuthorityComponent implements OnInit {
         // splunk-log
         this.loggerSvc.logNavigation(
             this.constructor.name,
-            'Valid Data - Continue button clicked.'
+            `Valid Data - Continue button clicked. ${this.globalConfigSvc.applicationId}`
         );
 
         this.updateSingingAuthorityAsAdmin();
