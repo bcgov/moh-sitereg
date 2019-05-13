@@ -15,7 +15,7 @@ const routes: Routes = [
     },
     {
         path: 'maintenance',
-        loadChildren: 'app/modules/splash-page/splash-page.module#SplashPageModule',
+        loadChildren: './modules/splash-page/splash-page.module#SplashPageModule',
     },
     {
         path: '**',
