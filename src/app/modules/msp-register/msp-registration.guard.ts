@@ -7,6 +7,8 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { MspRegistrationService } from './msp-registration.service';
+import { environment } from './../../../environments/environment';
+
 @Injectable({
     providedIn: 'root',
 })
@@ -28,7 +30,7 @@ export class MspRegistrationGuard implements CanActivateChild {
         // );
 
         // // REMOVEME - debug only
-        // return true;
+        // if (environment.bypassGuards) return true;
         // console.log('%o: route guards', this.registrationService.registrationItems);
         return this.registrationService.moveNext(this.router.url, state.url);
     }

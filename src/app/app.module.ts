@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from '@core/core.module';
 import { SharedModule } from '@shared/shared.module';
-import { MspRegistrationService } from '@msp-register/msp-registration.service';
+// import { MspRegistrationService } from '@msp-register/msp-registration.service';
 
 @NgModule({
     declarations: [AppComponent],
@@ -17,7 +17,9 @@ import { MspRegistrationService } from '@msp-register/msp-registration.service';
         CoreModule,
         SharedModule,
     ],
-    providers: [MspRegistrationService],
+    providers: [
+        // MspRegistrationService
+    ],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -11,13 +11,18 @@ export const environment = {
     captchaApiBaseUrl: '/sitereg/api/captcha',
     envServerUrl: '/sitereg/api/env',
     logHTTPRequestsToConsole: true,
-    bypassGuards: true,
+    bypassGuards: false,
     bypassSplashPage: false,
     promptOnExit: false,
     purgeWhenInactive: false,
     enableLogging: true,
     /** Show additional debug information such as Technical Details on submission */
     debug: true,
+    /** Link used in app */
+    links: {
+        FAQ: 'https://www2.gov.bc.ca/gov/content/health/practitioner-professional-resources/system-access/msp-direct',
+        MSP: 'https://www2.gov.bc.ca/gov/content/health/practitioner-professional-resources/system-access/msp-direct'
+    }
 };
 
 /*
