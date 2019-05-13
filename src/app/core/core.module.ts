@@ -7,6 +7,6 @@ import { HttpClientModule } from '@angular/common/http';
     declarations: [HomePageComponent],
     imports: [CommonModule, SharedModule, HttpClientModule],
     providers: [],
-    exports: [HomePageComponent],
+    exports: [SharedModule, HomePageComponent],
 })
 export class CoreModule {}

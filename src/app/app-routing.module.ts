@@ -14,6 +14,10 @@ const routes: Routes = [
             './modules/msp-register/msp-register.module#MspRegisterModule',
     },
     {
+        path: 'maintenance',
+        loadChildren: 'app/modules/splash-page/splash-page.module#SplashPageModule',
+    },
+    {
         path: '**',
         redirectTo: 'home',
     },
