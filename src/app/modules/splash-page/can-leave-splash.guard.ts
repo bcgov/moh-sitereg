@@ -12,8 +12,8 @@ export interface CanComponentDeactivate {
 })
 export class CanLeaveSplashGuard implements CanDeactivate<CanComponentDeactivate> {
 
-  constructor(private splash: SplashPageService){}
-  canDeactivate(){
-    return !this.splash.maintenanceMode;
+  constructor(private splash: SplashPageService) { }
+  canDeactivate() {
+     return !this.splash.maintenanceMode;
   }
 }

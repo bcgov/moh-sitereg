@@ -6,7 +6,7 @@ import * as moment from 'moment';
 import { environment } from './../../../../../environments/environment';
 
 @Component({
-  selector: 'fpcare-splash-page',
+  selector: 'sitereg-splash-page',
   templateUrl: './splash-page.component.html',
   styleUrls: ['./splash-page.component.scss']
 })
@@ -23,7 +23,7 @@ export class SplashPageComponent implements OnInit {
   ngOnInit() {
     this.links = environment.links;
     this.sub$ = this.splashService.values.subscribe(splashVals => {
-      if (splashVals){
+      if (splashVals) {
         this.startTime = splashVals.SPA_ENV_FPC_MAINTENANCE_START;
         this.endTime = splashVals.SPA_ENV_FPC_MAINTENANCE_END;
         this.message = splashVals.SPA_ENV_FPC_MAINTENANCE_MESSAGE;
@@ -32,14 +32,14 @@ export class SplashPageComponent implements OnInit {
       // Unfortunately, these guards don't play nice with direct deep linking,
       // and redirect to a blank page.  This instead redirects to homepage.
       // We have to check this in the subscribe so we know it's updated
-      if (!this.splashService.maintenanceMode){
+      if (!this.splashService.maintenanceMode) {
         // Navigate back to homepage if someone tries to load the splash page when it's disabled.
         this.router.navigate(['/']);
       }
     });
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.sub$.unsubscribe();
   }
 
