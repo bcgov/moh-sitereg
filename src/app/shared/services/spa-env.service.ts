@@ -13,10 +13,10 @@ import { retry, filter } from 'rxjs/operators';
  * will be updated.
  */
 const serverEnvs = {
-  SPA_ENV_FPC_MAINTENANCE_FLAG: '',
-  SPA_ENV_FPC_MAINTENANCE_START: '',
-  SPA_ENV_FPC_MAINTENANCE_END: '',
-  SPA_ENV_FPC_MAINTENANCE_MESSAGE: '',
+  SPA_ENV_SITEREG_MAINTENANCE_FLAG: '',
+  SPA_ENV_SITEREG_MAINTENANCE_START: '',
+  SPA_ENV_SITEREG_MAINTENANCE_END: '',
+  SPA_ENV_SITEREG_MAINTENANCE_MESSAGE: '',
 };
 
 // Used in HTTP request
