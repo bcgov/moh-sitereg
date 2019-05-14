@@ -19,6 +19,7 @@ export class SplashPageService {
   private loaded = false;
   public maintenanceMode: boolean = null;
 
+// tslint:disable-next-line: variable-name
   private _values = new BehaviorSubject<SpaEnvResponse>( null );
   /**
    * Currently this is all the values from the SpaEnvService, because all those
@@ -48,8 +49,7 @@ export class SplashPageService {
     return new Promise((resolve, reject) => {
       if (this.loaded) {
         resolve(this.maintenanceMode);
-      }
-      else {
+      } else {
         this.envService.values.subscribe(envs => {
           console.log('enviornment variable');
           console.log(envs);
