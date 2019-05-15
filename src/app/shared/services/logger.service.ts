@@ -2,6 +2,7 @@ import { CommonLogger, CommonLogMessage } from 'moh-common-lib/services';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { GlobalConfigService } from './global-config.service';
+import { environment } from 'src/environments/environment.prod';
 
 export interface LogMessage {
     event: string;
@@ -45,7 +46,7 @@ export class LoggerService extends CommonLogger {
 
             //  console.log(`%o <= Logger Application ID at Log`, this.applicationId);
 
-            this.globalConfigSvc.isProduction
+            environment.debug
                 ? this._log(message as CommonLogMessage)
                 : console.log(
                       `%c splunk-log \n\t %o`,

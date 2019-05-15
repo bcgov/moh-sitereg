@@ -5,6 +5,7 @@ import { GlobalConfigService } from '@shared/services/global-config.service';
 import { routes } from '../../routing/routes';
 import { MspDirectUpdateProgressService } from '../../services/progress.service';
 import { funcRemoveStrings } from '@msp-register/constants';
+import { LoggerService } from '@shared/services/logger.service';
 
 @Component({
     selector: 'sitereg-msp-update',
@@ -12,14 +13,21 @@ import { funcRemoveStrings } from '@msp-register/constants';
     styleUrls: ['./update.component.sass'],
 })
 export class MspDirectUpdateComponent extends Container implements OnInit {
+
+    get componentInfo(): string {
+        return  `${ funcRemoveStrings(['MspDirectUpdate', 'Component'], this.constructor.name).toUpperCase() } :` +
+        ` ${this.globalConfigSvc.applicationId}`;
+    }
+
     showStepper(): boolean {
-        return !this.progressItemsService.enableConfirmation;
+        return !this.progressService.enableConfirmation;
     }
 
     constructor(
-        private progressItemsService: MspDirectUpdateProgressService,
         private router: Router,
-        private globalConfigSvc: GlobalConfigService
+        private progressService: MspDirectUpdateProgressService,
+        private loggerSvc: LoggerService,
+        private globalConfigSvc: GlobalConfigService,
     ) {
         super();
         this.setProgressItems();
@@ -34,7 +42,7 @@ export class MspDirectUpdateComponent extends Container implements OnInit {
             this.globalConfigSvc.applicationId
         );
 
-        this.progressItemsService.getUpdateItems();
+        this.progressService.getUpdateItems();
 
         console.log('ANSWER:%o', this.showStepper());
     }
