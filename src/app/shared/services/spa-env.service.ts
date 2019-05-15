@@ -64,15 +64,15 @@ export class SpaEnvService extends AbstractHttpService {
   private loadEnvs() {
     const url = environment.envServerUrl;
     // console.log(`env Name: %c %o`, 'color:green;')
-    this._headers.set('Authorization', `spaenv ${environment.SPA_ENV_AUTH_TOKEN}`);
-    console.log(`env URL: %c %o`, 'color:green;', url);
-    console.log(`env headers: %c %o`, 'color:green;', this._headers);
-    console.log(`http: %c %o`, 'color:green;', this.http);
-    console.log(`Authorization: %c %o`, 'color:green;', `Bearer ${environment.SPA_ENV_AUTH_TOKEN}`);
+    // this._headers.set('Authorization', `spaenv ${environment.SPA_ENV_AUTH_TOKEN}`);
+    // console.log(`env URL: %c %o`, 'color:green;', url);
+    // console.log(`env headers: %c %o`, 'color:green;', this._headers);
+    // console.log(`http: %c %o`, 'color:green;', this.http);
+    // console.log(`Authorization: %c %o`, 'color:green;', `Bearer ${environment.SPA_ENV_AUTH_TOKEN}`);
 
 
     // this.httpOptions.headers.('Authorization', `Bearer ${environment.SPA_ENV_AUTH_TOKEN}`);
-    console.log(`httpOptions: %c %o`, 'color:green;', this.httpOptions);
+    // console.log(`httpOptions: %c %o`, 'color:green;', this.httpOptions);
 
     // When the SpaEnv server is being deployed it can return an HTML error
     // page, and it should resolve shortly, so we try again.
