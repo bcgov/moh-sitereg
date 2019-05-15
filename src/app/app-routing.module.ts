@@ -19,6 +19,10 @@ const routes: Routes = [
             './modules/msp-update/update.module#MspDirectUpdateModule',
     },
     {
+        path: 'maintenance',
+        loadChildren: './modules/splash-page/splash-page.module#SplashPageModule',
+    },
+    {
         path: '**',
         redirectTo: 'home',
     },

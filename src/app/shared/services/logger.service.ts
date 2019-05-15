@@ -26,8 +26,9 @@ export class LoggerService extends CommonLogger {
 
         // this.isProduction = this.globalConfigSvc.currentEnironment.production;
         this.programName = this.globalConfigSvc.logMspApplicationName;
-        this.applicationId = this.globalConfigSvc.logMspApplicationUUID;
+        this.applicationId = this.globalConfigSvc.applicationId;
         this.setURL(this.globalConfigSvc.currentEnironment.loggingURL);
+        //  console.log(`%o <= Logger Application ID`, this.applicationId);
     }
 
     /**
@@ -41,6 +42,8 @@ export class LoggerService extends CommonLogger {
             // const clog = message as CommonLogMessage;
             // console.log(`%c  Splunk Log: => %o`, 'color:orange', clog);
             // this._log(message as CommonLogMessage);
+
+            //  console.log(`%o <= Logger Application ID at Log`, this.applicationId);
 
             this.globalConfigSvc.isProduction
                 ? this._log(message as CommonLogMessage)
