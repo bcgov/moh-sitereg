@@ -59,7 +59,7 @@ export class SpaEnvService extends AbstractHttpService {
   constructor(protected http: HttpClient, private logService: LoggerService) {
     super(http);
 
-    this.logHTTPRequestsToConsole = true;
+    // this.logHTTPRequestsToConsole = true;
     this.loadEnvs().subscribe(response => this._values.next(response));
   }
 

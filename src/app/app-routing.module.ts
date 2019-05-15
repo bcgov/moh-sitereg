@@ -14,6 +14,11 @@ const routes: Routes = [
             './modules/msp-register/msp-register.module#MspRegisterModule',
     },
     {
+        path: 'update',
+        loadChildren:
+            './modules/msp-update/update.module#MspDirectUpdateModule',
+    },
+    {
         path: 'maintenance',
         loadChildren: './modules/splash-page/splash-page.module#SplashPageModule',
     },
