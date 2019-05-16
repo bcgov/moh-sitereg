@@ -13,10 +13,13 @@ import { LoggerService } from '@shared/services/logger.service';
     styleUrls: ['./update.component.sass'],
 })
 export class MspDirectUpdateComponent extends Container implements OnInit {
-
     get componentInfo(): string {
-        return  `${ funcRemoveStrings(['MspDirectUpdate', 'Component'], this.constructor.name).toUpperCase() } :` +
-        ` ${this.globalConfigSvc.applicationId}`;
+        return (
+            `${funcRemoveStrings(
+                ['MspDirectUpdate', 'Component'],
+                this.constructor.name
+            ).toUpperCase()} :` + ` ${this.globalConfigSvc.applicationId}`
+        );
     }
 
     showStepper(): boolean {
@@ -27,7 +30,7 @@ export class MspDirectUpdateComponent extends Container implements OnInit {
         private router: Router,
         private progressService: MspDirectUpdateProgressService,
         private loggerSvc: LoggerService,
-        private globalConfigSvc: GlobalConfigService,
+        private globalConfigSvc: GlobalConfigService
     ) {
         super();
         this.setProgressItems();

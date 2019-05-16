@@ -84,7 +84,9 @@ export class MspRegisterOrganizationComponent implements OnInit {
         // splunk-log
         this.loggerSvc.logNavigation(
             this.constructor.name,
-            `Valid Data - Continue button clicked. ${this.globalConfigSvc.applicationId}`
+            `Valid Data - Continue button clicked. ${
+                this.globalConfigSvc.applicationId
+            }`
         );
 
         this.registrationService.setItemComplete();

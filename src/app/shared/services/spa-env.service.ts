@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { AbstractHttpService } from 'moh-common-lib/services';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import {
+    HttpClient,
+    HttpHeaders,
+    HttpErrorResponse,
+} from '@angular/common/http';
 // import { Logger } from './logger.service';
 import { LoggerService } from './logger.service';
 import { throwError, BehaviorSubject, Observable } from 'rxjs';
@@ -13,10 +17,10 @@ import { retry, filter } from 'rxjs/operators';
  * will be updated.
  */
 const serverEnvs = {
-  SPA_ENV_SITEREG_MAINTENANCE_FLAG: '',
-  SPA_ENV_SITEREG_MAINTENANCE_START: '',
-  SPA_ENV_SITEREG_MAINTENANCE_END: '',
-  SPA_ENV_SITEREG_MAINTENANCE_MESSAGE: '',
+    SPA_ENV_SITEREG_MAINTENANCE_FLAG: '',
+    SPA_ENV_SITEREG_MAINTENANCE_START: '',
+    SPA_ENV_SITEREG_MAINTENANCE_END: '',
+    SPA_ENV_SITEREG_MAINTENANCE_MESSAGE: '',
 };
 
 // Used in HTTP request
@@ -34,58 +38,60 @@ const stringifiedEnvs = JSON.stringify(serverEnvs);
  */
 export type SpaEnvResponse = typeof serverEnvs;
 
-
 /**
  * Responsible for retrieving values from the spa-env-server on OpenShift.
  *
  * Subscribe to SpaEnvService.values() to get the env values.
  */
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class SpaEnvService extends AbstractHttpService {
+    // tslint:disable-next-line: variable-name
+    protected _headers: HttpHeaders = new HttpHeaders({
+        SPA_ENV_NAME: stringifiedEnvs,
+    });
 
-// tslint:disable-next-line: variable-name
-  protected _headers: HttpHeaders = new HttpHeaders({
-    SPA_ENV_NAME: stringifiedEnvs,
-  });
+    // tslint:disable-next-line: variable-name
+    private _values = new BehaviorSubject<SpaEnvResponse>(null);
+    /** The values retrieved from the SpaEnv server. */
+    public values: Observable<
+        SpaEnvResponse
+    > = this._values.asObservable().pipe(filter((x) => !!x)); // filter null response out, init value
 
-// tslint:disable-next-line: variable-name
-  private _values = new BehaviorSubject<SpaEnvResponse>(null);
-  /** The values retrieved from the SpaEnv server. */
-  public values: Observable<SpaEnvResponse> = this._values.asObservable()
-    .pipe(filter(x => !!x)); // filter null response out, init value
+    constructor(protected http: HttpClient, private logService: LoggerService) {
+        super(http);
 
-  constructor(protected http: HttpClient, private logService: LoggerService) {
-    super(http);
-
-    // this.logHTTPRequestsToConsole = true;
-    this.loadEnvs().subscribe(response => this._values.next(response));
-  }
-
-  private loadEnvs() {
-    const url = environment.envServerUrl;
-
-    // When the SpaEnv server is being deployed it can return an HTML error
-    // page, and it should resolve shortly, so we try again.
-    return this.post<SpaEnvResponse>(url, null).pipe(retry(3));
-  }
-
-  protected handleError(error: HttpErrorResponse) {
-    console.log('Error handleError: ', error);
-
-    if (error.error instanceof ErrorEvent) {
-      // Client-side / network error occured
-      console.error('An error occured: ', error.error.message);
-    } else {
-      // The backend returned an unsuccessful response code
-      console.error(`Backend returned error code: ${error.status}.  Error body: ${error.error}`);
+        // this.logHTTPRequestsToConsole = true;
+        this.loadEnvs().subscribe((response) => this._values.next(response));
     }
 
-    this.logService.logHttpError(error);
+    private loadEnvs() {
+        const url = environment.envServerUrl;
 
-    // A user facing erorr message /could/ go here; we shouldn't log dev info through the throwError observable
-    return throwError('Something went wrong with the network request.');
-  }
+        // When the SpaEnv server is being deployed it can return an HTML error
+        // page, and it should resolve shortly, so we try again.
+        return this.post<SpaEnvResponse>(url, null).pipe(retry(3));
+    }
 
+    protected handleError(error: HttpErrorResponse) {
+        console.log('Error handleError: ', error);
+
+        if (error.error instanceof ErrorEvent) {
+            // Client-side / network error occured
+            console.error('An error occured: ', error.error.message);
+        } else {
+            // The backend returned an unsuccessful response code
+            console.error(
+                `Backend returned error code: ${error.status}.  Error body: ${
+                    error.error
+                }`
+            );
+        }
+
+        this.logService.logHttpError(error);
+
+        // A user facing erorr message /could/ go here; we shouldn't log dev info through the throwError observable
+        return throwError('Something went wrong with the network request.');
+    }
 }

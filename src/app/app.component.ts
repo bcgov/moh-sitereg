@@ -12,8 +12,7 @@ export class AppComponent implements OnInit {
     /**
      *
      */
-    constructor(public splash: SplashPageService, ) {
-    }
+    constructor(public splash: SplashPageService) {}
 
     ngOnInit() {
         if (!environment.bypassSplashPage) {

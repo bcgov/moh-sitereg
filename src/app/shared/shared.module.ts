@@ -8,7 +8,7 @@ import { CaptchaComponent } from './components/captcha/captcha.component';
 import { ErrorBoxComponent } from './components/error-box/error-box.component';
 import { GlobalConfigService } from './services/global-config.service';
 import { MspRegisterApiService } from './services/api.service';
-import {  LoggerService } from './../shared/services/logger.service';
+import { LoggerService } from './../shared/services/logger.service';
 
 @NgModule({
     declarations: [PageSectionsComponent, CaptchaComponent, ErrorBoxComponent],

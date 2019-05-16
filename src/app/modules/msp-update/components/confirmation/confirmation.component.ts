@@ -7,39 +7,48 @@ import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
 
 @Component({
-  selector: 'sitereg-msp-update-confirmation',
-  templateUrl: './confirmation.component.html',
-  styleUrls: ['./confirmation.component.sass']
+    selector: 'sitereg-msp-update-confirmation',
+    templateUrl: './confirmation.component.html',
+    styleUrls: ['./confirmation.component.sass'],
 })
 export class MspDirectUpdateConfirmationComponent implements OnInit {
-  get componentInfo(): string {
-    return  `${ funcRemoveStrings(['MspDirectUpdate', 'Component'], this.constructor.name).toUpperCase() } :` +
-    ` ${this.globalConfigSvc.applicationId}`;
-}
+    private isSuccessfull = false;
+    get buttonLabel(): string {
+        return this.isSuccessfull ? 'Continue' : 'Retry';
+    }
 
-constructor(
-    private router: Router,
-    private progressService: MspDirectUpdateProgressService,
-    private loggerSvc: LoggerService,
-    private globalConfigSvc: GlobalConfigService,
-) { }
+    get componentInfo(): string {
+        return (
+            `${funcRemoveStrings(
+                ['MspDirectUpdate', 'Component'],
+                this.constructor.name
+            ).toUpperCase()} :` + ` ${this.globalConfigSvc.applicationId}`
+        );
+    }
 
-ngOnInit() {
-    console.log(`%c%o : %o`, 'color:green', this.componentInfo);
-    this.progressService.setItemIncomplete();
-}
+    constructor(
+        private router: Router,
+        private progressService: MspDirectUpdateProgressService,
+        private loggerSvc: LoggerService,
+        private globalConfigSvc: GlobalConfigService
+    ) {}
 
-continue() {
+    ngOnInit() {
+        console.log(`%c%o : %o`, 'color:green', this.componentInfo);
+        this.progressService.setItemIncomplete();
+    }
 
-    // splunk-log
-    this.loggerSvc.logNavigation(
-        this.constructor.name,
-        `Valid Data - Continue button clicked. ${this.globalConfigSvc.applicationId}`
-    );
-    this.progressService.setItemComplete();
-    this.progressService.enableConfirmation = false;
-    this.globalConfigSvc.logRefreshMspApplicationUUID();
-    this.router.navigate([ROUTES_UPDATE.IDENTIFY.fullpath]);
-}
-
+    continue() {
+        // splunk-log
+        this.loggerSvc.logNavigation(
+            this.constructor.name,
+            `Valid Data - Continue button clicked. ${
+                this.globalConfigSvc.applicationId
+            }`
+        );
+        this.progressService.setItemComplete();
+        this.progressService.enableConfirmation = false;
+        this.globalConfigSvc.logRefreshMspApplicationUUID();
+        this.router.navigate([ROUTES_UPDATE.IDENTIFY.fullpath]);
+    }
 }

@@ -13,16 +13,20 @@ import { GlobalConfigService } from '@shared/services/global-config.service';
 })
 export class MspDirectUpdateSubmitComponent implements OnInit {
     get componentInfo(): string {
-        return  `${ funcRemoveStrings(['MspDirectUpdate', 'Component'], this.constructor.name).toUpperCase() } :` +
-        ` ${this.globalConfigSvc.applicationId}`;
+        return (
+            `${funcRemoveStrings(
+                ['MspDirectUpdate', 'Component'],
+                this.constructor.name
+            ).toUpperCase()} :` + ` ${this.globalConfigSvc.applicationId}`
+        );
     }
 
     constructor(
         private router: Router,
         private progressService: MspDirectUpdateProgressService,
         private loggerSvc: LoggerService,
-        private globalConfigSvc: GlobalConfigService,
-    ) { }
+        private globalConfigSvc: GlobalConfigService
+    ) {}
 
     ngOnInit() {
         console.log(`%c%o : %o`, 'color:green', this.componentInfo);
@@ -30,11 +34,12 @@ export class MspDirectUpdateSubmitComponent implements OnInit {
     }
 
     continue() {
-
         // splunk-log
         this.loggerSvc.logNavigation(
             this.constructor.name,
-            `Valid Data - Continue button clicked. ${this.globalConfigSvc.applicationId}`
+            `Valid Data - Continue button clicked. ${
+                this.globalConfigSvc.applicationId
+            }`
         );
         this.progressService.enableConfirmation = true;
         this.progressService.setItemComplete();

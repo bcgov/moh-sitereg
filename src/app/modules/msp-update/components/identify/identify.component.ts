@@ -13,18 +13,21 @@ import { stringify } from '@angular/compiler/src/util';
     styleUrls: ['./identify.component.sass'],
 })
 export class MspDirectUpdateIdentifyComponent implements OnInit {
-
     get componentInfo(): string {
-        return  `${ funcRemoveStrings(['MspDirectUpdate', 'Component'], this.constructor.name).toUpperCase() } :` +
-        ` ${this.globalConfigSvc.applicationId}`;
+        return (
+            `${funcRemoveStrings(
+                ['MspDirectUpdate', 'Component'],
+                this.constructor.name
+            ).toUpperCase()} :` + ` ${this.globalConfigSvc.applicationId}`
+        );
     }
 
     constructor(
         private router: Router,
         private progressService: MspDirectUpdateProgressService,
         private loggerSvc: LoggerService,
-        private globalConfigSvc: GlobalConfigService,
-    ) { }
+        private globalConfigSvc: GlobalConfigService
+    ) {}
 
     ngOnInit() {
         console.log(`%c%o : %o`, 'color:green', this.componentInfo);
@@ -32,11 +35,12 @@ export class MspDirectUpdateIdentifyComponent implements OnInit {
     }
 
     continue() {
-
         // splunk-log
         this.loggerSvc.logNavigation(
             this.constructor.name,
-            `Valid Data - Continue button clicked. ${this.globalConfigSvc.applicationId}`
+            `Valid Data - Continue button clicked. ${
+                this.globalConfigSvc.applicationId
+            }`
         );
 
         this.progressService.setItemComplete();
