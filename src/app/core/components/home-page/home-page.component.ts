@@ -9,7 +9,6 @@ import { APPLICATION_ROUTES } from '@msp-register/constants';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomePageComponent implements OnInit {
-
     public showUnderConstruction = false;
     public underConstructionMessage = '';
 

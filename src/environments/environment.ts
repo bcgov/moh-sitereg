@@ -20,8 +20,10 @@ export const environment = {
     debug: true,
     /** Link used in app */
     links: {
-        FAQ: 'https://www2.gov.bc.ca/gov/content/health/practitioner-professional-resources/system-access/msp-direct',
-        MSP: 'https://www2.gov.bc.ca/gov/content/health/practitioner-professional-resources/system-access/msp-direct'
+        FAQ:
+            'https://www2.gov.bc.ca/gov/content/health/practitioner-professional-resources/system-access/msp-direct',
+        MSP:
+            'https://www2.gov.bc.ca/gov/content/health/practitioner-professional-resources/system-access/msp-direct',
     },
 };
 

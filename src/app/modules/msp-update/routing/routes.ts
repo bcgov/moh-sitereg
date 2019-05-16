@@ -71,7 +71,7 @@ export const routes: Routes = [
         path: '_autofill',
         component: MspDirectUpdateAutofillComponent,
         data: { title: 'autofill' },
-    }
+    },
     // ,
     // { path: '**', component: MspDirectUpdateIdentifyComponent },
 ];

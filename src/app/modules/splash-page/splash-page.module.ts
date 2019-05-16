@@ -6,11 +6,7 @@ import { SplashPageRoutingModule } from './splash-page-routing.module';
 import { SplashPageComponent } from './page/splash-page/splash-page.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    SplashPageRoutingModule,
-    CoreModule
-  ],
-  declarations: [SplashPageComponent]
+    imports: [CommonModule, SplashPageRoutingModule, CoreModule],
+    declarations: [SplashPageComponent],
 })
-export class SplashPageModule { }
+export class SplashPageModule {}
