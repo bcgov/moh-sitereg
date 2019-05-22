@@ -98,25 +98,25 @@ export class MspRegisterOrganizationComponent implements OnInit {
     }
 
     updateThirdPartyValidations(required: boolean) {
-        const administeringForControl = this.fg.get('administeringFor');
+        // const administeringForControl = this.fg.get('administeringFor');
         const organizationNumberControl = this.fg.get('organizationNumber');
 
         if (required === true) {
-            administeringForControl.setValidators(Validators.required);
+            // administeringForControl.setValidators(Validators.required);
             organizationNumberControl.setValidators([
                 Validators.minLength(8),
                 Validators.maxLength(8),
                 organizationNumberValidator(),
             ]);
         } else {
-            administeringForControl.clearValidators();
+            // administeringForControl.clearValidators();
             organizationNumberControl.clearValidators();
 
-            administeringForControl.patchValue(null, { emitEvent: false });
+            // administeringForControl.patchValue(null, { emitEvent: false });
             organizationNumberControl.patchValue(null, { emitEvent: false });
         }
 
-        administeringForControl.updateValueAndValidity();
+        // administeringForControl.updateValueAndValidity();
         organizationNumberControl.updateValueAndValidity();
     }
 
