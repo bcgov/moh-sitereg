@@ -48,7 +48,7 @@ export class MspRegisterOrganization extends GenerateForm<IMspOrganization>
             //     Validators.maxLength(8),
             //     organizationNumberValidator(),
             // ],
-            // administeringFor: [required],
+            administeringFor: [required],
         };
     }
 
