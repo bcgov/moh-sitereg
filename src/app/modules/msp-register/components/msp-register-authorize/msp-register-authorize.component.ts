@@ -150,6 +150,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
             )
             .toPromise()
             .catch((err) => {
+                console.log(`result: %c %o`, 'color:organge', err );
                 this.loggerSvc.logError({
                     event: 'http-exception',
                     exceptionMessage: `${err}`,
@@ -158,22 +159,22 @@ export class MspRegisterAuthorizeComponent implements OnInit {
                 requestStatus.exception = err;
                 requestStatus.statuscode = err.status;
                 this.isProcessing = false;
-
-                console.log(`result: %c %o`, 'color:organge', err );
             })
             .then((result) => {
+                console.log(`result: %c %o`, 'color:organge', result );
+                console.log(`requestStatus: %c %o`, 'color:organge', requestStatus );
+
                 this.loggerSvc.logNavigation(
                     'middleware-request-status:',
                     'completed'
                 );
 
-                console.log(`result: %c %o`, 'color:organge', result );
-                console.log(`requestStatus: %c %o`, 'color:organge', requestStatus );
-
-
-                if ( requestStatus.statuscode === null ) {
+                if (requestStatus.exception === null) {
                     requestStatus.status = true;
+                } else {
+                    requestStatus.status = false;
                 }
+
                 requestStatus.response = result;
                 requestStatus.referenceId = this.requestUUID;
 
