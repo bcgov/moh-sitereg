@@ -157,12 +157,16 @@ export class MspRegisterAuthorizeComponent implements OnInit {
                 requestStatus.exception = err;
 
                 this.isProcessing = false;
+
             })
             .then((result) => {
                 this.loggerSvc.logNavigation(
                     'middleware-request-status:',
                     'completed'
                 );
+
+                console.log(`result: %c %o`, 'color:organge', result );
+                console.log(`requestStatus: %c %o`, 'color:organge', requestStatus );
                 requestStatus.status = true;
                 requestStatus.response = result;
                 requestStatus.referenceId = this.requestUUID;
