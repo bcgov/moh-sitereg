@@ -109,7 +109,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
         this.loggerSvc.logNavigation(
             this.constructor.name,
             `Valid Data - Continue button clicked. ${
-                this.globalConfigSvc.applicationId
+            this.globalConfigSvc.applicationId
             }`
         );
 
@@ -150,19 +150,19 @@ export class MspRegisterAuthorizeComponent implements OnInit {
             )
             .toPromise()
             .catch((err) => {
-                console.log(`result: %c %o`, 'color:organge', err );
+                console.log(`result: %c %o`, 'color:organge', err);
                 this.loggerSvc.logError({
                     event: 'http-exception',
                     exceptionMessage: `${err}`,
                 } as LogMessage);
                 this.loggerSvc.logHttpError(err);
                 requestStatus.exception = err;
-                requestStatus.statuscode = err.status;
+                requestStatus.statuscode = err.status ? err.status : '';
                 this.isProcessing = false;
             })
             .then((result) => {
-                console.log(`result: %c %o`, 'color:organge', result );
-                console.log(`requestStatus: %c %o`, 'color:organge', requestStatus );
+                console.log(`result: %c %o`, 'color:organge', result);
+                console.log(`requestStatus: %c %o`, 'color:organge', requestStatus);
 
                 this.loggerSvc.logNavigation(
                     'middleware-request-status:',
@@ -323,7 +323,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
         return (
             this.groupsMSP.length > 0 &&
             ((this.groupsMSP[0].groupNumber as string) &&
-            (this.groupsMSP[0].groupNumber as string).length > 3
+                (this.groupsMSP[0].groupNumber as string).length > 3
                 ? true
                 : false)
         );
