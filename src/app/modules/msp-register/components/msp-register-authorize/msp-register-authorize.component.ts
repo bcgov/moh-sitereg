@@ -140,6 +140,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
             schema: middleWareObject,
             response: null,
             exception: null,
+            statuscode: null
         };
 
         this.mspRegApiSvc
@@ -155,9 +156,10 @@ export class MspRegisterAuthorizeComponent implements OnInit {
                 } as LogMessage);
                 this.loggerSvc.logHttpError(err);
                 requestStatus.exception = err;
-
+                requestStatus.statuscode = err.status;
                 this.isProcessing = false;
 
+                console.log(`result: %c %o`, 'color:organge', err );
             })
             .then((result) => {
                 this.loggerSvc.logNavigation(
@@ -167,7 +169,11 @@ export class MspRegisterAuthorizeComponent implements OnInit {
 
                 console.log(`result: %c %o`, 'color:organge', result );
                 console.log(`requestStatus: %c %o`, 'color:organge', requestStatus );
-                requestStatus.status = true;
+
+
+                if ( requestStatus.statuscode === null ) {
+                    requestStatus.status = true;
+                }
                 requestStatus.response = result;
                 requestStatus.referenceId = this.requestUUID;
 
