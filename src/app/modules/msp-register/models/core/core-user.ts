@@ -17,7 +17,7 @@ export class CoreUser implements IUser {
     phone: ctFormControlString = '';
     ext?: ctFormControlString = '';
     fax: ctFormControlString = '';
-    administeringFor: ctFormControlString = '';
+    administeringFor: ctFormControlString = null;
 
     get validators(): any {
         return cUserValidators;
