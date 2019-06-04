@@ -101,6 +101,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
         this.userFgs = this.mspRegisterStateSvc.mspRegisterUsersForm;
 
         this.genConsentForm();
+        // console.log(this.registerationObject());
     }
 
     continue() {

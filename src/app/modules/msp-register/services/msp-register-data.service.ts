@@ -94,7 +94,9 @@ export class MspRegisterDataService {
         third_party_org_num = third_party_org_num ? third_party_org_num : '';
 
         // if (!third_party_org_num) return { contracting_third_party, third_party_org_num? '' };
-        return { contracting_third_party, third_party_org_num };
+        return !(third_party_org_num === '') ?
+        ({ contracting_third_party, third_party_org_num }) :
+        ({ contracting_third_party });
     }
 
     mapBaseUser(obj: IUser): ICoreUserDef {
