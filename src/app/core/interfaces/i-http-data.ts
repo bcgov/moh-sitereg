@@ -38,7 +38,7 @@ export interface IUserDef extends ICoreUserMspDef {
 
 export interface IOrgInformationDef {
     org_name: string;
-    org_num: string;
+    org_num?: string;
     suite_num: string;
     street_num: string;
     street_name: string;
