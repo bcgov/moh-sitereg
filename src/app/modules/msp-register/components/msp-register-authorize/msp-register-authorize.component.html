@@ -4,7 +4,7 @@
     <form [formGroup]="fg" *ngIf="fg">
 
       <div class="row">
-        <div class="col-auto mr-auto">
+       <div class="col-auto mr-auto">
           <!-- Logo for Agreement  - black and White -->
           <!-- <img class="img-thumbnail" width="50 " height="50" src="" /> -->
         </div>
@@ -73,6 +73,7 @@
                     (click)="navigateTo('signing-authority');">
                     The Applicant will Administer MSP using the MSP Direct Web Interface.
                   </label>
+                  <span *ngIf="isWebEnabled===false" style="color:red;" > You must provide at least one Access Administrator or User.</span>
                 </li>
                 <li>
                   <span class="selectedOption"> {{ organization.blueCross ? "&#10003;": "&#9634;"  }} </span>
@@ -163,13 +164,13 @@
       </div>
 
       <div class="row">
-        <span class="consent">
+        <span class="consent"  *ngIf="isWebEnabled===true" >
           <input type="checkbox" form name="consent" formControlName="consent" id="consent" tabindex="0"
             [value]="true">&nbsp;
           <label (click)="toggleConsent()">
             I, {{signingAuthority.firstName}} {{signingAuthority.lastName}} have read and agreed to above terms and
             conditions.
-          </label>
+          </label>         
         </span>
       </div>
 
