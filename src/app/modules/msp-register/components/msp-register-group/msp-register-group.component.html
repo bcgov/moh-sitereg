@@ -14,7 +14,7 @@
     <div *ngFor="let fg of fgs; index as i">
     <div class="row border-bottom">
       <div class="col-auto mr-auto">
-        <h3> Group Number #{{i+1}}</h3>
+        <h3> Group Number #{{fgs.length-i}}</h3>
       </div>
       <div class="col-auto">
         <button (click)="deleteFormGroup(i)" type="button" class="btn delete">
