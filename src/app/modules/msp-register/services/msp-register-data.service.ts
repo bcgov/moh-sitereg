@@ -260,25 +260,7 @@ export class MspRegisterDataService {
                     this.mapYesNoDef(obj.thirdParty as boolean)
                 );
 
-        const organizationObject =  {
-            contracting_out,
-            org_name: obj.name as string,
-            org_num: orgNumber,
-            suite_num: obj.suite ? (obj.suite as string) : '',
-            street_num: obj.street as string,
-            street_name: obj.streetName as string,
-            address_2: obj.addressLine2 ? (obj.addressLine2 as string) : '',
-            city: obj.city as string,
-            province: obj.province as string,
-            postal_code: obj.postalCode as string,
-            blue_cross: this.mapYesNoDef(obj.blueCross as boolean),
-            org_spg: this.mapAdministeringForDef(
-                obj.administeringFor as string
-            ),
-        };
-
-        // const organizationObject = (obj.thirdParty as boolean) === true ?
-        // {
+        // const organizationObject =  {
         //     contracting_out,
         //     org_name: obj.name as string,
         //     org_num: orgNumber,
@@ -293,22 +275,40 @@ export class MspRegisterDataService {
         //     org_spg: this.mapAdministeringForDef(
         //         obj.administeringFor as string
         //     ),
-        // } :
-        // {
-        //     contracting_out,
-        //     org_name: obj.name as string,
-        //     suite_num: obj.suite ? (obj.suite as string) : '',
-        //     street_num: obj.street as string,
-        //     street_name: obj.streetName as string,
-        //     address_2: obj.addressLine2 ? (obj.addressLine2 as string) : '',
-        //     city: obj.city as string,
-        //     province: obj.province as string,
-        //     postal_code: obj.postalCode as string,
-        //     blue_cross: this.mapYesNoDef(obj.blueCross as boolean),
-        //     org_spg: this.mapAdministeringForDef(
-        //         obj.administeringFor as string
-        //     ),
-        // } ;
+        // };
+
+        const organizationObject = (obj.thirdParty as boolean) === true ?
+        {
+            contracting_out,
+            org_name: obj.name as string,
+            org_num: orgNumber,
+            suite_num: obj.suite ? (obj.suite as string) : '',
+            street_num: obj.street as string,
+            street_name: obj.streetName as string,
+            address_2: obj.addressLine2 ? (obj.addressLine2 as string) : '',
+            city: obj.city as string,
+            province: obj.province as string,
+            postal_code: obj.postalCode as string,
+            blue_cross: this.mapYesNoDef(obj.blueCross as boolean),
+            org_spg: this.mapAdministeringForDef(
+                obj.administeringFor as string
+            ),
+        } :
+        {
+            contracting_out,
+            org_name: obj.name as string,
+            suite_num: obj.suite ? (obj.suite as string) : '',
+            street_num: obj.street as string,
+            street_name: obj.streetName as string,
+            address_2: obj.addressLine2 ? (obj.addressLine2 as string) : '',
+            city: obj.city as string,
+            province: obj.province as string,
+            postal_code: obj.postalCode as string,
+            blue_cross: this.mapYesNoDef(obj.blueCross as boolean),
+            org_spg: this.mapAdministeringForDef(
+                obj.administeringFor as string
+            ),
+        } ;
 
         return organizationObject;
     }
