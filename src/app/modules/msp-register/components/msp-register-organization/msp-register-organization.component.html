@@ -1,112 +1,126 @@
-<h2 class="border-bottom">Organization</h2>
-<sitereg-page-sections *ngIf="fg">
+<!-- sitereg-page-sections -->
+<common-page-framework layout='blank'>
+  <h2 class="border-bottom">Organization</h2>
+  <div *ngIf="fg">
+    <form [formGroup]="fg">
+      <div class="form-group col-sm-8 p-sm-0">
 
-  <form [formGroup]="fg">
-    <div class="form-group col-sm-8 p-sm-0">
+        <!-- Organization Name -->
+        <label class="control-label" for="name">Organization Name</label>
+        <input id="name" formControlName="name" class="form-control" placeholder="Organization Name">
+        <div class="text-danger" *ngIf="validFormControl('name')">
+          Enter Organization name
+        </div>
 
-      <!-- Organization Name -->
-      <label class="control-label" for="name">Organization Name</label>
-      <input id="name" formControlName="name" class="form-control" placeholder="Organization Name">
-      <div class="text-danger" *ngIf="validFormControl('name')">
-        Enter Organization name
-      </div>
+        <!-- Suite Number-->
+        <label class="control-label" for="suite">Suite# (optional)</label>
+        <input id="suite" formControlName="suite" class="form-control" placeholder="Suite# (optional)">
+        <div class="text-danger" *ngIf="validFormControl('suite')">
+          Enter valid Suite# (optional)
+        </div>
 
-      <!-- Suite Number-->
-      <label class="control-label" for="suite">Suite# (optional)</label>
-      <input id="suite" formControlName="suite" class="form-control" placeholder="Suite# (optional)">
-      <div class="text-danger" *ngIf="validFormControl('suite')">
-        Enter valid Suite# (optional)
-      </div>
+        <div class="row">
 
-      <div class="row">
+          <!-- Street Number -->
+          <div class="col-sm-4">
+            <label class="control-label" for="street">Street#</label>
+            <input id="street" formControlName="street" class="form-control" placeholder="Street#">
+            <div class="text-danger" *ngIf="validFormControl('street')">
+              Enter valid Street#
+            </div>
+          </div>
 
-        <!-- Street Number -->
-        <div class="col-sm-4">
-          <label class="control-label" for="street">Street#</label>
-          <input id="street" formControlName="street" class="form-control" placeholder="Street#">
-          <div class="text-danger" *ngIf="validFormControl('street')">
-            Enter valid Street#
+          <!-- Street Name -->
+          <div class="col-sm-8">
+            <label class="control-label" for="streetName">Street Name</label>
+            <input id="streetName" formControlName="streetName" class="form-control" placeholder="Street Name">
+            <div class="text-danger" *ngIf="validFormControl('streetName')">
+              Enter valid Street Name
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Address Line 2 -->
+        <label class="control-label" for="addressLine2">Street Address Line 2 (optional)</label>
+        <input id="addressLine2" formControlName="addressLine2" class="form-control"
+          placeholder="Street Address Line 2 (optional)">
+        <div class="text-danger" *ngIf="validFormControl('addressLine2')">
+          Enter valid Street Address Line 2 (optional)
+        </div>
+
+        <!-- City -->
+        <label class="control-label" for="city">City</label>
+        <input id="city" formControlName="city" class="form-control" placeholder="City Name">
+        <div class="text-danger" *ngIf="validFormControl('city')">
+          Please enter your city.
+        </div>
+
+        <div class="row">
+          <div class="col-sm-8">
+            <!-- Province -->
+            <label class="control-label" for="province">Province</label>
+            <select class="form-control" *ngIf="provinces | async as provinces" formControlName="province">
+              <option value="null" label="-- Select Province --" selected></option>
+              <option *ngFor="let province of provinces " [value]="province.provCode">{{province.description}}</option>
+            </select>
+            <div class="text-danger" *ngIf="validFormControl('province')">
+              Please select a valid province.
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <!-- Postal Code -->
+            <label class="control-label" for="postalCode">Postal Code</label>
+            <input id="postalCode" formControlName="postalCode" class="form-control" placeholder="A1A1A1">
+            <div class="text-danger" *ngIf="validFormControl('postalCode')">
+              Please enter your postal code in the format A1A1A1.
+            </div>
           </div>
         </div>
 
-        <!-- Street Name -->
-        <div class="col-sm-8">
-          <label class="control-label" for="streetName">Street Name</label>
-          <input id="streetName" formControlName="streetName" class="form-control" placeholder="Street Name">
-          <div class="text-danger" *ngIf="validFormControl('streetName')">
-            Enter valid Street Name
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Address Line 2 -->
-      <label class="control-label" for="addressLine2">Street Address Line 2 (optional)</label>
-      <input id="addressLine2" formControlName="addressLine2" class="form-control"
-        placeholder="Street Address Line 2 (optional)">
-      <div class="text-danger" *ngIf="validFormControl('addressLine2')">
-        Enter valid Street Address Line 2 (optional)
-      </div>
-
-      <!-- City -->
-      <label class="control-label" for="city">City</label>
-      <input id="city" formControlName="city" class="form-control" placeholder="City Name">
-      <div class="text-danger" *ngIf="validFormControl('city')">
-        Please enter your city.
-      </div>
-
-      <div class="row">
-        <div class="col-sm-8">
-          <!-- Province -->
-          <label class="control-label" for="province">Province</label>
-          <select class="form-control" *ngIf="provinces | async as provinces" formControlName="province">
-            <option value="null" label="-- Select Province --" selected></option>
-            <option *ngFor="let province of provinces " [value]="province.provCode">{{province.description}}</option>
-          </select>
-          <div class="text-danger" *ngIf="validFormControl('province')">
-            Please select a valid province.
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <!-- Postal Code -->
-          <label class="control-label" for="postalCode">Postal Code</label>
-          <input id="postalCode" formControlName="postalCode" class="form-control" placeholder="A1A1A1">
-          <div class="text-danger" *ngIf="validFormControl('postalCode')">
-            Please enter your postal code in the format A1A1A1.
-          </div>
-        </div>
-      </div>
-
-      <!-- Question Third Party Administering -->
-      <label class="control-label">
-        Are you contracting a 3rd party to administer MSP Direct on your behalf?
-      </label>
-      <br/>
-      <div class="md-radio md-radio-inline">
-        <!--No-->
-        <input formControlName="thirdParty" type="radio" id="thirdPartyFalse" tabindex="0" [value]="false" (click)="updateThirdPartyValidations(false)">
-        <label for="thirdPartyFalse">No</label>
-        <!--Yes-->
-        <input formControlName="thirdParty" type="radio" name="" id="thirdPartyTrue" tabindex="0" [value]="true"  (click)="updateThirdPartyValidations(true)">
-        <label for="thirdPartyTrue">Yes</label>
-      </div>
-      <div class="text-danger" *ngIf="validFormControl('thirdParty')">
-        Please select a valid option
-      </div>
-
-
-      <div class="row">
-        <div *ngIf="fg.controls.thirdParty.value" class="col-sm-4">
-          <!-- Organization Number -->
-          <label class="control-label" for="organizationNumber">Organization Number</label>
-          <input id="organizationNumber" formControlName="organizationNumber" class="form-control" placeholder="Organization Number">
-          <div class="text-danger" *ngIf="validFormControl('organizationNumber')">
-            Please enter Organization Number.
-          </div>
-        </div>
-
-        <div *ngIf="fg.controls.thirdParty.value" class="col-sm-8">
           <!-- Administrating For-->
+          <label class="control-label" for="administeringFor">This organization will be administering MSP for</label>
+          <select class="form-control" *ngIf="administeringFor | async as administering" formControlName="administeringFor">
+            <option value="" label="-- Select Option --" selected></option>
+            <option *ngFor="let a of administering " [value]="a">{{a}}</option>
+          </select>
+          <div class="text-danger" *ngIf="validFormControl('administeringFor')">
+            Please select a valid option
+          </div>
+       
+        <!-- Question Third Party Administering -->
+        <label class="control-label">
+          Are you contracting a 3rd party to administer MSP Direct on your behalf?
+        </label>
+        <br />
+        <div class="md-radio md-radio-inline">
+          <!--No-->
+          <input formControlName="thirdParty" type="radio" id="thirdPartyFalse" tabindex="0" [value]="false"
+            (click)="updateThirdPartyValidations(false)">
+          <label for="thirdPartyFalse">No</label>
+          <!--Yes-->
+          <input formControlName="thirdParty" type="radio" name="" id="thirdPartyTrue" tabindex="0" [value]="true"
+            (click)="updateThirdPartyValidations(true)">
+          <label for="thirdPartyTrue">Yes</label>
+        </div>
+        <div class="text-danger" *ngIf="validFormControl('thirdParty')">
+          Please select a valid option
+        </div>
+
+
+        <div class="row">
+          <div *ngIf="fg.controls.thirdParty.value" class="col-sm-4">
+            <!-- Organization Number -->
+            <label class="control-label" for="organizationNumber">Organization Number</label>
+            <input id="organizationNumber" formControlName="organizationNumber" class="form-control"
+              placeholder="Organization Number">
+            <div class="text-danger" *ngIf="validFormControl('organizationNumber')">
+              Please enter Organization Number, must be 8 digits only.
+            </div>
+          </div>
+
+          <!-- Administrating For-->
+          <!-- <div *ngIf="fg.controls.thirdParty.value" class="col-sm-8">
           <label class="control-label" for="administeringFor">This organization will be adminstering MSP for</label>
           <select class="form-control" *ngIf="administeringFor | async as administering"
             formControlName="administeringFor">
@@ -116,26 +130,29 @@
           <div class="text-danger" *ngIf="validFormControl('administeringFor')">
             Please select a valid option
           </div>
+        </div> -->
+
+        </div>
+
+        <!-- Question Blue Cross -->
+        <label class="control-label">Are you applying to access MSP Direct through Blue Cross?</label>
+        <br />
+        <div class="md-radio md-radio-inline">
+          <!--No-->
+          <input formControlName="blueCross" type="radio" id="aafalse" tabindex="0" [value]="false">
+          <label for="aafalse">No</label>
+          <!--Yes-->
+          <input formControlName="blueCross" type="radio" name="" id="aatrue" tabindex="0" [value]="true">
+          <label for="aatrue">Yes</label>
+        </div>
+        <div class="text-danger" *ngIf="validFormControl('blueCross')">
+          Please select a valid option
         </div>
       </div>
+    </form>
+  </div>
+  </common-page-framework>
 
-      <!-- Question Blue Cross -->
-      <label class="control-label">Are you applying to access MSP Direct through Blue Cross?</label>
-      <br/>
-      <div class="md-radio md-radio-inline">
-        <!--No-->
-        <input formControlName="blueCross" type="radio" id="aafalse" tabindex="0" [value]="false">
-        <label for="aafalse">No</label>
-        <!--Yes-->
-        <input formControlName="blueCross" type="radio" name="" id="aatrue" tabindex="0" [value]="true">
-        <label for="aatrue">Yes</label>
-      </div>
-      <div class="text-danger" *ngIf="validFormControl('blueCross')">
-        Please select a valid option
-      </div>
-    </div>
-
-  </form>
-</sitereg-page-sections>
-<common-form-action-bar class="fixed-bottom" (btnClick)="continue()" [canContinue]="fg.valid">
+<!-- class="fixed-bottom avoid-sliding"  -->
+<common-form-action-bar (btnClick)="continue()" [canContinue]="fg.valid">
 </common-form-action-bar>

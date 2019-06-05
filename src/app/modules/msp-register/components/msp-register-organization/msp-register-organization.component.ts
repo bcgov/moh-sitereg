@@ -12,7 +12,10 @@ import {
 import { MspRegisterDataService } from '@msp-register/services/msp-register-data.service';
 import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
-import { funcRemoveStrings } from '@msp-register/constants';
+import {
+    funcRemoveStrings,
+    MSP_REGISTER_ROUTES,
+} from '@msp-register/constants';
 import { MspRegistrationService } from '@msp-register/msp-registration.service';
 
 @Component({
@@ -81,7 +84,9 @@ export class MspRegisterOrganizationComponent implements OnInit {
         // splunk-log
         this.loggerSvc.logNavigation(
             this.constructor.name,
-            'Valid Data - Continue button clicked.'
+            `Valid Data - Continue button clicked. ${
+                this.globalConfigSvc.applicationId
+            }`
         );
 
         this.registrationService.setItemComplete();
@@ -89,29 +94,29 @@ export class MspRegisterOrganizationComponent implements OnInit {
         // REMOVEME debug-only
         this.debugOnly();
 
-        this.router.navigate(['msp-registration/signing-authority']);
+        this.router.navigate([MSP_REGISTER_ROUTES.SIGNING_AUTHORITY.fullpath]);
     }
 
     updateThirdPartyValidations(required: boolean) {
-        const administeringForControl = this.fg.get('administeringFor');
+        // const administeringForControl = this.fg.get('administeringFor');
         const organizationNumberControl = this.fg.get('organizationNumber');
 
         if (required === true) {
-            administeringForControl.setValidators(Validators.required);
+            // administeringForControl.setValidators(Validators.required);
             organizationNumberControl.setValidators([
                 Validators.minLength(8),
                 Validators.maxLength(8),
                 organizationNumberValidator(),
             ]);
         } else {
-            administeringForControl.clearValidators();
+            // administeringForControl.clearValidators();
             organizationNumberControl.clearValidators();
 
-            administeringForControl.patchValue(null, { emitEvent: false });
+            // administeringForControl.patchValue(null, { emitEvent: false });
             organizationNumberControl.patchValue(null, { emitEvent: false });
         }
 
-        administeringForControl.updateValueAndValidity();
+        // administeringForControl.updateValueAndValidity();
         organizationNumberControl.updateValueAndValidity();
     }
 

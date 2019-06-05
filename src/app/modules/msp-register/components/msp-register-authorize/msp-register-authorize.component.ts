@@ -25,6 +25,7 @@ import { GlobalConfigService } from '@shared/services/global-config.service';
 import {
     funcRemoveStrings,
     funcRandomNumber8Digit,
+    MSP_REGISTER_ROUTES,
 } from '@msp-register/constants';
 import { MspRegistrationService } from '@msp-register/msp-registration.service';
 // import {  } from 'moh-common-lib/captcha';
@@ -100,6 +101,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
         this.userFgs = this.mspRegisterStateSvc.mspRegisterUsersForm;
 
         this.genConsentForm();
+        // console.log(this.registerationObject());
     }
 
     continue() {
@@ -107,7 +109,9 @@ export class MspRegisterAuthorizeComponent implements OnInit {
         // splunk-log
         this.loggerSvc.logNavigation(
             this.constructor.name,
-            'Valid Data - Continue button clicked.'
+            `Valid Data - Continue button clicked. ${
+            this.globalConfigSvc.applicationId
+            }`
         );
 
         this.registrationService.setItemComplete();
@@ -137,6 +141,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
             schema: middleWareObject,
             response: null,
             exception: null,
+            statuscode: null
         };
 
         this.mspRegApiSvc
@@ -146,21 +151,31 @@ export class MspRegisterAuthorizeComponent implements OnInit {
             )
             .toPromise()
             .catch((err) => {
+                console.log(`result: %c %o`, 'color:organge', err);
                 this.loggerSvc.logError({
                     event: 'http-exception',
                     exceptionMessage: `${err}`,
                 } as LogMessage);
                 this.loggerSvc.logHttpError(err);
                 requestStatus.exception = err;
-
+                requestStatus.statuscode = err.status ? err.status : '';
                 this.isProcessing = false;
             })
             .then((result) => {
+                console.log(`result: %c %o`, 'color:organge', result);
+                console.log(`requestStatus: %c %o`, 'color:organge', requestStatus);
+
                 this.loggerSvc.logNavigation(
                     'middleware-request-status:',
                     'completed'
                 );
-                requestStatus.status = true;
+
+                if (requestStatus.exception === null) {
+                    requestStatus.status = true;
+                } else {
+                    requestStatus.status = false;
+                }
+
                 requestStatus.response = result;
                 requestStatus.referenceId = this.requestUUID;
 
@@ -180,7 +195,9 @@ export class MspRegisterAuthorizeComponent implements OnInit {
 
                 this.isProcessing = false;
                 this.registrationService.enableConfirmation = true;
-                this.router.navigate(['msp-registration/confirmation']);
+                this.router.navigate([
+                    MSP_REGISTER_ROUTES.CONFIRMATION.fullpath,
+                ]);
             });
     }
 
@@ -307,7 +324,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
         return (
             this.groupsMSP.length > 0 &&
             ((this.groupsMSP[0].groupNumber as string) &&
-            (this.groupsMSP[0].groupNumber as string).length > 3
+                (this.groupsMSP[0].groupNumber as string).length > 3
                 ? true
                 : false)
         );

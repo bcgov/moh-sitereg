@@ -1,4 +1,5 @@
 <!-- TODO: ask if the control to add access administrators is the button click. UX is confusing -->
+<common-page-framework layout='blank'>
 <h2 class="border-bottom">Access Admins</h2>
 <div class='row mb-4'>
   <div class='col-md-3 p-4'>
@@ -9,7 +10,7 @@
     </a>
   </div>
 </div>
-<sitereg-page-sections *ngFor="let fg of fgs; index as i">
+<div *ngFor="let fg of fgs; index as i">
   <div class="row border-bottom">
     <div class="col-auto mr-auto">
       <h3> Access Admin #{{fgs.length-i}}</h3>
@@ -21,6 +22,7 @@
     </div>
   </div>
   <sitereg-msp-register-user-msp [fg]="fg"  [showMspDirectAccessQuestion]="false" ></sitereg-msp-register-user-msp>
-</sitereg-page-sections>
-<common-form-action-bar  class="fixed-bottom" (btnClick)="continue()" [canContinue]="validFormGroup(fgs)">
+</div>
+</common-page-framework>
+<common-form-action-bar  (btnClick)="continue()" [canContinue]="validFormGroup(fgs)">
 </common-form-action-bar>

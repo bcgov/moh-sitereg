@@ -2,6 +2,7 @@ import { CommonLogger, CommonLogMessage } from 'moh-common-lib/services';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { GlobalConfigService } from './global-config.service';
+import { environment } from 'src/environments/environment.prod';
 
 export interface LogMessage {
     event: string;
@@ -26,8 +27,9 @@ export class LoggerService extends CommonLogger {
 
         // this.isProduction = this.globalConfigSvc.currentEnironment.production;
         this.programName = this.globalConfigSvc.logMspApplicationName;
-        this.applicationId = this.globalConfigSvc.logMspApplicationUUID;
+        this.applicationId = this.globalConfigSvc.applicationId;
         this.setURL(this.globalConfigSvc.currentEnironment.loggingURL);
+        //  console.log(`%o <= Logger Application ID`, this.applicationId);
     }
 
     /**
@@ -42,7 +44,9 @@ export class LoggerService extends CommonLogger {
             // console.log(`%c  Splunk Log: => %o`, 'color:orange', clog);
             // this._log(message as CommonLogMessage);
 
-            this.globalConfigSvc.isProduction
+            //  console.log(`%o <= Logger Application ID at Log`, this.applicationId);
+
+            !environment.debug
                 ? this._log(message as CommonLogMessage)
                 : console.log(
                       `%c splunk-log \n\t %o`,

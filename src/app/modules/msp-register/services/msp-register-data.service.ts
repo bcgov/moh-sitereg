@@ -74,7 +74,7 @@ export class MspRegisterDataService {
         this.signingAuthorityAddress$.next(addr);
     }
 
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) { }
     validateKeys(obj) {
         for (const key in Object.keys(obj)) {
             if (obj[key] === typeof obj) throw Error('invalid type');
@@ -94,7 +94,9 @@ export class MspRegisterDataService {
         third_party_org_num = third_party_org_num ? third_party_org_num : '';
 
         // if (!third_party_org_num) return { contracting_third_party, third_party_org_num? '' };
-        return { contracting_third_party, third_party_org_num };
+        return !(third_party_org_num === '') ?
+        ({ contracting_third_party, third_party_org_num }) :
+        ({ contracting_third_party });
     }
 
     mapBaseUser(obj: IUser): ICoreUserDef {
@@ -174,7 +176,7 @@ export class MspRegisterDataService {
         const baseUser: ICoreUserDef = {
             curtesy_title:
                 (obj.userTitle as string) &&
-                !((obj.userTitle as string) === 'null')
+                    !((obj.userTitle as string) === 'null')
                     ? (obj.userTitle as string)
                     : '',
             last_name: obj.lastName as string,
@@ -249,11 +251,16 @@ export class MspRegisterDataService {
                 : '';
 
         // tslint:disable-next-line: variable-name
-        const contracting_out = this.mapContractingOut(
-            this.mapYesNoDef(obj.thirdParty as boolean),
-            orgNumber
-        );
-        return {
+        const contracting_out =
+            (obj.thirdParty as boolean) === true ?
+                this.mapContractingOut(
+                    this.mapYesNoDef(obj.thirdParty as boolean),
+                    orgNumber
+                ) : this.mapContractingOut(
+                    this.mapYesNoDef(obj.thirdParty as boolean)
+                );
+
+        const organizationObject =  {
             contracting_out,
             org_name: obj.name as string,
             org_num: orgNumber,
@@ -269,6 +276,41 @@ export class MspRegisterDataService {
                 obj.administeringFor as string
             ),
         };
+
+        // const organizationObject = (obj.thirdParty as boolean) === true ?
+        // {
+        //     contracting_out,
+        //     org_name: obj.name as string,
+        //     org_num: orgNumber,
+        //     suite_num: obj.suite ? (obj.suite as string) : '',
+        //     street_num: obj.street as string,
+        //     street_name: obj.streetName as string,
+        //     address_2: obj.addressLine2 ? (obj.addressLine2 as string) : '',
+        //     city: obj.city as string,
+        //     province: obj.province as string,
+        //     postal_code: obj.postalCode as string,
+        //     blue_cross: this.mapYesNoDef(obj.blueCross as boolean),
+        //     org_spg: this.mapAdministeringForDef(
+        //         obj.administeringFor as string
+        //     ),
+        // } :
+        // {
+        //     contracting_out,
+        //     org_name: obj.name as string,
+        //     suite_num: obj.suite ? (obj.suite as string) : '',
+        //     street_num: obj.street as string,
+        //     street_name: obj.streetName as string,
+        //     address_2: obj.addressLine2 ? (obj.addressLine2 as string) : '',
+        //     city: obj.city as string,
+        //     province: obj.province as string,
+        //     postal_code: obj.postalCode as string,
+        //     blue_cross: this.mapYesNoDef(obj.blueCross as boolean),
+        //     org_spg: this.mapAdministeringForDef(
+        //         obj.administeringFor as string
+        //     ),
+        // } ;
+
+        return organizationObject;
     }
 
     //#endregion
@@ -466,8 +508,8 @@ export class MspRegisterDataService {
                 : null,
             aa_same_as_sa: AccessAdmminSameAsSigningAuthority
                 ? this.mapYesNoDef(
-                      AccessAdmminSameAsSigningAuthority as boolean
-                  )
+                    AccessAdmminSameAsSigningAuthority as boolean
+                )
                 : 'N',
             access_administrator: accessAdministrators
                 ? accessAdministrators

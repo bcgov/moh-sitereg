@@ -8,7 +8,10 @@ import { BehaviorSubject } from 'rxjs';
 import { cAdministeringFor } from '../../models/core/core-types';
 import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
-import { funcRemoveStrings } from '@msp-register/constants';
+import {
+    funcRemoveStrings,
+    MSP_REGISTER_ROUTES,
+} from '@msp-register/constants';
 import { MspRegistrationService } from '@msp-register/msp-registration.service';
 
 @Component({
@@ -60,7 +63,9 @@ export class MspRegisterSigningAuthorityComponent implements OnInit {
         // splunk-log
         this.loggerSvc.logNavigation(
             this.constructor.name,
-            'Valid Data - Continue button clicked.'
+            `Valid Data - Continue button clicked. ${
+                this.globalConfigSvc.applicationId
+            }`
         );
 
         this.updateSingingAuthorityAsAdmin();
@@ -69,7 +74,7 @@ export class MspRegisterSigningAuthorityComponent implements OnInit {
 
         // REMOVEME debug-only
         this.debugOnly();
-        this.router.navigate(['msp-registration/access-admins']);
+        this.router.navigate([MSP_REGISTER_ROUTES.ACCESS_ADMINS.fullpath]);
     }
 
     //#region update Singing Authority as Access Admin

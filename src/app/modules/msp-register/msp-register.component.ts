@@ -37,7 +37,7 @@ export class MspRegisterComponent extends Container implements OnInit {
 
         this.registrationService.getRegisterationItems();
 
-        console.log('ANSWER:%o', this.showStepper());
+        // console.log('ANSWER:%o', this.showStepper());
     }
 
     setProgressItems() {

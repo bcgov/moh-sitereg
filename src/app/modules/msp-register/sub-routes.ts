@@ -6,56 +6,56 @@ import { MspRegisterAccessAdminsComponent } from '@msp-register/components/msp-r
 import { MspRegisterUsersComponent } from '@msp-register/components/msp-register-users/msp-register-users.component';
 import { MspRegisterGroupComponent } from '@msp-register/components/msp-register-group/msp-register-group.component';
 import { MspRegisterAuthorizeComponent } from '@msp-register/components/msp-register-authorize/msp-register-authorize.component';
-import { MSP_REGISTERATION_ROUTES } from './constants';
+import { MSP_REGISTER_ROUTES } from './constants';
 import { MspRegisterAutofillComponent } from './components/autofill/autofill.component';
 import { MspRegisterConfirmationComponent } from './components/msp-register-confirmation/msp-register-confirmation.component';
 
 export const subRoutes: Routes = [
     {
         path: '',
-        redirectTo: 'confirmation',
+        redirectTo: MSP_REGISTER_ROUTES.ORGANIZATION.path,
     },
     {
         // path: 'organization',
-        path: MSP_REGISTERATION_ROUTES.ORGANIZATION.path,
+        path: MSP_REGISTER_ROUTES.ORGANIZATION.path,
         component: MspRegisterOrganizationComponent,
-        data: { title: MSP_REGISTERATION_ROUTES.ORGANIZATION.title },
+        data: { title: MSP_REGISTER_ROUTES.ORGANIZATION.title },
     },
     {
         // path: 'signing-authority',
-        path: MSP_REGISTERATION_ROUTES.SIGNING_AUTHORITY.path,
+        path: MSP_REGISTER_ROUTES.SIGNING_AUTHORITY.path,
         component: MspRegisterSigningAuthorityComponent,
-        data: { title: MSP_REGISTERATION_ROUTES.SIGNING_AUTHORITY.title },
+        data: { title: MSP_REGISTER_ROUTES.SIGNING_AUTHORITY.title },
     },
     {
         // path: 'access-admins',
-        path: MSP_REGISTERATION_ROUTES.ACCESS_ADMINS.path,
+        path: MSP_REGISTER_ROUTES.ACCESS_ADMINS.path,
         component: MspRegisterAccessAdminsComponent,
-        data: { title: MSP_REGISTERATION_ROUTES.ACCESS_ADMINS.title },
+        data: { title: MSP_REGISTER_ROUTES.ACCESS_ADMINS.title },
     },
     {
         // path: 'users',
-        path: MSP_REGISTERATION_ROUTES.USERS.path,
+        path: MSP_REGISTER_ROUTES.USERS.path,
         component: MspRegisterUsersComponent,
-        data: { title: MSP_REGISTERATION_ROUTES.USERS.title },
+        data: { title: MSP_REGISTER_ROUTES.USERS.title },
     },
     {
         // path: 'group-numbers',
-        path: MSP_REGISTERATION_ROUTES.GROUP_NUMBERS.path,
+        path: MSP_REGISTER_ROUTES.GROUP_NUMBERS.path,
         component: MspRegisterGroupComponent,
-        data: { title: MSP_REGISTERATION_ROUTES.GROUP_NUMBERS.title },
+        data: { title: MSP_REGISTER_ROUTES.GROUP_NUMBERS.title },
     },
     {
         // path: 'authorize',
-        path: MSP_REGISTERATION_ROUTES.AUTHORIZE.path,
+        path: MSP_REGISTER_ROUTES.AUTHORIZE.path,
         component: MspRegisterAuthorizeComponent,
-        data: { title: MSP_REGISTERATION_ROUTES.AUTHORIZE.title },
+        data: { title: MSP_REGISTER_ROUTES.AUTHORIZE.title },
     },
     {
         // path: 'confirmation',
-        path: MSP_REGISTERATION_ROUTES.CONFIRMATION.path,
+        path: MSP_REGISTER_ROUTES.CONFIRMATION.path,
         component: MspRegisterConfirmationComponent,
-        data: { title: MSP_REGISTERATION_ROUTES.CONFIRMATION.title },
+        data: { title: MSP_REGISTER_ROUTES.CONFIRMATION.title },
     },
 
     // REMOVEME
