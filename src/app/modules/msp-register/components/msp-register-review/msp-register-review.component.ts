@@ -14,12 +14,12 @@ import {
 import { MspRegistrationService } from '@msp-register/msp-registration.service';
 
 @Component({
-    selector: 'sitereg-msp-register-group',
-    templateUrl: './msp-register-group.component.html',
-    styleUrls: ['./msp-register-group.component.scss'],
+    selector: 'sitereg-msp-register-review',
+    templateUrl: './msp-register-review.component.html',
+    styleUrls: ['./msp-register-review.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MspRegisterGroupComponent implements OnInit {
+export class MspRegisterReviewComponent implements OnInit {
     fgs: FormGroup[] = [];
     validFormControl: () => boolean;
     validFormGroup = this.mspRegisterStateSvc
@@ -72,7 +72,7 @@ export class MspRegisterGroupComponent implements OnInit {
         // REMOVEME debug-only
         this.debugOnly();
 
-        this.router.navigate([MSP_REGISTER_ROUTES.REVIEW.fullpath]);
+        this.router.navigate([MSP_REGISTER_ROUTES.AUTHORIZE.fullpath]);
     }
 
     addDefaultFormGroup(): void {

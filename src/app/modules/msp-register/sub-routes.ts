@@ -9,6 +9,7 @@ import { MspRegisterAuthorizeComponent } from '@msp-register/components/msp-regi
 import { MSP_REGISTER_ROUTES } from './constants';
 import { MspRegisterAutofillComponent } from './components/autofill/autofill.component';
 import { MspRegisterConfirmationComponent } from './components/msp-register-confirmation/msp-register-confirmation.component';
+import { MspRegisterReviewComponent } from './components/msp-register-review/msp-register-review.component';
 
 export const subRoutes: Routes = [
     {
@@ -44,6 +45,12 @@ export const subRoutes: Routes = [
         path: MSP_REGISTER_ROUTES.GROUP_NUMBERS.path,
         component: MspRegisterGroupComponent,
         data: { title: MSP_REGISTER_ROUTES.GROUP_NUMBERS.title },
+    },
+    {
+        // path: 'review',
+        path: MSP_REGISTER_ROUTES.REVIEW.path,
+        component: MspRegisterReviewComponent,
+        data: { title: MSP_REGISTER_ROUTES.REVIEW.title },
     },
     {
         // path: 'authorize',

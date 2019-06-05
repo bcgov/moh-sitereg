@@ -50,14 +50,20 @@ export const MSP_REGISTER_ROUTES = {
         fullpath: `${APPLICATION_ROUTES.REGISTER}/group-numbers`,
         title: 'MSP Groups',
     },
-    AUTHORIZE: {
+    REVIEW: {
         order: 6,
+        path: 'review',
+        fullpath: `${APPLICATION_ROUTES.REGISTER}/review`,
+        title: 'Review',
+    },
+    AUTHORIZE: {
+        order: 7,
         path: 'authorize',
         fullpath: `${APPLICATION_ROUTES.REGISTER}/authorize`,
         title: 'Authorize',
     },
     CONFIRMATION: {
-        order: 7,
+        order: 8,
         path: 'confirmation',
         fullpath: `${APPLICATION_ROUTES.REGISTER}/confirmation`,
         title: 'Confirmation',
