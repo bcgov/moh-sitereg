@@ -14,20 +14,17 @@ import {
 import { MspRegistrationService } from '@msp-register/msp-registration.service';
 
 @Component({
-    selector: 'sitereg-msp-register-group',
-    templateUrl: './msp-register-group.component.html',
-    styleUrls: ['./msp-register-group.component.scss'],
+    selector: 'sitereg-msp-register-review',
+    templateUrl: './msp-register-review.component.html',
+    styleUrls: ['./msp-register-review.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MspRegisterGroupComponent implements OnInit {
-    fgs: FormGroup[] = [];
-    validFormControl: () => boolean;
-    validFormGroup = this.mspRegisterStateSvc
-        .MspRegisterGroupFormNumbersContinueValid;
-
-    public get organization(): IMspOrganization {
-        return this.mspRegisterStateSvc.organization;
+export class MspRegisterReviewComponent implements OnInit {
+    validFormGroup(): boolean {
+        return true;
     }
+
+
     constructor(
         private router: Router,
         public loggerSvc: LoggerService,
@@ -36,9 +33,6 @@ export class MspRegisterGroupComponent implements OnInit {
         public mspRegDataSvc: MspRegisterDataService,
         private registrationService: MspRegistrationService
     ) {
-        this.updateFormGroups();
-        this.addDefaultFormGroup();
-        this.validFormControl = validMultiFormControl.bind(this);
 
         // // debug only
         // this.fgs.forEach((fg) => {
@@ -64,7 +58,7 @@ export class MspRegisterGroupComponent implements OnInit {
         this.loggerSvc.logNavigation(
             this.constructor.name,
             `Valid Data - Continue button clicked. ${
-                this.globalConfigSvc.applicationId
+            this.globalConfigSvc.applicationId
             }`
         );
         this.registrationService.setItemComplete();
@@ -72,59 +66,24 @@ export class MspRegisterGroupComponent implements OnInit {
         // REMOVEME debug-only
         this.debugOnly();
 
-        this.router.navigate([MSP_REGISTER_ROUTES.REVIEW.fullpath]);
+        this.router.navigate([MSP_REGISTER_ROUTES.AUTHORIZE.fullpath]);
     }
 
-    addDefaultFormGroup(): void {
-        if (this.fgs && this.fgs.length === 0) {
-            this.addFormGroup();
-            this.updateFormGroups();
-        }
-    }
-
-    addFormGroup() {
-        this.mspRegisterStateSvc.addGroup();
-        this.updateFormGroups();
-    }
-
-    updateFormGroups() {
-        this.fgs = this.mspRegisterStateSvc.mspRegisterGroupForm;
-    }
-
-    deleteFormGroup(i: number) {
-        this.mspRegisterStateSvc.removeGroup(i);
-        this.updateFormGroups();
+    mapBooleantoYesNo(val?: boolean) {
+        return val && val === true ? 'Yes' : 'No';
     }
 
     // REMOVEME - debug only
     debugOnly() {
         if (this.globalConfigSvc.currentEnironment.production === false) {
-            // Msp Groups
-            const mspGroups: IMspGroup[] = [];
-            this.mspRegisterStateSvc.mspRegisterGroupForm.forEach((v) =>
-                v.value ? mspGroups.push(v.value) : ''
-            );
 
-            // Orgnaization Info
-            const moOrganizationInformation = this.mspRegDataSvc.mapOrgInformation(
-                this.mspRegisterStateSvc.mspRegisterOrganizationForm.value
-            );
-
-            const isThirdPartyManamentAllowed = this.mspRegDataSvc.isThirdyPartyManagmentEnabled(
-                moOrganizationInformation
-            );
-            const middleWareObject = this.mspRegDataSvc.mapGroupDef(
-                mspGroups,
-                isThirdPartyManamentAllowed
-            );
             console.log(
-                `%c middleware object <= %o\n\t%o`,
+                `%c review <= %o\n\t%o`,
                 'color:lightgreen',
                 funcRemoveStrings(
                     ['MspRegister', 'Component'],
                     this.constructor.name
                 ),
-                middleWareObject
             );
         }
     }

@@ -16,6 +16,7 @@ import { MspRegisterUserComponent } from './components/core/msp-register-user/ms
 import { CaptchaModule } from 'moh-common-lib/captcha';
 import { MspRegisterAutofillComponent } from './components/autofill/autofill.component';
 import { MspRegisterConfirmationComponent } from './components/msp-register-confirmation/msp-register-confirmation.component';
+import { MspRegisterReviewComponent } from './components/msp-register-review/msp-register-review.component';
 
 @NgModule({
     declarations: [
@@ -25,6 +26,7 @@ import { MspRegisterConfirmationComponent } from './components/msp-register-conf
         MspRegisterAccessAdminsComponent,
         MspRegisterAuthorizeComponent,
         MspRegisterGroupComponent,
+        MspRegisterReviewComponent,
         MspRegisterSigningAuthorityComponent,
         MspRegisterUsersComponent,
         MspRegisterAuthorizeAccessComponent,
