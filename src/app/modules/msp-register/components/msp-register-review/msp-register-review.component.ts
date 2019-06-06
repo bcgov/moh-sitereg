@@ -58,7 +58,7 @@ export class MspRegisterReviewComponent implements OnInit {
         this.loggerSvc.logNavigation(
             this.constructor.name,
             `Valid Data - Continue button clicked. ${
-                this.globalConfigSvc.applicationId
+            this.globalConfigSvc.applicationId
             }`
         );
         this.registrationService.setItemComplete();
@@ -67,6 +67,10 @@ export class MspRegisterReviewComponent implements OnInit {
         this.debugOnly();
 
         this.router.navigate([MSP_REGISTER_ROUTES.AUTHORIZE.fullpath]);
+    }
+
+    mapBooleantoYesNo(val?: boolean) {
+        return val && val === true ? 'Yes' : 'No';
     }
 
     // REMOVEME - debug only
