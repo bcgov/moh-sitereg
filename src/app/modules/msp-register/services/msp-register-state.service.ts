@@ -111,10 +111,10 @@ export class MspRegisterStateService {
         this.mspRegisterAccessAdminsForm.forEach((v) =>
             v.value ? mspAccessAdmins.push(v.value) : ''
         );
-        const accessAdministrators: IMspAccessAdmins = {
-            admins: mspAccessAdmins
-        }
-        return accessAdministrators;
+        // const accessAdministrators: IMspAccessAdmins = {
+        //     admins: mspAccessAdmins
+        // }
+        return mspAccessAdmins;
     }
 
     addAdmin() {
@@ -156,11 +156,11 @@ export class MspRegisterStateService {
         this.mspRegisterUsersForm.forEach((v) =>
             v.value ? mspUsers.push(v.value) : ''
         );
-        const users: IMspUsers = {
-            users: mspUsers
-        };
+        // const users: IMspUsers = {
+        //     users: mspUsers
+        // };
 
-        return users;
+        return mspUsers;
     }
 
     addUser() {
