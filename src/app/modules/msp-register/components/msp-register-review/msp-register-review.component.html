@@ -158,30 +158,160 @@
       </div>
     </div>
   </div>
-  <!-- <div class='row mb-4'>
+  <div class='row mb-4'>
     <div class='col-md-8 '>
       <h3 class="border-bottom">Access Administrators</h3>
-      <div class="col-auto mr-auto">
-        {{ mspRegisterStateSvc.accessAdmins | json }}
+      <div class="col-auto mr-auto mb-4" *ngFor="let admin of mspRegisterStateSvc.accessAdmins">
+         <div class="row" >
+            <div class='col-md-3'>
+              Name:
+            </div>
+            <div class='col-md-5'>
+              {{admin.userTitle}} {{admin.firstName}}
+              {{admin.lastName}}
+            </div>
+          </div>       
+          <div class="row">
+            <div class='col-md-3'>
+              Job Title:
+            </div>
+            <div class='col-md-5'>
+              {{admin.jobTitle}}
+            </div>
+          </div>
+          <div class="row">
+            <div class='col-md-3'>
+              Email:
+            </div>
+            <div class='col-md-5'>
+              {{admin.emailAddress}}
+            </div>
+          </div>
+          <div class="row">
+            <div class='col-md-3'>
+              Phone:
+            </div>
+            <div class='col-md-5'>
+              {{admin.phone}} ext. {{admin.ext}}
+            </div>
+          </div>
+          <div class="row">
+            <div class='col-md-3'>
+              Fax:
+            </div>
+            <div class='col-md-5'>
+              {{admin.fax}}
+            </div>
+          </div>
+           <div class="row">
+            <div class='col-md-3'>
+              MSP Access:
+            </div>
+            <div class='col-md-5'>
+              {{ mapBooleantoYesNo(admin.directMspAccess) }}
+            </div>
+          </div>
+          <div class="row">
+            <div class='col-md-3'>
+              Access Requested:
+            </div>
+            <div class='col-md-5'>
+              {{ admin.administeringFor }}
+            </div>
+          </div>
+          <div class="row">
+            <div class='col-md-3'>
+              Also an Access Administrator?:
+            </div>
+            <div class='col-md-5'>
+                {{ mapBooleantoYesNo(admin.directMspAccess) }}
+            </div>
+          </div>
+          <!-- {{ mspRegisterStateSvc.accessAdmins | json }} -->
       </div>
+      
     </div>
   </div>
   <div class='row mb-4'>
     <div class='col-md-8 '>
       <h3 class="border-bottom">Users</h3>
-      <div class="col-auto mr-auto">
-        {{ mspRegisterStateSvc.users | json }}
-      </div>
+      <div class="col-auto mr-auto mb-4" *ngFor="let user of mspRegisterStateSvc.users">
+          <div class="row" style="margin-bottom:0.25%">
+             <div class='col-md-3'>
+               Name:
+             </div>
+             <div class='col-md-5'>
+               {{user.userTitle}} {{user.firstName}}
+               {{user.lastName}}
+             </div>
+           </div>       
+           <div class="row">
+             <div class='col-md-3'>
+               Job Title:
+             </div>
+             <div class='col-md-5'>
+               {{user.jobTitle}}
+             </div>
+           </div>
+           <div class="row">
+             <div class='col-md-3'>
+               Email:
+             </div>
+             <div class='col-md-5'>
+               {{user.emailAddress}}
+             </div>
+           </div>
+           <div class="row">
+             <div class='col-md-3'>
+               Phone:
+             </div>
+             <div class='col-md-5'>
+               {{user.phone}} ext. {{user.ext}}
+             </div>
+           </div>
+           <div class="row">
+             <div class='col-md-3'>
+               Fax:
+             </div>
+             <div class='col-md-5'>
+               {{user.fax}}
+             </div>
+           </div>
+           <div class="row">
+             <div class='col-md-3'>
+               Access Requested:
+             </div>
+             <div class='col-md-5'>
+               {{ user.administeringFor }}
+             </div>
+           </div>                  
+       </div>
     </div>
   </div>
   <div class='row mb-4'>
     <div class='col-md-8 '>
-      <h3 class="border-bottom">Group Numbers</h3>
-      <div class="col-auto mr-auto">
-        {{ mspRegisterStateSvc.groups | json }}
+      <h3 class="border-bottom">Group Numbers</h3>      
+          <div class="col-auto mr-auto mb-4" *ngFor="let group of mspRegisterStateSvc.groups">
+              <div class="row" style="margin-bottom:0.25%">
+                 <div class='col-md-3'>
+                   Group Number:
+                 </div>
+                 <div class='col-md-5'>
+                   {{group.groupNumber}}
+                 </div>
+               </div>
+               <div class="row">
+                 <div class='col-md-3'>
+                   Third Party:
+                 </div>
+                 <div class='col-md-5'>
+                   {{ mapBooleantoYesNo(group.thirdParty) }}
+                 </div>
+               </div>                  
+           </div>
+        <!-- {{ mspRegisterStateSvc.groups | json }} -->
       </div>
-    </div>
-  </div> -->
+  </div>
 
 </common-page-framework>
 <common-form-action-bar (btnClick)="continue()" [canContinue]="validFormGroup(fgs)">
