@@ -59,7 +59,7 @@
           <div class="col-sm-8">
             <!-- Province -->
             <label class="control-label" for="province">Province</label>
-            <select class="form-control" *ngIf="provinces | async as provinces" formControlName="province"  maxlproength="3" >
+            <select class="form-control" *ngIf="provinces | async as provinces" formControlName="province"  maxlength="3" >
               <option value="null" label="-- Select Province --" selected></option>
               <option *ngFor="let province of provinces " [value]="province.provCode">{{province.description}}</option>
             </select>
@@ -112,7 +112,7 @@
             <!-- Organization Number -->
             <label class="control-label" for="organizationNumber">Organization Number</label>
             <input id="organizationNumber" formControlName="organizationNumber" class="form-control"
-              placeholder="Organization Number">
+              placeholder="Organization Number" maxlength="8">
             <div class="text-danger" *ngIf="validFormControl('organizationNumber')">
               Please enter Organization Number, must be 8 digits only.
             </div>
