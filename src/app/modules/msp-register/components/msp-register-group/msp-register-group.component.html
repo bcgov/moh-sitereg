@@ -27,7 +27,7 @@
       <!--Group Number-->
       <div class="form-group col-sm-6 p-sm-0">
         <label class="control-label" for="groupNumber">MSP Group Number #</label>
-        <input id="groupNumber" formControlName="groupNumber" class="form-control">
+        <input id="groupNumber" formControlName="groupNumber" class="form-control" maxlength="7">
         <sitereg-error-box [error]="validFormControl(fg, 'groupNumber')"
           errorMessage="Invalid Group Number, Group number must be 7 digits long."></sitereg-error-box>
       </div>
