@@ -32,6 +32,7 @@ export class MspRegisterStateService {
     public mspRegisterUsersForm: FormGroup[] = [];
     public mspRegisterGroupForm: FormGroup[] = [];
     public mspRegisterAuthorizeForm: FormGroup;
+    public hasConsentedToInformationCollection = false;
 
     constructor() {
         if (this.constructor.name === this.consolePrintForm) {

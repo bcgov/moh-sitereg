@@ -37,6 +37,8 @@ export class MspRegisterOrganizationComponent implements OnInit {
         ]
     );
 
+    @ViewChild('consentModal') consentModal: ConsentModalComponent;
+
     validFormControl: () => boolean;
 
     constructor(
@@ -78,6 +80,16 @@ export class MspRegisterOrganizationComponent implements OnInit {
                 });
             }
         });
+    }
+
+    ngAfterViewInit() {
+        if (!this.mspRegisterStateSvc.hasConsentedToInformationCollection){
+            this.consentModal.showFullSizeView();
+        }
+    }
+
+    onAcceptCollectionNotice(accepted: boolean) {
+        this.mspRegisterStateSvc.hasConsentedToInformationCollection = accepted;
     }
 
     continue() {
