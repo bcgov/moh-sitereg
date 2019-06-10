@@ -38,7 +38,7 @@ export class MspRegisterOrganizationComponent implements OnInit, AfterViewInit {
         ]
     );
 
-    @ViewChild('mspConsentModal') mspConsentModal: ConsentModalComponent;
+    @ViewChild('consentModal') consentModal: ConsentModalComponent;
 
     validFormControl: () => boolean;
 
@@ -84,8 +84,13 @@ export class MspRegisterOrganizationComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
-        // TODO - CHECK IF MODAL IS CONSENTED TO
-        this.mspConsentModal.showFullSizeView();
+        if (!this.mspRegisterStateSvc.hasConsentedToInformationCollection){
+            this.consentModal.showFullSizeView();
+        }
+    }
+
+    onAcceptCollectionNotice(accepted: boolean) {
+        this.mspRegisterStateSvc.hasConsentedToInformationCollection = accepted;
     }
 
     continue() {
