@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ViewChild, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MspRegisterStateService } from '@msp-register/services/msp-register-state.service';
@@ -17,6 +17,7 @@ import {
     MSP_REGISTER_ROUTES,
 } from '@msp-register/constants';
 import { MspRegistrationService } from '@msp-register/msp-registration.service';
+import { ConsentModalComponent } from 'moh-common-lib';
 
 @Component({
     selector: 'sitereg-msp-register-organization',
@@ -24,7 +25,7 @@ import { MspRegistrationService } from '@msp-register/msp-registration.service';
     styleUrls: ['./msp-register-organization.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MspRegisterOrganizationComponent implements OnInit {
+export class MspRegisterOrganizationComponent implements OnInit, AfterViewInit {
     fg: FormGroup;
     provinces: BehaviorSubject<IProvince[]> = new BehaviorSubject<IProvince[]>(
         null
@@ -36,6 +37,8 @@ export class MspRegisterOrganizationComponent implements OnInit {
             'Employees and International Students',
         ]
     );
+
+    @ViewChild('mspConsentModal') mspConsentModal: ConsentModalComponent;
 
     validFormControl: () => boolean;
 
@@ -78,6 +81,11 @@ export class MspRegisterOrganizationComponent implements OnInit {
                 });
             }
         });
+    }
+
+    ngAfterViewInit() {
+        // TODO - CHECK IF MODAL IS CONSENTED TO
+        this.mspConsentModal.showFullSizeView();
     }
 
     continue() {

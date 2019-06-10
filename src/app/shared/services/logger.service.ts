@@ -1,4 +1,4 @@
-import { CommonLogger, CommonLogMessage } from 'moh-common-lib/services';
+import { CommonLogger, CommonLogMessage } from 'moh-common-lib';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { GlobalConfigService } from './global-config.service';
