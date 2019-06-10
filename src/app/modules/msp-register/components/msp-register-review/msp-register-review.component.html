@@ -1,8 +1,14 @@
 <!-- TODO: bit of thinking as to how to make the component work for this. -->
 <common-page-framework layout='blank'>
   <h2 class="border-bottom">Review: Request for MSP Direct Access!</h2>
-  <div class='row mb-1'>
-    <div class='col-md-8 ' style="color:red">
+  <div class='row mb-2'>
+    <div class='col-md-4'>
+      <button tabindex="0" class="btn btn-default" onclick="window.print();return false;">
+        <i class="fa fa-print fa-lg pointer" aria-hidden="true"></i>
+        Print
+      </button>
+    </div>
+    <div class='col-md-4' style="color:red">
       Your data has not been submitted Yet!
     </div>
   </div>
@@ -97,7 +103,7 @@
             {{mspRegisterStateSvc.signingAuthority.userTitle}} {{mspRegisterStateSvc.signingAuthority.firstName}}
             {{mspRegisterStateSvc.signingAuthority.lastName}}
           </div>
-        </div>       
+        </div>
         <div class="row">
           <div class='col-md-3'>
             Job Title:
@@ -151,7 +157,7 @@
             Also an Access Administrator?:
           </div>
           <div class='col-md-5'>
-              {{ mapBooleantoYesNo(mspRegisterStateSvc.signingAuthority.directMspAccess) }}
+            {{ mapBooleantoYesNo(mspRegisterStateSvc.signingAuthority.directMspAccess) }}
           </div>
         </div>
         <!-- {{ mspRegisterStateSvc.signingAuthority | json }} -->
@@ -162,155 +168,155 @@
     <div class='col-md-8 '>
       <h3 class="border-bottom">Access Administrators</h3>
       <div class="col-auto mr-auto mb-4" *ngFor="let admin of mspRegisterStateSvc.accessAdmins">
-         <div class="row" >
-            <div class='col-md-3'>
-              Name:
-            </div>
-            <div class='col-md-5'>
-              {{admin.userTitle}} {{admin.firstName}}
-              {{admin.lastName}}
-            </div>
-          </div>       
-          <div class="row">
-            <div class='col-md-3'>
-              Job Title:
-            </div>
-            <div class='col-md-5'>
-              {{admin.jobTitle}}
-            </div>
+        <div class="row">
+          <div class='col-md-3'>
+            Name:
           </div>
-          <div class="row">
-            <div class='col-md-3'>
-              Email:
-            </div>
-            <div class='col-md-5'>
-              {{admin.emailAddress}}
-            </div>
+          <div class='col-md-5'>
+            {{admin.userTitle}} {{admin.firstName}}
+            {{admin.lastName}}
           </div>
-          <div class="row">
-            <div class='col-md-3'>
-              Phone:
-            </div>
-            <div class='col-md-5'>
-              {{admin.phone}} ext. {{admin.ext}}
-            </div>
+        </div>
+        <div class="row">
+          <div class='col-md-3'>
+            Job Title:
           </div>
-          <div class="row">
-            <div class='col-md-3'>
-              Fax:
-            </div>
-            <div class='col-md-5'>
-              {{admin.fax}}
-            </div>
+          <div class='col-md-5'>
+            {{admin.jobTitle}}
           </div>
-           <div class="row">
-            <div class='col-md-3'>
-              MSP Access:
-            </div>
-            <div class='col-md-5'>
-              {{ mapBooleantoYesNo(admin.directMspAccess) }}
-            </div>
+        </div>
+        <div class="row">
+          <div class='col-md-3'>
+            Email:
           </div>
-          <div class="row">
-            <div class='col-md-3'>
-              Access Requested:
-            </div>
-            <div class='col-md-5'>
-              {{ admin.administeringFor }}
-            </div>
+          <div class='col-md-5'>
+            {{admin.emailAddress}}
           </div>
-          <div class="row">
-            <div class='col-md-3'>
-              Also an Access Administrator?:
-            </div>
-            <div class='col-md-5'>
-                {{ mapBooleantoYesNo(admin.directMspAccess) }}
-            </div>
+        </div>
+        <div class="row">
+          <div class='col-md-3'>
+            Phone:
           </div>
-          <!-- {{ mspRegisterStateSvc.accessAdmins | json }} -->
+          <div class='col-md-5'>
+            {{admin.phone}} ext. {{admin.ext}}
+          </div>
+        </div>
+        <div class="row">
+          <div class='col-md-3'>
+            Fax:
+          </div>
+          <div class='col-md-5'>
+            {{admin.fax}}
+          </div>
+        </div>
+        <div class="row">
+          <div class='col-md-3'>
+            MSP Access:
+          </div>
+          <div class='col-md-5'>
+            {{ mapBooleantoYesNo(admin.directMspAccess) }}
+          </div>
+        </div>
+        <div class="row">
+          <div class='col-md-3'>
+            Access Requested:
+          </div>
+          <div class='col-md-5'>
+            {{ admin.administeringFor }}
+          </div>
+        </div>
+        <div class="row">
+          <div class='col-md-3'>
+            Also an Access Administrator?:
+          </div>
+          <div class='col-md-5'>
+            {{ mapBooleantoYesNo(admin.directMspAccess) }}
+          </div>
+        </div>
+        <!-- {{ mspRegisterStateSvc.accessAdmins | json }} -->
       </div>
-      
+
     </div>
   </div>
   <div class='row mb-4'>
     <div class='col-md-8 '>
       <h3 class="border-bottom">Users</h3>
       <div class="col-auto mr-auto mb-4" *ngFor="let user of mspRegisterStateSvc.users">
-          <div class="row" style="margin-bottom:0.25%">
-             <div class='col-md-3'>
-               Name:
-             </div>
-             <div class='col-md-5'>
-               {{user.userTitle}} {{user.firstName}}
-               {{user.lastName}}
-             </div>
-           </div>       
-           <div class="row">
-             <div class='col-md-3'>
-               Job Title:
-             </div>
-             <div class='col-md-5'>
-               {{user.jobTitle}}
-             </div>
-           </div>
-           <div class="row">
-             <div class='col-md-3'>
-               Email:
-             </div>
-             <div class='col-md-5'>
-               {{user.emailAddress}}
-             </div>
-           </div>
-           <div class="row">
-             <div class='col-md-3'>
-               Phone:
-             </div>
-             <div class='col-md-5'>
-               {{user.phone}} ext. {{user.ext}}
-             </div>
-           </div>
-           <div class="row">
-             <div class='col-md-3'>
-               Fax:
-             </div>
-             <div class='col-md-5'>
-               {{user.fax}}
-             </div>
-           </div>
-           <div class="row">
-             <div class='col-md-3'>
-               Access Requested:
-             </div>
-             <div class='col-md-5'>
-               {{ user.administeringFor }}
-             </div>
-           </div>                  
-       </div>
+        <div class="row" style="margin-bottom:0.25%">
+          <div class='col-md-3'>
+            Name:
+          </div>
+          <div class='col-md-5'>
+            {{user.userTitle}} {{user.firstName}}
+            {{user.lastName}}
+          </div>
+        </div>
+        <div class="row">
+          <div class='col-md-3'>
+            Job Title:
+          </div>
+          <div class='col-md-5'>
+            {{user.jobTitle}}
+          </div>
+        </div>
+        <div class="row">
+          <div class='col-md-3'>
+            Email:
+          </div>
+          <div class='col-md-5'>
+            {{user.emailAddress}}
+          </div>
+        </div>
+        <div class="row">
+          <div class='col-md-3'>
+            Phone:
+          </div>
+          <div class='col-md-5'>
+            {{user.phone}} ext. {{user.ext}}
+          </div>
+        </div>
+        <div class="row">
+          <div class='col-md-3'>
+            Fax:
+          </div>
+          <div class='col-md-5'>
+            {{user.fax}}
+          </div>
+        </div>
+        <div class="row">
+          <div class='col-md-3'>
+            Access Requested:
+          </div>
+          <div class='col-md-5'>
+            {{ user.administeringFor }}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div class='row mb-4'>
     <div class='col-md-8 '>
-      <h3 class="border-bottom">Group Numbers</h3>      
-          <div class="col-auto mr-auto mb-4" *ngFor="let group of mspRegisterStateSvc.groups">
-              <div class="row" style="margin-bottom:0.25%">
-                 <div class='col-md-3'>
-                   Group Number:
-                 </div>
-                 <div class='col-md-5'>
-                   {{group.groupNumber}}
-                 </div>
-               </div>
-               <div class="row">
-                 <div class='col-md-3'>
-                   Third Party:
-                 </div>
-                 <div class='col-md-5'>
-                   {{ mapBooleantoYesNo(group.thirdParty) }}
-                 </div>
-               </div>                  
-           </div>
-        <!-- {{ mspRegisterStateSvc.groups | json }} -->
+      <h3 class="border-bottom">Group Numbers</h3>
+      <div class="col-auto mr-auto mb-4" *ngFor="let group of mspRegisterStateSvc.groups">
+        <div class="row" style="margin-bottom:0.25%">
+          <div class='col-md-3'>
+            Group Number:
+          </div>
+          <div class='col-md-5'>
+            {{group.groupNumber}}
+          </div>
+        </div>
+        <div class="row">
+          <div class='col-md-3'>
+            Third Party:
+          </div>
+          <div class='col-md-5'>
+            {{ mapBooleantoYesNo(group.thirdParty) }}
+          </div>
+        </div>
       </div>
+      <!-- {{ mspRegisterStateSvc.groups | json }} -->
+    </div>
   </div>
 
 </common-page-framework>
