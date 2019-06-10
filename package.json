@@ -29,7 +29,7 @@
     "classlist.js": "^1.1.20150312",
     "core-js": "^2.5.4",
     "font-awesome": "^4.7.0",
-    "moh-common-lib": "0.0.31",
+    "moh-common-lib": "1.2.0",
     "moment": "^2.24.0",
     "mygovbc-bootstrap-theme": "^0.4.1",
     "ngx-bootstrap": "^3.2.0",

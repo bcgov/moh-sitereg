@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Container } from 'moh-common-lib/models';
+import { Container } from 'moh-common-lib';
 import { Router } from '@angular/router';
 import { GlobalConfigService } from '@shared/services/global-config.service';
 import { routes } from '../../routing/routes';
