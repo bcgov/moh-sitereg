@@ -1,11 +1,15 @@
 import { browser, by, element, WebElement, protractor, $$ } from 'protractor';
-import { SiteRegTestPage } from './app.po';
+import { AbstractTestPage } from 'moh-common-lib/e2e';
 import { OrganizationPageTest, SigningAuthorityPageTest, GroupNumbersPageTest } from './sitereg.data';
 
-export class BaseSiteRegTestPage extends SiteRegTestPage {
+export class BaseSiteRegTestPage extends AbstractTestPage {
 
     constructor() {
         super();
+    }
+
+    navigateTo() {
+        return browser.get('/');
     }
 
     clickOption(value: string) {
@@ -21,24 +25,54 @@ export class BaseSiteRegTestPage extends SiteRegTestPage {
         element(by.css(`button[class*="${value}"]`)).click();
     }
 
-    // Move this method to shared lib
+    // TODO: Move these methods to shared lib
+    /**
+     * * Clicks the checkbox which means the user agrees with the info collection notice.
+     */
     clickAgree() {
         element(by.css('label[for="agree"]')).element(by.css('strong')).click();
     }
 
-    // Move this method to shared lib
+    /**
+     * * Clicks continue inside the modal
+     */
     clickModalContinue() {
         element(by.css('div[class="modal-footer"]')).element(by.css('button[type="submit"]')).click();
     }
 
-    // Move this method to shared lib
+    /**
+     * * Checks if the modal is currently displayed or not 
+     */
     checkModal() {
         return element(by.css('common-consent-modal')).element(by.css('div[aria-labelledby="myLargeModalLabel"]')).isDisplayed();
     }
 
-    // Move this method to shared lib
+    /**
+     * * Scrolls up to the top of the page
+     */
     scrollUp() {
         browser.executeScript('window.scrollTo(0,0)');
+    }
+
+    /**
+     * * Types the text inside the first input box
+     */
+    typeTextFirstOccurrence(labelId: string, text: string) {
+        element.all(by.css(`input[ng-reflect-name^="${labelId}"]`)).first().sendKeys(text);
+    }
+
+    /**
+     * * Clicks the link based from the label and text provided
+     */
+    clickLink(label: string, text: string) {
+        element(by.cssContainingText(label, text)).click();
+    }
+
+    /**
+     * * Counts the number of options inside a dropdown object
+     */
+    countLength(label: string){
+        return $$(`select[ng-reflect-name^="${label}"] option`);
     }
 
 }
@@ -103,14 +137,14 @@ export class SigningAuthorityPage extends BaseSiteRegTestPage {
     }
 
     fillInfoWithIndex(index: string, data: SigningAuthorityPageTest) {
-        this.typeTextNthChild(index, 'firstName', data.firstName);
-        this.typeTextNthChild(index, 'lastName', data.lastName);
-        this.typeTextNthChild(index, 'jobTitle', data.jobTitle);
-        this.typeTextNthChild(index, 'emailAddress', data.email);
-        this.typeTextNthChild(index, 'confirmEmail', data.email);
-        this.typeTextNthChild(index, 'phone', data.mobile + '');
-        this.typeTextNthChild(index, 'ext', data.extension + '');
-        this.typeTextNthChild(index, 'fax', data.fax + '');
+        this.typeTextFirstOccurrence('firstName', data.firstName);
+        this.typeTextFirstOccurrence('lastName', data.lastName);
+        this.typeTextFirstOccurrence('jobTitle', data.jobTitle);
+        this.typeTextFirstOccurrence('emailAddress', data.email);
+        this.typeTextFirstOccurrence('confirmEmail', data.email);
+        this.typeTextFirstOccurrence('phone', data.mobile + '');
+        this.typeTextFirstOccurrence('ext', data.extension + '');
+        this.typeTextFirstOccurrence('fax', data.fax + '');
     }
 
 }
