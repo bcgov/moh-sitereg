@@ -1,13 +1,31 @@
 <div *ngIf="status">
-  <h2 class="border-bottom">Confirmation Message</h2>
-  <div class="message-container border border-success">
-    <p class="prime-icon--success">
-      <i aria-label="success" class="fa fa-2x fa-check-circle text-success"></i>
+  <!-- <h2 class="border-bottom">Confirmation Message</h2> -->
+  <div class="row mt-4 mb-2">
+      <p class="prime-icon--success">
+          <i aria-label="success" class="fa fa-2x fa-check  mr-2"></i> Your application has been submitted.
+       </p>
+  </div>
+  <div class="message-container border border-success mb-4">
+    <!-- <p class="prime-icon--success">
+      <i aria-label="success" class="fa fa-2x fa-check-circle"></i> Your application has been submitted.
+    </p> -->
+    <!---->
+    <p>
+      <!-- Your application has been submitted.<br/> -->
+      Reference # <b>{{mspRegDataSvc.requestFinalStatus?.confirmationNumber }}</b>
     </p>
     <!---->
-    <p>Your application has been submitted. Your confirmation number is  <b>{{mspRegDataSvc.requestFinalStatus?.confirmationNumber }}</b>.</p>
-    <!---->
   </div>
+  <div class="row mr-2">
+    What happens next
+    <ul>
+        <li><b>Important:</b> Keep your reference number – write it down, or print this page for your records.</li>
+        <li>Allow up to 15 business days for your application to be processed. Once your application is processed, you will be sent an email confirmation.</li>
+        <li>If you have questions regarding the status of your request, contact  <a href="mailto:HLTH.HnetConnection@gov.bc.ca" >HLTH.HnetConnection@gov.bc.ca</a> and include the reference number. </li>
+    </ul>
+  </div>
+  
+
 </div>
 
 <div *ngIf="!(status)">

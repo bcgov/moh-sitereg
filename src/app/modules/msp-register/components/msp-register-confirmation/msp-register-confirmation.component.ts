@@ -25,7 +25,9 @@ export class MspRegisterConfirmationComponent implements OnInit {
         private globalConfigSvc: GlobalConfigService,
         public loggerSvc: LoggerService,
         private registrationService: MspRegistrationService
-    ) {}
+    ) {
+        this.debugonly();
+    }
 
     ngOnInit() {
         this.status =
@@ -42,6 +44,8 @@ export class MspRegisterConfirmationComponent implements OnInit {
             this.constructor.name,
             `Confirmation Page loaded. ${this.globalConfigSvc.applicationId}`
         );
+
+        this.debugonly();
     }
 
     toggleDetail() {
@@ -52,5 +56,11 @@ export class MspRegisterConfirmationComponent implements OnInit {
         this.mspRegDataSvc.requestFinalStatus = null;
         this.registrationService.enableConfirmation = false;
         this.router.navigate([MSP_REGISTER_ROUTES.ORGANIZATION.fullpath]);
+    }
+
+    debugonly(){
+        this.status =true
+        this.isTechnicalInfoAvaialble = true
+        this.registrationService.enableConfirmation = true;
     }
 }
