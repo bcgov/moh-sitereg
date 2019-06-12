@@ -21,7 +21,7 @@ export class SiteRegTestPage extends AbstractTestPage{
   }
 
   typeTextNthChild(index: string, labelId: string, text: string) {
-    element(by.css(`sitereg-msp-register-user-msp:nth-child(${index}) input[ng-reflect-name^="${labelId}"]`)).sendKeys(text);
+    element(by.css(`sitereg-msp-register-user-msp`)).element(by.css(`input[id^="${labelId}"]`)).sendKeys(text);
   }
 
 }

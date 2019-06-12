@@ -16,6 +16,10 @@ export class BaseSiteRegTestPage extends SiteRegTestPage {
         element(by.css(`select[ng-reflect-name="${label}"]`)).click(); // opens dropdown
         element(by.css(`select[ng-reflect-name="${label}"] option[ng-reflect-value="${value}"]`)).click();
     }
+
+    clickButton(value: string) {
+        element(by.css(`button[class*="${value}"]`)).click();
+    }
 }
 
 export class OrganizationPage extends BaseSiteRegTestPage {
@@ -28,7 +32,7 @@ export class OrganizationPage extends BaseSiteRegTestPage {
     }
 
     navigateTo() {
-        return browser.get('/msp-registration/organization');
+        return browser.get('/register/organization');
     }
 
     fillOrgName(data: OrganizationPageTest) {
@@ -63,7 +67,7 @@ export class SigningAuthorityPage extends BaseSiteRegTestPage {
     }
 
     navigateTo() {
-        return browser.get('/msp-registration/signing-authority');
+        return browser.get('/register/signing-authority');
     }
 
     fillInfo(data: SigningAuthorityPageTest) {
@@ -77,8 +81,7 @@ export class SigningAuthorityPage extends BaseSiteRegTestPage {
         this.typeText('fax', data.fax + '');
     }
 
-    /*
-    fillInfor(index: string, data: SigningAuthorityPageTest) {
+    fillInfoWithIndex(index: string, data: SigningAuthorityPageTest) {
         this.typeTextNthChild(index, 'firstName', data.firstName);
         this.typeTextNthChild(index, 'lastName', data.lastName);
         this.typeTextNthChild(index, 'jobTitle', data.jobTitle);
@@ -88,7 +91,7 @@ export class SigningAuthorityPage extends BaseSiteRegTestPage {
         this.typeTextNthChild(index, 'ext', data.extension + '');
         this.typeTextNthChild(index, 'fax', data.fax + '');
     }
-    */
+
 }
 
 export class AccessAdminsPage extends SigningAuthorityPage {
@@ -98,7 +101,7 @@ export class AccessAdminsPage extends SigningAuthorityPage {
     }
 
     navigateTo() {
-        return browser.get('/msp-registration/access-admins');
+        return browser.get('/register/access-admins');
     }
 
 }
@@ -110,7 +113,7 @@ export class UsersPage extends SigningAuthorityPage {
     }
 
     navigateTo() {
-        return browser.get('/msp-registration/users');
+        return browser.get('/register/users');
     }
 
 }
@@ -122,7 +125,7 @@ export class GroupNumbersPage extends BaseSiteRegTestPage {
     }
 
     navigateTo() {
-        return browser.get('/msp-registration/group-numbers');
+        return browser.get('/register/group-numbers');
     }
 
     fillGroupNum(data: GroupNumbersPageTest) {
@@ -137,7 +140,7 @@ export class AuthorizePage extends BaseSiteRegTestPage {
     }
 
     navigateTo() {
-        return browser.get('/msp-registration/authorize');
+        return browser.get('/register/authorize');
     }
 
 }
@@ -149,7 +152,7 @@ export class SpecialCasePage extends BaseSiteRegTestPage {
     }
 
     navigateTo() {
-        return browser.get('/msp-registration/_autofill');
+        return browser.get('/register/_autofill');
     }
 
     getTextFromField() {

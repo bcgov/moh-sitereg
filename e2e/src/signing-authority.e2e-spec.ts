@@ -6,9 +6,9 @@ describe('Moh SiteReg - Signing Authority Page', () => {
     let saPage: SigningAuthorityPage;
     const data = new FakeDataSiteReg();
     let saData;
-    const SA_PAGE_URL = `msp-registration/signing-authority`;
-    const ORGANIZATION_PAGE_URL = `msp-registration/organization`;
-    const AA_PAGE_URL = `msp-registration/access-admins`;
+    const SA_PAGE_URL = `register/signing-authority`;
+    const ORGANIZATION_PAGE_URL = `register/organization`;
+    const AA_PAGE_URL = `register/access-admins`;
 
     beforeEach(() => {
         saPage = new SigningAuthorityPage();
@@ -34,6 +34,7 @@ describe('Moh SiteReg - Signing Authority Page', () => {
         saPage.fillInfo(saData);
         saPage.scrollDown();
         saPage.selectValue('administeringFor', 'Employees');
+        saPage.clickOption('bcfalse');
         saPage.continue();
         expect(saPage.formErrors().count()).toBe(0, 'should be no errors after filling out');
         expect(browser.getCurrentUrl()).toContain(AA_PAGE_URL);

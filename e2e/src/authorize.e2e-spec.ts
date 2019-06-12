@@ -4,8 +4,8 @@ import { AuthorizePage } from './sitereg.po';
 
 describe('Moh SiteReg - Authorize Page', () => {
     let authPage: AuthorizePage;
-    const COMPLETE_PAGE_URL = `msp-registration/complete`;
-    const AUTHORIZE_PAGE_URL = `msp-registration/authorize`;
+    const COMPLETE_PAGE_URL = `register/complete`;
+    const AUTHORIZE_PAGE_URL = `register/authorize`;
 
     beforeEach(() => {
         authPage = new AuthorizePage();
@@ -20,7 +20,7 @@ describe('Moh SiteReg - Authorize Page', () => {
     it('02. should NOT let user to continue without clicking the checkbox', () => {
         authPage.navigateTo();
         authPage.scrollDown();
-        authPage.continue();
+        authPage.clickButton('submit');
         expect(browser.getCurrentUrl()).toContain(AUTHORIZE_PAGE_URL, 'should stay on the same page');
     });
 

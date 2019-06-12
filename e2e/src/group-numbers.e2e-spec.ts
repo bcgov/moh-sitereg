@@ -6,8 +6,8 @@ describe('Moh SiteReg - Group Numbers Page', () => {
     let groupPage: GroupNumbersPage;
     const data = new FakeDataSiteReg();
     let groupData;
-    const GROUP_PAGE_URL = `msp-registration/group-numbers`;
-    const AUTHORIZE_PAGE_URL = `msp-registration/authorize`;
+    const GROUP_PAGE_URL = `register/group-numbers`;
+    const AUTHORIZE_PAGE_URL = `register/authorize`;
 
     beforeEach(() => {
         groupPage = new GroupNumbersPage();
@@ -29,7 +29,6 @@ describe('Moh SiteReg - Group Numbers Page', () => {
 
     it('03. should let user to continue if at least one group number is added', () => {
         groupPage.navigateTo();
-        groupPage.clickButton('btn btn-block', ' Add New Group Number ');
         groupPage.fillGroupNum(groupData);
         groupPage.continue();
         expect(groupPage.formErrors().count()).toBe(0, 'should be no errors after filling out');
@@ -39,9 +38,9 @@ describe('Moh SiteReg - Group Numbers Page', () => {
     // Additional Tests
     it('04. should not let user cont. w/o one group num section complete/let user to delete a group num by clicking the x button', () => {
         groupPage.navigateTo();
-        groupPage.clickButton('btn btn-block', ' Add New Group Number ');
+        groupPage.clickButton('btn btn-block');
         groupPage.fillGroupNum(groupData);
-        groupPage.clickButton('btn delete', '');
+        groupPage.clickButton('btn delete');
         groupPage.continue();
         expect(browser.getCurrentUrl()).toContain(GROUP_PAGE_URL);
     });
@@ -58,7 +57,7 @@ describe('Moh SiteReg - Group Numbers Page', () => {
     it('06. should not let user continue with an incomplete group number section', () => {
         groupData.groupNum = '1111';
         groupPage.navigateTo();
-        groupPage.clickButton('btn btn-block', ' Add New Group Number ');
+        groupPage.clickButton('btn btn-block');
         groupPage.fillGroupNum(groupData);
         groupPage.continue();
         expect(browser.getCurrentUrl()).toContain(GROUP_PAGE_URL, 'should stay on the same page');

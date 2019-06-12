@@ -6,8 +6,8 @@ describe('Moh SiteReg - Organization Page', () => {
     let orgPage: OrganizationPage;
     const data = new FakeDataSiteReg();
     let orgData;
-    const ORGANIZATION_PAGE_URL = `msp-registration/organization`;
-    const SA_PAGE_URL = `msp-registration/signing-authority`;
+    const ORGANIZATION_PAGE_URL = `register/organization`;
+    const SA_PAGE_URL = `register/signing-authority`;
 
     beforeEach(() => {
         orgPage = new OrganizationPage();
@@ -31,6 +31,10 @@ describe('Moh SiteReg - Organization Page', () => {
         orgPage.navigateTo();
         orgPage.fillOrgName(orgData);
         orgPage.fillAddress(orgData);
+        orgPage.selectValue('administeringFor', 'Employees');
+        orgPage.scrollDown();
+        orgPage.clickOption('thirdPartyFalse');
+        orgPage.clickOption('aafalse');
         orgPage.continue();
         expect(orgPage.formErrors().count()).toBe(0, 'should be no errors after filling out');
         expect(browser.getCurrentUrl()).toContain(SA_PAGE_URL, 'should navigate to the next page');
