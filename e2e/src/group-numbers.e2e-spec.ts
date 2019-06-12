@@ -7,12 +7,12 @@ describe('Moh SiteReg - Group Numbers Page', () => {
     const data = new FakeDataSiteReg();
     let groupData;
     const GROUP_PAGE_URL = `register/group-numbers`;
-    const AUTHORIZE_PAGE_URL = `register/authorize`;
+    const AUTHORIZE_PAGE_URL = `register/review`;
 
     beforeEach(() => {
         groupPage = new GroupNumbersPage();
         groupData = data.groupNumbersInfo();
-        data.setSeed(123);
+        data.setSeed();
     });
 
     it('01. should load the page without issue', () => {
@@ -30,6 +30,7 @@ describe('Moh SiteReg - Group Numbers Page', () => {
     it('03. should let user to continue if at least one group number is added', () => {
         groupPage.navigateTo();
         groupPage.fillGroupNum(groupData);
+        browser.sleep(5000);
         groupPage.continue();
         expect(groupPage.formErrors().count()).toBe(0, 'should be no errors after filling out');
         expect(browser.getCurrentUrl()).toContain(AUTHORIZE_PAGE_URL, 'should navigate to the Authorize page');

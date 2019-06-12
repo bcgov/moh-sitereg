@@ -13,7 +13,7 @@ describe('Moh SiteReg - Signing Authority Page', () => {
     beforeEach(() => {
         saPage = new SigningAuthorityPage();
         saData = data.signingAuthorityInfo();
-        data.setSeed(123);
+        data.setSeed();
     });
 
     it('01. should load the page without issue', () => {

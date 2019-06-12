@@ -2,9 +2,7 @@ import * as faker from 'faker';
 
 export class FakeDataSiteReg {
 
-    constructor() {
-        // faker.setLocale('en_CA');
-    }
+    private static seedVal: number = Math.floor(Math.random() * Math.floor(1000));
 
     organizationInfo(): OrganizationPageTest {
         return {
@@ -49,8 +47,12 @@ export class FakeDataSiteReg {
         };
     }
 
-    setSeed(number) {
-         faker.seed(number);
+    getSeed() {
+        return FakeDataSiteReg.seedVal;
+    }
+
+    setSeed(seed = this.getSeed()) {
+        faker.seed(seed);
     }
 }
 

@@ -9,6 +9,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "e2e:chrome": "npm run e2e -- --protractorConfig=e2e/protractor.conf.js",
+    "e2e:all": "npm run e2e -- --protractorConfig=e2e/protractor.full-tests.conf.js",
     "format": "prettier --write \"src/**/*.ts\" && npm run lint && npm run build",
     "publish": "ng build --prod --output-hashing none"
   },

@@ -2,7 +2,7 @@ import { browser } from 'protractor';
 import { FakeDataSiteReg } from './sitereg.data';
 import { UsersPage } from './sitereg.po';
 
-fdescribe('Moh SiteReg - Users Page', () => {
+describe('Moh SiteReg - Users Page', () => {
     let usersPage: UsersPage;
     const data = new FakeDataSiteReg();
     let usersData;
@@ -10,10 +10,14 @@ fdescribe('Moh SiteReg - Users Page', () => {
     const USERS_PAGE_URL = `register/users`;
     const GROUP_PAGE_URL = `register/group-numbers`;
 
+    afterAll(() => {
+        console.log('END OF E2E ENROLMENT' + '\nThis test uses Seed #: ' + data.getSeed());
+    });
+
     beforeEach(() => {
         usersPage = new UsersPage();
         usersData = data.signingAuthorityInfo();
-        data.setSeed(123);
+        data.setSeed();
     });
 
     it('01. should load the page without issue', () => {

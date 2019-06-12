@@ -20,6 +20,27 @@ export class BaseSiteRegTestPage extends SiteRegTestPage {
     clickButton(value: string) {
         element(by.css(`button[class*="${value}"]`)).click();
     }
+
+    // Move this method to shared lib
+    clickAgree() {
+        element(by.css('label[for="agree"]')).element(by.css('strong')).click();
+    }
+
+    // Move this method to shared lib
+    clickModalContinue() {
+        element(by.css('div[class="modal-footer"]')).element(by.css('button[type="submit"]')).click();
+    }
+
+    // Move this method to shared lib
+    checkModal() {
+        return element(by.css('common-consent-modal')).element(by.css('div[aria-labelledby="myLargeModalLabel"]')).isDisplayed();
+    }
+
+    // Move this method to shared lib
+    scrollUp() {
+        browser.executeScript('window.scrollTo(0,0)');
+    }
+
 }
 
 export class OrganizationPage extends BaseSiteRegTestPage {
@@ -131,6 +152,18 @@ export class GroupNumbersPage extends BaseSiteRegTestPage {
     fillGroupNum(data: GroupNumbersPageTest) {
         this.typeText('groupNumber', data.groupNum + '');
     }
+}
+
+export class ReviewPage extends BaseSiteRegTestPage {
+
+    constructor() {
+        super();
+    }
+
+    navigateTo() {
+        return browser.get('/register/review');
+    }
+
 }
 
 export class AuthorizePage extends BaseSiteRegTestPage {

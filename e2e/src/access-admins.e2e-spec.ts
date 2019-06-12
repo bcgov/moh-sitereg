@@ -10,10 +10,14 @@ describe('Moh SiteReg - Access Admins Page', () => {
     const AA_PAGE_URL = `register/access-admins`;
     const USERS_PAGE_URL = `register/users`;
 
+    beforeAll(() => {
+        console.log('START OF E2E ENROLMENT' + '\nThis test uses Seed #: ' + data.getSeed());
+    });
+
     beforeEach(() => {
         aaPage = new AccessAdminsPage();
         aaData = data.signingAuthorityInfo();
-        data.setSeed(123);
+        data.setSeed();
     });
 
     it('01. should load the page without issue', () => {
@@ -59,8 +63,10 @@ describe('Moh SiteReg - Access Admins Page', () => {
         aaPage.fillInfo(aaData);
         aaPage.scrollDown();
         aaPage.selectValue('administeringFor', 'Employees');
+        // aaPage.scrollUp();
+        browser.sleep(5000);
         aaPage.clickButton('btn btn-block');
-        aaPage.fillInfoWithIndex('1', aaData2);
+        aaPage.fillInfoWithIndex('0', aaData2);
         aaPage.selectValue('administeringFor', 'Employees');
         aaPage.scrollDown();
         aaPage.clickButton('btn delete'); // deletes the second admin created (latest one)
