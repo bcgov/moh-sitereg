@@ -1,0 +1,2 @@
+IAM-149 : 
+"postal_code": { "type": "string", "pattern": "^[ABCEGHJ-NPRSTVXY][0-9][ABCEGHJ-NPRSTV-Z][0-9][ABCEGHJ-NPRSTV-Z][0-9]$" },
