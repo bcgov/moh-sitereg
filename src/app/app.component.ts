@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SplashPageService } from './modules/splash-page/splash-page.service';
 import { environment } from 'src/environments/environment';
+import * as version from '../version.GENERATED';
 
 @Component({
     selector: 'sitereg-root',
@@ -18,5 +19,8 @@ export class AppComponent implements OnInit {
         if (!environment.bypassSplashPage) {
             this.splash.setup();
         }
+        version.success
+            ? console.log('%c' + version.message, 'color: #036; font-size: 20px;')
+            : console.error(version.message);
     }
 }

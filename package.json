@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --host 0.0.0.0 --port 4200 -o",
+    "prebuild": "node src/version.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -31,7 +32,7 @@
     "core-js": "^2.5.4",
     "faker": "^4.1.0",
     "font-awesome": "^4.7.0",
-    "moh-common-lib": "0.0.31",
+    "moh-common-lib": "1.2.0",
     "moment": "^2.24.0",
     "mygovbc-bootstrap-theme": "^0.4.1",
     "ngx-bootstrap": "^3.2.0",
@@ -46,7 +47,7 @@
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.13.8",
+    "@angular-devkit/build-angular": "^0.13.9",
     "@angular/cli": "~7.3.4",
     "@angular/compiler-cli": "~7.2.0",
     "@angular/language-service": "~7.2.0",

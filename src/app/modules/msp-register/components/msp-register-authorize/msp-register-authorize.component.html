@@ -4,10 +4,16 @@
     <form [formGroup]="fg" *ngIf="fg">
 
       <div class="row">
-       <div class="col-auto mr-auto">
-          <!-- Logo for Agreement  - black and White -->
-          <!-- <img class="img-thumbnail" width="50 " height="50" src="" /> -->
-        </div>
+          <div  class="col-md-2 align-items-start">
+              <button tabindex="0" class="btn btn-default" onclick="window.print();return false;">
+                <i class="fa fa-print fa-lg pointer" aria-hidden="true"></i>
+                Print
+              </button>
+          </div>
+         <!-- <div class="col-auto mr-auto">
+          Logo for Agreement  - black and White 
+           <img class="img-thumbnail" width="50 " height="50" src="" />
+        </div> -->
         <div class="col-auto mr-auto align-items-end">
           <h3>MINISTRY OF HEALTH DATA ACCESS AGREEMENT</h3>
         </div>

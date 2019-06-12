@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { MspRegisterOrganization } from '@msp-register/models/msp-register-organization';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { GenerateForm } from '@msp-register/models/generate-form';
-import { BehaviorSubject } from 'rxjs';
 import { MspRegisterAccessAdmins } from '@msp-register/models/msp-register-access-admins';
 import { MspRegisterSigningAuthority } from '@msp-register/models/msp-register-signing-authority';
 import { MspRegisterGroup } from '@msp-register/models/msp-register-group';
@@ -11,7 +10,10 @@ import { MspRegisterAuthorize } from '@msp-register/models/msp-register-authoriz
 import {
     IMspSigningAuthority,
     IMspOrganization,
+    IMspGroup,
 } from '@msp-register/interfaces';
+import { IMspAccessAdmins, IMspAccessAdmin } from '@msp-register/interfaces/i-msp-access-admins';
+import { IMspUser, IMspUsers } from '@msp-register/interfaces/i-msp-user';
 // import { MspRegisterUserMsp } from '@msp-register/models/core/msp-register-user-msp';
 
 export type UserTypes = 'admin' | 'user';
@@ -30,6 +32,7 @@ export class MspRegisterStateService {
     public mspRegisterUsersForm: FormGroup[] = [];
     public mspRegisterGroupForm: FormGroup[] = [];
     public mspRegisterAuthorizeForm: FormGroup;
+    public hasConsentedToInformationCollection = false;
 
     constructor() {
         if (this.constructor.name === this.consolePrintForm) {
@@ -103,6 +106,18 @@ export class MspRegisterStateService {
 
     //#region AccessAdmins
 
+    get accessAdmins() {
+        // Access Administrators
+        const mspAccessAdmins: IMspAccessAdmin[] = [];
+        this.mspRegisterAccessAdminsForm.forEach((v) =>
+            v.value ? mspAccessAdmins.push(v.value) : ''
+        );
+        // const accessAdministrators: IMspAccessAdmins = {
+        //     admins: mspAccessAdmins
+        // }
+        return mspAccessAdmins;
+    }
+
     addAdmin() {
         const newAdmin = this.createMspRegisterAccessAdminsForm(
             this.gf,
@@ -136,6 +151,19 @@ export class MspRegisterStateService {
 
     //#region Users
 
+    get users() {
+        // Access Administrators
+        const mspUsers: IMspUser[] = [];
+        this.mspRegisterUsersForm.forEach((v) =>
+            v.value ? mspUsers.push(v.value) : ''
+        );
+        // const users: IMspUsers = {
+        //     users: mspUsers
+        // };
+
+        return mspUsers;
+    }
+
     addUser() {
         if (this.mspRegisterUsersForm.length === 0) {
             this.mspRegisterUsersForm = [
@@ -167,6 +195,16 @@ export class MspRegisterStateService {
     //#endregion
 
     //#region MspGroup
+
+    get groups() {
+        // Access Administrators
+        const mspGroups: IMspGroup[] = [];
+        this.mspRegisterGroupForm.forEach((v) =>
+            v.value ? mspGroups.push(v.value) : ''
+        );
+
+        return mspGroups;
+    }
 
     addGroup() {
         if (this.mspRegisterGroupForm.length === 0) {

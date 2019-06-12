@@ -1,5 +1,6 @@
 {
-    "$comment": "3rd Schema - provided on 2019-04-18",
+    {
+    "$comment": "4th Schema - provided on 2019-05-08",
     "$id": "moh-sitereg/SiteregRequest.schema.json",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "definitions": {
@@ -11,6 +12,10 @@
             "type": "string",
             "pattern": "^[0-9]{7}$"
         },
+        "org_num_def": {
+            "type": "string",
+            "pattern": "^[0-9]{8}$"
+        },
         "org_information_def": {
             "type": "object",
             "properties": {
@@ -19,7 +24,7 @@
                     "maxLength": 100
                 },
                 "org_num": {
-                    "$ref": "#/definitions/group_num_def"
+                    "$ref": "#/definitions/org_num_def"
                 },
                 "suite_num": {
                     "type": "string",
@@ -57,7 +62,7 @@
                             "pattern": "^[YN]$"
                         },
                         "third_party_org_num": {
-                            "$ref": "#/definitions/group_num_def"
+                            "$ref": "#/definitions/org_num_def"
                         }
                     },
                     "required": [
