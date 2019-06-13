@@ -44,6 +44,17 @@ export function postalCodeValidator(): ValidatorFn {
     };
 }
 
+export function emailValidator(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+        const forbidden = !/^(\\S+)@(\\S+)\\.(\\S+)$/.test(
+            control.value
+        );
+        return forbidden
+            ? { invalidEmail: { value: control.value } }
+            : null;
+    };
+}
+
 /**
  * Validates group number
  */

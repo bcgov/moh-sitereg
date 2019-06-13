@@ -1,5 +1,5 @@
 import { FormControl, Validators } from '@angular/forms';
-import { phoneValidator, faxValidator } from '../validator-helpers';
+import { phoneValidator, faxValidator, emailValidator } from '../validator-helpers';
 
 export type ctFormControlString = FormControl | string;
 export type ctFormControlBoolean = FormControl | boolean;
@@ -46,13 +46,15 @@ export const cUserValidators = {
     ],
     emailAddress: [
         Validators.required,
-        Validators.email,
+        // Validators.email,
         Validators.maxLength(100),
+        emailValidator()
     ],
     confirmEmail: [
         Validators.required,
-        Validators.email,
+        // Validators.email,
         Validators.maxLength(100),
+        emailValidator()
     ],
     phone: [Validators.required, phoneValidator()],
     ext: [Validators.minLength(1), Validators.maxLength(100)],
