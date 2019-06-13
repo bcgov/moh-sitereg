@@ -69,10 +69,11 @@
       </div>
       <div class='col-md-5'>
         {{mspRegisterStateSvc.organization.suite? mspRegisterStateSvc.organization.suite + ' ': ''}}
-        {{mspRegisterStateSvc.organization.street}} {{mspRegisterStateSvc.organization.streetName}} <br/>
+        {{mspRegisterStateSvc.organization.street}} {{mspRegisterStateSvc.organization.streetName}} <br />
         {{mspRegisterStateSvc.organization.addressLine2? mspRegisterStateSvc.organization.addressLine2 : ''}}
         <span [innerHTML]="(mspRegisterStateSvc.organization.addressLine2? '<br/>': '')"></span>
-        {{mspRegisterStateSvc.organization.city}}, {{mspRegisterStateSvc.organization.province}}, {{mspRegisterStateSvc.organization.postalCode}}
+        {{mspRegisterStateSvc.organization.city}}, {{mspRegisterStateSvc.organization.province}},
+        {{mspRegisterStateSvc.organization.postalCode}}
       </div>
     </div>
     <div class="row">
@@ -99,7 +100,7 @@
         {{ mspRegisterStateSvc.organization.administeringFor }}
       </div>
     </div>
-    
+
   </div>
 
   <!--#endregion -->
@@ -126,7 +127,9 @@
       </div>
       <div class='col-md-5'>
         {{mspRegisterStateSvc.signingAuthority.userTitle? mspRegisterStateSvc.signingAuthority.userTitle + ' ': ''}}
-        {{mspRegisterStateSvc.signingAuthority.firstName}} {{mspRegisterStateSvc.signingAuthority.initial}} {{mspRegisterStateSvc.signingAuthority.lastName}}
+        {{mspRegisterStateSvc.signingAuthority.firstName}}
+        {{mspRegisterStateSvc.signingAuthority.initial ? mspRegisterStateSvc.signingAuthority.initial: ''}}
+        {{mspRegisterStateSvc.signingAuthority.lastName}}
       </div>
     </div>
     <div class="row">
@@ -150,7 +153,8 @@
         Phone:
       </div>
       <div class='col-md-5'>
-        {{mspRegisterStateSvc.signingAuthority.phone}} {{mspRegisterStateSvc.signingAuthority.ext? 'ext: ' + mspRegisterStateSvc.signingAuthority.ext : ''}}
+        {{mspRegisterStateSvc.signingAuthority.phone}}
+        {{mspRegisterStateSvc.signingAuthority.ext? ' ext: ' + mspRegisterStateSvc.signingAuthority.ext : ''}}
       </div>
     </div>
     <div class="row">
@@ -177,16 +181,91 @@
         {{ mspRegisterStateSvc.signingAuthority.directMspAccess && mspRegisterStateSvc.signingAuthority.directMspAccess===true? mspRegisterStateSvc.signingAuthority.administeringFor : ''}}
       </div>
     </div>
-    <!-- <div class="row">
+  </div>
+
+  <!--#endregion -->
+
+
+
+  <!--#region Access Administrator  -->
+
+  <!--Section - Access Administrator-->
+  <div class="row pl-0 align-items-center border-bottom">
+    <div class="col-md-6  pl-0">
+      <h3>Access Administrator</h3>
+    </div>
+    <div class="col-md-2 ml-auto text-right">
+      <button tabindex="0" class="btn btn-default" (click)="redirectAccessAdministrators()">
+        <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+
+  <!--Section - Access Administrator-->
+  <div class="col-auto mt-2 pl-0" *ngFor="let admin of mspRegisterStateSvc.accessAdmins">
+
+    <div class="row">
       <div class='col-md-3'>
-        Also an Access Administrator?:
+        Name:
       </div>
       <div class='col-md-5'>
-        {{ mapBooleantoYesNo(mspRegisterStateSvc.signingAuthority.directMspAccess) }}
+        {{admin.userTitle? admin.userTitle + ' ': ''}}
+        {{admin.firstName}} {{admin.initial? admin.initial:  ''}}
+        {{admin.lastName}}
       </div>
-    </div> -->
-   
+    </div>
+    <div class="row">
+      <div class='col-md-3'>
+        Job Title:
+      </div>
+      <div class='col-md-5'>
+        {{admin.jobTitle}}
+      </div>
+    </div>
+    <div class="row">
+      <div class='col-md-3'>
+        Email:
+      </div>
+      <div class='col-md-5'>
+        {{admin.emailAddress}}
+      </div>
+    </div>
+    <div class="row">
+      <div class='col-md-3'>
+        Phone:
+      </div>
+      <div class='col-md-5'>
+        {{admin.phone}}
+        {{admin.ext? ' ext: ' + admin.ext : ''}}
+
+      </div>
+    </div>
+    <div class="row">
+      <div class='col-md-3'>
+        Fax:
+      </div>
+      <div class='col-md-5'>
+        {{admin.fax}}
+      </div>
+    </div>
+    <div class="row">
+      <div class='col-md-3'>
+        MSP Access:
+      </div>
+      <div class='col-md-5'>
+        {{ mapBooleantoYesNo(admin.directMspAccess) }}
+      </div>
+    </div>
+    <div class="row">
+      <div class='col-md-3'>
+        Access Requested:
+      </div>
+      <div class='col-md-5'>
+        {{ admin.directMspAccess && admin.directMspAccess===true? admin.administeringFor : ''}}
+      </div>
+    </div>
   </div>
+
 
   <!--#endregion -->
 
@@ -231,85 +310,12 @@
   <!-- #endregion -->
 
   <!-- #region -->
-   <!-- {{ mspRegisterStateSvc.signingAuthority | json }} -->
-    <!-- {{ mspRegisterStateSvc.accessAdmins | json }} -->
-    <!-- {{ mspRegisterStateSvc.groups | json }} -->
-     <!-- {{ mspRegisterStateSvc.signingAuthority | json }} -->
-     <!-- {{ mspRegisterStateSvc.organization | json }} -->
-  <!-- <div class='row mb-4'>
-    <div class='col-md-8 '>
-      <h3 class="border-bottom">Singing Authority</h3>
-
-      <div class="col-auto mr-auto">
-        <div class="row">
-          <div class='col-md-3'>
-            Name:
-          </div>
-          <div class='col-md-5'>
-            {{mspRegisterStateSvc.signingAuthority.userTitle}} {{mspRegisterStateSvc.signingAuthority.firstName}}
-            {{mspRegisterStateSvc.signingAuthority.lastName}}
-          </div>
-        </div>
-        <div class="row">
-          <div class='col-md-3'>
-            Job Title:
-          </div>
-          <div class='col-md-5'>
-            {{mspRegisterStateSvc.signingAuthority.jobTitle}}
-          </div>
-        </div>
-        <div class="row">
-          <div class='col-md-3'>
-            Email:
-          </div>
-          <div class='col-md-5'>
-            {{mspRegisterStateSvc.signingAuthority.emailAddress}}
-          </div>
-        </div>
-        <div class="row">
-          <div class='col-md-3'>
-            Phone:
-          </div>
-          <div class='col-md-5'>
-            {{mspRegisterStateSvc.signingAuthority.phone}} ext. {{mspRegisterStateSvc.signingAuthority.ext}}
-          </div>
-        </div>
-        <div class="row">
-          <div class='col-md-3'>
-            Fax:
-          </div>
-          <div class='col-md-5'>
-            {{mspRegisterStateSvc.signingAuthority.fax}}
-          </div>
-        </div>
-        <div class="row">
-          <div class='col-md-3'>
-            MSP Access:
-          </div>
-          <div class='col-md-5'>
-            {{ mapBooleantoYesNo(mspRegisterStateSvc.signingAuthority.directMspAccess) }}
-          </div>
-        </div>
-        <div class="row">
-          <div class='col-md-3'>
-            Access Requested:
-          </div>
-          <div class='col-md-5'>
-            {{ mspRegisterStateSvc.signingAuthority.administeringFor }}
-          </div>
-        </div>
-        <div class="row">
-          <div class='col-md-3'>
-            Also an Access Administrator?:
-          </div>
-          <div class='col-md-5'>
-            {{ mapBooleantoYesNo(mspRegisterStateSvc.signingAuthority.directMspAccess) }}
-          </div>
-        </div>
-       
-      </div>
-    </div>
-  </div>
+  <!-- {{ mspRegisterStateSvc.signingAuthority | json }} -->
+  <!-- {{ mspRegisterStateSvc.accessAdmins | json }} -->
+  <!-- {{ mspRegisterStateSvc.groups | json }} -->
+  <!-- {{ mspRegisterStateSvc.signingAuthority | json }} -->
+  <!-- {{ mspRegisterStateSvc.organization | json }} -->
+  <!-- 
 
   <div class='row mb-4'>
     <div class='col-md-8'>
