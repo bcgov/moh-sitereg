@@ -99,7 +99,7 @@
         {{ mspRegisterStateSvc.organization.administeringFor }}
       </div>
     </div>
-    <!-- {{ mspRegisterStateSvc.organization | json }} -->
+    
   </div>
 
   <!--#endregion -->
@@ -185,7 +185,7 @@
         {{ mapBooleantoYesNo(mspRegisterStateSvc.signingAuthority.directMspAccess) }}
       </div>
     </div>
-    <!-- {{ mspRegisterStateSvc.signingAuthority | json }} -->
+   
   </div>
 
   <!--#endregion -->
@@ -193,7 +193,7 @@
   <!--#region unSorted  -->
 
   <!--Section - Access Administrator-->
-  <div class="row pl-0 align-items-center border-bottom">
+  <!-- <div class="row pl-0 align-items-center border-bottom">
     <div class="col-md-6  pl-0">
       <h3>Access Administrator</h3>
     </div>
@@ -202,10 +202,10 @@
         <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
       </button>
     </div>
-  </div>
+  </div> -->
 
   <!--Section - Users -->
-  <div class="row pl-0 align-items-center border-bottom" (click)="redirectUsers()">
+  <!-- <div class="row pl-0 align-items-center border-bottom" (click)="redirectUsers()">
     <div class="col-md-6  pl-0">
       <h3>Users</h3>
     </div>
@@ -214,10 +214,10 @@
         <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
       </button>
     </div>
-  </div>
+  </div> -->
 
   <!--Section - Group Numbers-->
-  <div class="row pl-0 align-items-center border-bottom">
+  <!-- <div class="row pl-0 align-items-center border-bottom">
     <div class="col-md-6  pl-0">
       <h3>Group Numbers</h3>
     </div>
@@ -226,12 +226,17 @@
         <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
       </button>
     </div>
-  </div>
+  </div> -->
 
   <!-- #endregion -->
 
   <!-- #region -->
-  <div class='row mb-4'>
+   <!-- {{ mspRegisterStateSvc.signingAuthority | json }} -->
+    <!-- {{ mspRegisterStateSvc.accessAdmins | json }} -->
+    <!-- {{ mspRegisterStateSvc.groups | json }} -->
+     <!-- {{ mspRegisterStateSvc.signingAuthority | json }} -->
+     <!-- {{ mspRegisterStateSvc.organization | json }} -->
+  <!-- <div class='row mb-4'>
     <div class='col-md-8 '>
       <h3 class="border-bottom">Singing Authority</h3>
 
@@ -301,7 +306,7 @@
             {{ mapBooleantoYesNo(mspRegisterStateSvc.signingAuthority.directMspAccess) }}
           </div>
         </div>
-        <!-- {{ mspRegisterStateSvc.signingAuthority | json }} -->
+       
       </div>
     </div>
   </div>
@@ -375,7 +380,7 @@
             {{ mapBooleantoYesNo(admin.directMspAccess) }}
           </div>
         </div>
-        <!-- {{ mspRegisterStateSvc.accessAdmins | json }} -->
+       
       </div>
 
     </div>
@@ -457,9 +462,9 @@
           </div>
         </div>
       </div>
-      <!-- {{ mspRegisterStateSvc.groups | json }} -->
+      
     </div>
-  </div>
+  </div> -->
   <!--#endregion -->
 
 </common-page-framework>
