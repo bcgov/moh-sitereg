@@ -73,6 +73,19 @@ export class MspRegisterReviewComponent implements OnInit {
         return val && val === true ? 'Yes' : 'No';
     }
 
+    redirectOrganization = () => this.redirect(MSP_REGISTER_ROUTES.ORGANIZATION.fullpath);
+    redirectSigningAuthority = () => this.redirect(MSP_REGISTER_ROUTES.SIGNING_AUTHORITY.fullpath);
+    redirectAccessAdministrators = () => this.redirect(MSP_REGISTER_ROUTES.ACCESS_ADMINS.fullpath);
+    redirectUsers = () => this.redirect(MSP_REGISTER_ROUTES.USERS.fullpath);
+    redirectGroupNumbers = () => this.redirect(MSP_REGISTER_ROUTES.GROUP_NUMBERS.fullpath);
+  
+    redirect(routeName: string) {
+        this.router.navigate([routeName]);
+    }
+
+    
+
+
     // REMOVEME - debug only
     debugOnly() {
         if (this.globalConfigSvc.currentEnironment.production === false) {
@@ -87,4 +100,5 @@ export class MspRegisterReviewComponent implements OnInit {
             );
         }
     }
+    
 }
