@@ -2,16 +2,32 @@
     display: flexbox;
     padding: 1rem;
     min-height: 50px;
-    border-radius: 5px;
+    border-radius: 1px;
     border-style: solid;
     border-width: 2px!important;
+    border-color: #88D40C;
 }
 
-.prime-icon--success::after {
-    content: 'Success';
-    margin-left: .5rem;
+
+.iam-icon--success {
+    text-align: right;
+    color:#88D40C;
     font-size: 1.5rem;
 }
+
+.border-success-custom {
+    border-color: #88D40C;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 5px;
+}
+
+// .iam-icon--success::after {
+//     content: 'Success';
+//     color:#88D40C;
+//     margin-left: .5rem;
+//     font-size: 1.5rem;
+// }
 
 // .prime-icon--success {
 //     font-size: 1.5rem;
