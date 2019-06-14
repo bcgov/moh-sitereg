@@ -24,7 +24,6 @@ export class MspRegisterReviewComponent implements OnInit {
         return true;
     }
 
-
     constructor(
         private router: Router,
         public loggerSvc: LoggerService,
@@ -33,7 +32,6 @@ export class MspRegisterReviewComponent implements OnInit {
         public mspRegDataSvc: MspRegisterDataService,
         private registrationService: MspRegistrationService
     ) {
-
         // // debug only
         // this.fgs.forEach((fg) => {
         //     fg.valueChanges.subscribe((obs) => console.log(fg));
@@ -82,14 +80,10 @@ export class MspRegisterReviewComponent implements OnInit {
     redirect(routeName: string) {
         this.router.navigate([routeName]);
     }
-
     
-
-
     // REMOVEME - debug only
     debugOnly() {
         if (this.globalConfigSvc.currentEnironment.production === false) {
-
             console.log(
                 `%c review <= %o\n\t%o`,
                 'color:lightgreen',

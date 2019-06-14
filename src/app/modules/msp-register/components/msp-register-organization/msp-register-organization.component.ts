@@ -84,7 +84,7 @@ export class MspRegisterOrganizationComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
-        if (!this.mspRegisterStateSvc.hasConsentedToInformationCollection){
+        if (!this.mspRegisterStateSvc.hasConsentedToInformationCollection) {
             this.consentModal.showFullSizeView();
         }
     }
@@ -98,7 +98,7 @@ export class MspRegisterOrganizationComponent implements OnInit, AfterViewInit {
         this.loggerSvc.logNavigation(
             this.constructor.name,
             `Valid Data - Continue button clicked. ${
-                this.globalConfigSvc.applicationId
+            this.globalConfigSvc.applicationId
             }`
         );
 
