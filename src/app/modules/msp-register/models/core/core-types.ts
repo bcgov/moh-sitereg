@@ -47,14 +47,16 @@ export const cUserValidators = {
     emailAddress: [
         Validators.required,
         // Validators.email,
+        Validators.minLength(5),
         Validators.maxLength(100),
-        emailValidator()
+        emailValidator(),
     ],
     confirmEmail: [
         Validators.required,
         // Validators.email,
+        Validators.minLength(5),
         Validators.maxLength(100),
-        emailValidator()
+        emailValidator(),
     ],
     phone: [Validators.required, phoneValidator()],
     ext: [Validators.minLength(1), Validators.maxLength(100)],
