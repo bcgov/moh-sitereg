@@ -54,6 +54,13 @@ export class FakeDataSiteReg {
     setSeed(seed = this.getSeed()) {
         faker.seed(seed);
     }
+
+    getJSONData() {
+        const fs = require('fs');
+        const data = fs.readFileSync('e2e/data.json', 'utf8');
+        const jsonData = JSON.parse(data);
+        return jsonData;
+    }
 }
 
 export interface OrganizationPageTest {

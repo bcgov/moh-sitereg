@@ -1,0 +1,71 @@
+{
+    "organizationPage": {
+        "orgName": "Company Inc.",
+        "suiteNo": "123",
+        "streetNo": "456",
+        "streetName": "Douglas St.",
+        "city": "Victoria",
+        "province": "British Columbia",
+        "postalCode": "A1A1A1",
+        "administeringFor": "Employees",
+        "thirdParty": true,
+        "if": {
+            "thirdParty": true   
+        },
+        "then": {
+            "orgNum": 12345678
+        },
+        "else": {
+            "orgNum": null
+        },
+        "blueCross": false
+    },
+
+    "signingAuthorityPage": {
+        "title": "Mr.",
+        "firstName": "John",
+        "initial": "S.",
+        "lastName": "Doe",
+        "jobTitle": "Programmer",
+        "emailAddress": "johndoe@example.com",
+        "confirmEmailAddress": "johndoe@example.com",
+        "phoneNum": 2501234567,
+        "extension": 123,
+        "faxNum": 2501234568,
+        "administeringFor": "Employees",
+        "directMspAccess": true
+    },
+    
+    "accessAdminsPage": {
+        "title": "Mr.",
+        "firstName": "John",
+        "initial": "S.",
+        "lastName": "Doe",
+        "jobTitle": "Programmer",
+        "emailAddress": "johndoe@example.com",
+        "confirmEmailAddress": "johndoe@example.com",
+        "phoneNum": 2501234567,
+        "extension": 123,
+        "faxNum": 2501234568,
+        "administeringFor": "Employees"
+    },
+
+    "usersPage": {
+        "title": "Mr.",
+        "firstName": "John",
+        "initial": "S.",
+        "lastName": "Doe",
+        "jobTitle": "Programmer",
+        "emailAddress": "johndoe@example.com",
+        "confirmEmailAddress": "johndoe@example.com",
+        "phoneNum": 2501234567,
+        "extension": 123,
+        "faxNum": 2501234568,
+        "administeringFor": "Employees"
+    },
+
+    "groupNumbersPage": {
+        "groupNumber": 1234567
+    }
+    
+}

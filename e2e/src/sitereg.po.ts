@@ -28,22 +28,24 @@ export class BaseSiteRegTestPage extends AbstractTestPage {
     // TODO: Move these methods to shared lib
     /**
      * * Clicks the checkbox which means the user agrees with the info collection notice.
+     * InfoColectionNoticeComponent <common-collection-modal>
      */
-    clickAgree() {
+    agreeConsentModal() {
         element(by.css('label[for="agree"]')).element(by.css('strong')).click();
     }
 
     /**
      * * Clicks continue inside the modal
+     * InfoColectionNoticeComponent <common-collection-modal>
      */
-    clickModalContinue() {
+    clickConsentModalContinue() {
         element(by.css('div[class="modal-footer"]')).element(by.css('button[type="submit"]')).click();
     }
 
     /**
      * * Checks if the modal is currently displayed or not 
      */
-    checkModal() {
+    checkConsentModal() {
         return element(by.css('common-consent-modal')).element(by.css('div[aria-labelledby="myLargeModalLabel"]')).isDisplayed();
     }
 
@@ -126,17 +128,6 @@ export class SigningAuthorityPage extends BaseSiteRegTestPage {
     }
 
     fillInfo(data: SigningAuthorityPageTest) {
-        this.typeText('firstName', data.firstName);
-        this.typeText('lastName', data.lastName);
-        this.typeText('jobTitle', data.jobTitle);
-        this.typeText('emailAddress', data.email);
-        this.typeText('confirmEmail', data.email);
-        this.typeText('phone', data.mobile + '');
-        this.typeText('ext', data.extension + '');
-        this.typeText('fax', data.fax + '');
-    }
-
-    fillInfoWithIndex(index: string, data: SigningAuthorityPageTest) {
         this.typeTextFirstOccurrence('firstName', data.firstName);
         this.typeTextFirstOccurrence('lastName', data.lastName);
         this.typeTextFirstOccurrence('jobTitle', data.jobTitle);

@@ -1,10 +1,13 @@
 import { browser } from 'protractor';
 import { FakeDataSiteReg } from './sitereg.data';
 import { AccessAdminsPage } from './sitereg.po';
+import { JSONDataSiteReg } from '../../e2e/run-with-data.js';
 
 describe('Moh SiteReg - Access Admins Page', () => {
     let aaPage: AccessAdminsPage;
     const data = new FakeDataSiteReg();
+    const jsonData = data.getJSONData().accessAdminsPage;
+    console.log('EMAIL ADD: ', jsonData.emailAddress);
     let aaData;
     let aaData2;
     const AA_PAGE_URL = `register/access-admins`;
@@ -66,7 +69,7 @@ describe('Moh SiteReg - Access Admins Page', () => {
         // aaPage.scrollUp();
         browser.sleep(5000);
         aaPage.clickButton('btn btn-block');
-        aaPage.fillInfoWithIndex('0', aaData2);
+        aaPage.fillInfo(aaData2);
         aaPage.selectValue('administeringFor', 'Employees');
         aaPage.scrollDown();
         aaPage.clickButton('btn delete'); // deletes the second admin created (latest one)
