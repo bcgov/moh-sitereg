@@ -24,7 +24,8 @@ import { MspRegistrationService } from '@msp-register/msp-registration.service';
 export class MspRegisterAccessAdminsComponent implements OnInit {
     fgs: FormGroup[];
     validFormControl: () => boolean;
-    validFormGroup = this.mspRegisterStateSvc.validFormGroup;
+    validFormGroup = this.mspRegisterStateSvc
+        .MspRegisterAccessAdminisContinueValid;
     administeringFor: BehaviorSubject<string[]> = new BehaviorSubject<string[]>(
         cAdministeringFor
     );
