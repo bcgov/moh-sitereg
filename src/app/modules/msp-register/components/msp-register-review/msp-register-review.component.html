@@ -1,323 +1,397 @@
 <!-- TODO: bit of thinking as to how to make the component work for this. -->
-<common-page-framework layout='blank'>
-  <h2 class="border-bottom">Review: MSP Direct - Request for Access!</h2>
-  <div class='row mb-2'>
-    <div class='col-md-4'>
-      <button tabindex="0" class="btn btn-default" onclick="window.print();return false;">
+<common-page-framework layout="blank">
+  <!--Component Heading-->
+  <div class="row pl-0 align-items-center border-bottom">
+    <div class="col-md-6 pl-0">
+      <h2>Review: MSP Direct - Request for Access!</h2>
+    </div>
+    <div class="col-md-2 ml-auto  text-right">
+      <button tabindex="0" class="btn btn-default " onclick="window.print();return false;">
         <i class="fa fa-print fa-lg pointer" aria-hidden="true"></i>
         Print
       </button>
     </div>
+  </div>
+
+  <!--Component Heading-->
+  <div class='row mb-2'>
     <div class='col-md-4' style="color:red">
       Your data has not been submitted Yet!
     </div>
   </div>
-  <div class='row mb-4'>
-    <div class='col-md-8 '>
-      Please reveiw the information below realted to your Organization, Signing Authority, Access Administrator, Users
-      and MSP Groups to ensure you have entered the correct details. If you submit incorrect information you will have
-      to re-submit your request from the beginning.
-      <br />
-      You may wish to print this page for your own reference.
-      <br />
-      If you need to make changes, click relevant form to update. If everything is correct,
-      Please click 'Continue' button.
-      <br />
-      The Submit Request button will generate a PDF document containing the Data Access Agreement.
-      You must print, complete, signn and submit this document:
-      <div class='col-md-8 p-4'>
-        Scan to: <a href="mailto:hlth.hnetconnection@gov.bc.ca">hlth.hnetconnection@gov.bc.ca</a><br />
-        Or Fax to: (250) 405-3628<br />
-        or mail to:<br />
-        <blockquote>
-          Data Access Services<br />
-          PO BOX 9640 STN PROV GOVT<br />
-          Victoria BC V8W 3P1<br />
-        </blockquote>
-      </div>
 
-    </div>
-  </div>
+  <!--Content-->
   <div class='row mb-4'>
-    <div class='col-md-8 '>
-      <h3 class="border-bottom">Organization</h3>
-      <div class="col-auto mr-auto">
-        <div class="row">
-          <div class='col-md-3'>
-            Name:
-          </div>
-          <div class='col-md-5'>
-            {{mspRegisterStateSvc.organization.name}}
-          </div>
-        </div>
-        <div class="row">
-          <div class='col-md-3'>
-            Address:
-          </div>
-          <div class='col-md-5'>
-            {{mspRegisterStateSvc.organization.suite}} {{mspRegisterStateSvc.organization.street}}
-            {{mspRegisterStateSvc.organization.streetName}}<br />
-            {{mspRegisterStateSvc.organization.addressLine2}}<br />
-            {{mspRegisterStateSvc.organization.city}}, {{mspRegisterStateSvc.organization.province}}
-            {{mspRegisterStateSvc.organization.postalCode}}
-          </div>
-        </div>
-        <div class="row">
-          <div class='col-md-3'>
-            Third Party Administrator:
-          </div>
-          <div class='col-md-5'>
-            {{ mapBooleantoYesNo(mspRegisterStateSvc.organization.thirdParty) }}
-          </div>
-        </div>
-        <div class="row">
-          <div class='col-md-3'>
-            Blue Cross:
-          </div>
-          <div class='col-md-5'>
-            {{ mapBooleantoYesNo(mspRegisterStateSvc.organization.blueCross) }}
-          </div>
-        </div>
-        <div class="row">
-          <div class='col-md-3'>
-            Access Requested:
-          </div>
-          <div class='col-md-5'>
-            {{ mspRegisterStateSvc.organization.administeringFor }}
-          </div>
-        </div>
-        <!-- {{ mspRegisterStateSvc.organization | json }} -->
+    <div class='col-md-7 '>
+      <div class="mb-2">
+        Please review the information below related to your Organization, Signing Authority, Access Administrator(s),
+        User(s) and MSP Group(s) to ensure you have entered the correct details. If you submit incorrect information you
+        will have to re-submit your request.
+      </div>
+      <div class="mb-2">
+        You may wish to print this page for your own reference.
+      </div>
+      <div class="mb-0">
+        If you need to make changes, click on the edit icon <i class="fa fa-pencil fa-lg pointer"
+          aria-hidden="true"></i> for
+        the
+        applicable section. If everything is correct, please click the "Continue" button.
       </div>
     </div>
   </div>
-  <div class='row mb-4'>
-    <div class='col-md-8 '>
-      <h3 class="border-bottom">Singing Authority</h3>
 
-      <div class="col-auto mr-auto">
-        <div class="row">
-          <div class='col-md-3'>
-            Name:
-          </div>
-          <div class='col-md-5'>
-            {{mspRegisterStateSvc.signingAuthority.userTitle}} {{mspRegisterStateSvc.signingAuthority.firstName}}
-            {{mspRegisterStateSvc.signingAuthority.lastName}}
-          </div>
-        </div>
-        <div class="row">
-          <div class='col-md-3'>
-            Job Title:
-          </div>
-          <div class='col-md-5'>
-            {{mspRegisterStateSvc.signingAuthority.jobTitle}}
-          </div>
-        </div>
-        <div class="row">
-          <div class='col-md-3'>
-            Email:
-          </div>
-          <div class='col-md-5'>
-            {{mspRegisterStateSvc.signingAuthority.emailAddress}}
-          </div>
-        </div>
-        <div class="row">
-          <div class='col-md-3'>
-            Phone:
-          </div>
-          <div class='col-md-5'>
-            {{mspRegisterStateSvc.signingAuthority.phone}} ext. {{mspRegisterStateSvc.signingAuthority.ext}}
-          </div>
-        </div>
-        <div class="row">
-          <div class='col-md-3'>
-            Fax:
-          </div>
-          <div class='col-md-5'>
-            {{mspRegisterStateSvc.signingAuthority.fax}}
-          </div>
-        </div>
-        <div class="row">
-          <div class='col-md-3'>
-            MSP Access:
-          </div>
-          <div class='col-md-5'>
-            {{ mapBooleantoYesNo(mspRegisterStateSvc.signingAuthority.directMspAccess) }}
-          </div>
-        </div>
-        <div class="row">
-          <div class='col-md-3'>
-            Access Requested:
-          </div>
-          <div class='col-md-5'>
-            {{ mspRegisterStateSvc.signingAuthority.administeringFor }}
-          </div>
-        </div>
-        <div class="row">
-          <div class='col-md-3'>
-            Also an Access Administrator?:
-          </div>
-          <div class='col-md-5'>
-            {{ mapBooleantoYesNo(mspRegisterStateSvc.signingAuthority.directMspAccess) }}
-          </div>
-        </div>
-        <!-- {{ mspRegisterStateSvc.signingAuthority | json }} -->
-      </div>
+  <!--#region Organization  -->
+  <!--Section - Headers -->
+  <div class="row pl-0 align-items-center border-bottom">
+    <div class="col-md-6  pl-0">
+      <h3>Organization</h3>
+    </div>
+    <div class="col-md-2 ml-auto text-right">
+      <button tabindex="0" class="btn btn-default" (click)="redirectOrganization()">
+        <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+      </button>
     </div>
   </div>
-  <div class='row mb-4'>
-    <div class='col-md-8 '>
-      <h3 class="border-bottom">Access Administrators</h3>
-      <div class="col-auto mr-auto mb-4" *ngFor="let admin of mspRegisterStateSvc.accessAdmins">
-        <div class="row">
-          <div class='col-md-3'>
-            Name:
-          </div>
-          <div class='col-md-5'>
-            {{admin.userTitle}} {{admin.firstName}}
-            {{admin.lastName}}
-          </div>
-        </div>
-        <div class="row">
-          <div class='col-md-3'>
-            Job Title:
-          </div>
-          <div class='col-md-5'>
-            {{admin.jobTitle}}
-          </div>
-        </div>
-        <div class="row">
-          <div class='col-md-3'>
-            Email:
-          </div>
-          <div class='col-md-5'>
-            {{admin.emailAddress}}
-          </div>
-        </div>
-        <div class="row">
-          <div class='col-md-3'>
-            Phone:
-          </div>
-          <div class='col-md-5'>
-            {{admin.phone}} ext. {{admin.ext}}
-          </div>
-        </div>
-        <div class="row">
-          <div class='col-md-3'>
-            Fax:
-          </div>
-          <div class='col-md-5'>
-            {{admin.fax}}
-          </div>
-        </div>
-        <div class="row">
-          <div class='col-md-3'>
-            MSP Access:
-          </div>
-          <div class='col-md-5'>
-            {{ mapBooleantoYesNo(admin.directMspAccess) }}
-          </div>
-        </div>
-        <div class="row">
-          <div class='col-md-3'>
-            Access Requested:
-          </div>
-          <div class='col-md-5'>
-            {{ admin.administeringFor }}
-          </div>
-        </div>
-        <div class="row">
-          <div class='col-md-3'>
-            Also an Access Administrator?:
-          </div>
-          <div class='col-md-5'>
-            {{ mapBooleantoYesNo(admin.directMspAccess) }}
-          </div>
-        </div>
-        <!-- {{ mspRegisterStateSvc.accessAdmins | json }} -->
-      </div>
 
+  <!--Section - Content -->
+  <div class="col-auto mr-auto mt-2 pl-0">
+    <div class="row">
+      <div class='col-md-3'>
+        Name:
+      </div>
+      <div class='col-md-5'>
+        {{mspRegisterStateSvc.organization.name}}
+      </div>
+    </div>
+    <div class="row">
+      <div class='col-md-3'>
+        Address:
+      </div>
+      <div class='col-md-5'>
+        {{mspRegisterStateSvc.organization.suite? mspRegisterStateSvc.organization.suite + ' ': ''}}
+        {{mspRegisterStateSvc.organization.street}} {{mspRegisterStateSvc.organization.streetName}} <br />
+        {{mspRegisterStateSvc.organization.addressLine2? mspRegisterStateSvc.organization.addressLine2 : ''}}
+        <span [innerHTML]="(mspRegisterStateSvc.organization.addressLine2? '<br/>': '')"></span>
+        {{mspRegisterStateSvc.organization.city}}, {{mspRegisterStateSvc.organization.province}},
+        {{mspRegisterStateSvc.organization.postalCode}}
+      </div>
+    </div>
+    <div class="row">
+      <div class='col-md-3'>
+        Third Party Administrator:
+      </div>
+      <div class='col-md-5'>
+        {{ mspRegisterStateSvc.organization.thirdParty && mspRegisterStateSvc.organization.thirdParty===true ? mspRegisterStateSvc.organization.organizationNumber : mapBooleantoYesNo(mspRegisterStateSvc.organization.thirdParty) }}
+      </div>
+    </div>
+    <div class="row">
+      <div class='col-md-3'>
+        Blue Cross:
+      </div>
+      <div class='col-md-5'>
+        {{ mapBooleantoYesNo(mspRegisterStateSvc.organization.blueCross) }}
+      </div>
+    </div>
+    <div class="row">
+      <div class='col-md-3'>
+        Access Requested:
+      </div>
+      <div class='col-md-5'>
+        {{ mspRegisterStateSvc.organization.administeringFor }}
+      </div>
+    </div>
+
+  </div>
+
+  <!--#endregion -->
+
+  <!--#region Signing Authority  -->
+
+  <!--Section - Signing Authority -->
+  <div class="row pl-0 align-items-center border-bottom">
+    <div class="col-md-6  pl-0">
+      <h3>Signing Authority</h3>
+    </div>
+    <div class="col-md-2 ml-auto text-right">
+      <button tabindex="0" class="btn btn-default" (click)="redirectSigningAuthority()">
+        <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+      </button>
     </div>
   </div>
-  <div class='row mb-4'>
-    <div class='col-md-8 '>
-      <h3 class="border-bottom">Users</h3>
-      <div class="col-auto mr-auto mb-4" *ngFor="let user of mspRegisterStateSvc.users">
-        <div class="row" style="margin-bottom:0.25%">
-          <div class='col-md-3'>
-            Name:
-          </div>
-          <div class='col-md-5'>
-            {{user.userTitle}} {{user.firstName}}
-            {{user.lastName}}
-          </div>
-        </div>
-        <div class="row">
-          <div class='col-md-3'>
-            Job Title:
-          </div>
-          <div class='col-md-5'>
-            {{user.jobTitle}}
-          </div>
-        </div>
-        <div class="row">
-          <div class='col-md-3'>
-            Email:
-          </div>
-          <div class='col-md-5'>
-            {{user.emailAddress}}
-          </div>
-        </div>
-        <div class="row">
-          <div class='col-md-3'>
-            Phone:
-          </div>
-          <div class='col-md-5'>
-            {{user.phone}} ext. {{user.ext}}
-          </div>
-        </div>
-        <div class="row">
-          <div class='col-md-3'>
-            Fax:
-          </div>
-          <div class='col-md-5'>
-            {{user.fax}}
-          </div>
-        </div>
-        <div class="row">
-          <div class='col-md-3'>
-            Access Requested:
-          </div>
-          <div class='col-md-5'>
-            {{ user.administeringFor }}
-          </div>
-        </div>
+
+  <!--Section - Content -->
+  <div class="col-auto mt-2 pl-0">
+    <div class="row">
+      <div class='col-md-3'>
+        Name:
+      </div>
+      <div class='col-md-5'>
+        {{mspRegisterStateSvc.signingAuthority.userTitle? mspRegisterStateSvc.signingAuthority.userTitle + ' ': ''}}
+        {{mspRegisterStateSvc.signingAuthority.firstName}}
+        {{mspRegisterStateSvc.signingAuthority.initial ? mspRegisterStateSvc.signingAuthority.initial: ''}}
+        {{mspRegisterStateSvc.signingAuthority.lastName}}
+      </div>
+    </div>
+    <div class="row">
+      <div class='col-md-3'>
+        Job Title:
+      </div>
+      <div class='col-md-5'>
+        {{mspRegisterStateSvc.signingAuthority.jobTitle}}
+      </div>
+    </div>
+    <div class="row">
+      <div class='col-md-3'>
+        Email:
+      </div>
+      <div class='col-md-5'>
+        {{mspRegisterStateSvc.signingAuthority.emailAddress}}
+      </div>
+    </div>
+    <div class="row">
+      <div class='col-md-3'>
+        Phone:
+      </div>
+      <div class='col-md-5'>
+        {{mspRegisterStateSvc.signingAuthority.phone}}
+        {{mspRegisterStateSvc.signingAuthority.ext? ' ext: ' + mspRegisterStateSvc.signingAuthority.ext : ''}}
+      </div>
+    </div>
+    <div class="row">
+      <div class='col-md-3'>
+        Fax:
+      </div>
+      <div class='col-md-5'>
+        {{mspRegisterStateSvc.signingAuthority.fax}}
+      </div>
+    </div>
+    <div class="row">
+      <div class='col-md-3'>
+        MSP Access:
+      </div>
+      <div class='col-md-5'>
+        {{ mapBooleantoYesNo(mspRegisterStateSvc.signingAuthority.directMspAccess) }}
+      </div>
+    </div>
+    <div class="row">
+      <div class='col-md-3'>
+        Access Requested:
+      </div>
+      <div class='col-md-5'>
+        {{ mspRegisterStateSvc.signingAuthority.directMspAccess && mspRegisterStateSvc.signingAuthority.directMspAccess===true? mspRegisterStateSvc.signingAuthority.administeringFor : ''}}
       </div>
     </div>
   </div>
-  <div class='row mb-4'>
-    <div class='col-md-8 '>
-      <h3 class="border-bottom">Group Numbers</h3>
-      <div class="col-auto mr-auto mb-4" *ngFor="let group of mspRegisterStateSvc.groups">
-        <div class="row" style="margin-bottom:0.25%">
-          <div class='col-md-3'>
-            Group Number:
-          </div>
-          <div class='col-md-5'>
-            {{group.groupNumber}}
-          </div>
-        </div>
-        <div class="row">
-          <div class='col-md-3'>
-            Third Party:
-          </div>
-          <div class='col-md-5'>
-            {{ mapBooleantoYesNo(group.thirdParty) }}
-          </div>
-        </div>
-      </div>
-      <!-- {{ mspRegisterStateSvc.groups | json }} -->
+
+  <!--#endregion -->
+
+  <!--#region Access Administrator  -->
+
+  <!--Section - Access Administrator-->
+  <div class="row pl-0 align-items-center border-bottom">
+    <div class="col-md-6  pl-0">
+      <h3>Access Administrators(s)</h3>
+    </div>
+    <div class="col-md-2 ml-auto text-right">
+      <button tabindex="0" class="btn btn-default" (click)="redirectAccessAdministrators()">
+        <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+      </button>
     </div>
   </div>
+
+  <!--Section - Access Administrator-->
+  <div class="col-auto mt-2 pl-0 mb-4 border-bottom" *ngFor="let admin of mspRegisterStateSvc.accessAdmins">
+
+    <div class="row">
+      <div class='col-md-3'>
+        Name:
+      </div>
+      <div class='col-md-5'>
+        {{admin.userTitle? admin.userTitle + ' ': ''}}
+        {{admin.firstName}} {{admin.initial? admin.initial:  ''}}
+        {{admin.lastName}}
+      </div>
+    </div>
+    <div class="row">
+      <div class='col-md-3'>
+        Job Title:
+      </div>
+      <div class='col-md-5'>
+        {{admin.jobTitle}}
+      </div>
+    </div>
+    <div class="row">
+      <div class='col-md-3'>
+        Email:
+      </div>
+      <div class='col-md-5'>
+        {{admin.emailAddress}}
+      </div>
+    </div>
+    <div class="row">
+      <div class='col-md-3'>
+        Phone:
+      </div>
+      <div class='col-md-5'>
+        {{admin.phone}}
+        {{admin.ext? ' ext: ' + admin.ext : ''}}
+
+      </div>
+    </div>
+    <div class="row">
+      <div class='col-md-3'>
+        Fax:
+      </div>
+      <div class='col-md-5'>
+        {{admin.fax}}
+      </div>
+    </div>
+    <div class="row">
+      <div class='col-md-3'>
+        MSP Access:
+      </div>
+      <div class='col-md-5'>
+        {{ mapBooleantoYesNo(admin.directMspAccess) }}
+      </div>
+    </div>
+    <div class="row">
+      <div class='col-md-3'>
+        Access Requested:
+      </div>
+      <div class='col-md-5'>
+        {{ admin.directMspAccess && admin.directMspAccess===true? admin.administeringFor : ''}}
+      </div>
+    </div>
+  </div>
+
+
+  <!--#endregion -->
+
+  <!--#region Users  -->
+
+  <!--Section - Users -->
+  <div class="row pl-0 align-items-center border-bottom" (click)="redirectUsers()">
+    <div class="col-md-6  pl-0">
+      <h3>User(s)</h3>
+    </div>
+    <div class="col-md-2 ml-auto text-right">
+      <button tabindex="0" class="btn btn-default">
+        <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+
+  <!--Section - Users-->
+  <div class="col-auto mt-2 pl-0 mb-4 border-bottom" *ngFor="let user of mspRegisterStateSvc.users">
+
+    <div class="row">
+      <div class='col-md-3'>
+        Name:
+      </div>
+      <div class='col-md-5'>
+        {{user.userTitle? user.userTitle + ' ': ''}}
+        {{user.firstName}} {{user.initial? user.initial:  ''}}
+        {{user.lastName}}
+      </div>
+    </div>
+    <div class="row">
+      <div class='col-md-3'>
+        Job Title:
+      </div>
+      <div class='col-md-5'>
+        {{user.jobTitle}}
+      </div>
+    </div>
+    <div class="row">
+      <div class='col-md-3'>
+        Email:
+      </div>
+      <div class='col-md-5'>
+        {{user.emailAddress}}
+      </div>
+    </div>
+    <div class="row">
+      <div class='col-md-3'>
+        Phone:
+      </div>
+      <div class='col-md-5'>
+        {{user.phone}}
+        {{user.ext? ' ext: ' + user.ext : ''}}
+
+      </div>
+    </div>
+    <div class="row">
+      <div class='col-md-3'>
+        Fax:
+      </div>
+      <div class='col-md-5'>
+        {{user.fax}}
+      </div>
+    </div>
+    <div class="row">
+      <div class='col-md-3'>
+        MSP Access:
+      </div>
+      <div class='col-md-5'>
+        {{ mapBooleantoYesNo(true) }}
+      </div>
+    </div>
+    <div class="row">
+      <div class='col-md-3'>
+        Access Requested:
+      </div>
+      <div class='col-md-5'>
+        {{ true && true===true? user.administeringFor : ''}}
+      </div>
+    </div>
+  </div>
+
+  <!--#endregion-->
+
+  <!--#region Group Numbers  -->
+
+  <!--Section - Group Numbers-->
+  <div class="row pl-0 align-items-center border-bottom">
+    <div class="col-md-6  pl-0">
+      <h3>MSP Group(s)</h3>
+    </div>
+    <div class="col-md-2 ml-auto text-right">
+      <button tabindex="0" class="btn btn-default" (click)="redirectGroupNumbers()">
+        <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+
+
+  <div class="col-auto mt-2 pl-0 mb-4 border-bottom" *ngFor="let group of mspRegisterStateSvc.groups">
+    <div class="row">
+      <div class='col-md-3'>
+        Group Number:
+      </div>
+      <div class='col-md-5'>
+        {{group.groupNumber}}
+      </div>
+    </div>
+    <div class="row">
+      <div class='col-md-3'>
+        Third Party:
+      </div>
+      <div class='col-md-5'>
+        {{ mapBooleantoYesNo(group.thirdParty) }}
+      </div>
+    </div>
+  </div>
+
+  <!--#endregion-->
+
+  <!-- #region -->
+  <!-- {{ mspRegisterStateSvc.signingAuthority | json }} -->
+  <!-- {{ mspRegisterStateSvc.accessAdmins | json }} -->
+  <!-- {{ mspRegisterStateSvc.groups | json }} -->
+  <!-- {{ mspRegisterStateSvc.signingAuthority | json }} -->
+  <!-- {{ mspRegisterStateSvc.organization | json }} -->
+
+  <!--#endregion-->
 
 </common-page-framework>
 <common-form-action-bar (btnClick)="continue()" [canContinue]="validFormGroup(fgs)">

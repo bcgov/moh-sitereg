@@ -24,7 +24,6 @@ export class MspRegisterReviewComponent implements OnInit {
         return true;
     }
 
-
     constructor(
         private router: Router,
         public loggerSvc: LoggerService,
@@ -33,7 +32,6 @@ export class MspRegisterReviewComponent implements OnInit {
         public mspRegDataSvc: MspRegisterDataService,
         private registrationService: MspRegistrationService
     ) {
-
         // // debug only
         // this.fgs.forEach((fg) => {
         //     fg.valueChanges.subscribe((obs) => console.log(fg));
@@ -73,10 +71,19 @@ export class MspRegisterReviewComponent implements OnInit {
         return val && val === true ? 'Yes' : 'No';
     }
 
+    redirectOrganization = () => this.redirect(MSP_REGISTER_ROUTES.ORGANIZATION.fullpath);
+    redirectSigningAuthority = () => this.redirect(MSP_REGISTER_ROUTES.SIGNING_AUTHORITY.fullpath);
+    redirectAccessAdministrators = () => this.redirect(MSP_REGISTER_ROUTES.ACCESS_ADMINS.fullpath);
+    redirectUsers = () => this.redirect(MSP_REGISTER_ROUTES.USERS.fullpath);
+    redirectGroupNumbers = () => this.redirect(MSP_REGISTER_ROUTES.GROUP_NUMBERS.fullpath);
+  
+    redirect(routeName: string) {
+        this.router.navigate([routeName]);
+    }
+    
     // REMOVEME - debug only
     debugOnly() {
         if (this.globalConfigSvc.currentEnironment.production === false) {
-
             console.log(
                 `%c review <= %o\n\t%o`,
                 'color:lightgreen',
@@ -87,4 +94,5 @@ export class MspRegisterReviewComponent implements OnInit {
             );
         }
     }
+    
 }
