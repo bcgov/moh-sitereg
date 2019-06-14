@@ -1,57 +1,80 @@
-<div *ngIf="status">
-  <h2 class="border-bottom">Confirmation Message</h2>
-  <div class="message-container border border-success">
-    <p class="prime-icon--success">
-      <i aria-label="success" class="fa fa-2x fa-check-circle text-success"></i>
-    </p>
-    <!---->
-    <p>Your application has been submitted. Your confirmation number is  <b>{{mspRegDataSvc.requestFinalStatus?.confirmationNumber }}</b>.</p>
-    <!---->
-  </div>
-</div>
+<common-page-framework layout='blank'>
+  <h2 *ngIf="status" class="border-bottom">Confirmation Message</h2>
 
-<div *ngIf="!(status)">
-  <h2 class="border-bottom">Please fill application again</h2>
-  <div class='row'>
-    <div class='col-md-4 p-4'>
-      <a (click)='redirect()'>
-        <button class="btn btn-block btn-lg btn-secondary">
-          MSP Direct - Request for Access
-        </button>
-      </a>
+  <div class='mb-2' *ngIf="status">
+    <div class='row mb-4 mt-4 pl-4 pt-4 pb-4 border-success-custom'>
+
+      <div class='col-md-auto'>
+        <span class="mt-4  pr-0 iam-icon--success ">
+          <i aria-label="success" class="fa fa-2x fa-check-circle "></i>
+        </span>
+      </div>
+      <div class='col-md-4'>
+        <span style="font-size: 1.25rem;">Your application has been submitted.</span> <br />
+        <span><small>{{ today | date:'medium' }} --- Reference Number: <b>
+               {{mspRegDataSvc.requestFinalStatus?.confirmationNumber }} 
+              1234567890</b>
+          </small></span>
+      </div>
+    </div>
+    <div class="row mr-2">
+      <h3>Next Steps</h3>
+    </div>
+    <div class="row mr-0 pr-0">
+      <ul>
+        <li><b>Important:</b> Keep your reference number – write it down, or print this page for your records.</li>
+        <li>Allow up to 15 business days for your application to be processed. Once your application is processed, you
+          will be sent an email confirmation.</li>
+        <li>If you have questions regarding the status of your request, contact <a
+            href="mailto:HLTH.HnetConnection@gov.bc.ca">HLTH.HnetConnection@gov.bc.ca</a> and include the reference
+          number. </li>
+      </ul>
     </div>
   </div>
-</div>
 
-
-<div class='row' *ngIf="isTechnicalInfoAvaialble && debugMode">
-  <div class='col-md-4 p-4'>
-    <div  (click)="toggleDetail()">Technical information</div>
+  <div *ngIf="!(status)">
+    <h2 class="border-bottom">Please fill application again</h2>
+    <div class='row'>
+      <div class='col-md-4 p-4'>
+        <a (click)='redirect()'>
+          <button class="btn btn-block btn-lg btn-secondary">
+            MSP Direct - Request for Access
+          </button>
+        </a>
+      </div>
+    </div>
   </div>
-</div>
 
 
-<div class="card" *ngIf="showDetail && isTechnicalInfoAvaialble && debugMode">
-  <div class="card-body">
+  <div class='row mr-0' *ngIf="isTechnicalInfoAvaialble && debugMode">
+    <div class='col-md-4 p-4'>
+      <div (click)="toggleDetail()">Technical information</div>
+    </div>
+  </div>
+
+
+  <div class="card" *ngIf="showDetail && isTechnicalInfoAvaialble && debugMode">
+    <div class="card-body">
       <h5 class="card-title">Reference Identifier</h5>
       <p class="card-text">
         {{mspRegDataSvc.requestFinalStatus?.referenceId}}
       </p>
-  
-    <h5 class="card-title">Response</h5>
-    <p class="card-text">
-      {{mspRegDataSvc.requestFinalStatus?.response | json}}
-    </p>
 
-    <h5 class="card-title">Middleware Schema</h5>
-    <p class="card-text">
-      {{mspRegDataSvc.requestFinalStatus?.schema | json}}
-    </p>
+      <h5 class="card-title">Response</h5>
+      <p class="card-text">
+        {{mspRegDataSvc.requestFinalStatus?.response | json}}
+      </p>
 
-    <h5 class="card-title">Exception</h5>
-    <p class="card-text">
-      {{mspRegDataSvc.requestFinalStatus?.exception | json}}
-    </p>
+      <h5 class="card-title">Middleware Schema</h5>
+      <p class="card-text">
+        {{mspRegDataSvc.requestFinalStatus?.schema | json}}
+      </p>
 
+      <h5 class="card-title">Exception</h5>
+      <p class="card-text">
+        {{mspRegDataSvc.requestFinalStatus?.exception | json}}
+      </p>
+
+    </div>
   </div>
-</div>
+</common-page-framework>
