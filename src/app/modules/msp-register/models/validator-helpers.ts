@@ -32,6 +32,24 @@ export class ValidatorHelpers {
         yield Validators.maxLength(num);
     }
 }
+/**
+ * verifies if field value is not null and not empty string or valid boolean
+ * @param fieldValue FieldValue
+ */
+export function isValidOptionalField(fieldValue: string | boolean): boolean {
+
+    if (fieldValue) {
+        console.log(typeof fieldValue);
+        if (typeof fieldValue === 'string' && fieldValue.length > 0) {
+            return true;
+        }
+
+        if (typeof fieldValue === 'boolean' && ( fieldValue === true ||  fieldValue === false)) {
+            return true;
+        }
+    }
+    return false;
+}
 
 export function postalCodeValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {

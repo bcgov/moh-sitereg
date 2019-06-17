@@ -49,10 +49,10 @@ export class LoggerService extends CommonLogger {
             !environment.debug
                 ? this._log(message as CommonLogMessage)
                 : console.log(
-                      `%c splunk-log \n\t %o`,
-                      'color:lightgreen',
-                      message
-                  );
+                    `%c splunk-log \n\t %o`,
+                    'color:lightgreen',
+                    message
+                );
         } catch (e) {
             console.log(
                 `%c splunk-log-error [ %o ] : exception:  %o`,
@@ -72,6 +72,8 @@ export class LoggerService extends CommonLogger {
         console.log(`%c  Splunk Log (error): => %o`, 'color:orange', elog);
 
         this._logError(errorMessage as CommonLogMessage);
+        // !environment.debug ? this._logError(errorMessage as CommonLogMessage) :
+        // console.log(errorMessage);
         // this.isProduction
         //     ? this._logError(errorMessage as CommonLogMessage)
         //     : console.log(`%c Splunk Error: %o`, 'color:red', errorMessage);
@@ -83,5 +85,14 @@ export class LoggerService extends CommonLogger {
             event: 'navigation',
             status: `${navItem.toUpperCase()} : ${navItemValue}`,
         });
+        // !environment.debug ?
+        //     this.log({
+        //         event: 'navigation',
+        //         status: `${navItem.toUpperCase()} : ${navItemValue}`,
+        //     }) : console.log('%o',
+        //         {
+        //             event: 'navigation',
+        //             status: `${navItem.toUpperCase()} : ${navItemValue}`,
+        //         });
     }
 }
