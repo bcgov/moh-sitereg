@@ -21,7 +21,7 @@ import {
     ISiteRegRequest,
 } from '@core/interfaces/i-http-data';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 import { IUserMsp } from '@msp-register/interfaces/base/i-user-msp';
 import { IMspUser } from '@msp-register/interfaces/i-msp-user';
 import { funcRandomNumber7Digit } from '@msp-register/constants';

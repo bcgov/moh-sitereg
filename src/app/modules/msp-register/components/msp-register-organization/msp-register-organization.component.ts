@@ -18,7 +18,7 @@ import {
 } from '@msp-register/constants';
 import { MspRegistrationService } from '@msp-register/msp-registration.service';
 import { ConsentModalComponent } from 'moh-common-lib';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
     selector: 'sitereg-msp-register-organization',
