@@ -209,7 +209,7 @@ export class MspRegisterStateService {
     //#region MspGroup
 
     get groups() {
-        // Access Administrators
+
         const mspGroups: IMspGroup[] = [];
         this.mspRegisterGroupForm.forEach((v) =>
             v.value ? mspGroups.push(v.value) : ''

@@ -191,6 +191,10 @@
 
     </form>
   </div>
+  <div *ngIf="environment.debug">
+      Debugging purposes only:
+      <ngx-json-viewer [json]="registerationObject()" [expanded]="false"></ngx-json-viewer>
+  </div>
   <common-form-action-bar (btnClick)="continue()" [defaultColor]="false" [canContinue]="validCaptch"
     [isLoading]="isProcessing" submitLabel="Submit Application">
   </common-form-action-bar>

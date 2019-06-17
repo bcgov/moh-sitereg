@@ -14,6 +14,7 @@ import {
     MSP_REGISTER_ROUTES,
 } from '@msp-register/constants';
 import { MspRegistrationService } from '@msp-register/msp-registration.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
     selector: 'sitereg-msp-register-access-admins',
@@ -22,6 +23,9 @@ import { MspRegistrationService } from '@msp-register/msp-registration.service';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MspRegisterAccessAdminsComponent implements OnInit {
+    public get environment(): any {
+        return environment;
+    }
     fgs: FormGroup[];
     validFormControl: () => boolean;
     validFormGroup = this.mspRegisterStateSvc
@@ -66,15 +70,11 @@ export class MspRegisterAccessAdminsComponent implements OnInit {
         this.loggerSvc.logNavigation(
             this.constructor.name,
             `Valid Data - Continue button clicked. ${
-                this.globalConfigSvc.applicationId
+            this.globalConfigSvc.applicationId
             }`
         );
 
         this.registrationService.setItemComplete();
-
-        // REMOVEME debug-only
-        this.debugOnly();
-
         this.router.navigate([MSP_REGISTER_ROUTES.USERS.fullpath]);
     }
 
@@ -93,25 +93,26 @@ export class MspRegisterAccessAdminsComponent implements OnInit {
     }
 
     // REMOVEME - debug only
-    debugOnly() {
-        if (!this.globalConfigSvc.isProduction) {
-            const accessAdmins: IMspAccessAdmin[] = [];
-            this.mspRegisterStateSvc.mspRegisterAccessAdminsForm.forEach((v) =>
-                v.value ? accessAdmins.push(v.value) : ''
-            );
+    schemaObject() {
+        if (!environment.debug) return;
+        const accessAdmins: IMspAccessAdmin[] = [];
+        this.mspRegisterStateSvc.mspRegisterAccessAdminsForm.forEach((v) =>
+            v.value ? accessAdmins.push(v.value) : ''
+        );
 
-            const moAccessAdministrators = this.mspRegDataSvc.mapAccessAdministratorDef(
-                accessAdmins
-            );
-            console.log(
-                `%c middleware object <= %o\n\t%o`,
-                'color:lightgreen',
-                funcRemoveStrings(
-                    ['MspRegister', 'Component'],
-                    this.constructor.name
-                ),
-                moAccessAdministrators
-            );
-        }
+        const moAccessAdministrators = this.mspRegDataSvc.mapAccessAdministratorDef(
+            accessAdmins
+        );
+        // console.log(
+        //     `%c middleware object <= %o\n\t%o`,
+        //     'color:lightgreen',
+        //     funcRemoveStrings(
+        //         ['MspRegister', 'Component'],
+        //         this.constructor.name
+        //     ),
+        //     moAccessAdministrators
+        // );
+        return moAccessAdministrators;
+
     }
 }

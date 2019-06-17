@@ -18,6 +18,7 @@ import {
 } from '@msp-register/constants';
 import { MspRegistrationService } from '@msp-register/msp-registration.service';
 import { ConsentModalComponent } from 'moh-common-lib';
+import { environment } from 'src/environments/environment';
 
 @Component({
     selector: 'sitereg-msp-register-organization',
@@ -26,6 +27,9 @@ import { ConsentModalComponent } from 'moh-common-lib';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MspRegisterOrganizationComponent implements OnInit, AfterViewInit {
+    public get environment(): any {
+        return environment;
+    }
     fg: FormGroup;
     provinces: BehaviorSubject<IProvince[]> = new BehaviorSubject<IProvince[]>(
         null
@@ -80,6 +84,8 @@ export class MspRegisterOrganizationComponent implements OnInit, AfterViewInit {
                     emitEvent: false,
                 });
             }
+
+            this.schemaObject();
         });
     }
 
@@ -103,9 +109,6 @@ export class MspRegisterOrganizationComponent implements OnInit, AfterViewInit {
         );
 
         this.registrationService.setItemComplete();
-
-        // REMOVEME debug-only
-        this.debugOnly();
 
         this.router.navigate([MSP_REGISTER_ROUTES.SIGNING_AUTHORITY.fullpath]);
     }
@@ -134,22 +137,22 @@ export class MspRegisterOrganizationComponent implements OnInit, AfterViewInit {
     }
 
     // REMOVEME - debug only
-    debugOnly() {
-        if (!this.globalConfigSvc.isProduction) {
-            const form = this.mspRegisterStateSvc.mspRegisterOrganizationForm;
-            // console.log('FormGroup: ', form);
-            const middleWareObject = this.mspRegDataSvc.mapOrgInformation(
-                form.value
-            );
-            console.log(
-                `%c middleware object <= %o\n\t%o`,
-                'color:lightgreen',
-                funcRemoveStrings(
-                    ['MspRegister', 'Component'],
-                    this.constructor.name
-                ),
-                middleWareObject
-            );
-        }
+    schemaObject() {
+        if (!environment.debug) return;
+        const form = this.mspRegisterStateSvc.mspRegisterOrganizationForm;
+        // console.log('FormGroup: ', form);
+        const middleWareObject = this.mspRegDataSvc.mapOrgInformation(
+            form.value
+        );
+        // console.log(
+        //     `%c middleware object <= %o\n\t%o`,
+        //     'color:lightgreen',
+        //     funcRemoveStrings(
+        //         ['MspRegister', 'Component'],
+        //         this.constructor.name
+        //     ),
+        //     middleWareObject
+        // );
+        return middleWareObject;
     }
 }

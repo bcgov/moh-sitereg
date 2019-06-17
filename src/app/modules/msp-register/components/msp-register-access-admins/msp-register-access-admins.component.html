@@ -26,6 +26,10 @@
   </div>
   <sitereg-msp-register-user-msp [fg]="fg"  [showMspDirectAccessQuestion]="false" ></sitereg-msp-register-user-msp>
 </div>
+<div *ngIf="environment.debug">
+    Debugging purposes only:
+    <ngx-json-viewer [json]="schemaObject()" [expanded]="true"></ngx-json-viewer>
+</div>
 </common-page-framework>
 <common-form-action-bar  (btnClick)="continue()" [canContinue]="validFormGroup(fgs)">
 </common-form-action-bar>
