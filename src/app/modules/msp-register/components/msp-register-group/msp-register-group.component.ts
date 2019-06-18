@@ -99,7 +99,7 @@ export class MspRegisterGroupComponent implements OnInit {
 
     // REMOVEME - debug only
     schemaObject() {
-        if (!environment.debug) return;
+        if (!this.globalConfigSvc.debug) return;
         // Msp Groups
         const mspGroups: IMspGroup[] = [];
         this.mspRegisterStateSvc.mspRegisterGroupForm.forEach((v) =>

@@ -94,7 +94,7 @@ export class MspRegisterAccessAdminsComponent implements OnInit {
 
     // REMOVEME - debug only
     schemaObject() {
-        if (!environment.debug) return;
+        if (!this.globalConfigSvc.debug) return;
         const accessAdmins: IMspAccessAdmin[] = [];
         this.mspRegisterStateSvc.mspRegisterAccessAdminsForm.forEach((v) =>
             v.value ? accessAdmins.push(v.value) : ''

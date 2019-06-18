@@ -56,7 +56,7 @@
     </form>
     </div>
     <!-- </sitereg-page-sections> -->
-    <div *ngIf="environment.debug">
+    <div *ngIf="globalConfigSvc.debug">
         Debugging purposes only:
         <ngx-json-viewer [json]="schemaObject()" [expanded]="true"></ngx-json-viewer>
     </div>

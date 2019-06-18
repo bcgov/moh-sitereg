@@ -191,7 +191,7 @@
 
     </form>
   </div>
-  <div *ngIf="environment.debug">
+  <div *ngIf="globalConfigSvc.debug">
       Debugging purposes only:
       <ngx-json-viewer [json]="registerationObject()" [expanded]="false"></ngx-json-viewer>
   </div>

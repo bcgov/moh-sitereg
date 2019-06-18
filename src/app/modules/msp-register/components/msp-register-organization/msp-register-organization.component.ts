@@ -138,7 +138,7 @@ export class MspRegisterOrganizationComponent implements OnInit, AfterViewInit {
 
     // REMOVEME - debug only
     schemaObject() {
-        if (!environment.debug) return;
+        if (!this.globalConfigSvc.debug) return;
         const form = this.mspRegisterStateSvc.mspRegisterOrganizationForm;
         // console.log('FormGroup: ', form);
         const middleWareObject = this.mspRegDataSvc.mapOrgInformation(

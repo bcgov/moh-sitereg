@@ -17,7 +17,7 @@ export class MspRegisterConfirmationComponent implements OnInit {
     status = false;
     showDetail = false;
     isTechnicalInfoAvaialble = false;
-    debugMode = environment.debug;
+    debugMode = false;
     today: number = Date.now();
     constructor(
         private router: Router,
@@ -27,6 +27,7 @@ export class MspRegisterConfirmationComponent implements OnInit {
         private registrationService: MspRegistrationService
     ) {
         // this.debugonly();
+        this.debugMode = this.globalConfigSvc.debug;
     }
 
     ngOnInit() {

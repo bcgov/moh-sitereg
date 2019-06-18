@@ -21,6 +21,7 @@ const serverEnvs = {
     SPA_ENV_SITEREG_MAINTENANCE_START: '',
     SPA_ENV_SITEREG_MAINTENANCE_END: '',
     SPA_ENV_SITEREG_MAINTENANCE_MESSAGE: '',
+    SPA_ENV_SITEREG_DEBUG: false,
 };
 
 // Used in HTTP request
@@ -71,7 +72,7 @@ export class SpaEnvService extends AbstractHttpService {
 
         // When the SpaEnv server is being deployed it can return an HTML error
         // page, and it should resolve shortly, so we try again.
-        // if (environment.debug) return of(null);
+        // if (this.globalConfigSvc.debug) return of(null);
         return this.post<SpaEnvResponse>(url, null).pipe(retry(3));
     }
 
