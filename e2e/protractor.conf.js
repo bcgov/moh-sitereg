@@ -1,6 +1,7 @@
 // Protractor configuration file, see link for more information
 // https://github.com/angular/protractor/blob/master/lib/config.ts
 const { SpecReporter } = require('jasmine-spec-reporter');
+const { JSONReporter } = require('jasmine-json-test-reporter');
 
 exports.config = {
   allScriptsTimeout: 11000,
@@ -25,4 +26,14 @@ exports.config = {
     });
     jasmine.getEnv().addReporter(new SpecReporter({ spec: { displayStacktrace: true } }));
   }
+  /*
+  framework: 'jasmine2',
+  onPrepare: function() {
+    jasmine.getEnv().addReporter(new JSONReporter({
+        file: 'jasmine-test-results.json',
+        beautify: true,
+        indentationLevel: 4 // used if beautify === true
+    }));
+  }
+  */
 };

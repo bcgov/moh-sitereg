@@ -1,0 +1,20 @@
+[
+  {
+    "description": "BCSC Enrollment - End to End 01. should navigate from Profile to Review page (end-to-end) when all required fields are filled out",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 16410
+  },
+  {
+    "description": "BCSC Enrollment - End to End 02. should not be able to access \"_autofill\" dev only URL",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  }
+]
