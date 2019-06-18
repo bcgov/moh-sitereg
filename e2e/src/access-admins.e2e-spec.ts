@@ -6,16 +6,13 @@ import { JSONDataSiteReg } from '../../e2e/run-with-data.js';
 describe('Moh SiteReg - Access Admins Page', () => {
     let aaPage: AccessAdminsPage;
     let data = new FakeDataSiteReg();
-    const jsonData = data.getJSONData();
-
-    // console.log("EMAIL: ", json.emailAddress);
-    let aaData;
-    let aaData2;
+    let aaData, aaData2;
     const AA_PAGE_URL = `register/access-admins`;
     const USERS_PAGE_URL = `register/users`;
 
-    if (data.hasJsonData){
-        data = jsonData.accessAdminsPage;
+    const jsonData = data.getJSONData();
+    if (data != null) { // Uses JSON data
+        data = jsonData;
     }
 
     beforeAll(() => {
@@ -25,7 +22,12 @@ describe('Moh SiteReg - Access Admins Page', () => {
     beforeEach(() => {
         aaPage = new AccessAdminsPage();
         aaData = data.signingAuthorityInfo();
-        data.setSeed();
+        if (data.hasJsonData == false) {
+            const orgData = data.organizationInfo();
+            const saData = data.signingAuthorityInfo();
+            const groupData = data.groupNumbersInfo();
+            data.setSeed();
+        }
     });
 
     it('01. should load the page without issue', () => {
@@ -99,6 +101,12 @@ describe('Moh SiteReg - Access Admins Page', () => {
         aaPage.scrollDown();
         aaPage.continue();
         expect(browser.getCurrentUrl()).toContain(AA_PAGE_URL);
+    });
+
+    // Test will fail since _autofill is still active in dev mode
+    xit('07. should not be able to access "_autofill" dev only URL', () => {
+        // aaPage.navigateTo();
+        // expect(aaPage.getTextFromField()).toBe('', 'should be empty');
     });
 
 });
