@@ -5,13 +5,18 @@ import { JSONDataSiteReg } from '../../e2e/run-with-data.js';
 
 describe('Moh SiteReg - Access Admins Page', () => {
     let aaPage: AccessAdminsPage;
-    const data = new FakeDataSiteReg();
-    const jsonData = data.getJSONData().accessAdminsPage;
-    console.log('EMAIL ADD: ', jsonData.emailAddress);
+    let data = new FakeDataSiteReg();
+    const jsonData = data.getJSONData();
+
+    // console.log("EMAIL: ", json.emailAddress);
     let aaData;
     let aaData2;
     const AA_PAGE_URL = `register/access-admins`;
     const USERS_PAGE_URL = `register/users`;
+
+    if (data.hasJsonData){
+        data = jsonData.accessAdminsPage;
+    }
 
     beforeAll(() => {
         console.log('START OF E2E ENROLMENT' + '\nThis test uses Seed #: ' + data.getSeed());
@@ -38,9 +43,11 @@ describe('Moh SiteReg - Access Admins Page', () => {
     it('03. should let user to continue if all the required fields are filled out', () => {
         aaPage.navigateTo();
         aaPage.clickButton('btn btn-block');
-        aaPage.fillInfo(aaData);
+        // aaPage.fillInfo(aaData);
+        aaPage.fillInfo();
         aaPage.scrollDown();
-        aaPage.selectValue('administeringFor', 'Employees');
+        aaPage.selectValue('administeringFor', jsonData.administeringFor);
+        browser.sleep(5000);
         aaPage.continue();
         expect(aaPage.formErrors().count()).toBe(0, 'should be no errors after filling out');
         expect(browser.getCurrentUrl()).toContain(USERS_PAGE_URL, 'should navigate to the Users page');
@@ -49,9 +56,10 @@ describe('Moh SiteReg - Access Admins Page', () => {
     it('04. should let user to continue when user clicks the x button', () => {
         aaPage.navigateTo();
         aaPage.clickButton('btn btn-block');
-        aaPage.fillInfo(aaData);
+        // aaPage.fillInfo(aaData);
+        aaPage.fillInfo();
         aaPage.scrollDown();
-        aaPage.selectValue('administeringFor', 'Employees');
+        aaPage.selectValue('administeringFor', jsonData.administeringFor);
         aaPage.clickButton('btn delete');
         aaPage.continue();
         expect(aaPage.formErrors().count()).toBe(0, 'should be no errors after filling out');
@@ -63,14 +71,15 @@ describe('Moh SiteReg - Access Admins Page', () => {
         aaData2 = data.signingAuthorityInfo();
         aaPage.navigateTo();
         aaPage.clickButton('btn btn-block');
-        aaPage.fillInfo(aaData);
+        // aaPage.fillInfo(aaData);
+        aaPage.fillInfo();
         aaPage.scrollDown();
-        aaPage.selectValue('administeringFor', 'Employees');
+        aaPage.selectValue('administeringFor', jsonData.administeringFor);
         // aaPage.scrollUp();
-        browser.sleep(5000);
         aaPage.clickButton('btn btn-block');
-        aaPage.fillInfo(aaData2);
-        aaPage.selectValue('administeringFor', 'Employees');
+        // aaPage.fillInfo(aaData2);
+        aaPage.fillInfo();
+        aaPage.selectValue('administeringFor', jsonData.administeringFor);
         aaPage.scrollDown();
         aaPage.clickButton('btn delete'); // deletes the second admin created (latest one)
         aaPage.continue();
@@ -79,12 +88,15 @@ describe('Moh SiteReg - Access Admins Page', () => {
     });
 
     it('06. should NOT be able to continue with an incomplete admin section even if another admin is complete', () => {
-        aaData.lastName = '';
         aaPage.navigateTo();
         aaPage.clickButton('btn btn-block');
-        aaPage.fillInfo(aaData);
+        // aaPage.fillInfo(aaData);
+        aaPage.fillInfo();
         aaPage.scrollDown();
-        aaPage.selectValue('administeringFor', 'Employees');
+        aaPage.selectValue('administeringFor', jsonData.administeringFor);
+        aaPage.clickButton('btn btn-block');
+        aaPage.fillInfo();
+        aaPage.scrollDown();
         aaPage.continue();
         expect(browser.getCurrentUrl()).toContain(AA_PAGE_URL);
     });

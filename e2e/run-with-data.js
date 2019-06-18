@@ -2,7 +2,6 @@ var x = process.argv;
 var input = process.argv.filter(x => x.startsWith('--data'));
 console.log('Input: ', input);
 
-
 /*
 const mainPackageJson = require('../package.json');
 const glob = require('glob');

@@ -35,7 +35,7 @@ describe('Moh SiteReg - Users Page', () => {
     it('03. should let user to continue if all the required fields are filled out', () => {
         usersPage.navigateTo();
         usersPage.clickButton('btn btn-block');
-        usersPage.fillInfo(usersData);
+        usersPage.fillInfo();
         usersPage.scrollDown();
         usersPage.selectValue('administeringFor', 'Employees');
         usersPage.continue();
@@ -46,7 +46,7 @@ describe('Moh SiteReg - Users Page', () => {
     it('04. should let user to continue when user clicks the x button', () => {
         usersPage.navigateTo();
         usersPage.clickButton('btn btn-block');
-        usersPage.fillInfo(usersData);
+        usersPage.fillInfo();
         usersPage.scrollDown();
         usersPage.selectValue('administeringFor', 'Employees');
         usersPage.clickButton('btn delete');
@@ -60,11 +60,11 @@ describe('Moh SiteReg - Users Page', () => {
         usersData2 = data.signingAuthorityInfo();
         usersPage.navigateTo();
         usersPage.clickButton('btn btn-block');
-        usersPage.fillInfo(usersData);
+        usersPage.fillInfo();
         usersPage.scrollDown();
         usersPage.selectValue('administeringFor', 'Employees');
         usersPage.clickButton('btn btn-block');
-        usersPage.fillInfo(usersData2);
+        usersPage.fillInfo();
         usersPage.selectValue('administeringFor', 'Employees');
         usersPage.scrollDown();
         usersPage.clickButton('btn delete'); // deletes the second admin created (latest one)
@@ -74,12 +74,14 @@ describe('Moh SiteReg - Users Page', () => {
     });
 
     it('06. should NOT be able to continue with an incomplete user section even if another admin is complete', () => {
-        usersData.lastName = '';
         usersPage.navigateTo();
         usersPage.clickButton('btn btn-block');
-        usersPage.fillInfo(usersData);
+        usersPage.fillInfo();
         usersPage.scrollDown();
         usersPage.selectValue('administeringFor', 'Employees');
+        usersPage.clickButton('btn btn-block');
+        usersPage.fillInfo();
+        usersPage.scrollDown();
         usersPage.continue();
         expect(browser.getCurrentUrl()).toContain(USERS_PAGE_URL);
     });

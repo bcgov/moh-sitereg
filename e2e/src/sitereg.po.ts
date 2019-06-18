@@ -1,8 +1,11 @@
 import { browser, by, element, WebElement, protractor, $$ } from 'protractor';
 import { AbstractTestPage } from 'moh-common-lib/e2e';
-import { OrganizationPageTest, SigningAuthorityPageTest, GroupNumbersPageTest } from './sitereg.data';
+import { OrganizationPageTest, SigningAuthorityPageTest, GroupNumbersPageTest, FakeDataSiteReg } from './sitereg.data';
 
 export class BaseSiteRegTestPage extends AbstractTestPage {
+
+    protected data = new FakeDataSiteReg();
+    protected jsonData = this.data.getJSONData();
 
     constructor() {
         super();
@@ -77,6 +80,13 @@ export class BaseSiteRegTestPage extends AbstractTestPage {
         return $$(`select[ng-reflect-name^="${label}"] option`);
     }
 
+    /**
+     * * Every page will overload this method to fill out the data
+     */
+    fillPage() {
+
+    }
+
 }
 
 export class OrganizationPage extends BaseSiteRegTestPage {
@@ -92,26 +102,51 @@ export class OrganizationPage extends BaseSiteRegTestPage {
         return browser.get('/register/organization');
     }
 
-    fillOrgName(data: OrganizationPageTest) {
-        this.typeText('name', data.orgName);
+    fillPage() {
+        this.agreeConsentModal();
+        this.clickConsentModalContinue();
+        this.fillOrgName();
+        this.fillAddress();
+        this.selectValue('administeringFor', 'Employees');
+        this.scrollDown();
+        this.clickOption('thirdPartyTrue');
+        this.fillOrgNum();
+        this.clickOption('aatrue');
+        this.continue();
     }
 
-    fillAddress(data: OrganizationPageTest) {
-        if (data.suiteNo) {
-            this.typeText('suite', data.suiteNo + '');
+    fillOrgName(data?: OrganizationPageTest) {
+        let info = data;
+        if (data === undefined) {
+            info = this.jsonData.organizationPage;
         }
-        this.typeTextFirstOccurrence('street', data.streetNo + '');
-        this.typeText('streetName', data.streetName);
-        if (data.streetAddressLine) {
-            this.typeText('addressLine2', data.streetAddressLine);
+        this.typeText('name', info.orgName);
+    }
+
+    fillAddress(data?: OrganizationPageTest) {
+        let info = data;
+        if (data === undefined) {
+            info = this.jsonData.organizationPage;
         }
-        this.typeText('city', data.city);
+        if (info.suiteNo) {
+            this.typeText('suite', info.suiteNo + '');
+        }
+        this.typeTextFirstOccurrence('street', info.streetNo + '');
+        this.typeText('streetName', info.streetName);
+        if (info.streetAddressLine) {
+            this.typeText('addressLine2', info.streetAddressLine);
+        }
+        this.typeText('city', info.city);
         this.selectValue('province', this.province[this.num]);
-        this.typeText('postalCode', data.postal);
+        this.typeText('postalCode', info.postal);
     }
 
-    fillOrgNum(data: OrganizationPageTest) {
-        this.typeText('organizationNumber', data.orgNum + '');
+    fillOrgNum(data?: OrganizationPageTest) {
+        let info = data;
+        if (data === undefined) {
+            info = this.jsonData.organizationPage;
+        }
+        this.typeText('organizationNumber', info.orgNum + '');
         this.selectValue('administeringFor', 'Employees');
     }
 
@@ -127,15 +162,28 @@ export class SigningAuthorityPage extends BaseSiteRegTestPage {
         return browser.get('/register/signing-authority');
     }
 
-    fillInfo(data: SigningAuthorityPageTest) {
-        this.typeTextFirstOccurrence('firstName', data.firstName);
-        this.typeTextFirstOccurrence('lastName', data.lastName);
-        this.typeTextFirstOccurrence('jobTitle', data.jobTitle);
-        this.typeTextFirstOccurrence('emailAddress', data.email);
-        this.typeTextFirstOccurrence('confirmEmail', data.email);
-        this.typeTextFirstOccurrence('phone', data.mobile + '');
-        this.typeTextFirstOccurrence('ext', data.extension + '');
-        this.typeTextFirstOccurrence('fax', data.fax + '');
+    fillPage() {
+        this.selectValue('userTitle', 'Ms.');
+        this.fillInfo();
+        this.scrollDown();
+        this.selectValue('administeringFor', 'Employees');
+        this.clickOption('bctrue');
+        this.continue();
+    }
+
+    fillInfo(data?: SigningAuthorityPageTest) {
+        let info = data;
+        if (data === undefined) {
+            info = this.jsonData.accessAdminsPage;
+        }
+        this.typeTextFirstOccurrence('firstName', info.firstName);
+        this.typeTextFirstOccurrence('lastName', info.lastName);
+        this.typeTextFirstOccurrence('jobTitle', info.jobTitle);
+        this.typeTextFirstOccurrence('emailAddress', info.email);
+        this.typeTextFirstOccurrence('confirmEmail', info.email);
+        this.typeTextFirstOccurrence('phone', info.mobile + '');
+        this.typeTextFirstOccurrence('ext', info.extension + '');
+        this.typeTextFirstOccurrence('fax', info.fax + '');
     }
 
 }
@@ -150,6 +198,10 @@ export class AccessAdminsPage extends SigningAuthorityPage {
         return browser.get('/register/access-admins');
     }
 
+    fillPage() {
+
+    }
+
 }
 
 export class UsersPage extends SigningAuthorityPage {
@@ -160,6 +212,14 @@ export class UsersPage extends SigningAuthorityPage {
 
     navigateTo() {
         return browser.get('/register/users');
+    }
+
+    fillPage() {
+        this.clickButton('btn btn-block');
+        this.fillInfo();
+        this.scrollDown();
+        this.selectValue('administeringFor', 'Employees');
+        this.continue();
     }
 
 }
@@ -174,8 +234,17 @@ export class GroupNumbersPage extends BaseSiteRegTestPage {
         return browser.get('/register/group-numbers');
     }
 
-    fillGroupNum(data: GroupNumbersPageTest) {
-        this.typeText('groupNumber', data.groupNum + '');
+    fillPage() {
+        this.fillGroupNum();
+        this.continue();
+    }
+
+    fillGroupNum(data?: GroupNumbersPageTest) {
+        let info = data;
+        if (data === undefined) {
+            info = this.jsonData.groupNumbersPage;
+        }
+        this.typeText('groupNumber', info.groupNum + '');
     }
 }
 

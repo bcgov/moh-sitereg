@@ -43,8 +43,8 @@ describe('Moh SiteReg - Organization Page (ORG)', () => {
         orgPage.navigateTo();
         orgPage.agreeConsentModal();
         orgPage.clickConsentModalContinue();
-        orgPage.fillOrgName(orgData);
-        orgPage.fillAddress(orgData);
+        orgPage.fillOrgName();
+        orgPage.fillAddress();
         orgPage.selectValue('administeringFor', 'Employees');
         orgPage.scrollDown();
         orgPage.clickOption('thirdPartyFalse');
@@ -58,12 +58,12 @@ describe('Moh SiteReg - Organization Page (ORG)', () => {
         orgPage.navigateTo();
         orgPage.agreeConsentModal();
         orgPage.clickConsentModalContinue();
-        orgPage.fillOrgName(orgData);
-        orgPage.fillAddress(orgData);
+        orgPage.fillOrgName();
+        orgPage.fillAddress();
         orgPage.selectValue('administeringFor', 'Employees');
         orgPage.scrollDown();
         orgPage.clickOption('thirdPartyTrue');
-        orgPage.fillOrgNum(orgData);
+        orgPage.fillOrgNum();
         orgPage.clickOption('aatrue');
         orgPage.continue();
         expect(orgPage.formErrors().count()).toBe(0, 'should be no errors after filling out');

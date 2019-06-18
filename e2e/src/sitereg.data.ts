@@ -1,8 +1,11 @@
 import * as faker from 'faker';
+import * as fs from 'fs';
+
 
 export class FakeDataSiteReg {
 
     private static seedVal: number = Math.floor(Math.random() * Math.floor(1000));
+    public hasJsonData: boolean = false;
 
     organizationInfo(): OrganizationPageTest {
         return {
@@ -56,9 +59,18 @@ export class FakeDataSiteReg {
     }
 
     getJSONData() {
-        const fs = require('fs');
-        const data = fs.readFileSync('e2e/data.json', 'utf8');
+        var x = process.argv;
+        var input = process.argv.filter(x => x.startsWith('--data'));
+        console.log('\n TEST TEST \n Input: ', input);
+
+
+        console.log('before readfilesync');
+        const data = fs.readFileSync('/space/workspace/moh-sitereg/e2e/data.json', 'utf8');
         const jsonData = JSON.parse(data);
+
+        this.hasJsonData = true;
+
+        console.log('jsonData?', !!jsonData);
         return jsonData;
     }
 }

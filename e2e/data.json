@@ -6,18 +6,10 @@
         "streetName": "Douglas St.",
         "city": "Victoria",
         "province": "British Columbia",
-        "postalCode": "A1A1A1",
+        "postal": "A1A1A1",
         "administeringFor": "Employees",
         "thirdParty": true,
-        "if": {
-            "thirdParty": true   
-        },
-        "then": {
-            "orgNum": 12345678
-        },
-        "else": {
-            "orgNum": null
-        },
+        "orgNum": 12345678,
         "blueCross": false
     },
 
@@ -27,11 +19,10 @@
         "initial": "S.",
         "lastName": "Doe",
         "jobTitle": "Programmer",
-        "emailAddress": "johndoe@example.com",
-        "confirmEmailAddress": "johndoe@example.com",
-        "phoneNum": 2501234567,
+        "email": "johndoe@example.com",
+        "mobile": 2501234567,
         "extension": 123,
-        "faxNum": 2501234568,
+        "fax": 2501234568,
         "administeringFor": "Employees",
         "directMspAccess": true
     },
@@ -42,30 +33,34 @@
         "initial": "S.",
         "lastName": "Doe",
         "jobTitle": "Programmer",
-        "emailAddress": "johndoe@example.com",
-        "confirmEmailAddress": "johndoe@example.com",
-        "phoneNum": 2501234567,
+        "email": "johndoe@example.com",
+        "mobile": 2501234567,
         "extension": 123,
-        "faxNum": 2501234568,
+        "fax": 2501234568,
         "administeringFor": "Employees"
     },
 
     "usersPage": {
-        "title": "Mr.",
-        "firstName": "John",
+        "title": "Mrs.",
+        "firstName": "Jane",
         "initial": "S.",
         "lastName": "Doe",
         "jobTitle": "Programmer",
-        "emailAddress": "johndoe@example.com",
-        "confirmEmailAddress": "johndoe@example.com",
-        "phoneNum": 2501234567,
+        "email": "janedoe@example.com",
+        "mobile": 2501234569,
         "extension": 123,
-        "faxNum": 2501234568,
+        "fax": 2501234570,
         "administeringFor": "Employees"
     },
 
+    "childPage": {
+        "children": [
+            {"name": "bob"}
+        ]
+    },
+
     "groupNumbersPage": {
-        "groupNumber": 1234567
+        "groupNum": 1234567
     }
     
 }

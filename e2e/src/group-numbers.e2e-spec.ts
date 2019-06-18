@@ -29,7 +29,7 @@ describe('Moh SiteReg - Group Numbers Page', () => {
 
     it('03. should let user to continue if at least one group number is added', () => {
         groupPage.navigateTo();
-        groupPage.fillGroupNum(groupData);
+        groupPage.fillGroupNum();
         browser.sleep(5000);
         groupPage.continue();
         expect(groupPage.formErrors().count()).toBe(0, 'should be no errors after filling out');
@@ -40,7 +40,7 @@ describe('Moh SiteReg - Group Numbers Page', () => {
     it('04. should not let user cont. w/o one group num section complete/let user to delete a group num by clicking the x button', () => {
         groupPage.navigateTo();
         groupPage.clickButton('btn btn-block');
-        groupPage.fillGroupNum(groupData);
+        groupPage.fillGroupNum();
         groupPage.clickButton('btn delete');
         groupPage.continue();
         expect(browser.getCurrentUrl()).toContain(GROUP_PAGE_URL);
@@ -49,7 +49,7 @@ describe('Moh SiteReg - Group Numbers Page', () => {
     // this test will fail because first group num section is not displayed after page load
     xit('05. should automatically display the first group number section', () => {
         groupPage.navigateTo();
-        groupPage.fillGroupNum(groupData);
+        groupPage.fillGroupNum();
         groupPage.continue();
         expect(groupPage.formErrors().count()).toBe(0, 'should be no errors');
         expect(browser.getCurrentUrl()).toContain(GROUP_PAGE_URL);
@@ -59,7 +59,7 @@ describe('Moh SiteReg - Group Numbers Page', () => {
         groupData.groupNum = '1111';
         groupPage.navigateTo();
         groupPage.clickButton('btn btn-block');
-        groupPage.fillGroupNum(groupData);
+        groupPage.fillGroupNum();
         groupPage.continue();
         expect(browser.getCurrentUrl()).toContain(GROUP_PAGE_URL, 'should stay on the same page');
     });

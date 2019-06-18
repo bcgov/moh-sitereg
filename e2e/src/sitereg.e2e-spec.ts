@@ -40,53 +40,30 @@ describe('BCSC Enrollment - End to End', () => {
         data.setSeed();
     });
 
-    it('01. should go through from Profile to Review page when all required fields are filled out', () => {
+    fit('01. should navigate from Profile to Review page (end-to-end) when all required fields are filled out', () => {
         orgPage.navigateTo();
-        expect(browser.getCurrentUrl()).toContain(ORG_PAGE_URL, 'should navigate to the next page');
-
-        orgPage.clickAgree();
-        orgPage.clickModalContinue();
-        orgPage.fillOrgName(orgData);
-        orgPage.fillAddress(orgData);
-        orgPage.selectValue('administeringFor', 'Employees');
-        orgPage.scrollDown();
-        orgPage.clickOption('thirdPartyTrue');
-        orgPage.fillOrgNum(orgData);
-        orgPage.clickOption('aatrue');
-        orgPage.continue();
-        expect(browser.getCurrentUrl()).toContain(SA_PAGE_URL, 'should navigate to the next page');
-
-        saPage.selectValue('userTitle', 'Ms.');
-        saPage.fillInfo(saData);
-        saPage.scrollDown();
-        saPage.selectValue('administeringFor', 'Employees');
-        saPage.clickOption('bctrue');
-        saPage.continue();
-        expect(browser.getCurrentUrl()).toContain(AA_PAGE_URL, 'should navigate to the next page');
-
-        // aaPage.fillInfo(saData);
-        aaPage.scrollDown();
-        // aaPage.selectValue('administeringFor', 'Employees');
-        aaPage.continue();
-        expect(browser.getCurrentUrl()).toContain(USERS_PAGE_URL, 'should navigate to the next page');
-
-        usersPage.clickButton('btn btn-block');
-        usersPage.fillInfo(saData);
-        usersPage.scrollDown();
-        usersPage.selectValue('administeringFor', 'Employees');
-        usersPage.continue();
-        expect(browser.getCurrentUrl()).toContain(GROUP_PAGE_URL, 'should navigate to the next page');
-
-        groupPage.fillGroupNum(groupData);
-        groupPage.continue();
-        expect(browser.getCurrentUrl()).toContain(REVIEW_PAGE_URL, 'should navigate to the next page');
-
-        reviewPage.scrollDown();
+        expect(browser.getCurrentUrl()).toContain(ORG_PAGE_URL, 'should navigate to the Organization Page');
+        orgPage.fillPage();
+        browser.sleep(10000);
+        expect(browser.getCurrentUrl()).toContain(SA_PAGE_URL, 'should continue to the Signing Authority Page');
+        saPage.fillPage();
+        browser.sleep(10000);
+        expect(browser.getCurrentUrl()).toContain(AA_PAGE_URL, 'should continue to the Access Admins Page');
+        aaPage.continue(); // This page is already filled out so no need to call fillPage()
+        browser.sleep(10000);
+        expect(browser.getCurrentUrl()).toContain(USERS_PAGE_URL, 'should continue to the Users Page');
+        usersPage.fillPage();
+        browser.sleep(10000);
+        expect(browser.getCurrentUrl()).toContain(GROUP_PAGE_URL, 'should continue to the Group Page');
+        groupPage.fillPage();
+        browser.sleep(10000);
+        expect(browser.getCurrentUrl()).toContain(GROUP_PAGE_URL, 'should continue to the Review Page');
         reviewPage.continue();
-        expect(browser.getCurrentUrl()).toContain(AUTH_PAGE_URL, 'should navigate to the next page');
-
-        authPage.scrollDown();
-        // Insert submitApplication method here once it's working
+        browser.sleep(10000);
+        expect(browser.getCurrentUrl()).toContain(REVIEW_PAGE_URL, 'should contunue to the Authorization Page');
+        browser.sleep(10000);
+        authPage.continue();
+        expect(browser.getCurrentUrl()).toContain(AUTH_PAGE_URL, 'should be able to succesfully submit the form');
     }, 60000);
 
     // Test will fail since _autofill is still active in dev mode
