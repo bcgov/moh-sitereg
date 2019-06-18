@@ -164,7 +164,7 @@ export class MspRegisterSigningAuthorityComponent implements OnInit {
 
     // REMOVEME - debug only
     schemaObject() {
-        if (!environment.debug) return;
+        if (!this.globalConfigSvc.debug) return;
         const form = this.mspRegisterStateSvc
             .mspRegisterSigningAuthorityForm;
         // console.log('FormGroup: ', form);

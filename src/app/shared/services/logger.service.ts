@@ -46,7 +46,7 @@ export class LoggerService extends CommonLogger {
 
             //  console.log(`%o <= Logger Application ID at Log`, this.applicationId);
 
-            !environment.debug
+            !this.globalConfigSvc.debug
                 ? this._log(message as CommonLogMessage)
                 : console.log(
                     `%c splunk-log \n\t %o`,
