@@ -12,10 +12,8 @@ describe('BCSC Enrollment - End to End', () => {
     let reviewPage: ReviewPage;
     let authPage: AuthorizePage;
     let scPage: SpecialCasePage;
-    const data = new FakeDataSiteReg();
-    let orgData;
-    let saData;
-    let groupData;
+    let data = new FakeDataSiteReg();
+
     // TODO: Refactor URLs
     const ORG_PAGE_URL = `register/organization`;
     const SA_PAGE_URL = `register/signing-authority`;
@@ -27,8 +25,13 @@ describe('BCSC Enrollment - End to End', () => {
     const CONFIRM_PAGE_URL = `register/confirmation`;
 
     const jsonData = data.getJSONData();
-    if (data != null){
-        let data = jsonData.accessAdminsPage;
+    if (data != null) { // Uses JSON data
+        data = jsonData;
+    } else {  // Uses Faker data
+        const orgData = data.organizationInfo();
+        const saData = data.signingAuthorityInfo();
+        const groupData = data.groupNumbersInfo();
+        data.setSeed();
     }
 
     beforeEach(() => {
@@ -40,20 +43,16 @@ describe('BCSC Enrollment - End to End', () => {
         authPage = new AuthorizePage();
         reviewPage = new ReviewPage();
         scPage = new SpecialCasePage();
-        orgData = data.organizationInfo();
-        saData = data.signingAuthorityInfo();
-        groupData = data.groupNumbersInfo();
-        data.setSeed();
     });
 
-    fit('01. should navigate from Profile to Review page (end-to-end) when all required fields are filled out', () => {
+    it('01. should navigate from Profile to Review page (end-to-end) when all required fields are filled out', () => {
         orgPage.navigateTo();
         expect(browser.getCurrentUrl()).toContain(ORG_PAGE_URL, 'should navigate to the Organization Page');
         orgPage.fillPage();
         expect(browser.getCurrentUrl()).toContain(SA_PAGE_URL, 'should continue to the Signing Authority Page');
         saPage.fillPage();
         expect(browser.getCurrentUrl()).toContain(AA_PAGE_URL, 'should continue to the Access Admins Page');
-        aaPage.continue(); // This page is already filled out so no need to call fillPage()
+        aaPage.continue(); // This page is already auto-filled out so no need to call fillPage()
         expect(browser.getCurrentUrl()).toContain(USERS_PAGE_URL, 'should continue to the Users Page');
         usersPage.fillPage();
         expect(browser.getCurrentUrl()).toContain(GROUP_PAGE_URL, 'should continue to the Group Page');
@@ -63,7 +62,7 @@ describe('BCSC Enrollment - End to End', () => {
         expect(browser.getCurrentUrl()).toContain(AUTH_PAGE_URL, 'should contunue to the Authorization Page');
         authPage.fillPage();
         expect(browser.getCurrentUrl()).toContain(CONFIRM_PAGE_URL, 'should be able to succesfully submit the form');
-    }, 60000);
+    }, 120000);
 
     // Test for multiple admins
 
