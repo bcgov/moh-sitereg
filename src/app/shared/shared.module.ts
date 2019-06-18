@@ -9,6 +9,7 @@ import { ErrorBoxComponent } from './components/error-box/error-box.component';
 import { GlobalConfigService } from './services/global-config.service';
 import { MspRegisterApiService } from './services/api.service';
 import { LoggerService } from './../shared/services/logger.service';
+import { NgxJsonViewerModule } from 'ngx-json-viewer';
 
 @NgModule({
     declarations: [PageSectionsComponent, CaptchaComponent, ErrorBoxComponent],
@@ -18,6 +19,7 @@ import { LoggerService } from './../shared/services/logger.service';
         FormsModule,
         ReactiveFormsModule,
         CaptchaModule,
+        NgxJsonViewerModule,
     ],
     providers: [GlobalConfigService, MspRegisterApiService, LoggerService],
     exports: [
@@ -26,6 +28,7 @@ import { LoggerService } from './../shared/services/logger.service';
         PageSectionsComponent,
         CaptchaComponent,
         ErrorBoxComponent,
+        NgxJsonViewerModule,
     ],
 })
 export class SharedModule {}

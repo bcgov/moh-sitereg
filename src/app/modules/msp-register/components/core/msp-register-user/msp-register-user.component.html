@@ -5,7 +5,7 @@
       <div class="col-sm-4">
         <label class="control-label" for="userTitle">Title (optional)</label>
         <select class="form-control" *ngIf="userTitles" formControlName="userTitle" maxlength="5">
-          <option value="null" label="" selected></option>
+          <option value="" label="" selected></option>
           <option *ngFor="let title of userTitles " [value]="title">{{title}}</option>
         </select>
       </div>
@@ -20,7 +20,7 @@
     <div class="row">
       <div class="col-sm-4">
 
-        <!-- Int -->
+        <!-- Int (optional)-->
         <label class="control-label" for="initial">Initial (optional)</label>
         <input id="initial" formControlName="initial" class="form-control" placeholder="Initial" maxlength="1">
         <sitereg-error-box [error]="validFormControl(fg,'initial')" errorMessage="One character"></sitereg-error-box>
@@ -44,7 +44,7 @@
 
     <!-- Email Address -->
     <label class="control-label" for="emailAddress">Email Address</label>
-    <input id="emailAddress" formControlName="emailAddress" class="form-control" placeholder="Email address" maxlength="100">
+    <input id="emailAddress" formControlName="emailAddress" class="form-control" placeholder="Email address" maxlength="100" >
     <sitereg-error-box [error]="validFormControl(fg,'emailAddress')"
       errorMessage="Email is required. Must be in the format test@example.com"></sitereg-error-box>
 
@@ -73,7 +73,7 @@
       </div>
 
     </div>
-    <!-- Fax -->
+    <!-- Fax (optional)-->
     <label class="control-label" for="fax">Fax (optional)</label>
     <input id="fax" formControlName="fax" class="form-control" placeholder="Fax number (optional)" maxlength="10">
     <sitereg-error-box [error]="validFormControl(fg,'fax')" errorMessage="Please provide valid Fax number">

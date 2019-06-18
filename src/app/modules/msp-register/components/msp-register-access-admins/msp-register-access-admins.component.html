@@ -1,8 +1,11 @@
 <!-- TODO: ask if the control to add access administrators is the button click. UX is confusing -->
-<common-page-framework layout='blank'>
+<common-page-framework >
 <h2 class="border-bottom">Access Admins</h2>
+<aside>
+    <b>Access Administrators</b> are the primary contacts within your Organization for all questions and concerns about user access to the Ministry of Health web applications. They are responsible for registering users, assigning and cancelling access permissions, coordinating the installation of the digital certificate on user's computers and other responsibilities identified by the Ministry. The form should include at least one Access Administrator.
+</aside>
 <div class='row mb-4'>
-  <div class='col-md-3 p-4'>
+  <div class='col-md-6 p-4'>
     <a (click)='addFormGroup()'>
       <button class="btn btn-block btn-lg btn-secondary">
         Add New Access Admin
@@ -22,6 +25,10 @@
     </div>
   </div>
   <sitereg-msp-register-user-msp [fg]="fg"  [showMspDirectAccessQuestion]="false" ></sitereg-msp-register-user-msp>
+</div>
+<div *ngIf="globalConfigSvc.debug">
+    Debugging purposes only:
+    <ngx-json-viewer [json]="schemaObject()" [expanded]="true"></ngx-json-viewer>
 </div>
 </common-page-framework>
 <common-form-action-bar  (btnClick)="continue()" [canContinue]="validFormGroup(fgs)">

@@ -17,20 +17,23 @@ export class MspRegisterConfirmationComponent implements OnInit {
     status = false;
     showDetail = false;
     isTechnicalInfoAvaialble = false;
-    debugMode = environment.debug;
-
+    debugMode = false;
+    today: number = Date.now();
     constructor(
         private router: Router,
         public mspRegDataSvc: MspRegisterDataService,
         private globalConfigSvc: GlobalConfigService,
         public loggerSvc: LoggerService,
         private registrationService: MspRegistrationService
-    ) {}
+    ) {
+        // this.debugonly();
+        this.debugMode = this.globalConfigSvc.debug;
+    }
 
     ngOnInit() {
         this.status =
             this.mspRegDataSvc.requestFinalStatus &&
-            this.mspRegDataSvc.requestFinalStatus.status
+                this.mspRegDataSvc.requestFinalStatus.status
                 ? this.mspRegDataSvc.requestFinalStatus.status
                 : false;
         this.isTechnicalInfoAvaialble = this.mspRegDataSvc.requestFinalStatus
@@ -52,5 +55,11 @@ export class MspRegisterConfirmationComponent implements OnInit {
         this.mspRegDataSvc.requestFinalStatus = null;
         this.registrationService.enableConfirmation = false;
         this.router.navigate([MSP_REGISTER_ROUTES.ORGANIZATION.fullpath]);
+    }
+
+    debugonly() {
+        this.status = true
+        this.isTechnicalInfoAvaialble = true
+        this.registrationService.enableConfirmation = true;
     }
 }

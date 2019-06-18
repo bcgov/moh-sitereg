@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SplashPageService } from './modules/splash-page/splash-page.service';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 import * as version from '../version.GENERATED';
+import { GlobalConfigService } from '@shared/services/global-config.service';
 
 @Component({
     selector: 'sitereg-root',
@@ -13,7 +14,10 @@ export class AppComponent implements OnInit {
     /**
      *
      */
-    constructor(public splash: SplashPageService) {}
+    constructor(
+        public splash: SplashPageService,
+        private globalConfigSvc: GlobalConfigService
+    ) { }
 
     ngOnInit() {
         if (!environment.bypassSplashPage) {
@@ -22,5 +26,13 @@ export class AppComponent implements OnInit {
         version.success
             ? console.log('%c' + version.message, 'color: #036; font-size: 20px;')
             : console.error(version.message);
+
+        this.splash.values.subscribe((splashVals) => {
+            console.log(splashVals);
+            if (splashVals) {
+                this.globalConfigSvc.debug = splashVals.SPA_ENV_SITEREG_DEBUG;
+
+            }
+        });
     }
 }

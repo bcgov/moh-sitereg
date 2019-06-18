@@ -21,7 +21,7 @@
       </div>
 
       <div class="row">
-        <p>THIS AGREMENT is made between <b>Her Majesty the Queen in right of the Province of British Columbia, as
+        <p>This Agreement is made between <b>Her Majesty the Queen in right of the Province of British Columbia, as
             represented by the Minister of Health</b> (the "<b>Province</b>") and <b>{{organization.name}}</b> (the "<b>Applicant</b>") and witnesses that, for good and valueable
           consideration (the reciept and sufficiency of which is hereby acknowledged), the Parties agree as follows:
         </p>
@@ -32,7 +32,7 @@
             <div>
               This Aggrement consists of:
               <ol>
-                <li>this page (the "cover Sheet"), and</li>
+                <li>this page (the "Cover Sheet"), and</li>
                 <li>the "MSP Direct Terms and Conditions available online at
                   <a href="https://www.health.gov.bc.ca/exforms/das/MSPDirectTermAndConditions.pdf"
                     target="_blank">https://www.health.gov.bc.ca/exforms/das/MSPDirectTermAndConditions.pdf</a>
@@ -55,7 +55,7 @@
                     {{signingAuthority.firstName}} {{signingAuthority.lastName}} </td>
                 </tr>
                 <tr class="aggrement-table">
-                  <td class="column-label">Authorized Sites</td>
+                  <td class="column-label">Authorized Site</td>
                   <td class="aggrement-table" title="" (click)="navigateTo('organization');">
                     {{organization.suite}} {{organization.street? organization.street: ''}} {{organization.streetName}}
                     <br />
@@ -69,7 +69,7 @@
           <!--3 group numbers-->
           <li class="aggrement-li">
             <div>
-              [selected options are:]
+              [Selected options are:]
               <ul class="list-no-bullets">
                 <li>
                   <span class="selectedOption">
@@ -116,7 +116,7 @@
           </li>
           <!--4 Administer For-->
           <li class="aggrement-li">
-            The Application will Administer MSP for [selected options are:]
+            The Applicant will Administer MSP for [Selected options are:]
             <ul class="list-no-bullets" title="" (click)="navigateTo('signing-authority');">
               <li class="li-inline">
                 <span>
@@ -139,7 +139,7 @@
                   {{ (signingAuthority.administeringFor && signingAuthority.administeringFor.includes('Other') )? "&#10003;": "&#9634;" }}
                 </span>
                 <label class="label-right">
-                  Other (require further approval)
+                  Other (requires further approval)
                 </label>
               </li>
             </ul>
@@ -155,7 +155,7 @@
           </li>
           <!--6-->
           <li class="aggrement-li">
-            This Agreement may executed in conterparts, which when taken together will consitute one and the same
+            This Agreement may be executed in counterparts, which when taken together will constitute one and the same
             agreement.
           </li>
         </ol>
@@ -174,7 +174,7 @@
           <input type="checkbox" form name="consent" formControlName="consent" id="consent" tabindex="0"
             [value]="true">&nbsp;
           <label (click)="toggleConsent()">
-            I, {{signingAuthority.firstName}} {{signingAuthority.lastName}} have read and agreed to above terms and
+            I, {{signingAuthority.firstName}} {{signingAuthority.lastName}} have read and agreed to the above terms and
             conditions.
           </label>         
         </span>
@@ -190,6 +190,10 @@
       <!-- <div class="row extrablock"></div> -->
 
     </form>
+  </div>
+  <div *ngIf="globalConfigSvc.debug">
+      Debugging purposes only:
+      <ngx-json-viewer [json]="registerationObject()" [expanded]="false"></ngx-json-viewer>
   </div>
   <common-form-action-bar (btnClick)="continue()" [defaultColor]="false" [canContinue]="validCaptch"
     [isLoading]="isProcessing" submitLabel="Submit Application">

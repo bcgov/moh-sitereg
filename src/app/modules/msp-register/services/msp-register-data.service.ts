@@ -21,10 +21,11 @@ import {
     ISiteRegRequest,
 } from '@core/interfaces/i-http-data';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 import { IUserMsp } from '@msp-register/interfaces/base/i-user-msp';
 import { IMspUser } from '@msp-register/interfaces/i-msp-user';
 import { funcRandomNumber7Digit } from '@msp-register/constants';
+import { isValidOptionalField } from '@msp-register/models/validator-helpers';
 
 const apiUrl = environment.baseAPIUrl;
 
@@ -95,8 +96,8 @@ export class MspRegisterDataService {
 
         // if (!third_party_org_num) return { contracting_third_party, third_party_org_num? '' };
         return !(third_party_org_num === '') ?
-        ({ contracting_third_party, third_party_org_num }) :
-        ({ contracting_third_party });
+            ({ contracting_third_party, third_party_org_num }) :
+            ({ contracting_third_party });
     }
 
     mapBaseUser(obj: IUser): ICoreUserDef {
@@ -173,22 +174,45 @@ export class MspRegisterDataService {
     ): ICoreUserDef {
         // console.log('mapCoreUserDef', obj);
         this.validateKeys(obj);
+        // const baseUser: ICoreUserDef = {
+        //     curtesy_title:
+        //         (obj.userTitle as string) &&
+        //             !((obj.userTitle as string) === 'null')
+        //             ? (obj.userTitle as string)
+        //             : '',
+        //     last_name: obj.lastName as string,
+        //     first_name: obj.firstName as string,
+        //     initial: obj.initial ? (obj.initial as string) : '',
+        //     job_title: obj.jobTitle as string,
+        //     email: obj.emailAddress as string,
+        //     phone_num: obj.phone as string,
+        //     phone_ext: obj.ext ? (obj.ext as string) : '',
+        //     fax_num: obj.fax ? (obj.fax as string) : '',
+        //     spg: this.mapAdministeringForDef(obj.administeringFor as string),
+        // };
         const baseUser: ICoreUserDef = {
-            curtesy_title:
-                (obj.userTitle as string) &&
-                    !((obj.userTitle as string) === 'null')
-                    ? (obj.userTitle as string)
-                    : '',
-            last_name: obj.lastName as string,
+
             first_name: obj.firstName as string,
-            initial: obj.initial ? (obj.initial as string) : '',
+            last_name: obj.lastName as string,
             job_title: obj.jobTitle as string,
             email: obj.emailAddress as string,
             phone_num: obj.phone as string,
-            phone_ext: obj.ext ? (obj.ext as string) : '',
-            fax_num: obj.fax ? (obj.fax as string) : '',
             spg: this.mapAdministeringForDef(obj.administeringFor as string),
+
+            // curtesy_title:
+            // (obj.userTitle as string) &&
+            //     !((obj.userTitle as string) === 'null')
+            //     ? (obj.userTitle as string)
+            //     : '',
+            // initial: obj.initial ? (obj.initial as string) : '',
+            // phone_ext: obj.ext ? (obj.ext as string) : '',
+            // fax_num: obj.fax ? (obj.fax as string) : '',
         };
+
+        if (isValidOptionalField(obj.userTitle as string)) baseUser.curtesy_title = obj.userTitle as string;
+        if (isValidOptionalField(obj.initial as string)) baseUser.initial = obj.initial as string;
+        if (isValidOptionalField(obj.ext as string)) baseUser.phone_ext = obj.ext as string;
+        if (isValidOptionalField(obj.fax as string)) baseUser.fax_num = obj.fax as string;
 
         return baseUser as ICoreUserDef;
     }
@@ -207,7 +231,7 @@ export class MspRegisterDataService {
             baseUserMsp.msp_access = this.mapYesNoDef(
                 obj.directMspAccess as boolean
             );
-            baseUserMsp.ldap_id = '';
+            // baseUserMsp.ldap_id = '';
         }
 
         return baseUserMsp;
@@ -277,38 +301,64 @@ export class MspRegisterDataService {
         //     ),
         // };
 
-        const organizationObject = (obj.thirdParty as boolean) === true ?
-        {
-            contracting_out,
+        // const organizationObject = (obj.thirdParty as boolean) === true ?
+        //     {
+        //         contracting_out,
+        //         org_name: obj.name as string,
+        //         org_num: orgNumber,
+        //         suite_num: obj.suite ? (obj.suite as string) : '',
+        //         street_num: obj.street as string,
+        //         street_name: obj.streetName as string,
+        //         address_2: obj.addressLine2 ? (obj.addressLine2 as string) : '',
+        //         city: obj.city as string,
+        //         province: obj.province as string,
+        //         postal_code: obj.postalCode as string,
+        //         blue_cross: this.mapYesNoDef(obj.blueCross as boolean),
+        //         org_spg: this.mapAdministeringForDef(
+        //             obj.administeringFor as string
+        //         ),
+        //     } :
+        //     {
+        //         contracting_out,
+        //         org_name: obj.name as string,
+        //         suite_num: obj.suite ? (obj.suite as string) : '',
+        //         street_num: obj.street as string,
+        //         street_name: obj.streetName as string,
+        //         address_2: obj.addressLine2 ? (obj.addressLine2 as string) : '',
+        //         city: obj.city as string,
+        //         province: obj.province as string,
+        //         postal_code: obj.postalCode as string,
+        //         blue_cross: this.mapYesNoDef(obj.blueCross as boolean),
+        //         org_spg: this.mapAdministeringForDef(
+        //             obj.administeringFor as string
+        //         ),
+        //     };
+
+        // required fields
+        const organizationObject: IOrgInformationDef = {
             org_name: obj.name as string,
-            org_num: orgNumber,
-            suite_num: obj.suite ? (obj.suite as string) : '',
+            // confirm with KS - if removed should be optional
+            // suite_num: obj.suite ? (obj.suite as string) : '',
             street_num: obj.street as string,
             street_name: obj.streetName as string,
-            address_2: obj.addressLine2 ? (obj.addressLine2 as string) : '',
             city: obj.city as string,
             province: obj.province as string,
             postal_code: obj.postalCode as string,
+
             blue_cross: this.mapYesNoDef(obj.blueCross as boolean),
             org_spg: this.mapAdministeringForDef(
                 obj.administeringFor as string
             ),
-        } :
-        {
             contracting_out,
-            org_name: obj.name as string,
-            suite_num: obj.suite ? (obj.suite as string) : '',
-            street_num: obj.street as string,
-            street_name: obj.streetName as string,
-            address_2: obj.addressLine2 ? (obj.addressLine2 as string) : '',
-            city: obj.city as string,
-            province: obj.province as string,
-            postal_code: obj.postalCode as string,
-            blue_cross: this.mapYesNoDef(obj.blueCross as boolean),
-            org_spg: this.mapAdministeringForDef(
-                obj.administeringFor as string
-            ),
-        } ;
+        };
+
+        /**
+         * Optional Fields
+         */
+
+        if (isValidOptionalField(obj.suite as string)) organizationObject.suite_num = obj.suite as string;
+        if (isValidOptionalField(orgNumber)) organizationObject.org_num = orgNumber;
+        if (isValidOptionalField(obj.addressLine2 as string)) organizationObject.address_2 = obj.addressLine2 as string;
 
         return organizationObject;
     }
@@ -499,6 +549,30 @@ export class MspRegisterDataService {
         AccessAdmminSameAsSigningAuthority?: boolean
     ): ISiteRegRequest {
         const dateAuthorize = this.getDateinMMDDYYYY(authorizedDate);
+        // const registerationRequest: ISiteRegRequest = {
+        //     request_uuid: requestUUID,
+        //     request_num: requestNumber,
+        //     org_information: organizationInfo ? organizationInfo : null,
+        //     signing_authority_information: signingAuthority
+        //         ? signingAuthority
+        //         : null,
+        //     aa_same_as_sa: AccessAdmminSameAsSigningAuthority
+        //         ? this.mapYesNoDef(
+        //             AccessAdmminSameAsSigningAuthority as boolean
+        //         )
+        //         : 'N',
+        //     access_administrator: accessAdministrators
+        //         ? accessAdministrators
+        //         : [],
+        //     users: OrganizationUsers ? OrganizationUsers : [],
+        //     msp_group: mspGroups ? mspGroups : null,
+        //     authorizedBySA: authorizedBySA
+        //         ? this.mapYesNoDef(authorizedBySA)
+        //         : 'N',
+        //     authorizedDate: dateAuthorize,
+        //     applicationType: 'mspdRegistration',
+        // };
+
         const registerationRequest: ISiteRegRequest = {
             request_uuid: requestUUID,
             request_num: requestNumber,
@@ -506,23 +580,37 @@ export class MspRegisterDataService {
             signing_authority_information: signingAuthority
                 ? signingAuthority
                 : null,
-            aa_same_as_sa: AccessAdmminSameAsSigningAuthority
-                ? this.mapYesNoDef(
-                    AccessAdmminSameAsSigningAuthority as boolean
-                )
-                : 'N',
-            access_administrator: accessAdministrators
-                ? accessAdministrators
-                : [],
-            users: OrganizationUsers ? OrganizationUsers : [],
             msp_group: mspGroups ? mspGroups : null,
             authorizedBySA: authorizedBySA
                 ? this.mapYesNoDef(authorizedBySA)
                 : 'N',
             authorizedDate: dateAuthorize,
-            applicationType: 'mspdRegistration',
         };
 
+        // aa_same_as_sa: AccessAdmminSameAsSigningAuthority
+        //         ? this.mapYesNoDef(
+        //             AccessAdmminSameAsSigningAuthority as boolean
+        //         )
+        //         : 'N',
+        //     access_administrator: accessAdministrators
+        //         ? accessAdministrators
+        //         : [],
+        //     users: OrganizationUsers ? OrganizationUsers : [],
+        //     applicationType: 'mspdRegistration',
+
+        /**
+         * Optional Fields
+         */
+
+        if (isValidOptionalField(AccessAdmminSameAsSigningAuthority as boolean)) {
+            registerationRequest.aa_same_as_sa = this.mapYesNoDef(
+                AccessAdmminSameAsSigningAuthority as boolean
+            );
+        }
+        if (isValidOptionalField(accessAdministrators)) registerationRequest.access_administrator = accessAdministrators;
+        if (isValidOptionalField(OrganizationUsers)) registerationRequest.users = OrganizationUsers;
+        if (isValidOptionalField('mspdRegistration')) registerationRequest.applicationType = 'mspdRegistration';
+        
         return registerationRequest;
     }
 }

@@ -32,14 +32,50 @@ export class ValidatorHelpers {
         yield Validators.maxLength(num);
     }
 }
+/**
+ * verifies if field value is not null and not empty string or valid boolean
+ * @param fieldValue FieldValue
+ */
+export function isValidOptionalField(fieldValue: string | boolean | any): boolean {
+
+    if (fieldValue) {
+        if (typeof fieldValue === 'string' && fieldValue.length > 0) {
+            return true;
+        }
+
+        if (typeof fieldValue === 'boolean' && (fieldValue === true || fieldValue === false)) {
+            return true;
+        }
+
+        if (typeof fieldValue === 'object') {
+            const isArray = fieldValue instanceof Array;
+            if (isArray === true && fieldValue.length > 0) return true;
+            return false;
+        }
+    }
+    return false;
+}
 
 export function postalCodeValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
-        const forbidden = !/^[ABCEGHJ-NPRSTVXY][0-9][ABCEGHJ-NPRSTQFV-Z][0-9][ABCEGHJ-NPRSTV-Z][0-9]$/.test(
+        const forbidden = !/^[ABCEGHJ-NPRSTVXY][0-9][ABCEGHJ-NPRSTV-Z][0-9][ABCEGHJ-NPRSTV-Z][0-9]$/.test(
             control.value
         );
         return forbidden
             ? { invalidPostalCode: { value: control.value } }
+            : null;
+    };
+}
+
+export function emailValidator(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+        // tslint:disable-next-line: max-line-length
+        // const forbidden = !/(?:[\u00A0-\uD7FF\uE000-\uFFFF-a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[\u00A0-\uD7FF\uE000-\uFFFF-a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[\u00A0-\uD7FF\uE000-\uFFFF-a-z0-9](?:[\u00A0-\uD7FF\uE000-\uFFFF-a-z0-9-]*[\u00A0-\uD7FF\uE000-\uFFFF-a-z0-9])?\.)+[\u00A0-\uD7FF\uE000-\uFFFF-a-z0-9](?:[\u00A0-\uD7FF\uE000-\uFFFF-a-z0-9-]*[\u00A0-\uD7FF\uE000-\uFFFF-a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/.test(
+        const forbidden = /^(\S+)@(\S+)\.(\S+)$/.test(
+        control.value
+        );
+        return forbidden
+            ? { invalidEmail: { value: control.value } }
             : null;
     };
 }

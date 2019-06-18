@@ -12,10 +12,11 @@ export class MspRegisterAutofillComponent implements OnInit {
     constructor(
         private router: Router,
         private globalConfigSvc: GlobalConfigService
-    ) {}
+    ) { }
 
     ngOnInit() {
         GlobalConfigService.autofillOn();
+        this.globalConfigSvc.debug = true;
         this.router.navigate([MSP_REGISTER_ROUTES.ORGANIZATION.fullpath]);
     }
 }

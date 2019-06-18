@@ -13,6 +13,7 @@ import {
     MSP_REGISTER_ROUTES,
 } from '@msp-register/constants';
 import { MspRegistrationService } from '@msp-register/msp-registration.service';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
     selector: 'sitereg-msp-register-signing-authority',
@@ -21,6 +22,9 @@ import { MspRegistrationService } from '@msp-register/msp-registration.service';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MspRegisterSigningAuthorityComponent implements OnInit {
+    public get environment(): any {
+        return environment;
+    }
     [x: string]: any;
     fg: FormGroup;
     validFormControl: () => boolean;
@@ -64,7 +68,7 @@ export class MspRegisterSigningAuthorityComponent implements OnInit {
         this.loggerSvc.logNavigation(
             this.constructor.name,
             `Valid Data - Continue button clicked. ${
-                this.globalConfigSvc.applicationId
+            this.globalConfigSvc.applicationId
             }`
         );
 
@@ -72,8 +76,6 @@ export class MspRegisterSigningAuthorityComponent implements OnInit {
 
         this.registrationService.setItemComplete();
 
-        // REMOVEME debug-only
-        this.debugOnly();
         this.router.navigate([MSP_REGISTER_ROUTES.ACCESS_ADMINS.fullpath]);
     }
 
@@ -120,8 +122,8 @@ export class MspRegisterSigningAuthorityComponent implements OnInit {
                     saAdmins && saAdmins.length === 1
                         ? saAdmins[0]
                         : directMspAccess.value === true
-                        ? this.mspRegisterStateSvc.addAdmin()
-                        : null;
+                            ? this.mspRegisterStateSvc.addAdmin()
+                            : null;
             }
 
             // block - updating values
@@ -161,23 +163,23 @@ export class MspRegisterSigningAuthorityComponent implements OnInit {
     //#endregion
 
     // REMOVEME - debug only
-    debugOnly() {
-        if (this.globalConfigSvc.isProduction === false) {
-            const form = this.mspRegisterStateSvc
-                .mspRegisterSigningAuthorityForm;
-            // console.log('FormGroup: ', form);
-            const middleWareObject = this.mspRegDataSvc.mapObjectSigningAuthorityInformationDef(
-                form.value
-            );
-            console.log(
-                `%c middleware object <= %o\n\t%o`,
-                'color:lightgreen',
-                funcRemoveStrings(
-                    ['MspRegister', 'Component'],
-                    this.constructor.name
-                ),
-                middleWareObject
-            );
-        }
+    schemaObject() {
+        if (!this.globalConfigSvc.debug) return;
+        const form = this.mspRegisterStateSvc
+            .mspRegisterSigningAuthorityForm;
+        // console.log('FormGroup: ', form);
+        const middleWareObject = this.mspRegDataSvc.mapObjectSigningAuthorityInformationDef(
+            form.value
+        );
+        // console.log(
+        //     `%c middleware object <= %o\n\t%o`,
+        //     'color:lightgreen',
+        //     funcRemoveStrings(
+        //         ['MspRegister', 'Component'],
+        //         this.constructor.name
+        //     ),
+        //     middleWareObject
+        // );
+        return middleWareObject;
     }
 }

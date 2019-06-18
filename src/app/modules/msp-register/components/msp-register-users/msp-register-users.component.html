@@ -1,7 +1,10 @@
-<common-page-framework layout='blank'>
+<common-page-framework>
 <h2 class="border-bottom">Users</h2>
+<aside>
+    <b>Users</b> are persons who will be accessing MSP Direct on behalf of the Organization.
+</aside>
 <div class='row mb-4'>
-  <div class='col-md-3 p-4'>
+  <div class='col-md-4 p-4'>
     <a (click)='addFormGroup()'>
       <button class="btn btn-block btn-lg btn-secondary">
         Add New User
@@ -21,6 +24,10 @@
   </div>
   </div>
   <sitereg-msp-register-user [fg]="fg"></sitereg-msp-register-user>
+</div>
+<div *ngIf="globalConfigSvc.debug">
+    Debugging purposes only:
+    <ngx-json-viewer [json]="schemaObject()" [expanded]="true"></ngx-json-viewer>
 </div>
 </common-page-framework>
 <common-form-action-bar  (btnClick)="continue()" [canContinue]="validateFormGroup(fgs)">

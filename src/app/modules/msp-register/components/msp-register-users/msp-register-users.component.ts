@@ -14,6 +14,7 @@ import {
 } from '@msp-register/constants';
 import { GlobalConfigService } from '@shared/services/global-config.service';
 import { MspRegistrationService } from '@msp-register/msp-registration.service';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
     selector: 'sitereg-msp-register-users',
@@ -21,6 +22,9 @@ import { MspRegistrationService } from '@msp-register/msp-registration.service';
     styleUrls: ['./msp-register-users.component.scss'],
 })
 export class MspRegisterUsersComponent implements OnInit {
+    public get environment(): any {
+        return environment;
+    }
     fgs: FormGroup[] = [];
     validFormControl: () => boolean;
     validateFormGroup = this.mspRegisterStateSvc.validFormGroup;
@@ -67,8 +71,6 @@ export class MspRegisterUsersComponent implements OnInit {
             }`
         );
 
-        // REMOVEME debug-only
-        this.debugOnly();
         this.registrationService.setItemComplete();
 
         this.router.navigate([MSP_REGISTER_ROUTES.GROUP_NUMBERS.fullpath]);
@@ -89,7 +91,8 @@ export class MspRegisterUsersComponent implements OnInit {
     }
 
     // REMOVEME - debug only
-    debugOnly() {
+    schemaObject() {
+        if (!this.globalConfigSvc.debug) return;
         // Users
         const mspUsers: IMspUser[] = [];
         this.mspRegisterStateSvc.mspRegisterUsersForm.forEach((v) =>
@@ -97,14 +100,15 @@ export class MspRegisterUsersComponent implements OnInit {
         );
 
         const middleWareObject = this.mspRegDataSvc.mapUserDef(mspUsers);
-        console.log(
-            `%c middleware object <= %o\n\t%o`,
-            'color:lightgreen',
-            funcRemoveStrings(
-                ['MspRegister', 'Component'],
-                this.constructor.name
-            ),
-            middleWareObject
-        );
+        // console.log(
+        //     `%c middleware object <= %o\n\t%o`,
+        //     'color:lightgreen',
+        //     funcRemoveStrings(
+        //         ['MspRegister', 'Component'],
+        //         this.constructor.name
+        //     ),
+        //     middleWareObject
+        // );
+        return middleWareObject;
     }
 }

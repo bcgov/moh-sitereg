@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 import { UUID } from 'angular2-uuid';
 import { BehaviorSubject } from 'rxjs';
 
@@ -33,7 +33,7 @@ export class GlobalConfigService {
 
     //#endregion
 
-    constructor() {}
+    constructor() { }
 
     public get applicationId(): string {
         return this.mspApplicationId
@@ -49,6 +49,8 @@ export class GlobalConfigService {
         return true;
         // return environment.production;
     }
+
+    public debug: boolean;
 
     /**
      * Application UUID refers to Application of MSP, means the each application user apply will have a specific uuid

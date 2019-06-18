@@ -7,7 +7,7 @@ import {
 } from '@angular/common/http';
 // import { Logger } from './logger.service';
 import { LoggerService } from './logger.service';
-import { throwError, BehaviorSubject, Observable } from 'rxjs';
+import { throwError, BehaviorSubject, Observable, of } from 'rxjs';
 import { environment } from './../../../environments/environment';
 import { retry, filter } from 'rxjs/operators';
 
@@ -21,6 +21,7 @@ const serverEnvs = {
     SPA_ENV_SITEREG_MAINTENANCE_START: '',
     SPA_ENV_SITEREG_MAINTENANCE_END: '',
     SPA_ENV_SITEREG_MAINTENANCE_MESSAGE: '',
+    SPA_ENV_SITEREG_DEBUG: false,
 };
 
 // Used in HTTP request
@@ -71,6 +72,7 @@ export class SpaEnvService extends AbstractHttpService {
 
         // When the SpaEnv server is being deployed it can return an HTML error
         // page, and it should resolve shortly, so we try again.
+        // if (this.globalConfigSvc.debug) return of(null);
         return this.post<SpaEnvResponse>(url, null).pipe(retry(3));
     }
 
@@ -84,7 +86,7 @@ export class SpaEnvService extends AbstractHttpService {
             // The backend returned an unsuccessful response code
             console.error(
                 `Backend returned error code: ${error.status}.  Error body: ${
-                    error.error
+                error.error
                 }`
             );
         }
