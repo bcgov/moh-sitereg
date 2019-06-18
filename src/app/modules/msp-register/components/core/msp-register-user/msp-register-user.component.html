@@ -44,14 +44,14 @@
 
     <!-- Email Address -->
     <label class="control-label" for="emailAddress">Email Address</label>
-    <input id="emailAddress" type="email" formControlName="emailAddress" class="form-control" placeholder="Email address" maxlength="100">
+    <input id="emailAddress" formControlName="emailAddress" class="form-control" placeholder="Email address" maxlength="100" >
     <sitereg-error-box [error]="validFormControl(fg,'emailAddress')"
       errorMessage="Email is required. Must be in the format test@example.com"></sitereg-error-box>
 
     <!-- Confirm Email Address -->
     <!-- TODO: make this a validator -->
     <label class="control-label" for="confirmEmail">Confirm Email Address</label>
-    <input id="confirmEmail" type="email" formControlName="confirmEmail" class="form-control" placeholder="Confirm Email"  maxlength="100">
+    <input id="confirmEmail" formControlName="confirmEmail" class="form-control" placeholder="Confirm Email"  maxlength="100">
     <sitereg-error-box [error]="validFormControl(fg, 'confirmEmail')" errorMessage="Must match email address">
     </sitereg-error-box>
   

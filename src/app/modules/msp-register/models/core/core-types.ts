@@ -46,17 +46,15 @@ export const cUserValidators = {
     ],
     emailAddress: [
         Validators.required,
-        // Validators.email,
         Validators.minLength(5),
         Validators.maxLength(100),
-        emailValidator(),
+        Validators.pattern(/^(\S+)@(\S+)\.(\S+)$/)
     ],
     confirmEmail: [
         Validators.required,
-        // Validators.email,
         Validators.minLength(5),
         Validators.maxLength(100),
-        emailValidator(),
+        Validators.pattern(/^(\S+)@(\S+)\.(\S+)$/)
     ],
     phone: [Validators.required, phoneValidator()],
     ext: [Validators.minLength(1), Validators.maxLength(100)],
@@ -90,11 +88,13 @@ export const cUserMspValidators = {
         Validators.required,
         Validators.email,
         Validators.maxLength(100),
+        Validators.pattern(/^(\S+)@(\S+)\.(\S+)$/),
     ],
     confirmEmail: [
         Validators.required,
         Validators.email,
         Validators.maxLength(100),
+        Validators.pattern(/^(\S+)@(\S+)\.(\S+)$/)
     ],
     phone: [Validators.required, phoneValidator()],
     ext: [Validators.minLength(1), Validators.maxLength(100)],
