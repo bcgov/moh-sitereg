@@ -50,7 +50,7 @@ export class GlobalConfigService {
         // return environment.production;
     }
 
-    public debug = true;
+    public debug = false;
 
     /**
      * Application UUID refers to Application of MSP, means the each application user apply will have a specific uuid
