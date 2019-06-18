@@ -24,6 +24,12 @@ describe('BCSC Enrollment - End to End', () => {
     const GROUP_PAGE_URL = `register/group-numbers`;
     const REVIEW_PAGE_URL = `register/review`;
     const AUTH_PAGE_URL = `register/authorize`;
+    const CONFIRM_PAGE_URL = `register/confirmation`;
+
+    const jsonData = data.getJSONData();
+    if (data != null){
+        let data = jsonData.accessAdminsPage;
+    }
 
     beforeEach(() => {
         orgPage = new OrganizationPage();
@@ -44,27 +50,22 @@ describe('BCSC Enrollment - End to End', () => {
         orgPage.navigateTo();
         expect(browser.getCurrentUrl()).toContain(ORG_PAGE_URL, 'should navigate to the Organization Page');
         orgPage.fillPage();
-        browser.sleep(10000);
         expect(browser.getCurrentUrl()).toContain(SA_PAGE_URL, 'should continue to the Signing Authority Page');
         saPage.fillPage();
-        browser.sleep(10000);
         expect(browser.getCurrentUrl()).toContain(AA_PAGE_URL, 'should continue to the Access Admins Page');
         aaPage.continue(); // This page is already filled out so no need to call fillPage()
-        browser.sleep(10000);
         expect(browser.getCurrentUrl()).toContain(USERS_PAGE_URL, 'should continue to the Users Page');
         usersPage.fillPage();
-        browser.sleep(10000);
         expect(browser.getCurrentUrl()).toContain(GROUP_PAGE_URL, 'should continue to the Group Page');
         groupPage.fillPage();
-        browser.sleep(10000);
-        expect(browser.getCurrentUrl()).toContain(GROUP_PAGE_URL, 'should continue to the Review Page');
+        expect(browser.getCurrentUrl()).toContain(REVIEW_PAGE_URL, 'should continue to the Review Page');
         reviewPage.continue();
-        browser.sleep(10000);
-        expect(browser.getCurrentUrl()).toContain(REVIEW_PAGE_URL, 'should contunue to the Authorization Page');
-        browser.sleep(10000);
-        authPage.continue();
-        expect(browser.getCurrentUrl()).toContain(AUTH_PAGE_URL, 'should be able to succesfully submit the form');
+        expect(browser.getCurrentUrl()).toContain(AUTH_PAGE_URL, 'should contunue to the Authorization Page');
+        authPage.fillPage();
+        expect(browser.getCurrentUrl()).toContain(CONFIRM_PAGE_URL, 'should be able to succesfully submit the form');
     }, 60000);
+
+    // Test for multiple admins
 
     // Test will fail since _autofill is still active in dev mode
     xit('02. should not be able to access "_autofill" dev only URL', () => {

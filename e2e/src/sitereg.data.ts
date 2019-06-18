@@ -59,19 +59,17 @@ export class FakeDataSiteReg {
     }
 
     getJSONData() {
-        var x = process.argv;
-        var input = process.argv.filter(x => x.startsWith('--data'));
-        console.log('\n TEST TEST \n Input: ', input);
-
-
-        console.log('before readfilesync');
-        const data = fs.readFileSync('/space/workspace/moh-sitereg/e2e/data.json', 'utf8');
-        const jsonData = JSON.parse(data);
-
-        this.hasJsonData = true;
-
-        console.log('jsonData?', !!jsonData);
-        return jsonData;
+        const x = process.argv;
+        const input = process.argv.filter(x => x.startsWith('--data'));
+        if (input != null) {
+            const filename = input.toString().split('=')[1];
+            const data = fs.readFileSync(filename, 'utf8');
+            const jsonData = JSON.parse(data);
+            this.hasJsonData = true;
+            return jsonData;
+        } else {
+            return null;
+        }
     }
 }
 

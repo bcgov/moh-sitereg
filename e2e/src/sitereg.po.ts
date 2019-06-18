@@ -270,6 +270,21 @@ export class AuthorizePage extends BaseSiteRegTestPage {
         return browser.get('/register/authorize');
     }
 
+    fillPage() {
+        this.scrollDown();
+        this.agreeTermsAndConditions();
+        this.typeCaptcha();
+        this.continue();
+    }
+
+    agreeTermsAndConditions() {
+        element(by.css('input[id="consent"]')).click();
+    }
+
+    typeCaptcha() {
+        element(by.css('input[id="answer"]')).sendKeys('irobot');
+    }
+
 }
 
 export class SpecialCasePage extends BaseSiteRegTestPage {
