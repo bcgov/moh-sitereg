@@ -36,16 +36,21 @@ export class ValidatorHelpers {
  * verifies if field value is not null and not empty string or valid boolean
  * @param fieldValue FieldValue
  */
-export function isValidOptionalField(fieldValue: string | boolean): boolean {
+export function isValidOptionalField(fieldValue: string | boolean | any): boolean {
 
     if (fieldValue) {
-        console.log(typeof fieldValue);
         if (typeof fieldValue === 'string' && fieldValue.length > 0) {
             return true;
         }
 
-        if (typeof fieldValue === 'boolean' && ( fieldValue === true ||  fieldValue === false)) {
+        if (typeof fieldValue === 'boolean' && (fieldValue === true || fieldValue === false)) {
             return true;
+        }
+
+        if (typeof fieldValue === 'object') {
+            const isArray = fieldValue instanceof Array;
+            if (isArray === true && fieldValue.length > 0) return true;
+            return false;
         }
     }
     return false;
