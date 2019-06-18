@@ -96,12 +96,11 @@ export interface ISiteRegRequest {
     request_num: any;
     org_information: IOrgInformationDef;
     signing_authority_information: ISigningAuthorityDef;
-    access_administrator: IAccessAdministratorDef[];
     msp_group: IMspGroupDef[];
     authorizedBySA: string;
     authorizedDate: string;
 
-    // users seems compulsory should be optional
+    access_administrator?: IAccessAdministratorDef[];
     users?: IUserDef[];
     aa_same_as_sa?: string; // ^[YN]$
     applicationType?: string;
