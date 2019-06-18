@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SplashPageService } from './modules/splash-page/splash-page.service';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 import * as version from '../version.GENERATED';
 
 @Component({

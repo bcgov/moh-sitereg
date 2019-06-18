@@ -12,6 +12,7 @@ import {
     MSP_REGISTER_ROUTES,
 } from '@msp-register/constants';
 import { MspRegistrationService } from '@msp-register/msp-registration.service';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
     selector: 'sitereg-msp-register-group',
@@ -20,6 +21,9 @@ import { MspRegistrationService } from '@msp-register/msp-registration.service';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MspRegisterGroupComponent implements OnInit {
+    public get environment(): any {
+        return environment;
+    }
     fgs: FormGroup[] = [];
     validFormControl: () => boolean;
     validFormGroup = this.mspRegisterStateSvc
@@ -64,13 +68,10 @@ export class MspRegisterGroupComponent implements OnInit {
         this.loggerSvc.logNavigation(
             this.constructor.name,
             `Valid Data - Continue button clicked. ${
-                this.globalConfigSvc.applicationId
+            this.globalConfigSvc.applicationId
             }`
         );
         this.registrationService.setItemComplete();
-
-        // REMOVEME debug-only
-        this.debugOnly();
 
         this.router.navigate([MSP_REGISTER_ROUTES.REVIEW.fullpath]);
     }
@@ -97,35 +98,36 @@ export class MspRegisterGroupComponent implements OnInit {
     }
 
     // REMOVEME - debug only
-    debugOnly() {
-        if (this.globalConfigSvc.currentEnironment.production === false) {
-            // Msp Groups
-            const mspGroups: IMspGroup[] = [];
-            this.mspRegisterStateSvc.mspRegisterGroupForm.forEach((v) =>
-                v.value ? mspGroups.push(v.value) : ''
-            );
+    schemaObject() {
+        if (!environment.debug) return;
+        // Msp Groups
+        const mspGroups: IMspGroup[] = [];
+        this.mspRegisterStateSvc.mspRegisterGroupForm.forEach((v) =>
+            v.value ? mspGroups.push(v.value) : ''
+        );
 
-            // Orgnaization Info
-            const moOrganizationInformation = this.mspRegDataSvc.mapOrgInformation(
-                this.mspRegisterStateSvc.mspRegisterOrganizationForm.value
-            );
+        // Orgnaization Info
+        const moOrganizationInformation = this.mspRegDataSvc.mapOrgInformation(
+            this.mspRegisterStateSvc.mspRegisterOrganizationForm.value
+        );
 
-            const isThirdPartyManamentAllowed = this.mspRegDataSvc.isThirdyPartyManagmentEnabled(
-                moOrganizationInformation
-            );
-            const middleWareObject = this.mspRegDataSvc.mapGroupDef(
-                mspGroups,
-                isThirdPartyManamentAllowed
-            );
-            console.log(
-                `%c middleware object <= %o\n\t%o`,
-                'color:lightgreen',
-                funcRemoveStrings(
-                    ['MspRegister', 'Component'],
-                    this.constructor.name
-                ),
-                middleWareObject
-            );
-        }
+        const isThirdPartyManamentAllowed = this.mspRegDataSvc.isThirdyPartyManagmentEnabled(
+            moOrganizationInformation
+        );
+        const middleWareObject = this.mspRegDataSvc.mapGroupDef(
+            mspGroups,
+            isThirdPartyManamentAllowed
+        );
+        // console.log(
+        //     `%c middleware object <= %o\n\t%o`,
+        //     'color:lightgreen',
+        //     funcRemoveStrings(
+        //         ['MspRegister', 'Component'],
+        //         this.constructor.name
+        //     ),
+        //     middleWareObject
+        // );
+        return middleWareObject;
+
     }
 }
