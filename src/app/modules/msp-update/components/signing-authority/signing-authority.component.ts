@@ -7,6 +7,7 @@ import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { UpdateStateService } from '../../services/update.state.service';
+import { cUserValidators } from '@msp-register/models/core/core-types';
 
 @Component({
     selector: 'sitereg-msp-update-signing-authority',
@@ -33,31 +34,23 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit {
         public updateStateService: UpdateStateService,
         private fb: FormBuilder
     ) {
+
+      // Related class: CoreUser
+
       this.updateStateService.forms.signingAuthority = this.fb.group({
-        // userTitle?: ctFormControlUserTitle = null;
-        // firstName: ctFormControlString = null;
-        // initial?: ctFormControlString = null;
-        // lastName: ctFormControlString = null;
-        // jobTitle: ctFormControlString = null;
-        // emailAddress: ctFormControlString = null;
-        // confirmEmail: ctFormControlString = null;
-        // phone: ctFormControlString = null;
-        // ext?: ctFormControlString = null;
-        // fax: ctFormControlString = null;
-        // administeringFor: ctFormControlString = null;
-        // directMspAccess: ctFormControlBoolean = null;
-        userTitle: [null],
-        firstName: [null],
-        initial: [null],
-        lastName: [null],
-        jobTitle: [null],
-        emailAddress: [null],
-        confirmEmail: [null],
-        phone: [null],
-        ext: [null],
-        fax: [null],
-        administeringFor: [null],
-        directMspAccess: [null],
+        userTitle: [null, cUserValidators.userTitle],
+        firstName: [null, cUserValidators.firstName],
+        initial: [null, cUserValidators.initial],
+        lastName: [null, cUserValidators.lastName],
+        jobTitle: [null, cUserValidators.jobTitle],
+        emailAddress: [null, cUserValidators.emailAddress],
+        confirmEmail: [null, cUserValidators.confirmEmail],
+        phone: [null, cUserValidators.phone],
+        ext: [null, cUserValidators.ext],
+        fax: [null, cUserValidators.fax],
+        administeringFor: [null, cUserValidators.administeringFor],
+        // TODO - Verify below is not necesary. Think it's for reg only.
+        // directMspAccess: [null, cUserValidators.directMspAccess],
 
       }, {updateOn: 'blur'});
 
