@@ -307,6 +307,8 @@ export class MspRegisterAuthorizeComponent implements OnInit {
             isThirdPartyManamentAllowed
         );
 
+        const isSigningAuthorityAsAdmin = this.mspRegisterStateSvc.mspRegisterSigningAuthorityForm.get('directMspAccess').value;
+            
         // Authorize
         const regRequest = this.mspRegDataSvc.mapSiteRegRequest(
             this.requestUUID,
@@ -319,7 +321,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
             moAccessAdministrators as IAccessAdministratorDef[],
             moUsers as IUserDef[],
             moMspGroups as IMspGroupDef[],
-            false
+            (isSigningAuthorityAsAdmin ? isSigningAuthorityAsAdmin as boolean : false),
         );
 
         return regRequest;
@@ -382,6 +384,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
             const moSigningAuthority = this.mspRegDataSvc.mapObjectSigningAuthorityInformationDef(
                 this.mspRegisterStateSvc.mspRegisterSigningAuthorityForm.value
             );
+            const isSigningAuthorityAsAdmin = this.mspRegisterStateSvc.mspRegisterSigningAuthorityForm.get('directMspAccess').value;
             console.log('\tMO - Signing Authority:', moSigningAuthority);
 
             // Access Administrators
@@ -432,10 +435,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
                 moAccessAdministrators as IAccessAdministratorDef[],
                 moUsers as IUserDef[],
                 moMspGroups as IMspGroupDef[],
-                moSigningAuthority.msp_access &&
-                    moSigningAuthority.msp_access === 'Y'
-                    ? true
-                    : false
+                (isSigningAuthorityAsAdmin ? isSigningAuthorityAsAdmin as boolean : false),
             );
 
             console.log(

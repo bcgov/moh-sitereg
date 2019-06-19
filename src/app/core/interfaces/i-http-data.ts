@@ -99,10 +99,9 @@ export interface ISiteRegRequest {
     msp_group: IMspGroupDef[];
     authorizedBySA: string;
     authorizedDate: string;
-
-    access_administrator?: IAccessAdministratorDef[];
+    aa_same_as_sa: string; // ^[YN]$
+    access_administrator: IAccessAdministratorDef[];
     users?: IUserDef[];
-    aa_same_as_sa?: string; // ^[YN]$
     applicationType?: string;
 }
 
