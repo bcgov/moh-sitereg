@@ -15,7 +15,10 @@ import { cUserValidators } from '@msp-register/models/core/core-types';
     styleUrls: ['./signing-authority.component.sass'],
 })
 export class MspDirectUpdateSigningAuthorityComponent implements OnInit {
-    fg: FormGroup;
+    addFg: FormGroup;
+    removeFg: FormGroup;
+    updateFg: FormGroup;
+
     private isUpdate = false;
     get buttonLabel(): string {
         return this.isUpdate ? 'Continue' : 'Skip';
@@ -37,52 +40,32 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit {
 
       // Related class: CoreUser
 
+      // this.updateStateService.forms.signingAuthority = {};
       // TODO - This is for add. How about other form types?
-      // this.updateStateService.forms.signingAuthority = this.fb.group({
-      //   userTitle: [null, cUserValidators.userTitle],
-      //   firstName: [null, cUserValidators.firstName],
-      //   initial: [null, cUserValidators.initial],
-      //   lastName: [null, cUserValidators.lastName],
-      //   jobTitle: [null, cUserValidators.jobTitle],
-      //   emailAddress: [null, cUserValidators.emailAddress],
-      //   confirmEmail: [null, cUserValidators.confirmEmail],
-      //   phone: [null, cUserValidators.phone],
-      //   ext: [null, cUserValidators.ext],
-      //   fax: [null, cUserValidators.fax],
-      //   administeringFor: [null, cUserValidators.administeringFor],
-      //   // TODO - Verify below is not necesary. Think it's for reg only.
-      //   // directMspAccess: [null, cUserValidators.directMspAccess],
-
-      // }, {updateOn: 'blur'});
-
-      // IDEA - Consider adding/removing from the formGroup as user adds/removes from the UI?
-      this.updateStateService.forms.signingAuthority = this.fb.group({
-
-        addSigningAuthority: this.fb.group({
-          userTitle: [null, cUserValidators.userTitle],
-          firstName: [null, cUserValidators.firstName],
-          initial: [null, cUserValidators.initial],
-          lastName: [null, cUserValidators.lastName],
-          jobTitle: [null, cUserValidators.jobTitle],
-          emailAddress: [null, cUserValidators.emailAddress],
-          confirmEmail: [null, cUserValidators.confirmEmail],
-          phone: [null, cUserValidators.phone],
-          ext: [null, cUserValidators.ext],
-          fax: [null, cUserValidators.fax],
-          administeringFor: [null, cUserValidators.administeringFor],
-          // TODO - Verify below is not necesary. Think it's for reg only.
-          // directMspAccess: [null, cUserValidators.directMspAccess],
-        }),
-
-        removeSigningAuthority: this.fb.group({
-          removeSAEmail: [null, cUserValidators.emailAddress],
-          removeSAUserID: [null] // TODO - Validators
-        }),
+      this.updateStateService.forms.signingAuthority.add = this.fb.group({
+        userTitle: [null, cUserValidators.userTitle],
+        firstName: [null, cUserValidators.firstName],
+        initial: [null, cUserValidators.initial],
+        lastName: [null, cUserValidators.lastName],
+        jobTitle: [null, cUserValidators.jobTitle],
+        emailAddress: [null, cUserValidators.emailAddress],
+        confirmEmail: [null, cUserValidators.confirmEmail],
+        phone: [null, cUserValidators.phone],
+        ext: [null, cUserValidators.ext],
+        fax: [null, cUserValidators.fax],
+        administeringFor: [null, cUserValidators.administeringFor],
+        // TODO - Verify below is not necesary. Think it's for reg only.
+        // directMspAccess: [null, cUserValidators.directMspAccess],
 
       }, {updateOn: 'blur'});
 
+      this.updateStateService.forms.signingAuthority.remove = this.fb.group({
+        removeSAEmail: [null, cUserValidators.emailAddress],
+        removeSAUserID: [null] // TODO - Validators
+      }, {updateOn: 'blur'});
 
-      this.fg = this.updateStateService.forms.signingAuthority;
+      this.addFg = this.updateStateService.forms.signingAuthority.add;
+      this.removeFg = this.updateStateService.forms.signingAuthority.remove;
 
     }
 

@@ -18,44 +18,65 @@
             (click)="updateSigningAuthority()">Update Signing Authority</button>
   </div>
 
+  <!-- ARC - Review if necessary. May not be at all. Could cause bugs. -->
+  <!-- <form [formGroup]='fg'> -->
 
-<div *ngIf="fg && showAddSigningAuthority">
+    <div *ngIf="showAddSigningAuthority">
 
-  <!-- TODO - Move this into common lib as CommonXIconButton -->
-  <button class='close d-inline-block'
-          (click)='cancelAddSigningAuthority()'
-          type='button'
-          aria-label="Cancel Add Signing Authority">
-          <i class="fa fa-times text-danger" aria-hidden="true"></i>
-  </button>
-  <h4 class='border-bottom'>Add a new Signing Authority</h4>
-
-
-  <!-- ARC - PROBLEM - This uses the @deprecated validator from validator-helpers.ts.  May need to wind up supporting deprecated more often for tests, will have to confer with Faheem. -->
-  <sitereg-msp-register-user-msp [fg]="fg"
-                                  [showMspDirectAccessQuestion]="false"
-                                  [showAdministeringMSPForQuestion]='false'></sitereg-msp-register-user-msp>
-
-</div>
+      <!-- TODO - Move this into common lib as CommonXIconButton -->
+      <button class='close d-inline-block'
+              (click)='cancelAddSigningAuthority()'
+              type='button'
+              aria-label="Cancel Add Signing Authority">
+              <i class="fa fa-times text-danger" aria-hidden="true"></i>
+      </button>
+      <h4 class='border-bottom'>Add a new Signing Authority</h4>
 
 
-<div *ngIf="fg && showRemoveSigningAuthority">
+      <!-- ARC - PROBLEM - This uses the @deprecated validator from validator-helpers.ts.  May need to wind up supporting deprecated more often for tests, will have to confer with Faheem. -->
+      <sitereg-msp-register-user-msp [fg]="addFg"
+                                      [showMspDirectAccessQuestion]="false"
+                                      [showAdministeringMSPForQuestion]='false'></sitereg-msp-register-user-msp>
 
-  <!-- TODO - Move this into common lib as CommonXIconButton -->
-  <button class='close d-inline-block'
-          (click)='cancelRemoveSigningAuthority()'
-          type='button'
-          aria-label="Cancel Add Signing Authority">
-          <i class="fa fa-times text-danger" aria-hidden="true"></i>
-    </button>
-
-    <h4 class='border-bottom'>Remove an existing Signing Authority</h4>
-    <p>Signing Authority Information</p>
+    </div>
 
 
+    <div *ngIf="showRemoveSigningAuthority">
+
+      <!-- TODO - Move this into common lib as CommonXIconButton -->
+      <button class='close d-inline-block'
+              (click)='cancelRemoveSigningAuthority()'
+              type='button'
+              aria-label="Cancel Add Signing Authority">
+        <i class="fa fa-times text-danger"
+           aria-hidden="true"></i>
+      </button>
+
+      <h4 class='border-bottom'>Remove an existing Signing Authority</h4>
+      <p>Signing Authority Information</p>
+
+      <form [formGroup]='removeFg'>
+        <label for='removeSAEmail'>Enter the email of the Signing Authority to remove</label>
+        <input type='text'
+               class='form-control'
+               name='removeSAEmail'
+               formControlName='removeSAEmail'
+               id='removeSAEmail'
+               placeholder="example@example.com">
 
 
-  </div>
+        <label for='removeSAUserID'>Ministry asigned User ID (optional)</label>
+        <input type='text'
+               class='form-control'
+               name='removeSAUserID'
+               formControlName='removeSAUserID'
+               id='removeSAUserID'
+               placeholder="todo">
+      </form>
+
+    </div>
+
+<!-- </form> -->
 
 </common-page-framework>
 <common-form-action-bar (btnClick)="continue()"  [submitLabel]="buttonLabel" >
