@@ -37,22 +37,50 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit {
 
       // Related class: CoreUser
 
+      // TODO - This is for add. How about other form types?
+      // this.updateStateService.forms.signingAuthority = this.fb.group({
+      //   userTitle: [null, cUserValidators.userTitle],
+      //   firstName: [null, cUserValidators.firstName],
+      //   initial: [null, cUserValidators.initial],
+      //   lastName: [null, cUserValidators.lastName],
+      //   jobTitle: [null, cUserValidators.jobTitle],
+      //   emailAddress: [null, cUserValidators.emailAddress],
+      //   confirmEmail: [null, cUserValidators.confirmEmail],
+      //   phone: [null, cUserValidators.phone],
+      //   ext: [null, cUserValidators.ext],
+      //   fax: [null, cUserValidators.fax],
+      //   administeringFor: [null, cUserValidators.administeringFor],
+      //   // TODO - Verify below is not necesary. Think it's for reg only.
+      //   // directMspAccess: [null, cUserValidators.directMspAccess],
+
+      // }, {updateOn: 'blur'});
+
+      // IDEA - Consider adding/removing from the formGroup as user adds/removes from the UI?
       this.updateStateService.forms.signingAuthority = this.fb.group({
-        userTitle: [null, cUserValidators.userTitle],
-        firstName: [null, cUserValidators.firstName],
-        initial: [null, cUserValidators.initial],
-        lastName: [null, cUserValidators.lastName],
-        jobTitle: [null, cUserValidators.jobTitle],
-        emailAddress: [null, cUserValidators.emailAddress],
-        confirmEmail: [null, cUserValidators.confirmEmail],
-        phone: [null, cUserValidators.phone],
-        ext: [null, cUserValidators.ext],
-        fax: [null, cUserValidators.fax],
-        administeringFor: [null, cUserValidators.administeringFor],
-        // TODO - Verify below is not necesary. Think it's for reg only.
-        // directMspAccess: [null, cUserValidators.directMspAccess],
+
+        addSigningAuthority: this.fb.group({
+          userTitle: [null, cUserValidators.userTitle],
+          firstName: [null, cUserValidators.firstName],
+          initial: [null, cUserValidators.initial],
+          lastName: [null, cUserValidators.lastName],
+          jobTitle: [null, cUserValidators.jobTitle],
+          emailAddress: [null, cUserValidators.emailAddress],
+          confirmEmail: [null, cUserValidators.confirmEmail],
+          phone: [null, cUserValidators.phone],
+          ext: [null, cUserValidators.ext],
+          fax: [null, cUserValidators.fax],
+          administeringFor: [null, cUserValidators.administeringFor],
+          // TODO - Verify below is not necesary. Think it's for reg only.
+          // directMspAccess: [null, cUserValidators.directMspAccess],
+        }),
+
+        removeSigningAuthority: this.fb.group({
+          removeSAEmail: [null, cUserValidators.emailAddress],
+          removeSAUserID: [null] // TODO - Validators
+        }),
 
       }, {updateOn: 'blur'});
+
 
       this.fg = this.updateStateService.forms.signingAuthority;
 
