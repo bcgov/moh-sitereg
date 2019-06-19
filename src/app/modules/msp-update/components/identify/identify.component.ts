@@ -6,7 +6,7 @@ import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
 import { UpdateStateService } from '../../services/update.state.service';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { validFormControlCommon } from '@msp-register/models/validator-helpers';
+import { validFormControlCommon, validFormControl, validMultiFormControl } from '@msp-register/models/validator-helpers';
 import { cUserValidators, cUpdateValidators } from '@msp-register/models/core/core-types';
 
 @Component({
@@ -17,7 +17,6 @@ import { cUserValidators, cUpdateValidators } from '@msp-register/models/core/co
 export class MspDirectUpdateIdentifyComponent implements OnInit, AfterViewInit {
     @ViewChild('consentModal') consentModal;
     validFormControl: (fg: FormGroup, name: string) => boolean;
-    controlHasError: (control: FormControl, errorType: string) => boolean;
 
 
     constructor(
@@ -31,7 +30,7 @@ export class MspDirectUpdateIdentifyComponent implements OnInit, AfterViewInit {
       this.updateStateService.profileForm = this.fb.group({
         organizationNumber: ['', cUpdateValidators.organizationNumber],
         emailAddress: ['', cUserValidators.emailAddress]
-      });
+      }, {updateOn: 'blur'});
       this.validFormControl = validFormControlCommon;
     }
 

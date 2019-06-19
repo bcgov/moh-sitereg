@@ -112,7 +112,7 @@ export const  cUpdateValidators = {
    */
   organizationNumber: [
     Validators.required,
-    Validators.minLength(1),
+    Validators.minLength(8),
     Validators.maxLength(8),
     Validators.min(1),
     Validators.pattern(/^[0-9]*$/)
