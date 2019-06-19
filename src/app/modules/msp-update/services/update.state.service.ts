@@ -7,6 +7,8 @@ import {
     UrlSegment,
 } from '@angular/router';
 import { UpdatePerson } from '@core/models/person.model';
+import { FormGroup } from '@angular/forms';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
     providedIn: 'root',
@@ -14,5 +16,7 @@ import { UpdatePerson } from '@core/models/person.model';
 export class UpdateStateService {
     requestor = new UpdatePerson();
 
-    public hasConsentedToInformationCollection: boolean = false;
+    public hasConsentedToInformationCollection: boolean = environment.bypassInformationCollectionNotice;
+
+    public profileForm: FormGroup;
 }

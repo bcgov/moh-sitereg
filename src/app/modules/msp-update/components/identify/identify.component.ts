@@ -2,11 +2,12 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { ROUTES_UPDATE } from '../../routing/routes.constants';
 import { Router } from '@angular/router';
 import { MspDirectUpdateProgressService } from '../../services/progress.service';
-import { funcRemoveStrings } from '@msp-register/constants';
 import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
-import { stringify } from '@angular/compiler/src/util';
 import { UpdateStateService } from '../../services/update.state.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { validFormControlCommon } from '@msp-register/models/validator-helpers';
+import { cUserValidators } from '@msp-register/models/core/core-types';
 
 @Component({
     selector: 'sitereg-msp-update-identify',
@@ -15,26 +16,24 @@ import { UpdateStateService } from '../../services/update.state.service';
 })
 export class MspDirectUpdateIdentifyComponent implements OnInit, AfterViewInit {
     @ViewChild('consentModal') consentModal;
-
-    get componentInfo(): string {
-        return (
-            `${funcRemoveStrings(
-                ['MspDirectUpdate', 'Component'],
-                this.constructor.name
-            ).toUpperCase()} :` + ` ${this.globalConfigSvc.applicationId}`
-        );
-    }
+    validFormControl: (fg: FormGroup, name: string) => boolean;
 
     constructor(
         private router: Router,
         private progressService: MspDirectUpdateProgressService,
         private loggerSvc: LoggerService,
         private globalConfigSvc: GlobalConfigService,
-        private updateStateService: UpdateStateService
-    ) {}
+        private updateStateService: UpdateStateService,
+        private fb: FormBuilder
+    ) {
+      this.updateStateService.profileForm = this.fb.group({
+        organizationNumber: ['', Validators.required],
+        emailAddress: ['', cUserValidators.emailAddress]
+      });
+      this.validFormControl = validFormControlCommon;
+    }
 
     ngOnInit() {
-        console.log(`%c%o : %o`, 'color:green', this.componentInfo);
         this.progressService.setItemIncomplete();
     }
 
