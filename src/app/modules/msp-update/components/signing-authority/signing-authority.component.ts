@@ -8,6 +8,7 @@ import { GlobalConfigService } from '@shared/services/global-config.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { UpdateStateService } from '../../services/update.state.service';
 import { cUserValidators } from '@msp-register/models/core/core-types';
+import { validMultiFormControl } from '@msp-register/models/validator-helpers';
 
 @Component({
     selector: 'sitereg-msp-update-signing-authority',
@@ -18,6 +19,7 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit {
     addFg: FormGroup;
     removeFg: FormGroup;
     updateFg: FormGroup;
+    validFormControl: (fg: FormGroup, name: string) => boolean;
 
     private isUpdate = false;
     get buttonLabel(): string {
@@ -66,6 +68,8 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit {
 
       this.addFg = this.updateStateService.forms.signingAuthority.add;
       this.removeFg = this.updateStateService.forms.signingAuthority.remove;
+
+      this.validFormControl = validMultiFormControl;
 
     }
 

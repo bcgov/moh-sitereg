@@ -64,6 +64,10 @@
                id='removeSAEmail'
                placeholder="example@example.com">
 
+        <sitereg-error-box [error]="validFormControl(removeFg, 'removeSAEmail')"
+                           errorMessage="Email TODO">
+        </sitereg-error-box>
+
 
         <label for='removeSAUserID'>Ministry asigned User ID (optional)</label>
         <input type='text'
@@ -72,6 +76,10 @@
                formControlName='removeSAUserID'
                id='removeSAUserID'
                placeholder="todo">
+
+        <sitereg-error-box [error]="validFormControl(removeFg, 'removeSAUserID')"
+                           errorMessage="UserID TODO">
+        </sitereg-error-box>
       </form>
 
     </div>
