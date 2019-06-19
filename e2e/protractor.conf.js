@@ -20,20 +20,11 @@ exports.config = {
     defaultTimeoutInterval: 30000,
     print: function() {}
   },
+  resultJsonOutputFile: 'e2e/moh-sitereg-e2e-results.json',
   onPrepare() {
     require('ts-node').register({
       project: require('path').join(__dirname, './tsconfig.e2e.json')
     });
     jasmine.getEnv().addReporter(new SpecReporter({ spec: { displayStacktrace: true } }));
   }
-  /*
-  framework: 'jasmine2',
-  onPrepare: function() {
-    jasmine.getEnv().addReporter(new JSONReporter({
-        file: 'jasmine-test-results.json',
-        beautify: true,
-        indentationLevel: 4 // used if beautify === true
-    }));
-  }
-  */
 };

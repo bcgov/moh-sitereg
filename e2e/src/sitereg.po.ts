@@ -87,6 +87,16 @@ export class BaseSiteRegTestPage extends AbstractTestPage {
 
     }
 
+    clickOptionJSON(labelVal: string, ngVal: string) {
+        const selector = `input[formcontrolname="${labelVal}"][ng-reflect-value="${ngVal}"]`;
+        if (ngVal === 'true') {
+            ngVal = 'Yes';
+        } else {
+            ngVal = 'No';
+        }
+        element(by.css(selector)).element(by.xpath('..')).element(by.cssContainingText('label', `${ngVal}`)).click();
+    }
+
 }
 
 export class OrganizationPage extends BaseSiteRegTestPage {
@@ -103,15 +113,16 @@ export class OrganizationPage extends BaseSiteRegTestPage {
     }
 
     fillPage() {
+        const json = this.jsonData.organizationPage;
         this.agreeConsentModal();
         this.clickConsentModalContinue();
         this.fillOrgName();
         this.fillAddress();
-        this.selectValue('administeringFor', 'Employees');
+        this.selectValue('administeringFor', json.administeringFor);
         this.scrollDown();
-        this.clickOption('thirdPartyTrue');
+        this.clickOptionJSON('thirdParty', json.thirdParty.toString());
         this.fillOrgNum();
-        this.clickOption('aatrue');
+        this.clickOptionJSON('blueCross', json.blueCross.toString());
         this.continue();
     }
 
@@ -163,11 +174,12 @@ export class SigningAuthorityPage extends BaseSiteRegTestPage {
     }
 
     fillPage() {
-        this.selectValue('userTitle', 'Ms.');
+        const json = this.jsonData.signingAuthorityPage;
+        this.selectValue('userTitle', json.title);
         this.fillInfo();
         this.scrollDown();
-        this.selectValue('administeringFor', 'Employees');
-        this.clickOption('bctrue');
+        this.selectValue('administeringFor', json.administeringFor);
+        this.clickOptionJSON('directMspAccess', json.directMspAccess.toString());
         this.continue();
     }
 
@@ -215,10 +227,11 @@ export class UsersPage extends SigningAuthorityPage {
     }
 
     fillPage() {
+        const json = this.jsonData.usersPage;
         this.clickButton('btn btn-block');
         this.fillInfo();
         this.scrollDown();
-        this.selectValue('administeringFor', 'Employees');
+        this.selectValue('administeringFor', json.administeringFor);
         this.continue();
     }
 
@@ -271,7 +284,7 @@ export class AuthorizePage extends BaseSiteRegTestPage {
     }
 
     fillPage() {
-        this.scrollDown();
+        this.scrollDown()
         this.agreeTermsAndConditions();
         this.typeCaptcha();
         this.continue();

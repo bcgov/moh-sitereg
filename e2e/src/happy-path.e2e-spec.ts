@@ -13,7 +13,6 @@ describe('Moh SiteReg - End to End Test (Happy Path)', () => {
     let authPage: AuthorizePage;
     let scPage: SpecialCasePage;
 
-    // TODO: Refactor URLs
     const ORG_PAGE_URL = `register/organization`;
     const SA_PAGE_URL = `register/signing-authority`;
     const AA_PAGE_URL = `register/access-admins`;

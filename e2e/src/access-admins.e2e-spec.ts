@@ -43,8 +43,7 @@ describe('Moh SiteReg - Access Admins Page', () => {
     it('03. should let user to continue if all the required fields are filled out', () => {
         accessPage.navigateTo();
         accessPage.clickButton('btn btn-block');
-        // accessPage.fillInfo(aaData);
-        accessPage.fillInfo();
+        accessPage.fillInfo(accessData);
         accessPage.scrollDown();
         accessPage.selectValue('administeringFor', jsonData.administeringFor);
         browser.sleep(5000);
@@ -56,10 +55,9 @@ describe('Moh SiteReg - Access Admins Page', () => {
     it('04. should let user to continue when user clicks the x button', () => {
         accessPage.navigateTo();
         accessPage.clickButton('btn btn-block');
-        // accessPage.fillInfo(aaData);
-        accessPage.fillInfo();
+        accessPage.fillInfo(accessData);
         accessPage.scrollDown();
-        accessPage.selectValue('administeringFor', jsonData.administeringFor);
+        accessPage.selectValue('administeringFor', 'true');
         accessPage.clickButton('btn delete');
         accessPage.continue();
         expect(accessPage.formErrors().count()).toBe(0, 'should be no errors after filling out');
@@ -70,15 +68,13 @@ describe('Moh SiteReg - Access Admins Page', () => {
     it('05. should delete correct admin if user adds two admins and deletes one of them', () => {
         accessPage.navigateTo();
         accessPage.clickButton('btn btn-block');
-        // accessPage.fillInfo(aaData);
-        accessPage.fillInfo();
+        accessPage.fillInfo(accessData);
         accessPage.scrollDown();
-        accessPage.selectValue('administeringFor', jsonData.administeringFor);
-        // accessPage.scrollUp();
+        accessPage.selectValue('administeringFor', 'true');
         accessPage.clickButton('btn btn-block');
-        // accessPage.fillInfo(aaData2);
+        accessPage.fillInfo(accessData);
         accessPage.fillInfo();
-        accessPage.selectValue('administeringFor', jsonData.administeringFor);
+        accessPage.selectValue('administeringFor', 'true');
         accessPage.scrollDown();
         accessPage.clickButton('btn delete'); // deletes the second admin created (latest one)
         accessPage.continue();
@@ -89,12 +85,11 @@ describe('Moh SiteReg - Access Admins Page', () => {
     it('06. should NOT be able to continue with an incomplete admin section even if another admin is complete', () => {
         accessPage.navigateTo();
         accessPage.clickButton('btn btn-block');
-        // accessPage.fillInfo(aaData);
-        accessPage.fillInfo();
+        accessPage.fillInfo(accessData);
         accessPage.scrollDown();
         accessPage.selectValue('administeringFor', jsonData.administeringFor);
         accessPage.clickButton('btn btn-block');
-        accessPage.fillInfo();
+        accessPage.fillInfo(accessData);
         accessPage.scrollDown();
         accessPage.continue();
         expect(browser.getCurrentUrl()).toContain(ACCESS_PAGE_URL);
