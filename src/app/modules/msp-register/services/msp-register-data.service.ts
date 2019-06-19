@@ -585,6 +585,14 @@ export class MspRegisterDataService {
                 ? this.mapYesNoDef(authorizedBySA)
                 : 'N',
             authorizedDate: dateAuthorize,
+            aa_same_as_sa: AccessAdmminSameAsSigningAuthority
+                    ? this.mapYesNoDef(
+                        AccessAdmminSameAsSigningAuthority as boolean
+                    )
+                    : 'N',
+            access_administrator: accessAdministrators
+                ? accessAdministrators
+                : [],
         };
 
         // aa_same_as_sa: AccessAdmminSameAsSigningAuthority
@@ -602,15 +610,15 @@ export class MspRegisterDataService {
          * Optional Fields
          */
 
-        if (isValidOptionalField(AccessAdmminSameAsSigningAuthority as boolean)) {
-            registerationRequest.aa_same_as_sa = this.mapYesNoDef(
-                AccessAdmminSameAsSigningAuthority as boolean
-            );
-        }
-        if (isValidOptionalField(accessAdministrators)) registerationRequest.access_administrator = accessAdministrators;
+        // if (isValidOptionalField(AccessAdmminSameAsSigningAuthority as boolean)) {
+        //     registerationRequest.aa_same_as_sa = this.mapYesNoDef(
+        //         AccessAdmminSameAsSigningAuthority as boolean
+        //     );
+        // }
+        // if (isValidOptionalField(accessAdministrators)) registerationRequest.access_administrator = accessAdministrators;
         if (isValidOptionalField(OrganizationUsers)) registerationRequest.users = OrganizationUsers;
         if (isValidOptionalField('mspdRegistration')) registerationRequest.applicationType = 'mspdRegistration';
-        
+
         return registerationRequest;
     }
 }
