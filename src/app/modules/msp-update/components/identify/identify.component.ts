@@ -24,7 +24,7 @@ export class MspDirectUpdateIdentifyComponent implements OnInit, AfterViewInit {
         private progressService: MspDirectUpdateProgressService,
         private loggerSvc: LoggerService,
         private globalConfigSvc: GlobalConfigService,
-        private updateStateService: UpdateStateService,
+        public updateStateService: UpdateStateService,
         private fb: FormBuilder
     ) {
       this.updateStateService.profileForm = this.fb.group({
