@@ -5,9 +5,9 @@ import { MspDirectUpdateProgressService } from '../../services/progress.service'
 import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
 import { UpdateStateService } from '../../services/update.state.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { validFormControlCommon } from '@msp-register/models/validator-helpers';
-import { cUserValidators } from '@msp-register/models/core/core-types';
+import { cUserValidators, cUpdateValidators } from '@msp-register/models/core/core-types';
 
 @Component({
     selector: 'sitereg-msp-update-identify',
@@ -17,6 +17,8 @@ import { cUserValidators } from '@msp-register/models/core/core-types';
 export class MspDirectUpdateIdentifyComponent implements OnInit, AfterViewInit {
     @ViewChild('consentModal') consentModal;
     validFormControl: (fg: FormGroup, name: string) => boolean;
+    controlHasError: (control: FormControl, errorType: string) => boolean;
+
 
     constructor(
         private router: Router,
@@ -27,7 +29,7 @@ export class MspDirectUpdateIdentifyComponent implements OnInit, AfterViewInit {
         private fb: FormBuilder
     ) {
       this.updateStateService.profileForm = this.fb.group({
-        organizationNumber: ['', Validators.required],
+        organizationNumber: ['', cUpdateValidators.organizationNumber],
         emailAddress: ['', cUserValidators.emailAddress]
       });
       this.validFormControl = validFormControlCommon;

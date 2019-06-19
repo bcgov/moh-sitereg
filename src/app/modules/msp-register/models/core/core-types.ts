@@ -103,6 +103,22 @@ export const cUserMspValidators = {
     directMspAccess: [Validators.required],
 };
 
+/**
+ * Validators for the Update NgModule
+ */
+export const  cUpdateValidators = {
+  /**
+   * Org number can be 8 digits and is 0/left-padded if smaller
+   */
+  organizationNumber: [
+    Validators.required,
+    Validators.minLength(1),
+    Validators.maxLength(8),
+    Validators.min(1),
+    Validators.pattern(/^[0-9]*$/)
+  ]
+}
+
 export function applyMixins(derivedCtor: any, baseCtors: any[]) {
     baseCtors.forEach((baseCtor) => {
         Object.getOwnPropertyNames(baseCtor.prototype).forEach((name) => {
