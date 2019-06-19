@@ -1,5 +1,5 @@
 <div>
-  <sitereg-msp-register-user [fg]="fg"></sitereg-msp-register-user>
+  <sitereg-msp-register-user [fg]="fg" [showAdministeringMSPForQuestion]='showAdministeringMSPForQuestion'></sitereg-msp-register-user>
   <div class="form-group col-sm-8 p-sm-0">
     <form [formGroup]="fg">
       <span *ngIf="showMspDirectAccessQuestion">

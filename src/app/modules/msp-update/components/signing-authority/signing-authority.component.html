@@ -9,6 +9,15 @@
     <button type='button' class='btn btn-secondary col ml-4' (click)="updateSigningAuthority()">Update Signing Authority</button>
   </div>
 
+
+<div *ngIf="fg && showAddSigningAuthority">
+
+  <sitereg-msp-register-user-msp [fg]="fg"
+                                  [showMspDirectAccessQuestion]="false"
+                                  [showAdministeringMSPForQuestion]='false'></sitereg-msp-register-user-msp>
+
+</div>
+
 </common-page-framework>
 <common-form-action-bar (btnClick)="continue()"  [submitLabel]="buttonLabel" >
 </common-form-action-bar>

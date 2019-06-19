@@ -5,7 +5,7 @@ import { ROUTES_UPDATE } from '../../routing/routes.constants';
 import { funcRemoveStrings } from '@msp-register/constants';
 import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { UpdateStateService } from '../../services/update.state.service';
 
 @Component({
@@ -14,6 +14,7 @@ import { UpdateStateService } from '../../services/update.state.service';
     styleUrls: ['./signing-authority.component.sass'],
 })
 export class MspDirectUpdateSigningAuthorityComponent implements OnInit {
+    fg: FormGroup;
     private isUpdate = false;
     get buttonLabel(): string {
         return this.isUpdate ? 'Continue' : 'Skip';
@@ -32,6 +33,35 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit {
         public updateStateService: UpdateStateService,
         private fb: FormBuilder
     ) {
+      this.updateStateService.forms.signingAuthority = this.fb.group({
+        // userTitle?: ctFormControlUserTitle = null;
+        // firstName: ctFormControlString = null;
+        // initial?: ctFormControlString = null;
+        // lastName: ctFormControlString = null;
+        // jobTitle: ctFormControlString = null;
+        // emailAddress: ctFormControlString = null;
+        // confirmEmail: ctFormControlString = null;
+        // phone: ctFormControlString = null;
+        // ext?: ctFormControlString = null;
+        // fax: ctFormControlString = null;
+        // administeringFor: ctFormControlString = null;
+        // directMspAccess: ctFormControlBoolean = null;
+        userTitle: [null],
+        firstName: [null],
+        initial: [null],
+        lastName: [null],
+        jobTitle: [null],
+        emailAddress: [null],
+        confirmEmail: [null],
+        phone: [null],
+        ext: [null],
+        fax: [null],
+        administeringFor: [null],
+        directMspAccess: [null],
+
+      }, {updateOn: 'blur'});
+
+      this.fg = this.updateStateService.forms.signingAuthority;
 
     }
 

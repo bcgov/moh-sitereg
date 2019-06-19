@@ -13,6 +13,8 @@ import { MspDirectUpdateGroupsComponent } from './components/groups/groups.compo
 import { MspDirectUpdateSubmitComponent } from './components/submit/submit.component';
 import { MspDirectUpdateAutofillComponent } from './components/autofill/autofill.component';
 import { MspDirectUpdateConfirmationComponent } from './components/confirmation/confirmation.component';
+import { MspRegisterUserMspComponent } from '@msp-register/components/core/msp-register-user-msp/msp-register-user-msp.component';
+import { MspRegisterUserComponent } from '@msp-register/components/core/msp-register-user/msp-register-user.component';
 
 @NgModule({
     declarations: [
@@ -26,6 +28,10 @@ import { MspDirectUpdateConfirmationComponent } from './components/confirmation/
         MspDirectUpdateSubmitComponent,
         MspDirectUpdateAutofillComponent,
         MspDirectUpdateConfirmationComponent,
+
+
+        MspRegisterUserMspComponent,
+        MspRegisterUserComponent
     ],
     imports: [
         CommonModule,

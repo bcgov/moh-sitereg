@@ -54,7 +54,7 @@
     <input id="confirmEmail" formControlName="confirmEmail" class="form-control" placeholder="Confirm Email"  maxlength="100">
     <sitereg-error-box [error]="validFormControl(fg, 'confirmEmail')" errorMessage="Must match email address">
     </sitereg-error-box>
-  
+
     <!-- Phone -->
     <div class="row">
       <div class="col-sm-8">
@@ -79,16 +79,18 @@
     <sitereg-error-box [error]="validFormControl(fg,'fax')" errorMessage="Please provide valid Fax number">
     </sitereg-error-box>
 
+    <ng-container *ngIf='showAdministeringMSPForQuestion'>
 
-    <!-- Administrating For-->
-    <label class="control-label" for="administeringFor">This person will be administering MSP for</label>
-    <select class="form-control" *ngIf="administeringFor | async as administering" formControlName="administeringFor">
-      <option value="" label="-- Select Option --" selected></option>
-      <option *ngFor="let a of administering " [value]="a">{{a}}</option>
-    </select>
-    <div class="text-danger" *ngIf="validFormControl(fg,'administeringFor')">
-        Please select a valid option
-    </div>
+          <!-- Administrating For-->
+          <label class="control-label" for="administeringFor">This person will be administering MSP for</label>
+          <select class="form-control" *ngIf="administeringFor | async as administering" formControlName="administeringFor">
+            <option value="" label="-- Select Option --" selected></option>
+            <option *ngFor="let a of administering " [value]="a">{{a}}</option>
+          </select>
+          <div class="text-danger" *ngIf="validFormControl(fg,'administeringFor')">
+              Please select a valid option
+          </div>
+    </ng-container>
 
   </div>
 </form>
