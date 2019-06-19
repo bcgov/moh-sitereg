@@ -6,7 +6,7 @@
   <common-page-section layout='tips'>
 
     <div class="form-group col-sm-6 p-sm-0">
-      <form [formGroup]="updateStateService.profileForm">
+      <form [formGroup]="fg">
 
         <label for='organizationNumber'>Organization Number</label>
         <input type='text'
@@ -18,7 +18,7 @@
                required>
 
         <sitereg-error-box
-                           [error]="validFormControl(updateStateService.profileForm, 'organizationNumber')"
+                           [error]="validFormControl(fg, 'organizationNumber')"
                            errorMessage="Organization Number is required and must be 8 digits.">
         </sitereg-error-box>
 
@@ -32,7 +32,7 @@
                required>
 
         <sitereg-error-box
-                           [error]="validFormControl(updateStateService.profileForm, 'emailAddress')"
+                           [error]="validFormControl(fg, 'emailAddress')"
                            errorMessage="Email is required. Must be in the format test@example.com"></sitereg-error-box>
       </form>
     </div>
@@ -51,7 +51,7 @@
 </common-page-framework>
 <common-form-action-bar (btnClick)="continue()"
                         widthOption='extra-width-mobile-only'
-                        [canContinue]="updateStateService.profileForm.valid">
+                        [canContinue]="fg.valid">
 </common-form-action-bar>
 
 

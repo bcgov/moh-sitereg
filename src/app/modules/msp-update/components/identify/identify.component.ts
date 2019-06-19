@@ -17,6 +17,7 @@ import { cUserValidators, cUpdateValidators } from '@msp-register/models/core/co
 export class MspDirectUpdateIdentifyComponent implements OnInit, AfterViewInit {
     @ViewChild('consentModal') consentModal;
     validFormControl: (fg: FormGroup, name: string) => boolean;
+    fg: FormGroup;
 
 
     constructor(
@@ -27,11 +28,14 @@ export class MspDirectUpdateIdentifyComponent implements OnInit, AfterViewInit {
         public updateStateService: UpdateStateService,
         private fb: FormBuilder
     ) {
-      this.updateStateService.profileForm = this.fb.group({
+      this.updateStateService.forms.profileForm = this.fb.group({
         organizationNumber: ['', cUpdateValidators.organizationNumber],
         emailAddress: ['', cUserValidators.emailAddress]
       }, {updateOn: 'blur'});
       this.validFormControl = validFormControlCommon;
+
+      // Share the same reference, better than using a TS get().
+      this.fg = this.updateStateService.forms.profileForm;
     }
 
     ngOnInit() {

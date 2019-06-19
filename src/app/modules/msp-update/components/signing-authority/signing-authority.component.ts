@@ -5,6 +5,8 @@ import { ROUTES_UPDATE } from '../../routing/routes.constants';
 import { funcRemoveStrings } from '@msp-register/constants';
 import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
+import { FormBuilder } from '@angular/forms';
+import { UpdateStateService } from '../../services/update.state.service';
 
 @Component({
     selector: 'sitereg-msp-update-signing-authority',
@@ -17,24 +19,23 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit {
         return this.isUpdate ? 'Continue' : 'Skip';
     }
 
-    get componentInfo(): string {
-        return (
-            `${funcRemoveStrings(
-                ['MspDirectUpdate', 'Component'],
-                this.constructor.name
-            ).toUpperCase()} :` + ` ${this.globalConfigSvc.applicationId}`
-        );
-    }
+    public showAddSigningAuthority = false;
+    public showRemoveSigningAuthority = false;
+    public showUpdateSigningAuthority = false;
+
 
     constructor(
         private router: Router,
         private progressService: MspDirectUpdateProgressService,
         private loggerSvc: LoggerService,
-        private globalConfigSvc: GlobalConfigService
-    ) {}
+        private globalConfigSvc: GlobalConfigService,
+        public updateStateService: UpdateStateService,
+        private fb: FormBuilder
+    ) {
+
+    }
 
     ngOnInit() {
-        console.log(`%c%o : %o`, 'color:green', this.componentInfo);
         this.progressService.setItemIncomplete();
     }
 
@@ -48,5 +49,31 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit {
         );
         this.progressService.setItemComplete();
         this.router.navigate([ROUTES_UPDATE.ACCESS_ADMINS.fullpath]);
+    }
+
+    addSigningAuthority() {
+      this.showAddSigningAuthority = true;
+    }
+
+    removeSigningAuthority() {
+      this.showRemoveSigningAuthority = true;
+    }
+
+    updateSigningAuthority() {
+      this.showUpdateSigningAuthority = true;
+    }
+
+
+
+    cancelAddSigningAuthority() {
+      this.showAddSigningAuthority = false;
+    }
+
+    cancelRemoveSigningAuthority() {
+      this.showRemoveSigningAuthority = false;
+    }
+
+    cancelUpdateSigningAuthority() {
+      this.showUpdateSigningAuthority = false;
     }
 }

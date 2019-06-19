@@ -5,6 +5,8 @@ import { ROUTES_UPDATE } from '../../routing/routes.constants';
 import { funcRemoveStrings } from '@msp-register/constants';
 import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
+import { FormBuilder, Validators } from '@angular/forms';
+import { UpdateStateService } from '../../services/update.state.service';
 
 @Component({
     selector: 'sitereg-msp-update-organization',
@@ -17,24 +19,21 @@ export class MspDirectUpdateOrganizationComponent implements OnInit {
         return this.isUpdate ? 'Continue' : 'Skip';
     }
 
-    get componentInfo(): string {
-        return (
-            `${funcRemoveStrings(
-                ['MspDirectUpdate', 'Component'],
-                this.constructor.name
-            ).toUpperCase()} :` + ` ${this.globalConfigSvc.applicationId}`
-        );
-    }
-
     constructor(
         private router: Router,
         private progressService: MspDirectUpdateProgressService,
         private loggerSvc: LoggerService,
-        private globalConfigSvc: GlobalConfigService
-    ) {}
+        private globalConfigSvc: GlobalConfigService,
+        private fb: FormBuilder,
+        public updateStateService: UpdateStateService,
+    ) {
+      this.updateStateService.forms.organizationForm = this.fb.group({
+        hasOrgInfoUpdates: [null, Validators.required],
+        // todo - create separate sub-form for fields in edit.
+      }, {updateOn: 'blur'});
+    }
 
     ngOnInit() {
-        console.log(`%c%o : %o`, 'color:green', this.componentInfo);
         this.progressService.setItemIncomplete();
     }
 
