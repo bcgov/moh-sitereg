@@ -25,7 +25,7 @@
   </div>
   <sitereg-msp-register-user [fg]="fg"></sitereg-msp-register-user>
 </div>
-<div *ngIf="environment.debug">
+<div *ngIf="globalConfigSvc.debug">
     Debugging purposes only:
     <ngx-json-viewer [json]="schemaObject()" [expanded]="true"></ngx-json-viewer>
 </div>

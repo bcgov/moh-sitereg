@@ -68,7 +68,7 @@ export class MspRegisterOrganization extends GenerateForm<IMspOrganization>
     private setDefaultValues() {
         if (GlobalConfigService.setDefaults() === true) {
             this.name = 'MAXIMUS Canada';
-            this.province = 'British Columbia';
+            this.province = 'BC';
             this.city = 'Victoria';
             this.postalCode = 'V3V6A5';
             this.suite = '101';

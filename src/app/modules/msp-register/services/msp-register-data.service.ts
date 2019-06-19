@@ -549,6 +549,30 @@ export class MspRegisterDataService {
         AccessAdmminSameAsSigningAuthority?: boolean
     ): ISiteRegRequest {
         const dateAuthorize = this.getDateinMMDDYYYY(authorizedDate);
+        // const registerationRequest: ISiteRegRequest = {
+        //     request_uuid: requestUUID,
+        //     request_num: requestNumber,
+        //     org_information: organizationInfo ? organizationInfo : null,
+        //     signing_authority_information: signingAuthority
+        //         ? signingAuthority
+        //         : null,
+        //     aa_same_as_sa: AccessAdmminSameAsSigningAuthority
+        //         ? this.mapYesNoDef(
+        //             AccessAdmminSameAsSigningAuthority as boolean
+        //         )
+        //         : 'N',
+        //     access_administrator: accessAdministrators
+        //         ? accessAdministrators
+        //         : [],
+        //     users: OrganizationUsers ? OrganizationUsers : [],
+        //     msp_group: mspGroups ? mspGroups : null,
+        //     authorizedBySA: authorizedBySA
+        //         ? this.mapYesNoDef(authorizedBySA)
+        //         : 'N',
+        //     authorizedDate: dateAuthorize,
+        //     applicationType: 'mspdRegistration',
+        // };
+
         const registerationRequest: ISiteRegRequest = {
             request_uuid: requestUUID,
             request_num: requestNumber,
@@ -556,23 +580,37 @@ export class MspRegisterDataService {
             signing_authority_information: signingAuthority
                 ? signingAuthority
                 : null,
-            aa_same_as_sa: AccessAdmminSameAsSigningAuthority
-                ? this.mapYesNoDef(
-                    AccessAdmminSameAsSigningAuthority as boolean
-                )
-                : 'N',
-            access_administrator: accessAdministrators
-                ? accessAdministrators
-                : [],
-            users: OrganizationUsers ? OrganizationUsers : [],
             msp_group: mspGroups ? mspGroups : null,
             authorizedBySA: authorizedBySA
                 ? this.mapYesNoDef(authorizedBySA)
                 : 'N',
             authorizedDate: dateAuthorize,
-            applicationType: 'mspdRegistration',
         };
 
+        // aa_same_as_sa: AccessAdmminSameAsSigningAuthority
+        //         ? this.mapYesNoDef(
+        //             AccessAdmminSameAsSigningAuthority as boolean
+        //         )
+        //         : 'N',
+        //     access_administrator: accessAdministrators
+        //         ? accessAdministrators
+        //         : [],
+        //     users: OrganizationUsers ? OrganizationUsers : [],
+        //     applicationType: 'mspdRegistration',
+
+        /**
+         * Optional Fields
+         */
+
+        if (isValidOptionalField(AccessAdmminSameAsSigningAuthority as boolean)) {
+            registerationRequest.aa_same_as_sa = this.mapYesNoDef(
+                AccessAdmminSameAsSigningAuthority as boolean
+            );
+        }
+        if (isValidOptionalField(accessAdministrators)) registerationRequest.access_administrator = accessAdministrators;
+        if (isValidOptionalField(OrganizationUsers)) registerationRequest.users = OrganizationUsers;
+        if (isValidOptionalField('mspdRegistration')) registerationRequest.applicationType = 'mspdRegistration';
+        
         return registerationRequest;
     }
 }

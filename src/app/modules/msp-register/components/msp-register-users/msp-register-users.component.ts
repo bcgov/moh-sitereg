@@ -92,7 +92,7 @@ export class MspRegisterUsersComponent implements OnInit {
 
     // REMOVEME - debug only
     schemaObject() {
-        if (!environment.debug) return;
+        if (!this.globalConfigSvc.debug) return;
         // Users
         const mspUsers: IMspUser[] = [];
         this.mspRegisterStateSvc.mspRegisterUsersForm.forEach((v) =>
