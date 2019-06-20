@@ -56,31 +56,34 @@
       <p>Signing Authority Information</p>
 
       <form [formGroup]='removeFg'>
-        <label for='removeSAEmail'>Enter the email of the Signing Authority to remove</label>
-        <input type='text'
-               class='form-control'
-               name='removeSAEmail'
-               formControlName='removeSAEmail'
-               id='removeSAEmail'
-               placeholder="example@example.com">
+        <div class='form-group col-sm-8 p-sm-0'>
 
-        <sitereg-error-box [error]="validFormControl(removeFg, 'removeSAEmail')"
-                           errorMessage="Email TODO">
+          <label for='removeSAEmail'>Enter the email of the Signing Authority to remove</label>
+          <input type='text'
+          class='form-control'
+          name='removeSAEmail'
+          formControlName='removeSAEmail'
+          id='removeSAEmail'
+          placeholder="example@example.com">
+
+          <sitereg-error-box [error]="validFormControl(removeFg, 'removeSAEmail')"
+          errorMessage="Email TODO">
         </sitereg-error-box>
 
 
         <label for='removeSAUserID'>Ministry asigned User ID (optional)</label>
         <input type='text'
-               class='form-control'
-               name='removeSAUserID'
-               formControlName='removeSAUserID'
-               id='removeSAUserID'
-               placeholder="todo">
+        class='form-control'
+        name='removeSAUserID'
+        formControlName='removeSAUserID'
+        id='removeSAUserID'
+        placeholder="todo">
 
         <sitereg-error-box [error]="validFormControl(removeFg, 'removeSAUserID')"
-                           errorMessage="UserID TODO">
-        </sitereg-error-box>
-      </form>
+        errorMessage="UserID TODO">
+      </sitereg-error-box>
+    </div>
+    </form>
 
     </div>
 
