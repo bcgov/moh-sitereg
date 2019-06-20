@@ -47,7 +47,7 @@
       <button class='close d-inline-block'
               (click)='cancelRemoveSigningAuthority()'
               type='button'
-              aria-label="Cancel Add Signing Authority">
+              aria-label="Cancel Remove Signing Authority">
         <i class="fa fa-times text-danger"
            aria-hidden="true"></i>
       </button>
@@ -84,8 +84,43 @@
 
     </div>
 
+    <div *ngIf="showUpdateSigningAuthority">
+
+        <!-- TODO - Move this into common lib as CommonXIconButton -->
+        <button class='close d-inline-block'
+                (click)='cancelUpdateSigningAuthority()'
+                type='button'
+                aria-label="Cancel Update Signing Authority">
+                <i class="fa fa-times text-danger" aria-hidden="true"></i>
+        </button>
+        <h4 class='border-bottom'>Update Signing Authority</h4>
+
+        <form [formGroup]='updateFg'>
+          <div class='form-group col-sm-8 p-sm-0'>
+            <label for='updateSAEmail'>Enter the email of the Signing Authority to edit</label>
+            <input type='text'
+                   class='form-control'
+                   name='updateSAEmail'
+                   formControlName='updateSAEmail'
+                   id='updateSAEmail'
+                   placeholder="example@example.com">
+
+            <sitereg-error-box [error]="validFormControl(updateFg, 'updateSAEmail')"
+                               errorMessage="Email TODO">
+            </sitereg-error-box>
+          </div>
+        </form>
+
+        <!-- ARC - Should this go inside of the <form> above? -->
+        <!-- ARC - PROBLEM - This uses the @deprecated validator from validator-helpers.ts.  May need to wind up supporting deprecated more often for tests, will have to confer with Faheem. -->
+        <sitereg-msp-register-user-msp [fg]="updateFg"
+                                        [showMspDirectAccessQuestion]="false"
+                                        [showAdministeringMSPForQuestion]='false'></sitereg-msp-register-user-msp>
+
+      </div>
+
 <!-- </form> -->
 
 </common-page-framework>
-<common-form-action-bar (btnClick)="continue()"  [submitLabel]="buttonLabel" >
+<common-form-action-bar (btnClick)="continue()"  [submitLabel]="buttonLabel" [canContinue]='canContinue()'>
 </common-form-action-bar>

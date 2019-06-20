@@ -18,7 +18,6 @@ import { validMultiFormControl } from '@msp-register/models/validator-helpers';
 export class MspDirectUpdateSigningAuthorityComponent implements OnInit {
     validFormControl: (fg: FormGroup, name: string) => boolean;
 
-    private isUpdate = false;
     get buttonLabel(): string {
         return this.isUpdate ? 'Continue' : 'Skip';
     }
@@ -36,32 +35,6 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit {
         public updateStateService: UpdateStateService,
         private fb: FormBuilder
     ) {
-
-      // Related class: CoreUser
-
-      // TODO - Look at creating/destroying form in the addSigningAuthority() methods.
-      // this.updateStateService.forms.signingAuthority.add = this.fb.group({
-      //   userTitle: [null, cUserValidators.userTitle],
-      //   firstName: [null, cUserValidators.firstName],
-      //   initial: [null, cUserValidators.initial],
-      //   lastName: [null, cUserValidators.lastName],
-      //   jobTitle: [null, cUserValidators.jobTitle],
-      //   emailAddress: [null, cUserValidators.emailAddress],
-      //   confirmEmail: [null, cUserValidators.confirmEmail],
-      //   phone: [null, cUserValidators.phone],
-      //   ext: [null, cUserValidators.ext],
-      //   fax: [null, cUserValidators.fax],
-      //   administeringFor: [null, cUserValidators.administeringFor],
-      //   // TODO - Verify below is not necesary. Think it's for reg only.
-      //   // directMspAccess: [null, cUserValidators.directMspAccess],
-
-      // }, {updateOn: 'blur'});
-
-      // this.updateStateService.forms.signingAuthority.remove = this.fb.group({
-      //   removeSAEmail: [null, cUserValidators.emailAddress],
-      //   removeSAUserID: [null] // TODO - Validators
-      // }, {updateOn: 'blur'});
-
 
       this.validFormControl = validMultiFormControl;
 
@@ -124,9 +97,25 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit {
       }, {updateOn: 'blur'});
     }
 
+    // TODO - Verify validation logic here, it may differ between this and add.
     updateSigningAuthority() {
       this.showUpdateSigningAuthority = true;
-      // TODO
+      this.updateStateService.forms.signingAuthority.update = this.fb.group({
+        userTitle: [null, cUserValidators.userTitle],
+        firstName: [null, cUserValidators.firstName],
+        initial: [null, cUserValidators.initial],
+        lastName: [null, cUserValidators.lastName],
+        jobTitle: [null, cUserValidators.jobTitle],
+        emailAddress: [null, cUserValidators.emailAddress],
+        confirmEmail: [null, cUserValidators.confirmEmail],
+        phone: [null, cUserValidators.phone],
+        ext: [null, cUserValidators.ext],
+        fax: [null, cUserValidators.fax],
+        administeringFor: [null, cUserValidators.administeringFor],
+        updateSAEmail: [null, cUserValidators.emailAddress],
+        // TODO - Verify below is not necesary. Think it's for reg only.
+        // directMspAccess: [null, cUserValidators.directMspAccess],
+      }, {updateOn: 'blur'});
     }
 
 
@@ -144,5 +133,19 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit {
     cancelUpdateSigningAuthority() {
       this.showUpdateSigningAuthority = false;
       this.updateStateService.forms.signingAuthority.update = null;
+    }
+
+    private get isUpdate(): boolean {
+      return !(this.showAddSigningAuthority === false &&
+        this.showRemoveSigningAuthority === false &&
+        this.showUpdateSigningAuthority === false);
+    }
+
+    canContinue(){
+      return [this.addFg, this.removeFg, this.updateFg]
+        .filter(x => x !== null && x !== undefined) // only check added form
+        .map(x => x.valid) // get validity
+        .filter(x => x === false) // get invalid forms
+        .length === 0;
     }
 }
