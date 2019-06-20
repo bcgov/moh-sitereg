@@ -16,9 +16,6 @@ import { validMultiFormControl } from '@msp-register/models/validator-helpers';
     styleUrls: ['./signing-authority.component.sass'],
 })
 export class MspDirectUpdateSigningAuthorityComponent implements OnInit {
-    addFg: FormGroup;
-    removeFg: FormGroup;
-    updateFg: FormGroup;
     validFormControl: (fg: FormGroup, name: string) => boolean;
 
     private isUpdate = false;
@@ -42,32 +39,29 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit {
 
       // Related class: CoreUser
 
-      // this.updateStateService.forms.signingAuthority = {};
-      // TODO - This is for add. How about other form types?
-      this.updateStateService.forms.signingAuthority.add = this.fb.group({
-        userTitle: [null, cUserValidators.userTitle],
-        firstName: [null, cUserValidators.firstName],
-        initial: [null, cUserValidators.initial],
-        lastName: [null, cUserValidators.lastName],
-        jobTitle: [null, cUserValidators.jobTitle],
-        emailAddress: [null, cUserValidators.emailAddress],
-        confirmEmail: [null, cUserValidators.confirmEmail],
-        phone: [null, cUserValidators.phone],
-        ext: [null, cUserValidators.ext],
-        fax: [null, cUserValidators.fax],
-        administeringFor: [null, cUserValidators.administeringFor],
-        // TODO - Verify below is not necesary. Think it's for reg only.
-        // directMspAccess: [null, cUserValidators.directMspAccess],
+      // TODO - Look at creating/destroying form in the addSigningAuthority() methods.
+      // this.updateStateService.forms.signingAuthority.add = this.fb.group({
+      //   userTitle: [null, cUserValidators.userTitle],
+      //   firstName: [null, cUserValidators.firstName],
+      //   initial: [null, cUserValidators.initial],
+      //   lastName: [null, cUserValidators.lastName],
+      //   jobTitle: [null, cUserValidators.jobTitle],
+      //   emailAddress: [null, cUserValidators.emailAddress],
+      //   confirmEmail: [null, cUserValidators.confirmEmail],
+      //   phone: [null, cUserValidators.phone],
+      //   ext: [null, cUserValidators.ext],
+      //   fax: [null, cUserValidators.fax],
+      //   administeringFor: [null, cUserValidators.administeringFor],
+      //   // TODO - Verify below is not necesary. Think it's for reg only.
+      //   // directMspAccess: [null, cUserValidators.directMspAccess],
 
-      }, {updateOn: 'blur'});
+      // }, {updateOn: 'blur'});
 
-      this.updateStateService.forms.signingAuthority.remove = this.fb.group({
-        removeSAEmail: [null, cUserValidators.emailAddress],
-        removeSAUserID: [null] // TODO - Validators
-      }, {updateOn: 'blur'});
+      // this.updateStateService.forms.signingAuthority.remove = this.fb.group({
+      //   removeSAEmail: [null, cUserValidators.emailAddress],
+      //   removeSAUserID: [null] // TODO - Validators
+      // }, {updateOn: 'blur'});
 
-      this.addFg = this.updateStateService.forms.signingAuthority.add;
-      this.removeFg = this.updateStateService.forms.signingAuthority.remove;
 
       this.validFormControl = validMultiFormControl;
 
@@ -89,29 +83,66 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit {
         this.router.navigate([ROUTES_UPDATE.ACCESS_ADMINS.fullpath]);
     }
 
+    // We have to use getters here, as values change to null which means the
+    // reference is broken.
+    get addFg(): FormGroup {
+      return this.updateStateService.forms.signingAuthority.add;
+    }
+
+    get removeFg(): FormGroup {
+      return this.updateStateService.forms.signingAuthority.remove;
+    }
+
+    get updateFg(): FormGroup {
+      return this.updateStateService.forms.signingAuthority.update;
+    }
+
     addSigningAuthority() {
       this.showAddSigningAuthority = true;
+      this.updateStateService.forms.signingAuthority.add = this.fb.group({
+        userTitle: [null, cUserValidators.userTitle],
+        firstName: [null, cUserValidators.firstName],
+        initial: [null, cUserValidators.initial],
+        lastName: [null, cUserValidators.lastName],
+        jobTitle: [null, cUserValidators.jobTitle],
+        emailAddress: [null, cUserValidators.emailAddress],
+        confirmEmail: [null, cUserValidators.confirmEmail],
+        phone: [null, cUserValidators.phone],
+        ext: [null, cUserValidators.ext],
+        fax: [null, cUserValidators.fax],
+        administeringFor: [null, cUserValidators.administeringFor],
+        // TODO - Verify below is not necesary. Think it's for reg only.
+        // directMspAccess: [null, cUserValidators.directMspAccess],
+      }, {updateOn: 'blur'});
     }
 
     removeSigningAuthority() {
       this.showRemoveSigningAuthority = true;
+      this.updateStateService.forms.signingAuthority.remove = this.fb.group({
+        removeSAEmail: [null, cUserValidators.emailAddress],
+        removeSAUserID: [null] // TODO - Validators
+      }, {updateOn: 'blur'});
     }
 
     updateSigningAuthority() {
       this.showUpdateSigningAuthority = true;
+      // TODO
     }
 
 
 
     cancelAddSigningAuthority() {
       this.showAddSigningAuthority = false;
+      this.updateStateService.forms.signingAuthority.add = null;
     }
 
     cancelRemoveSigningAuthority() {
       this.showRemoveSigningAuthority = false;
+      this.updateStateService.forms.signingAuthority.remove = null;
     }
 
     cancelUpdateSigningAuthority() {
       this.showUpdateSigningAuthority = false;
+      this.updateStateService.forms.signingAuthority.update = null;
     }
 }
