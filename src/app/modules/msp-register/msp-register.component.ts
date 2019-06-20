@@ -46,6 +46,6 @@ export class MspRegisterComponent extends Container implements OnInit {
         });
 
         this.setProgressSteps(progressItemRoute);
-        console.log('PATH: %o', this.router.url);
+        // console.log('PATH: %o', this.router.url);
     }
 }

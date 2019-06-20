@@ -89,15 +89,15 @@ export class MspRegisterAuthorizeComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log(
-            `%c%o : %o`,
-            'color:green',
-            funcRemoveStrings(
-                ['MspRegister', 'Component'],
-                this.constructor.name
-            ).toUpperCase(),
-            this.globalConfigSvc.applicationId
-        );
+        // console.log(
+        //     `%c%o : %o`,
+        //     'color:green',
+        //     funcRemoveStrings(
+        //         ['MspRegister', 'Component'],
+        //         this.constructor.name
+        //     ).toUpperCase(),
+        //     this.globalConfigSvc.applicationId
+        // );
         this.registrationService.setItemIncomplete();
 
         this.fg = this.mspRegisterStateSvc.mspRegisterAuthorizeForm;
@@ -126,15 +126,15 @@ export class MspRegisterAuthorizeComponent implements OnInit {
 
         const middleWareObject = this.registerationObject();
 
-        console.log(
-            `%c middleware object <= %o\n\t%o`,
-            'color:lightgreen',
-            funcRemoveStrings(
-                ['MspRegister', 'Component'],
-                this.constructor.name
-            ),
-            middleWareObject
-        );
+        // console.log(
+        //     `%c middleware object <= %o\n\t%o`,
+        //     'color:lightgreen',
+        //     funcRemoveStrings(
+        //         ['MspRegister', 'Component'],
+        //         this.constructor.name
+        //     ),
+        //     middleWareObject
+        // );
 
         // this.copyJsonSchema(middleWareObject);
 
@@ -167,8 +167,8 @@ export class MspRegisterAuthorizeComponent implements OnInit {
                 this.isProcessing = false;
             })
             .then((result) => {
-                console.log(`result: %c %o`, 'color:organge', result);
-                console.log(`requestStatus: %c %o`, 'color:organge', requestStatus);
+                // console.log(`result: %c %o`, 'color:organge', result);
+                // console.log(`requestStatus: %c %o`, 'color:organge', requestStatus);
 
                 this.loggerSvc.logNavigation(
                     'middleware-request-status:',
@@ -356,7 +356,7 @@ export class MspRegisterAuthorizeComponent implements OnInit {
 
     setToken(token): void {
         // REMOVEME - debug only
-        console.log(token);
+        // console.log(token);
         // this.debugOnly();
         this.validCaptch = true;
         this.apiSvc.setCaptchaToken(token);
