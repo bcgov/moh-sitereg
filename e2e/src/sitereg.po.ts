@@ -284,7 +284,7 @@ export class AuthorizePage extends BaseSiteRegTestPage {
     }
 
     fillPage() {
-        this.scrollDown()
+        this.scrollDown();
         this.agreeTermsAndConditions();
         this.typeCaptcha();
         this.continue();

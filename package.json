@@ -12,7 +12,7 @@
     "e2e-node": "node ./e2e/run-with-data.js",
     "e2e-protractor": "npx protractor e2e/protractor.conf.js",
     "e2e-sitereg:happy-path": "npm run e2e-protractor -- --specs=e2e/src/happy-path.e2e-spec.ts",
-    "e2e:chrome": "npm run e2e-protractor -- --protractorConfig=e2e/protractor.conf.js",
+    "e2e:chrome": "npm run e2e-protractor --",
     "e2e:all": "npm run e2e -- --protractorConfig=e2e/protractor.full-tests.conf.js",
     "format": "prettier --write \"src/**/*.ts\" && npm run lint && npm run build",
     "publish": "ng build --prod --output-hashing none"

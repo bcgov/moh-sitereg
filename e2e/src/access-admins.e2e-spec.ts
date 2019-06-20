@@ -1,7 +1,6 @@
 import { browser } from 'protractor';
 import { FakeDataSiteReg } from './sitereg.data';
 import { AccessAdminsPage } from './sitereg.po';
-import { JSONDataSiteReg } from '../../e2e/run-with-data.js';
 
 describe('Moh SiteReg - Access Admins Page', () => {
     let accessPage: AccessAdminsPage;
@@ -28,13 +27,13 @@ describe('Moh SiteReg - Access Admins Page', () => {
         }
     });
 
-    fit('01. should load the page without issue', () => {
+    it('01. should load the page without issue', () => {
         accessPage.navigateTo();
         expect(browser.getCurrentUrl()).toContain(ACCESS_PAGE_URL);
         expect(accessPage.formErrors().count()).toBe(0, 'should be no errors on page load');
     });
 
-    fit('02. should let user to continue without filling out any fields', () => {
+    it('02. should let user to continue without filling out any fields', () => {
         accessPage.navigateTo();
         accessPage.continue();
         expect(browser.getCurrentUrl()).toContain(USERS_PAGE_URL, 'should navigate to the Users page');

@@ -2,7 +2,7 @@ import { browser } from 'protractor';
 import { FakeDataSiteReg } from './sitereg.data';
 import { OrganizationPage } from './sitereg.po';
 
-describe('Moh SiteReg - Organization Page (ORG)', () => {
+describe('Moh SiteReg - Organization Page', () => {
     let orgPage: OrganizationPage;
     const data = new FakeDataSiteReg();
     let orgData;
@@ -15,13 +15,13 @@ describe('Moh SiteReg - Organization Page (ORG)', () => {
         data.setSeed();
     });
 
-    it('ORG-01: should load the page without issue', () => {
+    it('01. should load the page without issue', () => {
         orgPage.navigateTo();
         expect(browser.getCurrentUrl()).toContain(ORGANIZATION_PAGE_URL);
         expect(orgPage.formErrors().count()).toBe(0, 'should be no errors on page load');
     });
 
-    it('ORG-02: should NOT let user to continue without clicking the checkbox', () => {
+    it('02. should NOT let user to continue without clicking the checkbox', () => {
         orgPage.navigateTo();
         orgPage.agreeConsentModal();
         orgPage.checkConsentModal().then(function(val) {
@@ -30,16 +30,15 @@ describe('Moh SiteReg - Organization Page (ORG)', () => {
         expect(browser.getCurrentUrl()).toContain(ORGANIZATION_PAGE_URL, 'should still be on the same page');
     });
 
-    it('ORG-03: should NOT let user to continue without filling out any fields', () => {
+    it('03. should NOT let user to continue without filling out any fields', () => {
         orgPage.navigateTo();
         orgPage.agreeConsentModal();
         orgPage.clickConsentModalContinue();
         orgPage.continue();
-        // TODO: check if Continue Button is disabled
         expect(browser.getCurrentUrl()).toContain(ORGANIZATION_PAGE_URL, 'should still be on the same page');
     });
 
-    it('ORG-04: should let user to continue if all the required fields are filled out', () => {
+    it('04. should let user to continue if all the required fields are filled out', () => {
         orgPage.navigateTo();
         orgPage.agreeConsentModal();
         orgPage.clickConsentModalContinue();
@@ -54,7 +53,7 @@ describe('Moh SiteReg - Organization Page (ORG)', () => {
         expect(browser.getCurrentUrl()).toContain(SA_PAGE_URL, 'should navigate to the next page');
     });
 
-    it('ORG-05: should let user to type the organization num and select organization that will be administering', () => {
+    it('05. should let user to type the organization num and select organization that will be administering', () => {
         orgPage.navigateTo();
         orgPage.agreeConsentModal();
         orgPage.clickConsentModalContinue();
@@ -71,7 +70,7 @@ describe('Moh SiteReg - Organization Page (ORG)', () => {
     });
 
     // Additional tests
-    it('0RG-06: should not let user continue by clicking the stepper', () => {
+    it('06. should not let user continue by clicking the stepper', () => {
         orgPage.navigateTo();
         orgPage.agreeConsentModal();
         orgPage.clickConsentModalContinue();
@@ -80,7 +79,7 @@ describe('Moh SiteReg - Organization Page (ORG)', () => {
         expect(browser.getCurrentUrl()).toContain(ORGANIZATION_PAGE_URL);
     });
 
-    it('0RG-07. should show all 13 provinces and territories in the dropbox menu', () => {
+    it('07. should show all 13 provinces and territories in the dropbox menu', () => {
         orgPage.navigateTo();
         orgPage.agreeConsentModal();
         orgPage.clickConsentModalContinue();

@@ -61,7 +61,8 @@ export class FakeDataSiteReg {
     getJSONData() {
         const x = process.argv;
         const input = process.argv.filter(x => x.startsWith('--data'));
-        if (input !== undefined) {
+        // console.log('INPUT: ', input.toString());
+        if (input.toString() !== '') {
             const filename = input.toString().split('=')[1];
             const data = fs.readFileSync(filename, 'utf8');
             const jsonData = JSON.parse(data);
