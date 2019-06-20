@@ -11,8 +11,19 @@
     </div>
   </common-page-section>
 
-  <common-page-section layout='noTips'>
+  <common-page-section layout='noTips' *ngIf="showAddMspGrp">
+    <common-xicon-button label="Add Msp Group" (clickEvent)="AddMspGroup()"></common-xicon-button>
+    <h4 class='border-bottom'>Add new MSP Group #1</h4>
+  </common-page-section>
 
+  <common-page-section layout='noTips' *ngIf="showRemoveMspGrp">
+    <common-xicon-button label="Remove Msp Group" (clickEvent)="RemoveMspGroup()"></common-xicon-button>
+    <h4 class='border-bottom'>Remove MSP Group #1</h4>
+  </common-page-section>
+
+  <common-page-section layout='noTips' *ngIf="showUpdateMspGrpAdmin">
+    <common-xicon-button label="Update Msp Group Admin" (clickEvent)="UpdateMspGroupAdmin()"></common-xicon-button>
+    <h4 class='border-bottom'>Update administration of MSP Group #1</h4>
   </common-page-section>
 
 </common-page-framework>

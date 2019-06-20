@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MspDirectUpdateProgressService } from '../../services/progress.service';
 import { ROUTES_UPDATE } from '../../routing/routes.constants';
-import { funcRemoveStrings } from '@msp-register/constants';
 import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
@@ -17,7 +16,10 @@ export class MspDirectUpdateGroupsComponent implements OnInit {
 
   fg: FormGroup;
 
-  private updateInfo = false;
+  private isUpdate = false;
+  public showAddMspGrp = false;
+  public showRemoveMspGrp = false;
+  public showUpdateMspGrpAdmin = false;
 
   constructor(
       private router: Router,
@@ -36,7 +38,7 @@ export class MspDirectUpdateGroupsComponent implements OnInit {
   }
 
   get buttonLabel() {
-    return this.updateInfo ? 'Continue' : 'Skip';
+    return this.isUpdate ? 'Continue' : 'Skip';
   }
 
   continue() {
@@ -54,16 +56,19 @@ export class MspDirectUpdateGroupsComponent implements OnInit {
     // Button functions
     AddMspGroup() {
       console.log( 'Add Msp Group clicked' );
-      this.updateInfo = true;
+      this.isUpdate = true;
+      this.showAddMspGrp = true;
     }
 
     RemoveMspGroup() {
       console.log( 'Remove Msp Group clicked' );
-      this.updateInfo = true;
+      this.isUpdate = true;
+      this.showRemoveMspGrp = true;
     }
 
     UpdateMspGroupAdmin() {
       console.log( 'Update administration of Msp Group clicked' );
-      this.updateInfo = true;
+      this.isUpdate = true;
+      this.showUpdateMspGrpAdmin = true;
     }
 }
