@@ -6,6 +6,15 @@
         "passed": true
       }
     ],
-    "duration": 21565
+    "duration": 19988
+  },
+  {
+    "description": "Moh SiteReg - End to End Test (Happy Path) Should navigate from Organization to Confirmation Page (end-to-end) when all required fields are filled out",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 22251
   }
 ]
