@@ -9,7 +9,7 @@ import { GlobalConfigService } from '@shared/services/global-config.service';
 @Component({
     selector: 'sitereg-msp-update-submit',
     templateUrl: './submit.component.html',
-    styleUrls: ['./submit.component.sass'],
+    styleUrls: ['./submit.component.scss'],
 })
 export class MspDirectUpdateSubmitComponent implements OnInit {
     get componentInfo(): string {

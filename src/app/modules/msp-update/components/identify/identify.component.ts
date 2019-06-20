@@ -12,7 +12,7 @@ import { cUserValidators, cUpdateValidators } from '@msp-register/models/core/co
 @Component({
     selector: 'sitereg-msp-update-identify',
     templateUrl: './identify.component.html',
-    styleUrls: ['./identify.component.sass'],
+    styleUrls: ['./identify.component.scss'],
 })
 export class MspDirectUpdateIdentifyComponent implements OnInit, AfterViewInit {
     @ViewChild('consentModal') consentModal;

@@ -9,7 +9,7 @@ import { GlobalConfigService } from '@shared/services/global-config.service';
 @Component({
     selector: 'sitereg-msp-update-confirmation',
     templateUrl: './confirmation.component.html',
-    styleUrls: ['./confirmation.component.sass'],
+    styleUrls: ['./confirmation.component.scss'],
 })
 export class MspDirectUpdateConfirmationComponent implements OnInit {
     private isSuccessfull = false;

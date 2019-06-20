@@ -13,7 +13,7 @@ import { validMultiFormControl } from '@msp-register/models/validator-helpers';
 @Component({
     selector: 'sitereg-msp-update-signing-authority',
     templateUrl: './signing-authority.component.html',
-    styleUrls: ['./signing-authority.component.sass'],
+    styleUrls: ['./signing-authority.component.scss'],
 })
 export class MspDirectUpdateSigningAuthorityComponent implements OnInit {
     validFormControl: (fg: FormGroup, name: string) => boolean;
@@ -139,7 +139,7 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit {
         this.showUpdateSigningAuthority === false);
     }
 
-    canContinue(){
+    canContinue() {
       return [this.addFg, this.removeFg, this.updateFg]
         .filter(x => x !== null && x !== undefined) // only check added form
         .map(x => x.valid) // get validity

@@ -9,7 +9,7 @@ import { GlobalConfigService } from '@shared/services/global-config.service';
 @Component({
     selector: 'sitereg-msp-update-access-administrator',
     templateUrl: './access-administrator.component.html',
-    styleUrls: ['./access-administrator.component.sass'],
+    styleUrls: ['./access-administrator.component.scss'],
 })
 export class MspDirectUpdateAccessAdministratorComponent implements OnInit {
     private isUpdate = false;

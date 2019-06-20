@@ -9,14 +9,14 @@ import { GlobalConfigService } from '@shared/services/global-config.service';
 @Component({
     selector: 'sitereg-msp-update-users',
     templateUrl: './users.component.html',
-    styleUrls: ['./users.component.sass'],
+    styleUrls: ['./users.component.scss'],
 })
 export class MspDirectUpdateUsersComponent implements OnInit {
     private isUpdate = false;
     get buttonLabel(): string {
         return this.isUpdate ? 'Continue' : 'Skip';
     }
-    
+
     get componentInfo(): string {
         return (
             `${funcRemoveStrings(

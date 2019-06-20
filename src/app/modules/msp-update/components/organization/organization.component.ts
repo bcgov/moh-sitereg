@@ -11,7 +11,7 @@ import { UpdateStateService } from '../../services/update.state.service';
 @Component({
     selector: 'sitereg-msp-update-organization',
     templateUrl: './organization.component.html',
-    styleUrls: ['./organization.component.sass'],
+    styleUrls: ['./organization.component.scss'],
 })
 export class MspDirectUpdateOrganizationComponent implements OnInit {
     private isUpdate = false;
