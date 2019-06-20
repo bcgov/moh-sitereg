@@ -31,6 +31,7 @@ export class MspRegisterConfirmationComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.registrationService.enableConfirmation = true;
         this.status =
             this.mspRegDataSvc.requestFinalStatus &&
                 this.mspRegDataSvc.requestFinalStatus.status
