@@ -5,7 +5,7 @@ import { ROUTES_UPDATE } from '../../routing/routes.constants';
 import { funcRemoveStrings } from '@msp-register/constants';
 import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UpdateStateService } from '../../services/update.state.service';
 import { cUserValidators } from '@msp-register/models/core/core-types';
 import { validMultiFormControl } from '@msp-register/models/validator-helpers';
@@ -84,8 +84,7 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit {
         ext: [null, cUserValidators.ext],
         fax: [null, cUserValidators.fax],
         administeringFor: [null, cUserValidators.administeringFor],
-        // TODO - Verify below is not necesary. Think it's for reg only.
-        // directMspAccess: [null, cUserValidators.directMspAccess],
+        directMspAccess: [null, Validators.required],
       }, {updateOn: 'blur'});
     }
 
@@ -113,8 +112,7 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit {
         fax: [null, cUserValidators.fax],
         administeringFor: [null, cUserValidators.administeringFor],
         updateSAEmail: [null, cUserValidators.emailAddress],
-        // TODO - Verify below is not necesary. Think it's for reg only.
-        // directMspAccess: [null, cUserValidators.directMspAccess],
+        directMspAccess: [null, Validators.required],
       }, {updateOn: 'blur'});
     }
 
