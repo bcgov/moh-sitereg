@@ -36,7 +36,7 @@ describe('Moh SiteReg - Access Admins Page', () => {
     it('02. should let user to continue without filling out any fields', () => {
         accessPage.navigateTo();
         accessPage.continue();
-        expect(browser.getCurrentUrl()).toContain(USERS_PAGE_URL, 'should navigate to the Users page');
+        expect(browser.getCurrentUrl()).toContain(ACCESS_PAGE_URL, 'should stay on the same page');
     });
 
     it('03. should let user to continue if all the required fields are filled out', () => {
@@ -44,23 +44,21 @@ describe('Moh SiteReg - Access Admins Page', () => {
         accessPage.clickButton('btn btn-block');
         accessPage.fillInfo(accessData);
         accessPage.scrollDown();
-        accessPage.selectValue('administeringFor', jsonData.administeringFor);
-        browser.sleep(5000);
+        accessPage.selectValue('administeringFor', 'Employees');
         accessPage.continue();
         expect(accessPage.formErrors().count()).toBe(0, 'should be no errors after filling out');
         expect(browser.getCurrentUrl()).toContain(USERS_PAGE_URL, 'should navigate to the Users page');
     });
 
-    it('04. should let user to continue when user clicks the x button', () => {
+    it('04. should NOT let user to continue when user clicks the x button', () => {
         accessPage.navigateTo();
         accessPage.clickButton('btn btn-block');
         accessPage.fillInfo(accessData);
         accessPage.scrollDown();
-        accessPage.selectValue('administeringFor', 'true');
+        accessPage.selectValue('administeringFor', 'Employees');
         accessPage.clickButton('btn delete');
         accessPage.continue();
-        expect(accessPage.formErrors().count()).toBe(0, 'should be no errors after filling out');
-        expect(browser.getCurrentUrl()).toContain(USERS_PAGE_URL, 'should navigate to the Users page');
+        expect(browser.getCurrentUrl()).toContain(ACCESS_PAGE_URL, 'should navigate to the Users page');
     });
 
     // Additional Tests
@@ -69,13 +67,14 @@ describe('Moh SiteReg - Access Admins Page', () => {
         accessPage.clickButton('btn btn-block');
         accessPage.fillInfo(accessData);
         accessPage.scrollDown();
-        accessPage.selectValue('administeringFor', 'true');
+        accessPage.selectValue('administeringFor', 'Employees');
+        accessPage.scrollUp();
         accessPage.clickButton('btn btn-block');
         accessPage.fillInfo(accessData);
-        accessPage.fillInfo();
-        accessPage.selectValue('administeringFor', 'true');
         accessPage.scrollDown();
+        accessPage.selectValue('administeringFor', 'Employees');
         accessPage.clickButton('btn delete'); // deletes the second admin created (latest one)
+        browser.sleep(10000);
         accessPage.continue();
         expect(accessPage.formErrors().count()).toBe(0, 'should be no errors after filling out');
         expect(browser.getCurrentUrl()).toContain(USERS_PAGE_URL, 'should navigate to the Users page');
@@ -86,7 +85,7 @@ describe('Moh SiteReg - Access Admins Page', () => {
         accessPage.clickButton('btn btn-block');
         accessPage.fillInfo(accessData);
         accessPage.scrollDown();
-        accessPage.selectValue('administeringFor', jsonData.administeringFor);
+        accessPage.selectValue('administeringFor', 'Employees');
         accessPage.clickButton('btn btn-block');
         accessPage.fillInfo(accessData);
         accessPage.scrollDown();

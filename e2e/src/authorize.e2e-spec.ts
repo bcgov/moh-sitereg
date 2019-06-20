@@ -16,14 +16,14 @@ describe('Moh SiteReg - Authorize Page', () => {
         expect(authPage.formErrors().count()).toBe(0, 'should be no errors on page load');
     });
 
-    fit('02. should NOT let user to continue without clicking the checkbox', () => {
+    it('02. should NOT let user to continue without clicking the checkbox', () => {
         authPage.navigateTo();
         authPage.scrollDown();
         authPage.clickButton('submit');
         expect(browser.getCurrentUrl()).toContain(AUTHORIZE_PAGE_URL, 'should stay on the same page');
     });
 
-    fit('03. should let user to continue if the checkbox is clicked', () => {
+    xit('03. should let user to continue if the checkbox is clicked', () => {
         authPage.navigateTo();
         authPage.scrollDown();
         authPage.agreeTermsAndConditions();

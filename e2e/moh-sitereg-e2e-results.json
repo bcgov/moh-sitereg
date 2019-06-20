@@ -1,12 +1,149 @@
 [
   {
-    "description": "Moh SiteReg - End to End Test (Happy Path) Should navigate from Organization to Confirmation Page (end-to-end) when all required fields are filled out",
+    "description": "Moh SiteReg - Access Admins Page 01. should load the page without issue",
     "assertions": [
       {
         "passed": true
       }
     ],
-    "duration": 21222
+    "duration": 4299
+  },
+  {
+    "description": "Moh SiteReg - Access Admins Page 02. should let user to continue without filling out any fields",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 4225
+  },
+  {
+    "description": "Moh SiteReg - Access Admins Page 03. should let user to continue if all the required fields are filled out",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 7331
+  },
+  {
+    "description": "Moh SiteReg - Access Admins Page 04. should NOT let user to continue when user clicks the x button",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 7264
+  },
+  {
+    "description": "Moh SiteReg - Access Admins Page 05. should delete correct admin if user adds two admins and deletes one of them",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 20766
+  },
+  {
+    "description": "Moh SiteReg - Access Admins Page 06. should NOT be able to continue with an incomplete admin section even if another admin is complete",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 8699
+  },
+  {
+    "description": "Moh SiteReg - Access Admins Page 07. should not be able to access \"_autofill\" dev only URL",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Authorize Page 01. should load the page without issue",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 3711
+  },
+  {
+    "description": "Moh SiteReg - Authorize Page 02. should NOT let user to continue without clicking the checkbox",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 3941
+  },
+  {
+    "description": "Moh SiteReg - Authorize Page 03. should let user to continue if the checkbox is clicked",
+    "assertions": [
+      {
+        "passed": false,
+        "errorMsg": "Failed: No element found using locator: By(css selector, input[id=\"consent\"])",
+        "stackTrace": "NoSuchElementError: No element found using locator: By(css selector, input[id=\"consent\"])\n    at elementArrayFinder.getWebElements.then (/space/workspace/moh-sitereg/node_modules/protractor/built/element.js:814:27)\n    at ManagedPromise.invokeCallback_ (/space/workspace/moh-sitereg/node_modules/selenium-webdriver/lib/promise.js:1376:14)\n    at TaskQueue.execute_ (/space/workspace/moh-sitereg/node_modules/selenium-webdriver/lib/promise.js:3084:14)\n    at TaskQueue.executeNext_ (/space/workspace/moh-sitereg/node_modules/selenium-webdriver/lib/promise.js:3067:27)\n    at asyncRun (/space/workspace/moh-sitereg/node_modules/selenium-webdriver/lib/promise.js:2927:27)\n    at /space/workspace/moh-sitereg/node_modules/selenium-webdriver/lib/promise.js:668:7\n    at <anonymous>\n    at process._tickCallback (internal/process/next_tick.js:188:7)Error\n    at ElementArrayFinder.applyAction_ (/space/workspace/moh-sitereg/node_modules/protractor/built/element.js:459:27)\n    at ElementArrayFinder.(anonymous function).args [as click] (/space/workspace/moh-sitereg/node_modules/protractor/built/element.js:91:29)\n    at ElementFinder.(anonymous function).args [as click] (/space/workspace/moh-sitereg/node_modules/protractor/built/element.js:831:22)\n    at AuthorizePage.agreeTermsAndConditions (/space/workspace/moh-sitereg/e2e/src/sitereg.po.ts:264:74)\n    at UserContext.<anonymous> (/space/workspace/moh-sitereg/e2e/src/authorize.e2e-spec.ts:26:18)\n    at /space/workspace/moh-sitereg/node_modules/jasminewd2/index.js:112:25\n    at new ManagedPromise (/space/workspace/moh-sitereg/node_modules/selenium-webdriver/lib/promise.js:1077:7)\n    at ControlFlow.promise (/space/workspace/moh-sitereg/node_modules/selenium-webdriver/lib/promise.js:2505:12)\n    at schedulerExecute (/space/workspace/moh-sitereg/node_modules/jasminewd2/index.js:95:18)\n    at TaskQueue.execute_ (/space/workspace/moh-sitereg/node_modules/selenium-webdriver/lib/promise.js:3084:14)\nFrom: Task: Run it(\"03. should let user to continue if the checkbox is clicked\") in control flow\n    at UserContext.<anonymous> (/space/workspace/moh-sitereg/node_modules/jasminewd2/index.js:94:19)\n    at attempt (/space/workspace/moh-sitereg/node_modules/protractor/node_modules/jasmine-core/lib/jasmine-core/jasmine.js:4297:26)\n    at QueueRunner.run (/space/workspace/moh-sitereg/node_modules/protractor/node_modules/jasmine-core/lib/jasmine-core/jasmine.js:4217:20)\n    at runNext (/space/workspace/moh-sitereg/node_modules/protractor/node_modules/jasmine-core/lib/jasmine-core/jasmine.js:4257:20)\n    at /space/workspace/moh-sitereg/node_modules/protractor/node_modules/jasmine-core/lib/jasmine-core/jasmine.js:4264:13\n    at /space/workspace/moh-sitereg/node_modules/protractor/node_modules/jasmine-core/lib/jasmine-core/jasmine.js:4172:9\n    at /space/workspace/moh-sitereg/node_modules/jasminewd2/index.js:64:48\n    at ControlFlow.emit (/space/workspace/moh-sitereg/node_modules/selenium-webdriver/lib/events.js:62:21)\n    at ControlFlow.shutdown_ (/space/workspace/moh-sitereg/node_modules/selenium-webdriver/lib/promise.js:2674:10)\n    at shutdownTask_.MicroTask (/space/workspace/moh-sitereg/node_modules/selenium-webdriver/lib/promise.js:2599:53)\nFrom asynchronous test: \nError\n    at Suite.<anonymous> (/space/workspace/moh-sitereg/e2e/src/authorize.e2e-spec.ts:23:5)\n    at addSpecsToSuite (/space/workspace/moh-sitereg/node_modules/protractor/node_modules/jasmine-core/lib/jasmine-core/jasmine.js:1107:25)\n    at Env.fdescribe (/space/workspace/moh-sitereg/node_modules/protractor/node_modules/jasmine-core/lib/jasmine-core/jasmine.js:1095:7)\n    at fdescribe (/space/workspace/moh-sitereg/node_modules/protractor/node_modules/jasmine-core/lib/jasmine-core/jasmine.js:4428:18)\n    at Object.<anonymous> (/space/workspace/moh-sitereg/e2e/src/authorize.e2e-spec.ts:5:1)\n    at Module._compile (module.js:643:30)\n    at Module.m._compile (/space/workspace/moh-sitereg/node_modules/ts-node/src/index.ts:439:23)\n    at Module._extensions..js (module.js:654:10)\n    at Object.require.extensions.(anonymous function) [as .ts] (/space/workspace/moh-sitereg/node_modules/ts-node/src/index.ts:442:12)"
+      }
+    ],
+    "duration": 3794
+  },
+  {
+    "description": "Moh SiteReg - Group Numbers Page 01. should load the page without issue",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Group Numbers Page 02. should NOT let user to continue without adding a group number",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Group Numbers Page 03. should let user to continue if at least one group number is added",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Group Numbers Page 04. should not let user cont. w/o one group num section complete/let user to delete a group num by clicking the x button",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Group Numbers Page 05. should automatically display the first group number section",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Group Numbers Page 06. should not let user continue with an incomplete group number section",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
   },
   {
     "description": "Moh SiteReg - End to End Test (Happy Path) Should navigate from Organization to Confirmation Page (end-to-end) when all required fields are filled out",
@@ -15,6 +152,521 @@
         "passed": true
       }
     ],
-    "duration": 21833
+    "duration": 10
+  },
+  {
+    "description": "Moh SiteReg - Organization Page 01. should load the page without issue",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Organization Page 02. should NOT let user to continue without clicking the checkbox",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Organization Page 03. should NOT let user to continue without filling out any fields",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Organization Page 04. should let user to continue if all the required fields are filled out",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Organization Page 05. should let user to type the organization num and select organization that will be administering",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Organization Page 06. should not let user continue by clicking the stepper",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 1
+  },
+  {
+    "description": "Moh SiteReg - Organization Page 07. should show all 13 provinces and territories in the dropbox menu",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Review Page 01. should load the page without issue",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 1
+  },
+  {
+    "description": "Moh SiteReg - Review Page 02. should let user continue once details have been reviewed",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Signing Authority Page 01. should load the page without issue",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Signing Authority Page 02. should NOT let user to continue without filling out any fields",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Signing Authority Page 03. should let user to continue if all the required fields are filled out",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Signing Authority Page 04. should let users go back by clicking the stepper",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Signing Authority Page 05. should NOT let user continue by clicking the stepper",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 1
+  },
+  {
+    "description": "Moh SiteReg - Users Page 01. should load the page without issue",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Users Page 02. should let user to continue without filling out any fields",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 1
+  },
+  {
+    "description": "Moh SiteReg - Users Page 03. should let user to continue if all the required fields are filled out",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Users Page 04. should let user to continue when user clicks the x button",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Users Page 05. should delete correct admin if user adds two admins and deletes one of them",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Users Page 06. should NOT be able to continue with an incomplete user section even if another admin is complete",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Access Admins Page 01. should load the page without issue",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 7139
+  },
+  {
+    "description": "Moh SiteReg - Access Admins Page 02. should let user to continue without filling out any fields",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 7837
+  },
+  {
+    "description": "Moh SiteReg - Access Admins Page 03. should let user to continue if all the required fields are filled out",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 10076
+  },
+  {
+    "description": "Moh SiteReg - Access Admins Page 04. should NOT let user to continue when user clicks the x button",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 10296
+  },
+  {
+    "description": "Moh SiteReg - Access Admins Page 05. should delete correct admin if user adds two admins and deletes one of them",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 23817
+  },
+  {
+    "description": "Moh SiteReg - Access Admins Page 06. should NOT be able to continue with an incomplete admin section even if another admin is complete",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 11772
+  },
+  {
+    "description": "Moh SiteReg - Access Admins Page 07. should not be able to access \"_autofill\" dev only URL",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 1
+  },
+  {
+    "description": "Moh SiteReg - Authorize Page 01. should load the page without issue",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 9084
+  },
+  {
+    "description": "Moh SiteReg - Authorize Page 02. should NOT let user to continue without clicking the checkbox",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 7309
+  },
+  {
+    "description": "Moh SiteReg - Authorize Page 03. should let user to continue if the checkbox is clicked",
+    "assertions": [
+      {
+        "passed": false,
+        "errorMsg": "Failed: No element found using locator: By(css selector, input[id=\"consent\"])",
+        "stackTrace": "NoSuchElementError: No element found using locator: By(css selector, input[id=\"consent\"])\n    at elementArrayFinder.getWebElements.then (/space/workspace/moh-sitereg/node_modules/protractor/built/element.js:814:27)\n    at ManagedPromise.invokeCallback_ (/space/workspace/moh-sitereg/node_modules/selenium-webdriver/lib/promise.js:1376:14)\n    at TaskQueue.execute_ (/space/workspace/moh-sitereg/node_modules/selenium-webdriver/lib/promise.js:3084:14)\n    at TaskQueue.executeNext_ (/space/workspace/moh-sitereg/node_modules/selenium-webdriver/lib/promise.js:3067:27)\n    at asyncRun (/space/workspace/moh-sitereg/node_modules/selenium-webdriver/lib/promise.js:2927:27)\n    at /space/workspace/moh-sitereg/node_modules/selenium-webdriver/lib/promise.js:668:7\n    at <anonymous>\n    at process._tickCallback (internal/process/next_tick.js:188:7)Error\n    at ElementArrayFinder.applyAction_ (/space/workspace/moh-sitereg/node_modules/protractor/built/element.js:459:27)\n    at ElementArrayFinder.(anonymous function).args [as click] (/space/workspace/moh-sitereg/node_modules/protractor/built/element.js:91:29)\n    at ElementFinder.(anonymous function).args [as click] (/space/workspace/moh-sitereg/node_modules/protractor/built/element.js:831:22)\n    at AuthorizePage.agreeTermsAndConditions (/space/workspace/moh-sitereg/e2e/src/sitereg.po.ts:264:74)\n    at UserContext.<anonymous> (/space/workspace/moh-sitereg/e2e/src/authorize.e2e-spec.ts:26:18)\n    at /space/workspace/moh-sitereg/node_modules/jasminewd2/index.js:112:25\n    at new ManagedPromise (/space/workspace/moh-sitereg/node_modules/selenium-webdriver/lib/promise.js:1077:7)\n    at ControlFlow.promise (/space/workspace/moh-sitereg/node_modules/selenium-webdriver/lib/promise.js:2505:12)\n    at schedulerExecute (/space/workspace/moh-sitereg/node_modules/jasminewd2/index.js:95:18)\n    at TaskQueue.execute_ (/space/workspace/moh-sitereg/node_modules/selenium-webdriver/lib/promise.js:3084:14)\nFrom: Task: Run it(\"03. should let user to continue if the checkbox is clicked\") in control flow\n    at UserContext.<anonymous> (/space/workspace/moh-sitereg/node_modules/jasminewd2/index.js:94:19)\n    at attempt (/space/workspace/moh-sitereg/node_modules/protractor/node_modules/jasmine-core/lib/jasmine-core/jasmine.js:4297:26)\n    at QueueRunner.run (/space/workspace/moh-sitereg/node_modules/protractor/node_modules/jasmine-core/lib/jasmine-core/jasmine.js:4217:20)\n    at runNext (/space/workspace/moh-sitereg/node_modules/protractor/node_modules/jasmine-core/lib/jasmine-core/jasmine.js:4257:20)\n    at /space/workspace/moh-sitereg/node_modules/protractor/node_modules/jasmine-core/lib/jasmine-core/jasmine.js:4264:13\n    at /space/workspace/moh-sitereg/node_modules/protractor/node_modules/jasmine-core/lib/jasmine-core/jasmine.js:4172:9\n    at /space/workspace/moh-sitereg/node_modules/jasminewd2/index.js:64:48\n    at ControlFlow.emit (/space/workspace/moh-sitereg/node_modules/selenium-webdriver/lib/events.js:62:21)\n    at ControlFlow.shutdown_ (/space/workspace/moh-sitereg/node_modules/selenium-webdriver/lib/promise.js:2674:10)\n    at shutdownTask_.MicroTask (/space/workspace/moh-sitereg/node_modules/selenium-webdriver/lib/promise.js:2599:53)\nFrom asynchronous test: \nError\n    at Suite.<anonymous> (/space/workspace/moh-sitereg/e2e/src/authorize.e2e-spec.ts:23:5)\n    at addSpecsToSuite (/space/workspace/moh-sitereg/node_modules/protractor/node_modules/jasmine-core/lib/jasmine-core/jasmine.js:1107:25)\n    at Env.fdescribe (/space/workspace/moh-sitereg/node_modules/protractor/node_modules/jasmine-core/lib/jasmine-core/jasmine.js:1095:7)\n    at fdescribe (/space/workspace/moh-sitereg/node_modules/protractor/node_modules/jasmine-core/lib/jasmine-core/jasmine.js:4428:18)\n    at Object.<anonymous> (/space/workspace/moh-sitereg/e2e/src/authorize.e2e-spec.ts:5:1)\n    at Module._compile (module.js:643:30)\n    at Module.m._compile (/space/workspace/moh-sitereg/node_modules/ts-node/src/index.ts:439:23)\n    at Module._extensions..js (module.js:654:10)\n    at Object.require.extensions.(anonymous function) [as .ts] (/space/workspace/moh-sitereg/node_modules/ts-node/src/index.ts:442:12)"
+      }
+    ],
+    "duration": 7920
+  },
+  {
+    "description": "Moh SiteReg - Group Numbers Page 01. should load the page without issue",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Group Numbers Page 02. should NOT let user to continue without adding a group number",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Group Numbers Page 03. should let user to continue if at least one group number is added",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 1
+  },
+  {
+    "description": "Moh SiteReg - Group Numbers Page 04. should not let user cont. w/o one group num section complete/let user to delete a group num by clicking the x button",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Group Numbers Page 05. should automatically display the first group number section",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Group Numbers Page 06. should not let user continue with an incomplete group number section",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - End to End Test (Happy Path) Should navigate from Organization to Confirmation Page (end-to-end) when all required fields are filled out",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 1
+  },
+  {
+    "description": "Moh SiteReg - Organization Page 01. should load the page without issue",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Organization Page 02. should NOT let user to continue without clicking the checkbox",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Organization Page 03. should NOT let user to continue without filling out any fields",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Organization Page 04. should let user to continue if all the required fields are filled out",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 1
+  },
+  {
+    "description": "Moh SiteReg - Organization Page 05. should let user to type the organization num and select organization that will be administering",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Organization Page 06. should not let user continue by clicking the stepper",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Organization Page 07. should show all 13 provinces and territories in the dropbox menu",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Review Page 01. should load the page without issue",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Review Page 02. should let user continue once details have been reviewed",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Signing Authority Page 01. should load the page without issue",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Signing Authority Page 02. should NOT let user to continue without filling out any fields",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Signing Authority Page 03. should let user to continue if all the required fields are filled out",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Signing Authority Page 04. should let users go back by clicking the stepper",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Signing Authority Page 05. should NOT let user continue by clicking the stepper",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Users Page 01. should load the page without issue",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Users Page 02. should let user to continue without filling out any fields",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 1
+  },
+  {
+    "description": "Moh SiteReg - Users Page 03. should let user to continue if all the required fields are filled out",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Users Page 04. should let user to continue when user clicks the x button",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Users Page 05. should delete correct admin if user adds two admins and deletes one of them",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Users Page 06. should NOT be able to continue with an incomplete user section even if another admin is complete",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
   }
 ]
