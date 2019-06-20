@@ -23,10 +23,21 @@ export class UpdateStateService {
      *
      * Form values are not initialized by default and must be set by component.
      */
-    public forms: { [key: string]: FormGroup; } = {
-      signingAuthority: null as FormGroup,
-      organizationForm: null as FormGroup,
-      profileForm: null as FormGroup,
-      groupForm: null as FormGroup
+    public forms: UpdateFormTypes = {
+      // AddRemoveUpdate fields can have objects initialized for convenience so
+      // the sub-types can be accessed directly.
+      signingAuthority: {} as AddRemoveUpdate,
     };
+}
+
+export interface UpdateFormTypes {
+  signingAuthority?: AddRemoveUpdate;
+  organizationForm?: FormGroup;
+  profileForm?: FormGroup;
+}
+
+export interface AddRemoveUpdate {
+  add: FormGroup;
+  remove: FormGroup;
+  update: FormGroup;
 }

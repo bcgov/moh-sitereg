@@ -117,7 +117,7 @@ export const  cUpdateValidators = {
     Validators.min(1),
     Validators.pattern(/^[0-9]*$/)
   ]
-}
+};
 
 export function applyMixins(derivedCtor: any, baseCtors: any[]) {
     baseCtors.forEach((baseCtor) => {

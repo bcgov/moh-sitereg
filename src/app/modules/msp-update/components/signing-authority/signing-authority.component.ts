@@ -5,8 +5,10 @@ import { ROUTES_UPDATE } from '../../routing/routes.constants';
 import { funcRemoveStrings } from '@msp-register/constants';
 import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UpdateStateService } from '../../services/update.state.service';
+import { cUserValidators } from '@msp-register/models/core/core-types';
+import { validMultiFormControl } from '@msp-register/models/validator-helpers';
 
 @Component({
     selector: 'sitereg-msp-update-signing-authority',
@@ -14,7 +16,8 @@ import { UpdateStateService } from '../../services/update.state.service';
     styleUrls: ['./signing-authority.component.sass'],
 })
 export class MspDirectUpdateSigningAuthorityComponent implements OnInit {
-    private isUpdate = false;
+    validFormControl: (fg: FormGroup, name: string) => boolean;
+
     get buttonLabel(): string {
         return this.isUpdate ? 'Continue' : 'Skip';
     }
@@ -32,6 +35,8 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit {
         public updateStateService: UpdateStateService,
         private fb: FormBuilder
     ) {
+
+      this.validFormControl = validMultiFormControl;
 
     }
 
@@ -51,29 +56,94 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit {
         this.router.navigate([ROUTES_UPDATE.ACCESS_ADMINS.fullpath]);
     }
 
+    // We have to use getters here, as values change to null which means the
+    // reference is broken.
+    get addFg(): FormGroup {
+      return this.updateStateService.forms.signingAuthority.add;
+    }
+
+    get removeFg(): FormGroup {
+      return this.updateStateService.forms.signingAuthority.remove;
+    }
+
+    get updateFg(): FormGroup {
+      return this.updateStateService.forms.signingAuthority.update;
+    }
+
     addSigningAuthority() {
       this.showAddSigningAuthority = true;
+      this.updateStateService.forms.signingAuthority.add = this.fb.group({
+        userTitle: [null, cUserValidators.userTitle],
+        firstName: [null, cUserValidators.firstName],
+        initial: [null, cUserValidators.initial],
+        lastName: [null, cUserValidators.lastName],
+        jobTitle: [null, cUserValidators.jobTitle],
+        emailAddress: [null, cUserValidators.emailAddress],
+        confirmEmail: [null, cUserValidators.confirmEmail],
+        phone: [null, cUserValidators.phone],
+        ext: [null, cUserValidators.ext],
+        fax: [null, cUserValidators.fax],
+        administeringFor: [null, cUserValidators.administeringFor],
+        directMspAccess: [null, Validators.required],
+      }, {updateOn: 'blur'});
     }
 
     removeSigningAuthority() {
       this.showRemoveSigningAuthority = true;
+      this.updateStateService.forms.signingAuthority.remove = this.fb.group({
+        removeSAEmail: [null, cUserValidators.emailAddress],
+        removeSAUserID: [null] // TODO - Validators
+      }, {updateOn: 'blur'});
     }
 
+    // TODO - Verify validation logic here, it may differ between this and add.
     updateSigningAuthority() {
       this.showUpdateSigningAuthority = true;
+      this.updateStateService.forms.signingAuthority.update = this.fb.group({
+        userTitle: [null, cUserValidators.userTitle],
+        firstName: [null, cUserValidators.firstName],
+        initial: [null, cUserValidators.initial],
+        lastName: [null, cUserValidators.lastName],
+        jobTitle: [null, cUserValidators.jobTitle],
+        emailAddress: [null, cUserValidators.emailAddress],
+        confirmEmail: [null, cUserValidators.confirmEmail],
+        phone: [null, cUserValidators.phone],
+        ext: [null, cUserValidators.ext],
+        fax: [null, cUserValidators.fax],
+        administeringFor: [null, cUserValidators.administeringFor],
+        updateSAEmail: [null, cUserValidators.emailAddress],
+        directMspAccess: [null, Validators.required],
+      }, {updateOn: 'blur'});
     }
 
 
 
     cancelAddSigningAuthority() {
       this.showAddSigningAuthority = false;
+      this.updateStateService.forms.signingAuthority.add = null;
     }
 
     cancelRemoveSigningAuthority() {
       this.showRemoveSigningAuthority = false;
+      this.updateStateService.forms.signingAuthority.remove = null;
     }
 
     cancelUpdateSigningAuthority() {
       this.showUpdateSigningAuthority = false;
+      this.updateStateService.forms.signingAuthority.update = null;
+    }
+
+    private get isUpdate(): boolean {
+      return !(this.showAddSigningAuthority === false &&
+        this.showRemoveSigningAuthority === false &&
+        this.showUpdateSigningAuthority === false);
+    }
+
+    canContinue(){
+      return [this.addFg, this.removeFg, this.updateFg]
+        .filter(x => x !== null && x !== undefined) // only check added form
+        .map(x => x.valid) // get validity
+        .filter(x => x === false) // get invalid forms
+        .length === 0;
     }
 }
