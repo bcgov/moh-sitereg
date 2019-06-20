@@ -11,7 +11,7 @@ import { UpdateStateService } from '../../services/update.state.service';
 @Component({
     selector: 'sitereg-msp-update-groups',
     templateUrl: './groups.component.html',
-    styleUrls: ['./groups.component.sass'],
+    styleUrls: ['./groups.component.scss'],
 })
 export class MspDirectUpdateGroupsComponent implements OnInit {
 
@@ -28,7 +28,7 @@ export class MspDirectUpdateGroupsComponent implements OnInit {
       private fb: FormBuilder
   ) {
 
-    //groupForm
+    // groupForm
   }
 
   ngOnInit() {

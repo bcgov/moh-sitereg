@@ -34,6 +34,7 @@ export interface UpdateFormTypes {
   signingAuthority?: AddRemoveUpdate;
   organizationForm?: FormGroup;
   profileForm?: FormGroup;
+  groupForm?: FormGroup;
 }
 
 export interface AddRemoveUpdate {
