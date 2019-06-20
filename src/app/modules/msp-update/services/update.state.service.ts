@@ -26,6 +26,7 @@ export class UpdateStateService {
     public forms: { [key: string]: FormGroup; } = {
       signingAuthority: null as FormGroup,
       organizationForm: null as FormGroup,
-      profileForm: null as FormGroup
+      profileForm: null as FormGroup,
+      groupForm: null as FormGroup
     };
 }
