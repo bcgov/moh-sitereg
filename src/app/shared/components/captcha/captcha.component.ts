@@ -16,6 +16,10 @@ import {
 import { CaptchaDataService } from '@core/services/captcha-data.service';
 import { HttpResponse } from '@angular/common/http';
 
+/**
+ * TODO: Remove component - captcha component from moh-common-lib imported
+ */
+
 @Component({
     selector: 'sitereg-captcha',
     templateUrl: './captcha.component.html',

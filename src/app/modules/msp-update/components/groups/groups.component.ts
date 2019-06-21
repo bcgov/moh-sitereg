@@ -16,7 +16,6 @@ export class MspDirectUpdateGroupsComponent implements OnInit {
 
   fg: FormGroup;
 
-  private isUpdate = false;
   public showAddMspGrp = false;
   public showRemoveMspGrp = false;
   public showUpdateMspGrpAdmin = false;
@@ -30,7 +29,6 @@ export class MspDirectUpdateGroupsComponent implements OnInit {
       private fb: FormBuilder
   ) {
 
-    // groupForm
   }
 
   ngOnInit() {
@@ -41,34 +39,70 @@ export class MspDirectUpdateGroupsComponent implements OnInit {
     return this.isUpdate ? 'Continue' : 'Skip';
   }
 
-  continue() {
-      // splunk-log
-      this.loggerSvc.logNavigation(
-          this.constructor.name,
-          `Valid Data - Continue button clicked. ${
-              this.globalConfigSvc.applicationId
-          }`
-      );
-      this.progressService.setPageComplete();
-      this.router.navigate([ROUTES_UPDATE.SUBMIT.fullpath]);
+  /**
+   *  We have to use getters here, as values change to null which means the
+   *  reference is broken.
+   */
+
+  get addFg(): FormGroup {
+    return this.updateStateService.forms.groupForm.add;
   }
 
-    // Button functions
-    AddMspGroup() {
-      console.log( 'Add Msp Group clicked' );
-      this.isUpdate = true;
-      this.showAddMspGrp = true;
-    }
+  get removeFg(): FormGroup {
+    return this.updateStateService.forms.groupForm.remove;
+  }
 
-    RemoveMspGroup() {
-      console.log( 'Remove Msp Group clicked' );
-      this.isUpdate = true;
-      this.showRemoveMspGrp = true;
-    }
+  get updateFg(): FormGroup {
+    return this.updateStateService.forms.groupForm.update;
+  }
 
-    UpdateMspGroupAdmin() {
-      console.log( 'Update administration of Msp Group clicked' );
-      this.isUpdate = true;
-      this.showUpdateMspGrpAdmin = true;
-    }
+  // Button functions
+  addMspGroup() {
+    console.log( 'Add Msp Group clicked' );
+    this.showAddMspGrp = true;
+  }
+
+  removeMspGroup() {
+    console.log( 'Remove Msp Group clicked' );
+    this.showRemoveMspGrp = true;
+  }
+
+  updateMspGroupAdmin() {
+    console.log( 'Update administration of Msp Group clicked' );
+    this.showUpdateMspGrpAdmin = true;
+  }
+
+  // X-icon button functions
+  deleteItem() {
+    console.log( 'X-icon button clicked - need logic to delete item' );
+  }
+
+  // Form action bar functions
+  continue() {
+    // splunk-log
+    this.loggerSvc.logNavigation(
+        this.constructor.name,
+        `Valid Data - Continue button clicked. ${
+            this.globalConfigSvc.applicationId
+        }`
+    );
+    this.progressService.setPageComplete();
+    this.router.navigate([ROUTES_UPDATE.SUBMIT.fullpath]);
+  }
+
+
+  canContinue() {
+    return true; // TODO: Add logic to this function - fields required when add/remove/update
+    /*return [this.addFg, this.removeFg, this.updateFg]
+      .filter(x => x !== null && x !== undefined) // only check added form
+      .map(x => x.valid) // get validity
+      .filter(x => x === false) // get invalid forms
+      .length === 0;*/
+  }
+
+  private get isUpdate(): boolean {
+    return !( this.showAddMspGrp === false &&
+              this.showRemoveMspGrp === false &&
+              this.showUpdateMspGrpAdmin === false );
+  }
 }

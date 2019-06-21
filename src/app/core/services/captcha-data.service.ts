@@ -5,6 +5,10 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ServerPayload } from './server-payload.service';
 
+/**
+ * TODO: Needs to be removed - captcha exists in the moh-common-lib
+ */
+
 @Injectable({
     providedIn: 'root',
 })
