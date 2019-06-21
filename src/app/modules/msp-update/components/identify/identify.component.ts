@@ -39,7 +39,7 @@ export class MspDirectUpdateIdentifyComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit() {
-        this.progressService.setItemIncomplete();
+        this.progressService.setPageIncomplete();
     }
 
     ngAfterViewInit() {
@@ -57,7 +57,7 @@ export class MspDirectUpdateIdentifyComponent implements OnInit, AfterViewInit {
             }`
         );
 
-        this.progressService.setItemComplete();
+        this.progressService.setPageComplete();
         this.router.navigate([ROUTES_UPDATE.ORGANIZATION.fullpath]);
     }
 

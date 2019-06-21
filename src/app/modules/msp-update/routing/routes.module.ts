@@ -3,14 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { GlobalConfigService } from '@shared/services/global-config.service';
 import { MspDirectUpdateComponent } from '../components/update/update.component';
 import { routes } from './routes';
-import { MspDirectUpdateRouteGuard } from './route.guard';
+import { RouteGuardService } from 'moh-common-lib';
+
 
 const moduleRoutes: Routes = [
     {
         path: '',
         component: MspDirectUpdateComponent,
-        children: routes,
-        canActivateChild: [MspDirectUpdateRouteGuard],
+        children: routes
     },
 ];
 @NgModule({

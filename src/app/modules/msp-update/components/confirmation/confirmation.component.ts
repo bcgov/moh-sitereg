@@ -35,7 +35,7 @@ export class MspDirectUpdateConfirmationComponent implements OnInit {
 
     ngOnInit() {
         console.log(`%c%o : %o`, 'color:green', this.componentInfo);
-        this.progressService.setItemIncomplete();
+        this.progressService.setPageIncomplete();
     }
 
     continue() {
@@ -46,7 +46,7 @@ export class MspDirectUpdateConfirmationComponent implements OnInit {
                 this.globalConfigSvc.applicationId
             }`
         );
-        this.progressService.setItemComplete();
+        this.progressService.setPageComplete();
         this.progressService.enableConfirmation = false;
         this.globalConfigSvc.logRefreshMspApplicationUUID();
         this.router.navigate([ROUTES_UPDATE.IDENTIFY.fullpath]);

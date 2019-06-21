@@ -33,7 +33,7 @@
     "core-js": "^2.5.4",
     "faker": "^4.1.0",
     "font-awesome": "^4.7.0",
-    "moh-common-lib": "1.6.0",
+    "moh-common-lib": "^1.6.0",
     "moment": "^2.24.0",
     "mygovbc-bootstrap-theme": "^0.4.1",
     "ngx-bootstrap": "^3.2.0",
@@ -46,6 +46,7 @@
     "rxjs": "^6.3.3",
     "sha1": "^1.1.1",
     "tslib": "^1.10.0",
+    "zlib": "^1.0.5",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {

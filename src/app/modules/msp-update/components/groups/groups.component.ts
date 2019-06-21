@@ -34,7 +34,7 @@ export class MspDirectUpdateGroupsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.progressService.setItemIncomplete();
+    this.progressService.setPageIncomplete();
   }
 
   get buttonLabel() {
@@ -49,7 +49,7 @@ export class MspDirectUpdateGroupsComponent implements OnInit {
               this.globalConfigSvc.applicationId
           }`
       );
-      this.progressService.setItemComplete();
+      this.progressService.setPageComplete();
       this.router.navigate([ROUTES_UPDATE.SUBMIT.fullpath]);
   }
 

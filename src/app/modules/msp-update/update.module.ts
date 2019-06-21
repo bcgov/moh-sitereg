@@ -13,8 +13,11 @@ import { MspDirectUpdateGroupsComponent } from './components/groups/groups.compo
 import { MspDirectUpdateSubmitComponent } from './components/submit/submit.component';
 import { MspDirectUpdateAutofillComponent } from './components/autofill/autofill.component';
 import { MspDirectUpdateConfirmationComponent } from './components/confirmation/confirmation.component';
-import { MspRegisterUserMspComponent } from '@msp-register/components/core/msp-register-user-msp/msp-register-user-msp.component';
-import { MspRegisterUserComponent } from '@msp-register/components/core/msp-register-user/msp-register-user.component';
+import { MspDirectUpdateProgressService } from './services/progress.service';
+import { AbstractPgCheckService, RouteGuardService, SharedCoreModule } from 'moh-common-lib';
+import { RouterModule } from '@angular/router';
+import { MspRegisterUserMspComponent } from '../msp-register/components/core/msp-register-user-msp/msp-register-user-msp.component';
+import { MspRegisterUserComponent } from '../msp-register/components/core/msp-register-user/msp-register-user.component';
 
 @NgModule({
     declarations: [
@@ -37,8 +40,14 @@ import { MspRegisterUserComponent } from '@msp-register/components/core/msp-regi
         CommonModule,
         SharedModule,
         CaptchaModule,
-
+        RouterModule,
         MspDirectUpdateRoutesModule,
+        SharedCoreModule
     ],
+    providers: [
+      MspDirectUpdateProgressService,
+      { provide: AbstractPgCheckService, useExisting: MspDirectUpdateProgressService },
+      RouteGuardService
+    ]
 })
 export class MspDirectUpdateModule {}

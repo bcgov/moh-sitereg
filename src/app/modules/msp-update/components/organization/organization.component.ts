@@ -34,7 +34,7 @@ export class MspDirectUpdateOrganizationComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.progressService.setItemIncomplete();
+        this.progressService.setPageIncomplete();
     }
 
     continue() {
@@ -45,7 +45,7 @@ export class MspDirectUpdateOrganizationComponent implements OnInit {
                 this.globalConfigSvc.applicationId
             }`
         );
-        this.progressService.setItemComplete();
+        this.progressService.setPageComplete();
         this.router.navigate([ROUTES_UPDATE.SIGNING_AUTHORITY.fullpath]);
     }
 }

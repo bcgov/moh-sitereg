@@ -34,6 +34,10 @@ export class MspDirectUpdateComponent extends Container implements OnInit {
     ) {
         super();
         this.setProgressItems();
+
+        // Set values
+        progressService.getUpdateItems();
+
     }
 
     ngOnInit() {
@@ -44,9 +48,6 @@ export class MspDirectUpdateComponent extends Container implements OnInit {
             funcRemoveStrings(['Component'], this.constructor.name),
             this.globalConfigSvc.applicationId
         );
-
-        this.progressService.getUpdateItems();
-
         console.log('ANSWER:%o', this.showStepper());
     }
 
