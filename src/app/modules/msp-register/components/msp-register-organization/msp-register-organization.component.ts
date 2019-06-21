@@ -65,15 +65,15 @@ export class MspRegisterOrganizationComponent implements OnInit, AfterViewInit {
 
     ngOnInit() {
         this.registrationService.setItemIncomplete();
-        console.log(
-            `%c%o : %o`,
-            'color:green',
-            funcRemoveStrings(
-                ['MspRegister', 'Component'],
-                this.constructor.name
-            ).toUpperCase(),
-            this.globalConfigSvc.applicationId
-        );
+        // console.log(
+        //     `%c%o : %o`,
+        //     'color:green',
+        //     funcRemoveStrings(
+        //         ['MspRegister', 'Component'],
+        //         this.constructor.name
+        //     ).toUpperCase(),
+        //     this.globalConfigSvc.applicationId
+        // );
         // this.registrationService.setItemIncomplete();
 
         this.fg.valueChanges.subscribe((obs) => {

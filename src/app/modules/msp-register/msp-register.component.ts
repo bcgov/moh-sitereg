@@ -28,12 +28,12 @@ export class MspRegisterComponent extends Container implements OnInit {
 
     ngOnInit() {
         // this.globalConfigSvc.logRefreshMspApplicationUUID();
-        console.log(
-            `%c %o \n MSP Application id: %o`,
-            'color:green',
-            funcRemoveStrings(['Component'], this.constructor.name),
-            this.globalConfigSvc.applicationId
-        );
+        // console.log(
+        //     `%c %o \n MSP Application id: %o`,
+        //     'color:green',
+        //     funcRemoveStrings(['Component'], this.constructor.name),
+        //     this.globalConfigSvc.applicationId
+        // );
 
         this.registrationService.getRegisterationItems();
 
@@ -46,6 +46,6 @@ export class MspRegisterComponent extends Container implements OnInit {
         });
 
         this.setProgressSteps(progressItemRoute);
-        console.log('PATH: %o', this.router.url);
+        // console.log('PATH: %o', this.router.url);
     }
 }

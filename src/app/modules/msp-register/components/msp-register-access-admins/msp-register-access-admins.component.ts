@@ -52,15 +52,15 @@ export class MspRegisterAccessAdminsComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log(
-            `%c%o : %o`,
-            'color:green',
-            funcRemoveStrings(
-                ['MspRegister', 'Component'],
-                this.constructor.name
-            ).toUpperCase(),
-            this.globalConfigSvc.applicationId
-        );
+        // console.log(
+        //     `%c%o : %o`,
+        //     'color:green',
+        //     funcRemoveStrings(
+        //         ['MspRegister', 'Component'],
+        //         this.constructor.name
+        //     ).toUpperCase(),
+        //     this.globalConfigSvc.applicationId
+        // );
 
         this.registrationService.setItemIncomplete();
     }

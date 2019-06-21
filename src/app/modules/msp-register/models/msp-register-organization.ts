@@ -6,6 +6,7 @@ import {
     maxLength,
     required,
     organizationNumberValidator,
+    trailingSpacesValidator,
 } from './validator-helpers';
 import { ctFormControlString, ctFormControlBoolean } from './core/core-types';
 import { GlobalConfigService } from '@shared/services/global-config.service';
@@ -30,12 +31,12 @@ export class MspRegisterOrganization extends GenerateForm<IMspOrganization>
             // possible remedy: these validators are added as required , must be removed before validating.
 
             // organizationNumber: [groupNumberValidator()], // TBD: opt-out, this is MSP group number
-            name: [required, Validators.maxLength(100)],
+            name: [required, Validators.maxLength(100), trailingSpacesValidator()],
             suite: [Validators.maxLength(10)],
-            street: [required, Validators.maxLength(10)],
-            streetName: [required, Validators.maxLength(75)],
+            street: [required, Validators.maxLength(10), trailingSpacesValidator()],
+            streetName: [required, Validators.maxLength(75), trailingSpacesValidator()],
             addressLine2: [Validators.maxLength(200)], // todo: test blank behaviour and validate form
-            city: [required, Validators.minLength(1), maxLength(25)],
+            city: [required, Validators.minLength(1), maxLength(25), trailingSpacesValidator()],
             province: [required, Validators.minLength(2), maxLength(3)],
             postalCode: [
                 required,

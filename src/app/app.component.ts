@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
             : console.error(version.message);
 
         this.splash.values.subscribe((splashVals) => {
-            console.log(splashVals);
+            // console.log(splashVals);
             if (splashVals) {
                 this.globalConfigSvc.debug = splashVals.SPA_ENV_SITEREG_DEBUG;
 

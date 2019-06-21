@@ -2,9 +2,10 @@
 <common-page-framework>
   <h2 class="border-bottom">Group Numbers</h2>
   <aside>
-  These are the <b>MSP Group Numbers</b> you will be administering for MSP Direct. The form should include at least one MSP Group Number.
-</aside>
-<div class='row mb-4'>
+    These are the <b>MSP Group Numbers</b> you will be administering for MSP Direct. The form should include at least
+    one MSP Group Number.
+  </aside>
+  <div class='row mb-4'>
     <div class='col-md-6 p-4'>
       <a (click)='addFormGroup()'>
         <button class="btn btn-block btn-lg btn-secondary">
@@ -14,7 +15,7 @@
     </div>
   </div>
   <!-- <sitereg-page-sections *ngFor="let fg of fgs; index as i"> -->
-    <div *ngFor="let fg of fgs; index as i">
+  <div *ngFor="let fg of fgs; index as i">
     <div class="row border-bottom">
       <div class="col-auto mr-auto">
         <h3> Group Number #{{fgs.length-i}}</h3>
@@ -32,34 +33,34 @@
         <label class="control-label" for="groupNumber">MSP Group Number #</label>
         <input id="groupNumber" formControlName="groupNumber" class="form-control" maxlength="7">
         <sitereg-error-box [error]="validFormControl(fg, 'groupNumber')"
-          errorMessage="Invalid Group Number, Group number must be 7 digits long."></sitereg-error-box>
+          errorMessage="Invalid Group Number, Group number must be 7 digits long.">
+        </sitereg-error-box>
       </div>
+      <!--Question Third Party  -->
+      <!-- <div class="form-group col-sm-8 p-sm-0" >
+        <label class="control-label">Will this group be administered by a 3rd Party Administrator?  </label>
+        <common-radio class="pt-0 mt-0" formControlName="thirdParty" [radioLabels]='[{"label": "No", "value": "false"},{ "label": "Yes", "value": "true"}]'  [value]="thirdParty" display="inline-block"> </common-radio>       
+      </div> -->
 
       <!--Question Third Party -->
-      <div class="form-group col-sm-6 p-sm-0" *ngIf="organization.thirdParty">
-        <label class="control-label">Will this group be administered by a 3rd Party Administrator?
-        </label>
+      <div class="form-group col-sm-8 p-sm-0" *ngIf="organization.thirdParty" >
+        <label class="control-label">Will this group be administered by a 3rd Party Administrator? </label>
         <br />
-        <!--No -->
         <div class="md-radio md-radio-inline">
-          <input formControlName="thirdParty" type="radio" id="bcfalse" tabindex="0" [value]="false">
-          <label for="bcfalse">
-            No
-          </label>
-          <!--Yes-->
-          <input formControlName="thirdParty" type="radio" name="" id="bctrue" tabindex="0" [value]="true">
-          <label for="bctrue">
-            Yes
-          </label>
+          <input formControlName="thirdParty" type="radio" id="bcfalse_{{i}}" tabindex="0" [value]="false"> <label
+            for="bcfalse_{{i}}">No</label>
+          <input formControlName="thirdParty" type="radio" id="bctrue__{{i}}" tabindex="0" [value]="true"> <label
+            for="bctrue__{{i}}">Yes</label>
         </div>
       </div>
+
     </form>
-    </div>
-    <!-- </sitereg-page-sections> -->
-    <div *ngIf="globalConfigSvc.debug">
-        Debugging purposes only:
-        <ngx-json-viewer [json]="schemaObject()" [expanded]="true"></ngx-json-viewer>
-    </div>
+  </div>
+  <!-- </sitereg-page-sections> -->
+  <div *ngIf="globalConfigSvc.debug">
+    Debugging purposes only:
+    <ngx-json-viewer [json]="schemaObject()" [expanded]="true"></ngx-json-viewer>
+  </div>
 </common-page-framework>
 <common-form-action-bar (btnClick)="continue()" [canContinue]="validFormGroup(fgs)">
 </common-form-action-bar>
