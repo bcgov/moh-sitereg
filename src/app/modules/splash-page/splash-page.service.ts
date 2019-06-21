@@ -54,7 +54,7 @@ export class SplashPageService {
                 resolve(this.maintenanceMode);
             } else {
                 this.envService.values.subscribe((envs) => {
-                    console.log('ENVIORMENT:%o', envs);
+                    // console.log('ENVIORMENT:%o', envs);
                     this.loaded = true;
                     this.maintenanceMode =
                         envs.SPA_ENV_SITEREG_MAINTENANCE_FLAG.toLowerCase() ===

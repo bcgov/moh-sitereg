@@ -67,6 +67,17 @@ export function postalCodeValidator(): ValidatorFn {
     };
 }
 
+export function trailingSpacesValidator(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+        const forbidden = !/^[^\s]+(\s+[^\s]+)*$/.test(
+            control.value
+        );
+        return forbidden
+            ? { invalidText: { value: control.value } }
+            : null;
+    };
+}
+
 export function emailValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
         // tslint:disable-next-line: max-line-length

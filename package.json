@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --host 0.0.0.0 --port 4200 -o",
+    "dev": "npm run start",
     "prebuild": "node src/version.js",
     "build": "ng build",
     "test": "ng test",

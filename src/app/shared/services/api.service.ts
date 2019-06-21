@@ -55,12 +55,12 @@ export class MspRegisterApiService extends AbstractHttpService {
             `Bearer ${this._token}`
         );
 
-        if (!environment.production) {
-            console.log('ApiService token set:', {
-                token: this._token,
-                headers: this._headers,
-            });
-        }
+        // if (!environment.production) {
+        //     console.log('ApiService token set:', {
+        //         token: this._token,
+        //         headers: this._headers,
+        //     });
+        // }
     }
 
     //#endregion
@@ -144,7 +144,7 @@ export class MspRegisterApiService extends AbstractHttpService {
             applicationType: siteRegRequest.applicationType,
         };
 
-        console.log(`%c  url: %o body: %o `, 'color:blue', url, body);
+        // console.log(`%c  url: %o body: %o `, 'color:blue', url, body);
 
         return this.post<PayloadInterface>(url, body);
         // return this.post<ISiteRegRequest>(url, params);
