@@ -9,6 +9,7 @@ import { MspDirectUpdateGroupsComponent } from '../components/groups/groups.comp
 import { MspDirectUpdateSubmitComponent } from '../components/submit/submit.component';
 import { MspDirectUpdateAutofillComponent } from '../components/autofill/autofill.component';
 import { MspDirectUpdateConfirmationComponent } from '../components/confirmation/confirmation.component';
+import { RouteGuardService } from 'moh-common-lib';
 
 export const routes: Routes = [
     {
@@ -27,36 +28,42 @@ export const routes: Routes = [
         path: ROUTES_UPDATE.ORGANIZATION.path,
         component: MspDirectUpdateOrganizationComponent,
         data: { title: ROUTES_UPDATE.ORGANIZATION.title },
+        canActivate: [RouteGuardService]
     },
     {
         // path: 'signing-authority',
         path: ROUTES_UPDATE.SIGNING_AUTHORITY.path,
         component: MspDirectUpdateSigningAuthorityComponent,
         data: { title: ROUTES_UPDATE.SIGNING_AUTHORITY.title },
+        canActivate: [RouteGuardService]
     },
     {
         // path: 'access-admins',
         path: ROUTES_UPDATE.ACCESS_ADMINS.path,
         component: MspDirectUpdateAccessAdministratorComponent,
         data: { title: ROUTES_UPDATE.ACCESS_ADMINS.title },
+        canActivate: [RouteGuardService]
     },
     {
         // path: 'users',
         path: ROUTES_UPDATE.USERS.path,
         component: MspDirectUpdateUsersComponent,
         data: { title: ROUTES_UPDATE.USERS.title },
+        canActivate: [RouteGuardService]
     },
     {
         // path: 'group-numbers',
         path: ROUTES_UPDATE.GROUP_NUMBERS.path,
         component: MspDirectUpdateGroupsComponent,
         data: { title: ROUTES_UPDATE.GROUP_NUMBERS.title },
+        canActivate: [RouteGuardService]
     },
     {
         // path: 'Submit',
         path: ROUTES_UPDATE.SUBMIT.path,
         component: MspDirectUpdateSubmitComponent,
         data: { title: ROUTES_UPDATE.SUBMIT.title },
+        canActivate: [RouteGuardService]
     },
     {
         // path: 'confirmation',

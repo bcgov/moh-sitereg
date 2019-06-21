@@ -12,7 +12,7 @@ import { cUserValidators, cUpdateValidators } from '@msp-register/models/core/co
 @Component({
     selector: 'sitereg-msp-update-identify',
     templateUrl: './identify.component.html',
-    styleUrls: ['./identify.component.sass'],
+    styleUrls: ['./identify.component.scss'],
 })
 export class MspDirectUpdateIdentifyComponent implements OnInit, AfterViewInit {
     @ViewChild('consentModal') consentModal;
@@ -39,7 +39,7 @@ export class MspDirectUpdateIdentifyComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit() {
-        this.progressService.setItemIncomplete();
+        this.progressService.setPageIncomplete();
     }
 
     ngAfterViewInit() {
@@ -57,7 +57,7 @@ export class MspDirectUpdateIdentifyComponent implements OnInit, AfterViewInit {
             }`
         );
 
-        this.progressService.setItemComplete();
+        this.progressService.setPageComplete();
         this.router.navigate([ROUTES_UPDATE.ORGANIZATION.fullpath]);
     }
 

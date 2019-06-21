@@ -9,7 +9,7 @@ import { GlobalConfigService } from '@shared/services/global-config.service';
 @Component({
     selector: 'sitereg-msp-update-submit',
     templateUrl: './submit.component.html',
-    styleUrls: ['./submit.component.sass'],
+    styleUrls: ['./submit.component.scss'],
 })
 export class MspDirectUpdateSubmitComponent implements OnInit {
     get componentInfo(): string {
@@ -30,7 +30,7 @@ export class MspDirectUpdateSubmitComponent implements OnInit {
 
     ngOnInit() {
         console.log(`%c%o : %o`, 'color:green', this.componentInfo);
-        this.progressService.setItemIncomplete();
+        this.progressService.setPageIncomplete();
     }
 
     continue() {
@@ -42,7 +42,7 @@ export class MspDirectUpdateSubmitComponent implements OnInit {
             }`
         );
         this.progressService.enableConfirmation = true;
-        this.progressService.setItemComplete();
+        this.progressService.setPageComplete();
         this.router.navigate([ROUTES_UPDATE.CONFIRMATION.fullpath]);
     }
 }

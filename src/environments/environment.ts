@@ -11,7 +11,9 @@ export const environment = {
     captchaApiBaseUrl: '/sitereg/api/captcha',
     envServerUrl: '/sitereg/api/env',
     logHTTPRequestsToConsole: true,
-    bypassGuards: false,
+
+    /** Implemented in msp-update module */
+    bypassGuards: true,
     bypassSplashPage: false,
     promptOnExit: false,
     purgeWhenInactive: false,

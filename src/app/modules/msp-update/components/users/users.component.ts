@@ -9,14 +9,14 @@ import { GlobalConfigService } from '@shared/services/global-config.service';
 @Component({
     selector: 'sitereg-msp-update-users',
     templateUrl: './users.component.html',
-    styleUrls: ['./users.component.sass'],
+    styleUrls: ['./users.component.scss'],
 })
 export class MspDirectUpdateUsersComponent implements OnInit {
     private isUpdate = false;
     get buttonLabel(): string {
         return this.isUpdate ? 'Continue' : 'Skip';
     }
-    
+
     get componentInfo(): string {
         return (
             `${funcRemoveStrings(
@@ -35,7 +35,7 @@ export class MspDirectUpdateUsersComponent implements OnInit {
 
     ngOnInit() {
         console.log(`%c%o : %o`, 'color:green', this.componentInfo);
-        this.progressService.setItemIncomplete();
+        this.progressService.setPageIncomplete();
     }
 
     continue() {
@@ -46,7 +46,7 @@ export class MspDirectUpdateUsersComponent implements OnInit {
                 this.globalConfigSvc.applicationId
             }`
         );
-        this.progressService.setItemComplete();
+        this.progressService.setPageComplete();
         this.router.navigate([ROUTES_UPDATE.GROUP_NUMBERS.fullpath]);
     }
 }

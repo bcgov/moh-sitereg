@@ -14,6 +14,7 @@ import {
 export class MspRegisterUserMspComponent implements AfterViewInit {
     @Input() fg: FormGroup;
     @Input() showMspDirectAccessQuestion = false;
+    @Input() showAdministeringMSPForQuestion = true; // needed in MSP Updates only
     validFormControl: (fg: FormGroup, name: string) => boolean;
 
     constructor(private router: Router) {
