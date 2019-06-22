@@ -90,8 +90,9 @@ export class MspDirectUpdateGroupsComponent implements OnInit {
   }
 
   // X-icon button functions
-  deleteItem() {
-    console.log( 'X-icon button clicked - need logic to delete item' );
+  deleteAddGrpItem( idx: number ) {
+    console.log( 'X-icon button clicked - need logic to delete item', idx );
+    this.addGrpArray.removeAt( idx );
   }
 
   // Form action bar functions
