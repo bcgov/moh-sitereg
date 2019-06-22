@@ -9,9 +9,10 @@ import { GlobalConfigService } from './services/global-config.service';
 import { MspRegisterApiService } from './services/api.service';
 import { LoggerService } from './../shared/services/logger.service';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
+import { MspGroupNoComponent } from './components/msp-group-no/msp-group-no.component';
 
 @NgModule({
-    declarations: [PageSectionsComponent, ErrorBoxComponent],
+    declarations: [PageSectionsComponent, ErrorBoxComponent, MspGroupNoComponent],
     imports: [
         CommonModule,
         SharedCoreModule,
@@ -28,6 +29,7 @@ import { NgxJsonViewerModule } from 'ngx-json-viewer';
         CaptchaModule,
         ErrorBoxComponent,
         NgxJsonViewerModule,
+        MspGroupNoComponent
     ],
 })
 export class SharedModule {}

@@ -11,28 +11,64 @@
     </div>
   </common-page-section>
 
-  <common-page-section layout='noTips' *ngIf="showAddMspGrp" class="p-4">
+  <common-page-section layout='noTips' *ngIf="showAddMspGrp" class="pt-4">
       <form [formGroup]="addFg">
         <div formArrayName="addGrpItems">
-          <div *ngFor="let item of addGrpArray.controls; let idx = index" [formGroupName]="idx">
+          <div *ngFor="let item of addGrpArray.controls; let idx = index"
+              [formGroupName]="idx"
+              class="pt-2">
             <common-xicon-button label="Add Msp Group" (clickEvent)="deleteAddGrpItem(idx)"></common-xicon-button>
             <h4 class='border-bottom'>Add new MSP Group #{{idx + 1}}</h4>
 
-            <label for="{{idx}}">Msp Group Number</label>
-            <input id="{{idx}}" type="input" formControlName="groupNo">
+            <div class="form-group col-sm-6 p-sm-0">
+              <sitereg-msp-group-no labelforId="goupNo_{{idx}}"
+                                    formControlName="groupNo"></sitereg-msp-group-no>
+              <common-radio [radioLabels]="radioBtnLabels"
+                            formControlName="thirdPartyAdmin"
+                            label="Will this group be administered by a Third Party Administrator?"></common-radio>
+            </div>
           </div>
         </div>
     </form>
   </common-page-section>
 
-  <common-page-section layout='noTips' *ngIf="showRemoveMspGrp" class="p-4">
-    <common-xicon-button label="Remove Msp Group" (clickEvent)="deleteItem()"></common-xicon-button>
-    <h4 class='border-bottom'>Remove MSP Group #1</h4>
+  <common-page-section layout='noTips' *ngIf="showRemoveMspGrp" class="pt-4">
+    <form [formGroup]="removeFg">
+        <div formArrayName="removeGrpItems">
+          <div *ngFor="let item of removeGrpArray.controls; let idx = index"
+               [formGroupName]="idx"
+               class="pt-2">
+            <common-xicon-button label="Remove Msp Group" (clickEvent)="deleteRemoveGrpItem(idx)"></common-xicon-button>
+            <h4 class='border-bottom'>Remove new MSP Group #{{idx + 1}}</h4>
+
+            <div class="form-group col-sm-6 p-sm-0">
+              <sitereg-msp-group-no labelforId="goupNo_{{idx}}"
+                                    formControlName="groupNo"></sitereg-msp-group-no>
+            </div>
+          </div>
+        </div>
+    </form>
   </common-page-section>
 
-  <common-page-section layout='noTips' *ngIf="showUpdateMspGrpAdmin" class="p-4">
-    <common-xicon-button label="Update Msp Group Admin" (clickEvent)="deleteItem()"></common-xicon-button>
-    <h4 class='border-bottom'>Update administration of MSP Group #1</h4>
+  <common-page-section layout='noTips' *ngIf="showUpdateMspGrpAdmin" class="pt-4">
+    <form [formGroup]="updateFg">
+        <div formArrayName="updateGrpItems">
+          <div *ngFor="let item of updateGrpArray.controls; let idx = index"
+              [formGroupName]="idx"
+              class="pt-2">
+            <common-xicon-button label="Update administration of MSP Group" (clickEvent)="deleteUpdateGrpItem(idx)"></common-xicon-button>
+            <h4 class='border-bottom'>Update administration of MSP Group #{{idx + 1}}</h4>
+
+            <div class="form-group col-sm-6 p-sm-0">
+              <sitereg-msp-group-no labelforId="goupNo_{{idx}}"
+                                    formControlName="groupNo"></sitereg-msp-group-no>
+              <common-radio [radioLabels]="radioBtnLabels"
+                            formControlName="thirdPartyAdmin"
+                            label="Is the group managed bya Third Party Administrator?"></common-radio>
+            </div>
+          </div>
+        </div>
+    </form>
   </common-page-section>
 
 </common-page-framework>
