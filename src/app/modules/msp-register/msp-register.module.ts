@@ -41,6 +41,10 @@ import { MspRegisterReviewComponent } from './components/msp-register-review/msp
         MspRegisterRoutingModule,
     ],
     providers: [],
-    exports: [MspRegisterAuthorizeAccessComponent],
+    exports: [
+      MspRegisterAuthorizeAccessComponent,
+      MspRegisterUserMspComponent,
+      MspRegisterUserComponent
+    ],
 })
 export class MspRegisterModule {}

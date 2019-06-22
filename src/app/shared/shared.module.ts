@@ -4,15 +4,15 @@ import { SharedCoreModule } from 'moh-common-lib';
 import { CaptchaModule } from 'moh-common-lib/captcha';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { PageSectionsComponent } from './components/page-sections/page-sections.component';
-import { CaptchaComponent } from './components/captcha/captcha.component';
 import { ErrorBoxComponent } from './components/error-box/error-box.component';
 import { GlobalConfigService } from './services/global-config.service';
 import { MspRegisterApiService } from './services/api.service';
 import { LoggerService } from './../shared/services/logger.service';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
+import { MspGroupNoComponent } from './components/msp-group-no/msp-group-no.component';
 
 @NgModule({
-    declarations: [PageSectionsComponent, CaptchaComponent, ErrorBoxComponent],
+    declarations: [PageSectionsComponent, ErrorBoxComponent, MspGroupNoComponent],
     imports: [
         CommonModule,
         SharedCoreModule,
@@ -26,9 +26,10 @@ import { NgxJsonViewerModule } from 'ngx-json-viewer';
         SharedCoreModule,
         ReactiveFormsModule,
         PageSectionsComponent,
-        CaptchaComponent,
+        CaptchaModule,
         ErrorBoxComponent,
         NgxJsonViewerModule,
+        MspGroupNoComponent
     ],
 })
 export class SharedModule {}

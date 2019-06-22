@@ -18,6 +18,7 @@ import { AbstractPgCheckService, RouteGuardService, SharedCoreModule } from 'moh
 import { RouterModule } from '@angular/router';
 import { MspRegisterUserMspComponent } from '../msp-register/components/core/msp-register-user-msp/msp-register-user-msp.component';
 import { MspRegisterUserComponent } from '../msp-register/components/core/msp-register-user/msp-register-user.component';
+import { MspRegisterModule } from '../msp-register/msp-register.module';
 
 @NgModule({
     declarations: [
@@ -32,9 +33,6 @@ import { MspRegisterUserComponent } from '../msp-register/components/core/msp-re
         MspDirectUpdateAutofillComponent,
         MspDirectUpdateConfirmationComponent,
 
-
-        MspRegisterUserMspComponent,
-        MspRegisterUserComponent
     ],
     imports: [
         CommonModule,
@@ -42,7 +40,13 @@ import { MspRegisterUserComponent } from '../msp-register/components/core/msp-re
         CaptchaModule,
         RouterModule,
         MspDirectUpdateRoutesModule,
-        SharedCoreModule
+        SharedCoreModule,
+
+        /** TODO: MspRegisterUserMspComponent & MspRegisterUserComponent should be in the core
+         *        or shared. Declaring the component within this module causes the register
+         *        page fail when try to navigate to it.
+         */
+        MspRegisterModule
     ],
     providers: [
       MspDirectUpdateProgressService,

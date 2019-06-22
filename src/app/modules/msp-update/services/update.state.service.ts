@@ -1,11 +1,4 @@
 import { Injectable } from '@angular/core';
-import {
-    Router,
-    UrlTree,
-    UrlSegmentGroup,
-    PRIMARY_OUTLET,
-    UrlSegment,
-} from '@angular/router';
 import { UpdatePerson } from '@core/models/person.model';
 import { FormGroup } from '@angular/forms';
 import { environment } from 'src/environments/environment';
@@ -27,6 +20,8 @@ export class UpdateStateService {
       // AddRemoveUpdate fields can have objects initialized for convenience so
       // the sub-types can be accessed directly.
       signingAuthority: {} as AddRemoveUpdate,
+
+      mspGroups: {} as AddRemoveUpdate,
     };
 }
 
@@ -34,7 +29,7 @@ export interface UpdateFormTypes {
   signingAuthority?: AddRemoveUpdate;
   organizationForm?: FormGroup;
   profileForm?: FormGroup;
-  groupForm?: FormGroup;
+  mspGroups?: AddRemoveUpdate;
 }
 
 export interface AddRemoveUpdate {
