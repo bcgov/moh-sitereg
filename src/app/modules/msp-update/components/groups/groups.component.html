@@ -12,8 +12,18 @@
   </common-page-section>
 
   <common-page-section layout='noTips' *ngIf="showAddMspGrp" class="p-4">
-    <common-xicon-button label="Add Msp Group" (clickEvent)="deleteItem()"></common-xicon-button>
-    <h4 class='border-bottom'>Add new MSP Group #1</h4>
+      <form [formGroup]="addFg">
+        -- Allow user to add Msp Group Numbers --
+        <div formArrayName="addGrpItems">
+          <div *ngFor="let item of addGrpArray.controls; let idx = index" [formGroupName]="idx">
+            <common-xicon-button label="Add Msp Group" (clickEvent)="deleteItem()"></common-xicon-button>
+            <h4 class='border-bottom'>Add new MSP Group #{{idx}}</h4>
+
+            <label for="{{idx}}">Msp Group Number</label>
+            <input id="{{idx}}" type="input" formControlName="groupNo">
+          </div>
+        </div>
+    </form>
   </common-page-section>
 
   <common-page-section layout='noTips' *ngIf="showRemoveMspGrp" class="p-4">

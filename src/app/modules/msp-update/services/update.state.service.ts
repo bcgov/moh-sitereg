@@ -20,6 +20,8 @@ export class UpdateStateService {
       // AddRemoveUpdate fields can have objects initialized for convenience so
       // the sub-types can be accessed directly.
       signingAuthority: {} as AddRemoveUpdate,
+
+      mspGroups: {} as AddRemoveUpdate,
     };
 }
 
@@ -27,7 +29,7 @@ export interface UpdateFormTypes {
   signingAuthority?: AddRemoveUpdate;
   organizationForm?: FormGroup;
   profileForm?: FormGroup;
-  groupForm?: AddRemoveUpdate;
+  mspGroups?: AddRemoveUpdate;
 }
 
 export interface AddRemoveUpdate {

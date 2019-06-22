@@ -4,7 +4,7 @@ import { MspDirectUpdateProgressService } from '../../services/progress.service'
 import { ROUTES_UPDATE } from '../../routing/routes.constants';
 import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, FormArray, Validators, FormControl } from '@angular/forms';
 import { UpdateStateService } from '../../services/update.state.service';
 
 @Component({
@@ -14,20 +14,16 @@ import { UpdateStateService } from '../../services/update.state.service';
 })
 export class MspDirectUpdateGroupsComponent implements OnInit {
 
-  fg: FormGroup;
-
   public showAddMspGrp = false;
   public showRemoveMspGrp = false;
   public showUpdateMspGrpAdmin = false;
 
-  constructor(
-      private router: Router,
-      private progressService: MspDirectUpdateProgressService,
-      private loggerSvc: LoggerService,
-      private globalConfigSvc: GlobalConfigService,
-      public updateStateService: UpdateStateService,
-      private fb: FormBuilder
-  ) {
+  constructor( private router: Router,
+               private progressService: MspDirectUpdateProgressService,
+               private loggerSvc: LoggerService,
+               private globalConfigSvc: GlobalConfigService,
+               public updateStateService: UpdateStateService,
+               private fb: FormBuilder ) {
 
   }
 
@@ -40,26 +36,47 @@ export class MspDirectUpdateGroupsComponent implements OnInit {
   }
 
   /**
-   *  We have to use getters here, as values change to null which means the
-   *  reference is broken.
+   * We have to use getters here, as values change to null which means the reference is broken.
    */
-
   get addFg(): FormGroup {
-    return this.updateStateService.forms.groupForm.add;
+    return this.updateStateService.forms.mspGroups.add;
   }
 
   get removeFg(): FormGroup {
-    return this.updateStateService.forms.groupForm.remove;
+    return this.updateStateService.forms.mspGroups.remove;
   }
 
   get updateFg(): FormGroup {
-    return this.updateStateService.forms.groupForm.update;
+    return this.updateStateService.forms.mspGroups.update;
+  }
+
+  get addGrpArray() {
+    return this.addFg.get('addGrpItems') as FormArray;
+  }
+
+  createMspGrpItem(): FormGroup {
+    return this.fb.group({
+          groupNo: ['', Validators.required]
+         // thirdPartyAdmin: ''
+        });
   }
 
   // Button functions
   addMspGroup() {
-    console.log( 'Add Msp Group clicked' );
+    console.log( 'Add Msp Group clicked: ', this.addFg );
     this.showAddMspGrp = true;
+
+    // Form group not created
+    if ( !this.updateStateService.forms.mspGroups.add ) {
+
+      this.updateStateService.forms.mspGroups.add = this.fb.group({
+        addGrpItems: this.fb.array( [ this.createMspGrpItem() ] )
+      });
+    } else {
+      this.addGrpArray.push( this.createMspGrpItem() );
+    }
+
+    console.log( 'Create Add Msp Group: ', this.addFg, this.addGrpArray );
   }
 
   removeMspGroup() {
