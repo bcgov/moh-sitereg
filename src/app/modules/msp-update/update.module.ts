@@ -19,6 +19,7 @@ import { RouterModule } from '@angular/router';
 import { MspRegisterUserMspComponent } from '../msp-register/components/core/msp-register-user-msp/msp-register-user-msp.component';
 import { MspRegisterUserComponent } from '../msp-register/components/core/msp-register-user/msp-register-user.component';
 import { MspRegisterModule } from '../msp-register/msp-register.module';
+import { MspUpdateReviewComponent } from './components/review/review.component';
 
 @NgModule({
     declarations: [
@@ -32,6 +33,7 @@ import { MspRegisterModule } from '../msp-register/msp-register.module';
         MspDirectUpdateSubmitComponent,
         MspDirectUpdateAutofillComponent,
         MspDirectUpdateConfirmationComponent,
+        MspUpdateReviewComponent,
 
     ],
     imports: [

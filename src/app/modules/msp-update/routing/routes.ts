@@ -10,6 +10,7 @@ import { MspDirectUpdateSubmitComponent } from '../components/submit/submit.comp
 import { MspDirectUpdateAutofillComponent } from '../components/autofill/autofill.component';
 import { MspDirectUpdateConfirmationComponent } from '../components/confirmation/confirmation.component';
 import { RouteGuardService } from 'moh-common-lib';
+import { MspUpdateReviewComponent } from '../components/review/review.component';
 
 export const routes: Routes = [
     {
@@ -57,6 +58,12 @@ export const routes: Routes = [
         component: MspDirectUpdateGroupsComponent,
         data: { title: ROUTES_UPDATE.GROUP_NUMBERS.title },
         canActivate: [RouteGuardService]
+    },
+    {
+        // path: 'Review',
+        path: ROUTES_UPDATE.REVIEW.path,
+        component: MspUpdateReviewComponent,
+        data: { title: ROUTES_UPDATE.REVIEW.title }
     },
     {
         // path: 'Submit',

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 
+// TODO: Needs to be replaced by common page sections
 @Component({
     selector: 'sitereg-page-sections',
     templateUrl: './page-sections.component.html',
