@@ -68,7 +68,7 @@ export class MspDirectUpdateGroupsComponent implements OnInit {
   }
 
   createMspGrpItem(): FormGroup {
-    // TODO: Figure out why minlength valiator is not working, also need to add patten
+    // TODO: Figure out why minlength valiator is not working, also need to add pattern
     // check to msp-grp-no component
     return this.fb.group({
           groupNo: ['', [Validators.required, Validators.minLength(7)]],
@@ -174,14 +174,12 @@ export class MspDirectUpdateGroupsComponent implements OnInit {
     this.router.navigate([ROUTES_UPDATE.SUBMIT.fullpath]);
   }
 
-
   canContinue() {
-    return true; // TODO: Add logic to this function - fields required when add/remove/update
-    /*return [this.addFg, this.removeFg, this.updateFg]
-      .filter(x => x !== null && x !== undefined) // only check added form
-      .map(x => x.valid) // get validity
-      .filter(x => x === false) // get invalid forms
-      .length === 0;*/
+    return !this.isUpdate ? true : [this.addFg, this.removeFg, this.updateFg]
+                            .filter(x => x !== null && x !== undefined) // only check added form
+                            .map(x => x.valid) // get validity
+                            .filter(x => x === false) // get invalid forms
+                            .length === 0;
   }
 
   private get isUpdate(): boolean {
