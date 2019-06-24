@@ -11,8 +11,9 @@ import { MspDirectUpdateAutofillComponent } from '../pages/autofill/autofill.com
 import { MspDirectUpdateConfirmationComponent } from '../pages/confirmation/confirmation.component';
 import { RouteGuardService } from 'moh-common-lib';
 import { MspUpdateReviewComponent } from '../pages/review/review.component';
+import { environment } from '../../../../environments/environment';
 
-export const routes: Routes = [
+let defaultRoutes: Routes = [
     {
         path: '',
         redirectTo: ROUTES_UPDATE.IDENTIFY.path,
@@ -89,3 +90,14 @@ export const routes: Routes = [
     // ,
     // { path: '**', component: MspDirectUpdateIdentifyComponent },
 ];
+
+if (environment.bypassGuards || true ) {
+    console.log('DEVELOPMENT ONLY - BYPASSING ROUTE GUARDS');
+    defaultRoutes = defaultRoutes.map(x => {
+        x.canActivate = [];
+        return x;
+    });
+}
+
+
+export const routes = defaultRoutes;
