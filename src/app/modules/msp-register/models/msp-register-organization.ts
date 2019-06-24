@@ -44,6 +44,7 @@ export class MspRegisterOrganization extends GenerateForm<IMspOrganization>
                 postalCodeValidator(),
             ],
             blueCross: [required],
+            thirdParty: [required],
             // organizationNumber: [
             //     Validators.minLength(8),
             //     Validators.maxLength(8),

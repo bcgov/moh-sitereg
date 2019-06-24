@@ -1,0 +1,11 @@
+@import 'variables.scss';
+
+.msp-icon--print {
+  border: none;
+  background-color: transparent;
+  float: right;
+  margin-left: -20px;
+  margin-top: -20px;
+  position: relative;
+  z-index: 2;
+}
