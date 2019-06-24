@@ -1,16 +1,16 @@
 <common-page-framework layout='blank'>
-     <!-- Consent  -->
-     <div class="container">
+  <!-- Consent  -->
+  <div class="container">
     <form [formGroup]="fg" *ngIf="fg">
 
       <div class="row">
-          <div  class="col-md-2 align-items-start">
-              <button tabindex="0" class="btn btn-default" onclick="window.print();return false;">
+        <div  class="col-md-2 align-items-start">
+              <!-- <button tabindex="0" class="btn btn-default" onclick="window.print();return false;">
                 <i class="fa fa-print fa-lg pointer" aria-hidden="true"></i>
                 Print
-              </button>
+              </button> -->
           </div>
-         <!-- <div class="col-auto mr-auto">
+        <!-- <div class="col-auto mr-auto">
           Logo for Agreement  - black and White 
            <img class="img-thumbnail" width="50 " height="50" src="" />
         </div> -->
@@ -18,17 +18,18 @@
           <h3>MINISTRY OF HEALTH DATA ACCESS AGREEMENT</h3>
         </div>
         <!-- <div class="col-auto" *ngIf="mspRegDataSvc.agreementNumber | async as num">Agreement No: 87654321</div> -->
-        <!-- <div  class="col-md-2 align-items-end">
-            <button tabindex="0" class="btn btn-default" onclick="window.print();return false;">
-              <i class="fa fa-print fa-lg pointer" aria-hidden="true"></i>
-              Print
-            </button>
-        </div> -->
+        <div class="col-md-2 ml-auto  text-right">
+          <button tabindex="0" class="btn btn-default " onclick="window.print();return false;">
+            <i class="fa fa-print fa-lg pointer" aria-hidden="true"></i>
+            Print
+          </button>
+        </div>
       </div>
 
       <div class="row">
         <p>THIS AGREEMENT is made between <b>Her Majesty the Queen in right of the Province of British Columbia, as
-            represented by the Minister of Health</b> (the "<b>Province</b>") and <b>{{organization.name}}</b> (the "<b>Applicant</b>") and witnesses that, for good and valuable
+            represented by the Minister of Health</b> (the "<b>Province</b>") and <b>{{organization.name}}</b> (the
+          "<b>Applicant</b>") and witnesses that, for good and valuable
           consideration (the receipt and sufficiency of which is hereby acknowledged), the Parties agree as follows:
         </p>
         <!--   -->
@@ -87,7 +88,8 @@
                     (click)="navigateTo('signing-authority');">
                     The Applicant will Administer MSP using the MSP Direct Web Interface.
                   </label>
-                  <span *ngIf="isWebEnabled===false" style="color:red;" > You must provide at least one Access Administrator or User.</span>
+                  <span *ngIf="isWebEnabled===false" style="color:red;"> You must provide at least one Access
+                    Administrator or User.</span>
                 </li>
                 <li>
                   <span class="selectedOption"> {{ organization.blueCross ? "&#10003;": "&#9634;"  }} </span>
@@ -99,7 +101,7 @@
                   <div title="" (click)="navigateTo('group-numbers');">
                     <span> {{ organization.thirdParty? "&#10003;": "&#9634;" }} </span>
                     <label for="checkMspApplicantBehalf" class="label-right">
-                      The following organization will Administer MSP on the Applicant`s behalf:
+                      The following organization will Administer MSP on the Applicant's behalf:
                     </label>
                     <!-- <span *ngIf="!isValidGroups()"> No Group Numbers specified. </span>
                 <table *ngIf="isValidGroups()" class="list-table">
@@ -167,7 +169,7 @@
             agreement.
           </li>
         </ol>
-        
+
         <ul class="list-no-bullets ml-1">
           <li><span class="col-sm-4">{{ organization.name }}</span></li>
           <li><span class="col-sm-4">Print Name:</span><span class="border-bottom col-sm-8">
@@ -179,12 +181,13 @@
       </div>
 
       <div class="row ml-1">
-        <span class="consent"  *ngIf="isWebEnabled===true" >
+        <span class="consent" *ngIf="isWebEnabled===true">
           <input type="checkbox" name="consent" formControlName="consent" id="consent" tabindex="0"
             [value]="true">&nbsp;
           <label (click)="toggleConsent()">
-            I, {{signingAuthority.firstName}} {{signingAuthority.lastName}}, have read, understood and agreed to the terms and conditions of this Agreement, including this Cover Sheet and the Access Terms and Conditions.
-          </label>         
+            I, {{signingAuthority.firstName}} {{signingAuthority.lastName}}, have read, understood and agreed to the
+            terms and conditions of this Agreement, including this Cover Sheet and the Access Terms and Conditions.
+          </label>
         </span>
       </div>
 
@@ -200,8 +203,8 @@
     </form>
   </div>
   <div *ngIf="globalConfigSvc.debug">
-      Debugging purposes only:
-      <ngx-json-viewer [json]="registerationObject()" [expanded]="false"></ngx-json-viewer>
+    Debugging purposes only:
+    <ngx-json-viewer [json]="registerationObject()" [expanded]="false"></ngx-json-viewer>
   </div>
   <common-form-action-bar (btnClick)="continue()" [defaultColor]="false" [canContinue]="validCaptch"
     [isLoading]="isProcessing" submitLabel="Submit Application">
