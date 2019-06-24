@@ -20,6 +20,7 @@ import { MspRegisterUserMspComponent } from '../msp-register/components/core/msp
 import { MspRegisterUserComponent } from '../msp-register/components/core/msp-register-user/msp-register-user.component';
 import { MspRegisterModule } from '../msp-register/msp-register.module';
 import { MspUpdateReviewComponent } from './pages/review/review.component';
+import { ReviewSectionComponent } from './components/review-section/review-section.component';
 
 @NgModule({
     declarations: [
@@ -34,6 +35,7 @@ import { MspUpdateReviewComponent } from './pages/review/review.component';
         MspDirectUpdateAutofillComponent,
         MspDirectUpdateConfirmationComponent,
         MspUpdateReviewComponent,
+        ReviewSectionComponent,
 
     ],
     imports: [
