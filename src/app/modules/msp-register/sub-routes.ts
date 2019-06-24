@@ -66,10 +66,10 @@ export const subRoutes: Routes = [
     },
 
     // // REMOVEME
-    {
-        // path: 'autofill',
-        path: '_autofill',
-        component: MspRegisterAutofillComponent,
-        data: { title: 'autofill' },
-    },
+    // {
+    //     // path: 'autofill',
+    //     path: '_autofill',
+    //     component: MspRegisterAutofillComponent,
+    //     data: { title: 'autofill' },
+    // },
 ];
