@@ -21,9 +21,9 @@
       </div>
 
       <div class="row">
-        <p>This Agreement is made between <b>Her Majesty the Queen in right of the Province of British Columbia, as
+        <p>THIS AGREEMENT is made between <b>Her Majesty the Queen in right of the Province of British Columbia, as
             represented by the Minister of Health</b> (the "<b>Province</b>") and <b>{{organization.name}}</b> (the "<b>Applicant</b>") and witnesses that, for good and valuable
-          consideration (the reciept and sufficiency of which is hereby acknowledged), the Parties agree as follows:
+          consideration (the receipt and sufficiency of which is hereby acknowledged), the Parties agree as follows:
         </p>
         <!--   -->
         <ol class="aggrement-ol">
@@ -33,9 +33,9 @@
               This Agreement consists of:
               <ol>
                 <li>this page (the "Cover Sheet"), and</li>
-                <li>the "MSP Direct Terms and Conditions available online at
-                  <a href="https://www.health.gov.bc.ca/exforms/das/MSPDirectTermAndConditions.pdf"
-                    target="_blank">https://www.health.gov.bc.ca/exforms/das/MSPDirectTermAndConditions.pdf</a>
+                <li>the "MSP Direct Access Terms and Conditions” available online at:
+                  <a href="https://www2.gov.bc.ca/assets/gov/health/forms/mspdirecttermsandconditions.pdf"
+                    target="_blank">https://www2.gov.bc.ca/assets/gov/health/forms/mspdirecttermsandconditions.pdf</a>
                 </li>
               </ol>
               all of the terms and conditions of which are binding upon the Province and Applicant upon execution of
@@ -174,8 +174,7 @@
           <input type="checkbox" form name="consent" formControlName="consent" id="consent" tabindex="0"
             [value]="true">&nbsp;
           <label (click)="toggleConsent()">
-            I, {{signingAuthority.firstName}} {{signingAuthority.lastName}} have read and agreed to the above terms and
-            conditions.
+            I, {{signingAuthority.firstName}} {{signingAuthority.lastName}}, have read, understood and agreed to the terms and conditions of this Agreement, including this Cover Sheet and the Access Terms and Conditions.
           </label>         
         </span>
       </div>
