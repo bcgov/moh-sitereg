@@ -17,7 +17,13 @@
         <div class="col-auto mr-auto align-items-end">
           <h3>MINISTRY OF HEALTH DATA ACCESS AGREEMENT</h3>
         </div>
-        <div class="col-auto" *ngIf="mspRegDataSvc.agreementNumber | async as num">Agreement No: 87654321</div>
+        <!-- <div class="col-auto" *ngIf="mspRegDataSvc.agreementNumber | async as num">Agreement No: 87654321</div> -->
+        <!-- <div  class="col-md-2 align-items-end">
+            <button tabindex="0" class="btn btn-default" onclick="window.print();return false;">
+              <i class="fa fa-print fa-lg pointer" aria-hidden="true"></i>
+              Print
+            </button>
+        </div> -->
       </div>
 
       <div class="row">
@@ -52,7 +58,9 @@
                 <tr class="aggrement-table">
                   <td class="column-label">Signing Authority </td>
                   <td class="aggrement-table" title="" (click)="navigateTo('signing-authority');">
-                    {{signingAuthority.firstName}} {{signingAuthority.lastName}} </td>
+                    {{signingAuthority.firstName}} {{signingAuthority.lastName}} <br>
+                    {{signingAuthority.emailAddress}}
+                  </td>
                 </tr>
                 <tr class="aggrement-table">
                   <td class="column-label">Authorized Site</td>
@@ -69,7 +77,7 @@
           <!--3 group numbers-->
           <li class="aggrement-li">
             <div>
-              [Selected options are:]
+              [Select one or more as applicable:]
               <ul class="list-no-bullets">
                 <li>
                   <span class="selectedOption">
@@ -104,7 +112,7 @@
                 if third party answer is Yes -->
                     <table *ngIf="organization.thirdParty" class="list-table">
                       <tr class="aggrement-table">
-                        <td class="column-label">{{ (organization.thirdParty) ? "3rd Party Organization Number" : ""  }}
+                        <td class="column-label">{{ (organization.thirdParty) ? "Organization Number" : ""  }}
                         </td>
                         <td class="aggrement-table">{{organization.organizationNumber}} </td>
                       </tr>
@@ -116,7 +124,7 @@
           </li>
           <!--4 Administer For-->
           <li class="aggrement-li">
-            The Applicant will Administer MSP for [Selected options are:]
+            The Applicant will Administer MSP for [Select one or more as applicable:]
             <ul class="list-no-bullets" title="" (click)="navigateTo('signing-authority');">
               <li class="li-inline">
                 <span>
@@ -159,8 +167,9 @@
             agreement.
           </li>
         </ol>
-
-        <ul class="list-no-bullets marginLeft">
+        
+        <ul class="list-no-bullets ml-1">
+          <li><span class="col-sm-4">{{ organization.name }}</span></li>
           <li><span class="col-sm-4">Print Name:</span><span class="border-bottom col-sm-8">
               {{signingAuthority.firstName}} {{signingAuthority.lastName}}</span></li>
           <li><span class="col-sm-4">Date
@@ -169,9 +178,9 @@
         </ul>
       </div>
 
-      <div class="row">
+      <div class="row ml-1">
         <span class="consent"  *ngIf="isWebEnabled===true" >
-          <input type="checkbox" form name="consent" formControlName="consent" id="consent" tabindex="0"
+          <input type="checkbox" name="consent" formControlName="consent" id="consent" tabindex="0"
             [value]="true">&nbsp;
           <label (click)="toggleConsent()">
             I, {{signingAuthority.firstName}} {{signingAuthority.lastName}}, have read, understood and agreed to the terms and conditions of this Agreement, including this Cover Sheet and the Access Terms and Conditions.
@@ -179,7 +188,7 @@
         </span>
       </div>
 
-      <div class="row captcha" *ngIf="showCaptcha">
+      <div class="row captcha ml-1" *ngIf="showCaptcha">
         <span>
           <common-captcha [apiBaseUrl]="captchaApiBaseUrl" [nonce]="nonce" (onValidToken)="setToken($event)"
             [successMessage]="'  '" autocomplete="off"></common-captcha>
