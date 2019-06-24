@@ -1,16 +1,16 @@
 import { Routes } from '@angular/router';
 import { ROUTES_UPDATE } from './routes.constants';
-import { MspDirectUpdateIdentifyComponent } from '../components/identify/identify.component';
-import { MspDirectUpdateOrganizationComponent } from '../components/organization/organization.component';
-import { MspDirectUpdateSigningAuthorityComponent } from '../components/signing-authority/signing-authority.component';
-import { MspDirectUpdateAccessAdministratorComponent } from '../components/access-administrator/access-administrator.component';
-import { MspDirectUpdateUsersComponent } from '../components/users/users.component';
-import { MspDirectUpdateGroupsComponent } from '../components/groups/groups.component';
-import { MspDirectUpdateSubmitComponent } from '../components/submit/submit.component';
-import { MspDirectUpdateAutofillComponent } from '../components/autofill/autofill.component';
-import { MspDirectUpdateConfirmationComponent } from '../components/confirmation/confirmation.component';
+import { MspDirectUpdateIdentifyComponent } from '../pages/identify/identify.component';
+import { MspDirectUpdateOrganizationComponent } from '../pages/organization/organization.component';
+import { MspDirectUpdateSigningAuthorityComponent } from '../pages/signing-authority/signing-authority.component';
+import { MspDirectUpdateAccessAdministratorComponent } from '../pages/access-administrator/access-administrator.component';
+import { MspDirectUpdateUsersComponent } from '../pages/users/users.component';
+import { MspDirectUpdateGroupsComponent } from '../pages/groups/groups.component';
+import { MspDirectUpdateSubmitComponent } from '../pages/submit/submit.component';
+import { MspDirectUpdateAutofillComponent } from '../pages/autofill/autofill.component';
+import { MspDirectUpdateConfirmationComponent } from '../pages/confirmation/confirmation.component';
 import { RouteGuardService } from 'moh-common-lib';
-import { MspUpdateReviewComponent } from '../components/review/review.component';
+import { MspUpdateReviewComponent } from '../pages/review/review.component';
 
 export const routes: Routes = [
     {
