@@ -146,7 +146,7 @@ export const cUpdateValidators = {
     ],
     postalCode: [
         Validators.maxLength(6),
-        postalCodeValidator(),
+        // postalCodeValidator(), // doesn't work if optional?
     ]
 };
 

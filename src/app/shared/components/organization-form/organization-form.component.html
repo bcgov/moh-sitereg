@@ -51,47 +51,28 @@
         Please enter your city.
       </div>
       
-      <common-province label='PROVINCE TEST LOL' formControlName='province'></common-province>
       
-      <!-- <div class="row"> -->
-        <!-- <div class="col-sm-8"> -->
-          <!-- <common-province label='PROVINCE TEST LOL' [(value)]='province.provCode'></common-province> -->
-          <!-- <common-province label='PROVINCE TEST LOL' formControlName='province'></common-province> -->
-
-        <!-- </div>
-      </div> -->
 
       <div class="row">
         <div class="col-sm-8">
-          <!-- Province -->
-          <!-- <label class="control-label" for="province">Province</label>
-          <select class="form-control" *ngIf="provinces | async as provinces" formControlName="province"  maxlength="3" >
-            <option value="null" label="-- Select Province --" selected></option>
-            <option *ngFor="let province of provinces " [value]="province.provCode">{{province.description}}</option>
-          </select>
-          <div class="text-danger" *ngIf="validFormControl('province')">
-            Please select a valid province.
-          </div> -->
+          <common-province label='Province' formControlName='province'></common-province>
         </div>
         <div class="col-sm-4">
-          <!-- Postal Code -->
-          <label class="control-label" for="postalCode">Postal Code</label>
-          <input id="postalCode" formControlName="postalCode" class="form-control" placeholder="A1A1A1" maxlength="6">
-          <div class="text-danger" *ngIf="validFormControl('postalCode')">
-            Please enter your postal code in the format A1A1A1.
-          </div>
+          <common-postal-code label='Postal Code' formControlName='postalCode'></common-postal-code>
         </div>
       </div>
 
         <!-- Administrating For-->
-        <label class="control-label" for="administeringFor">This organization will be administering MSP for</label>
+        <!-- <label class="control-label" for="administeringFor">This organization will be administering MSP for</label>
         <select class="form-control" *ngIf="administeringFor | async as administering" formControlName="administeringFor">
           <option value="" label="-- Select Option --" selected></option>
           <option *ngFor="let a of administering " [value]="a">{{a}}</option>
         </select>
         <div class="text-danger" *ngIf="validFormControl('administeringFor')">
           Please select a valid option
-        </div>
+        </div> -->
+
+        <common-dropdown label='Administering for' formControlName='administeringFor' [items]='cAdministeringFor'></common-dropdown>
     
 
     </div>

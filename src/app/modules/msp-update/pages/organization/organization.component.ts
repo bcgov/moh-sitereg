@@ -16,7 +16,7 @@ import { cUpdateValidators } from '@msp-register/models/core/core-types';
     styleUrls: ['./organization.component.scss'],
 })
 export class MspDirectUpdateOrganizationComponent extends AbstractForm implements OnInit {
-    // TODO: REmove boolean and just check if the form is null?
+    // TODO: Remove boolean and just check if the form is null? Depends if we have to store this to send to API.
     public hasOrgUpdates: boolean;
 
     constructor(
@@ -39,7 +39,6 @@ export class MspDirectUpdateOrganizationComponent extends AbstractForm implement
     }
 
     orgUpdatesChange(bool: boolean) {
-        console.log('orgUpdatesChange', bool);
         this.hasOrgUpdates = bool;
         if (bool) {
             this.createFormGroup();
@@ -58,7 +57,7 @@ export class MspDirectUpdateOrganizationComponent extends AbstractForm implement
             city: [null, cUpdateValidators.city],
             province: [null, cUpdateValidators.province],
             postalCode: [null, cUpdateValidators.postalCode],
-            administeringFor: [Validators.required] // the ONLY required field
+            administeringFor: [null, Validators.required] // the ONLY required field
         });
 
     }
@@ -80,7 +79,10 @@ export class MspDirectUpdateOrganizationComponent extends AbstractForm implement
     }
 
     canContinue(): boolean {
-        return false;
+        if (!this.organizationForm) {
+            return false;
+        }
+        return this.organizationForm.valid;
     }
 
     get organizationForm(): FormGroup {
