@@ -65,11 +65,11 @@ export const subRoutes: Routes = [
         data: { title: MSP_REGISTER_ROUTES.CONFIRMATION.title },
     },
 
-    // // REMOVEME
-    // {
-    //     // path: 'autofill',
-    //     path: '_autofill',
-    //     component: MspRegisterAutofillComponent,
-    //     data: { title: 'autofill' },
-    // },
+    // REMOVEME
+    {
+        // path: 'autofill',
+        path: '_autofill',
+        component: MspRegisterAutofillComponent,
+        data: { title: 'autofill' },
+    },
 ];
