@@ -17,7 +17,7 @@
           <div *ngFor="let item of addGrpArray.controls; let idx = index"
               [formGroupName]="idx"
               class="pt-2">
-            <common-xicon-button label="Add Msp Group" (clickEvent)="deleteAddGrpItem(idx)"></common-xicon-button>
+            <common-xicon-button class='d-block pb-1' label="Add Msp Group" (clickEvent)="deleteAddGrpItem(idx)"></common-xicon-button>
             <h4 class='border-bottom'>Add new MSP Group #{{idx + 1}}</h4>
 
             <div class="form-group col-sm-6 p-sm-0">
@@ -38,7 +38,7 @@
           <div *ngFor="let item of removeGrpArray.controls; let idx = index"
                [formGroupName]="idx"
                class="pt-2">
-            <common-xicon-button label="Remove Msp Group" (clickEvent)="deleteRemoveGrpItem(idx)"></common-xicon-button>
+            <common-xicon-button class='d-block pb-1' label="Remove Msp Group" (clickEvent)="deleteRemoveGrpItem(idx)"></common-xicon-button>
             <h4 class='border-bottom'>Remove new MSP Group #{{idx + 1}}</h4>
 
             <div class="form-group col-sm-6 p-sm-0">
