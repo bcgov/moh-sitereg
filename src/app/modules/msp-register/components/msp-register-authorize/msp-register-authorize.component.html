@@ -1,15 +1,14 @@
-<common-page-framework layout='blank'>
+<common-page-framework layout="blank" >
   <!-- Consent  -->
-  <div class="container">
+  <div class="container align-items-start ml-0 pl-0">
     <form [formGroup]="fg" *ngIf="fg">
-
-      <div class="row">
-        <div  class="col-md-2 align-items-start">
-              <!-- <button tabindex="0" class="btn btn-default" onclick="window.print();return false;">
+      <div class="row col-md-8 ">
+        <div class="col-md-2 align-items-start">
+          <!-- <button tabindex="0" class="btn btn-default" onclick="window.print();return false;">
                 <i class="fa fa-print fa-lg pointer" aria-hidden="true"></i>
                 Print
               </button> -->
-          </div>
+        </div>
         <!-- <div class="col-auto mr-auto">
           Logo for Agreement  - black and White 
            <img class="img-thumbnail" width="50 " height="50" src="" />
@@ -26,7 +25,7 @@
         </div>
       </div>
 
-      <div class="row">
+      <div class="row col-md-8 ">
         <p>THIS AGREEMENT is made between <b>Her Majesty the Queen in right of the Province of British Columbia, as
             represented by the Minister of Health</b> (the "<b>Province</b>") and <b>{{organization.name}}</b> (the
           "<b>Applicant</b>") and witnesses that, for good and valuable
@@ -180,18 +179,18 @@
         </ul>
       </div>
 
-      <div class="row ml-1">
-        <span class="consent" *ngIf="isWebEnabled===true">
+      <div class="row ml-1 pl-0 mt-1 mb-1">
+        <span   class="col-auto ml-8" *ngIf="isWebEnabled===true">
           <input type="checkbox" name="consent" formControlName="consent" id="consent" tabindex="0"
             [value]="true">&nbsp;
-          <label (click)="toggleConsent()">
+          <label (click)="toggleConsent()" class="col-md-8">
             I, {{signingAuthority.firstName}} {{signingAuthority.lastName}}, have read, understood and agreed to the
             terms and conditions of this Agreement, including this Cover Sheet and the Access Terms and Conditions.
           </label>
         </span>
       </div>
 
-      <div class="row captcha ml-1" *ngIf="showCaptcha">
+      <div class="row  col-md-8 captcha ml-1 " *ngIf="showCaptcha">
         <span>
           <common-captcha [apiBaseUrl]="captchaApiBaseUrl" [nonce]="nonce" (onValidToken)="setToken($event)"
             [successMessage]="'  '" autocomplete="off"></common-captcha>
