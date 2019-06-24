@@ -15,7 +15,7 @@ import { MspH2WithPrintComponent } from './components/h2-with-print/h2-with-prin
     declarations: [
       ErrorBoxComponent,
       MspGroupNoComponent,
-      MspH3WithPrintComponent
+      MspH2WithPrintComponent
     ],
     imports: [
         CommonModule,

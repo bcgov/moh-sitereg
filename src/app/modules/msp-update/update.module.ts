@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '@shared/shared.module';
 import { CaptchaModule } from 'moh-common-lib/captcha';
 import { MspDirectUpdateRoutesModule } from './routing/routes.module';
-import { MspDirectUpdateComponent } from './pages/update/update.component';
+import { MspDirectUpdateComponent } from './components/update-container/update-container.component';
 import { MspDirectUpdateIdentifyComponent } from './pages/identify/identify.component';
 import { MspDirectUpdateOrganizationComponent } from './pages/organization/organization.component';
 import { MspDirectUpdateSigningAuthorityComponent } from './pages/signing-authority/signing-authority.component';

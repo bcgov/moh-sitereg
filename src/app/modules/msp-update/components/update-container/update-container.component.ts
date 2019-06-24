@@ -9,8 +9,8 @@ import { LoggerService } from '@shared/services/logger.service';
 
 @Component({
     selector: 'sitereg-msp-update',
-    templateUrl: './update.component.html',
-    styleUrls: ['./update.component.scss'],
+    templateUrl: './update-container.component.html',
+    styleUrls: ['./update-container.component.scss'],
 })
 export class MspDirectUpdateComponent extends Container implements OnInit {
     get componentInfo(): string {
