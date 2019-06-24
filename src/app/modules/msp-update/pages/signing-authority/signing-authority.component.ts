@@ -70,6 +70,7 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit {
       return this.updateStateService.forms.signingAuthority.update;
     }
 
+    // TODO - VERIFY VALIDATION IS CORRECT! This is all just a "first pass", and needs to be verified that it's correct.
     addSigningAuthority() {
       this.showAddSigningAuthority = true;
       this.updateStateService.forms.signingAuthority.add = this.fb.group({
@@ -88,6 +89,7 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit {
       }, {updateOn: 'blur'});
     }
 
+    // TODO - Validation here and overall form may need attention.
     removeSigningAuthority() {
       this.showRemoveSigningAuthority = true;
       this.updateStateService.forms.signingAuthority.remove = this.fb.group({
@@ -96,7 +98,7 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit {
       }, {updateOn: 'blur'});
     }
 
-    // TODO - Verify validation logic here, it may differ between this and add.
+    // TODO - Validation here is INCORRECT! Fields should be optional.
     updateSigningAuthority() {
       this.showUpdateSigningAuthority = true;
       this.updateStateService.forms.signingAuthority.update = this.fb.group({
