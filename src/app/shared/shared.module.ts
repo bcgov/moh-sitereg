@@ -9,7 +9,7 @@ import { MspRegisterApiService } from './services/api.service';
 import { LoggerService } from './../shared/services/logger.service';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
 import { MspGroupNoComponent } from './components/msp-group-no/msp-group-no.component';
-import { MspH3WithPrintComponent } from './components/h3-with-print/h3-with-print.component';
+import { MspH2WithPrintComponent } from './components/h2-with-print/h2-with-print.component';
 
 @NgModule({
     declarations: [
@@ -33,7 +33,7 @@ import { MspH3WithPrintComponent } from './components/h3-with-print/h3-with-prin
         ErrorBoxComponent,
         NgxJsonViewerModule,
         MspGroupNoComponent,
-        MspH3WithPrintComponent
+        MspH2WithPrintComponent
     ],
 })
 export class SharedModule {}

@@ -1,16 +1,5 @@
 @import 'variables.scss';
 
-// TODO: May need to move to common area if other pages use print icon
-.msp-icon--print {
-  border: none;
-  background-color: transparent;
-  float: right;
-  margin-left: -15px;
-  margin-top: -15px;
-  position: relative;
-  z-index: 2;
-}
-
 .section {
   padding: 0.5rem;
 }
