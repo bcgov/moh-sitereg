@@ -50,6 +50,20 @@ export class FakeDataSiteReg {
         };
     }
 
+    organizationMax(): OrganizationPageTest {
+        return {
+            orgName: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labores',
+            suiteNo: 1234567890,
+            streetNo: 1234567890,
+            streetName: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tem',
+// tslint:disable-next-line: max-line-length
+            streetAddressLine: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut laboresLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labores',
+            city: 'Lorem ipsum dolor sit ame',
+            postal: 'A1A1A1',
+            orgNum: 99999999
+        };
+    }
+
     getSeed() {
         return FakeDataSiteReg.seedVal;
     }
@@ -71,6 +85,10 @@ export class FakeDataSiteReg {
         } else {
             return null;
         }
+    }
+
+    getUUID() {
+
     }
 }
 

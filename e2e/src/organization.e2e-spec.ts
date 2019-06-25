@@ -86,6 +86,21 @@ describe('Moh SiteReg - Organization Page', () => {
         expect(orgPage.countLength('province').count()).toBe(14, 'should be 13 pronvinces and territories plus the Select Province option');
     });
 
-    // ORG-08. should show all states when US is selected -> NO OPTION TO SELECT A COUNTRY
+    it('08. Testing for validation re: maximum characters', () => {
+        const orgMaxData = data.organizationMax();
+        orgPage.navigateTo();
+        orgPage.agreeConsentModal();
+        orgPage.clickConsentModalContinue();
+        orgPage.fillOrgName(orgMaxData);
+        orgPage.fillAddress(orgMaxData);
+        orgPage.selectValue('administeringFor', 'Employees');
+        orgPage.scrollDown();
+        orgPage.clickOption('thirdPartyTrue');
+        orgPage.fillOrgNum(orgMaxData);
+        orgPage.clickOption('aafalse');
+        orgPage.continue();
+    });
+
+    // 09. should show all states when US is selected -> NO OPTION TO SELECT A COUNTRY
 
 });

@@ -93,8 +93,12 @@ describe('Moh SiteReg - Access Admins Page', () => {
         expect(browser.getCurrentUrl()).toContain(ACCESS_PAGE_URL);
     });
 
+    it('06. Testing for validation re: maximum characters', () => {
+        
+    });
+
     // Test will fail since _autofill is still active in dev mode
-    xit('07. should not be able to access "_autofill" dev only URL', () => {
+    xit('08. should not be able to access "_autofill" dev only URL', () => {
         // accessPage.navigateTo();
         // expect(accessPage.getTextFromField()).toBe('', 'should be empty');
     });
