@@ -35,6 +35,16 @@ export class MspDirectUpdateOrganizationComponent extends AbstractForm implement
     }
 
     ngOnInit() {
+        // Update the toggle state only if user is re-visting this page.  On
+        // first visit only it should be unselected.
+        const pageIndex = this.progressService.getUrlIndex('organization');
+        const page = this.progressService.pageCheckList[pageIndex];
+        if (page.isComplete) {
+            // If page is complete, user is returning. Derive local state from
+            // persisted service state.
+            this.hasOrgUpdates = !!this.organizationForm;
+        }
+
         this.progressService.setPageIncomplete();
     }
 
@@ -80,7 +90,8 @@ export class MspDirectUpdateOrganizationComponent extends AbstractForm implement
 
     canContinue(): boolean {
         if (!this.organizationForm) {
-            return false;
+            // user can continue only if they select 'No'
+            return this.hasOrgUpdates === false;
         }
         return this.organizationForm.valid;
     }
@@ -88,4 +99,9 @@ export class MspDirectUpdateOrganizationComponent extends AbstractForm implement
     get organizationForm(): FormGroup {
         return this.updateStateService.forms.organizationForm;
     }
+
+
+    // get hasOrgUpdates(): boolean {
+    //     return !!this.organizationForm;
+    // }
 }
