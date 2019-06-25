@@ -5,6 +5,8 @@ import { ROUTES_UPDATE } from '../../routing/routes.constants';
 import { funcRemoveStrings } from '@msp-register/constants';
 import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
+import { environment } from '../../../../../environments/environment';
+import { MspRegisterApiService } from '../../../../shared/services/api.service';
 
 @Component({
     selector: 'sitereg-msp-update-submit',
@@ -12,6 +14,11 @@ import { GlobalConfigService } from '@shared/services/global-config.service';
     styleUrls: ['./submit.component.scss'],
 })
 export class MspDirectUpdateSubmitComponent implements OnInit {
+
+    public captchaApiBaseUrl;
+    // tslint:disable-next-line:variable-name
+    private _hasToken = false;
+
     get componentInfo(): string {
         return (
             `${funcRemoveStrings(
@@ -25,8 +32,22 @@ export class MspDirectUpdateSubmitComponent implements OnInit {
         private router: Router,
         private progressService: MspDirectUpdateProgressService,
         private loggerSvc: LoggerService,
-        private globalConfigSvc: GlobalConfigService
-    ) {}
+        private globalConfigSvc: GlobalConfigService,
+        public apiSvc: MspRegisterApiService,
+    ) {
+
+      this.captchaApiBaseUrl = environment.captchaApiBaseUrl;
+    }
+
+    /** Use the UUID as a cryptographic client nonce to avoid replay attacks. */
+    get nonce(): string {
+      return this.globalConfigSvc.applicationId;
+    }
+
+    setToken(token): void {
+      this._hasToken = true;
+      this.apiSvc.setCaptchaToken(token);
+  }
 
     ngOnInit() {
         console.log(`%c%o : %o`, 'color:green', this.componentInfo);
@@ -44,5 +65,9 @@ export class MspDirectUpdateSubmitComponent implements OnInit {
         this.progressService.enableConfirmation = true;
         this.progressService.setPageComplete();
         this.router.navigate([ROUTES_UPDATE.CONFIRMATION.fullpath]);
+    }
+
+    canContinue() {
+      return this._hasToken;
     }
 }
