@@ -1,21 +1,12 @@
 [
   {
-    "description": "Moh SiteReg - Organization Page 08. Testing for validation re: maximum characters",
-    "assertions": [
-      {
-        "passed": true
-      }
-    ],
-    "duration": 23791
-  },
-  {
     "description": "Moh SiteReg - Organization Page 01. should load the page without issue",
     "assertions": [
       {
         "passed": true
       }
     ],
-    "duration": 6
+    "duration": 5049
   },
   {
     "description": "Moh SiteReg - Organization Page 02. should NOT let user to continue without clicking the checkbox",
@@ -24,7 +15,7 @@
         "passed": true
       }
     ],
-    "duration": 0
+    "duration": 4552
   },
   {
     "description": "Moh SiteReg - Organization Page 03. should NOT let user to continue without filling out any fields",
@@ -33,7 +24,7 @@
         "passed": true
       }
     ],
-    "duration": 0
+    "duration": 4876
   },
   {
     "description": "Moh SiteReg - Organization Page 04. should let user to continue if all the required fields are filled out",
@@ -42,7 +33,7 @@
         "passed": true
       }
     ],
-    "duration": 0
+    "duration": 8395
   },
   {
     "description": "Moh SiteReg - Organization Page 05. should let user to type the organization num and select organization that will be administering",
@@ -51,7 +42,7 @@
         "passed": true
       }
     ],
-    "duration": 0
+    "duration": 8027
   },
   {
     "description": "Moh SiteReg - Organization Page 06. should not let user continue by clicking the stepper",
@@ -60,7 +51,7 @@
         "passed": true
       }
     ],
-    "duration": 0
+    "duration": 5395
   },
   {
     "description": "Moh SiteReg - Organization Page 07. should show all 13 provinces and territories in the dropbox menu",
@@ -69,7 +60,16 @@
         "passed": true
       }
     ],
-    "duration": 0
+    "duration": 5255
+  },
+  {
+    "description": "Moh SiteReg - Organization Page 08. Testing for validation re: maximum characters",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 12467
   },
   {
     "description": "Moh SiteReg - Access Admins Page 01. should load the page without issue",
@@ -141,7 +141,7 @@
         "passed": true
       }
     ],
-    "duration": 1
+    "duration": 0
   },
   {
     "description": "Moh SiteReg - Authorize Page 01. should load the page without issue",
@@ -150,7 +150,7 @@
         "passed": true
       }
     ],
-    "duration": 0
+    "duration": 1
   },
   {
     "description": "Moh SiteReg - Authorize Page 02. should NOT let user to continue without clicking the checkbox",
@@ -159,7 +159,7 @@
         "passed": true
       }
     ],
-    "duration": 3
+    "duration": 7
   },
   {
     "description": "Moh SiteReg - Authorize Page 03. should let user to continue if the checkbox is clicked",
@@ -168,7 +168,7 @@
         "passed": true
       }
     ],
-    "duration": 1
+    "duration": 0
   },
   {
     "description": "Moh SiteReg - Group Numbers Page 01. should load the page without issue",
@@ -204,7 +204,7 @@
         "passed": true
       }
     ],
-    "duration": 0
+    "duration": 1
   },
   {
     "description": "Moh SiteReg - Group Numbers Page 05. should automatically display the first group number section",
@@ -222,7 +222,7 @@
         "passed": true
       }
     ],
-    "duration": 1
+    "duration": 0
   },
   {
     "description": "Moh SiteReg - End to End Test (Happy Path) Should navigate from Organization to Confirmation Page (end-to-end) when all required fields are filled out",
@@ -231,7 +231,7 @@
         "passed": true
       }
     ],
-    "duration": 6
+    "duration": 0
   },
   {
     "description": "Moh SiteReg - Review Page 01. should load the page without issue",
@@ -351,22 +351,13 @@
     "duration": 0
   },
   {
-    "description": "Moh SiteReg - Organization Page 08. Testing for validation re: maximum characters",
-    "assertions": [
-      {
-        "passed": true
-      }
-    ],
-    "duration": 22973
-  },
-  {
     "description": "Moh SiteReg - Organization Page 01. should load the page without issue",
     "assertions": [
       {
         "passed": true
       }
     ],
-    "duration": 0
+    "duration": 7761
   },
   {
     "description": "Moh SiteReg - Organization Page 02. should NOT let user to continue without clicking the checkbox",
@@ -375,7 +366,7 @@
         "passed": true
       }
     ],
-    "duration": 1
+    "duration": 8514
   },
   {
     "description": "Moh SiteReg - Organization Page 03. should NOT let user to continue without filling out any fields",
@@ -384,7 +375,7 @@
         "passed": true
       }
     ],
-    "duration": 0
+    "duration": 8825
   },
   {
     "description": "Moh SiteReg - Organization Page 04. should let user to continue if all the required fields are filled out",
@@ -393,7 +384,7 @@
         "passed": true
       }
     ],
-    "duration": 0
+    "duration": 12075
   },
   {
     "description": "Moh SiteReg - Organization Page 05. should let user to type the organization num and select organization that will be administering",
@@ -402,7 +393,7 @@
         "passed": true
       }
     ],
-    "duration": 11
+    "duration": 11784
   },
   {
     "description": "Moh SiteReg - Organization Page 06. should not let user continue by clicking the stepper",
@@ -411,7 +402,7 @@
         "passed": true
       }
     ],
-    "duration": 0
+    "duration": 7924
   },
   {
     "description": "Moh SiteReg - Organization Page 07. should show all 13 provinces and territories in the dropbox menu",
@@ -420,7 +411,16 @@
         "passed": true
       }
     ],
-    "duration": 0
+    "duration": 9043
+  },
+  {
+    "description": "Moh SiteReg - Organization Page 08. Testing for validation re: maximum characters",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 16224
   },
   {
     "description": "Moh SiteReg - Access Admins Page 01. should load the page without issue",
@@ -429,7 +429,7 @@
         "passed": true
       }
     ],
-    "duration": 1
+    "duration": 4
   },
   {
     "description": "Moh SiteReg - Access Admins Page 02. should let user to continue without filling out any fields",
@@ -492,7 +492,7 @@
         "passed": true
       }
     ],
-    "duration": 1
+    "duration": 0
   },
   {
     "description": "Moh SiteReg - Authorize Page 01. should load the page without issue",
@@ -510,7 +510,7 @@
         "passed": true
       }
     ],
-    "duration": 18
+    "duration": 3
   },
   {
     "description": "Moh SiteReg - Authorize Page 03. should let user to continue if the checkbox is clicked",
@@ -528,7 +528,7 @@
         "passed": true
       }
     ],
-    "duration": 0
+    "duration": 1
   },
   {
     "description": "Moh SiteReg - Group Numbers Page 02. should NOT let user to continue without adding a group number",
@@ -537,7 +537,7 @@
         "passed": true
       }
     ],
-    "duration": 1
+    "duration": 0
   },
   {
     "description": "Moh SiteReg - Group Numbers Page 03. should let user to continue if at least one group number is added",
@@ -582,7 +582,7 @@
         "passed": true
       }
     ],
-    "duration": 2
+    "duration": 1
   },
   {
     "description": "Moh SiteReg - Review Page 01. should load the page without issue",
@@ -609,7 +609,7 @@
         "passed": true
       }
     ],
-    "duration": 0
+    "duration": 1
   },
   {
     "description": "Moh SiteReg - Signing Authority Page 02. should NOT let user to continue without filling out any fields",
@@ -645,7 +645,7 @@
         "passed": true
       }
     ],
-    "duration": 1
+    "duration": 0
   },
   {
     "description": "Moh SiteReg - Users Page 01. should load the page without issue",
@@ -690,7 +690,7 @@
         "passed": true
       }
     ],
-    "duration": 1
+    "duration": 0
   },
   {
     "description": "Moh SiteReg - Users Page 06. should NOT be able to continue with an incomplete user section even if another admin is complete",

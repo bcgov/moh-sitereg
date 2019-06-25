@@ -2,7 +2,7 @@ import { browser } from 'protractor';
 import { FakeDataSiteReg } from './sitereg.data';
 import { OrganizationPage } from './sitereg.po';
 
-describe('Moh SiteReg - Organization Page', () => {
+fdescribe('Moh SiteReg - Organization Page', () => {
     let orgPage: OrganizationPage;
     const data = new FakeDataSiteReg();
     let orgData;
@@ -42,8 +42,8 @@ describe('Moh SiteReg - Organization Page', () => {
         orgPage.navigateTo();
         orgPage.agreeConsentModal();
         orgPage.clickConsentModalContinue();
-        orgPage.fillOrgName();
-        orgPage.fillAddress();
+        orgPage.fillOrgName(orgData);
+        orgPage.fillAddress(orgData);
         orgPage.selectValue('administeringFor', 'Employees');
         orgPage.scrollDown();
         orgPage.clickOption('thirdPartyFalse');
@@ -57,12 +57,12 @@ describe('Moh SiteReg - Organization Page', () => {
         orgPage.navigateTo();
         orgPage.agreeConsentModal();
         orgPage.clickConsentModalContinue();
-        orgPage.fillOrgName();
-        orgPage.fillAddress();
+        orgPage.fillOrgName(orgData);
+        orgPage.fillAddress(orgData);
         orgPage.selectValue('administeringFor', 'Employees');
         orgPage.scrollDown();
         orgPage.clickOption('thirdPartyTrue');
-        orgPage.fillOrgNum();
+        orgPage.fillOrgNum(orgData);
         orgPage.clickOption('aatrue');
         orgPage.continue();
         expect(orgPage.formErrors().count()).toBe(0, 'should be no errors after filling out');

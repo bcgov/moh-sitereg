@@ -29,7 +29,7 @@ describe('Moh SiteReg - Group Numbers Page', () => {
 
     it('03. should let user to continue if at least one group number is added', () => {
         groupPage.navigateTo();
-        groupPage.fillGroupNum();
+        groupPage.fillGroupNum(groupData);
         browser.sleep(5000);
         groupPage.continue();
         expect(groupPage.formErrors().count()).toBe(0, 'should be no errors after filling out');
@@ -40,7 +40,7 @@ describe('Moh SiteReg - Group Numbers Page', () => {
     it('04. should not let user cont. w/o one group num section complete/let user to delete a group num by clicking the x button', () => {
         groupPage.navigateTo();
         groupPage.clickButton('btn btn-block');
-        groupPage.fillGroupNum();
+        groupPage.fillGroupNum(groupData);
         groupPage.clickButton('btn delete');
         groupPage.continue();
         expect(browser.getCurrentUrl()).toContain(GROUP_PAGE_URL);
@@ -59,7 +59,7 @@ describe('Moh SiteReg - Group Numbers Page', () => {
         groupData.groupNum = '1111';
         groupPage.navigateTo();
         groupPage.clickButton('btn btn-block');
-        groupPage.fillGroupNum();
+        groupPage.fillGroupNum(groupData);
         groupPage.continue();
         expect(browser.getCurrentUrl()).toContain(GROUP_PAGE_URL, 'should stay on the same page');
     });

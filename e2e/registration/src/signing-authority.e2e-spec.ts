@@ -31,7 +31,7 @@ describe('Moh SiteReg - Signing Authority Page', () => {
 
     it('03. should let user to continue if all the required fields are filled out', () => {
         saPage.navigateTo();
-        saPage.fillInfo();
+        saPage.fillInfo(saData);
         saPage.scrollDown();
         saPage.selectValue('administeringFor', 'Employees');
         saPage.clickOption('bcfalse');
