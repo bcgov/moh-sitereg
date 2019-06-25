@@ -2,11 +2,13 @@
 <input type="text"
        class="form-control"
        id="{{labelforId}}"
-       [value]="value"
+       [value]="group"
        (change)="onValueChange( $event.target.value )"
        (blur)="onBlurEvent( $event )"
        [disabled]="disabled"
        [attr.maxlength]="maxlen"
+       [attr.minlength]="minlen"
+       [pattern]="grpCharSet"
        autocomplete="off" />
 <!-- Error messages for component -->
 <div *ngIf="controlDir && !controlDir.disabled && ( controlDir.dirty || controlDir.touched )"
@@ -16,7 +18,7 @@
   <div class="text-danger" *ngIf="controlDir.errors?.required">
     {{label}} is required.
   </div>
-  <div class="text-danger" *ngIf="controlDir.errors?.minLength">
+  <div class="text-danger" *ngIf="controlDir.errors?.minlength || controlDir.errors?.pattern ">
     Invalid {{label}}, {{label}} must be {{minlen}} digits long.
   </div>
 </div>

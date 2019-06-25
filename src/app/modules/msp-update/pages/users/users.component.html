@@ -1,14 +1,35 @@
-<common-page-framework>
-  <h3>{{componentInfo}}</h3>
-  
-  <aside>
-    At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et 
-    quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est 
-    laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio 
-    cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem 
-    quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque 
-    earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
-  </aside>
-</common-page-framework>
-<common-form-action-bar (btnClick)="continue()"  [submitLabel]="buttonLabel" >
+<common-page-framework layout='blank'>
+
+  <h2>Users</h2>
+  <p>
+    Users are persons who will be accessing MSP direct on behalf of the Organizations.
+  </p>
+  <hr>
+
+  <common-page-section layout='noTips'>
+    <div class="row">
+      <button type='button' class='btn btn-secondary col mr-4' (click)="addUser()">Add User</button>
+      <button type='button' class='btn btn-secondary col mx-2' (click)="removeUser()">Remove User</button>
+      <button type='button' class='btn btn-secondary col ml-4' (click)="updateUser()">Update User</button>
+    </div>
+  </common-page-section>
+
+  <common-page-section layout='tips' *ngIf="showAddUser" class="pt-4">
+  <!--  <form [formGroup]="addFg">
+        <div formArrayName="addUserItems">
+          <div *ngFor="let item of addUserArray.controls; let idx = index"
+              [formGroupName]="idx"
+              class="pt-2"> -->
+          <common-xicon-button class='d-block pb-1' label="Add User"
+                               (clickEvent)="deleteAddUserItem()"></common-xicon-button>
+          <h4 class='border-bottom'>Add new User #</h4>
+
+  <!--    {{idx + 1}}      <div class="form-group">
+            </div>
+          </div>
+        </div>
+    </form>-->
+  </common-page-section>
+
+<common-form-action-bar (btnClick)="continue()" [submitLabel]="buttonLabel" [canContinue]="canContinue()">
 </common-form-action-bar>

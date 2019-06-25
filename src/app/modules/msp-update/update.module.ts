@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '@shared/shared.module';
 import { CaptchaModule } from 'moh-common-lib/captcha';
 import { MspDirectUpdateRoutesModule } from './routing/routes.module';
-import { MspDirectUpdateComponent } from './pages/update/update.component';
+import { MspDirectUpdateComponent } from './components/update-container/update-container.component';
 import { MspDirectUpdateIdentifyComponent } from './pages/identify/identify.component';
 import { MspDirectUpdateOrganizationComponent } from './pages/organization/organization.component';
 import { MspDirectUpdateSigningAuthorityComponent } from './pages/signing-authority/signing-authority.component';
@@ -20,6 +20,7 @@ import { MspRegisterUserMspComponent } from '../msp-register/components/core/msp
 import { MspRegisterUserComponent } from '../msp-register/components/core/msp-register-user/msp-register-user.component';
 import { MspRegisterModule } from '../msp-register/msp-register.module';
 import { MspUpdateReviewComponent } from './pages/review/review.component';
+import { ReviewSectionComponent } from './components/review-section/review-section.component';
 
 @NgModule({
     declarations: [
@@ -34,6 +35,7 @@ import { MspUpdateReviewComponent } from './pages/review/review.component';
         MspDirectUpdateAutofillComponent,
         MspDirectUpdateConfirmationComponent,
         MspUpdateReviewComponent,
+        ReviewSectionComponent,
 
     ],
     imports: [

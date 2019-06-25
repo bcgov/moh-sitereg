@@ -1,14 +1,26 @@
-<common-page-framework>
-  <h3>{{componentInfo}}</h3>
-  
-  <aside>
-    At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et 
-    quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est 
-    laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio 
-    cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem 
-    quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque 
+<common-page-framework  layout='blank'>
+  <sitereg-msp-h2-with-print title="Submit"></sitereg-msp-h2-with-print>
+
+  <h3>Summary of Changes:</h3>
+  <p>
+    At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et
+    quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est
+    laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio
+    cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem
+    quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque
     earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
-  </aside>
+
+  </p>
+
+  <div class="p-4">
+    <common-captcha [apiBaseUrl]="captchaApiBaseUrl"
+                    [nonce]="nonce"
+                    (onValidToken)="setToken($event)"
+                    [successMessage]="'  '"></common-captcha>
+  </div>
+
+  <common-form-action-bar (btnClick)="continue()"
+                          widthOption='extra-width-mobile-only'
+                          submitLabel="Submit"
+                          [canContinue]='canContinue()'></common-form-action-bar>
 </common-page-framework>
-<common-form-action-bar  (btnClick)="continue()" submitLabel="Submit" [defaultColor]="false">
-</common-form-action-bar>

@@ -11,14 +11,27 @@ export class MspGroupNoComponent extends Base implements ControlValueAccessor {
 
   @Input() disabled = false;
   @Input() label = 'Msp Group Number';
-  @Input() maxlen = '20';
+  @Input() maxlen = '7';
+  @Input() minlen = '7';
   @Input() labelforId: string = 'mspGrpNo_' + this.objectId;
 
-  @Input() value = '';
+  @Input()
+  set value( val: string ) {
+    if ( val ) {
+      this.group = val;
+    }
+  }
+  get value() {
+    return this.group;
+  }
 
   @Output() valueChange: EventEmitter<string> = new EventEmitter<string>();
   @Output() blurEvent: EventEmitter<any> = new EventEmitter<any>();
 
+
+  // tslint:disable-next-line:no-inferrable-types
+  group: string = '';
+  grpCharSet: RegExp = RegExp( '^[0-9]{7}$' );
 
   // tslint:disable-next-line:variable-name
   _onChange = (_: any) => {};
@@ -33,11 +46,14 @@ export class MspGroupNoComponent extends Base implements ControlValueAccessor {
   }
 
   onValueChange( value: any ) {
+    console.log( 'onValueChange: ', value );
     this._onChange( value );
     this.valueChange.emit( value );
   }
 
   onBlurEvent( event: any ) {
+
+    console.log( 'controlDir.errors: ', this.controlDir.errors );
     this._onTouched( event );
     this.blurEvent.emit( event.target.value );
   }

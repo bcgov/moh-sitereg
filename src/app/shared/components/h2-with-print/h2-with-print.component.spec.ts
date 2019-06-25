@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MspH3WithPrintComponent } from './h3-with-print.component';
+import { MspH1WithPrintComponent } from './h2-with-print.component';
 
 describe('HeaderWithPrintComponent', () => {
-  let component: MspH3WithPrintComponent;
-  let fixture: ComponentFixture<MspH3WithPrintComponent>;
+  let component: MspH1WithPrintComponent;
+  let fixture: ComponentFixture<MspH1WithPrintComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MspH3WithPrintComponent ]
+      declarations: [ MspH1WithPrintComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MspH3WithPrintComponent);
+    fixture = TestBed.createComponent(MspH1WithPrintComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
