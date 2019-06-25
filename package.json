@@ -10,6 +10,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "e2e-protractor": "npx protractor",
+    "e2e:dev-update": "npm run e2e-protractor -- e2e/protractor.dev-update.conf.js",
     "format": "prettier --write \"src/**/*.ts\" && npm run lint && npm run build",
     "publish": "ng build --prod --output-hashing none"
   },
@@ -60,6 +62,7 @@
     "codelyzer": "~4.5.0",
     "jasmine": "^3.3.1",
     "jasmine-core": "~2.99.1",
+    "jasmine-reporters": "^2.3.2",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.0.0",
     "karma-chrome-launcher": "~2.2.0",
