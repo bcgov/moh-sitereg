@@ -23,7 +23,7 @@
 
     <div *ngIf="showAddSigningAuthority">
 
-      <common-xicon-button label="Cancel Add Signing Authority" (clickEvent)="cancelRemoveSigningAuthority()"></common-xicon-button>
+      <common-xicon-button class='d-block pb-1' label="Cancel Add Signing Authority" (clickEvent)="cancelAddSigningAuthority()"></common-xicon-button>
 
       <h4 class='border-bottom'>Add a new Signing Authority</h4>
 
@@ -38,7 +38,7 @@
 
     <div *ngIf="showRemoveSigningAuthority">
 
-      <common-xicon-button label="Cancel Remove Signing Authority" (clickEvent)="cancelRemoveSigningAuthority()"></common-xicon-button>      
+      <common-xicon-button class='d-block pb-1' label="Cancel Remove Signing Authority" (clickEvent)="cancelRemoveSigningAuthority()"></common-xicon-button>      
 
       <h4 class='border-bottom'>Remove an existing Signing Authority</h4>
       <p>Signing Authority Information</p>
@@ -77,7 +77,7 @@
 
     <div *ngIf="showUpdateSigningAuthority">
 
-        <common-xicon-button label="Cancel Update Signing Authority" (clickEvent)="cancelUpdateSigningAuthority()"></common-xicon-button>
+        <common-xicon-button class='d-block pb-1' label="Cancel Update Signing Authority" (clickEvent)="cancelUpdateSigningAuthority()"></common-xicon-button>
 
         <h4 class='border-bottom'>Update Signing Authority</h4>
 

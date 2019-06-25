@@ -1,0 +1,79 @@
+<form [formGroup]="fg">
+    <div class="form-group col-sm-8 p-sm-0">
+
+      <!-- Organization Name -->
+      <label class="control-label" for="name">Organization Name</label>
+      <input id="name" formControlName="name" class="form-control" placeholder="Organization Name"  maxlength="100" >
+      <div class="text-danger" *ngIf="validFormControl('name')">
+        Enter Organization name
+      </div>
+
+      <!-- Suite Number-->
+      <label class="control-label" for="suite">Suite# (optional)</label>
+      <input id="suite" formControlName="suite" class="form-control" placeholder="Suite# (optional)"  maxlength="10" >
+      <div class="text-danger" *ngIf="validFormControl('suite')">
+        Enter valid Suite# (optional)
+      </div>
+
+      <div class="row">
+
+        <!-- Street Number -->
+        <div class="col-sm-4">
+          <label class="control-label" for="street">Street#</label>
+          <input id="street" formControlName="street" class="form-control" placeholder="Street#"  maxlength="10" >
+          <div class="text-danger" *ngIf="validFormControl('street')">
+            Enter valid Street#
+          </div>
+        </div>
+
+        <!-- Street Name -->
+        <div class="col-sm-8">
+          <label class="control-label" for="streetName">Street Name</label>
+          <input id="streetName" formControlName="streetName" class="form-control" placeholder="Street Name"  maxlength="75" >
+          <div class="text-danger" *ngIf="validFormControl('streetName')">
+            Enter valid Street Name
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Address Line 2 -->
+      <label class="control-label" for="addressLine2">Street Address Line 2 (optional)</label>
+      <input id="addressLine2" formControlName="addressLine2" class="form-control" placeholder="Street Address Line 2 (optional)"  maxlength="200" >
+      <div class="text-danger" *ngIf="validFormControl('addressLine2')">
+        Enter valid Street Address Line 2
+      </div>
+
+      <!-- City -->
+      <label class="control-label" for="city">City</label>
+      <input id="city" formControlName="city" class="form-control" placeholder="City Name"  maxlength="25" >
+      <div class="text-danger" *ngIf="validFormControl('city')">
+        Please enter your city.
+      </div>
+      
+      
+
+      <div class="row">
+        <div class="col-sm-8">
+          <common-province label='Province' formControlName='province'></common-province>
+        </div>
+        <div class="col-sm-4">
+          <common-postal-code label='Postal Code' formControlName='postalCode'></common-postal-code>
+        </div>
+      </div>
+
+        <!-- Administrating For-->
+        <!-- <label class="control-label" for="administeringFor">This organization will be administering MSP for</label>
+        <select class="form-control" *ngIf="administeringFor | async as administering" formControlName="administeringFor">
+          <option value="" label="-- Select Option --" selected></option>
+          <option *ngFor="let a of administering " [value]="a">{{a}}</option>
+        </select>
+        <div class="text-danger" *ngIf="validFormControl('administeringFor')">
+          Please select a valid option
+        </div> -->
+
+        <common-dropdown label='Administering for' formControlName='administeringFor' [items]='cAdministeringFor'></common-dropdown>
+    
+
+    </div>
+  </form>

@@ -44,6 +44,8 @@ $fa-font-path: '~font-awesome/fonts';
 @import "~font-awesome/scss/icons";
 @import "~font-awesome/scss/screen-reader";
 
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
 @import "overrides";
 @import "radiobutton";
 
