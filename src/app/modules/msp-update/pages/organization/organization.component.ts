@@ -16,8 +16,6 @@ import { cUpdateValidators } from '@msp-register/models/core/core-types';
     styleUrls: ['./organization.component.scss'],
 })
 export class MspDirectUpdateOrganizationComponent extends AbstractForm implements OnInit {
-    // TODO: Remove boolean and just check if the form is null? Depends if we have to store this to send to API.
-    public hasOrgUpdates: boolean;
 
     constructor(
         public router: Router,
@@ -35,21 +33,11 @@ export class MspDirectUpdateOrganizationComponent extends AbstractForm implement
     }
 
     ngOnInit() {
-        // Update the toggle state only if user is re-visting this page.  On
-        // first visit only it should be unselected.
-        const pageIndex = this.progressService.getUrlIndex('organization');
-        const page = this.progressService.pageCheckList[pageIndex];
-        if (page.isComplete) {
-            // If page is complete, user is returning. Derive local state from
-            // persisted service state.
-            this.hasOrgUpdates = !!this.organizationForm;
-        }
-
         this.progressService.setPageIncomplete();
     }
 
     orgUpdatesChange(bool: boolean) {
-        this.hasOrgUpdates = bool;
+        this.updateStateService.hasOrganizationUpdates = bool;
         if (bool) {
             this.createFormGroup();
         } else {
@@ -91,13 +79,18 @@ export class MspDirectUpdateOrganizationComponent extends AbstractForm implement
     canContinue(): boolean {
         if (!this.organizationForm) {
             // user can continue only if they select 'No'
-            return this.hasOrgUpdates === false;
+            return this.updateStateService.hasOrganizationUpdates === false;
         }
         return this.organizationForm.valid;
     }
 
     get organizationForm(): FormGroup {
         return this.updateStateService.forms.organizationForm;
+    }
+
+    /** For template. */
+    get hasOrgUpdates(): boolean {
+        return this.updateStateService.hasOrganizationUpdates;
     }
 
 
