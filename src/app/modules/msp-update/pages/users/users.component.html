@@ -1,12 +1,16 @@
 <common-page-framework layout='blank'>
 
-  <h3>{{componentInfo}}</h3>
+  <h2>Users</h2>
+  <p>
+    Users are persons who will be accessing MSP direct on behalf of the Organizations.
+  </p>
+  <hr>
 
   <common-page-section layout='noTips'>
     <div class="row">
-      <button type='button' class='btn btn-secondary col mr-4' (click)="addMspGroup()">Add MSP Group</button>
-      <button type='button' class='btn btn-secondary col mx-2' (click)="removeMspGroup()">Remove MSP Group</button>
-      <button type='button' class='btn btn-secondary col ml-4' (click)="updateMspGroupAdmin()">Update administration of MSP Group</button>
+      <button type='button' class='btn btn-secondary col mr-4' (click)="addUser()">Add User</button>
+      <button type='button' class='btn btn-secondary col mx-2' (click)="removeUser()">Remove User</button>
+      <button type='button' class='btn btn-secondary col ml-4' (click)="updateUser()">Update User</button>
     </div>
   </common-page-section>
 

@@ -49,4 +49,18 @@ export class MspDirectUpdateUsersComponent implements OnInit {
         this.progressService.setPageComplete();
         this.router.navigate([ROUTES_UPDATE.GROUP_NUMBERS.fullpath]);
     }
+
+
+
+    addUser() {
+
+    }
+
+    removeUser() {
+
+    }
+
+    updateUser() {
+
+    }
 }

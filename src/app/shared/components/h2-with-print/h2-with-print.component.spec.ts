@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MspH1WithPrintComponent } from './h1-with-print.component';
+import { MspH1WithPrintComponent } from './h2-with-print.component';
 
 describe('HeaderWithPrintComponent', () => {
   let component: MspH1WithPrintComponent;
