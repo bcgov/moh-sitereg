@@ -80,14 +80,14 @@ let defaultRoutes: Routes = [
         data: { title: ROUTES_UPDATE.CONFIRMATION.title },
     },
 
-    // REMOVEME
-    {
-        // path: 'autofill',
-        path: '_autofill',
-        component: MspDirectUpdateAutofillComponent,
-        data: { title: 'autofill' },
-    },
-    // ,
+    // // REMOVEME
+    // {
+    //     // path: 'autofill',
+    //     path: '_autofill',
+    //     component: MspDirectUpdateAutofillComponent,
+    //     data: { title: 'autofill' },
+    // },
+
     // { path: '**', component: MspDirectUpdateIdentifyComponent },
 ];
 
