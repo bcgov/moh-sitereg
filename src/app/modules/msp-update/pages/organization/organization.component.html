@@ -14,7 +14,10 @@
 
   <ng-container *ngIf="organizationForm">
     <!-- <sitereg-msp-register-organization></sitereg-msp-register-organization> -->
-    <sitereg-organization-form [(fg)]='organizationForm'></sitereg-organization-form>
+    <!-- <sitereg-organization-form [(fg)]='organizationForm'></sitereg-organization-form> -->
+    <!-- TODO - Looks like 2-way binding isn't necessary, it's a pass-by-reference object. -->
+    <sitereg-organization-form mode='update'[fg]='organizationForm'></sitereg-organization-form>
+
   </ng-container>
 
 

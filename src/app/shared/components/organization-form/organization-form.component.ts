@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { validFormControl } from '@msp-register/models/validator-helpers';
-import { cAdministeringFor } from '@msp-register/models/core/core-types';
+import { cAdministeringFor, cAdministeringForUpdate } from '@msp-register/models/core/core-types';
 
 @Component({
   selector: 'sitereg-organization-form',
@@ -10,17 +10,35 @@ import { cAdministeringFor } from '@msp-register/models/core/core-types';
 })
 export class OrganizationFormComponent implements OnInit {
   @Input() fg: FormGroup;
-  // TODO _ TEST THE OUTPUT
-  @Output() fgChange: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
+  // TODO - Remove if not used. Currently not in use because fg is an object (pass by reference)
+  // @Output() fgChange: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
+
+  /**
+   * Tweak certain behaviours for each of the MSP Direct apps.
+   */
+  @Input() mode: 'register' | 'update' = 'update';
 
   validFormControl = validFormControl;
-  cAdministeringFor = cAdministeringFor;
+
+  /**
+   * List of all dropdown options for 'Administering For' - this varies
+   * depending on `this.mode`
+   */
+  administeringForOptions: string[];
 
 
   constructor() { }
 
   ngOnInit() {
-    console.log('orgform admin for types?', this.cAdministeringFor);
+    this.administeringForOptions = this.isUpdate() ? cAdministeringForUpdate : cAdministeringFor;
+  }
+
+  isUpdate(): boolean {
+    return this.mode === 'update';
+  }
+
+  isRegister(): boolean {
+    return !this.isUpdate();
   }
 
 
