@@ -21,6 +21,7 @@ export class UpdateStateService {
       // the sub-types can be accessed directly.
       signingAuthority: {} as AddRemoveUpdate,
 
+      mspUsers: {} as AddRemoveUpdate,
       mspGroups: {} as AddRemoveUpdate,
     };
 }
@@ -29,6 +30,7 @@ export interface UpdateFormTypes {
   signingAuthority?: AddRemoveUpdate;
   organizationForm?: FormGroup;
   profileForm?: FormGroup;
+  mspUsers?: AddRemoveUpdate;
   mspGroups?: AddRemoveUpdate;
 }
 

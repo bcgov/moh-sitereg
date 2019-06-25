@@ -11,7 +11,7 @@ export class MspGroupNoComponent extends Base implements ControlValueAccessor {
 
   @Input() disabled = false;
   @Input() label = 'Msp Group Number';
-  @Input() maxlen = '20';
+  @Input() maxlen = '7';
   @Input() labelforId: string = 'mspGrpNo_' + this.objectId;
 
   @Input() value = '';

@@ -36,7 +36,7 @@ import { OrganizationFormComponent } from './components/organization-form/organi
         NgxJsonViewerModule,
         MspGroupNoComponent,
         MspH2WithPrintComponent,
-        OrganizationFormComponent
+        OrganizationFormComponent,
     ],
 })
 export class SharedModule {}
