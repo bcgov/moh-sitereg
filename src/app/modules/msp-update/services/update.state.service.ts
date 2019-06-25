@@ -24,6 +24,14 @@ export class UpdateStateService {
       mspUsers: {} as AddRemoveUpdate,
       mspGroups: {} as AddRemoveUpdate,
     };
+
+    /**
+     * Track if user has selected they have form updates.  If this value is
+     * TRUE, then forms.profileForms must not be null.
+     *
+     * The reason we have this in the service is to persist user's action.
+     */
+    public hasOrganizationUpdates: boolean;
 }
 
 export interface UpdateFormTypes {
