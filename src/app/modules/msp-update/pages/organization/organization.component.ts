@@ -8,7 +8,7 @@ import { GlobalConfigService } from '@shared/services/global-config.service';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { UpdateStateService } from '../../services/update.state.service';
 import { AbstractForm } from 'moh-common-lib';
-import { cUpdateValidators } from '@msp-register/models/core/core-types';
+import { cUpdateValidators, cAdministeringForUpdate } from '@msp-register/models/core/core-types';
 
 @Component({
     selector: 'sitereg-msp-update-organization',
@@ -16,8 +16,6 @@ import { cUpdateValidators } from '@msp-register/models/core/core-types';
     styleUrls: ['./organization.component.scss'],
 })
 export class MspDirectUpdateOrganizationComponent extends AbstractForm implements OnInit {
-    // TODO: Remove boolean and just check if the form is null? Depends if we have to store this to send to API.
-    public hasOrgUpdates: boolean;
 
     constructor(
         public router: Router,
@@ -28,10 +26,6 @@ export class MspDirectUpdateOrganizationComponent extends AbstractForm implement
         public updateStateService: UpdateStateService,
     ) {
         super(router);
-        // TODO - REMOVE!  Currently using `hasOrgUpdates` boolean instead. Desireable?
-        // this.updateStateService.forms.organizationForm = this.fb.group({
-        //     hasOrgInfoUpdates: [null, Validators.required],
-        // }, { updateOn: 'blur' });
     }
 
     ngOnInit() {
@@ -39,7 +33,7 @@ export class MspDirectUpdateOrganizationComponent extends AbstractForm implement
     }
 
     orgUpdatesChange(bool: boolean) {
-        this.hasOrgUpdates = bool;
+        this.updateStateService.hasOrganizationUpdates = bool;
         if (bool) {
             this.createFormGroup();
         } else {
@@ -57,7 +51,9 @@ export class MspDirectUpdateOrganizationComponent extends AbstractForm implement
             city: [null, cUpdateValidators.city],
             province: [null, cUpdateValidators.province],
             postalCode: [null, cUpdateValidators.postalCode],
-            administeringFor: [null, Validators.required] // the ONLY required field
+            // the ONLY required field, and comes with a default value
+            administeringFor: [cAdministeringForUpdate[0], Validators.required]
+
         });
 
     }
@@ -80,12 +76,18 @@ export class MspDirectUpdateOrganizationComponent extends AbstractForm implement
 
     canContinue(): boolean {
         if (!this.organizationForm) {
-            return false;
+            // user can continue only if they select 'No'
+            return this.updateStateService.hasOrganizationUpdates === false;
         }
         return this.organizationForm.valid;
     }
 
     get organizationForm(): FormGroup {
         return this.updateStateService.forms.organizationForm;
+    }
+
+    /** For template. */
+    get hasOrgUpdates(): boolean {
+        return this.updateStateService.hasOrganizationUpdates;
     }
 }

@@ -69,6 +69,7 @@ export function postalCodeValidator(): ValidatorFn {
 
 export function trailingSpacesValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
+        if (!control.value || control.value.length === 0) return null; // Necessary for optional fields.
         const forbidden = !/^[^\s]+(\s+[^\s]+)*$/.test(
             control.value
         );
