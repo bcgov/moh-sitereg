@@ -6,7 +6,7 @@ import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
 import { UpdateStateService } from '../../services/update.state.service';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { validFormControlCommon, validFormControl, validMultiFormControl } from '@msp-register/models/validator-helpers';
+import { validMultiFormControl } from '@msp-register/models/validator-helpers';
 import { cUserValidators, cUpdateValidators } from '@msp-register/models/core/core-types';
 
 @Component({
@@ -17,8 +17,6 @@ import { cUserValidators, cUpdateValidators } from '@msp-register/models/core/co
 export class MspDirectUpdateIdentifyComponent implements OnInit, AfterViewInit {
     @ViewChild('consentModal') consentModal;
     validFormControl: (fg: FormGroup, name: string) => boolean;
-    fg: FormGroup;
-
 
     constructor(
         private router: Router,
@@ -28,17 +26,13 @@ export class MspDirectUpdateIdentifyComponent implements OnInit, AfterViewInit {
         public updateStateService: UpdateStateService,
         private fb: FormBuilder
     ) {
-      this.updateStateService.forms.profileForm = this.fb.group({
-        organizationNumber: ['', cUpdateValidators.organizationNumber],
-        emailAddress: ['', cUserValidators.emailAddress]
-      }, {updateOn: 'blur'});
-      this.validFormControl = validFormControlCommon;
-
-      // Share the same reference, better than using a TS get().
-      this.fg = this.updateStateService.forms.profileForm;
+        this.validFormControl = validMultiFormControl;
     }
 
     ngOnInit() {
+        if (!this.updateStateService.forms.profileForm) {
+            this.updateStateService.forms.profileForm = this.createForm();
+        }
         this.progressService.setPageIncomplete();
     }
 
@@ -46,6 +40,13 @@ export class MspDirectUpdateIdentifyComponent implements OnInit, AfterViewInit {
         if (!this.updateStateService.hasConsentedToInformationCollection) {
             this.consentModal.showFullSizeView();
         }
+    }
+
+    createForm(): FormGroup {
+        return this.fb.group({
+            organizationNumber: ['', cUpdateValidators.organizationNumber],
+            emailAddress: ['', cUserValidators.emailAddress]
+        }, { updateOn: 'blur' });
     }
 
     continue() {
@@ -64,5 +65,9 @@ export class MspDirectUpdateIdentifyComponent implements OnInit, AfterViewInit {
 
     onAcceptCollectionNotice(accepted: boolean) {
         this.updateStateService.hasConsentedToInformationCollection = accepted;
+    }
+
+    get fg(): FormGroup {
+        return this.updateStateService.forms.profileForm;
     }
 }
