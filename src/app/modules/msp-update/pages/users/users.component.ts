@@ -32,7 +32,7 @@ export class MspDirectUpdateUsersComponent implements OnInit {
     this.showAddUser = this.addFg ? true : false;
     this.showRemoveUser = this.removeFg ? true : false;
     this.showUpdateUser = this.updateFg ? true : false;
-}
+  }
 
   get buttonLabel(): string {
     return this.isUpdate ? 'Continue' : 'Skip';
@@ -103,8 +103,8 @@ export class MspDirectUpdateUsersComponent implements OnInit {
 
   }
 
-  deleteAddUserItem( idx: number ) {
-    console.log( 'X-icon button clicked - need logic to delete item', idx );
+  deleteAddUserItem( ) { // idx: number
+    console.log( 'X-icon button clicked - need logic to delete item' );//, idx );
     /*
     this.addUserArray.removeAt( idx );
 

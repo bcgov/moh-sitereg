@@ -15,20 +15,20 @@
   </common-page-section>
 
   <common-page-section layout='tips' *ngIf="showAddUser" class="pt-4">
-    <form [formGroup]="addFg">
-  <!--      <div formArrayName="addUserItems">
+  <!--  <form [formGroup]="addFg">
+        <div formArrayName="addUserItems">
           <div *ngFor="let item of addUserArray.controls; let idx = index"
               [formGroupName]="idx"
               class="pt-2"> -->
           <common-xicon-button class='d-block pb-1' label="Add User"
-                               (clickEvent)="deleteUserGrpItem(idx)"></common-xicon-button>
-          <h4 class='border-bottom'>Add new User #{{idx + 1}}</h4>
+                               (clickEvent)="deleteAddUserItem()"></common-xicon-button>
+          <h4 class='border-bottom'>Add new User #</h4>
 
-  <!--          <div class="form-group">
+  <!--    {{idx + 1}}      <div class="form-group">
             </div>
           </div>
-        </div> -->
-    </form>
+        </div>
+    </form>-->
   </common-page-section>
 
 <common-form-action-bar (btnClick)="continue()" [submitLabel]="buttonLabel" [canContinue]="canContinue()">
