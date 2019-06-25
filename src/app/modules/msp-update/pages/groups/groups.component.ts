@@ -68,8 +68,6 @@ export class MspDirectUpdateGroupsComponent implements OnInit {
   }
 
   createMspGrpItem(): FormGroup {
-    // TODO: Figure out why minlength valiator is not working, also need to add pattern
-    // check to msp-grp-no component
     return this.fb.group({
           groupNo: ['', [Validators.required, Validators.minLength(7)]],
           thirdPartyAdmin: ['', Validators.required]
