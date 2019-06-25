@@ -1,11 +1,18 @@
 import { browser, by, element, WebElement, protractor, $$ } from 'protractor';
-import { SiteRegTestPage } from './app.po';
-import { OrganizationPageTest, SigningAuthorityPageTest, GroupNumbersPageTest } from './sitereg.data';
+import { AbstractTestPage } from 'moh-common-lib/e2e';
+import { OrganizationPageTest, SigningAuthorityPageTest, GroupNumbersPageTest, FakeDataSiteReg } from './sitereg.data';
 
-export class BaseSiteRegTestPage extends SiteRegTestPage {
+export class BaseSiteRegTestPage extends AbstractTestPage {
+
+    protected data = new FakeDataSiteReg();
+    protected jsonData = this.data.getJSONData();
 
     constructor() {
         super();
+    }
+
+    navigateTo() {
+        return browser.get('/');
     }
 
     clickOption(value: string) {
@@ -16,6 +23,80 @@ export class BaseSiteRegTestPage extends SiteRegTestPage {
         element(by.css(`select[ng-reflect-name="${label}"]`)).click(); // opens dropdown
         element(by.css(`select[ng-reflect-name="${label}"] option[ng-reflect-value="${value}"]`)).click();
     }
+
+    clickButton(value: string) {
+        element(by.css(`button[class*="${value}"]`)).click();
+    }
+
+    // TODO: Move these methods to shared lib
+    /**
+     * * Clicks the checkbox which means the user agrees with the info collection notice.
+     * InfoColectionNoticeComponent <common-collection-modal>
+     */
+    agreeConsentModal() {
+        element(by.css('label[for="agree"]')).element(by.css('strong')).click();
+    }
+
+    /**
+     * * Clicks continue inside the modal
+     * InfoColectionNoticeComponent <common-collection-modal>
+     */
+    clickConsentModalContinue() {
+        element(by.css('div[class="modal-footer"]')).element(by.css('button[type="submit"]')).click();
+    }
+
+    /**
+     * * Checks if the modal is currently displayed or not 
+     */
+    checkConsentModal() {
+        return element(by.css('common-consent-modal')).element(by.css('div[aria-labelledby="myLargeModalLabel"]')).isDisplayed();
+    }
+
+    /**
+     * * Scrolls up to the top of the page
+     */
+    scrollUp() {
+        browser.executeScript('window.scrollTo(0,0)');
+    }
+
+    /**
+     * * Types the text inside the first input box
+     */
+    typeTextFirstOccurrence(labelId: string, text: string) {
+        element.all(by.css(`input[ng-reflect-name^="${labelId}"]`)).first().sendKeys(text);
+    }
+
+    /**
+     * * Clicks the link based from the label and text provided
+     */
+    clickLink(label: string, text: string) {
+        element(by.cssContainingText(label, text)).click();
+    }
+
+    /**
+     * * Counts the number of options inside a dropdown object
+     */
+    countLength(label: string){
+        return $$(`select[ng-reflect-name^="${label}"] option`);
+    }
+
+    /**
+     * * Every page will overload this method to fill out the data
+     */
+    fillPage() {
+
+    }
+
+    clickOptionJSON(labelVal: string, ngVal: string) {
+        const selector = `input[formcontrolname="${labelVal}"][ng-reflect-value="${ngVal}"]`;
+        if (ngVal === 'true') {
+            ngVal = 'Yes';
+        } else {
+            ngVal = 'No';
+        }
+        element(by.css(selector)).element(by.xpath('..')).element(by.cssContainingText('label', `${ngVal}`)).click();
+    }
+
 }
 
 export class OrganizationPage extends BaseSiteRegTestPage {
@@ -28,29 +109,55 @@ export class OrganizationPage extends BaseSiteRegTestPage {
     }
 
     navigateTo() {
-        return browser.get('/msp-registration/organization');
+        return browser.get('/register/organization');
     }
 
-    fillOrgName(data: OrganizationPageTest) {
-        this.typeText('name', data.orgName);
+    fillPage() {
+        const json = this.jsonData.organizationPage;
+        this.agreeConsentModal();
+        this.clickConsentModalContinue();
+        this.fillOrgName();
+        this.fillAddress();
+        this.selectValue('administeringFor', json.administeringFor);
+        this.scrollDown();
+        this.clickOptionJSON('thirdParty', json.thirdParty.toString());
+        this.fillOrgNum();
+        this.clickOptionJSON('blueCross', json.blueCross.toString());
+        this.continue();
     }
 
-    fillAddress(data: OrganizationPageTest) {
-        if (data.suiteNo) {
-            this.typeText('suite', data.suiteNo + ' ');
+    fillOrgName(data?: OrganizationPageTest) {
+        let info = data;
+        if (data === undefined) {
+            info = this.jsonData.organizationPage;
         }
-        this.typeText('street', data.streetNo + ' ');
-        this.typeText('streetName', data.streetName);
-        if (data.streetAddressLine) {
-            this.typeText('addressLine2', data.streetAddressLine);
+        this.typeText('name', info.orgName);
+    }
+
+    fillAddress(data?: OrganizationPageTest) {
+        let info = data;
+        if (data === undefined) {
+            info = this.jsonData.organizationPage;
         }
-        this.typeText('city', data.city);
+        if (info.suiteNo) {
+            this.typeText('suite', info.suiteNo + '');
+        }
+        this.typeTextFirstOccurrence('street', info.streetNo + '');
+        this.typeText('streetName', info.streetName);
+        if (info.streetAddressLine) {
+            this.typeText('addressLine2', info.streetAddressLine);
+        }
+        this.typeText('city', info.city);
         this.selectValue('province', this.province[this.num]);
-        this.typeText('postalCode', data.postal);
+        this.typeText('postalCode', info.postal);
     }
 
-    fillOrgNum(data: OrganizationPageTest) {
-        this.typeText('organizationNumber', data.orgNum + ' ');
+    fillOrgNum(data?: OrganizationPageTest) {
+        let info = data;
+        if (data === undefined) {
+            info = this.jsonData.organizationPage;
+        }
+        this.typeText('organizationNumber', info.orgNum + '');
         this.selectValue('administeringFor', 'Employees');
     }
 
@@ -63,19 +170,34 @@ export class SigningAuthorityPage extends BaseSiteRegTestPage {
     }
 
     navigateTo() {
-        return browser.get('/msp-registration/signing-authority');
+        return browser.get('/register/signing-authority');
     }
 
-    fillInfo(data: SigningAuthorityPageTest) {
-        this.typeText('firstName', data.firstName);
-        this.typeText('lastName', data.lastName);
-        this.typeText('jobTitle', data.jobTitle);
-        this.typeText('emailAddress', data.email);
-        this.typeText('confirmEmail', data.email);
-        this.typeText('phone', data.mobile + '');
-        this.typeText('ext', data.extension + '');
-        this.typeText('fax', data.fax + '');
+    fillPage() {
+        const json = this.jsonData.signingAuthorityPage;
+        this.selectValue('userTitle', json.title);
+        this.fillInfo();
+        this.scrollDown();
+        this.selectValue('administeringFor', json.administeringFor);
+        this.clickOptionJSON('directMspAccess', json.directMspAccess.toString());
+        this.continue();
     }
+
+    fillInfo(data?: SigningAuthorityPageTest) {
+        let info = data;
+        if (data === undefined) {
+            info = this.jsonData.accessAdminsPage;
+        }
+        this.typeTextFirstOccurrence('firstName', info.firstName);
+        this.typeTextFirstOccurrence('lastName', info.lastName);
+        this.typeTextFirstOccurrence('jobTitle', info.jobTitle);
+        this.typeTextFirstOccurrence('emailAddress', info.email);
+        this.typeTextFirstOccurrence('confirmEmail', info.email);
+        this.typeTextFirstOccurrence('phone', info.mobile + '');
+        this.typeTextFirstOccurrence('ext', info.extension + '');
+        this.typeTextFirstOccurrence('fax', info.fax + '');
+    }
+
 }
 
 export class AccessAdminsPage extends SigningAuthorityPage {
@@ -85,7 +207,11 @@ export class AccessAdminsPage extends SigningAuthorityPage {
     }
 
     navigateTo() {
-        return browser.get('/msp-registration/access-admins');
+        return browser.get('/register/access-admins');
+    }
+
+    fillPage() {
+
     }
 
 }
@@ -97,7 +223,16 @@ export class UsersPage extends SigningAuthorityPage {
     }
 
     navigateTo() {
-        return browser.get('/msp-registration/users');
+        return browser.get('/register/users');
+    }
+
+    fillPage() {
+        const json = this.jsonData.usersPage;
+        this.clickButton('btn btn-block');
+        this.fillInfo();
+        this.scrollDown();
+        this.selectValue('administeringFor', json.administeringFor);
+        this.continue();
     }
 
 }
@@ -109,12 +244,33 @@ export class GroupNumbersPage extends BaseSiteRegTestPage {
     }
 
     navigateTo() {
-        return browser.get('/msp-registration/group-numbers');
+        return browser.get('/register/group-numbers');
     }
 
-    fillGroupNum(data: GroupNumbersPageTest) {
-        this.typeText('groupNumber', data.groupNum + '');
+    fillPage() {
+        this.fillGroupNum();
+        this.continue();
     }
+
+    fillGroupNum(data?: GroupNumbersPageTest) {
+        let info = data;
+        if (data === undefined) {
+            info = this.jsonData.groupNumbersPage;
+        }
+        this.typeText('groupNumber', info.groupNum + '');
+    }
+}
+
+export class ReviewPage extends BaseSiteRegTestPage {
+
+    constructor() {
+        super();
+    }
+
+    navigateTo() {
+        return browser.get('/register/review');
+    }
+
 }
 
 export class AuthorizePage extends BaseSiteRegTestPage {
@@ -124,7 +280,38 @@ export class AuthorizePage extends BaseSiteRegTestPage {
     }
 
     navigateTo() {
-        return browser.get('/msp-registration/authorize');
+        return browser.get('/register/authorize');
+    }
+
+    fillPage() {
+        this.scrollDown();
+        this.agreeTermsAndConditions();
+        this.typeCaptcha();
+        this.continue();
+    }
+
+    agreeTermsAndConditions() {
+        element(by.css('input[id="consent"]')).click();
+    }
+
+    typeCaptcha() {
+        element(by.css('input[id="answer"]')).sendKeys('irobot');
+    }
+
+}
+
+export class SpecialCasePage extends BaseSiteRegTestPage {
+
+    constructor() {
+        super();
+    }
+
+    navigateTo() {
+        return browser.get('/register/_autofill');
+    }
+
+    getTextFromField() {
+        return (element(by.css('input[ng-reflect-name="name"]')).getText());
     }
 
 }

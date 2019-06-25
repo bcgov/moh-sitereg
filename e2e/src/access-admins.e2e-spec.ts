@@ -3,50 +3,104 @@ import { FakeDataSiteReg } from './sitereg.data';
 import { AccessAdminsPage } from './sitereg.po';
 
 describe('Moh SiteReg - Access Admins Page', () => {
-    let aaPage: AccessAdminsPage;
+    let accessPage: AccessAdminsPage;
     const data = new FakeDataSiteReg();
-    let aaData;
-    const AA_PAGE_URL = `msp-registration/access-admins`;
-    const USERS_PAGE_URL = `msp-registration/users`;
+    let accessData;
+    const ACCESS_PAGE_URL = `register/access-admins`;
+    const USERS_PAGE_URL = `register/users`;
+    const jsonData = data.getJSONData();
+    if (data.hasJsonData) { // Uses JSON data
+        accessData = jsonData;
+    }
+
+    beforeAll(() => {
+        if (data.hasJsonData === false) {
+            console.log('START OF MOH-SITEREG E2E' + '\nThis test uses Seed #: ' + data.getSeed());
+        }
+    });
 
     beforeEach(() => {
-        aaPage = new AccessAdminsPage();
-        aaData = data.signingAuthorityInfo();
-        data.setSeed(123);
+        accessPage = new AccessAdminsPage();
+        if (data.hasJsonData === false) {
+            accessData = data.signingAuthorityInfo();
+            data.setSeed();
+        }
     });
 
     it('01. should load the page without issue', () => {
-        aaPage.navigateTo();
-        expect(browser.getCurrentUrl()).toContain(AA_PAGE_URL);
-        expect(aaPage.formErrors().count()).toBe(0, 'should be no errors on page load');
+        accessPage.navigateTo();
+        expect(browser.getCurrentUrl()).toContain(ACCESS_PAGE_URL);
+        expect(accessPage.formErrors().count()).toBe(0, 'should be no errors on page load');
     });
 
     it('02. should let user to continue without filling out any fields', () => {
-        aaPage.navigateTo();
-        aaPage.continue();
-        expect(browser.getCurrentUrl()).toContain(USERS_PAGE_URL, 'should navigate to the Users page');
+        accessPage.navigateTo();
+        accessPage.continue();
+        expect(browser.getCurrentUrl()).toContain(ACCESS_PAGE_URL, 'should stay on the same page');
     });
 
     it('03. should let user to continue if all the required fields are filled out', () => {
-        aaPage.navigateTo();
-        aaPage.clickButton('btn btn-block', ' Add New Access Admin ');
-        aaPage.fillInfo(aaData);
-        aaPage.scrollDown();
-        aaPage.selectValue('administeringFor', 'Employees');
-        aaPage.continue();
-        expect(aaPage.formErrors().count()).toBe(0, 'should be no errors after filling out');
+        accessPage.navigateTo();
+        accessPage.clickButton('btn btn-block');
+        accessPage.fillInfo(accessData);
+        accessPage.scrollDown();
+        accessPage.selectValue('administeringFor', 'Employees');
+        accessPage.continue();
+        expect(accessPage.formErrors().count()).toBe(0, 'should be no errors after filling out');
         expect(browser.getCurrentUrl()).toContain(USERS_PAGE_URL, 'should navigate to the Users page');
     });
 
-    it('04. should let user to continue when user clicks the x button', () => {
-        aaPage.navigateTo();
-        aaPage.clickButton('btn btn-block', ' Add New Access Admin ');
-        aaPage.fillInfo(aaData);
-        aaPage.scrollDown();
-        aaPage.selectValue('administeringFor', 'Employees');
-        aaPage.clickButton('btn delete', '');
-        aaPage.continue();
-        expect(aaPage.formErrors().count()).toBe(0, 'should be no errors after filling out');
+    it('04. should NOT let user to continue when user clicks the x button', () => {
+        accessPage.navigateTo();
+        accessPage.clickButton('btn btn-block');
+        accessPage.fillInfo(accessData);
+        accessPage.scrollDown();
+        accessPage.selectValue('administeringFor', 'Employees');
+        accessPage.clickButton('btn delete');
+        accessPage.continue();
+        expect(browser.getCurrentUrl()).toContain(ACCESS_PAGE_URL, 'should navigate to the Users page');
+    });
+
+    // Additional Tests
+    it('05. should delete correct admin if user adds two admins and deletes one of them', () => {
+        accessPage.navigateTo();
+        accessPage.clickButton('btn btn-block');
+        accessPage.fillInfo(accessData);
+        accessPage.scrollDown();
+        accessPage.selectValue('administeringFor', 'Employees');
+        accessPage.scrollUp();
+        accessPage.clickButton('btn btn-block');
+        accessPage.fillInfo(accessData);
+        accessPage.scrollDown();
+        accessPage.selectValue('administeringFor', 'Employees');
+        accessPage.clickButton('btn delete'); // deletes the second admin created (latest one)
+        browser.sleep(10000);
+        accessPage.continue();
+        expect(accessPage.formErrors().count()).toBe(0, 'should be no errors after filling out');
         expect(browser.getCurrentUrl()).toContain(USERS_PAGE_URL, 'should navigate to the Users page');
     });
+
+    it('06. should NOT be able to continue with an incomplete admin section even if another admin is complete', () => {
+        accessPage.navigateTo();
+        accessPage.clickButton('btn btn-block');
+        accessPage.fillInfo(accessData);
+        accessPage.scrollDown();
+        accessPage.selectValue('administeringFor', 'Employees');
+        accessPage.clickButton('btn btn-block');
+        accessPage.fillInfo(accessData);
+        accessPage.scrollDown();
+        accessPage.continue();
+        expect(browser.getCurrentUrl()).toContain(ACCESS_PAGE_URL);
+    });
+
+    it('06. Testing for validation re: maximum characters', () => {
+        
+    });
+
+    // Test will fail since _autofill is still active in dev mode
+    xit('08. should not be able to access "_autofill" dev only URL', () => {
+        // accessPage.navigateTo();
+        // expect(accessPage.getTextFromField()).toBe('', 'should be empty');
+    });
+
 });
