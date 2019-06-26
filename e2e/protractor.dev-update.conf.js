@@ -9,8 +9,8 @@ exports.config = {
     './dev-update/src/*.e2e-spec.ts',
   ],
   multiCapabilities: [{
-    'browserName': 'firefox'
-  }, {
+  //  'browserName': 'firefox'
+  //}, {
     'browserName': 'chrome'
   }],
   directConnect: true,

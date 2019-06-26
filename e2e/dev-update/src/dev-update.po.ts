@@ -1,6 +1,6 @@
 import { browser, by, element, WebElement, protractor, $$ } from 'protractor';
 import { AbstractTestPage } from 'moh-common-lib/e2e';
-import { OrganizationPageTest } from './dev-update.data';
+import { OrganizationPageTest, RequestorPageTest } from './dev-update.data';
 
 export class BaseDevUpdateTestPage extends AbstractTestPage {
 
@@ -10,20 +10,25 @@ export class BaseDevUpdateTestPage extends AbstractTestPage {
 
     // TODO: Move the methods below to shared lib
     clickOption(value: string) {
-        element(by.css(`label[for="${value}"]`)).click();
+        element(by.css(`label[for^="${value}"]`)).click();
     }
 
-    selectValue(label: string, value: string) {
-        element(by.css(`select[ng-reflect-name="${label}"]`)).click(); // opens dropdown
-        element(by.css(`select[ng-reflect-name="${label}"] option[ng-reflect-value="${value}"]`)).click();
+}
+
+export class RequestorInfoPage extends BaseDevUpdateTestPage {
+
+    navigateTo() {
+        return browser.get('/sitereg/update/identify');
+    }
+
+    fillPage(data: RequestorPageTest) {
+        this.typeText('organizationNumber', data.orgNum + '');
+        this.typeText('emailAddress', data.email);
     }
 
 }
 
 export class OrganizationPage extends BaseDevUpdateTestPage {
-
-    private province: string[] = ['AB', 'BC', 'MB', 'NB', 'NL', 'NS', 'ON', 'PE', 'QC', 'SK', 'NT', 'NU', 'YT'];
-    private num: number = Math.floor(Math.random() * Math.floor(this.province.length));
 
     navigateTo() {
         return browser.get('/sitereg/update/organization');
@@ -33,20 +38,39 @@ export class OrganizationPage extends BaseDevUpdateTestPage {
 
     }
 
+    typeTextUsingPlaceHolder(placeholder: string, data: string) {
+        element(by.css(`input[placeholder="${placeholder}"]`)).sendKeys(data);
+    }
+
+    typeTextUsingID(id: string, data: string) {
+        element(by.css(`input[id^="${id}"]`)).sendKeys(data);
+        element(by.css(`input[id^="${id}"]`)).sendKeys(protractor.Key.ENTER);
+    }
+
+    selectFromDropDown(id: string, value: string) {
+        element(by.css(`input[id^="${id}"]`)).click();
+        element(by.cssContainingText('span', value)).click();
+    }
+
+    getInputVal(id: string) {
+        const selector = `ng-select[ng-reflect-label-for-id*="${id}"]`;
+        return element(by.css(selector)).element(by.css('span[class="ng-value-label"]')).getText();
+    }
+
     fillOrgInfo(data: OrganizationPageTest) {
         this.typeText('name', data.orgName);
         if (data.suiteNo) {
-            this.typeText('suite', data.suiteNo + ' ');
+            this.typeText('suite', data.suiteNo + '');
         }
-        this.typeText('street', data.streetNo + ' ');
-        this.typeText('streetName', data.streetName);
+        this.typeText('street', data.streetNo + '');
+        this.typeTextUsingPlaceHolder('Street Name', data.streetName);
         if (data.streetAddressLine) {
             this.typeText('addressLine2', data.streetAddressLine);
         }
-        this.typeText('city', data.city);
-        this.selectValue('province', this.province[this.num]);
-        this.typeText('postalCode', data.postal);
-        this.selectValue('administeringFor', 'Employees');
+        this.typeTextUsingID('city', data.city);
+        this.typeTextUsingID('province', 'British Columbia');
+        this.typeTextUsingID('postalCode', data.postal);
+        this.typeTextUsingID('The organization', 'Employees');
     }
 
 }

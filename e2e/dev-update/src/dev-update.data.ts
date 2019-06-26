@@ -2,6 +2,18 @@ import * as faker from 'faker';
 
 export class FakeDataDevUpdate {
 
+    private static seedVal: number = Math.floor(Math.random() * Math.floor(1000));
+
+    requestorInfo(): RequestorPageTest {
+        return {
+            orgNum: faker.random.number({
+                min: 10000000,
+                max: 99999999
+            }),
+            email: faker.internet.email()
+        };
+    }
+
     organizationInfo(): OrganizationPageTest {
         return {
             orgName: faker.company.companyName(),
@@ -41,9 +53,18 @@ export class FakeDataDevUpdate {
         };
     }
 
-    setSeed(number) {
-         faker.seed(number);
+    getSeed() {
+        return FakeDataDevUpdate.seedVal;
     }
+
+    setSeed(seed = this.getSeed()) {
+        faker.seed(seed);
+    }
+}
+
+export interface RequestorPageTest {
+    orgNum: number;
+    email: string;
 }
 
 export interface OrganizationPageTest {
