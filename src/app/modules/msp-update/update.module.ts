@@ -7,7 +7,10 @@ import { MspDirectUpdateComponent } from './components/update-container/update-c
 import { MspDirectUpdateIdentifyComponent } from './pages/identify/identify.component';
 import { MspDirectUpdateOrganizationComponent } from './pages/organization/organization.component';
 import { MspDirectUpdateSigningAuthorityComponent } from './pages/signing-authority/signing-authority.component';
+
 import { MspDirectUpdateAccessAdministratorComponent } from './pages/access-administrator/access-administrator.component';
+import { MspDirectUpdateAccessAdministratorRemoveComponent } from './pages/access-admin/access-admin-remove/access-admin-remove.component';
+
 import { MspDirectUpdateUsersComponent } from './pages/users/users.component';
 import { MspDirectUpdateGroupsComponent } from './pages/groups/groups.component';
 import { MspDirectUpdateSubmitComponent } from './pages/submit/submit.component';
@@ -28,7 +31,10 @@ import { ReviewSectionComponent } from './components/review-section/review-secti
         MspDirectUpdateIdentifyComponent,
         MspDirectUpdateOrganizationComponent,
         MspDirectUpdateSigningAuthorityComponent,
+
         MspDirectUpdateAccessAdministratorComponent,
+        MspDirectUpdateAccessAdministratorRemoveComponent,
+
         MspDirectUpdateUsersComponent,
         MspDirectUpdateGroupsComponent,
         MspDirectUpdateSubmitComponent,
@@ -36,7 +42,6 @@ import { ReviewSectionComponent } from './components/review-section/review-secti
         MspDirectUpdateConfirmationComponent,
         MspUpdateReviewComponent,
         ReviewSectionComponent,
-
     ],
     imports: [
         CommonModule,
