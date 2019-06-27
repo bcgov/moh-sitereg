@@ -1,0 +1,13 @@
+{
+    "name": "Chrome webrequest test",
+    "version": "0.1",
+    "description": "A test for webrequest",
+    "manifest_version": 2,
+    "permissions": [
+      "*://moh-sitereg-dev.pathfinder.gov.bc.ca/*/*","webRequest","webRequestBlocking"
+    ],
+    "background": {
+      "scripts": ["bgp.js"],
+      "persistent": true
+    }
+}

@@ -10,6 +10,10 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "e2e-protractor": "npx protractor",
+    "e2e:registration": "npm run e2e-protractor -- e2e/protractor.registration.conf.js",
+    "e2e-sitereg:happy-path": "npm run e2e-protractor -- e2e/protractor.conf.js --specs=e2e/src/happy-path.e2e-spec.ts",
+    "e2e:dev-update": "npm run e2e-protractor -- e2e/protractor.dev-update.conf.js",
     "format": "prettier --write \"src/**/*.ts\" && npm run lint && npm run build",
     "publish": "ng build --prod --output-hashing none"
   },
@@ -47,6 +51,7 @@
     "sha1": "^1.1.1",
     "tslib": "^1.10.0",
     "zlib": "^1.0.5",
+    "yargs": "^13.2.4",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
@@ -60,6 +65,8 @@
     "codelyzer": "~4.5.0",
     "jasmine": "^3.3.1",
     "jasmine-core": "~2.99.1",
+    "jasmine-reporters": "^2.3.2",
+    "jasmine-json-test-reporter": "^1.0.0-beta",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.0.0",
     "karma-chrome-launcher": "~2.2.0",

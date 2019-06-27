@@ -1,10 +1,11 @@
 import * as faker from 'faker';
+import * as fs from 'fs';
+
 
 export class FakeDataSiteReg {
 
-    constructor() {
-        // faker.setLocale('en_CA');
-    }
+    private static seedVal: number = Math.floor(Math.random() * Math.floor(1000));
+    public hasJsonData: boolean = false;
 
     organizationInfo(): OrganizationPageTest {
         return {
@@ -49,8 +50,45 @@ export class FakeDataSiteReg {
         };
     }
 
-    setSeed(number) {
-         faker.seed(number);
+    organizationMax(): OrganizationPageTest {
+        return {
+            orgName: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labores',
+            suiteNo: 1234567890,
+            streetNo: 1234567890,
+            streetName: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tem',
+// tslint:disable-next-line: max-line-length
+            streetAddressLine: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut laboresLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labores',
+            city: 'Lorem ipsum dolor sit ame',
+            postal: 'A1A1A1',
+            orgNum: 99999999
+        };
+    }
+
+    getSeed() {
+        return FakeDataSiteReg.seedVal;
+    }
+
+    setSeed(seed = this.getSeed()) {
+        faker.seed(seed);
+    }
+
+    getJSONData() {
+        const x = process.argv;
+        const input = process.argv.filter(x => x.startsWith('--data'));
+        // console.log('INPUT: ', input.toString());
+        if (input.toString() !== '') {
+            const filename = input.toString().split('=')[1];
+            const data = fs.readFileSync(filename, 'utf8');
+            const jsonData = JSON.parse(data);
+            this.hasJsonData = true;
+            return jsonData;
+        } else {
+            return null;
+        }
+    }
+
+    getUUID() {
+
     }
 }
 

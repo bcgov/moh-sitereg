@@ -8,7 +8,6 @@ import { UpdateStateService } from '../../services/update.state.service';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { cUserTitles } from '../../../msp-register/models/core/core-types';
 import { commonValidateName } from 'moh-common-lib';
-import { validMultiFormControl } from '../../../msp-register/models/validator-helpers';
 
 
 
@@ -18,7 +17,6 @@ import { validMultiFormControl } from '../../../msp-register/models/validator-he
     styleUrls: ['./users.component.scss'],
 })
 export class MspDirectUpdateUsersComponent implements OnInit {
-
   public showAddUser = false;
   public showRemoveUser = false;
   public showUpdateUser = false;
