@@ -1,0 +1,26 @@
+<common-page-framework layout='blank'>
+  <h3>Organization</h3>
+  <p>
+    The Organization Information refers to the entity that has MSP Direct
+    access and that includes a Signing Authority, one ore more Access
+    Administrators, MSP Users, and MSP Groups.
+  </p>
+
+
+  <hr>
+  
+  <common-toggle label='Do you need to do any Updates to your Organization Information?'
+                 [data]="hasOrgUpdates" (dataChange)="orgUpdatesChange($event)"></common-toggle>
+
+  <ng-container *ngIf="organizationForm">
+    <!-- <sitereg-msp-register-organization></sitereg-msp-register-organization> -->
+    <!-- <sitereg-organization-form [(fg)]='organizationForm'></sitereg-organization-form> -->
+    <!-- TODO - Looks like 2-way binding isn't necessary, it's a pass-by-reference object. -->
+    <sitereg-organization-form mode='update'[fg]='organizationForm'></sitereg-organization-form>
+
+  </ng-container>
+
+
+</common-page-framework>
+<common-form-action-bar (btnClick)="continue()"  submitLabel="Continue"  [canContinue]="canContinue()">
+</common-form-action-bar>

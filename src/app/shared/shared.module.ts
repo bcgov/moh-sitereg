@@ -3,16 +3,22 @@ import { CommonModule } from '@angular/common';
 import { SharedCoreModule } from 'moh-common-lib';
 import { CaptchaModule } from 'moh-common-lib/captcha';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { PageSectionsComponent } from './components/page-sections/page-sections.component';
-import { CaptchaComponent } from './components/captcha/captcha.component';
 import { ErrorBoxComponent } from './components/error-box/error-box.component';
 import { GlobalConfigService } from './services/global-config.service';
 import { MspRegisterApiService } from './services/api.service';
 import { LoggerService } from './../shared/services/logger.service';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
+import { MspGroupNoComponent } from './components/msp-group-no/msp-group-no.component';
+import { MspH2WithPrintComponent } from './components/h2-with-print/h2-with-print.component';
+import { OrganizationFormComponent } from './components/organization-form/organization-form.component';
 
 @NgModule({
-    declarations: [PageSectionsComponent, CaptchaComponent, ErrorBoxComponent],
+    declarations: [
+      ErrorBoxComponent,
+      MspGroupNoComponent,
+      MspH2WithPrintComponent,
+      OrganizationFormComponent,
+    ],
     imports: [
         CommonModule,
         SharedCoreModule,
@@ -25,10 +31,12 @@ import { NgxJsonViewerModule } from 'ngx-json-viewer';
     exports: [
         SharedCoreModule,
         ReactiveFormsModule,
-        PageSectionsComponent,
-        CaptchaComponent,
+        CaptchaModule,
         ErrorBoxComponent,
         NgxJsonViewerModule,
+        MspGroupNoComponent,
+        MspH2WithPrintComponent,
+        OrganizationFormComponent,
     ],
 })
 export class SharedModule {}

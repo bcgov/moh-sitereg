@@ -108,6 +108,20 @@ header .nav-link {
   flex-direction: column;
   justify-content: space-between;
 }
-#wrap {
-  margin-bottom: 2rem;
+
+
+.container-fluid {
+  @include media-breakpoint-up(md) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+:host() {
+  height: 100%;
+}
+
+.site-wrapper {
+  min-height: 100vh !important;
+  height: 100vh;
 }

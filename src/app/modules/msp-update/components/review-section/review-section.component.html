@@ -1,0 +1,7 @@
+<h3>{{sectionTitle}}
+  <i class="fa fa-pencil edit--icon" aria-hidden="true" (click)="onClick()"></i>
+</h3>
+<div class="bg-light section-container" *ngFor="let item of reviewItems">
+  <div class="line-item--text">{{item.label}}</div>
+  <div class="line-item--value">{{item.value}}</div>
+</div>

@@ -19,6 +19,7 @@ import {
 })
 export class MspRegisterUserComponent implements AfterViewInit {
     @Input() fg: FormGroup;
+    @Input() showAdministeringMSPForQuestion = true; // needed in MSP updates only
     validFormControl: (fg: FormGroup, name: string) => boolean;
 
     userTitles = cUserTitles;

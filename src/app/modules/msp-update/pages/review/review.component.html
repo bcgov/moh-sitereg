@@ -1,0 +1,23 @@
+<common-page-framework layout='blank'>
+
+  <sitereg-msp-h2-with-print title="Review your request for Update"></sitereg-msp-h2-with-print>
+
+  <div class="d-flex row">
+    <div class="col-md-6">
+      <sitereg-msp-review-section sectionTitle="Requester Information"
+              [reviewItems]="getRequesterData()"
+              (clickEvent)="editRequesterData()"></sitereg-msp-review-section>
+
+      <sitereg-msp-review-section sectionTitle="Organization"
+              [reviewItems]="getOrgData()"
+              (clickEvent)="editOrgData()"></sitereg-msp-review-section>
+
+      <sitereg-msp-review-section sectionTitle="Signing Authority (Add)"
+              [reviewItems]="getAddSignAuthData()"
+              (clickEvent)="editSignAuthData()"></sitereg-msp-review-section>
+    </div>
+
+  </div>
+
+  <common-form-action-bar (btnClick)="continue()"></common-form-action-bar>
+</common-page-framework>

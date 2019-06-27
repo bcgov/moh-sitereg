@@ -15,7 +15,7 @@ import { SharedModule } from '@shared/shared.module';
         AppRoutingModule,
         HttpClientModule,
         CoreModule,
-        SharedModule,
+        SharedModule
     ],
     providers: [
         // MspRegistrationService

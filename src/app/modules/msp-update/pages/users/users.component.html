@@ -1,0 +1,35 @@
+<common-page-framework layout='blank'>
+
+  <h2>Users</h2>
+  <p>
+    Users are persons who will be accessing MSP direct on behalf of the Organizations.
+  </p>
+  <hr>
+
+  <common-page-section layout='noTips'>
+    <div class="row">
+      <button type='button' class='btn btn-secondary col mr-4' (click)="addUser()">Add User</button>
+      <button type='button' class='btn btn-secondary col mx-2' (click)="removeUser()">Remove User</button>
+      <button type='button' class='btn btn-secondary col ml-4' (click)="updateUser()">Update User</button>
+    </div>
+  </common-page-section>
+
+  <common-page-section layout='tips' *ngIf="showAddUser" class="pt-4">
+  <!--  <form [formGroup]="addFg">
+        <div formArrayName="addUserItems">
+          <div *ngFor="let item of addUserArray.controls; let idx = index"
+              [formGroupName]="idx"
+              class="pt-2"> -->
+          <common-xicon-button class='d-block pb-1' label="Add User"
+                               (clickEvent)="deleteAddUserItem()"></common-xicon-button>
+          <h4 class='border-bottom'>Add new User #</h4>
+
+  <!--    {{idx + 1}}      <div class="form-group">
+            </div>
+          </div>
+        </div>
+    </form>-->
+  </common-page-section>
+
+<common-form-action-bar (btnClick)="continue()" [submitLabel]="buttonLabel" [canContinue]="canContinue()">
+</common-form-action-bar>

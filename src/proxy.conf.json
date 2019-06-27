@@ -1,0 +1,8 @@
+{
+    "/sitereg/api/": {
+        "target": "https://moh-sitereg-dev.pathfinder.gov.bc.ca/",
+        "changeOrigin": true,
+        "secure": false,
+        "logLevel": "debug"
+    }
+}
