@@ -9,6 +9,10 @@ export class BaseDevUpdateTestPage extends AbstractTestPage {
         return browser.get('/sitereg/home/');
     }
 
+    navigateToURL(PAGE_URL: string) {
+        return browser.get('/' + PAGE_URL);
+    }
+
     // TODO: Move the methods below to shared lib
     clickOption(value: string) {
         element(by.css(`label[for^="${value}"]`)).click();

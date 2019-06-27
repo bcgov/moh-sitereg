@@ -1,7 +1,7 @@
 import { browser } from 'protractor';
 import { FakeDataDevUpdate } from './update.data';
-import { OrganizationPage } from './update.po';
-import { onPageLoadTest } from '../../generic-tests';
+import { OrganizationPage, BaseDevUpdateTestPage } from './update.po';
+import { onPageLoadTest, onClickStepperTest, onClickContinueTest } from './generic-tests';
 
 describe('IAM Update - Organization Page', () => {
     let orgPage: OrganizationPage;
@@ -17,20 +17,18 @@ describe('IAM Update - Organization Page', () => {
         data.setSeed(123);
     });
 
-    it('01. should load the page without issue', () => {
-        orgPage.navigateTo();
-        expect(browser.getCurrentUrl()).toContain(ORG_PAGE_URL);
-        expect(orgPage.formErrors().count()).toBe(0, 'should be no errors on page load');
-    });
+    onPageLoadTest(ORG_PAGE_URL);
+    onClickStepperTest(ORG_PAGE_URL, REQUESTOR_PAGE_URL, 'Identify', 'Signing Authority');
+    onClickContinueTest(ORG_PAGE_URL);
 
-    it('02. should let the user to continue if there are no updates in Organization Info', () => {
+    it('01. should let the user to continue if there are no updates in Organization Info', () => {
         orgPage.navigateTo();
         orgPage.clickOption('false');
         orgPage.continue();
         expect(browser.getCurrentUrl()).toContain(SIGN_AUTH_PAGE_URL, 'should navigate to the next page');
     });
 
-    it('03. should let the user to continue if they clicked Yes and filled out all required fields', () => {
+    it('02. should let the user to continue if they clicked Yes and filled out all required fields', () => {
         orgPage.navigateTo();
         orgPage.clickOption('true');
         orgPage.fillOrgInfo(orgData);
@@ -38,7 +36,7 @@ describe('IAM Update - Organization Page', () => {
         expect(browser.getCurrentUrl()).toContain(SIGN_AUTH_PAGE_URL, 'should navigate to the next page');
     });
 
-    it('04. should let the user select value from dropdown box instead of typing the text', () => {
+    it('03. should let the user select value from dropdown box instead of typing the text', () => {
         orgPage.navigateTo();
         orgPage.clickOption('true');
         orgPage.selectFromDropDown('province', 'British Columbia');
@@ -52,24 +50,11 @@ describe('IAM Update - Organization Page', () => {
         });
     });
 
-    it('05. should let the user to continue if they click Yes and leave the fields blank', () => {
+    it('04. should let the user to continue if they click Yes and leave the fields blank', () => {
         orgPage.navigateTo();
         orgPage.clickOption('true');
         orgPage.continue();
         expect(browser.getCurrentUrl()).toContain(SIGN_AUTH_PAGE_URL, 'should navigate to the next page');
     });
 
-    it('06. should NOT let user to continue if they did not click either Yes or No', () => {
-        orgPage.navigateTo();
-        orgPage.continue();
-        expect(browser.getCurrentUrl()).toContain(ORG_PAGE_URL, 'should stay on the same page');
-    });
-
-    it('07. should let user to go back to the previous page by clicking the stepper but NOT to move forward to the next page', () => {
-        orgPage.navigateTo();
-        orgPage.clickLink('span', 'Identify');
-        expect(browser.getCurrentUrl()).toContain(REQUESTOR_PAGE_URL, 'should navigate to the previous page');
-        orgPage.clickLink('span', 'Organization');
-        expect(browser.getCurrentUrl()).toContain(REQUESTOR_PAGE_URL, 'should still be on the same page - EXPECT TO FAIL');
-    });
 });

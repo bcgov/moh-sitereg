@@ -1,6 +1,7 @@
 import { browser } from 'protractor';
 import { FakeDataDevUpdate } from './update.data';
 import { MSPGroupsPage } from './update.po';
+import { onPageLoadTest, onClickStepperTest, onSkipTest } from './generic-tests';
 
 describe('IAM Update - MSP Groups Page', () => {
     let groupPage: MSPGroupsPage;
@@ -16,19 +17,11 @@ describe('IAM Update - MSP Groups Page', () => {
         data.setSeed(123);
     });
 
-    it('01. should load the page without issue', () => {
-        groupPage.navigateTo();
-        expect(browser.getCurrentUrl()).toContain(GROUP_NUMBERS_PAGE_URL);
-        expect(groupPage.formErrors().count()).toBe(0, 'should be no errors on page load');
-    });
+    onPageLoadTest(GROUP_NUMBERS_PAGE_URL);
+    onClickStepperTest(GROUP_NUMBERS_PAGE_URL, USER_PAGE_URL, 'Users', 'Review');
+    onSkipTest(GROUP_NUMBERS_PAGE_URL, REVIEW_PAGE_URL);
 
-    it('02. should be able to skip this page', () => {
-        groupPage.navigateTo();
-        groupPage.continue();
-        expect(browser.getCurrentUrl()).toContain(REVIEW_PAGE_URL, 'should navigate to the next page');
-    });
-
-    it('03. should be able to add MSP Group number', () => {
+    it('01. should be able to add MSP Group number', () => {
         groupPage.navigateTo();
         groupPage.clickButton('btn', 'Add MSP Group');
         groupPage.typeGroupNumber('Add new MSP Group #1', 'goupNo_0', groupData);
@@ -40,7 +33,7 @@ describe('IAM Update - MSP Groups Page', () => {
         expect(browser.getCurrentUrl()).toContain(REVIEW_PAGE_URL, 'should navigate to the next page');
     });
 
-    it('04. should be able to remove MSP Group number', () => {
+    it('02. should be able to remove MSP Group number', () => {
         groupPage.navigateTo();
         groupPage.clickButton('btn', 'Remove MSP Group');
         groupPage.typeGroupNumber('Remove new MSP Group #1', 'goupNo_0', groupData);
@@ -51,7 +44,7 @@ describe('IAM Update - MSP Groups Page', () => {
         expect(browser.getCurrentUrl()).toContain(REVIEW_PAGE_URL, 'should navigate to the next page');
     });
 
-    it('05. should be able to update MSP Group number', () => {
+    it('03. should be able to update MSP Group number', () => {
         groupPage.navigateTo();
         groupPage.clickButton('btn', 'Update administration of MSP Group');
         groupPage.typeGroupNumber('Update administration of MSP Group #1', 'goupNo_0', groupData);
@@ -63,7 +56,7 @@ describe('IAM Update - MSP Groups Page', () => {
         expect(browser.getCurrentUrl()).toContain(REVIEW_PAGE_URL, 'should navigate to the next page');
     });
 
-    it('06. should be able to add multiple MSP Group numbers', () => {
+    it('04. should be able to add multiple MSP Group numbers', () => {
         const groupNum0 = groupData.groupNum = '1234567';
         groupPage.navigateTo();
         groupPage.clickButton('btn', 'Add MSP Group');
@@ -83,7 +76,7 @@ describe('IAM Update - MSP Groups Page', () => {
         expect(browser.getCurrentUrl()).toContain(REVIEW_PAGE_URL, 'should navigate to the next page');
     });
 
-    it('07. should be able to remove multiple MSP Group numbers', () => {
+    it('05. should be able to remove multiple MSP Group numbers', () => {
         const groupNum0 = groupData.groupNum = '1234567';
         groupPage.navigateTo();
         groupPage.clickButton('btn', 'Remove MSP Group');
@@ -101,7 +94,7 @@ describe('IAM Update - MSP Groups Page', () => {
         expect(browser.getCurrentUrl()).toContain(REVIEW_PAGE_URL, 'should navigate to the next page');
     });
 
-    it('08. should be able to update multiple MSP Group numbers', () => {
+    it('06. should be able to update multiple MSP Group numbers', () => {
         const groupNum0 = groupData.groupNum = '1234567';
         groupPage.navigateTo();
         groupPage.clickButton('btn', 'Update administration of MSP Group');
@@ -121,7 +114,7 @@ describe('IAM Update - MSP Groups Page', () => {
         expect(browser.getCurrentUrl()).toContain(REVIEW_PAGE_URL, 'should navigate to the next page');
     });
 
-    it('09. should be able to add, remove and\/or update at the same time', () => {
+    it('07. should be able to add, remove and\/or update at the same time', () => {
         const groupNum0 = groupData.groupNum = '1234567';
         groupPage.navigateTo();
         groupPage.clickButton('btn', 'Add MSP Group');
@@ -140,7 +133,7 @@ describe('IAM Update - MSP Groups Page', () => {
         expect(browser.getCurrentUrl()).toContain(REVIEW_PAGE_URL, 'should navigate to the next page');
     });
 
-    it('10. should be able to add two items (Add MSP and Remove MSP) and delete Remove MSP item using the \'x\' icon', () => {
+    it('08. should be able to add two items (Add MSP and Remove MSP) and delete Remove MSP item using the \'x\' icon', () => {
         const groupNum0 = groupData.groupNum = '1234567';
         groupPage.navigateTo();
         groupPage.clickButton('btn', 'Add MSP Group');
