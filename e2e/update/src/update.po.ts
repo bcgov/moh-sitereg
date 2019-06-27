@@ -1,6 +1,6 @@
 import { browser, by, element, WebElement, protractor, $$ } from 'protractor';
 import { AbstractTestPage } from 'moh-common-lib/e2e';
-import { OrganizationPageTest, RequestorPageTest } from './dev-update.data';
+import { OrganizationPageTest, RequestorPageTest } from './update.data';
 
 export class BaseDevUpdateTestPage extends AbstractTestPage {
 

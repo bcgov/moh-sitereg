@@ -1,5 +1,5 @@
 import { browser } from 'protractor';
-import { OrganizationPage, RequestorInfoPage, BaseDevUpdateTestPage } from './dev-update/src/dev-update.po';
+import { OrganizationPage, RequestorInfoPage, BaseDevUpdateTestPage } from './update/src/update.po';
 
 export function onPageLoadTest(page: BaseDevUpdateTestPage, PAGE_URL: string) {
 

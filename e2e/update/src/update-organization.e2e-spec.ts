@@ -1,9 +1,9 @@
 import { browser } from 'protractor';
-import { FakeDataDevUpdate } from './dev-update.data';
-import { OrganizationPage } from './dev-update.po';
+import { FakeDataDevUpdate } from './update.data';
+import { OrganizationPage } from './update.po';
 import { onPageLoadTest } from '../../generic-tests';
 
-describe('IAM Dev Update - Organization Page', () => {
+describe('IAM Update - Organization Page', () => {
     let orgPage: OrganizationPage;
     const data = new FakeDataDevUpdate();
     let orgData;

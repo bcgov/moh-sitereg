@@ -1,8 +1,8 @@
 import { browser } from 'protractor';
-import { FakeDataDevUpdate } from './dev-update.data';
-import { RequestorInfoPage } from './dev-update.po';
+import { FakeDataDevUpdate } from './update.data';
+import { RequestorInfoPage } from './update.po';
 
-describe('IAM Dev Update - Requestor Info Page', () => {
+describe('IAM Update - Requestor Info Page', () => {
     let requestorPage: RequestorInfoPage;
     const data = new FakeDataDevUpdate();
     let requestorData;
