@@ -6,8 +6,9 @@ import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
 import { UpdateStateService } from '../../services/update.state.service';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
-import { cUserTitles } from '../../../msp-register/models/core/core-types';
+import { cUserTitles, cAdministeringFor } from '../../../msp-register/models/core/core-types';
 import { commonValidateName } from 'moh-common-lib';
+import { BehaviorSubject } from 'rxjs';
 
 
 
@@ -22,6 +23,10 @@ export class MspDirectUpdateUsersComponent implements OnInit {
   public showUpdateUser = false;
 
   public userTitles = cUserTitles;
+
+  administeringFor: BehaviorSubject<string[]> = new BehaviorSubject<string[]>(
+    cAdministeringFor
+  );
 
   constructor( private router: Router,
                private progressService: MspDirectUpdateProgressService,
@@ -106,7 +111,18 @@ export class MspDirectUpdateUsersComponent implements OnInit {
   }
 
   removeUser() {
+    console.log( 'Remove User clicked: ', this.removeFg );
     this.showRemoveUser = true;
+
+    // Form group not created
+    if ( !this.updateStateService.forms.mspUsers.remove ) {
+
+      this.updateStateService.forms.mspUsers.remove = this.fb.group({
+        removeUserItems: this.fb.array( [ this.createRemoveUserItem() ] )
+      });
+    } else {
+      this.removeUserArray.push( this.createRemoveUserItem() );
+    }
   }
 
   updateUser() {
@@ -123,8 +139,14 @@ export class MspDirectUpdateUsersComponent implements OnInit {
     this.showAddUser = ( this.addUserArray.length !== 0 );
   }
 
+  deleteRemoveUserItem( idx: number ) {
+    console.log( 'X-icon button clicked - need logic to delete item', idx );
 
+    this.removeUserArray.removeAt( idx );
 
+    // TODO: confirm assumption - if user removes all entries, set flag to false not show.
+    this.showRemoveUser = ( this.removeUserArray.length !== 0 );
+  }
 
 
   // Private methods
@@ -137,17 +159,24 @@ export class MspDirectUpdateUsersComponent implements OnInit {
 
   private createAddUserItem(): FormGroup {
     return this.fb.group({
-          userTitle: [ null ],
-          firstName: [ null, [ Validators.required, commonValidateName ] ],
-          initial: [ null, commonValidateName ],
-          lastName: [ null, [ Validators.required, commonValidateName ] ],
-          jobTitle: [ null ],
-          emailAddress: [ null ],
-          confirmEmail: [ null ],
-          phone: [ null ],
-          ext: [ null ],
-          fax: [ null ],
-        //  administeringFor: [ null ]
+          userTitle: [ '' ],
+          firstName: [ '', [ Validators.required, commonValidateName ] ],
+          initial: [ '', commonValidateName ],
+          lastName: [ '', [ Validators.required, commonValidateName ] ],
+          jobTitle: [ '' ],
+          emailAddress: [ '' ],
+          confirmEmail: [ '' ],
+          phone: [ '' ],
+          ext: [ '' ],
+          fax: [ '' ],
+          administeringFor: [ '' ]
         }, {updateOn: 'blur'});
+  }
+
+  private createRemoveUserItem(): FormGroup {
+    return this.fb.group({
+      emailAddress: [ '', Validators.required ],
+      userId: ['']
+    }, {updateOn: 'blur'});
   }
 }

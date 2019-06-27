@@ -43,7 +43,7 @@
     ],
     "no-empty": false,
     "no-inferrable-types": [
-      true,
+      false,
       "ignore-params"
     ],
     "no-non-null-assertion": true,
@@ -62,6 +62,7 @@
       "single"
     ],
     "trailing-comma": false,
+    "variable-name": false,
     "no-output-on-prefix": true,
     "use-input-property-decorator": true,
     "use-output-property-decorator": true,
