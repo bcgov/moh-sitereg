@@ -2,11 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MspDirectUpdateProgressService } from '../../services/progress.service';
 import { ROUTES_UPDATE } from '../../routing/routes.constants';
-import { funcRemoveStrings } from '@msp-register/constants';
 import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
 import { UpdateStateService } from '../../services/update.state.service';
-import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
+import { cUserTitles, cAdministeringFor } from '../../../msp-register/models/core/core-types';
+import { commonValidateName } from 'moh-common-lib';
+import { BehaviorSubject } from 'rxjs';
+
+
 
 @Component({
     selector: 'sitereg-msp-update-users',
@@ -17,6 +21,12 @@ export class MspDirectUpdateUsersComponent implements OnInit {
   public showAddUser = false;
   public showRemoveUser = false;
   public showUpdateUser = false;
+
+  public userTitles = cUserTitles;
+
+  administeringFor: BehaviorSubject<string[]> = new BehaviorSubject<string[]>(
+    cAdministeringFor
+  );
 
   constructor( private router: Router,
                private progressService: MspDirectUpdateProgressService,
@@ -85,17 +95,34 @@ export class MspDirectUpdateUsersComponent implements OnInit {
                             .length === 0;
   }
 
-
-
   addUser() {
     console.log( 'Add User clicked: ', this.addFg );
     this.showAddUser = true;
 
+    // Form group not created
+    if ( !this.updateStateService.forms.mspUsers.add ) {
 
+      this.updateStateService.forms.mspUsers.add = this.fb.group({
+        addUserItems: this.fb.array( [ this.createAddUserItem() ] )
+      });
+    } else {
+      this.addUserArray.push( this.createAddUserItem() );
+    }
   }
 
   removeUser() {
+    console.log( 'Remove User clicked: ', this.removeFg );
     this.showRemoveUser = true;
+
+    // Form group not created
+    if ( !this.updateStateService.forms.mspUsers.remove ) {
+
+      this.updateStateService.forms.mspUsers.remove = this.fb.group({
+        removeUserItems: this.fb.array( [ this.createRemoveUserItem() ] )
+      });
+    } else {
+      this.removeUserArray.push( this.createRemoveUserItem() );
+    }
   }
 
   updateUser() {
@@ -103,23 +130,53 @@ export class MspDirectUpdateUsersComponent implements OnInit {
 
   }
 
-  deleteAddUserItem( ) { // idx: number
-    console.log( 'X-icon button clicked - need logic to delete item' );//, idx );
-    /*
+  deleteAddUserItem( idx: number ) {
+    console.log( 'X-icon button clicked - need logic to delete item', idx );
+
     this.addUserArray.removeAt( idx );
 
     // TODO: confirm assumption - if user removes all entries, set flag to false not show.
     this.showAddUser = ( this.addUserArray.length !== 0 );
-    */
+  }
+
+  deleteRemoveUserItem( idx: number ) {
+    console.log( 'X-icon button clicked - need logic to delete item', idx );
+
+    this.removeUserArray.removeAt( idx );
+
+    // TODO: confirm assumption - if user removes all entries, set flag to false not show.
+    this.showRemoveUser = ( this.removeUserArray.length !== 0 );
   }
 
 
-
-
+  // Private methods
   private get isUpdate(): boolean {
     return !( this.showAddUser === false &&
               this.showRemoveUser === false &&
               this.showUpdateUser === false );
   }
 
+
+  private createAddUserItem(): FormGroup {
+    return this.fb.group({
+          userTitle: [ '' ],
+          firstName: [ '', [ Validators.required, commonValidateName ] ],
+          initial: [ '', commonValidateName ],
+          lastName: [ '', [ Validators.required, commonValidateName ] ],
+          jobTitle: [ '' ],
+          emailAddress: [ '' ],
+          confirmEmail: [ '' ],
+          phone: [ '' ],
+          ext: [ '' ],
+          fax: [ '' ],
+          administeringFor: [ '' ]
+        }, {updateOn: 'blur'});
+  }
+
+  private createRemoveUserItem(): FormGroup {
+    return this.fb.group({
+      emailAddress: [ '', Validators.required ],
+      userId: ['']
+    }, {updateOn: 'blur'});
+  }
 }
