@@ -11,13 +11,20 @@ import { NgxJsonViewerModule } from 'ngx-json-viewer';
 import { MspGroupNoComponent } from './components/msp-group-no/msp-group-no.component';
 import { MspH2WithPrintComponent } from './components/h2-with-print/h2-with-print.component';
 import { OrganizationFormComponent } from './components/organization-form/organization-form.component';
+import { MspEmailComponent } from './components/email/email.component';
+
+
+const componentList = [
+  ErrorBoxComponent,
+  MspGroupNoComponent,
+  MspH2WithPrintComponent,
+  OrganizationFormComponent,
+  MspEmailComponent,
+];
 
 @NgModule({
     declarations: [
-      ErrorBoxComponent,
-      MspGroupNoComponent,
-      MspH2WithPrintComponent,
-      OrganizationFormComponent,
+      componentList
     ],
     imports: [
         CommonModule,
@@ -32,11 +39,8 @@ import { OrganizationFormComponent } from './components/organization-form/organi
         SharedCoreModule,
         ReactiveFormsModule,
         CaptchaModule,
-        ErrorBoxComponent,
         NgxJsonViewerModule,
-        MspGroupNoComponent,
-        MspH2WithPrintComponent,
-        OrganizationFormComponent,
+        componentList
     ],
 })
 export class SharedModule {}
