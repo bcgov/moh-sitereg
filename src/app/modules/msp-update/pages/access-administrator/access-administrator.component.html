@@ -23,6 +23,7 @@
 
     <h4 class='border-bottom'>Add a new Access Administrator</h4>
 
+    <sitereg-msp-update-user></sitereg-msp-update-user>
   </div>
   <div *ngIf="showRemoveAccessAdmin">
 
@@ -31,7 +32,7 @@
 
     <!-- <h4 class='border-bottom'>Remove an existing Access Administrator</h4> -->
 
-    <sitereg-update-access-admin-remove></sitereg-update-access-admin-remove>
+    <sitereg-update-access-admin-remove [serialNumber]='1' ></sitereg-update-access-admin-remove>
 
   </div>
   <div *ngIf="showUpdateAccessAdmin">

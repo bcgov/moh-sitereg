@@ -1,6 +1,8 @@
-import { ValidatorFn, AbstractControl, FormGroup, Validators } from '@angular/forms';
+import { ValidatorFn, AbstractControl, FormGroup, Validators, ValidationErrors } from '@angular/forms';
 import { phoneValidator, faxValidator } from '@msp-register/models/validator-helpers';
 
+
+export const cUserTitles = ['Mr.', 'Mrs.', 'Ms.', 'Dr.', 'Prof.', 'Rev.'];
 
 export function emailValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
@@ -108,3 +110,24 @@ export const cUpdateValidators = {
     administeringFor: [Validators.required, Validators.maxLength(100)],
     directMspAccess: [Validators.required],
 };
+
+export function matchFieldValidator(
+    controlName: string,
+    matchControlName: string
+): ValidatorFn {
+    return (formGroup: FormGroup): ValidationErrors | null => {
+        const matchControl = formGroup.get(matchControlName);
+        const control = formGroup.get(controlName);
+        // console.log('Control: %o Matching Control: %o', control.value, matchControl.value);
+        if (!(control.value === matchControl.value)) {
+            control.setErrors({ match: true });
+            // console.log(formGroup);
+            return null;
+        }
+        control.setErrors({ match: null });
+        control.updateValueAndValidity({ onlySelf: true });
+        return null;
+    };
+}
+
+

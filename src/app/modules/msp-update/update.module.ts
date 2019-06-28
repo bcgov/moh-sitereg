@@ -19,14 +19,16 @@ import { MspDirectUpdateConfirmationComponent } from './pages/confirmation/confi
 import { MspDirectUpdateProgressService } from './services/progress.service';
 import { AbstractPgCheckService, RouteGuardService, SharedCoreModule } from 'moh-common-lib';
 import { RouterModule } from '@angular/router';
-import { MspRegisterUserMspComponent } from '../msp-register/components/core/msp-register-user-msp/msp-register-user-msp.component';
-import { MspRegisterUserComponent } from '../msp-register/components/core/msp-register-user/msp-register-user.component';
+
 import { MspRegisterModule } from '../msp-register/msp-register.module';
 import { MspUpdateReviewComponent } from './pages/review/review.component';
 import { ReviewSectionComponent } from './components/review-section/review-section.component';
+import { MspUpdateUserComponent } from './pages/core/msp-update-user/msp-update-user.component';
 
 @NgModule({
     declarations: [
+        MspUpdateUserComponent,
+
         MspDirectUpdateComponent,
         MspDirectUpdateIdentifyComponent,
         MspDirectUpdateOrganizationComponent,
