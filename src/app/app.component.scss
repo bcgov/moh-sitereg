@@ -102,15 +102,15 @@ header .nav-link {
   }
 }
 
-// TODO: add to schematics for when project is generated
-#app {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
+// // TODO: add to schematics for when project is generated
+// #app {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-between;
+// }
 
-
-.container-fluid {
+// .container-fluid
+#content {
   @include media-breakpoint-up(md) {
     padding-left: 0;
     padding-right: 0;
