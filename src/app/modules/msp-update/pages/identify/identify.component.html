@@ -13,10 +13,11 @@
              formControlName='organizationNumber'
              id='organizationNumber'
              placeholder="00001234"
+             maxlength="8"
              required>
 
       <sitereg-error-box [error]="validFormControl(fg, 'organizationNumber')"
-                         errorMessage="Organization Number is required and must be 8 digits.">
+                         errorMessage="Organization Number is required. Must be 8 digits, ex. 00001234">
       </sitereg-error-box>
 
       <label for="emailAddress">Email Address</label>
@@ -29,24 +30,13 @@
              required>
 
       <sitereg-error-box [error]="validFormControl(fg, 'emailAddress')"
-                         errorMessage="Email is required. Must be in the format test@example.com"></sitereg-error-box>
+                         errorMessage="Email is required. Must be in the format user@example.com"></sitereg-error-box>
     </form>
   </div>
 
 
   <aside>
-    At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque
-    corrupti quos dolores et
-    quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt
-    mollitia animi, id est
-    laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta
-    nobis est eligendi optio
-    cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor
-    repellendus. Temporibus autem
-    quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et
-    molestiae non recusandae. Itaque
-    earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut
-    perferendis doloribus asperiores repellat.
+    The request must be submitted by the Organization's Access Administrator or Signing Authority.
   </aside>
 </common-page-framework>
 <common-form-action-bar (btnClick)="continue()"

@@ -35,9 +35,9 @@ export class UpdateStateService {
 }
 
 export interface UpdateFormTypes {
-  signingAuthority?: AddRemoveUpdate;
+  requestorForm?: FormGroup;
   organizationForm?: FormGroup;
-  profileForm?: FormGroup;
+  signingAuthority?: AddRemoveUpdate;
   mspAccessAdministrators?: AddRemoveUpdate;
   mspUsers?: AddRemoveUpdate;
   mspGroups?: AddRemoveUpdate;

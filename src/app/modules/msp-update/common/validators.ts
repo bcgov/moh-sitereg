@@ -67,15 +67,32 @@ export function validMultiFormControl(fg: FormGroup, name: string) {
 }
 
 export const cUpdateValidators = {
-    ministryUserId: [
-        Validators.maxLength(20),
-        trailingSpacesValidator()
+
+    //#region Requestor Information
+
+    /**
+     * Org number can be 8 digits and is 0/left-padded if smaller
+     */
+    organizationNumber: [
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(8),
+        Validators.min(1),
+        Validators.pattern(/^[0-9]*$/)
     ],
+
     emailAddress: [
         Validators.required,
         Validators.email,
         Validators.maxLength(100),
         Validators.pattern(/^(\S+)@(\S+)\.(\S+)$/),
+    ],
+
+    //#endregion
+
+    ministryUserId: [
+        Validators.maxLength(20),
+        trailingSpacesValidator()
     ],
 
     userTitle: [Validators.maxLength(5)],
@@ -109,6 +126,8 @@ export const cUpdateValidators = {
     fax: [faxValidator()],
     administeringFor: [Validators.required, Validators.maxLength(100)],
     directMspAccess: [Validators.required],
+
+    
 };
 
 export function matchFieldValidator(
@@ -129,6 +148,47 @@ export function matchFieldValidator(
         return null;
     };
 }
+
+// /**
+//  * Validators for the Update NgModule.  Similar to register, but fields are optional.
+//  */
+// export const cUpdateValidators = {
+//     /**
+//      * Org number can be 8 digits and is 0/left-padded if smaller
+//      */
+//     organizationNumber: [
+//         // Validators.required,
+//         Validators.minLength(8),
+//         Validators.maxLength(8),
+//         Validators.min(1),
+//         Validators.pattern(/^[0-9]*$/)
+//     ],
+//     //   TODO: Review with Faheem, this the same as in reg? compare to msp-register-organization.ts
+//     organizationName: [
+//         // Validators.required
+//     ],
+
+//     // TODO - Review with Faheem
+//     street: [
+//         // Validators.required,
+//         Validators.maxLength(10),
+//         trailingSpacesValidator()
+//     ],
+//     addressLine2: [
+//         Validators.maxLength(200)
+//     ],
+//     city: [
+//         Validators.maxLength(25),
+//         trailingSpacesValidator()
+//     ],
+//     province: [
+//         Validators.maxLength(3),
+//     ],
+//     postalCode: [
+//         Validators.maxLength(6),
+//         // postalCodeValidator(), // doesn't work if optional?
+//     ]
+// };
 
 
 /**
