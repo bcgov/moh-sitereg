@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import {
     cAdministeringFor
 } from '@msp-register/models/core/core-types';
-import { validMultiFormControl, cUpdateValidators,matchFieldValidator, cUserTitles  } from '../../../common/validators';
+import { validMultiFormControl, cUpdateValidators, matchFieldValidator, cUserTitles  } from '../../../common/validators';
 
 @Component({
     selector: 'sitereg-msp-update-user',
