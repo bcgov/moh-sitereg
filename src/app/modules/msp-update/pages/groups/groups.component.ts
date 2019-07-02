@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { MspDirectUpdateProgressService } from '../../services/progress.service';
 import { ROUTES_UPDATE } from '../../routing/routes.constants';
@@ -6,6 +6,7 @@ import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
 import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { UpdateStateService } from '../../services/update.state.service';
+import { MspDirectUpdateGroupRemoveComponent } from '../group/group-remove/group-remove.component';
 
 @Component({
     selector: 'sitereg-msp-update-groups',
@@ -32,7 +33,7 @@ export class MspDirectUpdateGroupsComponent implements OnInit {
   ngOnInit() {
     this.progressService.setPageIncomplete();
     this.showAddMspGrp = this.addFg ? true : false;
-    this.showRemoveMspGrp = this.removeFg ? true : false;
+    this.showRemoveMspGrp = this.formRemoveState ? true : false;
     this.showUpdateMspGrpAdmin = this.updateFg ? true : false;
   }
 
@@ -47,9 +48,9 @@ export class MspDirectUpdateGroupsComponent implements OnInit {
     return this.updateStateService.forms.mspGroups.add;
   }
 
-  get removeFg(): FormGroup {
-    return this.updateStateService.forms.mspGroups.remove;
-  }
+  // get removeFg(): FormGroup {
+  //   return this.updateStateService.forms.mspGroups.remove;
+  // }
 
   get updateFg(): FormGroup {
     return this.updateStateService.forms.mspGroups.update;
@@ -59,9 +60,9 @@ export class MspDirectUpdateGroupsComponent implements OnInit {
     return this.addFg.get('addGrpItems') as FormArray;
   }
 
-  get removeGrpArray() {
-    return this.removeFg.get('removeGrpItems') as FormArray;
-  }
+  // get removeGrpArray() {
+  //   return this.removeFg.get('removeGrpItems') as FormArray;
+  // }
 
   get updateGrpArray() {
     return this.updateFg.get('updateGrpItems') as FormArray;
@@ -100,22 +101,22 @@ export class MspDirectUpdateGroupsComponent implements OnInit {
     console.log( 'Create Add Msp Group: ', this.addFg, this.addGrpArray );
   }
 
-  removeMspGroup() {
-    console.log( 'Remove Msp Group clicked' );
-    this.showRemoveMspGrp = true;
+  // removeMspGroup() {
+  //   console.log( 'Remove Msp Group clicked' );
+  //   this.showRemoveMspGrp = true;
 
-    // Form group not created
-    if ( !this.updateStateService.forms.mspGroups.remove ) {
+  //   // Form group not created
+  //   if ( !this.updateStateService.forms.mspGroups.remove ) {
 
-      this.updateStateService.forms.mspGroups.remove = this.fb.group({
-        removeGrpItems: this.fb.array( [ this.createMspNoItem() ] )
-      });
-    } else {
-      this.removeGrpArray.push( this.createMspNoItem() );
-    }
+  //     this.updateStateService.forms.mspGroups.remove = this.fb.group({
+  //       removeGrpItems: this.fb.array( [ this.createMspNoItem() ] )
+  //     });
+  //   } else {
+  //     this.removeGrpArray.push( this.createMspNoItem() );
+  //   }
 
-    console.log( 'Create Remove Msp Group: ', this.removeFg, this.removeGrpArray );
-  }
+  //   console.log( 'Create Remove Msp Group: ', this.removeFg, this.removeGrpArray );
+  // }
 
   updateMspGroupAdmin() {
     console.log( 'Update administration of Msp Group clicked' );
@@ -143,13 +144,13 @@ export class MspDirectUpdateGroupsComponent implements OnInit {
     this.showAddMspGrp = ( this.addGrpArray.length !== 0 );
   }
 
-  deleteRemoveGrpItem( idx: number ) {
-    console.log( 'X-icon button clicked - need logic to delete item', idx );
-    this.removeGrpArray.removeAt( idx );
+  // deleteRemoveGrpItem( idx: number ) {
+  //   console.log( 'X-icon button clicked - need logic to delete item', idx );
+  //   this.removeGrpArray.removeAt( idx );
 
-    // TODO: confirm assumption - if user removes all entries, set flag to false not show.
-    this.showRemoveMspGrp = ( this.removeGrpArray.length !== 0 );
-  }
+  //   // TODO: confirm assumption - if user removes all entries, set flag to false not show.
+  //   this.showRemoveMspGrp = ( this.removeGrpArray.length !== 0 );
+  // }
 
   deleteUpdateGrpItem( idx: number ) {
     console.log( 'X-icon button clicked - need logic to delete item', idx );
@@ -173,7 +174,7 @@ export class MspDirectUpdateGroupsComponent implements OnInit {
   }
 
   canContinue() {
-    return !this.isUpdate ? true : [this.addFg, this.removeFg, this.updateFg]
+    return !this.isUpdate ? true : [this.addFg, this.formRemoveState, this.updateFg]
                             .filter(x => x !== null && x !== undefined) // only check added form
                             .map(x => x.valid) // get validity
                             .filter(x => x === false) // get invalid forms
@@ -185,4 +186,25 @@ export class MspDirectUpdateGroupsComponent implements OnInit {
               this.showRemoveMspGrp === false &&
               this.showUpdateMspGrpAdmin === false );
   }
+
+  //#region REMOVE
+
+    // tslint:disable-next-line: member-ordering
+    @ViewChild(MspDirectUpdateGroupRemoveComponent)
+    formRemove: MspDirectUpdateGroupRemoveComponent;
+
+    get formRemoveState(): FormGroup {
+        return this.updateStateService.forms.mspGroups.remove;
+    }
+
+    formRemoveStateChanged(formGroups: any) {
+        this.updateStateService.forms.mspGroups.remove = formGroups;
+        this.showRemoveMspGrp = this.formRemove.getFormsCount > 0 ? true : false;
+    }
+
+    formRemoveNew() {
+        this.formRemove.newForm();
+    }
+
+    //#endregion
 }

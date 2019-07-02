@@ -6,7 +6,7 @@
   <common-page-section layout='noTips'>
     <div class="row">
       <button type='button' class='btn btn-secondary col mr-4' (click)="addMspGroup()">Add MSP Group</button>
-      <button type='button' class='btn btn-secondary col mx-2' (click)="removeMspGroup()">Remove MSP Group</button>
+      <button type='button' class='btn btn-secondary col mx-2' (click)="formRemoveNew()">Remove MSP Group</button>
       <button type='button' class='btn btn-secondary col ml-4' (click)="updateMspGroupAdmin()">Update administration of MSP Group</button>
     </div>
   </common-page-section>
@@ -32,7 +32,8 @@
     </form>
   </common-page-section>
 
-  <common-page-section layout='noTips' *ngIf="showRemoveMspGrp" class="pt-4">
+  <!-- Kristin Reed Code -->
+  <!-- <common-page-section layout='noTips' *ngIf="showRemoveMspGrp" class="pt-4">
     <form [formGroup]="removeFg">
         <div formArrayName="removeGrpItems">
           <div *ngFor="let item of removeGrpArray.controls; let idx = index"
@@ -48,6 +49,12 @@
           </div>
         </div>
     </form>
+  </common-page-section> -->
+
+  <common-page-section layout='noTips' class="pt-4">  
+  
+    <sitereg-update-group-remove #formRemove [formState]="formRemoveState" (formArrayChanged)="formRemoveStateChanged($event)"></sitereg-update-group-remove>
+
   </common-page-section>
 
   <common-page-section layout='noTips' *ngIf="showUpdateMspGrpAdmin" class="pt-4">

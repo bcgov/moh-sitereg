@@ -131,3 +131,17 @@ export function matchFieldValidator(
 }
 
 
+/**
+ * Validates group number
+ */
+export function groupNumberValidator(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+        const forbidden = !/^[0-9]{7}$/.test(control.value);
+        return forbidden
+            ? { invalidGroupNumber: { value: control.value } }
+            : null;
+    };
+}
+
+
+
