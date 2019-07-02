@@ -8,12 +8,12 @@ import { MspDirectUpdateIdentifyComponent } from './pages/identify/identify.comp
 import { MspDirectUpdateOrganizationComponent } from './pages/organization/organization.component';
 import { MspDirectUpdateSigningAuthorityComponent } from './pages/signing-authority/signing-authority.component';
 
-import { MspDirectUpdateAccessAdministratorComponent } from './pages/access-administrator/access-administrator.component';
+import { MspDirectUpdateAccessAdministratorComponent } from './pages/access-admin/access-admin/access-admin.component';
 import { MspDirectUpdateAccessAdministratorRemoveComponent } from './pages/access-admin/access-admin-remove/access-admin-remove.component';
 
-import { MspDirectUpdateUsersComponent } from './pages/users/users.component';
+import { MspDirectUpdateUserComponent } from './pages/user/user/user.component';
 
-import { MspDirectUpdateGroupsComponent } from './pages/groups/groups.component';
+import { MspDirectUpdateGroupComponent } from './pages/group/group/group.component';
 import { MspDirectUpdateGroupRemoveComponent } from './pages/group/group-remove/group-remove.component';
 import { MspDirectUpdateGroupAddComponent } from './pages/group/group-add/group-add.component';
 import { MspDirectUpdateGroupEditComponent } from './pages/group/group-edit/group-edit.component';
@@ -28,13 +28,11 @@ import { RouterModule } from '@angular/router';
 import { MspRegisterModule } from '../msp-register/msp-register.module';
 import { MspUpdateReviewComponent } from './pages/review/review.component';
 import { ReviewSectionComponent } from './components/review-section/review-section.component';
-import { MspUpdateUserComponent } from './pages/core/msp-update-user/msp-update-user.component';
 
 
 @NgModule({
     declarations: [
-        MspUpdateUserComponent,
-
+       
         MspDirectUpdateComponent,
         MspDirectUpdateIdentifyComponent,
         MspDirectUpdateOrganizationComponent,
@@ -43,9 +41,9 @@ import { MspUpdateUserComponent } from './pages/core/msp-update-user/msp-update-
         MspDirectUpdateAccessAdministratorComponent,
         MspDirectUpdateAccessAdministratorRemoveComponent,
 
-        MspDirectUpdateUsersComponent,
+        MspDirectUpdateUserComponent,
 
-        MspDirectUpdateGroupsComponent,
+        MspDirectUpdateGroupComponent,
         MspDirectUpdateGroupRemoveComponent,
         MspDirectUpdateGroupAddComponent,
         MspDirectUpdateGroupEditComponent,

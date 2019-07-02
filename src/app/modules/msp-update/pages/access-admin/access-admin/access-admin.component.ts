@@ -1,18 +1,18 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { MspDirectUpdateProgressService } from '../../services/progress.service';
-import { ROUTES_UPDATE } from '../../routing/routes.constants';
+import { MspDirectUpdateProgressService } from '../../../services/progress.service';
+import { ROUTES_UPDATE } from '../../../routing/routes.constants';
 import { funcRemoveStrings } from '@msp-register/constants';
 import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
-import { UpdateStateService } from '../../services/update.state.service';
-import { MspDirectUpdateAccessAdministratorRemoveComponent } from '../access-admin/access-admin-remove/access-admin-remove.component';
+import { UpdateStateService } from '../../../services/update.state.service';
+import { MspDirectUpdateAccessAdministratorRemoveComponent } from '../access-admin-remove/access-admin-remove.component';
 
 @Component({
-    selector: 'sitereg-msp-update-access-administrator',
-    templateUrl: './access-administrator.component.html',
-    styleUrls: ['./access-administrator.component.scss'],
+    selector: 'sitereg-msp-update-access-admin',
+    templateUrl: './access-admin.component.html',
+    styleUrls: ['./access-admin.component.scss'],
 })
 export class MspDirectUpdateAccessAdministratorComponent implements OnInit {
 

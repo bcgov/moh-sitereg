@@ -1,23 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MspDirectUpdateProgressService } from '../../services/progress.service';
-import { ROUTES_UPDATE } from '../../routing/routes.constants';
 import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
-import { UpdateStateService } from '../../services/update.state.service';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
-import { cUserTitles, cAdministeringFor } from '../../../msp-register/models/core/core-types';
 import { commonValidateName } from 'moh-common-lib';
 import { BehaviorSubject } from 'rxjs';
+import { cUserTitles, cAdministeringFor } from '@msp-register/models/core/core-types';
+import { MspDirectUpdateProgressService } from '../../../services/progress.service';
+import { UpdateStateService } from '../../../services/update.state.service';
+import { ROUTES_UPDATE } from '../../../routing/routes.constants';
 
 
 
 @Component({
-    selector: 'sitereg-msp-update-users',
-    templateUrl: './users.component.html',
-    styleUrls: ['./users.component.scss'],
+    selector: 'sitereg-msp-update-user',
+    templateUrl: './user.component.html',
+    styleUrls: ['./user.component.scss'],
 })
-export class MspDirectUpdateUsersComponent implements OnInit {
+export class MspDirectUpdateUserComponent implements OnInit {
   public showAddUser = false;
   public showRemoveUser = false;
   public showUpdateUser = false;

@@ -1,21 +1,21 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { MspDirectUpdateProgressService } from '../../services/progress.service';
-import { ROUTES_UPDATE } from '../../routing/routes.constants';
+import { MspDirectUpdateProgressService } from '../../../services/progress.service';
+import { ROUTES_UPDATE } from '../../../routing/routes.constants';
 import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
 import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
-import { UpdateStateService } from '../../services/update.state.service';
-import { MspDirectUpdateGroupRemoveComponent } from '../group/group-remove/group-remove.component';
-import { MspDirectUpdateGroupAddComponent } from '../group/group-add/group-add.component';
-import { MspDirectUpdateGroupEditComponent } from '../group/group-edit/group-edit.component';
+import { UpdateStateService } from '../../../services/update.state.service';
+import { MspDirectUpdateGroupRemoveComponent } from '../group-remove/group-remove.component';
+import { MspDirectUpdateGroupAddComponent } from '../group-add/group-add.component';
+import { MspDirectUpdateGroupEditComponent } from '../group-edit/group-edit.component';
 
 @Component({
-    selector: 'sitereg-msp-update-groups',
+    selector: 'sitereg-msp-update-group',
     templateUrl: './groups.component.html',
     styleUrls: ['./groups.component.scss'],
 })
-export class MspDirectUpdateGroupsComponent implements OnInit {
+export class MspDirectUpdateGroupComponent implements OnInit {
 
   public showAddGrp = false;
   public showRemoveGrp = false;
