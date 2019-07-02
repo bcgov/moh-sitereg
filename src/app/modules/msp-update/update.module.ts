@@ -15,6 +15,8 @@ import { MspDirectUpdateUsersComponent } from './pages/users/users.component';
 
 import { MspDirectUpdateGroupsComponent } from './pages/groups/groups.component';
 import { MspDirectUpdateGroupRemoveComponent } from './pages/group/group-remove/group-remove.component';
+import { MspDirectUpdateGroupAddComponent } from './pages/group/group-add/group-add.component';
+import { MspDirectUpdateGroupEditComponent } from './pages/group/group-edit/group-edit.component';
 
 import { MspDirectUpdateSubmitComponent } from './pages/submit/submit.component';
 import { MspDirectUpdateAutofillComponent } from './pages/autofill/autofill.component';
@@ -27,6 +29,7 @@ import { MspRegisterModule } from '../msp-register/msp-register.module';
 import { MspUpdateReviewComponent } from './pages/review/review.component';
 import { ReviewSectionComponent } from './components/review-section/review-section.component';
 import { MspUpdateUserComponent } from './pages/core/msp-update-user/msp-update-user.component';
+
 
 @NgModule({
     declarations: [
@@ -44,6 +47,8 @@ import { MspUpdateUserComponent } from './pages/core/msp-update-user/msp-update-
 
         MspDirectUpdateGroupsComponent,
         MspDirectUpdateGroupRemoveComponent,
+        MspDirectUpdateGroupAddComponent,
+        MspDirectUpdateGroupEditComponent,
 
         MspDirectUpdateSubmitComponent,
         MspDirectUpdateAutofillComponent,

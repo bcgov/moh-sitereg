@@ -7,6 +7,8 @@ import { GlobalConfigService } from '@shared/services/global-config.service';
 import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { UpdateStateService } from '../../services/update.state.service';
 import { MspDirectUpdateGroupRemoveComponent } from '../group/group-remove/group-remove.component';
+import { MspDirectUpdateGroupAddComponent } from '../group/group-add/group-add.component';
+import { MspDirectUpdateGroupEditComponent } from '../group/group-edit/group-edit.component';
 
 @Component({
     selector: 'sitereg-msp-update-groups',
@@ -15,11 +17,11 @@ import { MspDirectUpdateGroupRemoveComponent } from '../group/group-remove/group
 })
 export class MspDirectUpdateGroupsComponent implements OnInit {
 
-  public showAddMspGrp = false;
-  public showRemoveMspGrp = false;
-  public showUpdateMspGrpAdmin = false;
+  public showAddGrp = false;
+  public showRemoveGrp = false;
+  public showEditGrp = false;
 
-  public radioBtnLabels = [{label: 'No', value: '0'}, {label: 'Yes', value: '1'}];
+  // public radioBtnLabels = [{label: 'No', value: '0'}, {label: 'Yes', value: '1'}];
 
   constructor( private router: Router,
                private progressService: MspDirectUpdateProgressService,
@@ -32,9 +34,9 @@ export class MspDirectUpdateGroupsComponent implements OnInit {
 
   ngOnInit() {
     this.progressService.setPageIncomplete();
-    this.showAddMspGrp = this.addFg ? true : false;
-    this.showRemoveMspGrp = this.formRemoveState ? true : false;
-    this.showUpdateMspGrpAdmin = this.updateFg ? true : false;
+    this.showAddGrp = this.formAddState ? true : false;
+    this.showRemoveGrp = this.formRemoveState ? true : false;
+    this.showEditGrp = this.formEditState ? true : false;
   }
 
   get buttonLabel() {
@@ -86,7 +88,7 @@ export class MspDirectUpdateGroupsComponent implements OnInit {
   // Button functions
   addMspGroup() {
     console.log( 'Add Msp Group clicked: ', this.addFg );
-    this.showAddMspGrp = true;
+    this.showAddGrp = true;
 
     // Form group not created
     if ( !this.updateStateService.forms.mspGroups.add ) {
@@ -120,7 +122,7 @@ export class MspDirectUpdateGroupsComponent implements OnInit {
 
   updateMspGroupAdmin() {
     console.log( 'Update administration of Msp Group clicked' );
-    this.showUpdateMspGrpAdmin = true;
+    this.showEditGrp = true;
 
     // Form group not created
     if ( !this.updateStateService.forms.mspGroups.update ) {
@@ -141,7 +143,7 @@ export class MspDirectUpdateGroupsComponent implements OnInit {
     this.addGrpArray.removeAt( idx );
 
     // TODO: confirm assumption - if user removes all entries, set flag to false not show.
-    this.showAddMspGrp = ( this.addGrpArray.length !== 0 );
+    this.showAddGrp = ( this.addGrpArray.length !== 0 );
   }
 
   // deleteRemoveGrpItem( idx: number ) {
@@ -157,7 +159,7 @@ export class MspDirectUpdateGroupsComponent implements OnInit {
     this.updateGrpArray.removeAt( idx );
 
     // TODO: confirm assumption - if user removes all entries, set flag to false not show.
-    this.showUpdateMspGrpAdmin = ( this.updateGrpArray.length !== 0 );
+    this.showEditGrp = ( this.updateGrpArray.length !== 0 );
   }
 
   // Form action bar functions
@@ -174,7 +176,7 @@ export class MspDirectUpdateGroupsComponent implements OnInit {
   }
 
   canContinue() {
-    return !this.isUpdate ? true : [this.addFg, this.formRemoveState, this.updateFg]
+    return !this.isUpdate ? true : [this.formAddState, this.formRemoveState, this.formEditState]
                             .filter(x => x !== null && x !== undefined) // only check added form
                             .map(x => x.valid) // get validity
                             .filter(x => x === false) // get invalid forms
@@ -182,10 +184,11 @@ export class MspDirectUpdateGroupsComponent implements OnInit {
   }
 
   private get isUpdate(): boolean {
-    return !( this.showAddMspGrp === false &&
-              this.showRemoveMspGrp === false &&
-              this.showUpdateMspGrpAdmin === false );
+    return !( this.showAddGrp === false &&
+              this.showRemoveGrp === false &&
+              this.showEditGrp === false );
   }
+
 
   //#region REMOVE
 
@@ -199,7 +202,7 @@ export class MspDirectUpdateGroupsComponent implements OnInit {
 
     formRemoveStateChanged(formGroups: any) {
         this.updateStateService.forms.mspGroups.remove = formGroups;
-        this.showRemoveMspGrp = this.formRemove.getFormsCount > 0 ? true : false;
+        this.showRemoveGrp = this.formRemove.getFormsCount > 0 ? true : false;
     }
 
     formRemoveNew() {
@@ -207,4 +210,48 @@ export class MspDirectUpdateGroupsComponent implements OnInit {
     }
 
     //#endregion
+
+    
+  //#region Add
+
+    // tslint:disable-next-line: member-ordering
+    @ViewChild(MspDirectUpdateGroupAddComponent)
+    formAdd: MspDirectUpdateGroupAddComponent;
+
+    get formAddState(): FormGroup {
+        return this.updateStateService.forms.mspGroups.add;
+    }
+
+    formAddStateChanged(formGroups: any) {
+        this.updateStateService.forms.mspGroups.add = formGroups;
+        this.showAddGrp = this.formAdd.getFormsCount > 0 ? true : false;
+    }
+
+    formAddNew() {
+        this.formAdd.newForm();
+    }
+
+  //#endregion
+
+  
+  //#region Update
+
+    // tslint:disable-next-line: member-ordering
+    @ViewChild(MspDirectUpdateGroupEditComponent)
+    formEdit: MspDirectUpdateGroupEditComponent;
+
+    get formEditState(): FormGroup {
+        return this.updateStateService.forms.mspGroups.update;
+    }
+
+    formEditStateChanged(formGroups: any) {
+        this.updateStateService.forms.mspGroups.update = formGroups;
+        this.showEditGrp = this.formEdit.getFormsCount > 0 ? true : false;
+    }
+
+    formEditNew() {
+        this.formEdit.newForm();
+    }
+
+  //#endregion
 }
