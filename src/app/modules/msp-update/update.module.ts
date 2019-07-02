@@ -12,7 +12,10 @@ import { MspDirectUpdateAccessAdministratorComponent } from './pages/access-admi
 import { MspDirectUpdateAccessAdministratorRemoveComponent } from './pages/access-admin/access-admin-remove/access-admin-remove.component';
 
 import { MspDirectUpdateUsersComponent } from './pages/users/users.component';
+
 import { MspDirectUpdateGroupsComponent } from './pages/groups/groups.component';
+import { MspDirectUpdateGroupRemoveComponent } from './pages/group/group-remove/group-remove.component';
+
 import { MspDirectUpdateSubmitComponent } from './pages/submit/submit.component';
 import { MspDirectUpdateAutofillComponent } from './pages/autofill/autofill.component';
 import { MspDirectUpdateConfirmationComponent } from './pages/confirmation/confirmation.component';
@@ -38,7 +41,10 @@ import { MspUpdateUserComponent } from './pages/core/msp-update-user/msp-update-
         MspDirectUpdateAccessAdministratorRemoveComponent,
 
         MspDirectUpdateUsersComponent,
+
         MspDirectUpdateGroupsComponent,
+        MspDirectUpdateGroupRemoveComponent,
+
         MspDirectUpdateSubmitComponent,
         MspDirectUpdateAutofillComponent,
         MspDirectUpdateConfirmationComponent,
