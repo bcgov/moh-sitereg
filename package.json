@@ -15,7 +15,8 @@
     "e2e-sitereg:happy-path": "npm run e2e-protractor -- e2e/protractor.registration.conf.js --specs=e2e/registration/src/reg-happy-path.e2e-spec.ts",
     "e2e:update": "npm run e2e-protractor -- e2e/protractor.update.conf.js",
     "format": "prettier --write \"src/**/*.ts\" && npm run lint && npm run build",
-    "publish": "ng build --prod --output-hashing none"
+    "publish": "ng build --prod --output-hashing none",
+    "webdriver-update": "webdriver-manager update"
   },
   "private": true,
   "dependencies": {

@@ -25,14 +25,12 @@ describe('IAM Update - Requestor Info Page', () => {
         requestorData.email = 'sample@email';
         requestorPage.navigateTo();
         requestorPage.fillPage(requestorData);
-        requestorPage.continue();
         expect(browser.getCurrentUrl()).toContain(REQUESTOR_PAGE_URL);
     });
 
     it('02. should let user to continue if the inputs are correct', () => {
         requestorPage.navigateTo();
         requestorPage.fillPage(requestorData);
-        requestorPage.continue();
         expect(browser.getCurrentUrl()).toContain(ORG_PAGE_URL);
     });
 

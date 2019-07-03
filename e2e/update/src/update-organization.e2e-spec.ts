@@ -40,12 +40,12 @@ describe('IAM Update - Organization Page', () => {
         orgPage.navigateTo();
         orgPage.clickOption('true');
         orgPage.selectFromDropDown('province', 'British Columbia');
-        orgPage.getInputVal('province').then(function(val){
+        orgPage.getInputVal('province').then(val => {
             expect(val).toBe('British Columbia');
         });
         orgPage.scrollDown();
         orgPage.selectFromDropDown('The organization', 'Employees and International Students');
-        orgPage.getInputVal('The organization').then(function(val){
+        orgPage.getInputVal('The organization').then(val => {
              expect(val).toBe('Employees and International Students');
         });
     });
