@@ -31,7 +31,7 @@ export class UpdateStateService {
      *
      * The reason we have this in the service is to persist user's action.
      */
-    public hasOrganizationUpdates: boolean;
+    public hasOrganizationUpdates: boolean | null;
 }
 
 export interface UpdateFormTypes {

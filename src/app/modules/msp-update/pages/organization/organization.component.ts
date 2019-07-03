@@ -16,7 +16,7 @@ import { cUpdateValidators, cAdministeringForUpdate } from '@msp-register/models
     styleUrls: ['./organization.component.scss'],
 })
 export class MspDirectUpdateOrganizationComponent extends AbstractForm implements OnInit {
-    
+
     constructor(
         public router: Router,
         private progressService: MspDirectUpdateProgressService,
@@ -31,29 +31,6 @@ export class MspDirectUpdateOrganizationComponent extends AbstractForm implement
         this.progressService.setPageIncomplete();
     }
 
-    
-
-    // createFormGroup(): void {
-    //     this.updateStateService.forms.organizationForm = this.fb.group({
-    //         name: [null, cUpdateValidators.organizationName],
-    //         suite: [null],
-    //         street: [null, cUpdateValidators.street],
-    //         streetName: [null],
-    //         addressLine2: [null, cUpdateValidators.addressLine2],
-    //         city: [null, cUpdateValidators.city],
-    //         province: [null, cUpdateValidators.province],
-    //         postalCode: [null, cUpdateValidators.postalCode],
-    //         // the ONLY required field, and comes with a default value
-    //         administeringFor: [cAdministeringForUpdate[0], Validators.required]
-
-    //     });
-
-    // }
-
-    // destroyFormGroup(): void {
-    //     this.updateStateService.forms.organizationForm = null;
-    // }
-
     continue() {
         // splunk-log
         this.loggerSvc.logNavigation(
@@ -63,21 +40,14 @@ export class MspDirectUpdateOrganizationComponent extends AbstractForm implement
             }`
         );
         this.progressService.setPageComplete();
-        this.router.navigate([ROUTES_UPDATE.SIGNING_AUTHORITY.fullpath]);
+        // this.router.navigate([ROUTES_UPDATE.SIGNING_AUTHORITY.fullpath]);
+        this.router.navigate([ROUTES_UPDATE.GROUP_NUMBERS.fullpath]);
     }
 
     canContinue(): boolean {
-        // if (!this.organizationForm) {
-        //     // user can continue only if they select 'No'
-        //     return this.updateStateService.hasOrganizationUpdates === false;
-        // }
-        // return this.organizationForm.valid;
-        return true;
+        return this.hasOrganizationUpdates === false ? true :
+            (this.formOrganizationState ? this.formOrganizationState.valid : false);
     }
-
-    // get organizationForm(): FormGroup {
-    //     return this.updateStateService.forms.organizationForm;
-    // }
 
     //#region NEW
 
@@ -85,7 +55,7 @@ export class MspDirectUpdateOrganizationComponent extends AbstractForm implement
         this.hasOrganizationUpdates = bool;
     }
 
-    get hasOrganizationUpdates(): boolean {
+    get hasOrganizationUpdates(): boolean | null {
         return this.updateStateService.hasOrganizationUpdates;
     }
     set hasOrganizationUpdates(value) {
