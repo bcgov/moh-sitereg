@@ -1,0 +1,704 @@
+[
+  {
+    "description": "Moh SiteReg - Organization Page 01. should load the page without issue",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 5049
+  },
+  {
+    "description": "Moh SiteReg - Organization Page 02. should NOT let user to continue without clicking the checkbox",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 4552
+  },
+  {
+    "description": "Moh SiteReg - Organization Page 03. should NOT let user to continue without filling out any fields",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 4876
+  },
+  {
+    "description": "Moh SiteReg - Organization Page 04. should let user to continue if all the required fields are filled out",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 8395
+  },
+  {
+    "description": "Moh SiteReg - Organization Page 05. should let user to type the organization num and select organization that will be administering",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 8027
+  },
+  {
+    "description": "Moh SiteReg - Organization Page 06. should not let user continue by clicking the stepper",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 5395
+  },
+  {
+    "description": "Moh SiteReg - Organization Page 07. should show all 13 provinces and territories in the dropbox menu",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 5255
+  },
+  {
+    "description": "Moh SiteReg - Organization Page 08. Testing for validation re: maximum characters",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 12467
+  },
+  {
+    "description": "Moh SiteReg - Access Admins Page 01. should load the page without issue",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 3
+  },
+  {
+    "description": "Moh SiteReg - Access Admins Page 02. should let user to continue without filling out any fields",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Access Admins Page 03. should let user to continue if all the required fields are filled out",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Access Admins Page 04. should NOT let user to continue when user clicks the x button",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Access Admins Page 05. should delete correct admin if user adds two admins and deletes one of them",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Access Admins Page 06. should NOT be able to continue with an incomplete admin section even if another admin is complete",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Access Admins Page 06. Testing for validation re: maximum characters",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Access Admins Page 08. should not be able to access \"_autofill\" dev only URL",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Authorize Page 01. should load the page without issue",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 1
+  },
+  {
+    "description": "Moh SiteReg - Authorize Page 02. should NOT let user to continue without clicking the checkbox",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 7
+  },
+  {
+    "description": "Moh SiteReg - Authorize Page 03. should let user to continue if the checkbox is clicked",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Group Numbers Page 01. should load the page without issue",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Group Numbers Page 02. should NOT let user to continue without adding a group number",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Group Numbers Page 03. should let user to continue if at least one group number is added",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Group Numbers Page 04. should not let user cont. w/o one group num section complete/let user to delete a group num by clicking the x button",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 1
+  },
+  {
+    "description": "Moh SiteReg - Group Numbers Page 05. should automatically display the first group number section",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Group Numbers Page 06. should not let user continue with an incomplete group number section",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - End to End Test (Happy Path) Should navigate from Organization to Confirmation Page (end-to-end) when all required fields are filled out",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Review Page 01. should load the page without issue",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Review Page 02. should let user continue once details have been reviewed",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Signing Authority Page 01. should load the page without issue",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Signing Authority Page 02. should NOT let user to continue without filling out any fields",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Signing Authority Page 03. should let user to continue if all the required fields are filled out",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Signing Authority Page 04. should let users go back by clicking the stepper",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Signing Authority Page 05. should NOT let user continue by clicking the stepper",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Users Page 01. should load the page without issue",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Users Page 02. should let user to continue without filling out any fields",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Users Page 03. should let user to continue if all the required fields are filled out",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Users Page 04. should let user to continue when user clicks the x button",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Users Page 05. should delete correct admin if user adds two admins and deletes one of them",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Users Page 06. should NOT be able to continue with an incomplete user section even if another admin is complete",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Organization Page 01. should load the page without issue",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 7761
+  },
+  {
+    "description": "Moh SiteReg - Organization Page 02. should NOT let user to continue without clicking the checkbox",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 8514
+  },
+  {
+    "description": "Moh SiteReg - Organization Page 03. should NOT let user to continue without filling out any fields",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 8825
+  },
+  {
+    "description": "Moh SiteReg - Organization Page 04. should let user to continue if all the required fields are filled out",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 12075
+  },
+  {
+    "description": "Moh SiteReg - Organization Page 05. should let user to type the organization num and select organization that will be administering",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 11784
+  },
+  {
+    "description": "Moh SiteReg - Organization Page 06. should not let user continue by clicking the stepper",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 7924
+  },
+  {
+    "description": "Moh SiteReg - Organization Page 07. should show all 13 provinces and territories in the dropbox menu",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 9043
+  },
+  {
+    "description": "Moh SiteReg - Organization Page 08. Testing for validation re: maximum characters",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 16224
+  },
+  {
+    "description": "Moh SiteReg - Access Admins Page 01. should load the page without issue",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 4
+  },
+  {
+    "description": "Moh SiteReg - Access Admins Page 02. should let user to continue without filling out any fields",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Access Admins Page 03. should let user to continue if all the required fields are filled out",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Access Admins Page 04. should NOT let user to continue when user clicks the x button",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Access Admins Page 05. should delete correct admin if user adds two admins and deletes one of them",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Access Admins Page 06. should NOT be able to continue with an incomplete admin section even if another admin is complete",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Access Admins Page 06. Testing for validation re: maximum characters",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Access Admins Page 08. should not be able to access \"_autofill\" dev only URL",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Authorize Page 01. should load the page without issue",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Authorize Page 02. should NOT let user to continue without clicking the checkbox",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 3
+  },
+  {
+    "description": "Moh SiteReg - Authorize Page 03. should let user to continue if the checkbox is clicked",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Group Numbers Page 01. should load the page without issue",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 1
+  },
+  {
+    "description": "Moh SiteReg - Group Numbers Page 02. should NOT let user to continue without adding a group number",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Group Numbers Page 03. should let user to continue if at least one group number is added",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Group Numbers Page 04. should not let user cont. w/o one group num section complete/let user to delete a group num by clicking the x button",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Group Numbers Page 05. should automatically display the first group number section",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Group Numbers Page 06. should not let user continue with an incomplete group number section",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - End to End Test (Happy Path) Should navigate from Organization to Confirmation Page (end-to-end) when all required fields are filled out",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 1
+  },
+  {
+    "description": "Moh SiteReg - Review Page 01. should load the page without issue",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Review Page 02. should let user continue once details have been reviewed",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Signing Authority Page 01. should load the page without issue",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 1
+  },
+  {
+    "description": "Moh SiteReg - Signing Authority Page 02. should NOT let user to continue without filling out any fields",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Signing Authority Page 03. should let user to continue if all the required fields are filled out",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Signing Authority Page 04. should let users go back by clicking the stepper",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Signing Authority Page 05. should NOT let user continue by clicking the stepper",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Users Page 01. should load the page without issue",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Users Page 02. should let user to continue without filling out any fields",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Users Page 03. should let user to continue if all the required fields are filled out",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Users Page 04. should let user to continue when user clicks the x button",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Users Page 05. should delete correct admin if user adds two admins and deletes one of them",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Moh SiteReg - Users Page 06. should NOT be able to continue with an incomplete user section even if another admin is complete",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  }
+]

@@ -102,12 +102,26 @@ header .nav-link {
   }
 }
 
-// TODO: add to schematics for when project is generated
-#app {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+// // TODO: add to schematics for when project is generated
+// #app {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-between;
+// }
+
+// .container-fluid
+#content {
+  @include media-breakpoint-up(md) {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
-#wrap {
-  margin-bottom: 2rem;
+
+:host() {
+  height: 100%;
+}
+
+.site-wrapper {
+  min-height: 100vh !important;
+  height: 100vh;
 }

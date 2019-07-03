@@ -1,0 +1,45 @@
+<form [formGroup]="parentForm">
+  <div formArrayName="arrayOfForms" *ngFor="let fg of getFormsArray.controls; let i=index">
+
+    <form [formGroupName]='i'>
+
+      <common-xicon-button class='d-block pb-1' label="Cancel Remove Access Administrator" (clickEvent)="removeForm(i)">
+      </common-xicon-button>
+      <h4 class='border-bottom'>Remove an existing Access Administrator #{{getFormsArray.controls.length - i}}</h4>
+      <p><small>Access Administrator information</small></p>
+
+      <div class='form-group col-sm-8 p-sm-0'>
+
+        <label for='emailAddress'>Enter the email of the Access Administrator to remove</label>
+        <input type='text' class='form-control' name='emailAddress' formControlName='emailAddress' id='emailAddress'
+          placeholder="example@example.com" maxlength="100">
+
+        <sitereg-error-box [error]="validFormControl(fg, 'emailAddress')"
+          errorMessage="Please provide valid email address">
+        </sitereg-error-box>
+
+
+        <label for='ministryUserId'>Ministry asigned User ID (optional)</label>
+        <input type='text' class='form-control' name='ministryUserId' formControlName='ministryUserId'
+          id='ministryUserId' placeholder="Ministry provided User Id" maxlength="20">
+
+        <sitereg-error-box [error]="validFormControl(fg, 'ministryUserId')"
+          errorMessage="Please provide a valid ministry User Id">
+        </sitereg-error-box>
+
+        <div class="border border-info mt-4 p-2 ">
+
+          <b>FORM :</b>
+          {{fg.value | json}}
+          <hr />
+          <b>JSON :</b>
+          {{generateJSON(fg.value) | json}}
+
+        </div>
+
+      </div>
+    </form>
+
+
+  </div>
+</form>

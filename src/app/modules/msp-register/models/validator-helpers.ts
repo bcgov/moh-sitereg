@@ -69,6 +69,7 @@ export function postalCodeValidator(): ValidatorFn {
 
 export function trailingSpacesValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
+        if (!control.value || control.value.length === 0) return null; // Necessary for optional fields.
         const forbidden = !/^[^\s]+(\s+[^\s]+)*$/.test(
             control.value
         );
@@ -153,6 +154,11 @@ export function faxValidator() {
     };
 }
 
+/**
+ * @deprecated
+ * Please use validFormControlCommon(). We want to show validity errors on
+ * .touched. instead of just .pristine as is common across our applications.
+ */
 export function validFormControl(name: string) {
     if (this.fg.controls[name].pristine) return false;
     return this.fg.controls[name].invalid;
@@ -161,6 +167,20 @@ export function validFormControl(name: string) {
 export function validMultiFormControl(fg: FormGroup, name: string) {
     if (fg.controls[name].pristine) return false;
     return fg.controls[name].invalid;
+}
+
+/**
+ * Validate a form control, replacing validFormControl().
+ */
+export function validFormControlCommon(fg: FormGroup, name: string) {
+    const control = fg.controls[name];
+    if (control.touched && control.errors && control.errors.required) {
+      return true;
+    }
+    if (control.pristine) {
+      return false;
+    }
+    return control.invalid;
 }
 
 /**
