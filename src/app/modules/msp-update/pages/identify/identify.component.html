@@ -1,65 +1,74 @@
-<common-page-framework layout='blank'>
-  <h3>Requestor Information</h3>
+<common-page-framework layout='default'>
+  <h2 class='h1'>Requestor Information</h2>
   <p>The request must be submitted by the Organization's Access Administrator or Signing Authority.</p>
   <hr>
 
-  <common-page-section layout='tips'>
+  <div class="form-group col-sm-6 p-sm-0">
+    <form [formGroup]="fg">
 
-    <div class="form-group col-sm-6 p-sm-0">
-      <form [formGroup]="fg">
+      <label for='organizationNumber'>Organization Number</label>
+      <input type='text'
+             class='form-control'
+             name='organizationNumber'
+             formControlName='organizationNumber'
+             id='organizationNumber'
+             placeholder="00001234"
+             required>
 
-        <label for='organizationNumber'>Organization Number</label>
-        <input type='text'
-               class='form-control'
-               name='organizationNumber'
-               formControlName='organizationNumber'
-               id='organizationNumber'
-               placeholder="00001234"
-               required>
+      <sitereg-error-box [error]="validFormControl(fg, 'organizationNumber')"
+                         errorMessage="Organization Number is required and must be 8 digits.">
+      </sitereg-error-box>
 
-        <sitereg-error-box
-                           [error]="validFormControl(fg, 'organizationNumber')"
-                           errorMessage="Organization Number is required and must be 8 digits.">
-        </sitereg-error-box>
+      <label for="emailAddress">Email Address</label>
+      <input id="emailAddress"
+             name="emailAddress"
+             formControlName='emailAddress'
+             class="form-control"
+             placeholder="example@example.com"
+             maxlength="100"
+             required>
 
-        <label for="emailAddress">Email Address</label>
-        <input id="emailAddress"
-               name="emailAddress"
-               formControlName='emailAddress'
-               class="form-control"
-               placeholder="example@example.com"
-               maxlength="100"
-               required>
-
-        <sitereg-error-box
-                           [error]="validFormControl(fg, 'emailAddress')"
-                           errorMessage="Email is required. Must be in the format test@example.com"></sitereg-error-box>
-      </form>
-    </div>
+      <sitereg-error-box [error]="validFormControl(fg, 'emailAddress')"
+                         errorMessage="Email is required. Must be in the format test@example.com"></sitereg-error-box>
+    </form>
+  </div>
 
 
   <aside>
-    At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et
-    quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est
-    laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio
-    cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem
-    quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque
-    earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
+    At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque
+    corrupti quos dolores et
+    quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt
+    mollitia animi, id est
+    laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta
+    nobis est eligendi optio
+    cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor
+    repellendus. Temporibus autem
+    quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et
+    molestiae non recusandae. Itaque
+    earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut
+    perferendis doloribus asperiores repellat.
   </aside>
-
-  </common-page-section>
 </common-page-framework>
 <common-form-action-bar (btnClick)="continue()"
-                        widthOption='extra-width-mobile-only'
                         [canContinue]="fg.valid">
 </common-form-action-bar>
 
 
-<common-consent-modal #consentModal [isUnderMaintenance]="false"
+<common-consent-modal #consentModal
+                      [isUnderMaintenance]="false"
                       title="Information collection notice"
                       agreeLabel="I have read and understand this information"
                       processName="processName"
-                      (accept)="onAcceptCollectionNotice($event)"
-                      >
-        <p><strong>Keep your personal information secure – especially when using a shared device like a computer at a library, school or café.</strong> To delete any information that was entered, either complete the application and submit it or, if you don’t finish, close the web browser.</p><p><strong>Need to take a break and come back later?</strong> The data you enter on this form is saved locally to the computer or device you are using until you close the web browser or submit your application.</p><p><strong>Information in this application is collected by the Ministry of Health</strong> under section 26(a), (c) and (e) of the Freedom of Information and Protection of Privacy Act and will be used to determine eligibility for provincial health care benefits in BC and administer Premium Assistance. Should you have any questions about the collection of this personal information please <a href="http://www2.gov.bc.ca/gov/content/health/health-drug-coverage/msp/bc-residents-contact-us" target="_blank">contact Health Insurance BC <i class="fa fa-external-link" aria-hidden="true"></i></a>.</p>
+                      (accept)="onAcceptCollectionNotice($event)">
+  <p><strong>Keep your personal information secure – especially when using a shared device like a computer at a
+      library, school or café.</strong> To delete any information that was entered, either complete the application and
+    submit it or, if you don’t finish, close the web browser.</p>
+  <p><strong>Need to take a break and come back later?</strong> The data you enter on this form is saved locally to the
+    computer or device you are using until you close the web browser or submit your application.</p>
+  <p><strong>Information in this application is collected by the Ministry of Health</strong> under section 26(a), (c)
+    and (e) of the Freedom of Information and Protection of Privacy Act and will be used to determine eligibility for
+    provincial health care benefits in BC and administer Premium Assistance. Should you have any questions about the
+    collection of this personal information please <a href="http://www2.gov.bc.ca/gov/content/health/health-drug-coverage/msp/bc-residents-contact-us"
+       target="_blank">contact Health Insurance BC <i class="fa fa-external-link"
+         aria-hidden="true"></i></a>.</p>
 </common-consent-modal>
