@@ -44,8 +44,8 @@ export class MspDirectUpdateIdentifyComponent implements OnInit, AfterViewInit {
 
     createForm(): FormGroup {
         return this.fb.group({
-            organizationNumber: ['', cUpdateValidators.organizationNumber],
-            emailAddress: ['', cUpdateValidators.emailAddress]
+            organizationNumber: ['', cUpdateValidators.requestorInformation.organizationNumber],
+            emailAddress: ['', cUpdateValidators.requestorInformation.emailAddress]
         });
     }
 

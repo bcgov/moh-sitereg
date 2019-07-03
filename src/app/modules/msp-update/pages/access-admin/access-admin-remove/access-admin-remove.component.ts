@@ -38,8 +38,8 @@ export class MspDirectUpdateAccessAdministratorRemoveComponent implements OnInit
 
   private createArrayForm() {
     return this.fb.group({
-      emailAddress: [null, cUpdateValidators.emailAddress],
-      ministryUserId: [null, cUpdateValidators.ministryUserId],
+      emailAddress: [null, cUpdateValidators.general.emailAddress],
+      ministryUserId: [null, cUpdateValidators.general.ministryUserId],
     });
   }
 

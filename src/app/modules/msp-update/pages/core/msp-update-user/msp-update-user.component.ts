@@ -40,7 +40,7 @@ export class MspUpdateUserComponent implements OnInit, AfterViewInit {
             initial: [null, cUpdateValidators.initial ],
             lastName: [null, cUpdateValidators.lastName ],
             jobTitle: [null, cUpdateValidators.jobTitle ],
-            emailAddress: [null, cUpdateValidators.emailAddress ],
+            emailAddress: [null, cUpdateValidators.general.emailAddress ],
             confirmEmail: [null, cUpdateValidators.confirmEmail ],
             phone: [null, cUpdateValidators.phone ],
             ext: [null, cUpdateValidators.ext ],

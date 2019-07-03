@@ -5,7 +5,10 @@ import { CaptchaModule } from 'moh-common-lib/captcha';
 import { MspDirectUpdateRoutesModule } from './routing/routes.module';
 import { MspDirectUpdateComponent } from './components/update-container/update-container.component';
 import { MspDirectUpdateIdentifyComponent } from './pages/identify/identify.component';
+
 import { MspDirectUpdateOrganizationComponent } from './pages/organization/organization.component';
+import { MspDirectUpdateOrganizationEditComponent } from './pages/organization/organization-edit/organization-edit.component';
+
 import { MspDirectUpdateSigningAuthorityComponent } from './pages/signing-authority/signing-authority.component';
 
 import { MspDirectUpdateAccessAdministratorComponent } from './pages/access-admin/access-admin/access-admin.component';
@@ -30,12 +33,14 @@ import { MspUpdateReviewComponent } from './pages/review/review.component';
 import { ReviewSectionComponent } from './components/review-section/review-section.component';
 
 
+
 @NgModule({
     declarations: [
        
         MspDirectUpdateComponent,
         MspDirectUpdateIdentifyComponent,
         MspDirectUpdateOrganizationComponent,
+        MspDirectUpdateOrganizationEditComponent,
         MspDirectUpdateSigningAuthorityComponent,
 
         MspDirectUpdateAccessAdministratorComponent,

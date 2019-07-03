@@ -66,34 +66,103 @@ export function validMultiFormControl(fg: FormGroup, name: string) {
     return fg.controls[name].invalid;
 }
 
+export const cUpdateAdministeringFor = [
+    'No Change',
+    'Employees',
+    'International Students',
+    'Employees and International Students',
+];
+
 export const cUpdateValidators = {
 
     //#region Requestor Information
 
-    /**
-     * Org number can be 8 digits and is 0/left-padded if smaller
-     */
-    organizationNumber: [
-        Validators.required,
-        Validators.minLength(8),
-        Validators.maxLength(8),
-        Validators.min(1),
-        Validators.pattern(/^[0-9]*$/)
-    ],
+    requestorInformation: {
+        /**
+         * Org number can be 8 digits and is 0/left-padded if smaller
+         */
+        organizationNumber: [
+            Validators.required,
+            Validators.minLength(8),
+            Validators.maxLength(8),
+            Validators.min(1),
+            Validators.pattern(/^[0-9]*$/)
+        ],
 
-    emailAddress: [
-        Validators.required,
-        Validators.email,
-        Validators.maxLength(100),
-        Validators.pattern(/^(\S+)@(\S+)\.(\S+)$/),
-    ],
+        emailAddress: [
+            Validators.required,
+            Validators.email,
+            Validators.maxLength(100),
+            Validators.pattern(/^(\S+)@(\S+)\.(\S+)$/),
+        ],
+    },
+    organization: {
+        /**
+         * Org number can be 8 digits and is 0/left-padded if smaller
+         */
+        name: [
+            Validators.required,
+            Validators.minLength(8),
+            Validators.maxLength(8),
+            Validators.min(1),
+            Validators.pattern(/^[0-9]*$/)
+        ],
+
+        emailAddress: [
+            Validators.required,
+            Validators.email,
+            Validators.maxLength(100),
+            Validators.pattern(/^(\S+)@(\S+)\.(\S+)$/),
+        ],
+
+        organizationName: [
+            trailingSpacesValidator()
+        ],
+        suite: [
+            trailingSpacesValidator()
+        ],
+        street: [
+            Validators.maxLength(10),
+            trailingSpacesValidator()
+        ],
+        streetName: [
+            Validators.maxLength(10),
+            trailingSpacesValidator()
+        ],
+        addressLine2: [
+            Validators.maxLength(200),
+            trailingSpacesValidator()
+        ],
+        city: [
+            Validators.maxLength(25),
+            trailingSpacesValidator()
+        ],
+        province: [
+            Validators.maxLength(3),
+        ],
+        postalCode: [
+            Validators.maxLength(6),
+            // postalCodeValidator(), // doesn't work if optional?
+        ],
+        administeringFor : [
+            Validators.required
+        ]
+    },
+
+    general: {
+        emailAddress: [
+            Validators.required,
+            Validators.email,
+            Validators.maxLength(100),
+            Validators.pattern(/^(\S+)@(\S+)\.(\S+)$/),
+        ],
+        ministryUserId: [
+            Validators.maxLength(20),
+            trailingSpacesValidator()
+        ]
+    },
 
     //#endregion
-
-    ministryUserId: [
-        Validators.maxLength(20),
-        trailingSpacesValidator()
-    ],
 
     userTitle: [Validators.maxLength(5)],
     firstName: [
@@ -127,7 +196,7 @@ export const cUpdateValidators = {
     administeringFor: [Validators.required, Validators.maxLength(100)],
     directMspAccess: [Validators.required],
 
-    
+
 };
 
 export function matchFieldValidator(

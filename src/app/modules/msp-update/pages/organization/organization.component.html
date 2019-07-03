@@ -10,15 +10,20 @@
   <hr>
   
   <common-toggle label='Do you need to do any Updates to your Organization Information?'
-                 [data]="hasOrgUpdates" (dataChange)="orgUpdatesChange($event)"></common-toggle>
+                 [data]="hasOrganizationUpdates" (dataChange)="orgUpdatesChange($event)"></common-toggle>
 
-  <ng-container *ngIf="organizationForm">
+<div *ngIf="hasOrganizationUpdates">
+    <sitereg-update-organization-edit [formState]="formOrganizationState"></sitereg-update-organization-edit>
+
+</div>
+  <!-- <ng-container *ngIf="organizationForm"> -->
     <!-- <sitereg-msp-register-organization></sitereg-msp-register-organization> -->
     <!-- <sitereg-organization-form [(fg)]='organizationForm'></sitereg-organization-form> -->
     <!-- TODO - Looks like 2-way binding isn't necessary, it's a pass-by-reference object. -->
-    <sitereg-organization-form mode='update'[fg]='organizationForm'></sitereg-organization-form>
+    <!-- <sitereg-organization-form mode='update'[fg]='organizationForm'></sitereg-organization-form> -->
+    <!-- <sitereg-update-organization-edit></sitereg-update-organization-edit>  -->
 
-  </ng-container>
+  <!-- </ng-container> -->
 
 
 </common-page-framework>

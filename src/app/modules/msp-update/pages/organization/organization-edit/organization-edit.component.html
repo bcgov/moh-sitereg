@@ -1,0 +1,65 @@
+<form [formGroup]="parentForm">
+  <div class="form-group col-sm-8 p-sm-0">
+
+    <!-- Organization Name -->
+    <label class="control-label" for="organizationName">Organization Name</label>
+    <input id="name" formControlName="organizationName" class="form-control" placeholder="Organization Name" maxlength="100">
+    <div class="text-danger" *ngIf="validFormControl(parentForm,'organizationName')">
+      Enter Organization name
+    </div>
+
+
+
+    <div class="row">
+
+      <!-- Suite Number-->
+      <div class="col-sm-3">
+        <label class="control-label" for="suite">Suite# (optional)</label>
+        <input id="suite" formControlName="suite" class="form-control" placeholder="Suite# (optional)" maxlength="10">
+        <div class="text-danger" *ngIf="validFormControl(parentForm,'suite')">
+          Enter valid Suite# (optional)
+        </div>
+      </div>
+
+      <!-- Street Number -->
+      <div class="col-sm-4">
+        <label class="control-label" for="street">Street#</label>
+        <input id="street" formControlName="street" class="form-control" placeholder="Street#" maxlength="10">
+        <div class="text-danger" *ngIf="validFormControl(parentForm,'street')">
+          Enter valid Street#
+        </div>
+      </div>
+      <!-- Street Name -->
+      <div class="col-sm-5">
+        <common-street formControlName="streetName"></common-street>
+      </div>
+    </div>
+
+    <!-- Address Line 2 -->
+    <label class="control-label" for="addressLine2">Street Address Line 2 (optional)</label>
+    <input id="addressLine2" formControlName="addressLine2" class="form-control"
+      placeholder="Street Address Line 2 (optional)" maxlength="200">
+    <div class="text-danger" *ngIf="validFormControl(parentForm,'addressLine2')">
+      Enter valid Street Address Line 2
+    </div>
+
+    <common-city formControlName="city"></common-city>
+    <sitereg-error-box [error]="validFormControl(parentForm,'city')" errorMessage='Please enter a valid city name'>
+    </sitereg-error-box>
+
+    <div class="row">
+      <div class="col-sm-8">
+        <common-province label='Province' formControlName='province' placeholder='Province'></common-province>
+      </div>
+      <div class="col-sm-4">
+        <common-postal-code label='Postal Code' formControlName='postalCode'></common-postal-code>
+      </div>
+    </div>
+
+    <common-dropdown label='The organization will be administering MSP for:' formControlName='administeringFor'
+      [items]='administeringForOptions' [clearable]='false' placeholder="-- Select Option --"></common-dropdown>
+    <sitereg-error-box [error]="validFormControl(parentForm,'administeringFor')" errorMessage='Please select a valid option'>
+    </sitereg-error-box>
+
+  </div>
+</form>
