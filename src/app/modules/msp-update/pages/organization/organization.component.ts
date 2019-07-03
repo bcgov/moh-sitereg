@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { MspDirectUpdateProgressService } from '../../services/progress.service';
 import { ROUTES_UPDATE } from '../../routing/routes.constants';
@@ -9,6 +9,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { UpdateStateService } from '../../services/update.state.service';
 import { AbstractForm } from 'moh-common-lib';
 import { cUpdateValidators, cAdministeringForUpdate } from '@msp-register/models/core/core-types';
+import { MspDirectUpdateOrganizationEditComponent } from './organization-edit/organization-edit.component';
 
 @Component({
     selector: 'sitereg-msp-update-organization',
@@ -51,9 +52,24 @@ export class MspDirectUpdateOrganizationComponent extends AbstractForm implement
 
     //#region NEW
 
+    // // tslint:disable-next-line: member-ordering
+    // @ViewChild(MspDirectUpdateOrganizationEditComponent)
+    // formOrganizationEdit: MspDirectUpdateOrganizationEditComponent;
+
+
     orgUpdatesChange(bool: boolean) {
         this.hasOrganizationUpdates = bool;
     }
+
+    organizationFormStatusChanged(form: FormGroup | null) {
+        // should be form array
+        if (form) {
+            this.updateStateService.forms.organizationForm = form;
+            console.log('Form Status Changed => ' + form.valid );
+        }
+    }
+
+
 
     get hasOrganizationUpdates(): boolean | null {
         return this.updateStateService.hasOrganizationUpdates;

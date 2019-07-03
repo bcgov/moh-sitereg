@@ -13,7 +13,9 @@
                  [data]="hasOrganizationUpdates" (dataChange)="orgUpdatesChange($event)"></common-toggle>
 
 <div *ngIf="hasOrganizationUpdates">
-    <sitereg-update-organization-edit [formState]="formOrganizationState"></sitereg-update-organization-edit>
+    <sitereg-update-organization-edit #formOrganizationEdit 
+    [formState]="formOrganizationState"
+    (statusChanged)="organizationFormStatusChanged($event)"></sitereg-update-organization-edit>
 
 </div>
   <!-- <ng-container *ngIf="organizationForm"> -->

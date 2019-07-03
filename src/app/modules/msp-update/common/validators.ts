@@ -100,33 +100,20 @@ export const cUpdateValidators = {
         /**
          * Org number can be 8 digits and is 0/left-padded if smaller
          */
-        name: [
-            Validators.required,
-            Validators.minLength(8),
-            Validators.maxLength(8),
-            Validators.min(1),
-            Validators.pattern(/^[0-9]*$/)
-        ],
-
-        emailAddress: [
-            Validators.required,
-            Validators.email,
-            Validators.maxLength(100),
-            Validators.pattern(/^(\S+)@(\S+)\.(\S+)$/),
-        ],
-
         organizationName: [
+            Validators.maxLength(100),
             trailingSpacesValidator()
         ],
         suite: [
-            trailingSpacesValidator()
+            Validators.maxLength(10),
+            // trailingSpacesValidator()
         ],
         street: [
             Validators.maxLength(10),
             trailingSpacesValidator()
         ],
         streetName: [
-            Validators.maxLength(10),
+            Validators.maxLength(75),
             trailingSpacesValidator()
         ],
         addressLine2: [
@@ -134,18 +121,22 @@ export const cUpdateValidators = {
             trailingSpacesValidator()
         ],
         city: [
+            Validators.minLength(1),
             Validators.maxLength(25),
             trailingSpacesValidator()
         ],
         province: [
-            Validators.maxLength(3),
+            Validators.minLength(2),
+            Validators.maxLength(3)
         ],
         postalCode: [
             Validators.maxLength(6),
-            // postalCodeValidator(), // doesn't work if optional?
+            // postalCodeValidator(),
         ],
-        administeringFor : [
-            Validators.required
+        // blueCross: [], why blue cross is missing this time in question
+        administeringFor: [
+            Validators.required,
+            Validators.maxLength(100)
         ]
     },
 

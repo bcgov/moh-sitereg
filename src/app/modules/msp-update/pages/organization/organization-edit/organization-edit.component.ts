@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { cUpdateAdministeringFor, validMultiFormControl, cUpdateValidators } from '../../../common/validators';
 
@@ -13,6 +13,7 @@ export class MspDirectUpdateOrganizationEditComponent implements OnInit {
   parentForm: FormGroup;
   validFormControl: (fg: FormGroup, name: string) => boolean;
   administeringForOptions = cUpdateAdministeringFor;
+  @Output() statusChanged: EventEmitter< FormGroup | null> = new EventEmitter<FormGroup | null>();
 
   constructor(private fb: FormBuilder) {
     this.validFormControl = validMultiFormControl;
@@ -20,6 +21,18 @@ export class MspDirectUpdateOrganizationEditComponent implements OnInit {
 
   ngOnInit() {
     this.createOrUpdateForms();
+    this.parentForm.valueChanges.subscribe(x => {
+      this.statusChanged.emit(this.parentForm);
+
+      console.log(x);
+      // console.log(this.parentForm);
+      for (const controlName in this.parentForm.controls) {
+        if (controlName) {
+          const control = this.parentForm.get(controlName);
+          if (control && control.status === 'INVALID') console.log(controlName + ' invalid' );
+        }
+      }
+    });
   }
 
   private createOrUpdateForms() {
@@ -30,11 +43,12 @@ export class MspDirectUpdateOrganizationEditComponent implements OnInit {
       console.log('update form with state provided');
       this.parentForm = this.formState;
     }
+    this.statusChanged.emit(this.parentForm);
   }
 
   private createForm() {
     return this.fb.group({
-      organizationName: [null, cUpdateValidators.organization.name],
+      organizationName: [null, cUpdateValidators.organization.organizationName],
       suite: [null, cUpdateValidators.organization.suite],
       street: [null, cUpdateValidators.organization.street],
       streetName: [null, cUpdateValidators.organization.streetName],
@@ -42,7 +56,7 @@ export class MspDirectUpdateOrganizationEditComponent implements OnInit {
       city: [null, cUpdateValidators.organization.city],
       province: [null, cUpdateValidators.organization.province],
       postalCode: [null, cUpdateValidators.organization.postalCode],
-      administeringFor: [this.administeringForOptions[0], cUpdateValidators.organization.name]
+      administeringFor: [this.administeringForOptions[0], cUpdateValidators.organization.administeringFor]
     });
   }
 }
