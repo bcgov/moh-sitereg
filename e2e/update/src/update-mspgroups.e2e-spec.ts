@@ -1,7 +1,7 @@
 import { browser } from 'protractor';
 import { FakeDataDevUpdate } from './update.data';
 import { MSPGroupsPage } from './update.po';
-import { onPageLoadTest, onClickStepperTest, onSkipTest } from './generic-tests';
+import { testPageLoad, testClickStepper, testSkip } from './generic-tests';
 
 describe('IAM Update - MSP Groups Page', () => {
     let groupPage: MSPGroupsPage;
@@ -17,9 +17,9 @@ describe('IAM Update - MSP Groups Page', () => {
         data.setSeed(123);
     });
 
-    onPageLoadTest(GROUP_NUMBERS_PAGE_URL);
-    onClickStepperTest(GROUP_NUMBERS_PAGE_URL, USER_PAGE_URL, 'Users', 'Review');
-    onSkipTest(GROUP_NUMBERS_PAGE_URL, REVIEW_PAGE_URL);
+    testPageLoad(GROUP_NUMBERS_PAGE_URL);
+    testClickStepper(GROUP_NUMBERS_PAGE_URL, USER_PAGE_URL, 'Users', 'Review');
+    testSkip(GROUP_NUMBERS_PAGE_URL, REVIEW_PAGE_URL);
 
     it('01. should be able to add MSP Group number', () => {
         groupPage.navigateTo();
