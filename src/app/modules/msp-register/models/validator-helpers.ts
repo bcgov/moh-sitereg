@@ -216,3 +216,7 @@ export function matchFieldValidator(
 export const required = Validators.required;
 export const maxLength = (num: number = 100) => Validators.maxLength(num);
 export const minLength = (num: number = 3) => Validators.minLength(num);
+
+export function trimText(sourceText: string) {
+    return sourceText.trim();
+}
