@@ -17,10 +17,13 @@ import { CaptchaModule } from 'moh-common-lib/captcha';
 import { MspRegisterAutofillComponent } from './components/autofill/autofill.component';
 import { MspRegisterConfirmationComponent } from './components/msp-register-confirmation/msp-register-confirmation.component';
 import { MspRegisterReviewComponent } from './components/msp-register-review/msp-register-review.component';
+import { MspRegisterH2WithPrintComponent } from './common/h2-with-print/h2-with-print.component';
 
 @NgModule({
     declarations: [
         MspRegisterComponent,
+        MspRegisterH2WithPrintComponent,
+
         MspRegisterUserComponent,
         MspRegisterOrganizationComponent,
         MspRegisterAccessAdminsComponent,
