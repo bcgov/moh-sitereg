@@ -45,9 +45,9 @@ export class MspRegisterSigningAuthorityComponent implements OnInit {
 
         // adds or updates singing authority as admin
         const mspAccess = 'directMspAccess';
-        this.fg.controls[mspAccess].valueChanges.subscribe((obs) => {
-            this.updateSingingAuthorityAsAdmin();
-        });
+        // this.fg.controls[mspAccess].valueChanges.subscribe((obs) => {
+        //     this.updateSingingAuthorityAsAdmin();
+        // });
     }
 
     ngOnInit() {
