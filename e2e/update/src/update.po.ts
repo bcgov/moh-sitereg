@@ -1,11 +1,16 @@
 import { browser, by, element, WebElement, protractor, $$ } from 'protractor';
 import { AbstractTestPage } from 'moh-common-lib/e2e';
-import { OrganizationPageTest, RequestorPageTest } from './dev-update.data';
+import { OrganizationPageTest, RequestorPageTest } from './update.data';
+import { GroupNumbersPageTest } from 'e2e/registration/src/sitereg.data';
 
 export class BaseDevUpdateTestPage extends AbstractTestPage {
 
     navigateTo() {
         return browser.get('/sitereg/home/');
+    }
+
+    navigateToURL(PAGE_URL: string) {
+        return browser.get('/' + PAGE_URL);
     }
 
     // TODO: Move the methods below to shared lib
@@ -71,6 +76,42 @@ export class OrganizationPage extends BaseDevUpdateTestPage {
         this.typeTextUsingID('province', 'British Columbia');
         this.typeTextUsingID('postalCode', data.postal);
         this.typeTextUsingID('The organization', 'Employees');
+    }
+
+}
+
+export class MSPGroupsPage extends BaseDevUpdateTestPage {
+
+    navigateTo() {
+        return browser.get('/sitereg/update/group-numbers');
+    }
+
+    fillPage() {
+
+    }
+
+    checkThirdPartyAdmin(ngVal: string, labelVal: string, text: string) {
+        const sel = `sitereg-msp-group-no[ng-reflect-labelfor-id="${ngVal}"]`;
+        const sel2 = `common-radio[label^="${labelVal}"]`;
+        element(by.css(sel)).element(by.xpath('..')).element(by.css(sel2)).element(by.cssContainingText('label', text)).click();
+    }
+
+    typeGroupNumber(h4Val: string, ngVal: string, data: GroupNumbersPageTest) {
+        const sel = `sitereg-msp-group-no[ng-reflect-labelfor-id="${ngVal}"]`;
+        element(by.cssContainingText('h4', `${h4Val}`)).element(by.xpath('..')).element(by.css(sel)).element(by.css('input')).sendKeys(data.groupNum + '');
+    }
+
+    checkInputDisplayed(h4Val: string, ngVal: string) {
+        const sel = `sitereg-msp-group-no[ng-reflect-labelfor-id="${ngVal}"]`;
+        return element(by.cssContainingText('h4', `${h4Val}`)).element(by.xpath('..')).element(by.css(sel)).element(by.css('input')).getAttribute('value');
+    }
+
+    clickXIcon(h4Val: string) {
+        element(by.cssContainingText('h4', `${h4Val}`)).element(by.xpath('..')).element(by.css('button')).click();
+    }
+
+    checkTextDisplayed(h4Val: string) {
+        return element(by.cssContainingText('h4', `${h4Val}`)).isPresent();
     }
 
 }
