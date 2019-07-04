@@ -67,12 +67,18 @@ export function postalCodeValidator(): ValidatorFn {
     };
 }
 
+/**
+ * Does not accept spaces or blank string
+ */
 export function trailingSpacesValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
         if (!control.value || control.value.length === 0) return null; // Necessary for optional fields.
-        const forbidden = !/^[^\s]+(\s+[^\s]+)*$/.test(
+        const forbidden = !/^(?!\s*$).+/.test(
             control.value
-        );
+        )
+        // const forbidden = !/^[^\s]+(\s+[^\s]+)*$/.test(
+        //     control.value
+        // );
         return forbidden
             ? { invalidText: { value: control.value } }
             : null;
