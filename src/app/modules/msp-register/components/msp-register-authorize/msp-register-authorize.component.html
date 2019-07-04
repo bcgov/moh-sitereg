@@ -14,6 +14,7 @@
            <img class="img-thumbnail" width="50 " height="50" src="" />
         </div> -->
         <div class="col-auto mr-auto align-items-end">
+          <h2 hidden="true">MINISTRY OF HEALTH DATA ACCESS AGREEMENT</h2>
           <h3>MINISTRY OF HEALTH DATA ACCESS AGREEMENT</h3>
         </div>
         <!-- <div class="col-auto" *ngIf="mspRegDataSvc.agreementNumber | async as num">Agreement No: 87654321</div> -->
@@ -83,25 +84,25 @@
                   <span class="selectedOption">
                     {{ isWebEnabled===true ? "&#10003;": "&#9634;" }}
                   </span>
-                  <label for="checkMspDirectWeb" class="label-right" title=""
+                  <span for="checkMspDirectWeb" class="label-right mb-2" title=""
                     (click)="navigateTo('signing-authority');">
                     The Applicant will Administer MSP using the MSP Direct Web Interface.
-                  </label>
+                </span>
                   <span *ngIf="isWebEnabled===false" style="color:red;"> You must provide at least one Access
                     Administrator or User.</span>
                 </li>
                 <li>
                   <span class="selectedOption"> {{ organization.blueCross ? "&#10003;": "&#9634;"  }} </span>
-                  <label for="checkPacificBlueCross" class="label-right" title="" (click)="navigateTo('organization');">
+                  <span for="checkPacificBlueCross" class="label-right mb-2" title="" (click)="navigateTo('organization');">
                     The Applicant will Administer MSP using software supported by Pacific Blue Cross.
-                  </label>
+                  </span>
                 </li>
                 <li>
                   <div title="" (click)="navigateTo('group-numbers');">
                     <span> {{ organization.thirdParty? "&#10003;": "&#9634;" }} </span>
-                    <label for="checkMspApplicantBehalf" class="label-right">
+                    <span for="checkMspApplicantBehalf" class="label-right mb-2">
                       The following organization will Administer MSP on the Applicant's behalf:
-                    </label>
+                    </span>
                     <!-- <span *ngIf="!isValidGroups()"> No Group Numbers specified. </span>
                 <table *ngIf="isValidGroups()" class="list-table">
                   <tr *ngFor="let g of groupsMSP" class="aggrement-table">
@@ -131,25 +132,25 @@
                 <span>
                   {{ (signingAuthority.administeringFor && signingAuthority.administeringFor.includes('Employees'))? "&#10003;": "&#9634;" }}
                 </span>
-                <label class="label-right">
+                <span class="label-right">
                   Employees
-                </label>
+                </span>
               </li>
               <li class="li-inline">
                 <span>
                   {{ (signingAuthority.administeringFor && signingAuthority.administeringFor.includes('International Students') )? "&#10003;": "&#9634;" }}
                 </span>
-                <label class="label-right">
+                <span class="label-right">
                   International Students
-                </label>
+                </span>
               </li>
               <li class="li-inline">
                 <span>
                   {{ (signingAuthority.administeringFor && signingAuthority.administeringFor.includes('Other') )? "&#10003;": "&#9634;" }}
                 </span>
-                <label class="label-right">
+                <span class="label-right">
                   Other (requires further approval)
-                </label>
+                </span>
               </li>
             </ul>
           </li>

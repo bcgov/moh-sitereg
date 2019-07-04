@@ -1,20 +1,29 @@
 <!-- sitereg-page-sections -->
 
-<common-consent-modal #consentModal [isUnderMaintenance]="false"
-                      title="Information collection notice"
-                      agreeLabel="I have read and understand this information"
-                      processName="processName"
-                      (accept)="onAcceptCollectionNotice($event)"
-                      >
-        <p><strong>Keep your personal information secure – especially when using a shared device like a computer at a library, school or café.</strong> To delete any information that was entered, either complete the application and submit it or, if you don’t finish, close the web browser.</p><p><strong>Need to take a break and come back later?</strong> The data you enter on this form is saved locally to the computer or device you are using until you close the web browser or submit your application.</p><p><strong>Information in this application is collected by the Ministry of Health</strong> under section 26(a), (c) and (e) of the Freedom of Information and Protection of Privacy Act and will be used to determine eligibility for provincial health care benefits in BC and administer Premium Assistance. Should you have any questions about the collection of this personal information please <a href="http://www2.gov.bc.ca/gov/content/health/health-drug-coverage/msp/bc-residents-contact-us" target="_blank">contact Health Insurance BC <i class="fa fa-external-link" aria-hidden="true"></i></a>.</p> 
-</common-consent-modal> 
+<common-consent-modal #consentModal [isUnderMaintenance]="false" title="Information collection notice"
+  agreeLabel="I have read and understand this information" processName="processName"
+  (accept)="onAcceptCollectionNotice($event)">
+  <p><strong>Keep your personal information secure – especially when using a shared device like a computer at a library,
+      school or café.</strong> To delete any information that was entered, either complete the application and submit it
+    or, if you don’t finish, close the web browser.</p>
+  <p><strong>Need to take a break and come back later?</strong> The data you enter on this form is saved locally to the
+    computer or device you are using until you close the web browser or submit your application.</p>
+  <p><strong>Information in this application is collected by the Ministry of Health</strong> under section 26(a), (c)
+    and (e) of the Freedom of Information and Protection of Privacy Act and will be used to determine eligibility for
+    provincial health care benefits in BC and administer Premium Assistance. Should you have any questions about the
+    collection of this personal information please <a
+      href="http://www2.gov.bc.ca/gov/content/health/health-drug-coverage/msp/bc-residents-contact-us"
+      target="_blank">contact Health Insurance BC <i class="fa fa-external-link" aria-hidden="true"></i></a>.</p>
+</common-consent-modal>
 
 <common-page-framework>
   <h2 class="border-bottom">Organization</h2>
   <aside>
-      This request must be submitted by the Organization's Access Administrator or Signing Authority. If you have any trouble using this form, please contact the Ministry of Health Help desk at 1-250-952-1234, Monday to Friday 8:00AM - 4:30PM.
-      <br/> <br/>
-      Enter the information about the <b>Organization</b> applying for access to MSP Direct.
+    This request must be submitted by the Organization's Access Administrator or Signing Authority. If you have any
+    trouble using this form, please contact the Ministry of Health Help desk at 1-250-952-1234, Monday to Friday 8:00AM
+    - 4:30PM.
+    <br /> <br />
+    Enter the information about the <b>Organization</b> applying for access to MSP Direct.
   </aside>
   <div *ngIf="fg">
     <!-- TODO - This form should be replaced with OrganizationFormComponent -->
@@ -23,14 +32,14 @@
 
         <!-- Organization Name -->
         <label class="control-label" for="name">Organization Name</label>
-        <input id="name" formControlName="name" class="form-control" placeholder="Organization Name"  maxlength="100" >
+        <input id="name" formControlName="name" class="form-control" placeholder="Organization Name" maxlength="100">
         <div class="text-danger" *ngIf="validFormControl('name')">
           Enter Organization name
         </div>
 
         <!-- Suite Number-->
         <label class="control-label" for="suite">Suite# (optional)</label>
-        <input id="suite" formControlName="suite" class="form-control" placeholder="Suite# (optional)"  maxlength="10" >
+        <input id="suite" formControlName="suite" class="form-control" placeholder="Suite# (optional)" maxlength="10">
         <div class="text-danger" *ngIf="validFormControl('suite')">
           Enter valid Suite# (optional)
         </div>
@@ -40,7 +49,7 @@
           <!-- Street Number -->
           <div class="col-sm-4">
             <label class="control-label" for="street">Street#</label>
-            <input id="street" formControlName="street" class="form-control" placeholder="Street#"  maxlength="10" >
+            <input id="street" formControlName="street" class="form-control" placeholder="Street#" maxlength="10">
             <div class="text-danger" *ngIf="validFormControl('street')">
               Enter valid Street#
             </div>
@@ -49,7 +58,8 @@
           <!-- Street Name -->
           <div class="col-sm-8">
             <label class="control-label" for="streetName">Street Name</label>
-            <input id="streetName" formControlName="streetName" class="form-control" placeholder="Street Name"  maxlength="75" >
+            <input id="streetName" formControlName="streetName" class="form-control" placeholder="Street Name"
+              maxlength="75">
             <div class="text-danger" *ngIf="validFormControl('streetName')">
               Enter valid Street Name
             </div>
@@ -59,14 +69,15 @@
 
         <!-- Address Line 2 -->
         <label class="control-label" for="addressLine2">Street Address Line 2 (optional)</label>
-        <input id="addressLine2" formControlName="addressLine2" class="form-control" placeholder="Street Address Line 2 (optional)"  maxlength="200" >
+        <input id="addressLine2" formControlName="addressLine2" class="form-control"
+          placeholder="Street Address Line 2 (optional)" maxlength="200">
         <div class="text-danger" *ngIf="validFormControl('addressLine2')">
           Enter valid Street Address Line 2
         </div>
 
         <!-- City -->
         <label class="control-label" for="city">City</label>
-        <input id="city" formControlName="city" class="form-control" placeholder="City Name"  maxlength="25" >
+        <input id="city" formControlName="city" class="form-control" placeholder="City Name" maxlength="25">
         <div class="text-danger" *ngIf="validFormControl('city')">
           Please enter your city.
         </div>
@@ -75,7 +86,8 @@
           <div class="col-sm-8">
             <!-- Province -->
             <label class="control-label" for="province">Province</label>
-            <select class="form-control" id="province" *ngIf="provinces | async as provinces" formControlName="province"  maxlength="3" >
+            <select class="form-control" id="province" *ngIf="provinces | async as provinces" formControlName="province"
+              maxlength="3">
               <option value="null" label="-- Select Province --" selected></option>
               <option *ngFor="let province of provinces " [value]="province.provCode">{{province.description}}</option>
             </select>
@@ -93,34 +105,40 @@
           </div>
         </div>
 
-          <!-- Administrating For-->
-          <label class="control-label" for="administeringFor">This organization will be administering MSP for</label>
-          <select class="form-control" id="administeringFor" *ngIf="administeringFor | async as administering" formControlName="administeringFor">
-            <option value="" label="-- Select Option --" selected></option>
-            <option *ngFor="let a of administering " [value]="a">{{a}}</option>
-          </select>
-          <div class="text-danger" *ngIf="validFormControl('administeringFor')">
-            Please select a valid option
-          </div>
-       
-        <!-- Question Third Party Administering -->
-        <label class="control-label">
-          Are you contracting a 3rd party to administer MSP Direct on your behalf?
-        </label>
-        <br />
-        <div class="md-radio md-radio-inline">
-          <!--No-->
-          <input formControlName="thirdParty" type="radio" id="thirdPartyFalse" tabindex="0" [value]="false"
-            (click)="updateThirdPartyValidations(false)">
-          <label for="thirdPartyFalse">No</label>
-          <!--Yes-->
-          <input formControlName="thirdParty" type="radio" name="" id="thirdPartyTrue" tabindex="0" [value]="true"
-            (click)="updateThirdPartyValidations(true)">
-          <label for="thirdPartyTrue">Yes</label>
-        </div>
-        <div class="text-danger" *ngIf="validFormControl('thirdParty')">
+        <!-- Administrating For-->
+        <label class="control-label" for="administeringFor">This organization will be administering MSP for</label>
+        <select class="form-control" id="administeringFor" *ngIf="administeringFor | async as administering"
+          formControlName="administeringFor">
+          <option value="" label="-- Select Option --" selected></option>
+          <option *ngFor="let a of administering " [value]="a">{{a}}</option>
+        </select>
+        <div class="text-danger" *ngIf="validFormControl('administeringFor')">
           Please select a valid option
         </div>
+
+        <fieldset>
+          <!-- Question Third Party Administering -->
+          <span class="control-label">
+            Are you contracting a 3rd party to administer MSP Direct on your behalf?
+          </span>
+          <legend hidden="true"></legend>
+          <br />
+          <div class="md-radio md-radio-inline">
+
+            <!--No-->
+            <input formControlName="thirdParty" type="radio" id="thirdPartyFalse" tabindex="0" [value]="false"
+              (click)="updateThirdPartyValidations(false)">
+            <label for="thirdPartyFalse">No</label>
+            <!--Yes-->
+            <input formControlName="thirdParty" type="radio" name="" id="thirdPartyTrue" tabindex="0" [value]="true"
+              (click)="updateThirdPartyValidations(true)">
+            <label for="thirdPartyTrue">Yes</label>
+
+          </div>
+          <div class="text-danger" *ngIf="validFormControl('thirdParty')">
+            Please select a valid option
+          </div>
+        </fieldset>
 
 
         <div class="row">
@@ -150,7 +168,7 @@
         </div>
 
         <!-- Question Blue Cross -->
-        <label class="control-label">Are you applying to access MSP Direct through Blue Cross?</label>
+        <span class="control-label">Are you applying to access MSP Direct through Blue Cross?</span>
         <br />
         <div class="md-radio md-radio-inline">
           <!--No-->
@@ -167,11 +185,11 @@
     </form>
   </div>
   <div *ngIf="globalConfigSvc.debug">
-      Debugging purposes only:
-      <ngx-json-viewer [json]="schemaObject()" [expanded]="true"></ngx-json-viewer>
+    Debugging purposes only:
+    <ngx-json-viewer [json]="schemaObject()" [expanded]="true"></ngx-json-viewer>
   </div>
-  </common-page-framework>
-  
+</common-page-framework>
+
 <!-- class="fixed-bottom avoid-sliding"  -->
 <common-form-action-bar (btnClick)="continue()" [canContinue]="fg.valid">
 </common-form-action-bar>
