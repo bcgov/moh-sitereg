@@ -18,12 +18,12 @@
       <h3> User #{{fgs.length-i}}</h3>
     </div>
     <div class="col-auto">
-      <button (click)="deleteFormGroup(i)" type="button" class="btn delete" alt>
+      <button (click)="deleteFormGroup(i)" type="button" class="btn delete" alt="Delete" aria-label="Delete">
         <i style="color: red !important;" class="fa fa-2x fa-times-circle"></i>
     </button>
   </div>
   </div>
-  <sitereg-msp-register-user [fg]="fg"></sitereg-msp-register-user>
+  <sitereg-msp-register-user [formIndex]="i" [fg]="fg"></sitereg-msp-register-user>
 </div>
 <div *ngIf="globalConfigSvc.debug">
     Debugging purposes only:

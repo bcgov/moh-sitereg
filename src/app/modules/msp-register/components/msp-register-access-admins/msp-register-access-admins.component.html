@@ -19,12 +19,12 @@
       <h3> Access Admin #{{fgs.length-i}}</h3>
     </div>
     <div class="col-auto">
-      <button  class="btn delete"  (click)="deleteFormGroup(i)" type="button">
+      <button  class="btn delete"  (click)="deleteFormGroup(i)" type="button" aria-label="Delete">
       <i style="color: red !important;" class="fa fa-2x fa-times-circle"></i>
     </button>
     </div>
   </div>
-  <sitereg-msp-register-user-msp [fg]="fg"  [showMspDirectAccessQuestion]="false" ></sitereg-msp-register-user-msp>
+  <sitereg-msp-register-user-msp [fg]="fg" [formIndex]="i"  [showMspDirectAccessQuestion]="false" ></sitereg-msp-register-user-msp>
 </div>
 <div *ngIf="globalConfigSvc.debug">
     Debugging purposes only:

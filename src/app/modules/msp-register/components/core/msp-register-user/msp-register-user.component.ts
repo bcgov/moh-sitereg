@@ -18,6 +18,8 @@ import {
     // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MspRegisterUserComponent implements AfterViewInit {
+    // for accessiblity
+    @Input() formIndex = 1;
     @Input() fg: FormGroup;
     @Input() showAdministeringMSPForQuestion = true; // needed in MSP updates only
     validFormControl: (fg: FormGroup, name: string) => boolean;
