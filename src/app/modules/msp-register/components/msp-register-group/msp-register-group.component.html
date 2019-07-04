@@ -44,7 +44,9 @@
 
       <!--Question Third Party -->
       <div class="form-group col-sm-8 p-sm-0" *ngIf="organization.thirdParty" >
-        <label class="control-label">Will this group be administered by a 3rd Party Administrator? </label>
+        <fieldset>
+        <legend hidden="true"></legend>
+        <span class="control-label">Will this group be administered by a 3rd Party Administrator? </span>
         <br />
         <div class="md-radio md-radio-inline">
           <input formControlName="thirdParty" type="radio" id="bcfalse_{{i}}" tabindex="0" [value]="false"> <label
@@ -52,6 +54,7 @@
           <input formControlName="thirdParty" type="radio" id="bctrue__{{i}}" tabindex="0" [value]="true"> <label
             for="bctrue__{{i}}">Yes</label>
         </div>
+      </fieldset>
       </div>
 
     </form>
