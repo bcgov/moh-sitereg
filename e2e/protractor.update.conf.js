@@ -6,7 +6,7 @@ const { SpecReporter } = require('jasmine-spec-reporter');
 exports.config = {
   allScriptsTimeout: 11000,
   specs: [
-    './dev-update/src/*.e2e-spec.ts',
+    './update/src/*.e2e-spec.ts',
   ],
   multiCapabilities: [{
   //  'browserName': 'firefox'
