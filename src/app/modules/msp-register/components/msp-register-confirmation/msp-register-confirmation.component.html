@@ -11,7 +11,8 @@
       </div>
       <div class='col-md-4'>
         <span style="font-size: 1.25rem;">Your application has been submitted.</span> <br />
-        <span><small>{{ today | date:'mediumDate' }} --- Request and Agreement number: <b>{{mspRegDataSvc.requestFinalStatus?.confirmationNumber }}</b>
+        <span><small>{{ today | date:'mediumDate' }} --- Request and Agreement number: <b>{{ paddedConfirmationNumber() }}</b>
+           <!-- <b>{{mspRegDataSvc.requestFinalStatus?.confirmationNumber }}</b> -->
           </small></span>
       </div>
     </div>
