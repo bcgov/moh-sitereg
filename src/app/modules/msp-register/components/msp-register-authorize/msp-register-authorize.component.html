@@ -184,7 +184,7 @@
         <span   class="col-auto ml-8" *ngIf="isWebEnabled===true">
           <input type="checkbox" name="consent" formControlName="consent" id="consent" tabindex="0"
             [value]="true">&nbsp;
-          <label (click)="toggleConsent()" class="col-md-8">
+          <label (click)="toggleConsent()" class="col-md-8" for="consent">
             I, {{signingAuthority.firstName}} {{signingAuthority.lastName}}, have read, understood and agreed to the
             terms and conditions of this Agreement, including this Cover Sheet and the Access Terms and Conditions.
           </label>
