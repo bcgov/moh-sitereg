@@ -5,7 +5,7 @@
 
       <common-xicon-button class='d-block pb-1' label="Cancel Remove Access Administrator" (clickEvent)="removeForm(i)">
       </common-xicon-button>
-      <h4 class='border-bottom'>Remove an existing Access Administrator #{{getFormsArray.controls.length - i}}</h4>
+      <h4 class='border-bottom'>Remove an Access Administrator #{{getFormsArray.controls.length - i}}</h4>
       <p><small>Access Administrator information</small></p>
 
       <div class='form-group col-sm-8 p-sm-0'>
@@ -27,7 +27,7 @@
           errorMessage="Please provide a valid ministry User Id">
         </sitereg-error-box>
 
-        <div class="border border-info mt-4 p-2 ">
+        <!-- <div class="border border-info mt-4 p-2 ">
 
           <b>FORM :</b>
           {{fg.value | json}}
@@ -35,7 +35,7 @@
           <b>JSON :</b>
           {{generateJSON(fg.value) | json}}
 
-        </div>
+        </div> -->
 
       </div>
     </form>

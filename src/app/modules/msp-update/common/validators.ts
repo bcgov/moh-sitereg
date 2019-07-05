@@ -153,6 +153,16 @@ export const cUpdateValidators = {
         ]
     },
 
+    group: {
+        groupNo: [
+            Validators.required,
+            Validators.minLength(7),
+            Validators.maxLength(7),
+            groupNumberValidator,
+        ],
+    },
+
+
     //#endregion
 
     userTitle: [Validators.maxLength(5)],

@@ -31,12 +31,14 @@ import { RouterModule } from '@angular/router';
 import { MspRegisterModule } from '../msp-register/msp-register.module';
 import { MspUpdateReviewComponent } from './pages/review/review.component';
 import { ReviewSectionComponent } from './components/review-section/review-section.component';
+import { MspDirectUpdateAccessAdministratorEditComponent } from './pages/access-admin/access-admin-edit/access-admin-edit.component';
+import { MspDirectUpdateAccessAdministratorAddComponent } from './pages/access-admin/access-admin-add/access-admin-add.component';
 
 
 
 @NgModule({
     declarations: [
-       
+
         MspDirectUpdateComponent,
         MspDirectUpdateIdentifyComponent,
         MspDirectUpdateOrganizationComponent,
@@ -45,6 +47,8 @@ import { ReviewSectionComponent } from './components/review-section/review-secti
 
         MspDirectUpdateAccessAdministratorComponent,
         MspDirectUpdateAccessAdministratorRemoveComponent,
+        MspDirectUpdateAccessAdministratorAddComponent,
+        MspDirectUpdateAccessAdministratorEditComponent,
 
         MspDirectUpdateUserComponent,
 
@@ -71,12 +75,13 @@ import { ReviewSectionComponent } from './components/review-section/review-secti
          *        or shared. Declaring the component within this module causes the register
          *        page fail when try to navigate to it.
          */
+
         MspRegisterModule
     ],
     providers: [
-      MspDirectUpdateProgressService,
-      { provide: AbstractPgCheckService, useExisting: MspDirectUpdateProgressService },
-      RouteGuardService
+        MspDirectUpdateProgressService,
+        { provide: AbstractPgCheckService, useExisting: MspDirectUpdateProgressService },
+        RouteGuardService
     ]
 })
-export class MspDirectUpdateModule {}
+export class MspDirectUpdateModule { }

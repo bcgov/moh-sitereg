@@ -1,0 +1,30 @@
+<form [formGroup]="parentForm">
+  <div formArrayName="arrayOfForms" *ngFor="let fg of getFormsArray.controls; let i=index">
+
+    <form [formGroupName]='i'>
+
+      <common-xicon-button class='d-block pb-1' label="Cancel" (clickEvent)="removeForm(i)">
+      </common-xicon-button>
+      <h4 class='border-bottom'>Add a new Access Administrator #{{getFormsArray.controls.length - i}}</h4>
+      <p><small>Access Administrator Information</small></p>
+
+      <div class='form-group col-sm-8 p-sm-0'>
+
+        <!--#region Form-->
+
+        <!--#endregion Form-->
+
+        <!-- <div class="border border-info mt-4 p-2 ">
+          <b>FORM :</b>
+          {{fg.value | json}}
+          <hr />
+          <b>JSON :</b>
+          {{generateJSON(fg.value) | json}}
+        </div> -->
+
+      </div>
+    </form>
+
+
+  </div>
+</form>

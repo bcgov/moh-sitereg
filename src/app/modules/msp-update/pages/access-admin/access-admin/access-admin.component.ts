@@ -8,6 +8,8 @@ import { GlobalConfigService } from '@shared/services/global-config.service';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { UpdateStateService } from '../../../services/update.state.service';
 import { MspDirectUpdateAccessAdministratorRemoveComponent } from '../access-admin-remove/access-admin-remove.component';
+import { MspDirectUpdateAccessAdministratorAddComponent } from '../access-admin-add/access-admin-add.component';
+import { MspDirectUpdateAccessAdministratorEditComponent } from '../access-admin-edit/access-admin-edit.component';
 
 @Component({
     selector: 'sitereg-msp-update-access-admin',
@@ -101,14 +103,51 @@ export class MspDirectUpdateAccessAdministratorComponent implements OnInit {
         this.updateStateService.forms.mspAccessAdministrators.update = null;
     }
 
-    //#region REMOVE
+    
+    //#region Edit
 
-    /**
-     * update following 
-     * #removeForm  - define a view child component
-     * [stateForm]="removeStateForm"  - provide udpated state managment
-     * (formArrayChanged)="stateUpdated('REMOVE',$event)"></sitereg-update-access-admin-remove>
-     */
+    // tslint:disable-next-line: member-ordering
+    @ViewChild(MspDirectUpdateAccessAdministratorEditComponent)
+    formEdit: MspDirectUpdateAccessAdministratorEditComponent;
+
+    get formEditState(): FormGroup {
+        return this.updateStateService.forms.mspAccessAdministrators.update;
+    }
+
+    formEditStateChanged(formGroups: any) {
+        this.updateStateService.forms.mspAccessAdministrators.update = formGroups;
+        this.showUpdateAccessAdmin = this.formEdit.getFormsCount > 0 ? true : false;
+    }
+
+    formEditNew() {
+        this.formEdit.newForm();
+    }
+
+    //#endregion
+
+    //#region Add
+
+    // tslint:disable-next-line: member-ordering
+    @ViewChild(MspDirectUpdateAccessAdministratorAddComponent)
+    formAdd: MspDirectUpdateAccessAdministratorAddComponent;
+
+    get formAddState(): FormGroup {
+        return this.updateStateService.forms.mspAccessAdministrators.add;
+    }
+
+    formAddStateChanged(formGroups: any) {
+        this.updateStateService.forms.mspAccessAdministrators.add = formGroups;
+        this.showAddAccessAdmin = this.formAdd.getFormsCount > 0 ? true : false;
+    }
+
+    formAddNew() {
+        this.formAdd.newForm();
+    }
+
+    //#endregion
+
+
+    //#region REMOVE
 
     // tslint:disable-next-line: member-ordering
     @ViewChild(MspDirectUpdateAccessAdministratorRemoveComponent)
