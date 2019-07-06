@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { cUpdateAdministeringFor, validMultiFormControl, cUpdateValidators } from '../../../common/validators';
+import { cUpdateEnumeration, validMultiFormControl, cUpdateValidators } from '../../../common/validators';
 
 @Component({
   selector: 'sitereg-update-organization-edit',
@@ -12,7 +12,7 @@ export class MspDirectUpdateOrganizationEditComponent implements OnInit {
   @Input() formState: FormGroup | null;
   parentForm: FormGroup;
   validFormControl: (fg: FormGroup, name: string) => boolean;
-  administeringForOptions = cUpdateAdministeringFor;
+  administeringForOptions = cUpdateEnumeration.administeringFor.update;
   @Output() statusChanged: EventEmitter< FormGroup | null> = new EventEmitter<FormGroup | null>();
 
   constructor(private fb: FormBuilder) {
@@ -24,7 +24,7 @@ export class MspDirectUpdateOrganizationEditComponent implements OnInit {
     this.parentForm.valueChanges.subscribe(x => {
       this.statusChanged.emit(this.parentForm);
 
-      console.log(x);
+      // console.log(x);
       // console.log(this.parentForm);
       for (const controlName in this.parentForm.controls) {
         if (controlName) {

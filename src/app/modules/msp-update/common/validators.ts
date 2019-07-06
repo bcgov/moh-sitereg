@@ -29,17 +29,35 @@ export function postalCodeValidator(): ValidatorFn {
     };
 }
 
+/**
+ * Does not accept spaces or blank string
+ */
 export function trailingSpacesValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
         if (!control.value || control.value.length === 0) return null; // Necessary for optional fields.
-        const forbidden = !/^[^\s]+(\s+[^\s]+)*$/.test(
+        const forbidden = !/^(?!\s*$).+/.test(
             control.value
-        );
+        )
+        // const forbidden = !/^[^\s]+(\s+[^\s]+)*$/.test(
+        //     control.value
+        // );
         return forbidden
             ? { invalidText: { value: control.value } }
             : null;
     };
 }
+// }
+// export function trailingSpacesValidator(): ValidatorFn {
+//     return (control: AbstractControl): { [key: string]: any } | null => {
+//         if (!control.value || control.value.length === 0) return null; // Necessary for optional fields.
+//         const forbidden = !/^[^\s]+(\s+[^\s]+)*$/.test(
+//             control.value
+//         );
+//         return forbidden
+//             ? { invalidText: { value: control.value } }
+//             : null;
+//     };
+// }
 
 /**
  * Validate a form control, replacing validFormControl().
@@ -66,16 +84,106 @@ export function validMultiFormControl(fg: FormGroup, name: string) {
     return fg.controls[name].invalid;
 }
 
-export const cUpdateAdministeringFor = [
-    'No Change',
-    'Employees',
-    'International Students',
-    'Employees and International Students',
-];
+
+
+export function validMultiFormControlExceptRequired(fg: FormGroup, name: string) {
+    if (fg.controls[name].pristine) return false;
+    return isRequiredError(fg, name) && fg.controls[name].errors.count === 1 ? false : fg.controls[name].invalid;
+}
+
+export function formControlValidity(fg: FormGroup, name: string): { required: boolean; other: boolean } {
+    let status = {
+        required: false,
+        other:   false
+    };
+    if (fg.controls[name].pristine) return status;
+
+    status = {
+        required: isRequiredError(fg, name),
+        other:   validMultiFormControlExceptRequired(fg, name)
+    };
+
+    // console.log(status);
+    return status;
+}
+
+export function isRequiredError(fg: FormGroup, name: string) {
+    if (fg.controls[name].pristine) return false;
+    let invalid = false;
+    if (fg.controls[name].invalid && fg.controls[name].errors && fg.controls[name].errors.required) {
+        invalid = fg.controls[name].errors.required === true ? true : false;
+    }
+    return invalid;
+}
+
+
+
+
+
+export const cUpdateEnumeration = {
+    userTitles: ['Mr.', 'Mrs.', 'Ms.', 'Dr.', 'Prof.', 'Rev.'],
+    administeringFor: {
+
+        add: [
+            'Employees',
+            'International Students',
+            'Employees and International Students',
+        ],
+        update: [
+            'No Change',
+            'Employees',
+            'International Students',
+            'Employees and International Students',
+        ]
+    }
+};
+
+
+/**
+ * verifies if field value is not null and not empty string or valid boolean
+ * @param fieldValue FieldValue
+ */
+export function isValidOptionalField(fieldValue: string | boolean | any): boolean {
+
+    if (fieldValue) {
+        if (typeof fieldValue === 'string' && fieldValue.length > 0) {
+            return true;
+        }
+
+        if (typeof fieldValue === 'boolean' && (fieldValue === true || fieldValue === false)) {
+            return true;
+        }
+
+        if (typeof fieldValue === 'object') {
+            const isArray = fieldValue instanceof Array;
+            if (isArray === true && fieldValue.length > 0) return true;
+            return false;
+        }
+    }
+    return false;
+}
+
+// export const cUpdateAdministeringFor = [
+//     'No Change',
+//     'Employees',
+//     'International Students',
+//     'Employees and International Students',
+// ];
 
 export const cUpdateValidators = {
 
-    //#region Requestor Information
+    general: {
+        emailAddress: [
+            Validators.required,
+            Validators.email,
+            Validators.maxLength(100),
+            Validators.pattern(/^(\S+)@(\S+)\.(\S+)$/),
+        ],
+        ministryUserId: [
+            Validators.maxLength(20),
+            trailingSpacesValidator()
+        ]
+    },
 
     requestorInformation: {
         /**
@@ -96,6 +204,7 @@ export const cUpdateValidators = {
             Validators.pattern(/^(\S+)@(\S+)\.(\S+)$/),
         ],
     },
+
     organization: {
         /**
          * Org number can be 8 digits and is 0/left-padded if smaller
@@ -140,17 +249,38 @@ export const cUpdateValidators = {
         ]
     },
 
-    general: {
+    user: {
+        userTitle: [Validators.maxLength(5)],
+        firstName: [
+            Validators.minLength(1),
+            Validators.maxLength(100),
+            trailingSpacesValidator(),
+        ],
+        initial: [Validators.maxLength(1)],
+        lastName: [
+            Validators.minLength(1),
+            Validators.maxLength(100),
+            trailingSpacesValidator(),
+        ],
+        jobTitle: [
+            Validators.minLength(1),
+            Validators.maxLength(100),
+            trailingSpacesValidator(),
+        ],
         emailAddress: [
-            Validators.required,
-            Validators.email,
+            Validators.minLength(5),
             Validators.maxLength(100),
             Validators.pattern(/^(\S+)@(\S+)\.(\S+)$/),
         ],
-        ministryUserId: [
-            Validators.maxLength(20),
-            trailingSpacesValidator()
-        ]
+        confirmEmail: [
+            Validators.minLength(5),
+            Validators.maxLength(100),
+            Validators.pattern(/^(\S+)@(\S+)\.(\S+)$/)
+        ],
+        phone: [phoneValidator()],
+        ext: [Validators.maxLength(100)],
+        fax: [faxValidator()],
+        administeringFor: [Validators.maxLength(100)],
     },
 
     group: {
@@ -162,42 +292,58 @@ export const cUpdateValidators = {
         ],
     },
 
-
-    //#endregion
-
-    userTitle: [Validators.maxLength(5)],
-    firstName: [
-        Validators.required,
-        Validators.minLength(1),
-        Validators.maxLength(100),
-        trailingSpacesValidator(),
-    ],
-    initial: [Validators.maxLength(1)],
-    lastName: [
-        Validators.required,
-        Validators.minLength(1),
-        Validators.maxLength(100),
-        trailingSpacesValidator(),
-    ],
-    jobTitle: [
-        Validators.required,
-        Validators.minLength(1),
-        Validators.maxLength(100),
-        trailingSpacesValidator(),
-    ],
-    confirmEmail: [
-        Validators.required,
-        Validators.email,
-        Validators.maxLength(100),
-        Validators.pattern(/^(\S+)@(\S+)\.(\S+)$/)
-    ],
-    phone: [Validators.required, phoneValidator()],
-    ext: [Validators.maxLength(100)],
-    fax: [faxValidator()],
-    administeringFor: [Validators.required, Validators.maxLength(100)],
-    directMspAccess: [Validators.required],
+};
 
 
+export const cUpdateUserValidator = {
+    add: {
+        userTitle: [
+            ...cUpdateValidators.user.userTitle,
+        ],
+        firstName: [
+            Validators.required,
+            ...cUpdateValidators.user.firstName,
+        ],
+        initial: [
+            ...cUpdateValidators.user.initial,
+        ],
+        lastName: [
+            Validators.required,
+            ...cUpdateValidators.user.lastName,
+        ],
+        jobTitle: [
+            Validators.required,
+            ...cUpdateValidators.user.jobTitle,
+        ],
+        emailAddress: [
+            Validators.required,
+            ...cUpdateValidators.user.emailAddress,
+        ],
+        confirmEmail: [
+            Validators.required,
+            ...cUpdateValidators.user.confirmEmail,
+        ],
+        phone: [
+            Validators.required,
+            ...cUpdateValidators.user.phone,
+        ],
+        ext: [
+            ...cUpdateValidators.user.ext,
+        ],
+        fax: [
+            ...cUpdateValidators.user.fax,
+        ],
+        administeringFor: [
+            Validators.required,
+            ...cUpdateValidators.user.administeringFor,
+        ],
+    },
+    update: {
+
+    },
+    delete: {
+
+    },
 };
 
 export function matchFieldValidator(
@@ -218,47 +364,6 @@ export function matchFieldValidator(
         return null;
     };
 }
-
-// /**
-//  * Validators for the Update NgModule.  Similar to register, but fields are optional.
-//  */
-// export const cUpdateValidators = {
-//     /**
-//      * Org number can be 8 digits and is 0/left-padded if smaller
-//      */
-//     organizationNumber: [
-//         // Validators.required,
-//         Validators.minLength(8),
-//         Validators.maxLength(8),
-//         Validators.min(1),
-//         Validators.pattern(/^[0-9]*$/)
-//     ],
-//     //   TODO: Review with Faheem, this the same as in reg? compare to msp-register-organization.ts
-//     organizationName: [
-//         // Validators.required
-//     ],
-
-//     // TODO - Review with Faheem
-//     street: [
-//         // Validators.required,
-//         Validators.maxLength(10),
-//         trailingSpacesValidator()
-//     ],
-//     addressLine2: [
-//         Validators.maxLength(200)
-//     ],
-//     city: [
-//         Validators.maxLength(25),
-//         trailingSpacesValidator()
-//     ],
-//     province: [
-//         Validators.maxLength(3),
-//     ],
-//     postalCode: [
-//         Validators.maxLength(6),
-//         // postalCodeValidator(), // doesn't work if optional?
-//     ]
-// };
 
 
 /**

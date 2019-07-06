@@ -1,8 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
-import { validMultiFormControl, cUpdateValidators } from '../../../common/validators';
-import { isValidOptionalField } from '@msp-register/models/validator-helpers';
-
+import {
+  validMultiFormControl, cUpdateValidators,
+  cUpdateEnumeration, isValidOptionalField, validFormControl, cUpdateUserValidator, isRequiredError, formControlValidity
+} from '../../../common/validators';
 
 @Component({
   selector: 'sitereg-update-access-admin-add',
@@ -11,14 +12,27 @@ import { isValidOptionalField } from '@msp-register/models/validator-helpers';
 })
 export class MspDirectUpdateAccessAdministratorAddComponent implements OnInit {
 
+  // for accessiblity
+  @Input() formIndex = 1;
+  // @Input() fg: FormGroup;
+  @Input() showAdministeringMSPForQuestion = true; // needed in MSP updates only
+  // validFormControl: (fg: FormGroup, name: string) => boolean;
+
+  userTitles = cUpdateEnumeration.userTitles;
+  administeringForOptions = cUpdateEnumeration.administeringFor.add;
+  // administeringFor: BehaviorSubject<string[]> = new BehaviorSubject<string[]>(
+  //     cAdministeringFor
+  // );
+
   private arrayFormPropertyName = 'arrayOfForms';
   @Input() formState: FormGroup | null;
   @Output() formArrayChanged: EventEmitter<FormGroup | FormArray | null> = new EventEmitter<FormGroup | null>();
   parentForm: FormGroup;
   validFormControl: (fg: FormGroup, name: string) => boolean;
-
+  formControlValidity: (fg: FormGroup, name: string) => { required: boolean; other: boolean };
   constructor(private fb: FormBuilder) {
     this.validFormControl = validMultiFormControl;
+    this.formControlValidity = formControlValidity;
   }
 
   ngOnInit() {
@@ -38,8 +52,18 @@ export class MspDirectUpdateAccessAdministratorAddComponent implements OnInit {
 
   private createArrayForm() {
     return this.fb.group({
-      emailAddress: [null, cUpdateValidators.general.emailAddress],
-      ministryUserId: [null, cUpdateValidators.general.ministryUserId],
+      userTitle: [null, cUpdateUserValidator.add.userTitle],
+      firstName: [null, cUpdateUserValidator.add.firstName],
+      initial: [null, cUpdateUserValidator.add.initial],
+      lastName: [null, cUpdateUserValidator.add.lastName],
+      jobTitle: [null, cUpdateUserValidator.add.jobTitle],
+      emailAddress: [null, cUpdateUserValidator.add.emailAddress],
+      confirmEmail: [null, cUpdateUserValidator.add.confirmEmail],
+      phone: [null, cUpdateUserValidator.add.phone],
+      ext: [null, cUpdateUserValidator.add.ext],
+      fax: [null, cUpdateUserValidator.add.fax],
+      administeringFor: [null, cUpdateUserValidator.add.administeringFor],
+
     });
   }
 

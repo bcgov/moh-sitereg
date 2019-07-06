@@ -33,11 +33,14 @@ import { MspUpdateReviewComponent } from './pages/review/review.component';
 import { ReviewSectionComponent } from './components/review-section/review-section.component';
 import { MspDirectUpdateAccessAdministratorEditComponent } from './pages/access-admin/access-admin-edit/access-admin-edit.component';
 import { MspDirectUpdateAccessAdministratorAddComponent } from './pages/access-admin/access-admin-add/access-admin-add.component';
+import { MspDirectUpdateErrorBoxComponent } from './common/error-update-error-box/error-update-error-box.component';
 
 
 
 @NgModule({
     declarations: [
+
+        MspDirectUpdateErrorBoxComponent,
 
         MspDirectUpdateComponent,
         MspDirectUpdateIdentifyComponent,
