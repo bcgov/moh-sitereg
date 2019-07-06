@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MspDirectUpdateAccessAdministratorEditComponent } from './access-admin-edit.component';
 
-describe('AccessAdminDupdateComponent', () => {
+describe('AccessAdminEditComponent', () => {
   let component: MspDirectUpdateAccessAdministratorEditComponent;
   let fixture: ComponentFixture<MspDirectUpdateAccessAdministratorEditComponent>;
 

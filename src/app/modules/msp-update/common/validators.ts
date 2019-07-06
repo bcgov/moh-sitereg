@@ -129,7 +129,7 @@ export const cUpdateEnumeration = {
             'International Students',
             'Employees and International Students',
         ],
-        update: [
+        edit: [
             'No Change',
             'Employees',
             'International Students',
@@ -250,7 +250,10 @@ export const cUpdateValidators = {
     },
 
     user: {
-        userTitle: [Validators.maxLength(5)],
+        userTitle: [
+            Validators.maxLength(5),
+            trailingSpacesValidator(),
+        ],
         firstName: [
             Validators.minLength(1),
             Validators.maxLength(100),
@@ -338,8 +341,47 @@ export const cUpdateUserValidator = {
             ...cUpdateValidators.user.administeringFor,
         ],
     },
-    update: {
-
+    edit: {
+        userTitle: [
+            ...cUpdateValidators.user.userTitle,
+        ],
+        firstName: [
+            Validators.required,
+            ...cUpdateValidators.user.firstName,
+        ],
+        initial: [
+            ...cUpdateValidators.user.initial,
+        ],
+        lastName: [
+            Validators.required,
+            ...cUpdateValidators.user.lastName,
+        ],
+        jobTitle: [
+            Validators.required,
+            ...cUpdateValidators.user.jobTitle,
+        ],
+        emailAddress: [
+            Validators.required,
+            ...cUpdateValidators.user.emailAddress,
+        ],
+        confirmEmail: [
+            Validators.required,
+            ...cUpdateValidators.user.confirmEmail,
+        ],
+        phone: [
+            Validators.required,
+            ...cUpdateValidators.user.phone,
+        ],
+        ext: [
+            ...cUpdateValidators.user.ext,
+        ],
+        fax: [
+            ...cUpdateValidators.user.fax,
+        ],
+        administeringFor: [
+            Validators.required,
+            ...cUpdateValidators.user.administeringFor,
+        ],
     },
     delete: {
 

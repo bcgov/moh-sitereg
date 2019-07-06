@@ -12,7 +12,7 @@ export class MspDirectUpdateOrganizationEditComponent implements OnInit {
   @Input() formState: FormGroup | null;
   parentForm: FormGroup;
   validFormControl: (fg: FormGroup, name: string) => boolean;
-  administeringForOptions = cUpdateEnumeration.administeringFor.update;
+  administeringForOptions = cUpdateEnumeration.administeringFor.edit;
   @Output() statusChanged: EventEmitter< FormGroup | null> = new EventEmitter<FormGroup | null>();
 
   constructor(private fb: FormBuilder) {
