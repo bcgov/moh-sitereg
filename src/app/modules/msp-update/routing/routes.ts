@@ -3,9 +3,9 @@ import { ROUTES_UPDATE } from './routes.constants';
 import { MspDirectUpdateIdentifyComponent } from '../pages/identify/identify.component';
 import { MspDirectUpdateOrganizationComponent } from '../pages/organization/organization.component';
 import { MspDirectUpdateSigningAuthorityComponent } from '../pages/signing-authority/signing-authority.component';
-import { MspDirectUpdateAccessAdministratorComponent } from '../pages/access-administrator/access-administrator.component';
-import { MspDirectUpdateUsersComponent } from '../pages/users/users.component';
-import { MspDirectUpdateGroupsComponent } from '../pages/groups/groups.component';
+import { MspDirectUpdateAccessAdministratorComponent } from '../pages/access-admin/access-admin/access-admin.component';
+import { MspDirectUpdateUserComponent } from '../pages/user/user/user.component';
+import { MspDirectUpdateGroupComponent } from '../pages/group/group/group.component';
 import { MspDirectUpdateSubmitComponent } from '../pages/submit/submit.component';
 import { MspDirectUpdateAutofillComponent } from '../pages/autofill/autofill.component';
 import { MspDirectUpdateConfirmationComponent } from '../pages/confirmation/confirmation.component';
@@ -49,14 +49,14 @@ let defaultRoutes: Routes = [
     {
         // path: 'users',
         path: ROUTES_UPDATE.USERS.path,
-        component: MspDirectUpdateUsersComponent,
+        component: MspDirectUpdateUserComponent,
         data: { title: ROUTES_UPDATE.USERS.title },
         canActivate: [RouteGuardService]
     },
     {
         // path: 'group-numbers',
         path: ROUTES_UPDATE.GROUP_NUMBERS.path,
-        component: MspDirectUpdateGroupsComponent,
+        component: MspDirectUpdateGroupComponent,
         data: { title: ROUTES_UPDATE.GROUP_NUMBERS.title },
         canActivate: [RouteGuardService]
     },

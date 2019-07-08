@@ -1,22 +1,26 @@
 <div>
-  <sitereg-msp-register-user [fg]="fg" [showAdministeringMSPForQuestion]='showAdministeringMSPForQuestion'></sitereg-msp-register-user>
+  <sitereg-msp-register-user [fg]="fg" [showAdministeringMSPForQuestion]='showAdministeringMSPForQuestion'
+    [formIndex]="formIndex"></sitereg-msp-register-user>
   <div class="form-group col-sm-8 p-sm-0">
     <form [formGroup]="fg">
       <span *ngIf="showMspDirectAccessQuestion">
-        <label class="control-label">
-          Does this person require access to MSP Direct?
-        </label>
-        <br/>
-        <div class="md-radio md-radio-inline">
-          <!--No-->
-          <input formControlName="directMspAccess" type="radio" id="bcfalse" tabindex="0" [value]="false">
-          <label for="bcfalse">No</label>
-          <!--Yes-->
-          <input formControlName="directMspAccess" type="radio" name="" id="bctrue" tabindex="0" [value]="true">
-          <label for="bctrue">Yes</label>
-          <sitereg-error-box [error]="validFormControl(fg,'directMspAccess')" errorMessage="Please select an option">
-          </sitereg-error-box>
-        </div>
+        <fieldset>
+          <legend hidden="true"></legend>
+          <span class="control-label">
+            Does this person require access to MSP Direct?
+          </span>
+          <br />
+          <div class="md-radio md-radio-inline">
+            <!--No-->
+            <input formControlName="directMspAccess" type="radio" id="bcfalse" tabindex="0" [value]="false">
+            <label for="bcfalse">No</label>
+            <!--Yes-->
+            <input formControlName="directMspAccess" type="radio" id="bctrue" tabindex="0" [value]="true">
+            <label for="bctrue">Yes</label>
+            <sitereg-error-box [error]="validFormControl(fg,'directMspAccess')" errorMessage="Please select an option">
+            </sitereg-error-box>
+          </div>
+        </fieldset>
       </span>
     </form>
   </div>

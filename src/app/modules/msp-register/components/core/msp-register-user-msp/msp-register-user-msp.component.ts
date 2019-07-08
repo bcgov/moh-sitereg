@@ -12,6 +12,8 @@ import {
     styleUrls: ['./msp-register-user-msp.component.scss'],
 })
 export class MspRegisterUserMspComponent implements AfterViewInit {
+     // for accessiblity
+    @Input() formIndex = 1;
     @Input() fg: FormGroup;
     @Input() showMspDirectAccessQuestion = false;
     @Input() showAdministeringMSPForQuestion = true; // needed in MSP Updates only

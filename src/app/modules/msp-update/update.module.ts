@@ -5,38 +5,59 @@ import { CaptchaModule } from 'moh-common-lib/captcha';
 import { MspDirectUpdateRoutesModule } from './routing/routes.module';
 import { MspDirectUpdateComponent } from './components/update-container/update-container.component';
 import { MspDirectUpdateIdentifyComponent } from './pages/identify/identify.component';
+
 import { MspDirectUpdateOrganizationComponent } from './pages/organization/organization.component';
+import { MspDirectUpdateOrganizationEditComponent } from './pages/organization/organization-edit/organization-edit.component';
+
 import { MspDirectUpdateSigningAuthorityComponent } from './pages/signing-authority/signing-authority.component';
-import { MspDirectUpdateAccessAdministratorComponent } from './pages/access-administrator/access-administrator.component';
-import { MspDirectUpdateUsersComponent } from './pages/users/users.component';
-import { MspDirectUpdateGroupsComponent } from './pages/groups/groups.component';
+
+import { MspDirectUpdateAccessAdministratorComponent } from './pages/access-admin/access-admin/access-admin.component';
+import { MspDirectUpdateAccessAdministratorRemoveComponent } from './pages/access-admin/access-admin-remove/access-admin-remove.component';
+
+import { MspDirectUpdateUserComponent } from './pages/user/user/user.component';
+
+import { MspDirectUpdateGroupComponent } from './pages/group/group/group.component';
+import { MspDirectUpdateGroupRemoveComponent } from './pages/group/group-remove/group-remove.component';
+import { MspDirectUpdateGroupAddComponent } from './pages/group/group-add/group-add.component';
+import { MspDirectUpdateGroupEditComponent } from './pages/group/group-edit/group-edit.component';
+
 import { MspDirectUpdateSubmitComponent } from './pages/submit/submit.component';
 import { MspDirectUpdateAutofillComponent } from './pages/autofill/autofill.component';
 import { MspDirectUpdateConfirmationComponent } from './pages/confirmation/confirmation.component';
 import { MspDirectUpdateProgressService } from './services/progress.service';
 import { AbstractPgCheckService, RouteGuardService, SharedCoreModule } from 'moh-common-lib';
 import { RouterModule } from '@angular/router';
-import { MspRegisterUserMspComponent } from '../msp-register/components/core/msp-register-user-msp/msp-register-user-msp.component';
-import { MspRegisterUserComponent } from '../msp-register/components/core/msp-register-user/msp-register-user.component';
+
 import { MspRegisterModule } from '../msp-register/msp-register.module';
 import { MspUpdateReviewComponent } from './pages/review/review.component';
 import { ReviewSectionComponent } from './components/review-section/review-section.component';
 
+
+
 @NgModule({
     declarations: [
+       
         MspDirectUpdateComponent,
         MspDirectUpdateIdentifyComponent,
         MspDirectUpdateOrganizationComponent,
+        MspDirectUpdateOrganizationEditComponent,
         MspDirectUpdateSigningAuthorityComponent,
+
         MspDirectUpdateAccessAdministratorComponent,
-        MspDirectUpdateUsersComponent,
-        MspDirectUpdateGroupsComponent,
+        MspDirectUpdateAccessAdministratorRemoveComponent,
+
+        MspDirectUpdateUserComponent,
+
+        MspDirectUpdateGroupComponent,
+        MspDirectUpdateGroupRemoveComponent,
+        MspDirectUpdateGroupAddComponent,
+        MspDirectUpdateGroupEditComponent,
+
         MspDirectUpdateSubmitComponent,
         MspDirectUpdateAutofillComponent,
         MspDirectUpdateConfirmationComponent,
         MspUpdateReviewComponent,
         ReviewSectionComponent,
-
     ],
     imports: [
         CommonModule,

@@ -20,7 +20,7 @@ export class UpdateStateService {
       // AddRemoveUpdate fields can have objects initialized for convenience so
       // the sub-types can be accessed directly.
       signingAuthority: {} as AddRemoveUpdate,
-
+      mspAccessAdministrators: {} as AddRemoveUpdate,
       mspUsers: {} as AddRemoveUpdate,
       mspGroups: {} as AddRemoveUpdate,
     };
@@ -31,13 +31,14 @@ export class UpdateStateService {
      *
      * The reason we have this in the service is to persist user's action.
      */
-    public hasOrganizationUpdates: boolean;
+    public hasOrganizationUpdates: boolean | null;
 }
 
 export interface UpdateFormTypes {
-  signingAuthority?: AddRemoveUpdate;
+  requestorForm?: FormGroup;
   organizationForm?: FormGroup;
-  profileForm?: FormGroup;
+  signingAuthority?: AddRemoveUpdate;
+  mspAccessAdministrators?: AddRemoveUpdate;
   mspUsers?: AddRemoveUpdate;
   mspGroups?: AddRemoveUpdate;
 }

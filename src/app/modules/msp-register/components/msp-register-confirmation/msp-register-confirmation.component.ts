@@ -58,6 +58,15 @@ export class MspRegisterConfirmationComponent implements OnInit {
         this.router.navigate([MSP_REGISTER_ROUTES.ORGANIZATION.fullpath]);
     }
 
+    paddedConfirmationNumber() {
+        if (this.status === true && this.mspRegDataSvc.requestFinalStatus) {
+            const confirmationNumber = this.mspRegDataSvc.requestFinalStatus.confirmationNumber as string;
+            const paddedQty = 8 - confirmationNumber.length;
+            return paddedQty > 0 ? '0'.repeat(paddedQty) + confirmationNumber : confirmationNumber;
+        }
+        return null;
+    }
+
     debugonly() {
         this.status = true
         this.isTechnicalInfoAvaialble = true

@@ -8,10 +8,11 @@ exports.config = {
     './registration/src/*.e2e-spec.ts'
   ],
   multiCapabilities: [{
-    'browserName': 'firefox'
-  }, {
+    // 'browserName': 'firefox'
+  // }, {
     'browserName': 'chrome',
     // chromeOptions: {args: ['--headless']}
+
   }],  
   directConnect: true,
   baseUrl: 'http://localhost:4200/',

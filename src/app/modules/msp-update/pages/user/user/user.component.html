@@ -1,0 +1,45 @@
+<common-page-framework layout='blank'>
+  <h3>#NotForTesting Users </h3>
+  <p><small>Information about Users
+      <b>{{componentInfo}}</b></small>
+  </p>
+  <hr>
+  <div class="row mb-4">
+    <button type='button' class='btn btn-secondary col mr-4' [disabled]='showAddAccessAdmin'
+      (click)="addAccessAdmin()">Add User</button>
+    <button type='button' class='btn btn-secondary col mx-2' 
+      (click)="formRemoveNew()">Remove User</button>
+    <button type='button' class='btn btn-secondary col ml-4' [disabled]='showUpdateAccessAdmin'
+      (click)="updateAccessAdmin()">Update User</button>
+  </div>
+
+  <div *ngIf="showAddAccessAdmin">
+
+    <common-xicon-button class='d-block pb-1' label="Cancel Add Access Administrator"
+      (clickEvent)="cancelAddAccessAdmin()"></common-xicon-button>
+    <h4 class='border-bottom'>Add a new Access Administrator</h4>
+    <sitereg-msp-update-user></sitereg-msp-update-user>
+  </div>
+
+  
+  <common-page-section layout='noTips' class="pt-4">  
+  
+    <sitereg-update-access-admin-remove #formRemove [formState]="formRemoveState" (formArrayChanged)="formRemoveStateChanged($event)"></sitereg-update-access-admin-remove>
+
+  </common-page-section>
+
+  <div *ngIf="showUpdateAccessAdmin">
+
+    <common-xicon-button class='d-block pb-1' label="Cancel Update Access Administrator"
+      (clickEvent)="cancelUpdateAccessAdmin()"></common-xicon-button>
+    <h4 class='border-bottom'>Update Access Administrator</h4>
+  </div>
+
+</common-page-framework>
+
+<common-page-framework>
+</common-page-framework>
+<common-form-action-bar (btnClick)="continue()"
+                        [submitLabel]="buttonLabel"
+                        [canContinue]='canContinue()'>
+</common-form-action-bar>

@@ -1,0 +1,32 @@
+<form [formGroup]="parentForm">
+  <div formArrayName="arrayOfForms" *ngFor="let fg of getFormsArray.controls; let i=index">
+    <form [formGroupName]='i'>
+      <common-xicon-button class='d-block pb-1' label="Cancel Remove Access Administrator" (clickEvent)="removeForm(i)">
+      </common-xicon-button>
+      <h4 class='border-bottom'>Add an new MSP Group #{{getFormsArray.controls.length - i}}</h4>
+      <p><small>MSP Group Information</small></p>
+
+      <div class='form-group col-sm-8 p-sm-0'>
+        <label for='groupNo'>Enter Msp Group Number</label>
+        <input type='text' class='form-control' name='groupNo' formControlName='groupNo' id='groupNo' maxlength="7">
+
+        <sitereg-error-box [error]="validFormControl(fg, 'groupNo')" errorMessage="Please provide valid Group Number">
+        </sitereg-error-box>
+
+        <common-radio [radioLabels]="radioBtnLabels"
+        formControlName="thirdPartyAdmin"
+        label="Will this group be administered by a Third Party Administrator?"></common-radio>
+
+
+        <!-- <div class="border border-info mt-4 p-2 ">
+          <b>FORM :</b>
+          {{fg.value | json}}
+          <hr />
+          <b>JSON :</b>
+          {{generateJSON(fg.value) | json}}
+        </div> -->
+
+      </div>
+    </form>
+  </div>
+</form>

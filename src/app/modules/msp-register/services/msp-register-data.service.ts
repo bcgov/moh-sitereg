@@ -25,7 +25,7 @@ import { environment } from 'src/environments/environment.prod';
 import { IUserMsp } from '@msp-register/interfaces/base/i-user-msp';
 import { IMspUser } from '@msp-register/interfaces/i-msp-user';
 import { funcRandomNumber7Digit } from '@msp-register/constants';
-import { isValidOptionalField } from '@msp-register/models/validator-helpers';
+import { isValidOptionalField, trimText } from '@msp-register/models/validator-helpers';
 
 const apiUrl = environment.baseAPIUrl;
 
@@ -192,11 +192,11 @@ export class MspRegisterDataService {
         // };
         const baseUser: ICoreUserDef = {
 
-            first_name: obj.firstName as string,
-            last_name: obj.lastName as string,
-            job_title: obj.jobTitle as string,
-            email: obj.emailAddress as string,
-            phone_num: obj.phone as string,
+            first_name: trimText(obj.firstName as string),
+            last_name: trimText(obj.lastName as string),
+            job_title: trimText(obj.jobTitle as string),
+            email: trimText(obj.emailAddress as string),
+            phone_num: trimText(obj.phone as string),
             spg: this.mapAdministeringForDef(obj.administeringFor as string),
 
             // curtesy_title:
@@ -209,10 +209,10 @@ export class MspRegisterDataService {
             // fax_num: obj.fax ? (obj.fax as string) : '',
         };
 
-        if (isValidOptionalField(obj.userTitle as string)) baseUser.curtesy_title = obj.userTitle as string;
-        if (isValidOptionalField(obj.initial as string)) baseUser.initial = obj.initial as string;
-        if (isValidOptionalField(obj.ext as string)) baseUser.phone_ext = obj.ext as string;
-        if (isValidOptionalField(obj.fax as string)) baseUser.fax_num = obj.fax as string;
+        if (isValidOptionalField(obj.userTitle as string)) baseUser.curtesy_title = trimText(obj.userTitle as string);
+        if (isValidOptionalField(obj.initial as string)) baseUser.initial = trimText(obj.initial as string);
+        if (isValidOptionalField(obj.ext as string)) baseUser.phone_ext = trimText(obj.ext as string);
+        if (isValidOptionalField(obj.fax as string)) baseUser.fax_num = trimText(obj.fax as string);
 
         return baseUser as ICoreUserDef;
     }
@@ -270,7 +270,7 @@ export class MspRegisterDataService {
         const orgNumber =
             (obj.thirdParty as boolean) === true
                 ? obj.organizationNumber
-                    ? (obj.organizationNumber as string)
+                    ? trimText(obj.organizationNumber as string)
                     : funcRandomNumber7Digit()
                 : '';
 
@@ -336,14 +336,14 @@ export class MspRegisterDataService {
 
         // required fields
         const organizationObject: IOrgInformationDef = {
-            org_name: obj.name as string,
+            org_name: trimText(obj.name as string),
             // confirm with KS - if removed should be optional
             // suite_num: obj.suite ? (obj.suite as string) : '',
-            street_num: obj.street as string,
-            street_name: obj.streetName as string,
-            city: obj.city as string,
-            province: obj.province as string,
-            postal_code: obj.postalCode as string,
+            street_num: trimText(obj.street as string),
+            street_name: trimText(obj.streetName as string),
+            city: trimText(obj.city as string),
+            province: trimText(obj.province as string),
+            postal_code: trimText(obj.postalCode as string),
 
             blue_cross: this.mapYesNoDef(obj.blueCross as boolean),
             org_spg: this.mapAdministeringForDef(
@@ -356,9 +356,9 @@ export class MspRegisterDataService {
          * Optional Fields
          */
 
-        if (isValidOptionalField(obj.suite as string)) organizationObject.suite_num = obj.suite as string;
+        if (isValidOptionalField(obj.suite as string)) organizationObject.suite_num = trimText(obj.suite as string);
         if (isValidOptionalField(orgNumber)) organizationObject.org_num = orgNumber;
-        if (isValidOptionalField(obj.addressLine2 as string)) organizationObject.address_2 = obj.addressLine2 as string;
+        if (isValidOptionalField(obj.addressLine2 as string)) organizationObject.address_2 = trimText(obj.addressLine2 as string);
 
         return organizationObject;
     }
@@ -477,7 +477,7 @@ export class MspRegisterDataService {
 
         this.validateKeys(obj);
         const groupDef: IMspGroupDef = {
-            mspgroup_num: obj.groupNumber as string,
+            mspgroup_num: trimText(obj.groupNumber as string),
             mspgroup_name: '',
             third_party: this.mapYesNoDef(obj.thirdParty as boolean),
         };

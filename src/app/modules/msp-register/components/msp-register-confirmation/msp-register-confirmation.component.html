@@ -1,5 +1,6 @@
 <common-page-framework layout='blank'>
-  <h2 *ngIf="status" class="border-bottom">Confirmation Message</h2>
+  <sitereg-msp-register-h2-with-print *ngIf="status" title="Confirmation Message"></sitereg-msp-register-h2-with-print>
+  <!-- <h2 *ngIf="status" class="border-bottom">Confirmation Message</h2> -->
 
   <div class='mb-2' *ngIf="status">
     <div class='row mb-4 mt-4 pl-4 pt-4 pb-4 border-success-custom'>
@@ -11,7 +12,8 @@
       </div>
       <div class='col-md-4'>
         <span style="font-size: 1.25rem;">Your application has been submitted.</span> <br />
-        <span><small>{{ today | date:'mediumDate' }} --- Request and Agreement number: <b>{{mspRegDataSvc.requestFinalStatus?.confirmationNumber }}</b>
+        <span><small>{{ today | date:'mediumDate' }} --- Request and Agreement number: <b>{{ paddedConfirmationNumber() }}</b>
+           <!-- <b>{{mspRegDataSvc.requestFinalStatus?.confirmationNumber }}</b> -->
           </small></span>
       </div>
     </div>

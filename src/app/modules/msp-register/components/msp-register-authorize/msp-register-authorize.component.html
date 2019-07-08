@@ -14,6 +14,7 @@
            <img class="img-thumbnail" width="50 " height="50" src="" />
         </div> -->
         <div class="col-auto mr-auto align-items-end">
+          <h2 hidden="true">MINISTRY OF HEALTH DATA ACCESS AGREEMENT</h2>
           <h3>MINISTRY OF HEALTH DATA ACCESS AGREEMENT</h3>
         </div>
         <!-- <div class="col-auto" *ngIf="mspRegDataSvc.agreementNumber | async as num">Agreement No: 87654321</div> -->
@@ -36,14 +37,14 @@
           <!--1-->
           <li class="aggrement-li">
             <div>
-              This Agreement consists of:
-              <ol>
-                <li>this page (the "Cover Sheet"), and</li>
-                <li>the "MSP Direct Access Terms and Conditions” available online at:
-                  <a href="https://www2.gov.bc.ca/assets/gov/health/forms/mspdirecttermsandconditions.pdf"
-                    target="_blank">https://www2.gov.bc.ca/assets/gov/health/forms/mspdirecttermsandconditions.pdf</a>
+              This Agreement consists of: 
+              <ul style="list-style: none;" class="ml-1">
+                <li>(a) this page (the "Cover Sheet"), and</li>
+                <li>(b) the "MSP Direct Access Terms and Conditions” available online at: <br/>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www2.gov.bc.ca/assets/gov/health/forms/mspdirecttermsandconditions.pdf"
+                    target="_blank">https://www2.gov.bc.ca/assets/gov/health/forms/mspdirecttermsandconditions.pdf</a>,
                 </li>
-              </ol>
+              </ul>
               all of the terms and conditions of which are binding upon the Province and Applicant upon execution of
               this
               Cover Sheet by both Parties.
@@ -83,25 +84,25 @@
                   <span class="selectedOption">
                     {{ isWebEnabled===true ? "&#10003;": "&#9634;" }}
                   </span>
-                  <label for="checkMspDirectWeb" class="label-right" title=""
+                  <span for="checkMspDirectWeb" class="label-right mb-2" title=""
                     (click)="navigateTo('signing-authority');">
                     The Applicant will Administer MSP using the MSP Direct Web Interface.
-                  </label>
+                </span>
                   <span *ngIf="isWebEnabled===false" style="color:red;"> You must provide at least one Access
                     Administrator or User.</span>
                 </li>
                 <li>
                   <span class="selectedOption"> {{ organization.blueCross ? "&#10003;": "&#9634;"  }} </span>
-                  <label for="checkPacificBlueCross" class="label-right" title="" (click)="navigateTo('organization');">
+                  <span for="checkPacificBlueCross" class="label-right mb-2" title="" (click)="navigateTo('organization');">
                     The Applicant will Administer MSP using software supported by Pacific Blue Cross.
-                  </label>
+                  </span>
                 </li>
                 <li>
                   <div title="" (click)="navigateTo('group-numbers');">
                     <span> {{ organization.thirdParty? "&#10003;": "&#9634;" }} </span>
-                    <label for="checkMspApplicantBehalf" class="label-right">
+                    <span for="checkMspApplicantBehalf" class="label-right mb-2">
                       The following organization will Administer MSP on the Applicant's behalf:
-                    </label>
+                    </span>
                     <!-- <span *ngIf="!isValidGroups()"> No Group Numbers specified. </span>
                 <table *ngIf="isValidGroups()" class="list-table">
                   <tr *ngFor="let g of groupsMSP" class="aggrement-table">
@@ -131,25 +132,25 @@
                 <span>
                   {{ (signingAuthority.administeringFor && signingAuthority.administeringFor.includes('Employees'))? "&#10003;": "&#9634;" }}
                 </span>
-                <label class="label-right">
+                <span class="label-right">
                   Employees
-                </label>
+                </span>
               </li>
               <li class="li-inline">
                 <span>
                   {{ (signingAuthority.administeringFor && signingAuthority.administeringFor.includes('International Students') )? "&#10003;": "&#9634;" }}
                 </span>
-                <label class="label-right">
+                <span class="label-right">
                   International Students
-                </label>
+                </span>
               </li>
               <li class="li-inline">
                 <span>
                   {{ (signingAuthority.administeringFor && signingAuthority.administeringFor.includes('Other') )? "&#10003;": "&#9634;" }}
                 </span>
-                <label class="label-right">
+                <span class="label-right">
                   Other (requires further approval)
-                </label>
+                </span>
               </li>
             </ul>
           </li>
@@ -183,7 +184,7 @@
         <span   class="col-auto ml-8" *ngIf="isWebEnabled===true">
           <input type="checkbox" name="consent" formControlName="consent" id="consent" tabindex="0"
             [value]="true">&nbsp;
-          <label (click)="toggleConsent()" class="col-md-8">
+          <label (click)="toggleConsent()" class="col-md-8" for="consent">
             I, {{signingAuthority.firstName}} {{signingAuthority.lastName}}, have read, understood and agreed to the
             terms and conditions of this Agreement, including this Cover Sheet and the Access Terms and Conditions.
           </label>
@@ -197,16 +198,20 @@
         </span>
       </div>
 
+      <div class="row  col-md-8 captcha ml-1 mt-2 mb-2">
+        HLTH 7170 2014/07/30 &nbsp;&nbsp;&nbsp; Page 1 of 1
+      </div>
       <!-- <div class="row extrablock"></div> -->
-
+      
     </form>
   </div>
   <div *ngIf="globalConfigSvc.debug">
     Debugging purposes only:
     <ngx-json-viewer [json]="registerationObject()" [expanded]="false"></ngx-json-viewer>
   </div>
-  <common-form-action-bar (btnClick)="continue()" [defaultColor]="false" [canContinue]="validCaptch"
+  
+</common-page-framework>
+<common-form-action-bar (btnClick)="continue()" [defaultColor]="false" [canContinue]="validCaptch"
     [isLoading]="isProcessing" submitLabel="Submit Application">
   </common-form-action-bar>
-</common-page-framework>
 <!-- class="fixed-bottom" -->

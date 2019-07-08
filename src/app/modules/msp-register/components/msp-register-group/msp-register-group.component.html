@@ -21,8 +21,8 @@
         <h3> Group Number #{{fgs.length-i}}</h3>
       </div>
       <div class="col-auto">
-        <button (click)="deleteFormGroup(i)" type="button" class="btn delete">
-          <i style="color: red !important;" class="fa fa-2x fa-times-circle"></i>
+        <button (click)="deleteFormGroup(i)" type="button" class="btn delete" aria-label="Delete" id="delete_{{i}}">
+          <i style="color: red !important;" class="fa fa-2x fa-times-circle" ></i>
         </button>
       </div>
     </div>
@@ -30,8 +30,8 @@
 
       <!--Group Number-->
       <div class="form-group col-sm-6 p-sm-0">
-        <label class="control-label" for="groupNumber">MSP Group Number #</label>
-        <input id="groupNumber" formControlName="groupNumber" class="form-control" maxlength="7">
+        <label class="control-label" for="groupNumber_{{i}}">MSP Group Number #</label>
+        <input id="groupNumber_{{i}}" formControlName="groupNumber" class="form-control" maxlength="7">
         <sitereg-error-box [error]="validFormControl(fg, 'groupNumber')"
           errorMessage="Invalid Group Number, Group number must be 7 digits long.">
         </sitereg-error-box>
@@ -44,7 +44,9 @@
 
       <!--Question Third Party -->
       <div class="form-group col-sm-8 p-sm-0" *ngIf="organization.thirdParty" >
-        <label class="control-label">Will this group be administered by a 3rd Party Administrator? </label>
+        <fieldset>
+        <legend hidden="true"></legend>
+        <span class="control-label">Will this group be administered by a 3rd Party Administrator? </span>
         <br />
         <div class="md-radio md-radio-inline">
           <input formControlName="thirdParty" type="radio" id="bcfalse_{{i}}" tabindex="0" [value]="false"> <label
@@ -52,6 +54,7 @@
           <input formControlName="thirdParty" type="radio" id="bctrue__{{i}}" tabindex="0" [value]="true"> <label
             for="bctrue__{{i}}">Yes</label>
         </div>
+      </fieldset>
       </div>
 
     </form>

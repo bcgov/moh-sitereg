@@ -1,13 +1,13 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ROUTES_UPDATE } from '../../routing/routes.constants';
 import { Router } from '@angular/router';
 import { MspDirectUpdateProgressService } from '../../services/progress.service';
 import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
 import { UpdateStateService } from '../../services/update.state.service';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { validMultiFormControl } from '@msp-register/models/validator-helpers';
-import { cUserValidators, cUpdateValidators } from '@msp-register/models/core/core-types';
+import { cUpdateValidators, validMultiFormControl } from '../../common/validators';
+
 
 @Component({
     selector: 'sitereg-msp-update-identify',
@@ -30,8 +30,8 @@ export class MspDirectUpdateIdentifyComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit() {
-        if (!this.updateStateService.forms.profileForm) {
-            this.updateStateService.forms.profileForm = this.createForm();
+        if (!this.updateStateService.forms.requestorForm) {
+            this.updateStateService.forms.requestorForm = this.createForm();
         }
         this.progressService.setPageIncomplete();
     }
@@ -44,9 +44,9 @@ export class MspDirectUpdateIdentifyComponent implements OnInit, AfterViewInit {
 
     createForm(): FormGroup {
         return this.fb.group({
-            organizationNumber: ['', cUpdateValidators.organizationNumber],
-            emailAddress: ['', cUserValidators.emailAddress]
-        }, { updateOn: 'blur' });
+            organizationNumber: ['', cUpdateValidators.requestorInformation.organizationNumber],
+            emailAddress: ['', cUpdateValidators.requestorInformation.emailAddress]
+        });
     }
 
     continue() {
@@ -68,6 +68,6 @@ export class MspDirectUpdateIdentifyComponent implements OnInit, AfterViewInit {
     }
 
     get fg(): FormGroup {
-        return this.updateStateService.forms.profileForm;
+        return this.updateStateService.forms.requestorForm;
     }
 }
