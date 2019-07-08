@@ -130,7 +130,6 @@ export const cUpdateEnumeration = {
             'Employees and International Students',
         ],
         edit: [
-            'No Change',
             'Employees',
             'International Students',
             'Employees and International Students',

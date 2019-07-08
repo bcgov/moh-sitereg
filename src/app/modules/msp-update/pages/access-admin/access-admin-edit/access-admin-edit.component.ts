@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import {
   validMultiFormControl, cUpdateValidators,
   cUpdateEnumeration, isValidOptionalField, validFormControl, cUpdateUserValidator, isRequiredError, formControlValidity
@@ -83,10 +83,22 @@ export class MspDirectUpdateAccessAdministratorEditComponent implements OnInit {
 
   public newForm() {
     console.log('Adding new Form');
-    this.getFormsArray.insert(0, this.createArrayForm());
+    const formGroup = this.createArrayForm();
+
+    this.getFormsArray.insert(0, formGroup);
     this.formArrayChanged.emit(this.parentForm);
   }
 
+  updateAccessValidation(formGroup, status) {
+    const control = formGroup.controls.administeringFor as FormControl;
+    if (status === true) {
+      control.setValidators(Validators.required);
+    } else {
+      control.clearValidators();
+    }
+    control.setValue('', { onlySelf: false });
+    formGroup.updateValueAndValidity();
+  }
 
   generateJSON(formValues) {
 

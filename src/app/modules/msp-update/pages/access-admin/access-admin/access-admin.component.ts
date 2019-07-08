@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { MspDirectUpdateProgressService } from '../../../services/progress.service';
 import { ROUTES_UPDATE } from '../../../routing/routes.constants';
@@ -16,7 +16,7 @@ import { MspDirectUpdateAccessAdministratorEditComponent } from '../access-admin
     templateUrl: './access-admin.component.html',
     styleUrls: ['./access-admin.component.scss'],
 })
-export class MspDirectUpdateAccessAdministratorComponent implements OnInit {
+export class MspDirectUpdateAccessAdministratorComponent implements OnInit{
 
 
     public validFormControl: (fg: FormGroup, name: string) => boolean;
@@ -103,7 +103,7 @@ export class MspDirectUpdateAccessAdministratorComponent implements OnInit {
         this.updateStateService.forms.mspAccessAdministrators.update = null;
     }
 
-    
+
     //#region Edit
 
     // tslint:disable-next-line: member-ordering
