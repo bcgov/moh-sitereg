@@ -12,24 +12,20 @@ import {
 })
 export class MspDirectUpdateAccessAdministratorEditComponent implements OnInit {
 
-  // for accessiblity
-  @Input() formIndex = 1;
-  // @Input() fg: FormGroup;
-  @Input() showAdministeringMSPForQuestion = true; // needed in MSP updates only
-  // validFormControl: (fg: FormGroup, name: string) => boolean;
-
-  userTitles = cUpdateEnumeration.userTitles;
-  administeringForOptions = cUpdateEnumeration.administeringFor.edit;
-  // administeringFor: BehaviorSubject<string[]> = new BehaviorSubject<string[]>(
-  //     cAdministeringFor
-  // );
-
   private arrayFormPropertyName = 'arrayOfForms';
   @Input() formState: FormGroup | null;
   @Output() formArrayChanged: EventEmitter<FormGroup | FormArray | null> = new EventEmitter<FormGroup | null>();
   parentForm: FormGroup;
   validFormControl: (fg: FormGroup, name: string) => boolean;
   formControlValidity: (fg: FormGroup, name: string) => { required: boolean; other: boolean };
+
+  @Input() showAdministeringMSPForQuestion = true;
+  userTitles = cUpdateEnumeration.userTitles;
+  administeringForOptions = cUpdateEnumeration.administeringFor.edit;
+  changeRoleOptions = cUpdateEnumeration.changeRole.accessAdminstrator;
+  radioBtnLabels = [{ label: 'No', value: false }, { label: 'Yes', value: true }];
+
+
   constructor(private fb: FormBuilder) {
     this.validFormControl = validMultiFormControl;
     this.formControlValidity = formControlValidity;
@@ -52,18 +48,21 @@ export class MspDirectUpdateAccessAdministratorEditComponent implements OnInit {
 
   private createArrayForm() {
     return this.fb.group({
-      userTitle: [null, cUpdateUserValidator.add.userTitle],
-      firstName: [null, cUpdateUserValidator.add.firstName],
-      initial: [null, cUpdateUserValidator.add.initial],
-      lastName: [null, cUpdateUserValidator.add.lastName],
-      jobTitle: [null, cUpdateUserValidator.add.jobTitle],
-      emailAddress: [null, cUpdateUserValidator.add.emailAddress],
-      confirmEmail: [null, cUpdateUserValidator.add.confirmEmail],
-      phone: [null, cUpdateUserValidator.add.phone],
-      ext: [null, cUpdateUserValidator.add.ext],
-      fax: [null, cUpdateUserValidator.add.fax],
-      administeringFor: [null, cUpdateUserValidator.edit],
-
+      forIdentifyEmailAddress: [null, cUpdateUserValidator.edit.forIdentifyEmailAddress],
+      forIdentifyMinistryUserId: [null, cUpdateUserValidator.edit.forIdentifyMinistryUserId],
+      userTitle: [null, cUpdateUserValidator.edit.userTitle],
+      firstName: [null, cUpdateUserValidator.edit.firstName],
+      initial: [null, cUpdateUserValidator.edit.initial],
+      lastName: [null, cUpdateUserValidator.edit.lastName],
+      jobTitle: [null, cUpdateUserValidator.edit.jobTitle],
+      emailAddress: [null, cUpdateUserValidator.edit.emailAddress],
+      confirmEmail: [null, cUpdateUserValidator.edit.confirmEmail],
+      phone: [null, cUpdateUserValidator.edit.phone],
+      ext: [null, cUpdateUserValidator.edit.ext],
+      fax: [null, cUpdateUserValidator.edit.fax],
+      administeringFor: [null, cUpdateUserValidator.edit.administeringFor],
+      changeAdministerFor: [null, cUpdateUserValidator.edit.changeAdministeringFor],
+      changeRole: [this.changeRoleOptions[0], cUpdateUserValidator.edit.changeRole],
     });
   }
 

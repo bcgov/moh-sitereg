@@ -143,7 +143,7 @@ export function administeringForValidator(): ValidatorFn {
 
 export function phoneValidator() {
     return (control: AbstractControl): { [key: string]: any } | null => {
-        const forbidden = !/^[1-9][0-9]{2}[0-9]{7}$|^$/.test(control.value);
+        const forbidden = !/^[1-9][0-9]{2}[0-9]{7}$|null|^$/.test(control.value);
         return forbidden
             ? { invalid: { value: `${control.value} is not valid` } }
             : null;

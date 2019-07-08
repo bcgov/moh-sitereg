@@ -135,6 +135,23 @@ export const cUpdateEnumeration = {
             'International Students',
             'Employees and International Students',
         ]
+    },
+    changeRole: {
+        signingAuthority : [
+            'No Change',
+            'Access Administrator',
+            'User',
+        ],
+        accessAdminstrator : [
+            'No Change',
+            'User',
+            'Signing Authority',
+        ],
+        user : [
+            'No Change',
+            'Access Administrator',
+            'Signing Authority',
+        ],
     }
 };
 
@@ -259,7 +276,10 @@ export const cUpdateValidators = {
             Validators.maxLength(100),
             trailingSpacesValidator(),
         ],
-        initial: [Validators.maxLength(1)],
+        initial: [
+            Validators.maxLength(1),
+            trailingSpacesValidator(),
+        ],
         lastName: [
             Validators.minLength(1),
             Validators.maxLength(100),
@@ -280,7 +300,10 @@ export const cUpdateValidators = {
             Validators.maxLength(100),
             Validators.pattern(/^(\S+)@(\S+)\.(\S+)$/)
         ],
-        phone: [phoneValidator()],
+        phone: [
+            phoneValidator(),
+            trailingSpacesValidator(),
+        ],
         ext: [
             Validators.maxLength(100),
             trailingSpacesValidator(),
@@ -347,35 +370,38 @@ export const cUpdateUserValidator = {
             ...cUpdateValidators.user.administeringFor,
         ],
     },
+    remove: {
+        emailAddress: [
+            Validators.required,
+            ...cUpdateValidators.user.emailAddress,
+        ],
+        ministryUserId: [
+            ...cUpdateValidators.user.ministryUserId,
+        ]
+    },
     edit: {
         userTitle: [
             ...cUpdateValidators.user.userTitle,
         ],
         firstName: [
-            Validators.required,
             ...cUpdateValidators.user.firstName,
         ],
         initial: [
             ...cUpdateValidators.user.initial,
         ],
         lastName: [
-            Validators.required,
             ...cUpdateValidators.user.lastName,
         ],
         jobTitle: [
-            Validators.required,
             ...cUpdateValidators.user.jobTitle,
         ],
         emailAddress: [
-            Validators.required,
             ...cUpdateValidators.user.emailAddress,
         ],
         confirmEmail: [
-            Validators.required,
             ...cUpdateValidators.user.confirmEmail,
         ],
         phone: [
-            Validators.required,
             ...cUpdateValidators.user.phone,
         ],
         ext: [
@@ -384,17 +410,24 @@ export const cUpdateUserValidator = {
         fax: [
             ...cUpdateValidators.user.fax,
         ],
-        administeringFor: [
+
+
+        changeRole: [
             Validators.required,
+        ],
+
+        changeAdministeringFor: [
+            Validators.required,
+        ],
+        administeringFor: [
             ...cUpdateValidators.user.administeringFor,
         ],
-    },
-    remove: {
-        emailAddress: [
+
+        forIdentifyEmailAddress: [
             Validators.required,
             ...cUpdateValidators.user.emailAddress,
         ],
-        ministryUserId: [
+        forIdentifyMinistryUserId: [
             ...cUpdateValidators.user.ministryUserId,
         ]
     },
