@@ -134,8 +134,11 @@ export class GroupNumbersPage extends BaseDevUpdateTestPage {
         return browser.get('/sitereg/update/group-numbers');
     }
 
-    fillPage() {
-
+    fillPage(data: GroupNumbersPageTest) {
+        this.clickButton('btn', 'Add MSP Group');
+        this.typeGroupNumber('Add new MSP Group #1', 'goupNo_0', data);
+        this.checkThirdPartyAdmin('goupNo_0', 'Will this group', 'Yes');
+        this.continue();
     }
 
     checkThirdPartyAdmin(ngVal: string, labelVal: string, text: string) {
@@ -176,6 +179,10 @@ export class SubmitPage extends BaseDevUpdateTestPage {
 
     navigateTo() {
         return browser.get('/sitereg/update/group-numbers');
+    }
+
+    typeCaptcha() {
+        element(by.css('input[id="answer"]')).sendKeys('irobot');
     }
     
 }
