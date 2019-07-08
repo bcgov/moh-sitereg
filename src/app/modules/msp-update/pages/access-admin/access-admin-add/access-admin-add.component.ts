@@ -12,24 +12,18 @@ import {
 })
 export class MspDirectUpdateAccessAdministratorAddComponent implements OnInit {
 
-  // for accessiblity
-  @Input() formIndex = 1;
-  // @Input() fg: FormGroup;
   @Input() showAdministeringMSPForQuestion = true; // needed in MSP updates only
-  // validFormControl: (fg: FormGroup, name: string) => boolean;
-
-  userTitles = cUpdateEnumeration.userTitles;
-  administeringForOptions = cUpdateEnumeration.administeringFor.add;
-  // administeringFor: BehaviorSubject<string[]> = new BehaviorSubject<string[]>(
-  //     cAdministeringFor
-  // );
-
   private arrayFormPropertyName = 'arrayOfForms';
   @Input() formState: FormGroup | null;
   @Output() formArrayChanged: EventEmitter<FormGroup | FormArray | null> = new EventEmitter<FormGroup | null>();
   parentForm: FormGroup;
   validFormControl: (fg: FormGroup, name: string) => boolean;
   formControlValidity: (fg: FormGroup, name: string) => { required: boolean; other: boolean };
+
+  userTitles = cUpdateEnumeration.userTitles;
+  administeringForOptions = cUpdateEnumeration.administeringFor.add;
+
+
   constructor(private fb: FormBuilder) {
     this.validFormControl = validMultiFormControl;
     this.formControlValidity = formControlValidity;

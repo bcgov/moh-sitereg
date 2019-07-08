@@ -94,13 +94,13 @@ export function validMultiFormControlExceptRequired(fg: FormGroup, name: string)
 export function formControlValidity(fg: FormGroup, name: string): { required: boolean; other: boolean } {
     let status = {
         required: false,
-        other:   false
+        other: false
     };
     if (fg.controls[name].pristine) return status;
 
     status = {
         required: isRequiredError(fg, name),
-        other:   validMultiFormControlExceptRequired(fg, name)
+        other: validMultiFormControlExceptRequired(fg, name)
     };
 
     // console.log(status);
@@ -281,9 +281,15 @@ export const cUpdateValidators = {
             Validators.pattern(/^(\S+)@(\S+)\.(\S+)$/)
         ],
         phone: [phoneValidator()],
-        ext: [Validators.maxLength(100)],
+        ext: [
+            Validators.maxLength(100),
+            trailingSpacesValidator(),
+        ],
         fax: [faxValidator()],
         administeringFor: [Validators.maxLength(100)],
+        ministryUserId: [
+            Validators.maxLength(20),
+            trailingSpacesValidator()]
     },
 
     group: {
@@ -383,8 +389,14 @@ export const cUpdateUserValidator = {
             ...cUpdateValidators.user.administeringFor,
         ],
     },
-    delete: {
-
+    remove: {
+        emailAddress: [
+            Validators.required,
+            ...cUpdateValidators.user.emailAddress,
+        ],
+        ministryUserId: [
+            ...cUpdateValidators.user.ministryUserId,
+        ]
     },
 };
 

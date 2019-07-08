@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
-import { validMultiFormControl, cUpdateValidators } from '../../../common/validators';
+import { validMultiFormControl, cUpdateValidators, formControlValidity, cUpdateUserValidator } from '../../../common/validators';
 import { isValidOptionalField } from '@msp-register/models/validator-helpers';
 
 
@@ -16,9 +16,11 @@ export class MspDirectUpdateAccessAdministratorRemoveComponent implements OnInit
   @Output() formArrayChanged: EventEmitter<FormGroup | FormArray | null> = new EventEmitter<FormGroup | null>();
   parentForm: FormGroup;
   validFormControl: (fg: FormGroup, name: string) => boolean;
+  formControlValidity: (fg: FormGroup, name: string) => { required: boolean; other: boolean };
 
   constructor(private fb: FormBuilder) {
     this.validFormControl = validMultiFormControl;
+    this.formControlValidity = formControlValidity;
   }
 
   ngOnInit() {
@@ -38,8 +40,8 @@ export class MspDirectUpdateAccessAdministratorRemoveComponent implements OnInit
 
   private createArrayForm() {
     return this.fb.group({
-      emailAddress: [null, cUpdateValidators.general.emailAddress],
-      ministryUserId: [null, cUpdateValidators.general.ministryUserId],
+      emailAddress: [null, cUpdateUserValidator.remove.emailAddress],
+      ministryUserId: [null, cUpdateUserValidator.remove.ministryUserId],
     });
   }
 
