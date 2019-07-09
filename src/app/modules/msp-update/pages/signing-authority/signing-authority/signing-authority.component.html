@@ -1,0 +1,28 @@
+<common-page-framework layout='blank'>
+  <h2>Signing Authority</h2>
+  <p><small>The Signing Authority represents the Organization. An Organization can only have a single Signing Authority.</small></p>
+  <hr>
+  <div class="row mb-4">
+    <button type='button' class='btn btn-secondary col mr-4' (click)="formAddNew()" [disabled]="showAddSigningAuthority">Add Signing Authority</button>
+    <button type='button' class='btn btn-secondary col mx-2' (click)="formRemoveNew()" [disabled]="showRemoveSigningAuthority">Remove Signing Authority</button>
+    <button type='button' class='btn btn-secondary col ml-4' (click)="formEditNew()" [disabled]="showUpdateSigningAuthority">Update Signing Authority</button>
+  </div>
+
+  <common-page-section layout='noTips' class="pt-4">
+    <sitereg-update-signing-authority-remove #formRemove [formState]="formRemoveState"
+      (formArrayChanged)="formRemoveStateChanged($event)"></sitereg-update-signing-authority-remove>
+  </common-page-section>
+
+  <common-page-section layout='noTips' class="pt-4">
+    <sitereg-update-signing-authority-add #formAdd [formState]="formAddState"
+      (formArrayChanged)="formAddStateChanged($event)"></sitereg-update-signing-authority-add>
+  </common-page-section>
+
+  <common-page-section layout='noTips' class="pt-4">
+    <sitereg-update-signing-authority-edit #formEdit [formState]="formEditState"
+      (formArrayChanged)="formEditStateChanged($event)"></sitereg-update-signing-authority-edit>
+  </common-page-section>
+
+</common-page-framework>
+<common-form-action-bar (btnClick)="continue()" [submitLabel]="buttonLabel" [canContinue]='canContinue()'>
+</common-form-action-bar>

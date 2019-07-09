@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { ROUTES_UPDATE } from './routes.constants';
 import { MspDirectUpdateIdentifyComponent } from '../pages/identify/identify.component';
 import { MspDirectUpdateOrganizationComponent } from '../pages/organization/organization.component';
-import { MspDirectUpdateSigningAuthorityComponent } from '../pages/signing-authority/signing-authority.component';
+
 import { MspDirectUpdateAccessAdministratorComponent } from '../pages/access-admin/access-admin/access-admin.component';
 import { MspDirectUpdateUserComponent } from '../pages/user/user/user.component';
 import { MspDirectUpdateGroupComponent } from '../pages/group/group/group.component';
@@ -12,6 +12,7 @@ import { MspDirectUpdateConfirmationComponent } from '../pages/confirmation/conf
 import { RouteGuardService } from 'moh-common-lib';
 import { MspUpdateReviewComponent } from '../pages/review/review.component';
 import { environment } from '../../../../environments/environment';
+import { MspDirectUpdateSigningAuthorityComponent } from '../pages/signing-authority/signing-authority/signing-authority.component';
 
 let defaultRoutes: Routes = [
     {
