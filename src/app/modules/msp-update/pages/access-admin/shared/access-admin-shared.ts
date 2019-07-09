@@ -3,7 +3,7 @@ import { trailingSpacesValidator, phoneValidator, faxValidator } from '../../../
 
 //#region User
 
-export const cUpdateUserSharedValidator = {
+export const cUpdateAccessAdminSharedValidator = {
         userTitle: [
             Validators.maxLength(5),
             trailingSpacesValidator(),
@@ -52,88 +52,88 @@ export const cUpdateUserSharedValidator = {
             trailingSpacesValidator()]
 };
 
-export const cUpdateUserValidator = {
+export const cUpdateAccessAdminValidator = {
     add: {
         userTitle: [
-            ...cUpdateUserSharedValidator.userTitle,
+            ...cUpdateAccessAdminSharedValidator.userTitle,
         ],
         firstName: [
             Validators.required,
-            ...cUpdateUserSharedValidator.firstName,
+            ...cUpdateAccessAdminSharedValidator.firstName,
         ],
         initial: [
-            ...cUpdateUserSharedValidator.initial,
+            ...cUpdateAccessAdminSharedValidator.initial,
         ],
         lastName: [
             Validators.required,
-            ...cUpdateUserSharedValidator.lastName,
+            ...cUpdateAccessAdminSharedValidator.lastName,
         ],
         jobTitle: [
             Validators.required,
-            ...cUpdateUserSharedValidator.jobTitle,
+            ...cUpdateAccessAdminSharedValidator.jobTitle,
         ],
         emailAddress: [
             Validators.required,
-            ...cUpdateUserSharedValidator.emailAddress,
+            ...cUpdateAccessAdminSharedValidator.emailAddress,
         ],
         confirmEmail: [
             Validators.required,
-            ...cUpdateUserSharedValidator.confirmEmail,
+            ...cUpdateAccessAdminSharedValidator.confirmEmail,
         ],
         phone: [
             Validators.required,
-            ...cUpdateUserSharedValidator.phone,
+            ...cUpdateAccessAdminSharedValidator.phone,
         ],
         ext: [
-            ...cUpdateUserSharedValidator.ext,
+            ...cUpdateAccessAdminSharedValidator.ext,
         ],
         fax: [
-            ...cUpdateUserSharedValidator.fax,
+            ...cUpdateAccessAdminSharedValidator.fax,
         ],
         administeringFor: [
             Validators.required,
-            ...cUpdateUserSharedValidator.administeringFor,
+            ...cUpdateAccessAdminSharedValidator.administeringFor,
         ],
     },
     remove: {
         emailAddress: [
             Validators.required,
-            ...cUpdateUserSharedValidator.emailAddress,
+            ...cUpdateAccessAdminSharedValidator.emailAddress,
         ],
         ministryUserId: [
-            ...cUpdateUserSharedValidator.ministryUserId,
+            ...cUpdateAccessAdminSharedValidator.ministryUserId,
         ]
     },
     edit: {
         userTitle: [
-            ...cUpdateUserSharedValidator.userTitle,
+            ...cUpdateAccessAdminSharedValidator.userTitle,
         ],
         firstName: [
-            ...cUpdateUserSharedValidator.firstName,
+            ...cUpdateAccessAdminSharedValidator.firstName,
         ],
         initial: [
-            ...cUpdateUserSharedValidator.initial,
+            ...cUpdateAccessAdminSharedValidator.initial,
         ],
         lastName: [
-            ...cUpdateUserSharedValidator.lastName,
+            ...cUpdateAccessAdminSharedValidator.lastName,
         ],
         jobTitle: [
-            ...cUpdateUserSharedValidator.jobTitle,
+            ...cUpdateAccessAdminSharedValidator.jobTitle,
         ],
         emailAddress: [
-            ...cUpdateUserSharedValidator.emailAddress,
+            ...cUpdateAccessAdminSharedValidator.emailAddress,
         ],
         confirmEmail: [
-            ...cUpdateUserSharedValidator.confirmEmail,
+            ...cUpdateAccessAdminSharedValidator.confirmEmail,
         ],
         phone: [
-            ...cUpdateUserSharedValidator.phone,
+            ...cUpdateAccessAdminSharedValidator.phone,
         ],
         ext: [
-            ...cUpdateUserSharedValidator.ext,
+            ...cUpdateAccessAdminSharedValidator.ext,
         ],
         fax: [
-            ...cUpdateUserSharedValidator.fax,
+            ...cUpdateAccessAdminSharedValidator.fax,
         ],
 
 
@@ -145,15 +145,15 @@ export const cUpdateUserValidator = {
             Validators.required,
         ],
         administeringFor: [
-            ...cUpdateUserSharedValidator.administeringFor,
+            ...cUpdateAccessAdminSharedValidator.administeringFor,
         ],
 
         forIdentifyEmailAddress: [
             Validators.required,
-            ...cUpdateUserSharedValidator.emailAddress,
+            ...cUpdateAccessAdminSharedValidator.emailAddress,
         ],
         forIdentifyMinistryUserId: [
-            ...cUpdateUserSharedValidator.ministryUserId,
+            ...cUpdateAccessAdminSharedValidator.ministryUserId,
         ]
     },
 };
@@ -163,7 +163,7 @@ export const cUpdateUserValidator = {
 
 //#region Enumerations
 
-export const cUpdateUserEnumeration = {
+export const cUpdateAccessAdminEnumeration = {
     userTitles: ['Mr.', 'Mrs.', 'Ms.', 'Dr.', 'Prof.', 'Rev.'],
     administeringFor: {
         add: [
@@ -179,7 +179,7 @@ export const cUpdateUserEnumeration = {
     },
     changeRole: [
             'No Change',
-            'Access Administrator',
+            'User',
             'Signing Authority',
         ],
 };

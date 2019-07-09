@@ -26,7 +26,7 @@ export class MspDirectUpdateUserEditComponent implements OnInit {
   @Input() showAdministeringMSPForQuestion = true;
   userTitles = cUpdateUserEnumeration.userTitles;
   administeringForOptions = cUpdateUserEnumeration.administeringFor.edit;
-  changeRoleOptions = cUpdateUserEnumeration.changeRole.user;
+  changeRoleOptions = cUpdateUserEnumeration.changeRole;
   radioBtnLabels = [{ label: 'No', value: false }, { label: 'Yes', value: true }];
 
 

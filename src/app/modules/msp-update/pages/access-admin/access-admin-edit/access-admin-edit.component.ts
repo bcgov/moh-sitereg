@@ -1,8 +1,13 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import {
-  validMultiFormControl, cUpdateEnumeration, isValidOptionalField, cUpdateUserValidator, formControlValidity, matchFieldValidator
-} from '../../../common/validators';
+  cUpdateAccessAdminEnumeration, cUpdateAccessAdminValidator
+} from '../shared/access-admin-shared';
+
+import { 
+  validMultiFormControl, formControlValidity, isValidOptionalField, matchFieldValidator
+} from '../../../common/update-validators';
+
 
 @Component({
   selector: 'sitereg-update-access-admin-edit',
@@ -19,9 +24,9 @@ export class MspDirectUpdateAccessAdministratorEditComponent implements OnInit {
   formControlValidity: (fg: FormGroup, name: string) => { required: boolean; other: boolean };
 
   @Input() showAdministeringMSPForQuestion = true;
-  userTitles = cUpdateEnumeration.userTitles;
-  administeringForOptions = cUpdateEnumeration.administeringFor.edit;
-  changeRoleOptions = cUpdateEnumeration.changeRole.accessAdminstrator;
+  userTitles = cUpdateAccessAdminEnumeration.userTitles;
+  administeringForOptions = cUpdateAccessAdminEnumeration.administeringFor.edit;
+  changeRoleOptions = cUpdateAccessAdminEnumeration.changeRole;
   radioBtnLabels = [{ label: 'No', value: false }, { label: 'Yes', value: true }];
 
 
@@ -47,23 +52,23 @@ export class MspDirectUpdateAccessAdministratorEditComponent implements OnInit {
 
   private createArrayForm() {
     const formGroup = this.fb.group({
-      forIdentifyEmailAddress: [null, cUpdateUserValidator.edit.forIdentifyEmailAddress],
-      forIdentifyMinistryUserId: [null, cUpdateUserValidator.edit.forIdentifyMinistryUserId],
-      userTitle: [null, cUpdateUserValidator.edit.userTitle],
-      firstName: [null, cUpdateUserValidator.edit.firstName],
-      initial: [null, cUpdateUserValidator.edit.initial],
-      lastName: [null, cUpdateUserValidator.edit.lastName],
-      jobTitle: [null, cUpdateUserValidator.edit.jobTitle],
+      forIdentifyEmailAddress: [null, cUpdateAccessAdminValidator.edit.forIdentifyEmailAddress],
+      forIdentifyMinistryUserId: [null, cUpdateAccessAdminValidator.edit.forIdentifyMinistryUserId],
+      userTitle: [null, cUpdateAccessAdminValidator.edit.userTitle],
+      firstName: [null, cUpdateAccessAdminValidator.edit.firstName],
+      initial: [null, cUpdateAccessAdminValidator.edit.initial],
+      lastName: [null, cUpdateAccessAdminValidator.edit.lastName],
+      jobTitle: [null, cUpdateAccessAdminValidator.edit.jobTitle],
       formGroupEmail: this.fb.group({
-        emailAddress: [null, cUpdateUserValidator.edit.emailAddress],
-        confirmEmail: [null, cUpdateUserValidator.edit.confirmEmail],
+        emailAddress: [null, cUpdateAccessAdminValidator.edit.emailAddress],
+        confirmEmail: [null, cUpdateAccessAdminValidator.edit.confirmEmail],
       }, { validator: matchFieldValidator('confirmEmail', 'emailAddress')}),
-      phone: [null, cUpdateUserValidator.edit.phone],
-      ext: [null, cUpdateUserValidator.edit.ext],
-      fax: [null, cUpdateUserValidator.edit.fax],
-      administeringFor: [null, cUpdateUserValidator.edit.administeringFor],
-      changeAdministerFor: [null, cUpdateUserValidator.edit.changeAdministeringFor],
-      changeRole: [this.changeRoleOptions[0], cUpdateUserValidator.edit.changeRole],
+      phone: [null, cUpdateAccessAdminValidator.edit.phone],
+      ext: [null, cUpdateAccessAdminValidator.edit.ext],
+      fax: [null, cUpdateAccessAdminValidator.edit.fax],
+      administeringFor: [null, cUpdateAccessAdminValidator.edit.administeringFor],
+      changeAdministerFor: [null, cUpdateAccessAdminValidator.edit.changeAdministeringFor],
+      changeRole: [this.changeRoleOptions[0], cUpdateAccessAdminValidator.edit.changeRole],
     });
     return formGroup;
   }

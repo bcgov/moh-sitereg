@@ -1,9 +1,12 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import {
-  validMultiFormControl, cUpdateValidators,
-  cUpdateEnumeration, isValidOptionalField, validFormControl, cUpdateUserValidator, isRequiredError, formControlValidity
-} from '../../../common/validators';
+  cUpdateAccessAdminEnumeration, cUpdateAccessAdminValidator
+} from '../shared/access-admin-shared';
+
+import { 
+  validMultiFormControl, formControlValidity, isValidOptionalField
+} from '../../../common/update-validators';
 
 @Component({
   selector: 'sitereg-update-access-admin-add',
@@ -20,8 +23,8 @@ export class MspDirectUpdateAccessAdministratorAddComponent implements OnInit {
   validFormControl: (fg: FormGroup, name: string) => boolean;
   formControlValidity: (fg: FormGroup, name: string) => { required: boolean; other: boolean };
 
-  userTitles = cUpdateEnumeration.userTitles;
-  administeringForOptions = cUpdateEnumeration.administeringFor.add;
+  userTitles = cUpdateAccessAdminEnumeration.userTitles;
+  administeringForOptions = cUpdateAccessAdminEnumeration.administeringFor.add;
 
 
   constructor(private fb: FormBuilder) {
@@ -46,17 +49,17 @@ export class MspDirectUpdateAccessAdministratorAddComponent implements OnInit {
 
   private createArrayForm() {
     return this.fb.group({
-      userTitle: [null, cUpdateUserValidator.add.userTitle],
-      firstName: [null, cUpdateUserValidator.add.firstName],
-      initial: [null, cUpdateUserValidator.add.initial],
-      lastName: [null, cUpdateUserValidator.add.lastName],
-      jobTitle: [null, cUpdateUserValidator.add.jobTitle],
-      emailAddress: [null, cUpdateUserValidator.add.emailAddress],
-      confirmEmail: [null, cUpdateUserValidator.add.confirmEmail],
-      phone: [null, cUpdateUserValidator.add.phone],
-      ext: [null, cUpdateUserValidator.add.ext],
-      fax: [null, cUpdateUserValidator.add.fax],
-      administeringFor: [null, cUpdateUserValidator.add.administeringFor],
+      userTitle: [null, cUpdateAccessAdminValidator.add.userTitle],
+      firstName: [null, cUpdateAccessAdminValidator.add.firstName],
+      initial: [null, cUpdateAccessAdminValidator.add.initial],
+      lastName: [null, cUpdateAccessAdminValidator.add.lastName],
+      jobTitle: [null, cUpdateAccessAdminValidator.add.jobTitle],
+      emailAddress: [null, cUpdateAccessAdminValidator.add.emailAddress],
+      confirmEmail: [null, cUpdateAccessAdminValidator.add.confirmEmail],
+      phone: [null, cUpdateAccessAdminValidator.add.phone],
+      ext: [null, cUpdateAccessAdminValidator.add.ext],
+      fax: [null, cUpdateAccessAdminValidator.add.fax],
+      administeringFor: [null, cUpdateAccessAdminValidator.add.administeringFor],
 
     });
   }

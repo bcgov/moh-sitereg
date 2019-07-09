@@ -1,7 +1,12 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
-import { validMultiFormControl, cUpdateValidators, formControlValidity, cUpdateUserValidator, isValidOptionalField } from '../../../common/validators';
+import {
+  cUpdateAccessAdminValidator
+} from '../shared/access-admin-shared';
 
+import {
+  validMultiFormControl, formControlValidity, isValidOptionalField
+} from '../../../common/update-validators';
 
 
 @Component({
@@ -40,8 +45,8 @@ export class MspDirectUpdateAccessAdministratorRemoveComponent implements OnInit
 
   private createArrayForm() {
     return this.fb.group({
-      emailAddress: [null, cUpdateUserValidator.remove.emailAddress],
-      ministryUserId: [null, cUpdateUserValidator.remove.ministryUserId],
+      emailAddress: [null, cUpdateAccessAdminValidator.remove.emailAddress],
+      ministryUserId: [null, cUpdateAccessAdminValidator.remove.ministryUserId],
     });
   }
 
