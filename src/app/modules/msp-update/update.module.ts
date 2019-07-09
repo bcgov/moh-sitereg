@@ -9,7 +9,10 @@ import { MspDirectUpdateIdentifyComponent } from './pages/identify/identify.comp
 import { MspDirectUpdateOrganizationComponent } from './pages/organization/organization.component';
 import { MspDirectUpdateOrganizationEditComponent } from './pages/organization/organization-edit/organization-edit.component';
 
-import { MspDirectUpdateSigningAuthorityComponent } from './pages/signing-authority/signing-authority.component';
+import { MspDirectUpdateSigningAuthorityComponent } from './pages/signing-authority/signing-authority/signing-authority.component';
+import { MspDirectUpdateSigningAuthorityRemoveComponent } from './pages/signing-authority/signing-authority-remove/signing-authority-remove.component';
+import { MspDirectUpdateSigningAuthorityAddComponent } from './pages/signing-authority/signing-authority-add/signing-authority-add.component';
+import { MspDirectUpdateSigningAuthorityEditComponent } from './pages/signing-authority/signing-authority-edit/signing-authority-edit.component';
 
 import { MspDirectUpdateAccessAdministratorComponent } from './pages/access-admin/access-admin/access-admin.component';
 import { MspDirectUpdateAccessAdministratorRemoveComponent } from './pages/access-admin/access-admin-remove/access-admin-remove.component';
@@ -50,9 +53,12 @@ import { MspDirectUpdateErrorBoxComponent } from './common/error-update-error-bo
         MspDirectUpdateIdentifyComponent,
         MspDirectUpdateOrganizationComponent,
         MspDirectUpdateOrganizationEditComponent,
-        MspDirectUpdateSigningAuthorityComponent,
 
-        
+        MspDirectUpdateSigningAuthorityComponent,
+        MspDirectUpdateSigningAuthorityRemoveComponent,
+        MspDirectUpdateSigningAuthorityAddComponent,
+        MspDirectUpdateSigningAuthorityEditComponent,
+                
         MspDirectUpdateAccessAdministratorComponent,
         MspDirectUpdateAccessAdministratorRemoveComponent,
         MspDirectUpdateAccessAdministratorAddComponent,

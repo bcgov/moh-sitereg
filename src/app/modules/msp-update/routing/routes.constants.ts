@@ -34,7 +34,7 @@ export const ROUTES_UPDATE = {
         order: 4,
         path: 'users',
         fullpath: `${APPLICATION_ROUTES.UPDATE}/users`,
-        title: 'Users',
+        title: 'MSP Users',
     },
     GROUP_NUMBERS: {
         order: 5,
