@@ -1,5 +1,6 @@
 <common-page-framework>
 <h2 class="border-bottom">Users</h2>
+<common-page-section layout="tips">
 <aside>
     <b>Users</b> are persons who will be accessing MSP Direct on behalf of the Organization.
 </aside>
@@ -29,6 +30,7 @@
     Debugging purposes only:
     <ngx-json-viewer [json]="schemaObject()" [expanded]="true"></ngx-json-viewer>
 </div>
+</common-page-section>
 </common-page-framework>
 <common-form-action-bar  (btnClick)="continue()" [canContinue]="validateFormGroup(fgs)">
 </common-form-action-bar>
