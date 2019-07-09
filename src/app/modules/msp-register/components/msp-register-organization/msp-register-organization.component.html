@@ -16,15 +16,24 @@
       target="_blank">contact Health Insurance BC <i class="fa fa-external-link" aria-hidden="true"></i></a>.</p>
 </common-consent-modal>
 
-<common-page-framework>
+<common-page-framework><!--  -->
   <h2 class="border-bottom">Organization</h2>
-  <aside>
+  <common-page-section layout="tips">
+    <aside>
+      This request must be submitted by the Organization's Access Administrator or Signing Authority. If you have any
+      trouble using this form, please contact the Ministry of Health Help desk at 1-250-952-1234, Monday to Friday 8:00AM
+      - 4:30PM.
+      <br /> <br />
+      Enter the information about the <b>Organization</b> applying for access to MSP Direct.
+    </aside>
+  
+  <!-- <aside>
     This request must be submitted by the Organization's Access Administrator or Signing Authority. If you have any
     trouble using this form, please contact the Ministry of Health Help desk at 1-250-952-1234, Monday to Friday 8:00AM
     - 4:30PM.
     <br /> <br />
     Enter the information about the <b>Organization</b> applying for access to MSP Direct.
-  </aside>
+  </aside> -->
   <div *ngIf="fg">
     <!-- TODO - This form should be replaced with OrganizationFormComponent -->
     <form [formGroup]="fg">
@@ -188,6 +197,7 @@
     Debugging purposes only:
     <ngx-json-viewer [json]="schemaObject()" [expanded]="true"></ngx-json-viewer>
   </div>
+</common-page-section>
 </common-page-framework>
 
 <!-- class="fixed-bottom avoid-sliding"  -->

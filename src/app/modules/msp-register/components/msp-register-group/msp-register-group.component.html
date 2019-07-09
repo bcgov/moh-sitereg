@@ -1,6 +1,7 @@
 <!-- TODO: bit of thinking as to how to make the component work for this. -->
 <common-page-framework>
   <h2 class="border-bottom">Group Numbers</h2>
+  <common-page-section layout="tips">
   <aside>
     These are the <b>MSP Group Numbers</b> you will be administering for MSP Direct. The form should include at least
     one MSP Group Number.
@@ -64,6 +65,7 @@
     Debugging purposes only:
     <ngx-json-viewer [json]="schemaObject()" [expanded]="true"></ngx-json-viewer>
   </div>
+  </common-page-section>
 </common-page-framework>
 <common-form-action-bar (btnClick)="continue()" [canContinue]="validFormGroup(fgs)">
 </common-form-action-bar>
