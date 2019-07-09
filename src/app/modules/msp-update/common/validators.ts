@@ -1,8 +1,25 @@
 import { ValidatorFn, AbstractControl, FormGroup, Validators, ValidationErrors } from '@angular/forms';
-import { phoneValidator, faxValidator } from '@msp-register/models/validator-helpers';
-
 
 export const cUserTitles = ['Mr.', 'Mrs.', 'Ms.', 'Dr.', 'Prof.', 'Rev.'];
+
+export function phoneValidator() {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+        const forbidden = !/^[1-9][0-9]{2}[0-9]{7}$|null|^$/.test(control.value);
+        return forbidden
+            ? { invalid: { value: `${control.value} is not valid` } }
+            : null;
+    };
+}
+
+export function faxValidator() {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+        if (!control.value) return null;
+        const forbidden = !/^[1-9][0-9]{2}[0-9]{7}$|null|^$/.test(control.value);
+        return forbidden
+            ? { invalid: { value: `${control.value} is not valid` } }
+            : null;
+    };
+}
 
 export function emailValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {

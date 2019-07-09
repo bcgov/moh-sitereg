@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
-import { validMultiFormControl, cUpdateValidators, formControlValidity, cUpdateUserValidator } from '../../../common/validators';
-import { isValidOptionalField } from '@msp-register/models/validator-helpers';
+import { validMultiFormControl, cUpdateValidators, formControlValidity, cUpdateUserValidator, isValidOptionalField } from '../../../common/validators';
+
 
 
 @Component({

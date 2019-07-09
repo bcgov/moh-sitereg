@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
-import { validMultiFormControl, isValidOptionalField } from '@msp-register/models/validator-helpers';
-import { groupNumberValidator, cUpdateValidators } from '../../../common/validators';
+
+import { groupNumberValidator, cUpdateValidators, validMultiFormControl, isValidOptionalField } from '../../../common/validators';
 
 @Component({
   selector: 'sitereg-update-group-edit',
