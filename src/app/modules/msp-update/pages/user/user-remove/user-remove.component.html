@@ -3,14 +3,14 @@
 
     <form [formGroupName]='formIndex'>
 
-      <common-xicon-button class='d-block pb-1' label="Cancel Remove Access Administrator" (clickEvent)="removeForm(i)">
+      <common-xicon-button class='d-block pb-1' label="Cancel Remove User" (clickEvent)="removeForm(i)">
       </common-xicon-button>
-      <h3 class='border-bottom'>Remove an Access Administrator #{{getFormsArray.controls.length - formIndex}}</h3>
-      <p><small>Access Administrator information</small></p>
+      <h3 class='border-bottom'>Remove an User #{{getFormsArray.controls.length - formIndex}}</h3>
+      <p><small>User information</small></p>
 
       <div class='form-group col-sm-8 p-sm-0'>
 
-        <label for='emailAddress_{{formIndex}}'>Enter the email of the Access Administrator to remove</label>
+        <label for='emailAddress_{{formIndex}}'>Enter the email of the User to remove</label>
         <input type='text' class='form-control' name='emailAddress_{{formIndex}}' formControlName='emailAddress'
           id='emailAddress_{{formIndex}}' placeholder="example@example.com" maxlength="100">
 

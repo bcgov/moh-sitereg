@@ -42,7 +42,7 @@ export class MspDirectUpdateOrganizationComponent extends AbstractForm implement
         );
         this.progressService.setPageComplete();
         // this.router.navigate([ROUTES_UPDATE.SIGNING_AUTHORITY.fullpath]);
-        this.router.navigate([ROUTES_UPDATE.GROUP_NUMBERS.fullpath]);
+        this.router.navigate([ROUTES_UPDATE.ACCESS_ADMINS.fullpath]);
     }
 
     canContinue(): boolean {

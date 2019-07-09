@@ -13,8 +13,13 @@ import { MspDirectUpdateSigningAuthorityComponent } from './pages/signing-author
 
 import { MspDirectUpdateAccessAdministratorComponent } from './pages/access-admin/access-admin/access-admin.component';
 import { MspDirectUpdateAccessAdministratorRemoveComponent } from './pages/access-admin/access-admin-remove/access-admin-remove.component';
+import { MspDirectUpdateAccessAdministratorAddComponent } from './pages/access-admin/access-admin-add/access-admin-add.component';
+import { MspDirectUpdateAccessAdministratorEditComponent } from './pages/access-admin/access-admin-edit/access-admin-edit.component';
 
 import { MspDirectUpdateUserComponent } from './pages/user/user/user.component';
+import { MspDirectUpdateUserRemoveComponent } from './pages/user/user-remove/user-remove.component';
+import { MspDirectUpdateUserAddComponent } from './pages/user/user-add/user-add.component';
+import { MspDirectUpdateUserEditComponent } from './pages/user/user-edit/user-edit.component';
 
 import { MspDirectUpdateGroupComponent } from './pages/group/group/group.component';
 import { MspDirectUpdateGroupRemoveComponent } from './pages/group/group-remove/group-remove.component';
@@ -31,20 +36,33 @@ import { RouterModule } from '@angular/router';
 import { MspRegisterModule } from '../msp-register/msp-register.module';
 import { MspUpdateReviewComponent } from './pages/review/review.component';
 import { ReviewSectionComponent } from './components/review-section/review-section.component';
+import { MspDirectUpdateErrorBoxComponent } from './common/error-update-error-box/error-update-error-box.component';
+
 
 
 
 @NgModule({
     declarations: [
-       
+
+        MspDirectUpdateErrorBoxComponent,
+
         MspDirectUpdateComponent,
         MspDirectUpdateIdentifyComponent,
         MspDirectUpdateOrganizationComponent,
         MspDirectUpdateOrganizationEditComponent,
         MspDirectUpdateSigningAuthorityComponent,
 
+        
         MspDirectUpdateAccessAdministratorComponent,
         MspDirectUpdateAccessAdministratorRemoveComponent,
+        MspDirectUpdateAccessAdministratorAddComponent,
+        MspDirectUpdateAccessAdministratorEditComponent,
+        
+        MspDirectUpdateUserComponent,
+        MspDirectUpdateUserRemoveComponent,
+        MspDirectUpdateUserAddComponent,
+        MspDirectUpdateUserEditComponent,
+
 
         MspDirectUpdateUserComponent,
 
@@ -71,12 +89,13 @@ import { ReviewSectionComponent } from './components/review-section/review-secti
          *        or shared. Declaring the component within this module causes the register
          *        page fail when try to navigate to it.
          */
+
         MspRegisterModule
     ],
     providers: [
-      MspDirectUpdateProgressService,
-      { provide: AbstractPgCheckService, useExisting: MspDirectUpdateProgressService },
-      RouteGuardService
+        MspDirectUpdateProgressService,
+        { provide: AbstractPgCheckService, useExisting: MspDirectUpdateProgressService },
+        RouteGuardService
     ]
 })
-export class MspDirectUpdateModule {}
+export class MspDirectUpdateModule { }

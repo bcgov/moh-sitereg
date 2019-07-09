@@ -1,20 +1,21 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import {
-  cUpdateAccessAdminValidator
-} from '../shared/access-admin-shared';
+  cUpdateUserValidator
+} from '../shared/user-shared';
 
 import {
   validMultiFormControl, formControlValidity, isValidOptionalField
 } from '../../../common/update-validators';
 
 
+
 @Component({
-  selector: 'sitereg-update-access-admin-remove',
-  templateUrl: './access-admin-remove.component.html',
-  styleUrls: ['./access-admin-remove.component.scss']
+  selector: 'sitereg-update-user-remove',
+  templateUrl: './user-remove.component.html',
+  styleUrls: ['./user-remove.component.scss']
 })
-export class MspDirectUpdateAccessAdministratorRemoveComponent implements OnInit {
+export class MspDirectUpdateUserRemoveComponent implements OnInit {
 
   private arrayFormPropertyName = 'arrayOfForms';
   @Input() formState: FormGroup | null;
@@ -45,8 +46,8 @@ export class MspDirectUpdateAccessAdministratorRemoveComponent implements OnInit
 
   private createArrayForm() {
     return this.fb.group({
-      emailAddress: [null, cUpdateAccessAdminValidator.remove.emailAddress],
-      ministryUserId: [null, cUpdateAccessAdminValidator.remove.ministryUserId],
+      emailAddress: [null, cUpdateUserValidator.remove.emailAddress],
+      ministryUserId: [null, cUpdateUserValidator.remove.ministryUserId],
     });
   }
 

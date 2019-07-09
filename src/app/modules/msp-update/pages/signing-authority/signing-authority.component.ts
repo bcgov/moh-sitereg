@@ -8,7 +8,8 @@ import { GlobalConfigService } from '@shared/services/global-config.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UpdateStateService } from '../../services/update.state.service';
 import { cUserValidators } from '@msp-register/models/core/core-types';
-import { validMultiFormControl } from '@msp-register/models/validator-helpers';
+import { validMultiFormControl } from '../../common/validators';
+
 
 @Component({
     selector: 'sitereg-msp-update-signing-authority',
