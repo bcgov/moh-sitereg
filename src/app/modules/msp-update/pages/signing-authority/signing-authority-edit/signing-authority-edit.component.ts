@@ -66,9 +66,9 @@ export class MspDirectUpdateSigningAuthorityEditComponent implements OnInit {
       phone: [null, cUpdateSigningAuthorityValidator.edit.phone],
       ext: [null, cUpdateSigningAuthorityValidator.edit.ext],
       fax: [null, cUpdateSigningAuthorityValidator.edit.fax],
-      administeringFor: [null, cUpdateSigningAuthorityValidator.edit.administeringFor],
-      changeAdministerFor: [null, cUpdateSigningAuthorityValidator.edit.changeAdministeringFor],
-      changeRole: [this.changeRoleOptions[0], cUpdateSigningAuthorityValidator.edit.changeRole],
+      // administeringFor: [null, cUpdateSigningAuthorityValidator.edit.administeringFor],
+      // changeAdministerFor: [null, cUpdateSigningAuthorityValidator.edit.changeAdministeringFor],
+      // changeRole: [this.changeRoleOptions[0], cUpdateSigningAuthorityValidator.edit.changeRole],
     });
     return formGroup;
   }

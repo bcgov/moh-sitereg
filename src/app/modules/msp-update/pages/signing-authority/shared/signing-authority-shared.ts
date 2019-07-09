@@ -46,6 +46,7 @@ export const cUpdateSigningAuthoritySharedValidator = {
             trailingSpacesValidator(),
         ],
         fax: [faxValidator()],
+        isAdmin: [],
         administeringFor: [Validators.maxLength(100)],
         ministryUserId: [
             Validators.maxLength(20),
@@ -89,6 +90,10 @@ export const cUpdateSigningAuthorityValidator = {
         ],
         fax: [
             ...cUpdateSigningAuthoritySharedValidator.fax,
+        ],
+        isAdmin: [
+            Validators.required,
+            ...cUpdateSigningAuthoritySharedValidator.isAdmin,
         ],
         administeringFor: [
             Validators.required,

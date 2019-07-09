@@ -25,7 +25,7 @@ export class MspDirectUpdateSigningAuthorityAddComponent implements OnInit {
 
   userTitles = cUpdateSigningAuthorityEnumeration.userTitles;
   administeringForOptions = cUpdateSigningAuthorityEnumeration.administeringFor.add;
-
+  radioBtnLabels = [{ label: 'No', value: false }, { label: 'Yes', value: true }];
 
   constructor(private fb: FormBuilder) {
     this.validFormControl = validMultiFormControl;
@@ -59,7 +59,8 @@ export class MspDirectUpdateSigningAuthorityAddComponent implements OnInit {
       phone: [null, cUpdateSigningAuthorityValidator.add.phone],
       ext: [null, cUpdateSigningAuthorityValidator.add.ext],
       fax: [null, cUpdateSigningAuthorityValidator.add.fax],
-      administeringFor: [null, cUpdateSigningAuthorityValidator.add.administeringFor],
+      isAdmin: [null, cUpdateSigningAuthorityValidator.add.isAdmin],
+      // administeringFor: [null, cUpdateSigningAuthorityValidator.add.administeringFor],
 
     });
   }
@@ -85,6 +86,17 @@ export class MspDirectUpdateSigningAuthorityAddComponent implements OnInit {
     this.formArrayChanged.emit(this.parentForm);
   }
 
+  
+  // updateAccessValidation(formGroup, status) {
+  //   const control = formGroup.controls.administeringFor as FormControl;
+  //   if (status === true) {
+  //     control.setValidators(Validators.required);
+  //   } else {
+  //     control.clearValidators();
+  //   }
+  //   control.setValue('', { onlySelf: false });
+  //   formGroup.updateValueAndValidity();
+  // }
 
   generateJSON(formValues) {
 
