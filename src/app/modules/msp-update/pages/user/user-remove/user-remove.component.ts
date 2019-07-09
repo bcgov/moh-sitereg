@@ -1,6 +1,12 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
-import { validMultiFormControl, cUpdateValidators, formControlValidity, cUpdateUserValidator, isValidOptionalField } from '../../../common/validators';
+import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
+import {
+  cUpdateUserValidator
+} from '../shared/user-shared';
+
+import {
+  validMultiFormControl, formControlValidity, isValidOptionalField
+} from '../../../common/update-validators';
 
 
 

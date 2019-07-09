@@ -1,8 +1,13 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import {
-  validMultiFormControl, cUpdateEnumeration, isValidOptionalField, cUpdateUserValidator, formControlValidity, matchFieldValidator
-} from '../../../common/validators';
+  cUpdateUserEnumeration, cUpdateUserValidator
+} from '../shared/user-shared';
+
+import { 
+  validMultiFormControl, formControlValidity, isValidOptionalField, matchFieldValidator
+} from '../../../common/update-validators';
+
 
 @Component({
   selector: 'sitereg-update-user-edit',
@@ -19,9 +24,9 @@ export class MspDirectUpdateUserEditComponent implements OnInit {
   formControlValidity: (fg: FormGroup, name: string) => { required: boolean; other: boolean };
 
   @Input() showAdministeringMSPForQuestion = true;
-  userTitles = cUpdateEnumeration.userTitles;
-  administeringForOptions = cUpdateEnumeration.administeringFor.edit;
-  changeRoleOptions = cUpdateEnumeration.changeRole.accessAdminstrator;
+  userTitles = cUpdateUserEnumeration.userTitles;
+  administeringForOptions = cUpdateUserEnumeration.administeringFor.edit;
+  changeRoleOptions = cUpdateUserEnumeration.changeRole.user;
   radioBtnLabels = [{ label: 'No', value: false }, { label: 'Yes', value: true }];
 
 

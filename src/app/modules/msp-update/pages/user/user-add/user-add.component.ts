@@ -1,9 +1,12 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import {
-  validMultiFormControl, cUpdateValidators,
-  cUpdateEnumeration, isValidOptionalField, validFormControl, cUpdateUserValidator, isRequiredError, formControlValidity
-} from '../../../common/validators';
+  cUpdateUserEnumeration, cUpdateUserValidator
+} from '../shared/user-shared';
+
+import { 
+  validMultiFormControl, formControlValidity, isValidOptionalField
+} from '../../../common/update-validators';
 
 @Component({
   selector: 'sitereg-update-user-add',
@@ -20,8 +23,8 @@ export class MspDirectUpdateUserAddComponent implements OnInit {
   validFormControl: (fg: FormGroup, name: string) => boolean;
   formControlValidity: (fg: FormGroup, name: string) => { required: boolean; other: boolean };
 
-  userTitles = cUpdateEnumeration.userTitles;
-  administeringForOptions = cUpdateEnumeration.administeringFor.add;
+  userTitles = cUpdateUserEnumeration.userTitles;
+  administeringForOptions = cUpdateUserEnumeration.administeringFor.add;
 
 
   constructor(private fb: FormBuilder) {
