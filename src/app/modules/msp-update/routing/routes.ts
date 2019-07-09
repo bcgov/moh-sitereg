@@ -16,7 +16,7 @@ import { environment } from '../../../../environments/environment';
 let defaultRoutes: Routes = [
     {
         path: '',
-        redirectTo: ROUTES_UPDATE.ACCESS_ADMINS.path,
+        redirectTo: ROUTES_UPDATE.IDENTIFY.path,
     },
     {
         // path: 'organization',

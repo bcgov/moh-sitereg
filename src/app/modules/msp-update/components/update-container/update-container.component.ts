@@ -50,13 +50,13 @@ export class MspDirectUpdateComponent extends Container implements OnInit {
         );
         console.log('ANSWER:%o', this.showStepper());
     }
-
+U
     setProgressItems() {
         const progressItemRoute = routes.filter((x) => {
             return !(x.path.includes('_')
                 || x.path.includes('confirmation')
                 || x.path.includes('signing-authority')
-                || x.path.includes('users')
+                // || x.path.includes('users')
                 // || x.path.includes('access-admins')
                 || x.path.includes('submit')
                 || x.path.includes('review')

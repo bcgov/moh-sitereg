@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MspDirectUpdateUserComponent } from './user.component';
+import { MspDirectUpdateAccessAdministratorComponent } from './access-admin.component';
 
-describe('MspDirectUpdateUserComponent', () => {
-    let component: MspDirectUpdateUserComponent;
-    let fixture: ComponentFixture<MspDirectUpdateUserComponent>;
+describe('AccessAdministratorComponent', () => {
+    let component: MspDirectUpdateAccessAdministratorComponent;
+    let fixture: ComponentFixture<MspDirectUpdateAccessAdministratorComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [MspDirectUpdateUserComponent],
+            declarations: [MspDirectUpdateAccessAdministratorComponent],
         }).compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(MspDirectUpdateUserComponent);
+        fixture = TestBed.createComponent(MspDirectUpdateAccessAdministratorComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });
