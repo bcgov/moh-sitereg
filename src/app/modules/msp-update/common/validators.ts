@@ -136,17 +136,17 @@ export const cUpdateEnumeration = {
         ]
     },
     changeRole: {
-        signingAuthority : [
+        signingAuthority: [
             'No Change',
             'Access Administrator',
             'User',
         ],
-        accessAdminstrator : [
+        accessAdminstrator: [
             'No Change',
             'User',
             'Signing Authority',
         ],
-        user : [
+        user: [
             'No Change',
             'Access Administrator',
             'Signing Authority',
@@ -297,7 +297,7 @@ export const cUpdateValidators = {
         confirmEmail: [
             Validators.minLength(5),
             Validators.maxLength(100),
-            Validators.pattern(/^(\S+)@(\S+)\.(\S+)$/)
+            Validators.pattern(/^(\S+)@(\S+)\.(\S+)$/),
         ],
         phone: [
             phoneValidator(),

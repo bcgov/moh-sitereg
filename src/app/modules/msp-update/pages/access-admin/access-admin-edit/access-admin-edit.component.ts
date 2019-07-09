@@ -1,8 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import {
-  validMultiFormControl, cUpdateValidators,
-  cUpdateEnumeration, isValidOptionalField, validFormControl, cUpdateUserValidator, isRequiredError, formControlValidity
+  validMultiFormControl, cUpdateEnumeration, isValidOptionalField, cUpdateUserValidator, formControlValidity, matchFieldValidator
 } from '../../../common/validators';
 
 @Component({
@@ -47,7 +46,7 @@ export class MspDirectUpdateAccessAdministratorEditComponent implements OnInit {
   }
 
   private createArrayForm() {
-    return this.fb.group({
+    const formGroup = this.fb.group({
       forIdentifyEmailAddress: [null, cUpdateUserValidator.edit.forIdentifyEmailAddress],
       forIdentifyMinistryUserId: [null, cUpdateUserValidator.edit.forIdentifyMinistryUserId],
       userTitle: [null, cUpdateUserValidator.edit.userTitle],
@@ -55,8 +54,10 @@ export class MspDirectUpdateAccessAdministratorEditComponent implements OnInit {
       initial: [null, cUpdateUserValidator.edit.initial],
       lastName: [null, cUpdateUserValidator.edit.lastName],
       jobTitle: [null, cUpdateUserValidator.edit.jobTitle],
-      emailAddress: [null, cUpdateUserValidator.edit.emailAddress],
-      confirmEmail: [null, cUpdateUserValidator.edit.confirmEmail],
+      formGroupEmail: this.fb.group({
+        emailAddress: [null, cUpdateUserValidator.edit.emailAddress],
+        confirmEmail: [null, cUpdateUserValidator.edit.confirmEmail],
+      }, { validator: matchFieldValidator('confirmEmail', 'emailAddress')}),
       phone: [null, cUpdateUserValidator.edit.phone],
       ext: [null, cUpdateUserValidator.edit.ext],
       fax: [null, cUpdateUserValidator.edit.fax],
@@ -64,6 +65,7 @@ export class MspDirectUpdateAccessAdministratorEditComponent implements OnInit {
       changeAdministerFor: [null, cUpdateUserValidator.edit.changeAdministeringFor],
       changeRole: [this.changeRoleOptions[0], cUpdateUserValidator.edit.changeRole],
     });
+    return formGroup;
   }
 
   private removeForm(index: number) {

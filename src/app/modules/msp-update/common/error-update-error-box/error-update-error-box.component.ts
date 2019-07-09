@@ -24,7 +24,7 @@ export class MspDirectUpdateErrorBoxComponent implements OnInit {
 
 
     get isError(): boolean {
-        console.log(this.formControlValidity);
+        // console.log(this.formControlValidity);
         return (this.formControlValidity.required === true
             || this.formControlValidity.other === true) ? true : false;
     }
