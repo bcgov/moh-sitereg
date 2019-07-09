@@ -4,32 +4,32 @@
       concerns about user access to the Ministry of Health web applications. They are responsible for registering users,
       assiging users, assigning and cancelling access persmissions, co-ordinating the installation of the digital
       certificate on users's computers and other responsibilites identified by the Ministry.
-      <b>{{componentInfo}}</b></small>
+    </small>
   </p>
   <hr>
   <div class="row mb-4">
-    <button type='button' class='btn btn-secondary col mr-4' 
-      (click)="formAddNew()">Add Access Administrator</button>
-    <button type='button' class='btn btn-secondary col mx-2' 
-      (click)="formRemoveNew()">Remove Access Administrator</button>
-    <button type='button' class='btn btn-secondary col ml-4' 
-      (click)="formEditNew()">Update Access Administrator</button>
+    <button type='button' class='btn btn-secondary col mr-4' (click)="formAddNew()">Add Access Administrator</button>
+    <button type='button' class='btn btn-secondary col mx-2' (click)="formRemoveNew()">Remove Access
+      Administrator</button>
+    <button type='button' class='btn btn-secondary col ml-4' (click)="formEditNew()">Update Access
+      Administrator</button>
   </div>
 
   <common-page-section layout='noTips' class="pt-4">
-    <sitereg-update-access-admin-remove #formRemove [formState]="formRemoveState" (formArrayChanged)="formRemoveStateChanged($event)"></sitereg-update-access-admin-remove>
+    <sitereg-update-access-admin-remove #formRemove [formState]="formRemoveState"
+      (formArrayChanged)="formRemoveStateChanged($event)"></sitereg-update-access-admin-remove>
   </common-page-section>
 
   <common-page-section layout='noTips' class="pt-4">
-    <sitereg-update-access-admin-add #formAdd [formState]="formAddState" (formArrayChanged)="formAddStateChanged($event)"></sitereg-update-access-admin-add>
+    <sitereg-update-access-admin-add #formAdd [formState]="formAddState"
+      (formArrayChanged)="formAddStateChanged($event)"></sitereg-update-access-admin-add>
   </common-page-section>
 
   <common-page-section layout='noTips' class="pt-4">
-    <sitereg-update-access-admin-edit #formEdit [formState]="formEditState" (formArrayChanged)="formEditStateChanged($event)"></sitereg-update-access-admin-edit>
+    <sitereg-update-access-admin-edit #formEdit [formState]="formEditState"
+      (formArrayChanged)="formEditStateChanged($event)"></sitereg-update-access-admin-edit>
   </common-page-section>
 
 </common-page-framework>
-<common-form-action-bar (btnClick)="continue()"
-                        [submitLabel]="buttonLabel"
-                        [canContinue]='canContinue()'>
+<common-form-action-bar (btnClick)="continue()" [submitLabel]="buttonLabel" [canContinue]='canContinue()'>
 </common-form-action-bar>
