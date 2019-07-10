@@ -42,9 +42,8 @@ export class UpdateStateService {
   getJsonRequestorInfo(formValues) {
     if (formValues) return '';
 
-    // generate signing-authorityistrator-remove object
-    const json: any = {};
-    // from form
+    const json: any = {}; 
+
     json.org_num = formValues && formValues.organizationNumber ? formValues.organizationNumber : '';
     json.org_email = formValues && formValues.emailAddress ? formValues.emailAddress : '';
 

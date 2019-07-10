@@ -315,17 +315,20 @@ export function mapJsonUser(userAction: actionType, formValues) {
     if (userAction === actionType.Add) {
         console.log('mapJson - ' + userAction);
 
-        json.curtesy_title = formValues.userTitle ? formValues.userTitle : '';
         json.firstName = formValues.firstName ? formValues.firstName : '';
-        json.initial = formValues.initial ? formValues.initial : '';
         json.lastName = formValues.lastName ? formValues.lastName : '';
         json.jobTitle = formValues.jobTitle ? formValues.jobTitle : '';
         json.emailAddress = formValues.emailAddress ? formValues.emailAddress : '';
         json.confirmEmail = formValues.confirmEmail ? formValues.confirmEmail : '';
-        json.phone = formValues.phone ? formValues.phone : '';
-        json.ext = formValues.ext ? formValues.ext : '';
-        json.fax = formValues.fax ? formValues.fax : '';
+        json.phone = formValues.phone ? formValues.phone : '';3
         json.administeringFor = mapAdministeringForDef(formValues.administeringFor);
+
+        // Optional
+        if (isValidOptionalField(formValues.userTitle)) json.curtesy_title = formValues.userTitle;
+        if (isValidOptionalField(formValues.initial)) json.initial = formValues.initial;
+        if (isValidOptionalField(formValues.ext)) json.ext = formValues.ext;
+        if (isValidOptionalField(formValues.fax)) json.fax = formValues.fax;
+
     }
 
     if (userAction === actionType.Edit) {
