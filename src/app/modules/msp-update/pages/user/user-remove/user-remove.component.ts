@@ -5,7 +5,7 @@ import {
 } from '../shared/user-shared';
 
 import {
-  validMultiFormControl, formControlValidity, isValidOptionalField
+  validMultiFormControl, formControlValidity, isValidOptionalField, mapJsonUser, actionType, deepCopy
 } from '../../../common/update-validators';
 
 
@@ -73,12 +73,12 @@ export class MspDirectUpdateUserRemoveComponent implements OnInit {
   }
 
 
-  generateJSON(formValues) {
 
-    // generate access-administrator-remove object
-    const json: any = {};
-    json.email = formValues && formValues.emailAddress ? formValues.emailAddress : '';
-    if (isValidOptionalField(formValues.ministryUserId)) json.user_id = formValues.ministryUserId;
+  generateJSON(formValues) {
+    
+    let json: any = {};
+    json = mapJsonUser(actionType.Remove, formValues);
+    json = deepCopy(json, 'user_');
     return json;
   }
 

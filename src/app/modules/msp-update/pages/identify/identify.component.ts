@@ -7,6 +7,7 @@ import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
 import { UpdateStateService } from '../../services/update.state.service';
 import { cUpdateValidators, validMultiFormControl } from '../../common/validators';
+import { isValidOptionalField, funcRandomNumber8Digit, getDateinMMDDYYYY } from '../../common/update-validators';
 
 
 @Component({
@@ -54,7 +55,7 @@ export class MspDirectUpdateIdentifyComponent implements OnInit, AfterViewInit {
         this.loggerSvc.logNavigation(
             this.constructor.name,
             `Valid Data - Continue button clicked. ${
-                this.globalConfigSvc.applicationId
+            this.globalConfigSvc.applicationId
             }`
         );
 
@@ -69,5 +70,22 @@ export class MspDirectUpdateIdentifyComponent implements OnInit, AfterViewInit {
 
     get fg(): FormGroup {
         return this.updateStateService.forms.requestorForm;
+    }
+
+    generateJSON(formValues) {
+        // generate signing-authorityistrator-remove object
+        const json: any = {};
+        // from form
+        json.org_num = formValues && formValues.organizationNumber ? formValues.organizationNumber : '';
+        json.org_email = formValues && formValues.emailAddress ? formValues.emailAddress : '';
+
+        json.request_uuid = this.globalConfigSvc.applicationId;
+        json.request_num = funcRandomNumber8Digit();
+        json.authorizedBySA = 'Y';
+        const dated = new Date();
+        json.authorizedDate = getDateinMMDDYYYY(dated);
+        json.applicationType = 'mspdUpdate';
+        // if (isValidOptionalField(formValues.ministryUserId)) json.user_id = formValues.ministryUserId;
+        return json;
     }
 }

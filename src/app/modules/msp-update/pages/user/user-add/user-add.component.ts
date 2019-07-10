@@ -4,8 +4,8 @@ import {
   cUpdateUserEnumeration, cUpdateUserValidator
 } from '../shared/user-shared';
 
-import { 
-  validMultiFormControl, formControlValidity, isValidOptionalField
+import {
+  validMultiFormControl, formControlValidity, isValidOptionalField, mapAdministeringForDef, mapJsonUser, actionType, deepCopy
 } from '../../../common/update-validators';
 
 @Component({
@@ -87,12 +87,11 @@ export class MspDirectUpdateUserAddComponent implements OnInit {
 
 
   generateJSON(formValues) {
-
     // generate useristrator-remove object
-    const json: any = {};
-    json.email = formValues && formValues.emailAddress ? formValues.emailAddress : '';
-    if (isValidOptionalField(formValues.ministryUserId)) json.user_id = formValues.ministryUserId;
+    let json: any = {};
+    json = mapJsonUser(actionType.Add , formValues);
+    json = deepCopy(json, 'user_');
+
     return json;
   }
-
 }

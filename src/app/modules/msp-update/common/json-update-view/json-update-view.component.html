@@ -1,0 +1,15 @@
+<div class="border border-info mt-4 p-2 " *ngIf="show">
+  <small>debugging purposes only:</small>
+  <div *ngIf="showRaw">
+      Raw:
+    <!--<button (click)="copy()"><i class="fa fa-copy fa-1x pointer"
+        aria-hidden="true"></i></button> -->
+    <ngx-json-viewer [json]="raw" [expanded]="true"></ngx-json-viewer>
+  </div>
+  <div *ngIf="showJson">
+    JSON: 
+    <a (click)="copy()" title="copy json"><i class="fa fa-copy fa-1x"
+        aria-hidden="true"></i></a>
+    <ngx-json-viewer [json]="json" [expanded]="true"></ngx-json-viewer>
+  </div>
+</div>

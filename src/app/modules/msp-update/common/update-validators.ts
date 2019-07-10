@@ -2,6 +2,40 @@ import { AbstractControl, ValidatorFn, FormGroup, ValidationErrors } from '@angu
 
 //#region Validators-Commmon
 
+
+export function copyToClipBoard(content: any) {
+    document.addEventListener('copy', (e: ClipboardEvent) => {
+        e.clipboardData.setData('text/plain', JSON.stringify(content));
+        e.preventDefault();
+        document.removeEventListener('copy', null);
+    });
+    document.execCommand('copy');
+}
+
+export function getDateinMMDDYYYY(date: Date) {
+    let mm: string;
+    let dd: string;
+    let yyyy: string;
+
+    let dateString: string;
+
+    dd = date.getDate().toString();
+    mm = (date.getMonth() + 1).toString();
+    yyyy = date.getFullYear().toString();
+
+    dateString =
+        `${mm.length > 1 ? mm : '0' + mm}` +
+        `-${dd.length > 1 ? dd : '0' + dd}` +
+        `-${yyyy}`;
+
+    return dateString;
+}
+
+
+export function funcRandomNumber8Digit() {
+    return Math.floor(Math.random() * 89999999 + 10000000).toString();
+}
+
 export function emailValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
         // tslint:disable-next-line: max-line-length
@@ -194,5 +228,118 @@ export function groupNumberValidator(): ValidatorFn {
             : null;
     };
 }
+
+//#endregion
+
+
+//#region IAM-Mapping
+
+export function deepCopy(obj: any, prefixProperty: string = ''): any {
+    const newObject = {};
+    Object.keys(obj).forEach((k) => {
+        const newPropertyName = `${prefixProperty}${k}`;
+        newObject[newPropertyName] = obj[k];
+    });
+    return newObject;
+}
+
+
+export function mapYesNoDef(val: boolean): string {
+    if (val) return 'Y';
+    return 'N';
+}
+
+/**
+ * Maps Administring for selected value to middleware defination ^[EIB]$
+ * @param val string Parameter
+ */
+
+export function mapAdministeringForDef(val: string): string {
+    let result = '';
+    switch (val) {
+        case 'Employees': {
+            result = 'E';
+            break;
+        }
+        case 'International Students': {
+            result = 'I';
+            break;
+        }
+        case 'Employees and International Students': {
+            result = 'B';
+            break;
+        }
+    }
+    return result;
+}
+
+/**
+ * Maps Administring for selected value to middleware defination ^[EIB]$
+ * @param val string Parameter
+ */
+
+export function mapChangeRoleDef(val: string): string {
+    let result = '';
+    switch (val) {
+        case 'No Change': {
+            result = 'N';
+            break;
+        }
+        case 'User': {
+            result = 'U';
+            break;
+        }
+        case 'Administrator': {
+            result = 'A';
+            break;
+        }
+        case 'Signing Authority': {
+            result = 'S';
+            break;
+        }
+    }
+    return result;
+}
+
+export const enum actionType {
+    Add,
+    Remove,
+    Edit
+}
+
+export function mapJsonUser(userAction: actionType, formValues) {
+    if (!formValues) return;
+
+    const json: any = {};
+
+    if (userAction === actionType.Add) {
+        console.log('mapJson - ' + userAction);
+
+        json.curtesy_title = formValues.userTitle ? formValues.userTitle : '';
+        json.firstName = formValues.firstName ? formValues.firstName : '';
+        json.initial = formValues.initial ? formValues.initial : '';
+        json.lastName = formValues.lastName ? formValues.lastName : '';
+        json.jobTitle = formValues.jobTitle ? formValues.jobTitle : '';
+        json.emailAddress = formValues.emailAddress ? formValues.emailAddress : '';
+        json.confirmEmail = formValues.confirmEmail ? formValues.confirmEmail : '';
+        json.phone = formValues.phone ? formValues.phone : '';
+        json.ext = formValues.ext ? formValues.ext : '';
+        json.fax = formValues.fax ? formValues.fax : '';
+        json.administeringFor = mapAdministeringForDef(formValues.administeringFor);
+    }
+
+    if (userAction === actionType.Edit) {
+        console.log('mapJson - ' + userAction);
+    }
+    if (userAction === actionType.Remove) {
+        console.log('mapJson - ' + userAction);
+        json.email = formValues && formValues.emailAddress ? formValues.emailAddress : '';
+        if (isValidOptionalField(formValues.ministryUserId)) json.id = formValues.ministryUserId;
+    }
+
+    return json;
+}
+
+
 
 //#endregion

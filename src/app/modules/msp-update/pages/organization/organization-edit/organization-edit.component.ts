@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { cUpdateEnumeration, validMultiFormControl, cUpdateValidators } from '../../../common/validators';
+import { mapAdministeringForDef } from '../../../common/update-validators';
 
 @Component({
   selector: 'sitereg-update-organization-edit',
@@ -13,7 +14,7 @@ export class MspDirectUpdateOrganizationEditComponent implements OnInit {
   parentForm: FormGroup;
   validFormControl: (fg: FormGroup, name: string) => boolean;
   administeringForOptions = cUpdateEnumeration.administeringFor.edit;
-  @Output() statusChanged: EventEmitter< FormGroup | null> = new EventEmitter<FormGroup | null>();
+  @Output() statusChanged: EventEmitter<FormGroup | null> = new EventEmitter<FormGroup | null>();
 
   constructor(private fb: FormBuilder) {
     this.validFormControl = validMultiFormControl;
@@ -29,7 +30,7 @@ export class MspDirectUpdateOrganizationEditComponent implements OnInit {
       for (const controlName in this.parentForm.controls) {
         if (controlName) {
           const control = this.parentForm.get(controlName);
-          if (control && control.status === 'INVALID') console.log(controlName + ' invalid' );
+          if (control && control.status === 'INVALID') console.log(controlName + ' invalid');
         }
       }
     });
@@ -58,5 +59,25 @@ export class MspDirectUpdateOrganizationEditComponent implements OnInit {
       postalCode: [null, cUpdateValidators.organization.postalCode],
       administeringFor: [this.administeringForOptions[0], cUpdateValidators.organization.administeringFor]
     });
+  }
+
+  generateJSON(formValues) {
+    // generate signing-authorityistrator-remove object
+    // #suiteno is missing
+    const json: any = {};
+    json.org_name = formValues.organizationName ? formValues.organizationName : '';
+    // suite no not in schema
+    // json.suite = formValues.suite ? formValues.suite : '';
+    // street no not in schema
+    // json.street = formValues.street ? formValues.street : '';
+    // is street_address is street name
+    json.street_address = formValues.streetName ? formValues.streetName : '';
+    json.address_2 = formValues.addressLine2 ? formValues.addressLine2 : '';
+    json.city = formValues.city ? formValues.city : '';
+    json.province = formValues.province ? formValues.province : '';
+    json.postalCode = formValues.postalCode ? formValues.postalCode : '';
+    json.org_spg = mapAdministeringForDef(formValues.administeringFor);
+    // if (isValidOptionalField(formValues.ministryUserId)) json.user_id = formValues.ministryUserId;
+    return json;
   }
 }

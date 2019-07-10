@@ -40,6 +40,7 @@ import { MspRegisterModule } from '../msp-register/msp-register.module';
 import { MspUpdateReviewComponent } from './pages/review/review.component';
 import { ReviewSectionComponent } from './components/review-section/review-section.component';
 import { MspDirectUpdateErrorBoxComponent } from './common/error-update-error-box/error-update-error-box.component';
+import { JsonUpdateViewComponent } from './common/json-update-view/json-update-view.component';
 
 
 
@@ -82,6 +83,7 @@ import { MspDirectUpdateErrorBoxComponent } from './common/error-update-error-bo
         MspDirectUpdateConfirmationComponent,
         MspUpdateReviewComponent,
         ReviewSectionComponent,
+        JsonUpdateViewComponent,
     ],
     imports: [
         CommonModule,
