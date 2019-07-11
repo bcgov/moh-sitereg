@@ -27,7 +27,8 @@
         "directMspAccess": true
     },
     
-    "accessAdminsPage": {
+    "accessAdminsPage": [
+    {
         "title": "Mr.",
         "firstName": "John",
         "initial": "S.",
@@ -39,28 +40,81 @@
         "fax": 2501234568,
         "administeringFor": "Employees"
     },
-
-    "usersPage": {
+    {
+        "title": "Mr.",
+        "firstName": "Joseph",
+        "initial": "S.",
+        "lastName": "Doe",
+        "jobTitle": "Programmer",
+        "email": "josephdoe@example.com",
+        "mobile": 2501234567,
+        "extension": 123,
+        "fax": 2501234568,
+        "administeringFor": "Employees" 
+    },
+    {
         "title": "Mrs.",
         "firstName": "Jane",
         "initial": "S.",
         "lastName": "Doe",
         "jobTitle": "Programmer",
         "email": "janedoe@example.com",
-        "mobile": 2501234569,
+        "mobile": 2501234567,
         "extension": 123,
-        "fax": 2501234570,
-        "administeringFor": "Employees"
-    },
-
-    "childPage": {
-        "children": [
-            {"name": "bob"}
-        ]
-    },
-
-    "groupNumbersPage": {
-        "groupNum": 1234567
+        "fax": 2501234568,
+        "administeringFor": "Employees" 
     }
+    ],
+
+    "usersPage": [
+        {
+            "title": "Mr.",
+            "firstName": "John",
+            "initial": "S.",
+            "lastName": "Doe",
+            "jobTitle": "Programmer",
+            "email": "johndoe@example.com",
+            "mobile": 2501234567,
+            "extension": 123,
+            "fax": 2501234568,
+            "administeringFor": "Employees"
+        },
+        {
+            "title": "Mr.",
+            "firstName": "Joseph",
+            "initial": "S.",
+            "lastName": "Doe",
+            "jobTitle": "Programmer",
+            "email": "josephdoe@example.com",
+            "mobile": 2501234567,
+            "extension": 123,
+            "fax": 2501234568,
+            "administeringFor": "Employees" 
+        },
+        {
+            "title": "Mrs.",
+            "firstName": "Jane",
+            "initial": "S.",
+            "lastName": "Doe",
+            "jobTitle": "Programmer",
+            "email": "janedoe@example.com",
+            "mobile": 2501234567,
+            "extension": 123,
+            "fax": 2501234568,
+            "administeringFor": "Employees" 
+        }
+        ],
+
+    "groupNumbersPage": [
+        {
+            "groupNum": 1234567
+        },
+        {
+            "groupNum": 9090909
+        },
+        {
+            "groupNum": 8888777
+        }
+    ] 
     
 }

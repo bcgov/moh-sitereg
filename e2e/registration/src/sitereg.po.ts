@@ -20,8 +20,8 @@ export class BaseSiteRegTestPage extends AbstractTestPage {
     }
 
     selectValue(label: string, value: string) {
-        element(by.css(`select[ng-reflect-name="${label}"]`)).click(); // opens dropdown
-        element(by.css(`select[ng-reflect-name="${label}"] option[ng-reflect-value="${value}"]`)).click();
+        element.all(by.css(`select[ng-reflect-name="${label}"]`)).first().click(); // opens dropdown
+        element.all(by.css(`select[ng-reflect-name="${label}"] option[ng-reflect-value="${value}"]`)).first().click();
     }
 
     clickButton(value: string) {
@@ -176,26 +176,26 @@ export class SigningAuthorityPage extends BaseSiteRegTestPage {
     fillPage() {
         const json = this.jsonData.signingAuthorityPage;
         this.selectValue('userTitle', json.title);
-        this.fillInfo();
+        this.fillInfo(0);
         this.scrollDown();
         this.selectValue('administeringFor', json.administeringFor);
         this.clickOptionJSON('directMspAccess', json.directMspAccess.toString());
         this.continue();
     }
 
-    fillInfo(data?: SigningAuthorityPageTest) {
+    fillInfo(i: number, data?: SigningAuthorityPageTest) {
         let info = data;
         if (data === undefined) {
             info = this.jsonData.accessAdminsPage;
         }
-        this.typeTextFirstOccurrence('firstName', info.firstName);
-        this.typeTextFirstOccurrence('lastName', info.lastName);
-        this.typeTextFirstOccurrence('jobTitle', info.jobTitle);
-        this.typeTextFirstOccurrence('emailAddress', info.email);
-        this.typeTextFirstOccurrence('confirmEmail', info.email);
-        this.typeTextFirstOccurrence('phone', info.mobile + '');
-        this.typeTextFirstOccurrence('ext', info.extension + '');
-        this.typeTextFirstOccurrence('fax', info.fax + '');
+        this.typeTextFirstOccurrence('firstName', info[i].firstName);
+        this.typeTextFirstOccurrence('lastName', info[i].lastName);
+        this.typeTextFirstOccurrence('jobTitle', info[i].jobTitle);
+        this.typeTextFirstOccurrence('emailAddress', info[i].email);
+        this.typeTextFirstOccurrence('confirmEmail', info[i].email);
+        this.typeTextFirstOccurrence('phone', info[i].mobile + '');
+        this.typeTextFirstOccurrence('ext', info[i].extension + '');
+        this.typeTextFirstOccurrence('fax', info[i].fax + '');
     }
 
 }
@@ -211,7 +211,14 @@ export class AccessAdminsPage extends SigningAuthorityPage {
     }
 
     fillPage() {
-
+        const json = this.jsonData.usersPage;
+        for (let i = 1; i < json.length; i++) { // starts with 1 because the first admin is already filled out
+            this.clickButton('btn btn-block');
+            this.fillInfo(i);
+            this.selectValue('administeringFor', json[i].administeringFor);
+            this.scrollUp();
+        }
+        this.continue();
     }
 
 }
@@ -228,10 +235,12 @@ export class UsersPage extends SigningAuthorityPage {
 
     fillPage() {
         const json = this.jsonData.usersPage;
-        this.clickButton('btn btn-block');
-        this.fillInfo();
-        this.scrollDown();
-        this.selectValue('administeringFor', json.administeringFor);
+        for (let i = 0; i < json.length; i++) {
+            this.clickButton('btn btn-block');
+            this.fillInfo(i);
+            this.selectValue('administeringFor', json[i].administeringFor);
+            this.scrollUp();
+        }
         this.continue();
     }
 
@@ -248,16 +257,23 @@ export class GroupNumbersPage extends BaseSiteRegTestPage {
     }
 
     fillPage() {
-        this.fillGroupNum();
+        const json = this.jsonData.groupNumbersPage;
+        for (let i = 0; i < json.length; i++) {
+            this.fillGroupNum(i);
+            this.scrollUp();
+            if (i !== json.length - 1){
+                this.clickButton('btn-block');
+            }
+        }
         this.continue();
     }
 
-    fillGroupNum(data?: GroupNumbersPageTest) {
+    fillGroupNum(i: number, data?: GroupNumbersPageTest) {
         let info = data;
         if (data === undefined) {
             info = this.jsonData.groupNumbersPage;
         }
-        this.typeText('groupNumber', info.groupNum + '');
+        this.typeTextFirstOccurrence('groupNumber', info[i].groupNum + '');
     }
 }
 

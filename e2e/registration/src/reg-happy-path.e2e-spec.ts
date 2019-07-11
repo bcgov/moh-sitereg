@@ -40,7 +40,7 @@ describe('Moh SiteReg - End to End Test (Happy Path)', () => {
         expect(browser.getCurrentUrl()).toContain(SA_PAGE_URL, 'should continue to the Signing Authority Page');
         saPage.fillPage();
         expect(browser.getCurrentUrl()).toContain(AA_PAGE_URL, 'should continue to the Access Admins Page');
-        aaPage.continue(); // This page is already auto-filled out so no need to call fillPage()
+        aaPage.fillPage();
         expect(browser.getCurrentUrl()).toContain(USERS_PAGE_URL, 'should continue to the Users Page');
         usersPage.fillPage();
         expect(browser.getCurrentUrl()).toContain(GROUP_PAGE_URL, 'should continue to the Group Page');

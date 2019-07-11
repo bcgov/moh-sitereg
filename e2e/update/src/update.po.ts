@@ -125,7 +125,7 @@ export class UsersPage extends BaseDevUpdateTestPage {
     navigateTo() {
         return browser.get('/sitereg/update/users');
     }
-    
+
 }
 
 export class GroupNumbersPage extends BaseDevUpdateTestPage {
