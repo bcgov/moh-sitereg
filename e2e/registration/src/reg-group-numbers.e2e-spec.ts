@@ -64,5 +64,8 @@ describe('Moh SiteReg - Group Numbers Page', () => {
         expect(browser.getCurrentUrl()).toContain(GROUP_PAGE_URL, 'should stay on the same page');
     });
 
+
+    // should show the "Will this group be administered?" question if the user selected 3rd party administrators on the Organization page
+
 });
 

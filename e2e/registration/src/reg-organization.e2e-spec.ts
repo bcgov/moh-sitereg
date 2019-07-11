@@ -101,6 +101,8 @@ fdescribe('Moh SiteReg - Organization Page', () => {
         orgPage.continue();
     });
 
-    // 09. should show all states when US is selected -> NO OPTION TO SELECT A COUNTRY
+    // should not be able to continue without agreeing to information consent modal
+    // should require org number if user says yes to 3rd party
+
 
 });

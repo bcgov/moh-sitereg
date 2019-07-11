@@ -55,4 +55,5 @@ describe('Moh SiteReg - Signing Authority Page', () => {
         expect(browser.getCurrentUrl()).toContain(SA_PAGE_URL, 'should still be on the same page');
     });
 
+    // should make sure emails are the same
 });
