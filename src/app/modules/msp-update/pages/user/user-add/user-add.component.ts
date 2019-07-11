@@ -5,8 +5,10 @@ import {
 } from '../shared/user-shared';
 
 import {
-  validMultiFormControl, formControlValidity, isValidOptionalField, mapAdministeringForDef, mapJsonUser, actionType, deepCopy
+  validMultiFormControl, formControlValidity,
 } from '../../../common/update-validators';
+
+import { getAddJsonOfMspUser } from '../shared/user-shared-json-map';
 
 @Component({
   selector: 'sitereg-update-user-add',
@@ -25,11 +27,13 @@ export class MspDirectUpdateUserAddComponent implements OnInit {
 
   userTitles = cUpdateUserEnumeration.userTitles;
   administeringForOptions = cUpdateUserEnumeration.administeringFor.add;
+  json: (formValues: any) => any;
 
 
   constructor(private fb: FormBuilder) {
     this.validFormControl = validMultiFormControl;
     this.formControlValidity = formControlValidity;
+    this.json = getAddJsonOfMspUser;
   }
 
   ngOnInit() {
@@ -83,15 +87,5 @@ export class MspDirectUpdateUserAddComponent implements OnInit {
     console.log('Adding new Form');
     this.getFormsArray.insert(0, this.createArrayForm());
     this.formArrayChanged.emit(this.parentForm);
-  }
-
-
-  generateJSON(formValues) {
-    // generate useristrator-remove object
-    let json: any = {};
-    json = mapJsonUser(actionType.Add , formValues);
-    json = deepCopy(json, 'user_');
-
-    return json;
   }
 }

@@ -5,9 +5,10 @@ import {
 } from '../shared/signing-authority-shared';
 
 import {
-  validMultiFormControl, formControlValidity, isValidOptionalField
+  validMultiFormControl, formControlValidity
 } from '../../../common/update-validators';
 
+import * as jsonMaps from '../../../common/update-json-map';
 
 @Component({
   selector: 'sitereg-update-signing-authority-remove',
@@ -77,7 +78,7 @@ export class MspDirectUpdateSigningAuthorityRemoveComponent implements OnInit {
     // generate access-administrator-remove object
     const json: any = {};
     json.email = formValues && formValues.emailAddress ? formValues.emailAddress : '';
-    if (isValidOptionalField(formValues.ministryUserId)) json.user_id = formValues.ministryUserId;
+    if (jsonMaps.isValidOptionalField(formValues.ministryUserId)) json.user_id = formValues.ministryUserId;
     return json;
   }
 

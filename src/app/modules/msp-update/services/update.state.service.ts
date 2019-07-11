@@ -3,7 +3,8 @@ import { UpdatePerson } from '@core/models/person.model';
 import { FormGroup } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { format } from 'path';
-import { funcRandomNumber8Digit, getDateinMMDDYYYY, mapAdministeringForDef } from '../common/update-validators';
+import { funcRandomNumber8Digit, getDateinMMDDYYYY} from '../common/update-validators';
+import * as jsonMaps from '../common/update-json-map';
 
 @Injectable({
   providedIn: 'root',
@@ -72,7 +73,7 @@ export class UpdateStateService {
     json.city = formValues.city ? formValues.city : '';
     json.province = formValues.province ? formValues.province : '';
     json.postalCode = formValues.postalCode ? formValues.postalCode : '';
-    json.org_spg = mapAdministeringForDef(formValues.administeringFor);
+    json.org_spg = jsonMaps.mapAdministeringForDef(formValues.administeringFor);
     // if (isValidOptionalField(formValues.ministryUserId)) json.user_id = formValues.ministryUserId;
     return json;
   }

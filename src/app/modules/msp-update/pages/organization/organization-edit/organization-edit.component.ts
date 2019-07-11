@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { cUpdateEnumeration, validMultiFormControl, cUpdateValidators } from '../../../common/validators';
-import { mapAdministeringForDef } from '../../../common/update-validators';
+
+import * as jsonMaps from '../../../common/update-json-map';
 
 @Component({
   selector: 'sitereg-update-organization-edit',
@@ -76,7 +77,7 @@ export class MspDirectUpdateOrganizationEditComponent implements OnInit {
     json.city = formValues.city ? formValues.city : '';
     json.province = formValues.province ? formValues.province : '';
     json.postalCode = formValues.postalCode ? formValues.postalCode : '';
-    json.org_spg = mapAdministeringForDef(formValues.administeringFor);
+    json.org_spg = jsonMaps.mapAdministeringForDef(formValues.administeringFor);
     // if (isValidOptionalField(formValues.ministryUserId)) json.user_id = formValues.ministryUserId;
     return json;
   }

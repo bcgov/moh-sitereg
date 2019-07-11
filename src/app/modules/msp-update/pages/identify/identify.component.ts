@@ -7,8 +7,9 @@ import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
 import { UpdateStateService } from '../../services/update.state.service';
 import { cUpdateValidators, validMultiFormControl } from '../../common/validators';
-import { isValidOptionalField, funcRandomNumber8Digit, getDateinMMDDYYYY } from '../../common/update-validators';
+import { funcRandomNumber8Digit, getDateinMMDDYYYY } from '../../common/update-validators';
 
+import * as jsonMaps from '../../common/update-json-map';
 
 @Component({
     selector: 'sitereg-msp-update-identify',

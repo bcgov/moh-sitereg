@@ -5,7 +5,7 @@ import {
 } from '../shared/signing-authority-shared';
 
 import { 
-  validMultiFormControl, formControlValidity, isValidOptionalField, matchFieldValidator
+  validMultiFormControl, formControlValidity, matchFieldValidator
 } from '../../../common/update-validators';
 
 
@@ -107,13 +107,5 @@ export class MspDirectUpdateSigningAuthorityEditComponent implements OnInit {
     formGroup.updateValueAndValidity();
   }
 
-  generateJSON(formValues) {
-
-    // generate signing-authorityistrator-remove object
-    const json: any = {};
-    json.email = formValues && formValues.emailAddress ? formValues.emailAddress : '';
-    if (isValidOptionalField(formValues.ministryUserId)) json.user_id = formValues.ministryUserId;
-    return json;
-  }
 
 }
