@@ -94,7 +94,7 @@ export class BaseSiteRegTestPage extends AbstractTestPage {
         } else {
             ngVal = 'No';
         }
-        element(by.css(selector)).element(by.xpath('..')).element(by.cssContainingText('label', `${ngVal}`)).click();
+        element.all(by.css(selector)).first().element(by.xpath('..')).element(by.cssContainingText('label', `${ngVal}`)).click();
     }
 
 }
@@ -175,7 +175,6 @@ export class SigningAuthorityPage extends BaseSiteRegTestPage {
 
     fillPage() {
         const json = this.jsonData.signingAuthorityPage;
-        this.selectValue('userTitle', json.title);
         this.fillInfo(0);
         this.scrollDown();
         this.selectValue('administeringFor', json.administeringFor);
@@ -188,11 +187,13 @@ export class SigningAuthorityPage extends BaseSiteRegTestPage {
         if (data === undefined) {
             info = this.jsonData.accessAdminsPage;
         }
+        this.selectValue('userTitle', info[i].title);
         this.typeTextFirstOccurrence('firstName', info[i].firstName);
+        this.typeTextFirstOccurrence('initial', info[i].initial);
         this.typeTextFirstOccurrence('lastName', info[i].lastName);
         this.typeTextFirstOccurrence('jobTitle', info[i].jobTitle);
         this.typeTextFirstOccurrence('emailAddress', info[i].email);
-        this.typeTextFirstOccurrence('confirmEmail', info[i].email);
+        this.typeTextFirstOccurrence('confirmEmail', info[i].confirmEmail);
         this.typeTextFirstOccurrence('phone', info[i].mobile + '');
         this.typeTextFirstOccurrence('ext', info[i].extension + '');
         this.typeTextFirstOccurrence('fax', info[i].fax + '');
@@ -274,6 +275,7 @@ export class GroupNumbersPage extends BaseSiteRegTestPage {
             info = this.jsonData.groupNumbersPage;
         }
         this.typeTextFirstOccurrence('groupNumber', info[i].groupNum + '');
+        this.clickOptionJSON('thirdParty', info[i].thirdParty.toString());
     }
 }
 

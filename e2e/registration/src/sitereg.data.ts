@@ -25,7 +25,9 @@ export class FakeDataSiteReg {
 
     signingAuthorityInfo(): SigningAuthorityPageTest {
         return {
+            title: 'Mr.',
             firstName: faker.name.firstName(),
+            initial: 'S',
             lastName: faker.name.lastName(),
             jobTitle: faker.name.jobTitle(),
             email: faker.internet.email(),
@@ -104,7 +106,9 @@ export interface OrganizationPageTest {
 }
 
 export interface SigningAuthorityPageTest {
+    title: string;
     firstName: string;
+    initial: string;
     lastName: string;
     jobTitle: string;
     email: string;

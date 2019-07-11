@@ -3,7 +3,8 @@
         "orgName": "Company Inc.",
         "suiteNo": "123",
         "streetNo": "456",
-        "streetName": "Douglas St.",
+        "streetName": "Government St.",
+        "streetAddressLine": "Douglas Road",
         "city": "Victoria",
         "province": "British Columbia",
         "postal": "A1A1A1",
@@ -20,53 +21,15 @@
         "lastName": "Doe",
         "jobTitle": "Programmer",
         "email": "johndoe@example.com",
+        "confirmEmail": "johndoe@example.com",
         "mobile": 2501234567,
         "extension": 123,
         "fax": 2501234568,
         "administeringFor": "Employees",
         "directMspAccess": true
     },
-    
-    "accessAdminsPage": [
-    {
-        "title": "Mr.",
-        "firstName": "John",
-        "initial": "S.",
-        "lastName": "Doe",
-        "jobTitle": "Programmer",
-        "email": "johndoe@example.com",
-        "mobile": 2501234567,
-        "extension": 123,
-        "fax": 2501234568,
-        "administeringFor": "Employees"
-    },
-    {
-        "title": "Mr.",
-        "firstName": "Joseph",
-        "initial": "S.",
-        "lastName": "Doe",
-        "jobTitle": "Programmer",
-        "email": "josephdoe@example.com",
-        "mobile": 2501234567,
-        "extension": 123,
-        "fax": 2501234568,
-        "administeringFor": "Employees" 
-    },
-    {
-        "title": "Mrs.",
-        "firstName": "Jane",
-        "initial": "S.",
-        "lastName": "Doe",
-        "jobTitle": "Programmer",
-        "email": "janedoe@example.com",
-        "mobile": 2501234567,
-        "extension": 123,
-        "fax": 2501234568,
-        "administeringFor": "Employees" 
-    }
-    ],
 
-    "usersPage": [
+    "accessAdminsPage": [
         {
             "title": "Mr.",
             "firstName": "John",
@@ -74,6 +37,7 @@
             "lastName": "Doe",
             "jobTitle": "Programmer",
             "email": "johndoe@example.com",
+            "confirmEmail": "johndoe@example.com",
             "mobile": 2501234567,
             "extension": 123,
             "fax": 2501234568,
@@ -86,6 +50,7 @@
             "lastName": "Doe",
             "jobTitle": "Programmer",
             "email": "josephdoe@example.com",
+            "confirmEmail": "josephdoe@example.com",
             "mobile": 2501234567,
             "extension": 123,
             "fax": 2501234568,
@@ -98,22 +63,68 @@
             "lastName": "Doe",
             "jobTitle": "Programmer",
             "email": "janedoe@example.com",
+            "confirmEmail": "janedoe@example.com",
             "mobile": 2501234567,
             "extension": 123,
             "fax": 2501234568,
             "administeringFor": "Employees" 
         }
-        ],
+    ],
+
+    "usersPage": [
+        {
+            "title": "Mr.",
+            "firstName": "John",
+            "initial": "S.",
+            "lastName": "Doe",
+            "jobTitle": "Programmer",
+            "email": "johndoe@example.com",
+            "confirmEmail": "johndoe@example.com",
+            "mobile": 2501234567,
+            "extension": 123,
+            "fax": 2501234568,
+            "administeringFor": "Employees"
+        },
+        {
+            "title": "Mr.",
+            "firstName": "Joseph",
+            "initial": "S.",
+            "lastName": "Doe",
+            "jobTitle": "Programmer",
+            "email": "josephdoe@example.com",
+            "confirmEmail": "josephdoe@example.com",
+            "mobile": 2501234567,
+            "extension": 123,
+            "fax": 2501234568,
+            "administeringFor": "Employees" 
+        },
+        {
+            "title": "Mrs.",
+            "firstName": "Jane",
+            "initial": "S.",
+            "lastName": "Doe",
+            "jobTitle": "Programmer",
+            "email": "janedoe@example.com",
+            "confirmEmail": "janedoe@example.com",
+            "mobile": 2501234567,
+            "extension": 123,
+            "fax": 2501234568,
+            "administeringFor": "Employees" 
+        }
+    ],
 
     "groupNumbersPage": [
         {
-            "groupNum": 1234567
+            "groupNum": 1234567,
+            "thirdParty": true
         },
         {
-            "groupNum": 9090909
+            "groupNum": 9090909,
+            "thirdParty": false
         },
         {
-            "groupNum": 8888777
+            "groupNum": 8888777,
+            "thirdParty": true
         }
     ] 
     
