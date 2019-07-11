@@ -1,8 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
-import { validMultiFormControl, isValidOptionalField } from '@msp-register/models/validator-helpers';
-import { cUpdateValidators } from '@msp-register/models/core/core-types';
-import { groupNumberValidator } from '../../../common/validators';
+import { groupNumberValidator, cUpdateValidators, validMultiFormControl, isValidOptionalField } from '../../../common/validators';
 
 @Component({
   selector: 'sitereg-update-group-add',
@@ -39,11 +37,7 @@ export class MspDirectUpdateGroupAddComponent implements OnInit {
 
   private createArrayForm() {
     return this.fb.group({
-      groupNo: ['', [
-        Validators.required,
-        Validators.minLength(7),
-        groupNumberValidator,
-      ]],
+      groupNo: ['', cUpdateValidators.group.groupNo],
       thirdPartyAdmin: ['', Validators.required]
     });
   }

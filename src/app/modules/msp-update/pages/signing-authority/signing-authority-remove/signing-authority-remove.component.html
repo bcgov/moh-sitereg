@@ -1,0 +1,45 @@
+<form [formGroup]="parentForm">
+  <div formArrayName="arrayOfForms" *ngFor="let fg of getFormsArray.controls; let formIndex=index">
+
+    <form [formGroupName]='formIndex'>
+
+      <common-xicon-button class='d-block pb-1' label="Cancel Remove Signing Authority" (clickEvent)="removeForm(i)">
+      </common-xicon-button>
+      <h3 class='border-bottom'>Remove Signing Authority</h3>
+      <p><small>Signing Authority information</small></p>
+
+      <div class='form-group col-sm-8 p-sm-0'>
+
+        <label for='emailAddress_{{formIndex}}'>Enter the email of the Signing Authority to remove</label>
+        <input type='text' class='form-control' name='emailAddress_{{formIndex}}' formControlName='emailAddress'
+          id='emailAddress_{{formIndex}}' placeholder="example@example.com" maxlength="100">
+
+        <sitereg-update-error-box [formControlValidity]="formControlValidity(fg,'emailAddress')"
+          formControlLabel="Email" errorMessage="Please provide valid email address.">
+        </sitereg-update-error-box>
+
+      <label for='ministryUserId_{{formIndex}}'>Ministry asigned User ID (optional)</label>
+      <input type='text' class='form-control' name='ministryUserId_{{formIndex}}' formControlName='ministryUserId'
+        id='ministryUserId_{{formIndex}}' placeholder="Ministry provided User Id" maxlength="20">
+
+      <sitereg-update-error-box [formControlValidity]="formControlValidity(fg,'ministryUserId')"
+      formControlLabel="Ministry asigned User ID" errorMessage="Please provide valid Ministry assigned User Id.">
+      </sitereg-update-error-box>
+
+
+      <!-- <div class="border border-info mt-4 p-2 ">
+
+          <b>FORM :</b>
+          {{fg.value | json}}
+          <hr />
+          <b>JSON :</b>
+          {{generateJSON(fg.value) | json}}
+
+        </div> -->
+
+  </div>
+</form>
+
+
+</div>
+</form>

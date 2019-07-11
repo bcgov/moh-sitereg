@@ -1,7 +1,5 @@
 <common-page-framework layout='blank'>
-  <sitereg-msp-register-h2-with-print *ngIf="status" title="Confirmation Message"></sitereg-msp-register-h2-with-print>
-  <!-- <h2 *ngIf="status" class="border-bottom">Confirmation Message</h2> -->
-
+  <sitereg-msp-register-h2-with-print *ngIf="status"></sitereg-msp-register-h2-with-print>
   <div class='mb-2' *ngIf="status">
     <div class='row mb-4 mt-4 pl-4 pt-4 pb-4 border-success-custom'>
 
@@ -41,10 +39,10 @@
         </span>
       </div>
       <div class='col-md-4'>
-        <span style="font-size: 1.25rem;">Your application has not submitted.</span>
+        <span style="font-size: 1.25rem;">Your application did not submit successfully. Please try submitting your application again.</span>
         <br />
-        <span>If you have questions, contact <a
-          href="mailto:HLTH.HnetConnection@gov.bc.ca">HLTH.HnetConnection@gov.bc.ca</a>.</span>
+        <span>If you continue to receive error messages, or if you have questions, contact: <a
+          href="mailto:HTLH.HnetConnection@gov.bc.ca">HLTH.HnetConnection@gov.bc.ca</a>.</span>
       </div>
     </div>
   </div>

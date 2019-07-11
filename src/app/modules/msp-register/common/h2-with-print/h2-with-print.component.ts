@@ -6,9 +6,6 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./h2-with-print.component.scss']
 })
 export class MspRegisterH2WithPrintComponent implements OnInit {
-
-  @Input() title: string;
-
   constructor() { }
 
   ngOnInit() {

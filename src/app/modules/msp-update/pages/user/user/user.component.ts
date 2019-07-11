@@ -1,31 +1,33 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { MspDirectUpdateProgressService } from '../../../services/progress.service';
 import { ROUTES_UPDATE } from '../../../routing/routes.constants';
-import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
-import { UpdateStateService } from '../../../services/update.state.service';
 import { funcRemoveStrings } from '@msp-register/constants';
 import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
-import { MspDirectUpdateAccessAdministratorRemoveComponent } from '../../access-admin/access-admin-remove/access-admin-remove.component';
+import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
+import { UpdateStateService } from '../../../services/update.state.service';
+import { MspDirectUpdateUserRemoveComponent } from '../user-remove/user-remove.component';
+import { MspDirectUpdateUserAddComponent } from '../user-add/user-add.component';
+import { MspDirectUpdateUserEditComponent } from '../user-edit/user-edit.component';
 
 @Component({
     selector: 'sitereg-msp-update-user',
     templateUrl: './user.component.html',
     styleUrls: ['./user.component.scss'],
 })
-export class MspDirectUpdateUserComponent implements OnInit {
+export class MspDirectUpdateUserComponent implements OnInit{
 
 
     public validFormControl: (fg: FormGroup, name: string) => boolean;
-    public showAddAccessAdmin = false;
-    public showRemoveAccessAdmin = false;
-    public showUpdateAccessAdmin = false;
+    public showAddUser = false;
+    public showRemoveUser = false;
+    public showUpdateUser = false;
 
     private get isUpdate(): boolean {
-        return !(this.showAddAccessAdmin === false &&
-            this.showRemoveAccessAdmin === false &&
-            this.showUpdateAccessAdmin === false);
+        return !(this.showAddUser === false &&
+            this.showRemoveUser === false &&
+            this.showUpdateUser === false);
     }
 
     get buttonLabel(): string {
@@ -72,55 +74,92 @@ export class MspDirectUpdateUserComponent implements OnInit {
             }`
         );
         this.progressService.setPageComplete();
-        this.router.navigate([ROUTES_UPDATE.USERS.fullpath]);
+        this.router.navigate([ROUTES_UPDATE.GROUP_NUMBERS.fullpath]);
     }
 
     get addFg(): FormGroup {
-        return this.updateStateService.forms.mspAccessAdministrators.add;
+        return this.updateStateService.forms.mspUsers.add;
     }
 
     get updateFg(): FormGroup {
-        return this.updateStateService.forms.mspAccessAdministrators.update;
+        return this.updateStateService.forms.mspUsers.update;
     }
 
     addAccessAdmin() {
-        this.showAddAccessAdmin = true;
+        this.showAddUser = true;
     }
 
     updateAccessAdmin() {
-        this.showUpdateAccessAdmin = true;
+        this.showUpdateUser = true;
     }
 
     cancelAddAccessAdmin() {
-        this.showAddAccessAdmin = false;
-        this.updateStateService.forms.mspAccessAdministrators.add = null;
+        this.showAddUser = false;
+        this.updateStateService.forms.mspUsers.add = null;
     }
 
     cancelUpdateAccessAdmin() {
-        this.showUpdateAccessAdmin = false;
-        this.updateStateService.forms.mspAccessAdministrators.update = null;
+        this.showUpdateUser = false;
+        this.updateStateService.forms.mspUsers.update = null;
     }
+
+
+    //#region Edit
+
+    // tslint:disable-next-line: member-ordering
+    @ViewChild(MspDirectUpdateUserEditComponent)
+    formEdit: MspDirectUpdateUserEditComponent;
+
+    get formEditState(): FormGroup {
+        return this.updateStateService.forms.mspUsers.update;
+    }
+
+    formEditStateChanged(formGroups: any) {
+        this.updateStateService.forms.mspUsers.update = formGroups;
+        this.showUpdateUser = this.formEdit.getFormsCount > 0 ? true : false;
+    }
+
+    formEditNew() {
+        this.formEdit.newForm();
+    }
+
+    //#endregion
+
+    //#region Add
+
+    // tslint:disable-next-line: member-ordering
+    @ViewChild(MspDirectUpdateUserAddComponent)
+    formAdd: MspDirectUpdateUserAddComponent;
+
+    get formAddState(): FormGroup {
+        return this.updateStateService.forms.mspUsers.add;
+    }
+
+    formAddStateChanged(formGroups: any) {
+        this.updateStateService.forms.mspUsers.add = formGroups;
+        this.showAddUser = this.formAdd.getFormsCount > 0 ? true : false;
+    }
+
+    formAddNew() {
+        this.formAdd.newForm();
+    }
+
+    //#endregion
+
 
     //#region REMOVE
 
-    /**
-     * update following 
-     * #removeForm  - define a view child component
-     * [stateForm]="removeStateForm"  - provide udpated state managment
-     * (formArrayChanged)="stateUpdated('REMOVE',$event)"></sitereg-update-access-admin-remove>
-     */
-
     // tslint:disable-next-line: member-ordering
-    @ViewChild(MspDirectUpdateAccessAdministratorRemoveComponent)
-    formRemove: MspDirectUpdateAccessAdministratorRemoveComponent;
+    @ViewChild(MspDirectUpdateUserRemoveComponent)
+    formRemove: MspDirectUpdateUserRemoveComponent;
 
     get formRemoveState(): FormGroup {
-        return this.updateStateService.forms.mspAccessAdministrators.remove;
+        return this.updateStateService.forms.mspUsers.remove;
     }
 
     formRemoveStateChanged(formGroups: any) {
-        this.updateStateService.forms.mspAccessAdministrators.remove = formGroups;
-        this.showRemoveAccessAdmin = this.formRemove.getFormsCount > 0 ? true : false;
+        this.updateStateService.forms.mspUsers.remove = formGroups;
+        this.showRemoveUser = this.formRemove.getFormsCount > 0 ? true : false;
     }
 
     formRemoveNew() {

@@ -12,7 +12,7 @@
       <!-- First Name -->
       <div class="col-sm-8">
         <label class="control-label" for="firstName_{{formIndex}}">First Name</label>
-        <input id="firstName_{{formIndex}}" formControlName="firstName" class="form-control" placeholder="First Name" maxlength="100">
+        <input id="firstName_{{formIndex}}" formControlName="firstName" class="form-control" maxlength="100">
         <sitereg-error-box [error]="validFormControl(fg,'firstName')"
           errorMessage="First name is required. Please provide valid first name."></sitereg-error-box>
       </div>
@@ -22,7 +22,7 @@
 
         <!-- Int (optional)-->
         <label class="control-label" for="initial_{{formIndex}}">Initial (optional)</label>
-        <input id="initial_{{formIndex}}" formControlName="initial" class="form-control" placeholder="Initial" maxlength="1">
+        <input id="initial_{{formIndex}}" formControlName="initial" class="form-control" maxlength="1">
         <sitereg-error-box [error]="validFormControl(fg,'initial')" errorMessage="One character"></sitereg-error-box>
 
       </div>
@@ -30,7 +30,7 @@
 
         <!-- Last Name -->
         <label class="control-label" for="lastName_{{formIndex}}">Last Name</label>
-        <input id="lastName_{{formIndex}}" formControlName="lastName" class="form-control" placeholder="Last Name" maxlength="100">
+        <input id="lastName_{{formIndex}}" formControlName="lastName" class="form-control" maxlength="100">
         <sitereg-error-box [error]="validFormControl(fg,'lastName')"
           errorMessage="Last Name is required. Please provide valid last name."></sitereg-error-box>
       </div>
@@ -38,20 +38,20 @@
 
     <!-- Job Title -->
     <label class="control-label" for="jobTitle_{{formIndex}}">Job Title</label>
-    <input id="jobTitle_{{formIndex}}" formControlName="jobTitle" class="form-control" placeholder="Job Title" maxlength="100">
+    <input id="jobTitle_{{formIndex}}" formControlName="jobTitle" class="form-control" maxlength="100">
     <sitereg-error-box [error]="validFormControl(fg,'jobTitle')"
       errorMessage="Job title is required. Please provide valid job title."></sitereg-error-box>
 
     <!-- Email Address -->
     <label class="control-label" for="emailAddress_{{formIndex}}">Email Address</label>
-    <input id="emailAddress_{{formIndex}}" formControlName="emailAddress" class="form-control" placeholder="Email address" maxlength="100" >
+    <input id="emailAddress_{{formIndex}}" formControlName="emailAddress" class="form-control" maxlength="100" >
     <sitereg-error-box [error]="validFormControl(fg,'emailAddress')"
       errorMessage="Email is required. Must be in the format test@example.com"></sitereg-error-box>
 
     <!-- Confirm Email Address -->
     <!-- TODO: make this a validator -->
     <label class="control-label" for="confirmEmail_{{formIndex}}">Confirm Email Address</label>
-    <input id="confirmEmail_{{formIndex}}" formControlName="confirmEmail" class="form-control" placeholder="Confirm Email"  maxlength="100">
+    <input id="confirmEmail_{{formIndex}}" formControlName="confirmEmail" class="form-control" maxlength="100">
     <sitereg-error-box [error]="validFormControl(fg, 'confirmEmail')" errorMessage="Must match email address">
     </sitereg-error-box>
 
@@ -59,7 +59,7 @@
     <div class="row">
       <div class="col-sm-8">
         <label class="control-label" for="phone_{{formIndex}}">Phone</label>
-        <input id="phone_{{formIndex}}" formControlName="phone" class="form-control" placeholder="Phone number"  maxlength="10">
+        <input id="phone_{{formIndex}}" formControlName="phone" class="form-control" maxlength="10">
         <sitereg-error-box [error]="validFormControl(fg,'phone')"
           errorMessage="Phone number is required. Must be in the format 0000000000"></sitereg-error-box>
       </div>
@@ -67,7 +67,7 @@
       <!-- Ext (optional) -->
       <div class="col-sm-4">
         <label class="control-label" for="ext_{{formIndex}}">Ext (optional)</label>
-        <input id="ext_{{formIndex}}" formControlName="ext" class="form-control" placeholder="Extension (optional)" maxlength="100">
+        <input id="ext_{{formIndex}}" formControlName="ext" class="form-control"  maxlength="100">
         <sitereg-error-box [error]="validFormControl(fg,'ext')" errorMessage="Please provide valid Extension">
         </sitereg-error-box>
       </div>
@@ -75,7 +75,7 @@
     </div>
     <!-- Fax (optional)-->
     <label class="control-label" for="fax_{{formIndex}}">Fax (optional)</label>
-    <input id="fax_{{formIndex}}" formControlName="fax" class="form-control" placeholder="Fax number (optional)" maxlength="10">
+    <input id="fax_{{formIndex}}" formControlName="fax" class="form-control"  maxlength="10">
     <sitereg-error-box [error]="validFormControl(fg,'fax')" errorMessage="Please provide valid Fax number">
     </sitereg-error-box>
 

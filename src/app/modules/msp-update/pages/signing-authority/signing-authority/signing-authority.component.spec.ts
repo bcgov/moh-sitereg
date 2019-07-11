@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MspDirectUpdateAccessAdministratorComponent } from './user.component';
+import { MspDirectUpdateAccessAdministratorComponent } from './signing-authority.component';
 
 describe('AccessAdministratorComponent', () => {
     let component: MspDirectUpdateAccessAdministratorComponent;

@@ -35,16 +35,16 @@ export class MspUpdateUserComponent implements OnInit, AfterViewInit {
 
     createFormGroup() {
         this.fg = this.fb.group({
-            userTitle: [null, cUpdateValidators.userTitle],
-            firstName: [null, cUpdateValidators.firstName],
-            initial: [null, cUpdateValidators.initial ],
-            lastName: [null, cUpdateValidators.lastName ],
-            jobTitle: [null, cUpdateValidators.jobTitle ],
-            emailAddress: [null, cUpdateValidators.general.emailAddress ],
-            confirmEmail: [null, cUpdateValidators.confirmEmail ],
-            phone: [null, cUpdateValidators.phone ],
-            ext: [null, cUpdateValidators.ext ],
-            administeringFor: [null, cUpdateValidators.administeringFor ]
+            userTitle: [null, cUpdateValidators.user.userTitle],
+            firstName: [null, cUpdateValidators.user.firstName],
+            initial: [null, cUpdateValidators.user.initial ],
+            lastName: [null, cUpdateValidators.user.lastName ],
+            jobTitle: [null, cUpdateValidators.user.jobTitle ],
+            emailAddress: [null, cUpdateValidators.user.emailAddress ],
+            confirmEmail: [null, cUpdateValidators.user.confirmEmail ],
+            phone: [null, cUpdateValidators.user.phone ],
+            ext: [null, cUpdateValidators.user.ext  ],
+            administeringFor: [null, cUpdateValidators.user.administeringFor ]
         });
     }
 

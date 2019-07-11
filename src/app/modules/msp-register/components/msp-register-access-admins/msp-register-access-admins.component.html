@@ -1,6 +1,8 @@
 <!-- TODO: ask if the control to add access administrators is the button click. UX is confusing -->
 <common-page-framework >
 <h2 class="border-bottom">Access Admins</h2>
+<common-page-section layout="tips">
+
 <aside>
     <b>Access Administrators</b> are the primary contacts within your Organization for all questions and concerns about user access to the Ministry of Health web applications. They are responsible for registering users, assigning and cancelling access permissions, coordinating the installation of the digital certificate on user's computers and other responsibilities identified by the Ministry. The form should include at least one Access Administrator.
 </aside>
@@ -30,6 +32,7 @@
     Debugging purposes only:
     <ngx-json-viewer [json]="schemaObject()" [expanded]="true"></ngx-json-viewer>
 </div>
+</common-page-section>
 </common-page-framework>
 <common-form-action-bar  (btnClick)="continue()" [canContinue]="validFormGroup(fgs)">
 </common-form-action-bar>
