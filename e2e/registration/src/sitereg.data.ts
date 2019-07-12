@@ -30,7 +30,8 @@ export class FakeDataSiteReg {
             initial: 'S',
             lastName: faker.name.lastName(),
             jobTitle: faker.name.jobTitle(),
-            email: faker.internet.email(),
+            email: 'user@example.com',
+            confirmEmail: 'user@example.com',
             mobile: faker.random.number({
                 min: 1000000000,
                 max: 9999999999
@@ -48,7 +49,8 @@ export class FakeDataSiteReg {
             groupNum: faker.random.number({
                 min: 1000000,
                 max: 9999999
-            })
+            }),
+            thirdParty: true
         };
     }
 
@@ -63,6 +65,21 @@ export class FakeDataSiteReg {
             city: 'Lorem ipsum dolor sit ame',
             postal: 'A1A1A1',
             orgNum: 99999999
+        };
+    }
+
+    signingAuthorityMax(): SigningAuthorityPageTest {
+        return {
+            title: 'Prof.',
+            firstName: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labores',
+            initial: 'S',
+            lastName: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labores',
+            jobTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labores',
+            email: 'Loremipsumdolorsitametconsecteturadipiscingelitseddoeiusmodtemporincididuntutlabores@userexample.com',
+            confirmEmail: 'Loremipsumdolorsitametconsecteturadipiscingelitseddoeiusmodtemporincididuntutlabores@userexample.com',
+            mobile: 9999999999,
+            extension: 9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999,
+            fax: 9999999999
         };
     }
 
@@ -112,6 +129,7 @@ export interface SigningAuthorityPageTest {
     lastName: string;
     jobTitle: string;
     email: string;
+    confirmEmail: string;
     mobile: number;
     extension: number;
     fax: number;
@@ -119,5 +137,6 @@ export interface SigningAuthorityPageTest {
 
 export interface GroupNumbersPageTest {
     groupNum: number;
+    thirdParty: boolean;
 }
 

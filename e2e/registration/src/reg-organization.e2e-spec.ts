@@ -2,7 +2,7 @@ import { browser } from 'protractor';
 import { FakeDataSiteReg } from './sitereg.data';
 import { OrganizationPage } from './sitereg.po';
 
-fdescribe('Moh SiteReg - Organization Page', () => {
+describe('Moh SiteReg - Organization Page', () => {
     let orgPage: OrganizationPage;
     const data = new FakeDataSiteReg();
     let orgData;
@@ -24,7 +24,7 @@ fdescribe('Moh SiteReg - Organization Page', () => {
     it('02. should NOT let user to continue without clicking the checkbox', () => {
         orgPage.navigateTo();
         orgPage.agreeConsentModal();
-        orgPage.checkConsentModal().then(function(val) {
+        orgPage.checkConsentModal().then(val => {
             expect(val).toBe(true);
         });
         expect(browser.getCurrentUrl()).toContain(ORGANIZATION_PAGE_URL, 'should still be on the same page');
@@ -99,10 +99,30 @@ fdescribe('Moh SiteReg - Organization Page', () => {
         orgPage.fillOrgNum(orgMaxData);
         orgPage.clickOption('aafalse');
         orgPage.continue();
+        expect(browser.getCurrentUrl()).toContain(SA_PAGE_URL, 'should navigate to the next page');
     });
 
-    // should not be able to continue without agreeing to information consent modal
-    // should require org number if user says yes to 3rd party
+    it('09. should not be able to continue without agreeing to information consent modal', () => {
+        orgPage.navigateTo();
+        orgPage.clickConsentModalContinue();
+        orgPage.checkConsentModal().then(val => {
+            expect(val).toBe(true, 'should still display the modal');
+        });
+        expect(browser.getCurrentUrl()).toContain(ORGANIZATION_PAGE_URL, 'should stay on the same page');
+    });
 
+    it('10. should require org number if user says yes to 3rd party', () => {
+        orgPage.navigateTo();
+        orgPage.agreeConsentModal();
+        orgPage.clickConsentModalContinue();
+        orgPage.fillOrgName(orgData);
+        orgPage.fillAddress(orgData);
+        orgPage.selectValue('administeringFor', 'Employees');
+        orgPage.scrollDown();
+        orgPage.clickOption('thirdPartyTrue');
+        orgPage.clickOption('aatrue');
+        orgPage.continue();
+        expect(browser.getCurrentUrl()).toContain(ORGANIZATION_PAGE_URL, 'should stay on the same page');
+    });
 
 });

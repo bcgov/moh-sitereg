@@ -96,6 +96,7 @@ export class BaseSiteRegTestPage extends AbstractTestPage {
         }
         element.all(by.css(selector)).first().element(by.xpath('..')).element(by.cssContainingText('label', `${ngVal}`)).click();
     }
+    
 
 }
 
@@ -183,20 +184,34 @@ export class SigningAuthorityPage extends BaseSiteRegTestPage {
     }
 
     fillInfo(i: number, data?: SigningAuthorityPageTest) {
-        let info = data;
         if (data === undefined) {
-            info = this.jsonData.accessAdminsPage;
+            data = this.jsonData.accessAdminsPage;
+            this.selectValue('userTitle', data[i].title);
+            this.typeTextFirstOccurrence('firstName', data[i].firstName);
+            this.typeTextFirstOccurrence('initial', data[i].initial);
+            this.typeTextFirstOccurrence('lastName', data[i].lastName);
+            this.typeTextFirstOccurrence('jobTitle', data[i].jobTitle);
+            this.typeTextFirstOccurrence('emailAddress', data[i].email);
+            this.typeTextFirstOccurrence('confirmEmail', data[i].confirmEmail);
+            this.typeTextFirstOccurrence('phone', data[i].mobile + '');
+            this.typeTextFirstOccurrence('ext', data[i].extension + '');
+            this.typeTextFirstOccurrence('fax', data[i].fax + '');
+        } else {
+            this.selectValue('userTitle', data.title);
+            this.typeTextFirstOccurrence('firstName', data.firstName);
+            this.typeTextFirstOccurrence('initial', data.initial);
+            this.typeTextFirstOccurrence('lastName', data.lastName);
+            this.typeTextFirstOccurrence('jobTitle', data.jobTitle);
+            this.typeTextFirstOccurrence('emailAddress', data.email);
+            this.typeTextFirstOccurrence('confirmEmail', data.confirmEmail);
+            this.typeTextFirstOccurrence('phone', data.mobile + '');
+            this.typeTextFirstOccurrence('ext', data.extension + '');
+            this.typeTextFirstOccurrence('fax', data.fax + '');
         }
-        this.selectValue('userTitle', info[i].title);
-        this.typeTextFirstOccurrence('firstName', info[i].firstName);
-        this.typeTextFirstOccurrence('initial', info[i].initial);
-        this.typeTextFirstOccurrence('lastName', info[i].lastName);
-        this.typeTextFirstOccurrence('jobTitle', info[i].jobTitle);
-        this.typeTextFirstOccurrence('emailAddress', info[i].email);
-        this.typeTextFirstOccurrence('confirmEmail', info[i].confirmEmail);
-        this.typeTextFirstOccurrence('phone', info[i].mobile + '');
-        this.typeTextFirstOccurrence('ext', info[i].extension + '');
-        this.typeTextFirstOccurrence('fax', info[i].fax + '');
+    }
+
+    checkEmailAddress(idVal: string) {
+        return element(by.css(`input[id^=${idVal}]`)).getAttribute('value');
     }
 
 }
@@ -270,12 +285,14 @@ export class GroupNumbersPage extends BaseSiteRegTestPage {
     }
 
     fillGroupNum(i: number, data?: GroupNumbersPageTest) {
-        let info = data;
         if (data === undefined) {
-            info = this.jsonData.groupNumbersPage;
+            data = this.jsonData.groupNumbersPage;
+            this.typeTextFirstOccurrence('groupNumber', data[i].groupNum + '');
+            this.clickOptionJSON('thirdParty', data[i].thirdParty.toString());
+        } else {
+            this.typeTextFirstOccurrence('groupNumber', data.groupNum + '');
+            this.clickOptionJSON('thirdParty', data.thirdParty.toString());
         }
-        this.typeTextFirstOccurrence('groupNumber', info[i].groupNum + '');
-        this.clickOptionJSON('thirdParty', info[i].thirdParty.toString());
     }
 }
 

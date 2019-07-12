@@ -2,7 +2,7 @@ import { browser } from 'protractor';
 import { FakeDataSiteReg } from './sitereg.data';
 import { AccessAdminsPage } from './sitereg.po';
 
-describe('Moh SiteReg - Access Admins Page', () => {
+fdescribe('Moh SiteReg - Access Admins Page', () => {
     let accessPage: AccessAdminsPage;
     const data = new FakeDataSiteReg();
     let accessData;
@@ -42,7 +42,7 @@ describe('Moh SiteReg - Access Admins Page', () => {
     it('03. should let user to continue if all the required fields are filled out', () => {
         accessPage.navigateTo();
         accessPage.clickButton('btn btn-block');
-        accessPage.fillInfo(accessData);
+        accessPage.fillInfo(0, accessData);
         accessPage.scrollDown();
         accessPage.selectValue('administeringFor', 'Employees');
         accessPage.continue();
@@ -53,7 +53,7 @@ describe('Moh SiteReg - Access Admins Page', () => {
     it('04. should NOT let user to continue when user clicks the x button', () => {
         accessPage.navigateTo();
         accessPage.clickButton('btn btn-block');
-        accessPage.fillInfo(accessData);
+        accessPage.fillInfo(0, accessData);
         accessPage.scrollDown();
         accessPage.selectValue('administeringFor', 'Employees');
         accessPage.clickButton('btn delete');
@@ -65,12 +65,12 @@ describe('Moh SiteReg - Access Admins Page', () => {
     it('05. should delete correct admin if user adds two admins and deletes one of them', () => {
         accessPage.navigateTo();
         accessPage.clickButton('btn btn-block');
-        accessPage.fillInfo(accessData);
+        accessPage.fillInfo(0, accessData);
         accessPage.scrollDown();
         accessPage.selectValue('administeringFor', 'Employees');
         accessPage.scrollUp();
         accessPage.clickButton('btn btn-block');
-        accessPage.fillInfo(accessData);
+        accessPage.fillInfo(0, accessData);
         accessPage.scrollDown();
         accessPage.selectValue('administeringFor', 'Employees');
         accessPage.clickButton('btn delete'); // deletes the second admin created (latest one)
@@ -83,18 +83,18 @@ describe('Moh SiteReg - Access Admins Page', () => {
     it('06. should NOT be able to continue with an incomplete admin section even if another admin is complete', () => {
         accessPage.navigateTo();
         accessPage.clickButton('btn btn-block');
-        accessPage.fillInfo(accessData);
+        accessPage.fillInfo(0, accessData);
         accessPage.scrollDown();
         accessPage.selectValue('administeringFor', 'Employees');
         accessPage.clickButton('btn btn-block');
-        accessPage.fillInfo(accessData);
+        accessPage.fillInfo(0, accessData);
         accessPage.scrollDown();
         accessPage.continue();
         expect(browser.getCurrentUrl()).toContain(ACCESS_PAGE_URL);
     });
 
-    it('06. Testing for validation re: maximum characters', () => {
-        
+    it('07. Testing for validation re: maximum characters', () => {
+
     });
 
     // Test will fail since _autofill is still active in dev mode
