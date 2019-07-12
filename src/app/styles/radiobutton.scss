@@ -1,9 +1,30 @@
 @import 'variables.scss';
-// *************************************
-// RADIO BUTTON
-// *************************************
 
-// @import 'variables.scss';
+// https://ghinda.net/article/mimic-native-focus-css/
+
+
+// Looks like an input has :focus, in browser defaults. Useful for custom form controls.
+@mixin custom-focus {
+  outline-width: 2px;
+  outline-style: solid;
+  outline-color: Highlight;
+
+  
+    /* WebKit gets its native focus styles.
+     */
+    @media (-webkit-min-device-pixel-ratio:0) {
+      .unreal-focus {
+        outline-color: -webkit-focus-ring-color;
+        outline-style: auto;
+      }
+    }
+}
+
+
+.radio-box--legend {
+  font-size: inherit;
+  font-weight: bold;
+}
 
 $md-radio-checked-color: $blue;
 $md-radio-border-color: rgba(0, 0, 0, 0.54);
@@ -25,6 +46,7 @@ $md-radio-ripple-size: 15px;
   }
 }
 
+
 .md-radio {
   margin: 16px 0;
 
@@ -33,7 +55,9 @@ $md-radio-ripple-size: 15px;
   }
 
   input[type="radio"] {
-    display: none;
+    // hides the input while keeping it focusable. `display:none` messes with focus
+    width: 0; // Keeps the input focusable
+    height: 0;
 
     &:checked+label:before {
       border-color: $md-radio-checked-color;
@@ -42,6 +66,16 @@ $md-radio-ripple-size: 15px;
 
     &:checked+label:after {
       transform: scale(1);
+    }
+
+
+    
+    // Custom focus styles from material to match radio
+    // https://material.angular.io/components/radio/examples
+    // This is for a11y and tab focus as well as mouse focus.
+    &:focus + label:before {
+      box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.1);
+      animation: none;
     }
   }
 
@@ -84,11 +118,11 @@ $md-radio-ripple-size: 15px;
 
 
 
-// *************************************
+// // *************************************
 
-// *************************************
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-}
+// // *************************************
+// *,
+// *:before,
+// *:after {
+//   box-sizing: border-box;
+// }
