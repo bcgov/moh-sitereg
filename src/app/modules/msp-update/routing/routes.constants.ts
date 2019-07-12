@@ -6,11 +6,11 @@ export const APPLICATION_ROUTES = {
 };
 
 export const ROUTES_UPDATE = {
-    IDENTIFY: {
+    Requestor: {
         order: 1,
-        path: 'identify',
-        fullpath: `${APPLICATION_ROUTES.UPDATE}/identify`,
-        title: 'Identify Organization',
+        path: 'requestor',
+        fullpath: `${APPLICATION_ROUTES.UPDATE}/requestor`,
+        title: 'Requestor Information',
     },
     ORGANIZATION: {
         order: 1,

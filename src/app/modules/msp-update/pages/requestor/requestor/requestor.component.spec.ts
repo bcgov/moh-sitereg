@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { IdentifyComponent } from './identify.component';
+import { MspDirectUpdateRequestorComponent } from './requestor.component';
 
 describe('IdentifyComponent', () => {
-    let component: IdentifyComponent;
-    let fixture: ComponentFixture<IdentifyComponent>;
+    let component: MspDirectUpdateRequestorComponent;
+    let fixture: ComponentFixture<MspDirectUpdateRequestorComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [IdentifyComponent],
+            declarations: [MspDirectUpdateRequestorComponent],
         }).compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(IdentifyComponent);
+        fixture = TestBed.createComponent(MspDirectUpdateRequestorComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

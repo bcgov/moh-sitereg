@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { ROUTES_UPDATE } from './routes.constants';
-import { MspDirectUpdateIdentifyComponent } from '../pages/identify/identify.component';
+import { MspDirectUpdateRequestorComponent } from '../pages/requestor/requestor/requestor.component';
 import { MspDirectUpdateOrganizationComponent } from '../pages/organization/organization.component';
 
 import { MspDirectUpdateAccessAdministratorComponent } from '../pages/access-admin/access-admin/access-admin.component';
@@ -17,13 +17,13 @@ import { MspDirectUpdateSigningAuthorityComponent } from '../pages/signing-autho
 let defaultRoutes: Routes = [
     {
         path: '',
-        redirectTo: ROUTES_UPDATE.IDENTIFY.path,
+        redirectTo: ROUTES_UPDATE.Requestor.path,
     },
     {
         // path: 'organization',
-        path: ROUTES_UPDATE.IDENTIFY.path,
-        component: MspDirectUpdateIdentifyComponent,
-        data: { title: ROUTES_UPDATE.IDENTIFY.title },
+        path: ROUTES_UPDATE.Requestor.path,
+        component: MspDirectUpdateRequestorComponent,
+        data: { title: ROUTES_UPDATE.Requestor.title },
     },
 
     {

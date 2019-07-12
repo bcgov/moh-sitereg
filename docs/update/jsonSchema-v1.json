@@ -1,0 +1,618 @@
+{
+  "$id": "moh-sitereg/SiteregRequest.schema.json",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "definitions": {
+    "request_num_def": {
+      "type": "string", "pattern": "^[0-9]{8}$"
+    },
+    "group_num_def": {
+      "type": "string", "pattern": "^[0-9]{7}$"
+    },
+    "org_num_def": {
+      "type": "string", "pattern": "^[0-9]{8}$"
+    },
+    "change_role_def": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["No change", "Access Administrator", "User"]
+      }
+    }
+    },
+    "person_id_def": {
+      "type": "object",
+      "properties": {
+        "user_id" : { "type": "string", "maxLength": 20 },
+        "email": { "type": "string", "maxLength": 100 }
+      }
+    },
+    "org_maintenance_def": {
+	  "type": "object",
+      "properties": {
+		"org_name": { "type": "string", "maxLength": 100 },
+		"street_address": { "type": "string", "maxLength": 200 },
+		"city": { "type": "string", "maxLength": 25 },
+		"province": { "type": "string", "maxLength": 3 },
+		"postal_code": { "type": "string", "pattern": "^[ABCEGHJ-NPRSTVXY][0-9][ABCEGHJ-NPRSTV-Z][0-9][ABCEGHJ-NPRSTV-Z][0-9]$" },
+		"org_spg": { "type": "string", "pattern": "^[NEIB]$" }
+	  }
+	},
+    "signing_authority_def": {
+	  "type": "object",
+      "properties": {
+		"sa_curtesy_title": { "type": "string", "maxLength": 5 },
+        "sa_last_name": { "type": "string", "maxLength": 100 },
+        "sa_first_name": { "type": "string", "maxLength": 100 },
+        "sa_initial": { "type": "string", "maxLength": 1 },
+        "sa_job_title": { "type": "string", "maxLength": 100 },
+        "sa_email": { "type": "string", "maxLength": 100 },
+        "sa_phone_num": { "type": "string", "pattern": "^[1-9][0-9]{2}[0-9]{7}$|^$" },
+        "sa_phone_ext": { "type": "string", "maxLength": 100 },
+        "sa_fax_num": { "type": "string", "pattern": "^[1-9][0-9]{2}[0-9]{7}$|^$" },
+        "sa_change_role": { "$ref": "#/definitions/change_role_def" },
+         "sa_msp_access": { "type": "string", "pattern": "^[YN]$" },
+        "sa_spg": { "type": "string", "pattern": "^[EIB]$" }
+	  },
+      "required": [ "sa_first_name", "sa_last_name", "sa_job_title", "sa_email", "sa_phone_num"]
+	},
+	"signing_authority_update_def": {
+	  "type": "object",
+      "properties": {
+        "sa_user" : { "$ref": "#/definitions/person_id_def" },
+        "sa_email": { "type": "string", "maxLength": 100 },
+		"sa_curtesy_title": { "type": "string", "maxLength": 5 },
+        "sa_last_name": { "type": "string", "maxLength": 100 },
+        "sa_first_name": { "type": "string", "maxLength": 100 },
+        "sa_initial": { "type": "string", "maxLength": 1 },
+        "sa_job_title": { "type": "string", "maxLength": 100 },
+        "sa_phone_num": { "type": "string", "pattern": "^[1-9][0-9]{2}[0-9]{7}$|^$" },
+        "sa_phone_ext": { "type": "string", "maxLength": 100 },
+        "sa_fax_num": { "type": "string", "pattern": "^[1-9][0-9]{2}[0-9]{7}$|^$" },
+        "sa_msp_access": { "type": "string", "pattern": "^[YN]$" },
+        "sa_spg": { "type": "string", "pattern": "^[EIB]$" }
+	  },
+      "required": [ "sa_user" ]
+	},
+	"access_administrator_def": {
+      "type": "object",
+      "properties": {
+         "aa_curtesy_title": { "type": "string", "maxLength": 5 },
+         "aa_last_name": { "type": "string", "maxLength": 100 },
+         "aa_first_name": { "type": "string", "maxLength": 100 },
+         "aa_initial": { "type": "string", "maxLength": 1 },
+         "aa_job_title": { "type": "string", "maxLength": 100 },
+         "aa_email": { "type": "string", "maxLength": 100 },
+         "aa_phone_num": { "type": "string", "pattern": "^[1-9][0-9]{2}[0-9]{7}$|^$" },
+         "aa_phone_ext": { "type": "string", "maxLength": 100 },
+         "aa_fax_num": { "type": "string", "pattern": "^[1-9][0-9]{2}[0-9]{7}$|^$" },
+         "aa_msp_access": { "type": "string", "pattern": "^[YN]$" },
+         "aa_spg": { "type": "string", "pattern": "^[EIB]$" }
+      },
+      "required": [ "aa_first_name", "aa_last_name", "aa_job_title", "aa_email", "aa_phone_num", "aa_msp_access", "aa_spg" ]
+    },
+    "access_administrator_update_def": {
+      "type": "object",
+      "properties": {
+         "aa_user" : { "$ref": "#/definitions/person_id_def" },
+         "aa_curtesy_title": { "type": "string", "maxLength": 5 },
+         "aa_last_name": { "type": "string", "maxLength": 100 },
+         "aa_first_name": { "type": "string", "maxLength": 100 },
+         "aa_initial": { "type": "string", "maxLength": 1 },
+         "aa_job_title": { "type": "string", "maxLength": 100 },
+         "aa_email": { "type": "string", "maxLength": 100 },
+         "aa_phone_num": { "type": "string", "pattern": "^[1-9][0-9]{2}[0-9]{7}$|^$" },
+         "aa_phone_ext": { "type": "string", "maxLength": 100 },
+         "aa_fax_num": { "type": "string", "pattern": "^[1-9][0-9]{2}[0-9]{7}$|^$" },
+         "aa_msp_access": { "type": "string", "pattern": "^[YN]$" },
+         "aa_change_role": { "$ref": "#/definitions/change_role_def" },
+         "aa_spg": { "type": "string", "pattern": "^[EIB]$" }
+      },
+      "required": [ "aa_user" ]
+    },
+    "user_def": {
+      "type": "object",
+      "properties": {
+         "user_curtesy_title": { "type": "string", "maxLength": 5 },
+         "user_last_name": { "type": "string", "maxLength": 100 },
+         "user_first_name": { "type": "string", "maxLength": 100 },
+         "user_initial": { "type": "string", "maxLength": 1 },
+         "user_job_title": { "type": "string", "maxLength": 100 },
+         "user_email": { "type": "string", "maxLength": 100 },
+         "user_phone_num": { "type": "string", "pattern": "^[1-9][0-9]{2}[0-9]{7}$|^$" },
+         "user_phone_ext": { "type": "string", "maxLength": 100 },
+         "user_fax_num": { "type": "string", "pattern": "^[1-9][0-9]{2}[0-9]{7}$|^$" },
+         "user_spg": { "type": "string", "pattern": "^[EIB]$" }
+      },
+      "required": [ "user_first_name", "user_last_name", "user_job_title", "user_email", "user_phone_num", "user_spg" ]
+    },
+    "user_update_def": {
+      "type": "object",
+      "properties": {
+         "user_user": { "$ref": "#/definitions/person_id_def" },
+         "user_curtesy_title": { "type": "string", "maxLength": 5 },
+         "user_last_name": { "type": "string", "maxLength": 100 },
+         "user_first_name": { "type": "string", "maxLength": 100 },
+         "user_initial": { "type": "string", "maxLength": 1 },
+         "user_job_title": { "type": "string", "maxLength": 100 },
+         "user_email": { "type": "string", "maxLength": 100 },
+         "user_phone_num": { "type": "string", "pattern": "^[1-9][0-9]{2}[0-9]{7}$|^$" },
+         "user_phone_ext": { "type": "string", "maxLength": 100 },
+         "user_fax_num": { "type": "string", "pattern": "^[1-9][0-9]{2}[0-9]{7}$|^$" },
+         "user_change_role": { "$ref": "#/definitions/change_role_def" },
+         "user_spg": { "type": "string", "pattern": "^[EIB]$" }
+      },
+      "required": [ "user_user" ]
+    },
+    "msp_group_def": {
+      "type": "object",
+      "properties": {
+		 "mspgroup_num": { "$ref": "#/definitions/group_num_def" },
+         "third_party": { "type": "string", "pattern": "^[YN]$" }
+      },
+      "required": [ "mspgroup_num",  "third_party" ]
+    },
+    "msp_group_update_def": {
+      "type": "object",
+      "properties": {
+		 "mspgroup_num": { "$ref": "#/definitions/group_num_def" },
+         "third_party": { "type": "string", "pattern": "^[YN]$" }
+      },
+      "required": [ "mspgroup_num" ]
+    }
+  },
+  "title": "SiteregMaintenance",
+  "type": "object",
+  "properties": {
+    "request_uuid": { "type": "string" },
+    "request_num": { "$ref": "#/definitions/request_num_def" },
+    "org_num": { "$ref": "#/definitions/org_num_def" },
+    "org_email": { "type": "string", "maxLength": 100 },
+    "org_maintenance": { "$ref": "#/definitions/org_maintenance_def" },
+    "signing_authority_added": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/signing_authority_def" },
+      "default": []
+    },
+    "signing_authority_removed": {
+      "type": "array",
+      "items": { "ref": "#/definitions/person_id_def" },
+      "default": []
+    },
+    "signing_authority_updated": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/signing_authority_update_def" },
+      "default": []
+    },
+	"access_administrator_added": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/access_administrator_def" },
+      "default": []
+    },
+    "access_administrator_removed": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/person_id_def" },
+      "default": []
+    },
+    "access_administrator_updated": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/access_administrator_update_def" },
+      "default": []
+    },
+	"users_added": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/user_def" },
+      "default": []
+    },
+    "users_removed": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/person_id_def" },
+      "default": []
+    },
+    "users_updated": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/user_update_def" },
+      "default": []
+    },
+    "msp_group_added": {
+	  "type": "array",
+	  "items": { "$ref": "#/definitions/msp_group_def" },
+	  "default": []
+    },
+    "msp_group_removed": {
+	  "type": "array",
+	  "items": { "$ref": "#/definitions/group_num_def" },
+	  "default": []
+    },
+    "msp_group_updated": {
+	  "type": "array",
+	  "items": { "$ref": "#/definitions/msp_group_update_def" },
+	  "default": []
+    },
+    "authorizedBySA": { "type": "string", "pattern": "^[YN]$" },
+    "authorizedDate": { "type": "string", "pattern": "^[0-9]{2}-[0-9]{2}-[12][0-9]{3}$" },
+    "applicationType": { "type": "string" }
+  },
+  "required": [ "request_uuid", "request_num", "org_num", "org_email", "authorizedBySA", "authorizedDate" ]
+}
+
+{
+  "request_uuid": "c9a42563-79b1-4b5a-beec-76fd8377ecc7",
+  "request_num": "12345678",
+  "org_num": "12345678",
+  "org_email": "org@example.com",
+  "org_maintenance": {
+    "org_name": "Spectre",
+    "street_address": "Wharf District",
+    "city": "Victoria",
+    "province": "BC",
+    "postal_code": "V1S4C3",
+    "org_spg": "E"
+    
+  },
+  "signing_authority_added": [
+    {
+      "sa_curtesy_title": "Mr.",
+      "sa_last_name": "Fleming0",
+      "sa_first_name": "Ian0",
+      "sa_initial": "",
+      "sa_job_title": "Imaginator",
+      "sa_email": "ianf0@example.com",
+      "sa_phone_num": "2505550134",
+      "sa_phone_ext": "123",
+      "sa_fax_num": "",
+      "sa_msp_access": "Y",
+      "sa_spg": "E",
+      "sa_change_role": [
+        "User"
+      ]
+    },
+    {
+      "sa_curtesy_title": "Mr.",
+      "sa_last_name": "Fleming1",
+      "sa_first_name": "Ian1",
+      "sa_initial": "",
+      "sa_job_title": "Imaginator",
+      "sa_email": "ianf1@example.com",
+      "sa_phone_num": "2505550134",
+      "sa_phone_ext": "123",
+      "sa_fax_num": "",
+      "sa_msp_access": "Y",
+      "sa_spg": "E",
+      "sa_change_role": [
+        "User"
+      ]
+    },
+    {
+      "sa_curtesy_title": "Mr.",
+      "sa_last_name": "Fleming2",
+      "sa_first_name": "Ian2",
+      "sa_initial": "",
+      "sa_job_title": "Imaginator",
+      "sa_email": "ianf2@example.com",
+      "sa_phone_num": "2505550134",
+      "sa_phone_ext": "123",
+      "sa_fax_num": "",
+      "sa_msp_access": "Y",
+      "sa_spg": "E",
+      "sa_change_role": [
+        "User"
+      ]
+     
+    }
+  ],
+"signing_authority_updated": [
+    {
+      "sa_curtesy_title": "Mr.",
+      "sa_last_name": "Fleming0",
+      "sa_first_name": "Ian0",
+      "sa_initial": "",
+      "sa_job_title": "Imaginator",
+      "sa_email": "ianf0@example.com",
+      "sa_phone_num": "2505550134",
+      "sa_phone_ext": "123",
+      "sa_fax_num": "",
+      "sa_msp_access": "Y",
+      "sa_spg": "E"
+        
+    },
+    {
+      "sa_curtesy_title": "Mr.",
+      "sa_last_name": "Fleming1",
+      "sa_first_name": "Ian1",
+      "sa_initial": "",
+      "sa_job_title": "Imaginator",
+      "sa_email": "ianf1@example.com",
+      "sa_phone_num": "2505550134",
+      "sa_phone_ext": "123",
+      "sa_fax_num": "",
+      "sa_msp_access": "Y",
+      "sa_spg": "E"
+      
+    },
+    {
+      "sa_curtesy_title": "Mr.",
+      "sa_last_name": "Fleming2",
+      "sa_first_name": "Ian2",
+      "sa_initial": "",
+      "sa_job_title": "Imaginator",
+      "sa_email": "ianf2@example.com",
+      "sa_phone_num": "2505550134",
+      "sa_phone_ext": "123",
+      "sa_fax_num": "",
+      "sa_msp_access": "Y",
+      "sa_spg": "E"
+    }
+  ],
+  "signing_authority_removed": [
+    {
+      "user_id": "1230",
+      "email": "ianf0@example.com"
+    },
+    {
+      "user_id": "1231",
+      "email": "ianf1@example.com"
+    },
+    {
+      "user_id": "1232",
+      "email": "ianf2@example.com"
+    }
+  ],
+  
+  "access_administrator_added": [
+    {
+      "aa_curtesy_title": "Mr.",
+      "aa_last_name": "Peon0",
+      "aa_first_name": "Boris0",
+      "aa_initial": "",
+      "aa_job_title": "Worker",
+      "aa_email": "worker0@example.com",
+      "aa_phone_num": "2505550134",
+      "aa_phone_ext": "123",
+      "aa_fax_num": "",
+      "aa_msp_access": "Y",
+      "aa_spg": "E"
+      
+    },
+    {
+      "aa_curtesy_title": "Mr.",
+      "aa_last_name": "Peon1",
+      "aa_first_name": "Boris1",
+      "aa_initial": "",
+      "aa_job_title": "Worker",
+      "aa_email": "worker1@example.com",
+      "aa_phone_num": "2505550134",
+      "aa_phone_ext": "123",
+      "aa_fax_num": "",
+      "aa_msp_access": "Y",
+      "aa_spg": "E"
+      
+    },
+    {
+      "aa_curtesy_title": "Mr.",
+      "aa_last_name": "Peon2",
+      "aa_first_name": "Boris2",
+      "aa_initial": "",
+      "aa_job_title": "Worker",
+      "aa_email": "worker2@example.com",
+      "aa_phone_num": "2505550134",
+      "aa_phone_ext": "123",
+      "aa_fax_num": "",
+      "aa_msp_access": "Y",
+      "aa_spg": "E"
+    }
+  ],
+  "access_administrator_updated": [
+    {
+      "aa_user": {
+        "user_id": "1230",
+        "email": "ianf0@example.com"
+      },
+      "aa_curtesy_title": "Mr.",
+      "aa_last_name": "Fleming0",
+      "aa_first_name": "Ian0",
+      "aa_initial": "",
+      "aa_job_title": "Imaginator",
+      "aa_email": "ianf0@example.com",
+      "aa_phone_num": "2505550134",
+      "aa_phone_ext": "123",
+      "aa_fax_num": "",
+      "aa_msp_access": "Y",
+      "aa_change_role": [
+        "User"
+      ],
+      "aa_spg": "E"
+    },
+    {
+      "aa_user": {
+        "user_id": "1231",
+        "email": "ianf1@example.com"
+      },
+      "aa_curtesy_title": "Mr.",
+      "aa_last_name": "Fleming1",
+      "aa_first_name": "Ian1",
+      "aa_initial": "",
+      "aa_job_title": "Imaginator",
+      "aa_email": "ianf1@example.com",
+      "aa_phone_num": "2505550134",
+      "aa_phone_ext": "123",
+      "aa_fax_num": "",
+      "aa_msp_access": "Y",
+      "aa_change_role": [
+        "User"
+      ],
+      "aa_spg": "E"
+    },
+    {
+      "aa_user": {
+        "user_id": "1232",
+        "email": "ianf2@example.com"
+      },
+      "aa_curtesy_title": "Mr.",
+      "aa_last_name": "Fleming2",
+      "aa_first_name": "Ian2",
+      "aa_initial": "",
+      "aa_job_title": "Imaginator",
+      "aa_email": "ianf2@example.com",
+      "aa_phone_num": "2505550134",
+      "aa_phone_ext": "123",
+      "aa_fax_num": "",
+      "aa_msp_access": "Y",
+      "aa_change_role": [
+        "User"
+      ],
+      "aa_spg": "E"
+    }
+  ],
+  "users_added": [
+    {
+      "user_curtesy_title": "Miss",
+      "user_last_name": "Smith0",
+      "user_first_name": "Natasha0",
+      "user_initial": "",
+      "user_job_title": "User",
+      "user_email": "user0@example.com",
+      "user_phone_num": "2505550134",
+      "user_phone_ext": "123",
+      "user_fax_num": "",
+      "user_spg": "E"
+        
+    },
+    {
+      "user_curtesy_title": "Miss",
+      "user_last_name": "Smith1",
+      "user_first_name": "Natasha1",
+      "user_initial": "",
+      "user_job_title": "User",
+      "user_email": "user1@example.com",
+      "user_phone_num": "2505550134",
+      "user_phone_ext": "123",
+      "user_fax_num": "",
+      "user_spg": "E"
+    },
+    {
+      "user_curtesy_title": "Miss",
+      "user_last_name": "Smith2",
+      "user_first_name": "Natasha2",
+      "user_initial": "",
+      "user_job_title": "User",
+      "user_email": "user2@example.com",
+      "user_phone_num": "2505550134",
+      "user_phone_ext": "123",
+      "user_fax_num": "",
+      "user_spg": "E"
+    }
+  ],
+  "users_removed": [
+    {
+      "user_id": "1230",
+      "email": "ianf0@example.com"
+    },
+    {
+      "user_id": "1231",
+      "email": "ianf1@example.com"
+    },
+    {
+      "user_id": "1232",
+      "email": "ianf2@example.com"
+    }
+  ],
+  "users_updated": [
+    {
+      "user_user": {
+        "user_id": "1230",
+        "email": "ianf0@example.com"
+      },
+      "user_curtesy_title": "Miss",
+      "user_last_name": "Smith0",
+      "user_first_name": "Natasha0",
+      "user_initial": "",
+      "user_job_title": "User",
+      "user_email": "user0@example.com",
+      "user_phone_num": "2505550134",
+      "user_phone_ext": "123",
+      "user_fax_num": "",
+      "user_change_role": [
+        "User"
+      ],
+      "user_spg": "E"
+    },
+    {
+      "user_user": {
+        "user_id": "1231",
+        "email": "ianf1@example.com"
+      },
+      "user_curtesy_title": "Miss",
+      "user_last_name": "Smith1",
+      "user_first_name": "Natasha1",
+      "user_initial": "",
+      "user_job_title": "User",
+      "user_email": "user1@example.com",
+      "user_phone_num": "2505550134",
+      "user_phone_ext": "123",
+      "user_fax_num": "",
+      "user_change_role": [
+        "User"
+      ],
+      "user_spg": "E"
+        
+    },
+    {
+      "user_user": {
+        "user_id": "1232",
+        "email": "ianf2@example.com"
+      },
+      "user_curtesy_title": "Miss",
+      "user_last_name": "Smith2",
+      "user_first_name": "Natasha2",
+      "user_initial": "",
+      "user_job_title": "User",
+      "user_email": "user2@example.com",
+      "user_phone_num": "2505550134",
+      "user_phone_ext": "123",
+      "user_fax_num": "",
+      "user_change_role": [
+        "User"
+      ],
+      "user_spg": "E"
+    }
+  ],
+  "msp_group_added": [
+    {
+      "mspgroup_num": "1234560",
+      "third_party": "N"
+        
+    },
+    {
+      "mspgroup_num": "1234561",
+      "third_party": "N"
+        
+    },
+    {
+      "mspgroup_num": "1234562",
+      "third_party": "N"
+    }
+  ],
+  "msp_group_removed": [
+    "12345670",
+    "12345671",
+    "12345672"
+  ],
+  "msp_group_updated": [
+    {
+      "mspgroup_num": "1234560",
+      "third_party": "N"
+    },
+    {
+      "mspgroup_num": "1234561",
+      "third_party": "N"
+    },
+    {
+      "mspgroup_num": "1234562",
+      "third_party": "N"
+    }
+  ],
+  "authorizedBySA": "Y",
+  "authorizedDate": "04-15-2019",
+  "applicationType": "mspdRegistration"
+ 
+}

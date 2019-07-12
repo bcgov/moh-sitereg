@@ -4,15 +4,21 @@ import { SharedModule } from '@shared/shared.module';
 import { CaptchaModule } from 'moh-common-lib/captcha';
 import { MspDirectUpdateRoutesModule } from './routing/routes.module';
 import { MspDirectUpdateComponent } from './components/update-container/update-container.component';
-import { MspDirectUpdateIdentifyComponent } from './pages/identify/identify.component';
+import { MspDirectUpdateRequestorComponent } from './pages/requestor/requestor/requestor.component';
 
 import { MspDirectUpdateOrganizationComponent } from './pages/organization/organization.component';
 import { MspDirectUpdateOrganizationEditComponent } from './pages/organization/organization-edit/organization-edit.component';
 
 import { MspDirectUpdateSigningAuthorityComponent } from './pages/signing-authority/signing-authority/signing-authority.component';
-import { MspDirectUpdateSigningAuthorityRemoveComponent } from './pages/signing-authority/signing-authority-remove/signing-authority-remove.component';
-import { MspDirectUpdateSigningAuthorityAddComponent } from './pages/signing-authority/signing-authority-add/signing-authority-add.component';
-import { MspDirectUpdateSigningAuthorityEditComponent } from './pages/signing-authority/signing-authority-edit/signing-authority-edit.component';
+import {
+    MspDirectUpdateSigningAuthorityRemoveComponent
+} from './pages/signing-authority/signing-authority-remove/signing-authority-remove.component';
+import {
+    MspDirectUpdateSigningAuthorityAddComponent
+} from './pages/signing-authority/signing-authority-add/signing-authority-add.component';
+import {
+    MspDirectUpdateSigningAuthorityEditComponent
+} from './pages/signing-authority/signing-authority-edit/signing-authority-edit.component';
 
 import { MspDirectUpdateAccessAdministratorComponent } from './pages/access-admin/access-admin/access-admin.component';
 import { MspDirectUpdateAccessAdministratorRemoveComponent } from './pages/access-admin/access-admin-remove/access-admin-remove.component';
@@ -40,6 +46,7 @@ import { MspRegisterModule } from '../msp-register/msp-register.module';
 import { MspUpdateReviewComponent } from './pages/review/review.component';
 import { ReviewSectionComponent } from './components/review-section/review-section.component';
 import { MspDirectUpdateErrorBoxComponent } from './common/error-update-error-box/error-update-error-box.component';
+import { JsonUpdateViewComponent } from './common/json-update-view/json-update-view.component';
 
 
 
@@ -50,7 +57,9 @@ import { MspDirectUpdateErrorBoxComponent } from './common/error-update-error-bo
         MspDirectUpdateErrorBoxComponent,
 
         MspDirectUpdateComponent,
-        MspDirectUpdateIdentifyComponent,
+
+        MspDirectUpdateRequestorComponent,
+
         MspDirectUpdateOrganizationComponent,
         MspDirectUpdateOrganizationEditComponent,
 
@@ -58,17 +67,16 @@ import { MspDirectUpdateErrorBoxComponent } from './common/error-update-error-bo
         MspDirectUpdateSigningAuthorityRemoveComponent,
         MspDirectUpdateSigningAuthorityAddComponent,
         MspDirectUpdateSigningAuthorityEditComponent,
-                
+
         MspDirectUpdateAccessAdministratorComponent,
         MspDirectUpdateAccessAdministratorRemoveComponent,
         MspDirectUpdateAccessAdministratorAddComponent,
         MspDirectUpdateAccessAdministratorEditComponent,
-        
+
         MspDirectUpdateUserComponent,
         MspDirectUpdateUserRemoveComponent,
         MspDirectUpdateUserAddComponent,
         MspDirectUpdateUserEditComponent,
-
 
         MspDirectUpdateUserComponent,
 
@@ -82,6 +90,7 @@ import { MspDirectUpdateErrorBoxComponent } from './common/error-update-error-bo
         MspDirectUpdateConfirmationComponent,
         MspUpdateReviewComponent,
         ReviewSectionComponent,
+        JsonUpdateViewComponent,
     ],
     imports: [
         CommonModule,

@@ -2,6 +2,16 @@ import { AbstractControl, ValidatorFn, FormGroup, ValidationErrors } from '@angu
 
 //#region Validators-Commmon
 
+
+export function copyToClipBoard(content: any) {
+    document.addEventListener('copy', (e: ClipboardEvent) => {
+        e.clipboardData.setData('text/plain', JSON.stringify(content));
+        e.preventDefault();
+        document.removeEventListener('copy', null);
+    });
+    document.execCommand('copy');
+}
+
 export function emailValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
         // tslint:disable-next-line: max-line-length
@@ -35,29 +45,6 @@ export function matchFieldValidator(
     };
 }
 
-/**
- * verifies if field value is not null and not empty string or valid boolean
- * @param fieldValue FieldValue
- */
-export function isValidOptionalField(fieldValue: string | boolean | any): boolean {
-
-    if (fieldValue) {
-        if (typeof fieldValue === 'string' && fieldValue.length > 0) {
-            return true;
-        }
-
-        if (typeof fieldValue === 'boolean' && (fieldValue === true || fieldValue === false)) {
-            return true;
-        }
-
-        if (typeof fieldValue === 'object') {
-            const isArray = fieldValue instanceof Array;
-            if (isArray === true && fieldValue.length > 0) return true;
-            return false;
-        }
-    }
-    return false;
-}
 
 /**
  * Validate a form control, replacing validFormControl().

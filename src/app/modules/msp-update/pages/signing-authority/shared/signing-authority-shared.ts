@@ -140,15 +140,15 @@ export const cUpdateSigningAuthorityValidator = {
         fax: [
             ...cUpdateSigningAuthoritySharedValidator.fax,
         ],
+        isAdmin: [ Validators.required ],
 
+        // changeRole: [
+        //     Validators.required,
+        // ],
 
-        changeRole: [
-            Validators.required,
-        ],
-
-        changeAdministeringFor: [
-            Validators.required,
-        ],
+        // changeAdministeringFor: [
+        //     Validators.required,
+        // ],
         administeringFor: [
             ...cUpdateSigningAuthoritySharedValidator.administeringFor,
         ],

@@ -63,7 +63,7 @@ export class MspUpdateReviewComponent implements OnInit {
 
   // Methods to navigate to pages to edit data
   editRequesterData() {
-    this.router.navigate([ROUTES_UPDATE.IDENTIFY.fullpath]);
+    this.router.navigate([ROUTES_UPDATE.Requestor.fullpath]);
   }
 
   editOrgData() {
