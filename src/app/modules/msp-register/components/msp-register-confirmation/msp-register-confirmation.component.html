@@ -1,5 +1,16 @@
 <common-page-framework layout='blank'>
-  <sitereg-msp-register-h2-with-print *ngIf="status"></sitereg-msp-register-h2-with-print>
+  <!-- <sitereg-msp-register-h2-with-print *ngIf="status"></sitereg-msp-register-h2-with-print> -->
+   <!--Component Heading-->
+   <div class="row col-md-8 ml-0 pl-0 align-items-center border-bottom">
+    <div class="col-md-6 pl-0">
+      <h1>Confirmation Message</h1>
+    </div>
+    <div class="col-md-2 ml-auto  text-right">
+      <button tabindex="0" class="btn btn-default " onclick="window.print();return false;" title="Print" >
+        <i class="fa fa-print fa-lg pointer" aria-hidden="true"></i> Print
+      </button>
+    </div>
+  </div>
   <div class='mb-2' *ngIf="status">
     <div class='row mb-4 mt-4 pl-4 pt-4 pb-4 border-success-custom'>
 
@@ -16,7 +27,7 @@
       </div>
     </div>
     <div class="row mr-2">
-      <h3>Next Steps</h3>
+      <h2>Next Steps</h2>
     </div>
     <div class="row mr-0 pr-0">
       <ul>
