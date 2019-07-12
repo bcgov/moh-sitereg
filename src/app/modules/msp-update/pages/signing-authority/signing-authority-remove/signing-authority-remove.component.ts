@@ -8,7 +8,7 @@ import {
   validMultiFormControl, formControlValidity
 } from '../../../common/update-validators';
 
-import * as jsonMaps from '../../../common/update-json-map';
+import { getRemoveJsonOfSigningAuthority } from '../shared/signing-authority-json-map';
 
 @Component({
   selector: 'sitereg-update-signing-authority-remove',
@@ -23,10 +23,12 @@ export class MspDirectUpdateSigningAuthorityRemoveComponent implements OnInit {
   parentForm: FormGroup;
   validFormControl: (fg: FormGroup, name: string) => boolean;
   formControlValidity: (fg: FormGroup, name: string) => { required: boolean; other: boolean };
+  json: (formValues: any) => any;
 
   constructor(private fb: FormBuilder) {
     this.validFormControl = validMultiFormControl;
     this.formControlValidity = formControlValidity;
+    this.json = getRemoveJsonOfSigningAuthority;
   }
 
   ngOnInit() {
@@ -73,13 +75,13 @@ export class MspDirectUpdateSigningAuthorityRemoveComponent implements OnInit {
   }
 
 
-  generateJSON(formValues) {
+  // generateJSON(formValues) {
 
-    // generate access-administrator-remove object
-    const json: any = {};
-    json.email = formValues && formValues.emailAddress ? formValues.emailAddress : '';
-    if (jsonMaps.isValidOptionalField(formValues.ministryUserId)) json.user_id = formValues.ministryUserId;
-    return json;
-  }
+  //   // generate access-administrator-remove object
+  //   const json: any = {};
+  //   json.email = formValues && formValues.emailAddress ? formValues.emailAddress : '';
+  //   if (jsonMaps.isValidOptionalField(formValues.ministryUserId)) json.user_id = formValues.ministryUserId;
+  //   return json;
+  // }
 
 }

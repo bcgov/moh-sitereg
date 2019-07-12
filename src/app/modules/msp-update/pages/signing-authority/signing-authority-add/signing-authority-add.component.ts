@@ -4,9 +4,13 @@ import {
   cUpdateSigningAuthorityEnumeration, cUpdateSigningAuthorityValidator
 } from '../shared/signing-authority-shared';
 
-import { 
+import {
   validMultiFormControl, formControlValidity
 } from '../../../common/update-validators';
+
+
+import { getAddJsonOfSigningAuthority } from '../shared/signing-authority-json-map';
+
 
 @Component({
   selector: 'sitereg-update-signing-authority-add',
@@ -22,6 +26,7 @@ export class MspDirectUpdateSigningAuthorityAddComponent implements OnInit {
   parentForm: FormGroup;
   validFormControl: (fg: FormGroup, name: string) => boolean;
   formControlValidity: (fg: FormGroup, name: string) => { required: boolean; other: boolean };
+  json: (formValues: any) => any;
 
   userTitles = cUpdateSigningAuthorityEnumeration.userTitles;
   administeringForOptions = cUpdateSigningAuthorityEnumeration.administeringFor.add;
@@ -30,6 +35,7 @@ export class MspDirectUpdateSigningAuthorityAddComponent implements OnInit {
   constructor(private fb: FormBuilder) {
     this.validFormControl = validMultiFormControl;
     this.formControlValidity = formControlValidity;
+    this.json = getAddJsonOfSigningAuthority;
   }
 
   ngOnInit() {
@@ -86,7 +92,7 @@ export class MspDirectUpdateSigningAuthorityAddComponent implements OnInit {
     this.formArrayChanged.emit(this.parentForm);
   }
 
-  
+
   // updateAccessValidation(formGroup, status) {
   //   const control = formGroup.controls.administeringFor as FormControl;
   //   if (status === true) {

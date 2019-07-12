@@ -9,6 +9,9 @@ import {
 } from '../../../common/update-validators';
 
 
+import { getEditJsonOfSigningAuthority } from '../shared/signing-authority-json-map';
+
+
 @Component({
   selector: 'sitereg-update-signing-authority-edit',
   templateUrl: './signing-authority-edit.component.html',
@@ -19,11 +22,12 @@ export class MspDirectUpdateSigningAuthorityEditComponent implements OnInit {
   private arrayFormPropertyName = 'arrayOfForms';
   @Input() formState: FormGroup | null;
   @Output() formArrayChanged: EventEmitter<FormGroup | FormArray | null> = new EventEmitter<FormGroup | null>();
+  @Input() showAdministeringMSPForQuestion = true;
   parentForm: FormGroup;
   validFormControl: (fg: FormGroup, name: string) => boolean;
   formControlValidity: (fg: FormGroup, name: string) => { required: boolean; other: boolean };
-
-  @Input() showAdministeringMSPForQuestion = true;
+  json: (formValues: any) => any;
+ 
   userTitles = cUpdateSigningAuthorityEnumeration.userTitles;
   administeringForOptions = cUpdateSigningAuthorityEnumeration.administeringFor.edit;
   changeRoleOptions = cUpdateSigningAuthorityEnumeration.changeRole;
@@ -33,6 +37,7 @@ export class MspDirectUpdateSigningAuthorityEditComponent implements OnInit {
   constructor(private fb: FormBuilder) {
     this.validFormControl = validMultiFormControl;
     this.formControlValidity = formControlValidity;
+    this.json = getEditJsonOfSigningAuthority;
   }
 
   ngOnInit() {
@@ -66,6 +71,7 @@ export class MspDirectUpdateSigningAuthorityEditComponent implements OnInit {
       phone: [null, cUpdateSigningAuthorityValidator.edit.phone],
       ext: [null, cUpdateSigningAuthorityValidator.edit.ext],
       fax: [null, cUpdateSigningAuthorityValidator.edit.fax],
+      isAdmin: [null, cUpdateSigningAuthorityValidator.edit.isAdmin],
       // administeringFor: [null, cUpdateSigningAuthorityValidator.edit.administeringFor],
       // changeAdministerFor: [null, cUpdateSigningAuthorityValidator.edit.changeAdministeringFor],
       // changeRole: [this.changeRoleOptions[0], cUpdateSigningAuthorityValidator.edit.changeRole],

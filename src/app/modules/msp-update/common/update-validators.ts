@@ -12,30 +12,6 @@ export function copyToClipBoard(content: any) {
     document.execCommand('copy');
 }
 
-export function getDateinMMDDYYYY(date: Date) {
-    let mm: string;
-    let dd: string;
-    let yyyy: string;
-
-    let dateString: string;
-
-    dd = date.getDate().toString();
-    mm = (date.getMonth() + 1).toString();
-    yyyy = date.getFullYear().toString();
-
-    dateString =
-        `${mm.length > 1 ? mm : '0' + mm}` +
-        `-${dd.length > 1 ? dd : '0' + dd}` +
-        `-${yyyy}`;
-
-    return dateString;
-}
-
-
-export function funcRandomNumber8Digit() {
-    return Math.floor(Math.random() * 89999999 + 10000000).toString();
-}
-
 export function emailValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
         // tslint:disable-next-line: max-line-length

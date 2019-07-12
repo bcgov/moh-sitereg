@@ -4,6 +4,9 @@ import { cUpdateEnumeration, validMultiFormControl, cUpdateValidators } from '..
 
 import * as jsonMaps from '../../../common/update-json-map';
 
+import { getEditJsonOfOrganization } from '../shared/organization-json-map';
+
+
 @Component({
   selector: 'sitereg-update-organization-edit',
   templateUrl: './organization-edit.component.html',
@@ -12,13 +15,16 @@ import * as jsonMaps from '../../../common/update-json-map';
 export class MspDirectUpdateOrganizationEditComponent implements OnInit {
 
   @Input() formState: FormGroup | null;
-  parentForm: FormGroup;
-  validFormControl: (fg: FormGroup, name: string) => boolean;
-  administeringForOptions = cUpdateEnumeration.administeringFor.edit;
   @Output() statusChanged: EventEmitter<FormGroup | null> = new EventEmitter<FormGroup | null>();
+
+  parentForm: FormGroup;
+  administeringForOptions = cUpdateEnumeration.administeringFor.edit;
+  validFormControl: (fg: FormGroup, name: string) => boolean;
+  json: (formValues: any) => any;
 
   constructor(private fb: FormBuilder) {
     this.validFormControl = validMultiFormControl;
+    this.json = getEditJsonOfOrganization;
   }
 
   ngOnInit() {

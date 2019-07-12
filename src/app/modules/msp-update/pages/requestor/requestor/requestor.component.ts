@@ -1,24 +1,25 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { ROUTES_UPDATE } from '../../routing/routes.constants';
+import { ROUTES_UPDATE } from '../../../routing/routes.constants';
 import { Router } from '@angular/router';
-import { MspDirectUpdateProgressService } from '../../services/progress.service';
+import { MspDirectUpdateProgressService } from '../../../services/progress.service';
 import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
-import { UpdateStateService } from '../../services/update.state.service';
-import { cUpdateValidators, validMultiFormControl } from '../../common/validators';
-import { funcRandomNumber8Digit, getDateinMMDDYYYY } from '../../common/update-validators';
+import { UpdateStateService } from '../../../services/update.state.service';
+import { cUpdateValidators, validMultiFormControl } from '../../../common/validators';
 
-import * as jsonMaps from '../../common/update-json-map';
+import { getJsonOfRequestor } from '../shared/requestor-json-map';
+
 
 @Component({
-    selector: 'sitereg-msp-update-identify',
-    templateUrl: './identify.component.html',
-    styleUrls: ['./identify.component.scss'],
+    selector: 'sitereg-msp-update-requestor',
+    templateUrl: './requestor.component.html',
+    styleUrls: ['./requestor.component.scss'],
 })
-export class MspDirectUpdateIdentifyComponent implements OnInit, AfterViewInit {
+export class MspDirectUpdateRequestorComponent implements OnInit, AfterViewInit {
     @ViewChild('consentModal') consentModal;
     validFormControl: (fg: FormGroup, name: string) => boolean;
+    json: (formValues: any) => any;
 
     constructor(
         private router: Router,
@@ -29,6 +30,7 @@ export class MspDirectUpdateIdentifyComponent implements OnInit, AfterViewInit {
         private fb: FormBuilder
     ) {
         this.validFormControl = validMultiFormControl;
+        this.json = getJsonOfRequestor;
     }
 
     ngOnInit() {
@@ -71,22 +73,5 @@ export class MspDirectUpdateIdentifyComponent implements OnInit, AfterViewInit {
 
     get fg(): FormGroup {
         return this.updateStateService.forms.requestorForm;
-    }
-
-    generateJSON(formValues) {
-        // generate signing-authorityistrator-remove object
-        const json: any = {};
-        // from form
-        json.org_num = formValues && formValues.organizationNumber ? formValues.organizationNumber : '';
-        json.org_email = formValues && formValues.emailAddress ? formValues.emailAddress : '';
-
-        json.request_uuid = this.globalConfigSvc.applicationId;
-        json.request_num = funcRandomNumber8Digit();
-        json.authorizedBySA = 'Y';
-        const dated = new Date();
-        json.authorizedDate = getDateinMMDDYYYY(dated);
-        json.applicationType = 'mspdUpdate';
-        // if (isValidOptionalField(formValues.ministryUserId)) json.user_id = formValues.ministryUserId;
-        return json;
     }
 }

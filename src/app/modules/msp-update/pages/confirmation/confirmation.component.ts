@@ -49,6 +49,6 @@ export class MspDirectUpdateConfirmationComponent implements OnInit {
         this.progressService.setPageComplete();
         this.progressService.enableConfirmation = false;
         this.globalConfigSvc.logRefreshMspApplicationUUID();
-        this.router.navigate([ROUTES_UPDATE.IDENTIFY.fullpath]);
+        this.router.navigate([ROUTES_UPDATE.Requestor.fullpath]);
     }
 }
