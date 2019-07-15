@@ -5,9 +5,9 @@ import {
 } from '../shared/access-admin-shared';
 
 import {
-  validMultiFormControl, formControlValidity, isValidOptionalField
+  validMultiFormControl, formControlValidity
 } from '../../../common/update-validators';
-
+import { getRemoveJsonOfAccessAdministrator } from '../shared/access-admin-json-map';
 
 @Component({
   selector: 'sitereg-update-access-admin-remove',
@@ -22,10 +22,12 @@ export class MspDirectUpdateAccessAdministratorRemoveComponent implements OnInit
   parentForm: FormGroup;
   validFormControl: (fg: FormGroup, name: string) => boolean;
   formControlValidity: (fg: FormGroup, name: string) => { required: boolean; other: boolean };
+  json: (formValues: any) => any;
 
   constructor(private fb: FormBuilder) {
     this.validFormControl = validMultiFormControl;
     this.formControlValidity = formControlValidity;
+    this.json = getRemoveJsonOfAccessAdministrator;
   }
 
   ngOnInit() {
@@ -72,13 +74,13 @@ export class MspDirectUpdateAccessAdministratorRemoveComponent implements OnInit
   }
 
 
-  generateJSON(formValues) {
+  // generateJSON(formValues) {
 
-    // generate access-administrator-remove object
-    const json: any = {};
-    json.email = formValues && formValues.emailAddress ? formValues.emailAddress : '';
-    if (isValidOptionalField(formValues.ministryUserId)) json.user_id = formValues.ministryUserId;
-    return json;
-  }
+  //   // generate access-administrator-remove object
+  //   const json: any = {};
+  //   json.email = formValues && formValues.emailAddress ? formValues.emailAddress : '';
+  //   if (isValidOptionalField(formValues.ministryUserId)) json.user_id = formValues.ministryUserId;
+  //   return json;
+  // }
 
 }

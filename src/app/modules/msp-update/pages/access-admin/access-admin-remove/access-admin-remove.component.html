@@ -18,28 +18,21 @@
           formControlLabel="Email" errorMessage="Please provide valid email address.">
         </sitereg-update-error-box>
 
-      <label for='ministryUserId_{{formIndex}}'>Ministry asigned User ID (optional)</label>
-      <input type='text' class='form-control' name='ministryUserId_{{formIndex}}' formControlName='ministryUserId'
-        id='ministryUserId_{{formIndex}}' placeholder="Ministry provided User Id" maxlength="20">
+        <label for='ministryUserId_{{formIndex}}'>Ministry asigned User ID (optional)</label>
+        <input type='text' class='form-control' name='ministryUserId_{{formIndex}}' formControlName='ministryUserId'
+          id='ministryUserId_{{formIndex}}' placeholder="Ministry provided User Id" maxlength="20">
 
-      <sitereg-update-error-box [formControlValidity]="formControlValidity(fg,'ministryUserId')"
-      formControlLabel="Ministry asigned User ID" errorMessage="Please provide valid Ministry assigned User Id.">
-      </sitereg-update-error-box>
+        <sitereg-update-error-box [formControlValidity]="formControlValidity(fg,'ministryUserId')"
+          formControlLabel="Ministry asigned User ID" errorMessage="Please provide valid Ministry assigned User Id.">
+        </sitereg-update-error-box>
 
 
-      <!-- <div class="border border-info mt-4 p-2 ">
+        <sitereg-update-json-view [showRaw]="false" [raw]='fg.value' [showJson]="true" [json]='json(fg.value)'>
+        </sitereg-update-json-view>
 
-          <b>FORM :</b>
-          {{fg.value | json}}
-          <hr />
-          <b>JSON :</b>
-          {{generateJSON(fg.value) | json}}
+      </div>
+    </form>
 
-        </div> -->
 
   </div>
-</form>
-
-
-</div>
 </form>

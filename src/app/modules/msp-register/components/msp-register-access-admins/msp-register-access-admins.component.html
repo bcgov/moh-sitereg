@@ -1,6 +1,6 @@
 <!-- TODO: ask if the control to add access administrators is the button click. UX is confusing -->
-<common-page-framework >
-<h2 class="border-bottom">Access Admins</h2>
+<common-page-framework  layout="blank">
+<h1 class="border-bottom">Access Admins</h1>
 <common-page-section layout="tips">
 
 <aside>
@@ -18,7 +18,7 @@
 <div *ngFor="let fg of fgs; index as i">
   <div class="row border-bottom">
     <div class="col-auto mr-auto">
-      <h3> Access Admin #{{fgs.length-i}}</h3>
+      <h2> Access Admin #{{fgs.length-i}}</h2>
     </div>
     <div class="col-auto">
       <button  class="btn delete"  (click)="deleteFormGroup(i)" type="button" aria-label="Delete">

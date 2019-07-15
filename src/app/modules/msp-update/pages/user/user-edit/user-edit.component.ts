@@ -4,10 +4,12 @@ import {
   cUpdateUserEnumeration, cUpdateUserValidator
 } from '../shared/user-shared';
 
-import { 
-  validMultiFormControl, formControlValidity, isValidOptionalField, matchFieldValidator
+import {
+  validMultiFormControl, formControlValidity,
+  matchFieldValidator
 } from '../../../common/update-validators';
 
+import { getEditJsonOfMspUser } from '../shared/user-shared-json-map';
 
 @Component({
   selector: 'sitereg-update-user-edit',
@@ -22,6 +24,7 @@ export class MspDirectUpdateUserEditComponent implements OnInit {
   parentForm: FormGroup;
   validFormControl: (fg: FormGroup, name: string) => boolean;
   formControlValidity: (fg: FormGroup, name: string) => { required: boolean; other: boolean };
+  json: (formValues: any) => any;
 
   @Input() showAdministeringMSPForQuestion = true;
   userTitles = cUpdateUserEnumeration.userTitles;
@@ -33,6 +36,7 @@ export class MspDirectUpdateUserEditComponent implements OnInit {
   constructor(private fb: FormBuilder) {
     this.validFormControl = validMultiFormControl;
     this.formControlValidity = formControlValidity;
+    this.json = getEditJsonOfMspUser;
   }
 
   ngOnInit() {
@@ -106,14 +110,4 @@ export class MspDirectUpdateUserEditComponent implements OnInit {
     control.setValue('', { onlySelf: false });
     formGroup.updateValueAndValidity();
   }
-
-  generateJSON(formValues) {
-
-    // generate useristrator-remove object
-    const json: any = {};
-    json.email = formValues && formValues.emailAddress ? formValues.emailAddress : '';
-    if (isValidOptionalField(formValues.ministryUserId)) json.user_id = formValues.ministryUserId;
-    return json;
-  }
-
 }

@@ -118,13 +118,9 @@
 
         <!--#endregion Form-->
 
-        <!-- <div class="border border-info mt-4 p-2 ">
-          <b>FORM :</b>
-          {{fg.value | json}}
-          <hr />
-          <b>JSON :</b>
-          {{generateJSON(fg.value) | json}}
-        </div> -->
+        <sitereg-update-json-view 
+        [showRaw]="false" [raw]='fg.value' 
+        [showJson]="true" [json]='json(fg.value)'></sitereg-update-json-view> 
 
       </div>
     </form>

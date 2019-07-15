@@ -64,4 +64,7 @@
    
   </div>
 </form>
-<!-- <div>{{parentForm.value | json}}</div> -->
+
+<sitereg-update-json-view 
+[showRaw]="false" [raw]='parentForm.value' 
+[showJson]="true" [json]='json(parentForm.value)'></sitereg-update-json-view> 

@@ -5,9 +5,9 @@ import {
 } from '../shared/user-shared';
 
 import {
-  validMultiFormControl, formControlValidity, isValidOptionalField
+  validMultiFormControl, formControlValidity
 } from '../../../common/update-validators';
-
+import { getRemoveJsonOfMspUser } from '../shared/user-shared-json-map';
 
 
 @Component({
@@ -23,10 +23,12 @@ export class MspDirectUpdateUserRemoveComponent implements OnInit {
   parentForm: FormGroup;
   validFormControl: (fg: FormGroup, name: string) => boolean;
   formControlValidity: (fg: FormGroup, name: string) => { required: boolean; other: boolean };
+  json: (formValues: any) => any;
 
   constructor(private fb: FormBuilder) {
     this.validFormControl = validMultiFormControl;
     this.formControlValidity = formControlValidity;
+    this.json = getRemoveJsonOfMspUser;
   }
 
   ngOnInit() {
@@ -71,15 +73,4 @@ export class MspDirectUpdateUserRemoveComponent implements OnInit {
     this.getFormsArray.insert(0, this.createArrayForm());
     this.formArrayChanged.emit(this.parentForm);
   }
-
-
-  generateJSON(formValues) {
-
-    // generate access-administrator-remove object
-    const json: any = {};
-    json.email = formValues && formValues.emailAddress ? formValues.emailAddress : '';
-    if (isValidOptionalField(formValues.ministryUserId)) json.user_id = formValues.ministryUserId;
-    return json;
-  }
-
 }
