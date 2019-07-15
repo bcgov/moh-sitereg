@@ -1,10 +1,10 @@
 import { browser } from 'protractor';
 import { FakeDataDevUpdate } from './update.data';
-import { MSPGroupsPage } from './update.po';
-import { onPageLoadTest, onClickStepperTest, onSkipTest } from './generic-tests';
+import { GroupNumbersPage } from './update.po';
+import { testPageLoad, testClickStepper, testSkip } from './generic-tests';
 
 describe('IAM Update - MSP Groups Page', () => {
-    let groupPage: MSPGroupsPage;
+    let groupPage: GroupNumbersPage;
     const data = new FakeDataDevUpdate();
     let groupData;
     const USER_PAGE_URL = `sitereg/update/users`;
@@ -12,21 +12,21 @@ describe('IAM Update - MSP Groups Page', () => {
     const REVIEW_PAGE_URL = `sitereg/update/review`;
 
     beforeEach(() => {
-        groupPage = new MSPGroupsPage();
+        groupPage = new GroupNumbersPage();
         groupData = data.groupNumbersInfo();
         data.setSeed(123);
     });
 
-    onPageLoadTest(GROUP_NUMBERS_PAGE_URL);
-    onClickStepperTest(GROUP_NUMBERS_PAGE_URL, USER_PAGE_URL, 'Users', 'Review');
-    onSkipTest(GROUP_NUMBERS_PAGE_URL, REVIEW_PAGE_URL);
+    testPageLoad(GROUP_NUMBERS_PAGE_URL);
+    testClickStepper(GROUP_NUMBERS_PAGE_URL, USER_PAGE_URL, 'Users', 'Review');
+    testSkip(GROUP_NUMBERS_PAGE_URL, REVIEW_PAGE_URL);
 
     it('01. should be able to add MSP Group number', () => {
         groupPage.navigateTo();
         groupPage.clickButton('btn', 'Add MSP Group');
         groupPage.typeGroupNumber('Add new MSP Group #1', 'goupNo_0', groupData);
         groupPage.checkThirdPartyAdmin('goupNo_0', 'Will this group', 'Yes');
-        groupPage.checkInputDisplayed('Add new MSP Group #1', 'goupNo_0').then(function(val){
+        groupPage.checkInputDisplayed('Add new MSP Group #1', 'goupNo_0').then(val => {
             expect(val).toBe(groupData.groupNum.toString());
         });
         groupPage.continue();
@@ -37,7 +37,7 @@ describe('IAM Update - MSP Groups Page', () => {
         groupPage.navigateTo();
         groupPage.clickButton('btn', 'Remove MSP Group');
         groupPage.typeGroupNumber('Remove new MSP Group #1', 'goupNo_0', groupData);
-        groupPage.checkInputDisplayed('Remove new MSP Group #1', 'goupNo_0').then(function(val){
+        groupPage.checkInputDisplayed('Remove new MSP Group #1', 'goupNo_0').then(val => {
             expect(val).toBe(groupData.groupNum.toString());
         });
         groupPage.continue();
@@ -49,7 +49,7 @@ describe('IAM Update - MSP Groups Page', () => {
         groupPage.clickButton('btn', 'Update administration of MSP Group');
         groupPage.typeGroupNumber('Update administration of MSP Group #1', 'goupNo_0', groupData);
         groupPage.checkThirdPartyAdmin('goupNo_0', 'Is the group', 'No');
-        groupPage.checkInputDisplayed('Update administration of MSP Group #1', 'goupNo_0').then(function(val){
+        groupPage.checkInputDisplayed('Update administration of MSP Group #1', 'goupNo_0').then(val => {
             expect(val).toBe(groupData.groupNum.toString());
         });
         groupPage.continue();
@@ -66,10 +66,10 @@ describe('IAM Update - MSP Groups Page', () => {
         groupPage.clickButton('btn', 'Add MSP Group');
         groupPage.typeGroupNumber('Add new MSP Group #2', 'goupNo_1', groupData);
         groupPage.checkThirdPartyAdmin('goupNo_1', 'Will this group', 'No');
-        groupPage.checkInputDisplayed('Add new MSP Group #1', 'goupNo_0').then(function(val){
+        groupPage.checkInputDisplayed('Add new MSP Group #1', 'goupNo_0').then(val => {
             expect(val).toBe(groupNum0.toString());
         });
-        groupPage.checkInputDisplayed('Add new MSP Group #2', 'goupNo_1').then(function(val){
+        groupPage.checkInputDisplayed('Add new MSP Group #2', 'goupNo_1').then(val => {
             expect(val).toBe(groupNum1.toString());
         });
         groupPage.continue();
@@ -84,10 +84,10 @@ describe('IAM Update - MSP Groups Page', () => {
         const groupNum1 = groupData.groupNum = '7654321';
         groupPage.clickButton('btn', 'Remove MSP Group');
         groupPage.typeGroupNumber('Remove new MSP Group #2', 'goupNo_1', groupData);
-        groupPage.checkInputDisplayed('Remove new MSP Group #1', 'goupNo_0').then(function(val){
+        groupPage.checkInputDisplayed('Remove new MSP Group #1', 'goupNo_0').then(val => {
             expect(val).toBe(groupNum0.toString());
         });
-        groupPage.checkInputDisplayed('Remove new MSP Group #2', 'goupNo_1').then(function(val){
+        groupPage.checkInputDisplayed('Remove new MSP Group #2', 'goupNo_1').then(val => {
             expect(val).toBe(groupNum1.toString());
         });
         groupPage.continue();
@@ -104,10 +104,10 @@ describe('IAM Update - MSP Groups Page', () => {
         groupPage.clickButton('btn', 'Update administration of MSP Group');
         groupPage.typeGroupNumber('Update administration of MSP Group #2', 'goupNo_1', groupData);
         groupPage.checkThirdPartyAdmin('goupNo_1', 'Is the group', 'Yes');
-        groupPage.checkInputDisplayed('Update administration of MSP Group #1', 'goupNo_0').then(function(val){
+        groupPage.checkInputDisplayed('Update administration of MSP Group #1', 'goupNo_0').then(val => {
             expect(val).toBe(groupNum0.toString());
         });
-        groupPage.checkInputDisplayed('Update administration of MSP Group #2', 'goupNo_1').then(function(val){
+        groupPage.checkInputDisplayed('Update administration of MSP Group #2', 'goupNo_1').then(val => {
             expect(val).toBe(groupNum1.toString());
         });
         groupPage.continue();
@@ -123,10 +123,10 @@ describe('IAM Update - MSP Groups Page', () => {
         const groupNum1 = groupData.groupNum = '7654321';
         groupPage.clickButton('btn', 'Remove MSP Group');
         groupPage.typeGroupNumber('Remove new MSP Group #1', 'goupNo_0', groupData);
-        groupPage.checkInputDisplayed('Add new MSP Group #1', 'goupNo_0').then(function(val){
+        groupPage.checkInputDisplayed('Add new MSP Group #1', 'goupNo_0').then(val => {
             expect(val).toBe(groupNum0.toString());
         });
-        groupPage.checkInputDisplayed('Remove new MSP Group #1', 'goupNo_0').then(function(val){
+        groupPage.checkInputDisplayed('Remove new MSP Group #1', 'goupNo_0').then(val => {
             expect(val).toBe(groupNum1.toString());
         });
         groupPage.continue();

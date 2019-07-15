@@ -1,7 +1,7 @@
 import { browser } from 'protractor';
 import { FakeDataDevUpdate } from './update.data';
 import { OrganizationPage, BaseDevUpdateTestPage } from './update.po';
-import { onPageLoadTest, onClickStepperTest, onClickContinueTest } from './generic-tests';
+import { testPageLoad, testClickStepper, testClickContinue } from './generic-tests';
 
 describe('IAM Update - Organization Page', () => {
     let orgPage: OrganizationPage;
@@ -17,9 +17,9 @@ describe('IAM Update - Organization Page', () => {
         data.setSeed(123);
     });
 
-    onPageLoadTest(ORG_PAGE_URL);
-    onClickStepperTest(ORG_PAGE_URL, REQUESTOR_PAGE_URL, 'Identify', 'Signing Authority');
-    onClickContinueTest(ORG_PAGE_URL);
+    testPageLoad(ORG_PAGE_URL);
+    testClickStepper(ORG_PAGE_URL, REQUESTOR_PAGE_URL, 'Identify', 'Signing Authority');
+    testClickContinue(ORG_PAGE_URL);
 
     it('01. should let the user to continue if there are no updates in Organization Info', () => {
         orgPage.navigateTo();
@@ -40,12 +40,12 @@ describe('IAM Update - Organization Page', () => {
         orgPage.navigateTo();
         orgPage.clickOption('true');
         orgPage.selectFromDropDown('province', 'British Columbia');
-        orgPage.getInputVal('province').then(function(val){
+        orgPage.getInputVal('province').then(val => {
             expect(val).toBe('British Columbia');
         });
         orgPage.scrollDown();
         orgPage.selectFromDropDown('The organization', 'Employees and International Students');
-        orgPage.getInputVal('The organization').then(function(val){
+        orgPage.getInputVal('The organization').then(val => {
              expect(val).toBe('Employees and International Students');
         });
     });
