@@ -1,7 +1,6 @@
-<common-page-framework layout='default'>
-  <h2 class='h1'>Requestor Information</h2>
-  <p>The request must be submitted by the Organization's Access Administrator or Signing Authority.</p>
-  <hr>
+<common-page-framework layout='blank'>
+  <h1 class="border-bottom">Requestor Information</h1>
+  <!-- <p>The request must be submitted by the Organization's Access Administrator or Signing Authority.</p> -->
   <common-page-section layout="tips">
     <aside>
       The request must be submitted by the Organization's Access Administrator or Signing Authority.
@@ -12,7 +11,7 @@
 
         <label for='organizationNumber'>Organization Number</label>
         <input type='text' class='form-control' name='organizationNumber' formControlName='organizationNumber'
-          id='organizationNumber' placeholder="00001234" maxlength="8" required>
+          id='organizationNumber'  maxlength="8" required>
 
         <sitereg-error-box [error]="validFormControl(fg, 'organizationNumber')"
           errorMessage="Organization Number is required. Must be 8 digits, ex. 00001234">
@@ -20,7 +19,7 @@
 
         <label for="emailAddress">Email Address</label>
         <input id="emailAddress" name="emailAddress" formControlName='emailAddress' class="form-control"
-          placeholder="example@example.com" maxlength="100" required>
+           maxlength="100" required>
 
         <sitereg-error-box [error]="validFormControl(fg, 'emailAddress')"
           errorMessage="Email is required. Must be in the format user@example.com"></sitereg-error-box>

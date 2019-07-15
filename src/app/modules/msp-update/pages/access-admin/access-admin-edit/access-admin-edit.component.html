@@ -5,176 +5,177 @@
 
       <common-xicon-button class='d-block pb-1' label="Cancel" (clickEvent)="removeForm(formIndex)">
       </common-xicon-button>
-      <h3 class='border-bottom'>Update an existing Access Administrator #{{getFormsArray.controls.length - formIndex}}
-      </h3>
-      <p><small>Access Administrator information</small></p>
+      <h2 class='border-bottom'>Update an existing Access Administrator #{{getFormsArray.controls.length - formIndex}}
+      </h2>
+      <common-page-section layout='tips'>
+        <aside>Access Administrator information</aside>
 
-      <div class='form-group col-sm-8 p-sm-0'>
+        <div class='form-group col-sm-8 p-sm-0'>
 
-        <!--#region Form-->
-        <label for='forIdentifyEmailAddress_{{formIndex}}'>Enter the email of the Access Administrator to
-          edit</label>
-        <input type='text' class='form-control' name='forIdentifyEmailAddress_{{formIndex}}'
-          formControlName='forIdentifyEmailAddress' id='forIdentifyEmailAddress_{{formIndex}}'
-          placeholder="example@example.com" maxlength="100">
+          <!--#region Form-->
+          <label for='forIdentifyEmailAddress_edit_{{formIndex}}'>Enter the email of the Access Administrator to
+            edit</label>
+          <input type='text' class='form-control' name='forIdentifyEmailAddress_edit_{{formIndex}}'
+            formControlName='forIdentifyEmailAddress' id='forIdentifyEmailAddress_edit_{{formIndex}}'
+            maxlength="100">
 
-        <sitereg-update-error-box [formControlValidity]="formControlValidity(fg,'forIdentifyEmailAddress')"
-          formControlLabel="Email" errorMessage="Please provide valid email address.">
-        </sitereg-update-error-box>
-
-        <label for='forIdentifyMinistryUserId_{{formIndex}}'>Ministry asigned User ID (optional)</label>
-        <input type='text' class='form-control' name='forIdentifyMinistryUserId_{{formIndex}}'
-          formControlName='forIdentifyMinistryUserId' id='forIdentifyMinistryUserId_{{formIndex}}'
-          placeholder="Ministry provided User Id" maxlength="20">
-
-        <sitereg-update-error-box [formControlValidity]="formControlValidity(fg,'forIdentifyMinistryUserId')"
-          formControlLabel="Ministry asigned User ID" errorMessage="Please provide valid Ministry assigned User Id.">
-        </sitereg-update-error-box>
-
-
-        <!-- Title (optional); multi-select -->
-        <div class="row">
-          <div class="col-sm-4">
-            <label class="control-label" for="userTitle_{{formIndex}}">Title (optional)</label>
-            <select class="form-control" id="userTitle_{{formIndex}}" *ngIf="userTitles" formControlName="userTitle"
-              maxlength="5">
-              <option value="" label="" selected></option>
-              <option *ngFor="let title of userTitles " [value]="title">{{title}}</option>
-            </select>
-          </div>
-          <!-- First Name -->
-          <div class="col-sm-8">
-            <label class="control-label" for="firstName_{{formIndex}}">First Name</label>
-            <input id="firstName_{{formIndex}}" formControlName="firstName" class="form-control"
-              placeholder="First Name" maxlength="100">
-            <sitereg-update-error-box [formControlValidity]="formControlValidity(fg,'firstName')"
-              formControlLabel="First Name" errorMessage="Please provide valid first name."> </sitereg-update-error-box>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-4">
-
-            <!-- Int (optional)-->
-            <label class="control-label" for="initial_{{formIndex}}">Initial (optional)</label>
-            <input id="initial_{{formIndex}}" formControlName="initial" class="form-control" placeholder="Initial"
-              maxlength="1">
-            <sitereg-update-error-box [formControlValidity]="formControlValidity(fg,'initial')"
-              formControlLabel="Initial" errorMessage="One Character."> </sitereg-update-error-box>
-
-          </div>
-          <div class="col-sm-8">
-
-            <!-- Last Name -->
-            <label class="control-label" for="lastName_{{formIndex}}">Last Name</label>
-            <input id="lastName_{{formIndex}}" formControlName="lastName" class="form-control" placeholder="Last Name"
-              maxlength="100">
-            <sitereg-update-error-box [formControlValidity]="formControlValidity(fg,'lastName')"
-              formControlLabel="Last Name" errorMessage="Please provide valid last name."> </sitereg-update-error-box>
-          </div>
-        </div>
-
-        <!-- Job Title -->
-        <label class="control-label" for="jobTitle_{{formIndex}}">Job Title</label>
-        <input id="jobTitle_{{formIndex}}" formControlName="jobTitle" class="form-control" placeholder="Job Title"
-          maxlength="100">
-        <sitereg-error-box [error]="validFormControl(fg,'jobTitle')"
-          errorMessage="Job title is required. Please provide valid job title."></sitereg-error-box>
-
-        <div formGroupName="formGroupEmail">
-          <!-- Email Address -->
-          <label class="control-label" for="emailAddress_{{formIndex}}">Email Address</label>
-          <input id="emailAddress_{{formIndex}}" formControlName="emailAddress" class="form-control"
-            placeholder="Email address" maxlength="100">
-          <sitereg-update-error-box
-            [formControlValidity]="formControlValidity(fg.controls.formGroupEmail,'emailAddress')"
-            formControlLabel="Email" errorMessage="Must be in the format test@example.com."> </sitereg-update-error-box>
-
-          <!-- Confirm Email Address -->
-          <label class="control-label" for="confirmEmail_{{formIndex}}">Confirm Email Address</label>
-          <input id="confirmEmail_{{formIndex}}" formControlName="confirmEmail" class="form-control"
-            placeholder="Confirm Email" maxlength="100">
-          <sitereg-update-error-box
-            [formControlValidity]="formControlValidity(fg.controls.formGroupEmail,'confirmEmail')"
-            formControlLabel="Confirm Email" errorMessage="Must match email address."> </sitereg-update-error-box>
-        </div>
-
-        <!-- Phone -->
-        <div class="row">
-          <div class="col-sm-8">
-            <label class="control-label" for="phone_{{formIndex}}">Phone</label>
-            <input id="phone_{{formIndex}}" formControlName="phone" class="form-control" placeholder="Phone number"
-              maxlength="10">
-            <sitereg-update-error-box [formControlValidity]="formControlValidity(fg,'phone')"
-              formControlLabel="Phone Number" errorMessage="Must be in the format 0000000000">
-            </sitereg-update-error-box>
-          </div>
-
-          <!-- Ext (optional) -->
-          <div class="col-sm-4">
-            <label class="control-label" for="ext_{{formIndex}}">Ext (optional)</label>
-            <input id="ext_{{formIndex}}" formControlName="ext" class="form-control" placeholder="Extension (optional)"
-              maxlength="100">
-            <sitereg-error-box [error]="validFormControl(fg,'ext')" errorMessage="Please provide valid Extension">
-            </sitereg-error-box>
-            <sitereg-update-error-box [formControlValidity]="formControlValidity(fg,'ext')" formControlLabel="Extension"
-              errorMessage="Please provide valid Extension."> </sitereg-update-error-box>
-          </div>
-
-
-
-
-        </div>
-        <!-- Fax (optional)-->
-        <label class="control-label" for="fax_{{formIndex}}">Fax (optional)</label>
-        <input id="fax_{{formIndex}}" formControlName="fax" class="form-control" placeholder="Fax number (optional)"
-          maxlength="10">
-        <sitereg-update-error-box [formControlValidity]="formControlValidity(fg,'fax')" formControlLabel="Fax"
-          errorMessage="Please provide valid Fax number."> </sitereg-update-error-box>
-
-
-        <!-- Change Role-->
-        <label class="control-label" for="changeRole_{{formIndex}}">Change role</label>
-        <select class="form-control" id="changeRole_{{formIndex}}" *ngIf="changeRoleOptions"
-          formControlName="changeRole">
-          <option value="" label="-- Select Option --" selected></option>
-          <option *ngFor="let a of changeRoleOptions " [value]="a">{{a}}</option>
-        </select>
-        <sitereg-update-error-box [formControlValidity]="formControlValidity(fg,'changeRole')"
-          formControlLabel="Change Role" errorMessage="Please select a valid option">
-        </sitereg-update-error-box>
-
-        <!-- Question (optional) -->
-        <div class="row">
-          <div class="col-sm-8">
-
-            <common-radio [radioLabels]="radioBtnLabels" formControlName="changeAdministerFor"
-              label="Do you want to change access?" (statusChange)="updateAccessValidation(fg,$event)"></common-radio>
-          </div>
-        </div>
-
-        <!-- Administrating For-->
-        <ng-container class="row" *ngIf='fg.controls.changeAdministerFor.value'>
-          <label class="control-label" for="administeringFor_{{formIndex}}">This person will be administering MSP
-            for</label>
-          <select class="form-control" id="administeringFor_{{formIndex}}" *ngIf="administeringForOptions"
-            formControlName="administeringFor">
-            <option value="" label="-- Select Option --" selected></option>
-            <option *ngFor="let a of administeringForOptions " [value]="a">{{a}}</option>
-          </select>
-          <sitereg-update-error-box [formControlValidity]="formControlValidity(fg,'administeringFor')"
-            formControlLabel="Administer for" errorMessage="Please select a valid option">
+          <sitereg-update-error-box [formControlValidity]="formControlValidity(fg,'forIdentifyEmailAddress')"
+            formControlLabel="Email" errorMessage="Please provide valid email address.">
           </sitereg-update-error-box>
-        </ng-container>
 
-        <!--#endregion Form-->
+          <label for='forIdentifyMinistryUserId_edit_{{formIndex}}'>Ministry asigned User ID (optional)</label>
+          <input type='text' class='form-control' name='forIdentifyMinistryUserId_edit_{{formIndex}}'
+            formControlName='forIdentifyMinistryUserId' id='forIdentifyMinistryUserId_edit_{{formIndex}}'
+            maxlength="20">
 
-        <sitereg-update-json-view 
-        [showRaw]="false" [raw]='fg.value' 
-        [showJson]="true" [json]='json(fg.value)'></sitereg-update-json-view> 
-      </div>
+          <sitereg-update-error-box [formControlValidity]="formControlValidity(fg,'forIdentifyMinistryUserId')"
+            formControlLabel="Ministry asigned User ID" errorMessage="Please provide valid Ministry assigned User Id.">
+          </sitereg-update-error-box>
+
+
+          <!-- Title (optional); multi-select -->
+          <div class="row">
+            <div class="col-sm-4">
+              <label class="control-label" for="userTitle_edit_{{formIndex}}">Title (optional)</label>
+              <select class="form-control" id="userTitle_edit_{{formIndex}}" *ngIf="userTitles" formControlName="userTitle"
+                maxlength="5">
+                <option value="" label="" selected></option>
+                <option *ngFor="let title of userTitles " [value]="title">{{title}}</option>
+              </select>
+            </div>
+            <!-- First Name -->
+            <div class="col-sm-8">
+              <label class="control-label" for="firstName_edit_{{formIndex}}">First Name</label>
+              <input id="firstName_edit_{{formIndex}}" formControlName="firstName" class="form-control"
+               maxlength="100">
+              <sitereg-update-error-box [formControlValidity]="formControlValidity(fg,'firstName')"
+                formControlLabel="First Name" errorMessage="Please provide valid first name.">
+              </sitereg-update-error-box>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+
+              <!-- Int (optional)-->
+              <label class="control-label" for="initial_edit_{{formIndex}}">Initial (optional)</label>
+              <input id="initial_edit_{{formIndex}}" formControlName="initial" class="form-control"
+                maxlength="1">
+              <sitereg-update-error-box [formControlValidity]="formControlValidity(fg,'initial')"
+                formControlLabel="Initial" errorMessage="One Character."> </sitereg-update-error-box>
+
+            </div>
+            <div class="col-sm-8">
+
+              <!-- Last Name -->
+              <label class="control-label" for="lastName_edit_{{formIndex}}">Last Name</label>
+              <input id="lastName_edit_{{formIndex}}" formControlName="lastName" class="form-control"
+                maxlength="100">
+              <sitereg-update-error-box [formControlValidity]="formControlValidity(fg,'lastName')"
+                formControlLabel="Last Name" errorMessage="Please provide valid last name."> </sitereg-update-error-box>
+            </div>
+          </div>
+
+          <!-- Job Title -->
+          <label class="control-label" for="jobTitle_edit_{{formIndex}}">Job Title</label>
+          <input id="jobTitle_edit_{{formIndex}}" formControlName="jobTitle" class="form-control" 
+            maxlength="100">
+          <sitereg-error-box [error]="validFormControl(fg,'jobTitle')"
+            errorMessage="Job title is required. Please provide valid job title."></sitereg-error-box>
+
+          <div formGroupName="formGroupEmail">
+            <!-- Email Address -->
+            <label class="control-label" for="emailAddress_edit_{{formIndex}}">Email Address</label>
+            <input id="emailAddress_edit_{{formIndex}}" formControlName="emailAddress" class="form-control" maxlength="100">
+            <sitereg-update-error-box
+              [formControlValidity]="formControlValidity(fg.controls.formGroupEmail,'emailAddress')"
+              formControlLabel="Email" errorMessage="Must be in the format test@example.com.">
+            </sitereg-update-error-box>
+
+            <!-- Confirm Email Address -->
+            <label class="control-label" for="confirmEmail_edit_{{formIndex}}">Confirm Email Address</label>
+            <input id="confirmEmail_edit_{{formIndex}}" formControlName="confirmEmail" class="form-control"
+              maxlength="100">
+            <sitereg-update-error-box
+              [formControlValidity]="formControlValidity(fg.controls.formGroupEmail,'confirmEmail')"
+              formControlLabel="Confirm Email" errorMessage="Must match email address."> </sitereg-update-error-box>
+          </div>
+
+          <!-- Phone -->
+          <div class="row">
+            <div class="col-sm-8">
+              <label class="control-label" for="phone_edit_{{formIndex}}">Phone</label>
+              <input id="phone_edit_{{formIndex}}" formControlName="phone" class="form-control" maxlength="10">
+              <sitereg-update-error-box [formControlValidity]="formControlValidity(fg,'phone')"
+                formControlLabel="Phone Number" errorMessage="Must be in the format 0000000000">
+              </sitereg-update-error-box>
+            </div>
+
+            <!-- Ext (optional) -->
+            <div class="col-sm-4">
+              <label class="control-label" for="ext_edit_{{formIndex}}">Ext (optional)</label>
+              <input id="ext_edit_{{formIndex}}" formControlName="ext" class="form-control" maxlength="100">
+              <sitereg-error-box [error]="validFormControl(fg,'ext')" errorMessage="Please provide valid Extension">
+              </sitereg-error-box>
+              <sitereg-update-error-box [formControlValidity]="formControlValidity(fg,'ext')"
+                formControlLabel="Extension" errorMessage="Please provide valid Extension."> </sitereg-update-error-box>
+            </div>
+
+
+
+
+          </div>
+          <!-- Fax (optional)-->
+          <label class="control-label" for="fax_edit_{{formIndex}}">Fax (optional)</label>
+          <input id="fax_edit_{{formIndex}}" formControlName="fax" class="form-control"
+            maxlength="10">
+          <sitereg-update-error-box [formControlValidity]="formControlValidity(fg,'fax')" formControlLabel="Fax"
+            errorMessage="Please provide valid Fax number."> </sitereg-update-error-box>
+
+
+          <!-- Change Role-->
+          <label class="control-label" for="changeRole_edit_{{formIndex}}">Change role</label>
+          <select class="form-control" id="changeRole_edit_{{formIndex}}" *ngIf="changeRoleOptions"
+            formControlName="changeRole">
+            <option value="" label="-- Select Option --" selected></option>
+            <option *ngFor="let a of changeRoleOptions " [value]="a">{{a}}</option>
+          </select>
+          <sitereg-update-error-box [formControlValidity]="formControlValidity(fg,'changeRole')"
+            formControlLabel="Change Role" errorMessage="Please select a valid option">
+          </sitereg-update-error-box>
+
+          <!-- Question (optional) -->
+          <div class="row">
+            <div class="col-sm-8">
+
+              <common-radio [radioLabels]="radioBtnLabels" formControlName="changeAdministerFor"
+                label="Do you want to change access?" (statusChange)="updateAccessValidation(fg,$event)"></common-radio>
+            </div>
+          </div>
+
+          <!-- Administrating For-->
+          <ng-container class="row" *ngIf='fg.controls.changeAdministerFor.value'>
+            <label class="control-label" for="administeringFor_edit_{{formIndex}}">This person will be administering MSP
+              for</label>
+            <select class="form-control" id="administeringFor_edit_{{formIndex}}" *ngIf="administeringForOptions"
+              formControlName="administeringFor">
+              <option value="" label="-- Select Option --" selected></option>
+              <option *ngFor="let a of administeringForOptions " [value]="a">{{a}}</option>
+            </select>
+            <sitereg-update-error-box [formControlValidity]="formControlValidity(fg,'administeringFor')"
+              formControlLabel="Administer for" errorMessage="Please select a valid option">
+            </sitereg-update-error-box>
+          </ng-container>
+
+          <!--#endregion Form-->
+
+          <sitereg-update-json-view [showRaw]="false" [raw]='fg.value' [showJson]="true" [json]='json(fg.value)'>
+          </sitereg-update-json-view>
+        </div>
+
+      </common-page-section>
+
     </form>
 
 
   </div>
 </form>
-
