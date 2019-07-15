@@ -231,6 +231,7 @@ export class AccessAdminsPage extends SigningAuthorityPage {
         for (let i = 1; i < json.length; i++) { // starts with 1 because the first admin is already filled out
             this.clickButton('btn btn-block');
             this.fillInfo(i);
+            this.scrollDown();
             this.selectValue('administeringFor', json[i].administeringFor);
             this.scrollUp();
         }
@@ -254,6 +255,7 @@ export class UsersPage extends SigningAuthorityPage {
         for (let i = 0; i < json.length; i++) {
             this.clickButton('btn btn-block');
             this.fillInfo(i);
+            this.scrollDown();
             this.selectValue('administeringFor', json[i].administeringFor);
             this.scrollUp();
         }
