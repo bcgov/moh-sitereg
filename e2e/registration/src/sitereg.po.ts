@@ -20,8 +20,8 @@ export class BaseSiteRegTestPage extends AbstractTestPage {
     }
 
     selectValue(label: string, value: string) {
-        element(by.css(`select[ng-reflect-name="${label}"]`)).click(); // opens dropdown
-        element(by.css(`select[ng-reflect-name="${label}"] option[ng-reflect-value="${value}"]`)).click();
+        element.all(by.css(`select[ng-reflect-name="${label}"]`)).first().click(); // opens dropdown
+        element.all(by.css(`select[ng-reflect-name="${label}"] option[ng-reflect-value="${value}"]`)).first().click();
     }
 
     clickButton(value: string) {
@@ -94,8 +94,9 @@ export class BaseSiteRegTestPage extends AbstractTestPage {
         } else {
             ngVal = 'No';
         }
-        element(by.css(selector)).element(by.xpath('..')).element(by.cssContainingText('label', `${ngVal}`)).click();
+        element.all(by.css(selector)).first().element(by.xpath('..')).element(by.cssContainingText('label', `${ngVal}`)).click();
     }
+    
 
 }
 
@@ -175,27 +176,42 @@ export class SigningAuthorityPage extends BaseSiteRegTestPage {
 
     fillPage() {
         const json = this.jsonData.signingAuthorityPage;
-        this.selectValue('userTitle', json.title);
-        this.fillInfo();
+        this.fillInfo(0);
         this.scrollDown();
         this.selectValue('administeringFor', json.administeringFor);
         this.clickOptionJSON('directMspAccess', json.directMspAccess.toString());
         this.continue();
     }
 
-    fillInfo(data?: SigningAuthorityPageTest) {
-        let info = data;
+    fillInfo(i: number, data?: SigningAuthorityPageTest) {
         if (data === undefined) {
-            info = this.jsonData.accessAdminsPage;
+            data = this.jsonData.accessAdminsPage;
+            this.selectValue('userTitle', data[i].title);
+            this.typeTextFirstOccurrence('firstName', data[i].firstName);
+            this.typeTextFirstOccurrence('initial', data[i].initial);
+            this.typeTextFirstOccurrence('lastName', data[i].lastName);
+            this.typeTextFirstOccurrence('jobTitle', data[i].jobTitle);
+            this.typeTextFirstOccurrence('emailAddress', data[i].email);
+            this.typeTextFirstOccurrence('confirmEmail', data[i].confirmEmail);
+            this.typeTextFirstOccurrence('phone', data[i].mobile + '');
+            this.typeTextFirstOccurrence('ext', data[i].extension + '');
+            this.typeTextFirstOccurrence('fax', data[i].fax + '');
+        } else {
+            this.selectValue('userTitle', data.title);
+            this.typeTextFirstOccurrence('firstName', data.firstName);
+            this.typeTextFirstOccurrence('initial', data.initial);
+            this.typeTextFirstOccurrence('lastName', data.lastName);
+            this.typeTextFirstOccurrence('jobTitle', data.jobTitle);
+            this.typeTextFirstOccurrence('emailAddress', data.email);
+            this.typeTextFirstOccurrence('confirmEmail', data.confirmEmail);
+            this.typeTextFirstOccurrence('phone', data.mobile + '');
+            this.typeTextFirstOccurrence('ext', data.extension + '');
+            this.typeTextFirstOccurrence('fax', data.fax + '');
         }
-        this.typeTextFirstOccurrence('firstName', info.firstName);
-        this.typeTextFirstOccurrence('lastName', info.lastName);
-        this.typeTextFirstOccurrence('jobTitle', info.jobTitle);
-        this.typeTextFirstOccurrence('emailAddress', info.email);
-        this.typeTextFirstOccurrence('confirmEmail', info.email);
-        this.typeTextFirstOccurrence('phone', info.mobile + '');
-        this.typeTextFirstOccurrence('ext', info.extension + '');
-        this.typeTextFirstOccurrence('fax', info.fax + '');
+    }
+
+    checkEmailAddress(idVal: string) {
+        return element(by.css(`input[id^=${idVal}]`)).getAttribute('value');
     }
 
 }
@@ -211,7 +227,15 @@ export class AccessAdminsPage extends SigningAuthorityPage {
     }
 
     fillPage() {
-
+        const json = this.jsonData.usersPage;
+        for (let i = 1; i < json.length; i++) { // starts with 1 because the first admin is already filled out
+            this.clickButton('btn btn-block');
+            this.fillInfo(i);
+            this.scrollDown();
+            this.selectValue('administeringFor', json[i].administeringFor);
+            this.scrollUp();
+        }
+        this.continue();
     }
 
 }
@@ -228,10 +252,13 @@ export class UsersPage extends SigningAuthorityPage {
 
     fillPage() {
         const json = this.jsonData.usersPage;
-        this.clickButton('btn btn-block');
-        this.fillInfo();
-        this.scrollDown();
-        this.selectValue('administeringFor', json.administeringFor);
+        for (let i = 0; i < json.length; i++) {
+            this.clickButton('btn btn-block');
+            this.fillInfo(i);
+            this.scrollDown();
+            this.selectValue('administeringFor', json[i].administeringFor);
+            this.scrollUp();
+        }
         this.continue();
     }
 
@@ -248,16 +275,26 @@ export class GroupNumbersPage extends BaseSiteRegTestPage {
     }
 
     fillPage() {
-        this.fillGroupNum();
+        const json = this.jsonData.groupNumbersPage;
+        for (let i = 0; i < json.length; i++) {
+            this.fillGroupNum(i);
+            this.scrollUp();
+            if (i !== json.length - 1){
+                this.clickButton('btn-block');
+            }
+        }
         this.continue();
     }
 
-    fillGroupNum(data?: GroupNumbersPageTest) {
-        let info = data;
+    fillGroupNum(i: number, data?: GroupNumbersPageTest) {
         if (data === undefined) {
-            info = this.jsonData.groupNumbersPage;
+            data = this.jsonData.groupNumbersPage;
+            this.typeTextFirstOccurrence('groupNumber', data[i].groupNum + '');
+            this.clickOptionJSON('thirdParty', data[i].thirdParty.toString());
+        } else {
+            this.typeTextFirstOccurrence('groupNumber', data.groupNum + '');
+            this.clickOptionJSON('thirdParty', data.thirdParty.toString());
         }
-        this.typeText('groupNumber', info.groupNum + '');
     }
 }
 

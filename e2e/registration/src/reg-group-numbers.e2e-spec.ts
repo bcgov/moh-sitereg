@@ -49,7 +49,7 @@ describe('Moh SiteReg - Group Numbers Page', () => {
     // this test will fail because first group num section is not displayed after page load
     xit('05. should automatically display the first group number section', () => {
         groupPage.navigateTo();
-        groupPage.fillGroupNum();
+        groupPage.fillGroupNum(0);
         groupPage.continue();
         expect(groupPage.formErrors().count()).toBe(0, 'should be no errors');
         expect(browser.getCurrentUrl()).toContain(GROUP_PAGE_URL);
@@ -63,6 +63,9 @@ describe('Moh SiteReg - Group Numbers Page', () => {
         groupPage.continue();
         expect(browser.getCurrentUrl()).toContain(GROUP_PAGE_URL, 'should stay on the same page');
     });
+
+
+    // should show the "Will this group be administered?" question if the user selected 3rd party administrators on the Organization page
 
 });
 

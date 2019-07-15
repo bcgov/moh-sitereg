@@ -31,7 +31,7 @@ describe('Moh SiteReg - Signing Authority Page', () => {
 
     it('03. should let user to continue if all the required fields are filled out', () => {
         saPage.navigateTo();
-        saPage.fillInfo(saData);
+        saPage.fillInfo(0, saData);
         saPage.scrollDown();
         saPage.selectValue('administeringFor', 'Employees');
         saPage.clickOption('bcfalse');
@@ -55,4 +55,13 @@ describe('Moh SiteReg - Signing Authority Page', () => {
         expect(browser.getCurrentUrl()).toContain(SA_PAGE_URL, 'should still be on the same page');
     });
 
+    it('06. should make sure email address and confirm email address are the same', () => {
+        saPage.navigateTo();
+        saPage.fillInfo(0, saData);
+        saPage.checkEmailAddress('emailAddress').then(emailAdd => {
+            saPage.checkEmailAddress('confirmEmail').then(confirmEmail => {
+                expect(emailAdd).toBe(confirmEmail, 'Email address and confirm email address should be the same');
+            });
+        });
+    });
 });
