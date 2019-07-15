@@ -1,20 +1,20 @@
 <common-page-framework layout='blank'>
-  <h2>Access Administrator </h2>
-  <p><small>Access Administrators are the primary contacts within your Organization for all question and
+  <h1 class="border-bottom">Access Administrator </h1>
+  <common-page-section layout='tips'>
+    <aside>Access Administrators are the primary contacts within your Organization for all question and
       concerns about user access to the Ministry of Health web applications. They are responsible for registering users,
       assiging users, assigning and cancelling access persmissions, co-ordinating the installation of the digital
       certificate on users's computers and other responsibilites identified by the Ministry.
-    </small>
-  </p>
-  <hr>
-  <div class="row mb-4">
-    <button type='button' class='btn btn-secondary col mr-4' (click)="formAddNew()">Add Access Administrator</button>
-    <button type='button' class='btn btn-secondary col mx-2' (click)="formRemoveNew()">Remove Access
-      Administrator</button>
-    <button type='button' class='btn btn-secondary col ml-4' (click)="formEditNew()">Update Access
-      Administrator</button>
-  </div>
+    </aside>
 
+    <div class="row mb-4">
+      <button type='button' class='btn btn-secondary col mr-4' (click)="formAddNew()">Add Access Administrator</button>
+      <button type='button' class='btn btn-secondary col mx-2' (click)="formRemoveNew()">Remove Access
+        Administrator</button>
+      <button type='button' class='btn btn-secondary col ml-4' (click)="formEditNew()">Update Access
+        Administrator</button>
+    </div>
+  </common-page-section>
   <common-page-section layout='noTips' class="pt-4">
     <sitereg-update-access-admin-remove #formRemove [formState]="formRemoveState"
       (formArrayChanged)="formRemoveStateChanged($event)"></sitereg-update-access-admin-remove>

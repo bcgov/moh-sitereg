@@ -1,26 +1,31 @@
-<common-page-framework  layout='blank'>
-  <sitereg-msp-h2-with-print title="#NotForTesting Submit"></sitereg-msp-h2-with-print>
+<common-page-framework layout='blank'>
 
-  <h2 class='h1'>Summary of Changes:</h2>
-  <p>
-    At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et
-    quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est
-    laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio
-    cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem
-    quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque
-    earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
+  <h1 class="border-bottom">Summary of Changes</h1>
+  <common-page-section layout="tips">
+    <!-- <sitereg-msp-h2-with-print title="#NotForTesting Submit"></sitereg-msp-h2-with-print> -->
 
-  </p>
+    <!-- <h2 class='h1'>Summary of Changes:</h2> -->
+    <p>
+      At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque
+      corrupti quos dolores et
+      quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt
+      mollitia animi, id est
+      laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta
+      nobis est eligendi optio
+      cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor
+      repellendus. Temporibus autem
+      quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et
+      molestiae non recusandae. Itaque
+      earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut
+      perferendis doloribus asperiores repellat.
 
-  <div class="p-4">
-    <common-captcha [apiBaseUrl]="captchaApiBaseUrl"
-                    [nonce]="nonce"
-                    (onValidToken)="setToken($event)"
-                    [successMessage]="'  '"></common-captcha>
-  </div>
+    </p>
 
-  </common-page-framework>
-  <common-form-action-bar (btnClick)="continue()"
-                          submitLabel="Submit"
-                          [canContinue]='canContinue()'></common-form-action-bar>
-
+    <div class="p-4">
+      <common-captcha [apiBaseUrl]="captchaApiBaseUrl" [nonce]="nonce" (onValidToken)="setToken($event)"
+        [successMessage]="'  '"></common-captcha>
+    </div>
+  </common-page-section>
+</common-page-framework>
+<common-form-action-bar (btnClick)="continue()" submitLabel="Submit" [canContinue]='canContinue()'>
+</common-form-action-bar>

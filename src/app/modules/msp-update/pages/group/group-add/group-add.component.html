@@ -1,14 +1,15 @@
 <form [formGroup]="parentForm">
-  <div formArrayName="arrayOfForms" *ngFor="let fg of getFormsArray.controls; let i=index">
-    <form [formGroupName]='i'>
-      <common-xicon-button class='d-block pb-1' label="Cancel Remove Access Administrator" (clickEvent)="removeForm(i)">
+  <div formArrayName="arrayOfForms" *ngFor="let fg of getFormsArray.controls; let formIndex=index">
+    <form [formGroupName]='formIndex'>
+      <common-xicon-button class='d-block pb-1' label="Cancel Remove Access Administrator" (clickEvent)="removeForm(formIndex)">
       </common-xicon-button>
-      <h4 class='border-bottom'>Add a new MSP Group #{{getFormsArray.controls.length - i}}</h4>
-      <p><small>MSP Group Information</small></p>
+      <h2 class='border-bottom'>Add a new MSP Group #{{getFormsArray.controls.length - formIndex}}</h2>
+      <common-page-section layout='tips'>
+      <aside>MSP Group Information</aside>
 
       <div class='form-group col-sm-8 p-sm-0'>
-        <label for='groupNo'>Enter MSP Group Number</label>
-        <input type='text' class='form-control' name='groupNo' formControlName='groupNo' id='groupNo' maxlength="7">
+        <label for='groupNo_{{formIndex}}'>Enter MSP Group Number</label>
+        <input type='text' class='form-control' formControlName='groupNo' id='groupNo_{{formIndex}}' maxlength="7">
 
         <sitereg-error-box [error]="validFormControl(fg, 'groupNo')" errorMessage="Please provide valid Group Number">
         </sitereg-error-box>
@@ -27,6 +28,7 @@
         </div> -->
 
       </div>
+    </common-page-section>
     </form>
   </div>
 </form>
