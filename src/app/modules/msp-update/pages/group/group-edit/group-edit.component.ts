@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 
-import { groupNumberValidator, cUpdateValidators, validMultiFormControl, isValidOptionalField } from '../../../common/validators';
+import { cUpdateValidators, validMultiFormControl, isValidOptionalField } from '../../../common/validators';
+import { getEditJsonOfMspGroup } from '../shared/group-shared-json-map';
 
 @Component({
   selector: 'sitereg-update-group-edit',
@@ -15,10 +16,12 @@ export class MspDirectUpdateGroupEditComponent implements OnInit {
   @Output() formArrayChanged: EventEmitter<FormGroup | FormArray | null> = new EventEmitter<FormGroup | null>();
   parentForm: FormGroup;
   validFormControl: (fg: FormGroup, name: string) => boolean;
-  radioBtnLabels = [{label: 'No', value: '0'}, {label: 'Yes', value: '1'}];
+  radioBtnLabels = [{label: 'No', value: 'N'}, {label: 'Yes', value: 'Y'}];
+  json: (formValues: any) => any;
 
   constructor(private fb: FormBuilder) {
     this.validFormControl = validMultiFormControl;
+    this.json = getEditJsonOfMspGroup;
   }
 
   ngOnInit() {

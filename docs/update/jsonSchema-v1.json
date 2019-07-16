@@ -1,4 +1,5 @@
 {
+  "$comment": "First Proposed Schema",
   "$id": "moh-sitereg/SiteregRequest.schema.json",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "definitions": {

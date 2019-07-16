@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 
 import { cUpdateValidators, validMultiFormControl, isValidOptionalField } from '../../../common/validators';
+import { getRemoveJsonOfMspGroup } from '../shared/group-shared-json-map';
 
 @Component({
   selector: 'sitereg-update-group-remove',
@@ -16,9 +17,11 @@ export class MspDirectUpdateGroupRemoveComponent implements OnInit {
   @Output() formArrayChanged: EventEmitter<FormGroup | FormArray | null> = new EventEmitter<FormGroup | null>();
   parentForm: FormGroup;
   validFormControl: (fg: FormGroup, name: string) => boolean;
+  json: (formValues: any) => any;
 
   constructor(private fb: FormBuilder) {
     this.validFormControl = validMultiFormControl;
+    this.json = getRemoveJsonOfMspGroup;
   }
 
   ngOnInit() {

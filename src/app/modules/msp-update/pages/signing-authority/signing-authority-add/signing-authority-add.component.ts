@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import {
   cUpdateSigningAuthorityEnumeration, cUpdateSigningAuthorityValidator
 } from '../shared/signing-authority-shared';
@@ -66,7 +66,7 @@ export class MspDirectUpdateSigningAuthorityAddComponent implements OnInit {
       ext: [null, cUpdateSigningAuthorityValidator.add.ext],
       fax: [null, cUpdateSigningAuthorityValidator.add.fax],
       isAdmin: [null, cUpdateSigningAuthorityValidator.add.isAdmin],
-      // administeringFor: [null, cUpdateSigningAuthorityValidator.add.administeringFor],
+      administeringFor: [null, cUpdateSigningAuthorityValidator.add.administeringFor],
 
     });
   }
@@ -92,25 +92,15 @@ export class MspDirectUpdateSigningAuthorityAddComponent implements OnInit {
     this.formArrayChanged.emit(this.parentForm);
   }
 
-
-  // updateAccessValidation(formGroup, status) {
-  //   const control = formGroup.controls.administeringFor as FormControl;
-  //   if (status === true) {
-  //     control.setValidators(Validators.required);
-  //   } else {
-  //     control.clearValidators();
-  //   }
-  //   control.setValue('', { onlySelf: false });
-  //   formGroup.updateValueAndValidity();
-  // }
-
-  // generateJSON(formValues) {
-
-  //   // generate signing-authorityistrator-remove object
-  //   const json: any = {};
-  //   json.email = formValues && formValues.emailAddress ? formValues.emailAddress : '';
-  //   if (isValidOptionalField(formValues.ministryUserId)) json.user_id = formValues.ministryUserId;
-  //   return json;
-  // }
-
+  updateAccessValidation(formGroup, status) {
+    console.log(status);
+    const control = formGroup.controls.administeringFor as FormControl;
+    if (status === true) {
+      control.setValidators(Validators.required);
+    } else {
+      control.clearValidators();
+    }
+    control.setValue('', { onlySelf: false });
+    formGroup.updateValueAndValidity();
+  }
 }

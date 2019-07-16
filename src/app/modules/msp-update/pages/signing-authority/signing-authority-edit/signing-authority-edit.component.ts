@@ -72,7 +72,7 @@ export class MspDirectUpdateSigningAuthorityEditComponent implements OnInit {
       ext: [null, cUpdateSigningAuthorityValidator.edit.ext],
       fax: [null, cUpdateSigningAuthorityValidator.edit.fax],
       isAdmin: [null, cUpdateSigningAuthorityValidator.edit.isAdmin],
-      // administeringFor: [null, cUpdateSigningAuthorityValidator.edit.administeringFor],
+      administeringFor: [null, cUpdateSigningAuthorityValidator.edit.administeringFor],
       // changeAdministerFor: [null, cUpdateSigningAuthorityValidator.edit.changeAdministeringFor],
       // changeRole: [this.changeRoleOptions[0], cUpdateSigningAuthorityValidator.edit.changeRole],
     });
@@ -100,6 +100,17 @@ export class MspDirectUpdateSigningAuthorityEditComponent implements OnInit {
 
     this.getFormsArray.insert(0, formGroup);
     this.formArrayChanged.emit(this.parentForm);
+  }
+
+  updateChangeAdministeringQuestionValidation(formGroup, status) {
+    const control = formGroup.controls.changeAdministerFor as FormControl;
+    if (status === true) {
+      control.setValidators(Validators.required);
+    } else {
+      control.clearValidators();
+    }
+    control.setValue('', { onlySelf: false });
+    formGroup.updateValueAndValidity();
   }
 
   updateAccessValidation(formGroup, status) {
