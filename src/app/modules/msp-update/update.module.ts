@@ -36,7 +36,6 @@ import { MspDirectUpdateGroupAddComponent } from './pages/group/group-add/group-
 import { MspDirectUpdateGroupEditComponent } from './pages/group/group-edit/group-edit.component';
 
 import { MspDirectUpdateSubmitComponent } from './pages/submit/submit.component';
-import { MspDirectUpdateAutofillComponent } from './pages/autofill/autofill.component';
 import { MspDirectUpdateConfirmationComponent } from './pages/confirmation/confirmation.component';
 import { MspDirectUpdateProgressService } from './services/progress.service';
 import { AbstractPgCheckService, RouteGuardService, SharedCoreModule } from 'moh-common-lib';
@@ -86,7 +85,6 @@ import { JsonUpdateViewComponent } from './common/json-update-view/json-update-v
         MspDirectUpdateGroupEditComponent,
 
         MspDirectUpdateSubmitComponent,
-        MspDirectUpdateAutofillComponent,
         MspDirectUpdateConfirmationComponent,
         MspUpdateReviewComponent,
         ReviewSectionComponent,

@@ -10,13 +10,16 @@ import {
 } from '../../../common/update-validators';
 
 import { getEditJsonOfMspUser } from '../shared/user-shared-json-map';
+import { environment } from 'src/environments/environment.prod';
+import { IDataForm, RandomObjects } from '../../../common/i-dataform';
+
 
 @Component({
   selector: 'sitereg-update-user-edit',
   templateUrl: './user-edit.component.html',
   styleUrls: ['./user-edit.component.scss']
 })
-export class MspDirectUpdateUserEditComponent implements OnInit {
+export class MspDirectUpdateUserEditComponent implements OnInit, IDataForm {
 
   private arrayFormPropertyName = 'arrayOfForms';
   @Input() formState: FormGroup | null;
@@ -55,7 +58,7 @@ export class MspDirectUpdateUserEditComponent implements OnInit {
   }
 
   private createArrayForm() {
-    const formGroup = this.fb.group({
+    const form = this.fb.group({
       forIdentifyEmailAddress: [null, cUpdateUserValidator.edit.forIdentifyEmailAddress],
       forIdentifyMinistryUserId: [null, cUpdateUserValidator.edit.forIdentifyMinistryUserId],
       userTitle: [null, cUpdateUserValidator.edit.userTitle],
@@ -66,7 +69,7 @@ export class MspDirectUpdateUserEditComponent implements OnInit {
       formGroupEmail: this.fb.group({
         emailAddress: [null, cUpdateUserValidator.edit.emailAddress],
         confirmEmail: [null, cUpdateUserValidator.edit.confirmEmail],
-      }, { validator: matchFieldValidator('confirmEmail', 'emailAddress')}),
+      }, { validator: matchFieldValidator('confirmEmail', 'emailAddress') }),
       phone: [null, cUpdateUserValidator.edit.phone],
       ext: [null, cUpdateUserValidator.edit.ext],
       fax: [null, cUpdateUserValidator.edit.fax],
@@ -74,7 +77,9 @@ export class MspDirectUpdateUserEditComponent implements OnInit {
       changeAdministerFor: [null, cUpdateUserValidator.edit.changeAdministeringFor],
       changeRole: [this.changeRoleOptions[0], cUpdateUserValidator.edit.changeRole],
     });
-    return formGroup;
+
+    this.patchValue(form);
+    return form;
   }
 
   private removeForm(index: number) {
@@ -109,5 +114,12 @@ export class MspDirectUpdateUserEditComponent implements OnInit {
     }
     control.setValue('', { onlySelf: false });
     formGroup.updateValueAndValidity();
+  }
+
+
+
+  patchValue(formGroup) {
+    if (!environment.debug) return;
+    formGroup.patchValue(RandomObjects.getUser((this.getFormsCount + 1).toString() + 'USR'));
   }
 }

@@ -7,11 +7,10 @@ import { MspDirectUpdateAccessAdministratorComponent } from '../pages/access-adm
 import { MspDirectUpdateUserComponent } from '../pages/user/user/user.component';
 import { MspDirectUpdateGroupComponent } from '../pages/group/group/group.component';
 import { MspDirectUpdateSubmitComponent } from '../pages/submit/submit.component';
-import { MspDirectUpdateAutofillComponent } from '../pages/autofill/autofill.component';
 import { MspDirectUpdateConfirmationComponent } from '../pages/confirmation/confirmation.component';
 import { RouteGuardService } from 'moh-common-lib';
 import { MspUpdateReviewComponent } from '../pages/review/review.component';
-import { environment } from '../../../../environments/environment';
+import { environment } from '../../../../environments/environment.prod';
 import { MspDirectUpdateSigningAuthorityComponent } from '../pages/signing-authority/signing-authority/signing-authority.component';
 
 let defaultRoutes: Routes = [
@@ -80,14 +79,6 @@ let defaultRoutes: Routes = [
         component: MspDirectUpdateConfirmationComponent,
         data: { title: ROUTES_UPDATE.CONFIRMATION.title },
     },
-
-    // // REMOVEME
-    // {
-    //     // path: 'autofill',
-    //     path: '_autofill',
-    //     component: MspDirectUpdateAutofillComponent,
-    //     data: { title: 'autofill' },
-    // },
 
     // { path: '**', component: MspDirectUpdateIdentifyComponent },
 ];

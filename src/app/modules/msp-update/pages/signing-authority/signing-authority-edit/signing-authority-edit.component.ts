@@ -10,6 +10,8 @@ import {
 
 
 import { getEditJsonOfSigningAuthority } from '../shared/signing-authority-json-map';
+import { environment } from 'src/environments/environment.prod';
+import { RandomObjects, IDataForm } from '../../../common/i-dataform';
 
 
 @Component({
@@ -17,7 +19,7 @@ import { getEditJsonOfSigningAuthority } from '../shared/signing-authority-json-
   templateUrl: './signing-authority-edit.component.html',
   styleUrls: ['./signing-authority-edit.component.scss']
 })
-export class MspDirectUpdateSigningAuthorityEditComponent implements OnInit {
+export class MspDirectUpdateSigningAuthorityEditComponent implements OnInit, IDataForm  {
 
   private arrayFormPropertyName = 'arrayOfForms';
   @Input() formState: FormGroup | null;
@@ -56,7 +58,7 @@ export class MspDirectUpdateSigningAuthorityEditComponent implements OnInit {
   }
 
   private createArrayForm() {
-    const formGroup = this.fb.group({
+    const form = this.fb.group({
       forIdentifyEmailAddress: [null, cUpdateSigningAuthorityValidator.edit.forIdentifyEmailAddress],
       forIdentifyMinistryUserId: [null, cUpdateSigningAuthorityValidator.edit.forIdentifyMinistryUserId],
       userTitle: [null, cUpdateSigningAuthorityValidator.edit.userTitle],
@@ -76,7 +78,8 @@ export class MspDirectUpdateSigningAuthorityEditComponent implements OnInit {
       // changeAdministerFor: [null, cUpdateSigningAuthorityValidator.edit.changeAdministeringFor],
       // changeRole: [this.changeRoleOptions[0], cUpdateSigningAuthorityValidator.edit.changeRole],
     });
-    return formGroup;
+    this.patchValue(form);
+    return form;
   }
 
   private removeForm(index: number) {
@@ -125,4 +128,9 @@ export class MspDirectUpdateSigningAuthorityEditComponent implements OnInit {
   }
 
 
+  patchValue(formGroup) {
+    if (!environment.useDummyData) return;
+    formGroup.patchValue(RandomObjects.getUser((this.getFormsCount + 1).toString() + 'SA'));
+  }
+  
 }

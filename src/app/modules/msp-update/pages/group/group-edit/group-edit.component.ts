@@ -3,20 +3,23 @@ import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 
 import { cUpdateValidators, validMultiFormControl, isValidOptionalField } from '../../../common/validators';
 import { getEditJsonOfMspGroup } from '../shared/group-shared-json-map';
+import { environment } from 'src/environments/environment.prod';
+import { IDataForm, RandomObjects } from '../../../common/i-dataform';
+
 
 @Component({
   selector: 'sitereg-update-group-edit',
   templateUrl: './group-edit.component.html',
   styleUrls: ['./group-edit.component.scss']
 })
-export class MspDirectUpdateGroupEditComponent implements OnInit {
+export class MspDirectUpdateGroupEditComponent implements OnInit, IDataForm {
 
   private arrayFormPropertyName = 'arrayOfForms';
   @Input() formState: FormGroup | null;
   @Output() formArrayChanged: EventEmitter<FormGroup | FormArray | null> = new EventEmitter<FormGroup | null>();
   parentForm: FormGroup;
   validFormControl: (fg: FormGroup, name: string) => boolean;
-  radioBtnLabels = [{label: 'No', value: 'N'}, {label: 'Yes', value: 'Y'}];
+  radioBtnLabels = [{ label: 'No', value: 'N' }, { label: 'Yes', value: 'Y' }];
   json: (formValues: any) => any;
 
   constructor(private fb: FormBuilder) {
@@ -40,10 +43,12 @@ export class MspDirectUpdateGroupEditComponent implements OnInit {
   }
 
   private createArrayForm() {
-    return this.fb.group({
-      groupNo: ['', cUpdateValidators.group.groupNo ],
+    const form = this.fb.group({
+      groupNo: ['', cUpdateValidators.group.groupNo],
       thirdPartyAdmin: ['', Validators.required]
     });
+    this.patchValue(form);
+    return form;
   }
 
   private removeForm(index: number) {
@@ -67,13 +72,8 @@ export class MspDirectUpdateGroupEditComponent implements OnInit {
     this.formArrayChanged.emit(this.parentForm);
   }
 
-
-  generateJSON(formValues) {
-    return 'please implement';
-    const json: any = {};
-    json.email = formValues && formValues.emailAddress ? formValues.emailAddress : '';
-    if (isValidOptionalField(formValues.ministryUserId)) json.user_id = formValues.ministryUserId;
-    return json;
+  patchValue(formGroup) {
+    if (!environment.debug) return;
+    formGroup.patchValue(RandomObjects.getGroup((this.getFormsCount + 1).toString()));
   }
-
 }

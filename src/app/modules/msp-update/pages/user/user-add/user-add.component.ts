@@ -9,13 +9,15 @@ import {
 } from '../../../common/update-validators';
 
 import { getAddJsonOfMspUser } from '../shared/user-shared-json-map';
+import { environment } from 'src/environments/environment.prod';
+import { IDataForm, RandomObjects } from '../../../common/i-dataform';
 
 @Component({
   selector: 'sitereg-update-user-add',
   templateUrl: './user-add.component.html',
   styleUrls: ['./user-add.component.scss']
 })
-export class MspDirectUpdateUserAddComponent implements OnInit {
+export class MspDirectUpdateUserAddComponent implements OnInit, IDataForm {
 
   @Input() showAdministeringMSPForQuestion = true; // needed in MSP updates only
   private arrayFormPropertyName = 'arrayOfForms';
@@ -52,7 +54,7 @@ export class MspDirectUpdateUserAddComponent implements OnInit {
   }
 
   private createArrayForm() {
-    return this.fb.group({
+    const form =  this.fb.group({
       userTitle: [null, cUpdateUserValidator.add.userTitle],
       firstName: [null, cUpdateUserValidator.add.firstName],
       initial: [null, cUpdateUserValidator.add.initial],
@@ -64,8 +66,9 @@ export class MspDirectUpdateUserAddComponent implements OnInit {
       ext: [null, cUpdateUserValidator.add.ext],
       fax: [null, cUpdateUserValidator.add.fax],
       administeringFor: [null, cUpdateUserValidator.add.administeringFor],
-
     });
+    this.patchValue(form);
+    return form;
   }
 
   private removeForm(index: number) {
@@ -88,4 +91,10 @@ export class MspDirectUpdateUserAddComponent implements OnInit {
     this.getFormsArray.insert(0, this.createArrayForm());
     this.formArrayChanged.emit(this.parentForm);
   }
+
+  patchValue(formGroup) {
+    if (!environment.debug) return;
+    formGroup.patchValue(RandomObjects.getUser02((this.getFormsCount + 1).toString() + 'USR'));
+  }
+
 }

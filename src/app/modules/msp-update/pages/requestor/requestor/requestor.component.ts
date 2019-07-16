@@ -9,6 +9,8 @@ import { UpdateStateService } from '../../../services/update.state.service';
 import { cUpdateValidators, validMultiFormControl } from '../../../common/validators';
 
 import { getJsonOfRequestor } from '../shared/requestor-json-map';
+import { IDataForm, RandomObjects } from '../../../common/i-dataform';
+import { environment } from 'src/environments/environment.prod';
 
 
 @Component({
@@ -16,7 +18,7 @@ import { getJsonOfRequestor } from '../shared/requestor-json-map';
     templateUrl: './requestor.component.html',
     styleUrls: ['./requestor.component.scss'],
 })
-export class MspDirectUpdateRequestorComponent implements OnInit, AfterViewInit {
+export class MspDirectUpdateRequestorComponent implements OnInit, AfterViewInit, IDataForm {
     @ViewChild('consentModal') consentModal;
     validFormControl: (fg: FormGroup, name: string) => boolean;
     json: (formValues: any) => any;
@@ -47,10 +49,13 @@ export class MspDirectUpdateRequestorComponent implements OnInit, AfterViewInit 
     }
 
     createForm(): FormGroup {
-        return this.fb.group({
+
+        const form = this.fb.group({
             organizationNumber: ['', cUpdateValidators.requestorInformation.organizationNumber],
             emailAddress: ['', cUpdateValidators.requestorInformation.emailAddress]
         });
+        this.patchValue(form);
+        return form;
     }
 
     continue() {
@@ -73,5 +78,10 @@ export class MspDirectUpdateRequestorComponent implements OnInit, AfterViewInit 
 
     get fg(): FormGroup {
         return this.updateStateService.forms.requestorForm;
+    }
+
+    patchValue(formGroup) {
+        if (!environment.useDummyData) return;
+        formGroup.patchValue(RandomObjects.getRequestor('RequestorInformation'));
     }
 }

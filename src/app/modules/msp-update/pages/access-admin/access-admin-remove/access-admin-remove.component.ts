@@ -8,13 +8,15 @@ import {
   validMultiFormControl, formControlValidity
 } from '../../../common/update-validators';
 import { getRemoveJsonOfAccessAdministrator } from '../shared/access-admin-json-map';
+import { environment } from 'src/environments/environment.prod';
+import { IDataForm, RandomObjects } from '../../../common/i-dataform';
 
 @Component({
   selector: 'sitereg-update-access-admin-remove',
   templateUrl: './access-admin-remove.component.html',
   styleUrls: ['./access-admin-remove.component.scss']
 })
-export class MspDirectUpdateAccessAdministratorRemoveComponent implements OnInit {
+export class MspDirectUpdateAccessAdministratorRemoveComponent implements OnInit, IDataForm {
 
   private arrayFormPropertyName = 'arrayOfForms';
   @Input() formState: FormGroup | null;
@@ -46,10 +48,12 @@ export class MspDirectUpdateAccessAdministratorRemoveComponent implements OnInit
   }
 
   private createArrayForm() {
-    return this.fb.group({
+    const form = this.fb.group({
       emailAddress: [null, cUpdateAccessAdminValidator.remove.emailAddress],
       ministryUserId: [null, cUpdateAccessAdminValidator.remove.ministryUserId],
     });
+    this.patchValue(form);
+    return form;
   }
 
   private removeForm(index: number) {
@@ -74,13 +78,9 @@ export class MspDirectUpdateAccessAdministratorRemoveComponent implements OnInit
   }
 
 
-  // generateJSON(formValues) {
-
-  //   // generate access-administrator-remove object
-  //   const json: any = {};
-  //   json.email = formValues && formValues.emailAddress ? formValues.emailAddress : '';
-  //   if (isValidOptionalField(formValues.ministryUserId)) json.user_id = formValues.ministryUserId;
-  //   return json;
-  // }
+  patchValue(formGroup) {
+    if(!environment.debug) return;
+    formGroup.patchValue(RandomObjects.getRemoveUser((this.getFormsCount + 1).toString() + 'AA'));
+  }
 
 }

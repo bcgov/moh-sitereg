@@ -9,6 +9,8 @@ import {
 } from '../../../common/update-validators';
 
 import { getEditJsonOfAccessAdministrator } from '../shared/access-admin-json-map';
+import { environment } from 'src/environments/environment.prod';
+import { RandomObjects, IDataForm } from '../../../common/i-dataform';
 
 
 @Component({
@@ -16,7 +18,7 @@ import { getEditJsonOfAccessAdministrator } from '../shared/access-admin-json-ma
   templateUrl: './access-admin-edit.component.html',
   styleUrls: ['./access-admin-edit.component.scss']
 })
-export class MspDirectUpdateAccessAdministratorEditComponent implements OnInit {
+export class MspDirectUpdateAccessAdministratorEditComponent implements OnInit, IDataForm{
 
   private arrayFormPropertyName = 'arrayOfForms';
   @Input() formState: FormGroup | null;
@@ -55,7 +57,7 @@ export class MspDirectUpdateAccessAdministratorEditComponent implements OnInit {
   }
 
   private createArrayForm() {
-    const formGroup = this.fb.group({
+    const form = this.fb.group({
       forIdentifyEmailAddress: [null, cUpdateAccessAdminValidator.edit.forIdentifyEmailAddress],
       forIdentifyMinistryUserId: [null, cUpdateAccessAdminValidator.edit.forIdentifyMinistryUserId],
       userTitle: [null, cUpdateAccessAdminValidator.edit.userTitle],
@@ -74,7 +76,8 @@ export class MspDirectUpdateAccessAdministratorEditComponent implements OnInit {
       changeAdministerFor: [null, cUpdateAccessAdminValidator.edit.changeAdministeringFor],
       changeRole: [this.changeRoleOptions[0], cUpdateAccessAdminValidator.edit.changeRole],
     });
-    return formGroup;
+    this.patchValue(form);
+    return form;
   }
 
   private removeForm(index: number) {
@@ -111,13 +114,10 @@ export class MspDirectUpdateAccessAdministratorEditComponent implements OnInit {
     formGroup.updateValueAndValidity();
   }
 
-  // generateJSON(formValues) {
 
-  //   // generate access-administrator-remove object
-  //   const json: any = {};
-  //   json.email = formValues && formValues.emailAddress ? formValues.emailAddress : '';
-  //   if (isValidOptionalField(formValues.ministryUserId)) json.user_id = formValues.ministryUserId;
-  //   return json;
-  // }
+  patchValue(formGroup) {
+    if (!environment.useDummyData) return;
+    formGroup.patchValue(RandomObjects.getUser((this.getFormsCount + 1).toString() + 'AA'));
+  }
 
 }

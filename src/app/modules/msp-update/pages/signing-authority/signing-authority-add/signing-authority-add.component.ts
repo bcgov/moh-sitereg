@@ -10,6 +10,8 @@ import {
 
 
 import { getAddJsonOfSigningAuthority } from '../shared/signing-authority-json-map';
+import { environment } from 'src/environments/environment.prod';
+import { RandomObjects, IDataForm } from '../../../common/i-dataform';
 
 
 @Component({
@@ -17,7 +19,7 @@ import { getAddJsonOfSigningAuthority } from '../shared/signing-authority-json-m
   templateUrl: './signing-authority-add.component.html',
   styleUrls: ['./signing-authority-add.component.scss']
 })
-export class MspDirectUpdateSigningAuthorityAddComponent implements OnInit {
+export class MspDirectUpdateSigningAuthorityAddComponent implements OnInit, IDataForm {
 
   @Input() showAdministeringMSPForQuestion = true; // needed in MSP updates only
   private arrayFormPropertyName = 'arrayOfForms';
@@ -54,7 +56,7 @@ export class MspDirectUpdateSigningAuthorityAddComponent implements OnInit {
   }
 
   private createArrayForm() {
-    return this.fb.group({
+    const form = this.fb.group({
       userTitle: [null, cUpdateSigningAuthorityValidator.add.userTitle],
       firstName: [null, cUpdateSigningAuthorityValidator.add.firstName],
       initial: [null, cUpdateSigningAuthorityValidator.add.initial],
@@ -69,6 +71,8 @@ export class MspDirectUpdateSigningAuthorityAddComponent implements OnInit {
       administeringFor: [null, cUpdateSigningAuthorityValidator.add.administeringFor],
 
     });
+    this.patchValue(form);
+    return form;
   }
 
   private removeForm(index: number) {
@@ -103,4 +107,10 @@ export class MspDirectUpdateSigningAuthorityAddComponent implements OnInit {
     control.setValue('', { onlySelf: false });
     formGroup.updateValueAndValidity();
   }
+
+  patchValue(formGroup) {
+    if (!environment.useDummyData) return;
+    formGroup.patchValue(RandomObjects.getUser02((this.getFormsCount + 1).toString() + 'SA'));
+  }
+
 }
