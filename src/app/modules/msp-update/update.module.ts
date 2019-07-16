@@ -54,6 +54,7 @@ import { MspUpdateReviewComponent } from './pages/review/review.component';
 import { ReviewSectionComponent } from './components/review-section/review-section.component';
 import { MspDirectUpdateErrorBoxComponent } from './common/error-update-error-box/error-update-error-box.component';
 import { JsonUpdateViewComponent } from './common/json-update-view/json-update-view.component';
+import { MspDirectUpdateGroupReviewComponent } from './pages/group/group-review/group-review.component';
 
 @NgModule({
     declarations: [
@@ -92,6 +93,7 @@ import { JsonUpdateViewComponent } from './common/json-update-view/json-update-v
         MspDirectUpdateGroupRemoveComponent,
         MspDirectUpdateGroupAddComponent,
         MspDirectUpdateGroupEditComponent,
+        MspDirectUpdateGroupReviewComponent,
 
         MspDirectUpdateSubmitComponent,
         MspDirectUpdateConfirmationComponent,
