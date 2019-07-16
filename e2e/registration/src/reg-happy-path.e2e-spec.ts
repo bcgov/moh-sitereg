@@ -43,6 +43,7 @@ describe('Moh SiteReg - End to End Test (Happy Path)', () => {
         aaPage.fillPage();
         expect(browser.getCurrentUrl()).toContain(USERS_PAGE_URL, 'should continue to the Users Page');
         usersPage.fillPage();
+         // should show the "Will this group be administered?" question if the user selected 3rd party administrators on the Organization page
         expect(browser.getCurrentUrl()).toContain(GROUP_PAGE_URL, 'should continue to the Group Page');
         groupPage.fillPage();
         expect(browser.getCurrentUrl()).toContain(REVIEW_PAGE_URL, 'should continue to the Review Page');

@@ -21,7 +21,11 @@ export class BaseSiteRegTestPage extends AbstractTestPage {
 
     selectValue(label: string, value: string) {
         element.all(by.css(`select[ng-reflect-name="${label}"]`)).first().click(); // opens dropdown
-        element.all(by.css(`select[ng-reflect-name="${label}"] option[ng-reflect-value="${value}"]`)).first().click();
+        element.all(by.css(`select[ng-reflect-name="${label}"]`)).first().element(by.cssContainingText('option', `${value}`)).click();
+    }
+
+    selectAdministeringFor(label: string, value: string) {
+        element.all(by.css(`select[ng-reflect-name="${label}"]`)).first().element(by.css(`option[value="${value}"]`)).click();
     }
 
     clickButton(value: string) {
@@ -102,9 +106,6 @@ export class BaseSiteRegTestPage extends AbstractTestPage {
 
 export class OrganizationPage extends BaseSiteRegTestPage {
 
-    private province: string[] = ['AB', 'BC', 'MB', 'NB', 'NL', 'NS', 'ON', 'PE', 'QC', 'SK', 'NT', 'NU', 'YT'];
-    private num: number = Math.floor(Math.random() * Math.floor(this.province.length));
-
     constructor() {
         super();
     }
@@ -119,7 +120,7 @@ export class OrganizationPage extends BaseSiteRegTestPage {
         this.clickConsentModalContinue();
         this.fillOrgName();
         this.fillAddress();
-        this.selectValue('administeringFor', json.administeringFor);
+        this.selectAdministeringFor('administeringFor', json.administeringFor);
         this.scrollDown();
         this.clickOptionJSON('thirdParty', json.thirdParty.toString());
         this.fillOrgNum();
@@ -149,7 +150,7 @@ export class OrganizationPage extends BaseSiteRegTestPage {
             this.typeText('addressLine2', info.streetAddressLine);
         }
         this.typeText('city', info.city);
-        this.selectValue('province', this.province[this.num]);
+        this.selectValue('province', info.province);
         this.typeText('postalCode', info.postal);
     }
 
@@ -159,7 +160,7 @@ export class OrganizationPage extends BaseSiteRegTestPage {
             info = this.jsonData.organizationPage;
         }
         this.typeText('organizationNumber', info.orgNum + '');
-        this.selectValue('administeringFor', 'Employees');
+        this.selectAdministeringFor('administeringFor', 'Employees');
     }
 
 }
@@ -178,8 +179,53 @@ export class SigningAuthorityPage extends BaseSiteRegTestPage {
         const json = this.jsonData.signingAuthorityPage;
         this.fillInfo(0);
         this.scrollDown();
-        this.selectValue('administeringFor', json.administeringFor);
+        this.selectAdministeringFor('administeringFor', json.administeringFor);
         this.clickOptionJSON('directMspAccess', json.directMspAccess.toString());
+        this.continue();
+    }
+
+    fillInfo(i: number, data?: SigningAuthorityPageTest) {
+        if (data === undefined) {
+            data = this.jsonData.signingAuthorityPage;
+        }
+        this.selectValue('userTitle', data.title);
+        this.typeTextFirstOccurrence('firstName', data.firstName);
+        this.typeTextFirstOccurrence('initial', data.initial);
+        this.typeTextFirstOccurrence('lastName', data.lastName);
+        this.typeTextFirstOccurrence('jobTitle', data.jobTitle);
+        this.typeTextFirstOccurrence('emailAddress', data.email);
+        this.typeTextFirstOccurrence('confirmEmail', data.confirmEmail);
+        this.typeTextFirstOccurrence('phone', data.mobile + '');
+        this.typeTextFirstOccurrence('ext', data.extension + '');
+        this.typeTextFirstOccurrence('fax', data.fax + '');
+    }
+
+    checkEmailAddress(idVal: string) {
+        return element(by.css(`input[id^=${idVal}]`)).getAttribute('value');
+    }
+
+}
+
+export class AccessAdminsPage extends BaseSiteRegTestPage {
+
+    constructor() {
+        super();
+    }
+
+    navigateTo() {
+        return browser.get('/register/access-admins');
+    }
+
+    fillPage() {
+        const json = this.jsonData.accessAdminsPage;
+        this.clickButton('btn delete');
+        for (let i = 0; i < json.length; i++) {
+            this.clickButton('btn btn-block');
+            this.fillInfo(i);
+            this.scrollDown();
+            this.selectAdministeringFor('administeringFor', json[i].administeringFor);
+            this.scrollUp();
+        }
         this.continue();
     }
 
@@ -210,34 +256,6 @@ export class SigningAuthorityPage extends BaseSiteRegTestPage {
         }
     }
 
-    checkEmailAddress(idVal: string) {
-        return element(by.css(`input[id^=${idVal}]`)).getAttribute('value');
-    }
-
-}
-
-export class AccessAdminsPage extends SigningAuthorityPage {
-
-    constructor() {
-        super();
-    }
-
-    navigateTo() {
-        return browser.get('/register/access-admins');
-    }
-
-    fillPage() {
-        const json = this.jsonData.usersPage;
-        for (let i = 1; i < json.length; i++) { // starts with 1 because the first admin is already filled out
-            this.clickButton('btn btn-block');
-            this.fillInfo(i);
-            this.scrollDown();
-            this.selectValue('administeringFor', json[i].administeringFor);
-            this.scrollUp();
-        }
-        this.continue();
-    }
-
 }
 
 export class UsersPage extends SigningAuthorityPage {
@@ -256,10 +274,37 @@ export class UsersPage extends SigningAuthorityPage {
             this.clickButton('btn btn-block');
             this.fillInfo(i);
             this.scrollDown();
-            this.selectValue('administeringFor', json[i].administeringFor);
+            this.selectAdministeringFor('administeringFor', json[i].administeringFor);
             this.scrollUp();
         }
         this.continue();
+    }
+
+    fillInfo(i: number, data?: SigningAuthorityPageTest) {
+        if (data === undefined) {
+            data = this.jsonData.usersPage;
+            this.selectValue('userTitle', data[i].title);
+            this.typeTextFirstOccurrence('firstName', data[i].firstName);
+            this.typeTextFirstOccurrence('initial', data[i].initial);
+            this.typeTextFirstOccurrence('lastName', data[i].lastName);
+            this.typeTextFirstOccurrence('jobTitle', data[i].jobTitle);
+            this.typeTextFirstOccurrence('emailAddress', data[i].email);
+            this.typeTextFirstOccurrence('confirmEmail', data[i].confirmEmail);
+            this.typeTextFirstOccurrence('phone', data[i].mobile + '');
+            this.typeTextFirstOccurrence('ext', data[i].extension + '');
+            this.typeTextFirstOccurrence('fax', data[i].fax + '');
+        } else {
+            this.selectValue('userTitle', data.title);
+            this.typeTextFirstOccurrence('firstName', data.firstName);
+            this.typeTextFirstOccurrence('initial', data.initial);
+            this.typeTextFirstOccurrence('lastName', data.lastName);
+            this.typeTextFirstOccurrence('jobTitle', data.jobTitle);
+            this.typeTextFirstOccurrence('emailAddress', data.email);
+            this.typeTextFirstOccurrence('confirmEmail', data.confirmEmail);
+            this.typeTextFirstOccurrence('phone', data.mobile + '');
+            this.typeTextFirstOccurrence('ext', data.extension + '');
+            this.typeTextFirstOccurrence('fax', data.fax + '');
+        }
     }
 
 }

@@ -94,7 +94,15 @@ fdescribe('Moh SiteReg - Access Admins Page', () => {
     });
 
     it('07. Testing for validation re: maximum characters', () => {
-
+        const accessDataMax = data.signingAuthorityMax();
+        accessPage.navigateTo();
+        accessPage.clickButton('btn btn-block');
+        accessPage.fillInfo(0, accessDataMax);
+        accessPage.scrollDown();
+        accessPage.selectValue('administeringFor', 'Employees');
+        accessPage.continue();
+        expect(accessPage.formErrors().count()).toBe(0, 'should be no errors after filling out');
+        expect(browser.getCurrentUrl()).toContain(USERS_PAGE_URL, 'should navigate to the Users page');
     });
 
     // Test will fail since _autofill is still active in dev mode

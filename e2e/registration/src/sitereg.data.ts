@@ -15,6 +15,7 @@ export class FakeDataSiteReg {
             streetName: faker.address.streetName(),
             streetAddressLine: Math.random() > 0.5 ? faker.address.streetAddress() : undefined,
             city: faker.address.city(),
+            province: 'British Columbia',
             postal: faker.address.zipCode('A1A1A1'),
             orgNum: faker.random.number({
                 min: 10000000,
@@ -63,6 +64,7 @@ export class FakeDataSiteReg {
 // tslint:disable-next-line: max-line-length
             streetAddressLine: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut laboresLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labores',
             city: 'Lorem ipsum dolor sit ame',
+            province: 'British Columbia',
             postal: 'A1A1A1',
             orgNum: 99999999
         };
@@ -118,6 +120,7 @@ export interface OrganizationPageTest {
   streetName: string;
   streetAddressLine: string;
   city: string;
+  province: string;
   postal: string;
   orgNum: number;
 }
