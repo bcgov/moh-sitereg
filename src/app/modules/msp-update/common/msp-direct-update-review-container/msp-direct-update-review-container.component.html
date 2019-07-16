@@ -1,0 +1,27 @@
+<!--#region Section  -->
+
+<!--Section - Heading-->
+<div class="row col-md-8 ml-0 pl-0 align-items-center border-bottom">
+  <div class="col-md-6 pl-0">
+    <h2>{{header}}</h2>
+  </div>
+  <div class="col-md-2 ml-auto  text-right">
+    <button tabindex="0" class="btn btn-edit" (click)="redirect(redirectPath)" aria-label="Edit Organization">
+      <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+    </button>
+  </div>
+</div>
+
+<!--Section - Content -->
+<div class='col-md-8 ml-2 pl-2 mt-2'>
+  <div class="row" *ngFor="let item of sectionItems; let i=index">
+    <div class='col-md-3'>
+      {{item.label}}:
+    </div>
+    <div class='col-md-5'>
+      {{item.value}}
+    </div>
+  </div>
+</div>
+
+<!--#endregion -->

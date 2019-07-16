@@ -16,13 +16,13 @@ import { MspDirectUpdateSigningAuthorityComponent } from '../pages/signing-autho
 let defaultRoutes: Routes = [
     {
         path: '',
-        redirectTo: ROUTES_UPDATE.Requestor.path,
+        redirectTo: ROUTES_UPDATE.REQUESTOR.path,
     },
     {
-        // path: 'organization',
-        path: ROUTES_UPDATE.Requestor.path,
+        // path: 'requestor',
+        path: ROUTES_UPDATE.REQUESTOR.path,
         component: MspDirectUpdateRequestorComponent,
-        data: { title: ROUTES_UPDATE.Requestor.title },
+        data: { title: ROUTES_UPDATE.REQUESTOR.title },
     },
 
     {
