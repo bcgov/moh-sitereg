@@ -1,36 +1,41 @@
 <common-page-framework layout="blank">
-<h1 class="border-bottom">Users</h1>
-<common-page-section layout="tips">
-<aside>
+  <h1>Users</h1>
+  <div>
+    <p class="border-bottom">
+      <b>Users</b> are persons who will be accessing MSP Direct on behalf of the Organization.
+    </p>
+  </div>
+  <common-page-section layout="tips">
+    <!-- <aside>
     <b>Users</b> are persons who will be accessing MSP Direct on behalf of the Organization.
-</aside>
-<div class='row mb-4'>
-  <div class='col-md-4 p-4'>
-    <a (click)='addFormGroup()'>
-      <button class="btn btn-block btn-lg btn-secondary">
-        Add New User
-      </button>
-    </a>
-  </div>
-</div>
-<div *ngFor="let fg of fgs; index as i">
-  <div class="row border-bottom">
-    <div class="col-auto mr-auto">
-      <h2> User #{{fgs.length-i}}</h2>
+</aside> -->
+    <div class='row mb-4'>
+      <div class='col-md-4 p-4'>
+        <a (click)='addFormGroup()'>
+          <button class="btn btn-block btn-lg btn-secondary">
+            Add New User
+          </button>
+        </a>
+      </div>
     </div>
-    <div class="col-auto">
-      <button (click)="deleteFormGroup(i)" type="button" class="btn delete" alt="Delete" aria-label="Delete">
-        <i style="color: red !important;" class="fa fa-2x fa-times-circle"></i>
-    </button>
-  </div>
-  </div>
-  <sitereg-msp-register-user [formIndex]="i" [fg]="fg"></sitereg-msp-register-user>
-</div>
-<div *ngIf="globalConfigSvc.debug">
-    Debugging purposes only:
-    <ngx-json-viewer [json]="schemaObject()" [expanded]="true"></ngx-json-viewer>
-</div>
-</common-page-section>
+    <div *ngFor="let fg of fgs; index as i">
+      <div class="row border-bottom">
+        <div class="col-auto mr-auto">
+          <h2> User #{{fgs.length-i}}</h2>
+        </div>
+        <div class="col-auto">
+          <button (click)="deleteFormGroup(i)" type="button" class="btn delete" alt="Delete" aria-label="Delete">
+            <i style="color: red !important;" class="fa fa-2x fa-times-circle"></i>
+          </button>
+        </div>
+      </div>
+      <sitereg-msp-register-user [formIndex]="i" [fg]="fg"></sitereg-msp-register-user>
+    </div>
+    <div *ngIf="globalConfigSvc.debug">
+      Debugging purposes only:
+      <ngx-json-viewer [json]="schemaObject()" [expanded]="true"></ngx-json-viewer>
+    </div>
+  </common-page-section>
 </common-page-framework>
-<common-form-action-bar  (btnClick)="continue()" [canContinue]="validateFormGroup(fgs)">
+<common-form-action-bar (btnClick)="continue()" [canContinue]="validateFormGroup(fgs)">
 </common-form-action-bar>
