@@ -146,9 +146,8 @@ export const cUpdateSigningAuthorityValidator = {
         //     Validators.required,
         // ],
 
-        // changeAdministeringFor: [
-        //     Validators.required,
-        // ],
+        changeAdministeringFor: [
+        ],
         administeringFor: [
             ...cUpdateSigningAuthoritySharedValidator.administeringFor,
         ],

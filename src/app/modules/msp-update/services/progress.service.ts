@@ -36,8 +36,8 @@ export class MspDirectUpdateProgressService extends CheckCompleteBaseService {
      */
     getUpdateItems() {
       // Set values
-      this.bypassGuards = environment.bypassGuards;
-      this.startUrl = ROUTES_UPDATE.Requestor.fullpath;
+      // this.bypassGuards = environment.bypassGuards;
+      this.startUrl = ROUTES_UPDATE.REQUESTOR.fullpath;
 
       this.pageCheckList = Object.values(ROUTES_UPDATE).map((routeInfo) => {
           return {

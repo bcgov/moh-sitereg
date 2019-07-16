@@ -7,23 +7,22 @@ import { MspDirectUpdateAccessAdministratorComponent } from '../pages/access-adm
 import { MspDirectUpdateUserComponent } from '../pages/user/user/user.component';
 import { MspDirectUpdateGroupComponent } from '../pages/group/group/group.component';
 import { MspDirectUpdateSubmitComponent } from '../pages/submit/submit.component';
-import { MspDirectUpdateAutofillComponent } from '../pages/autofill/autofill.component';
 import { MspDirectUpdateConfirmationComponent } from '../pages/confirmation/confirmation.component';
 import { RouteGuardService } from 'moh-common-lib';
 import { MspUpdateReviewComponent } from '../pages/review/review.component';
-import { environment } from '../../../../environments/environment';
+import { environment } from '../../../../environments/environment.prod';
 import { MspDirectUpdateSigningAuthorityComponent } from '../pages/signing-authority/signing-authority/signing-authority.component';
 
 let defaultRoutes: Routes = [
     {
         path: '',
-        redirectTo: ROUTES_UPDATE.Requestor.path,
+        redirectTo: ROUTES_UPDATE.REQUESTOR.path,
     },
     {
-        // path: 'organization',
-        path: ROUTES_UPDATE.Requestor.path,
+        // path: 'requestor',
+        path: ROUTES_UPDATE.REQUESTOR.path,
         component: MspDirectUpdateRequestorComponent,
-        data: { title: ROUTES_UPDATE.Requestor.title },
+        data: { title: ROUTES_UPDATE.REQUESTOR.title },
     },
 
     {
@@ -80,14 +79,6 @@ let defaultRoutes: Routes = [
         component: MspDirectUpdateConfirmationComponent,
         data: { title: ROUTES_UPDATE.CONFIRMATION.title },
     },
-
-    // // REMOVEME
-    // {
-    //     // path: 'autofill',
-    //     path: '_autofill',
-    //     component: MspDirectUpdateAutofillComponent,
-    //     data: { title: 'autofill' },
-    // },
 
     // { path: '**', component: MspDirectUpdateIdentifyComponent },
 ];

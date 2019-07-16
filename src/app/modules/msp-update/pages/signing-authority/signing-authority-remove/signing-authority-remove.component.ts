@@ -9,13 +9,16 @@ import {
 } from '../../../common/update-validators';
 
 import { getRemoveJsonOfSigningAuthority } from '../shared/signing-authority-json-map';
+import { environment } from 'src/environments/environment.prod';
+import { RandomObjects, IDataForm } from '../../../common/i-dataform';
+
 
 @Component({
   selector: 'sitereg-update-signing-authority-remove',
   templateUrl: './signing-authority-remove.component.html',
   styleUrls: ['./signing-authority-remove.component.scss']
 })
-export class MspDirectUpdateSigningAuthorityRemoveComponent implements OnInit {
+export class MspDirectUpdateSigningAuthorityRemoveComponent implements OnInit, IDataForm  {
 
   private arrayFormPropertyName = 'arrayOfForms';
   @Input() formState: FormGroup | null;
@@ -47,10 +50,12 @@ export class MspDirectUpdateSigningAuthorityRemoveComponent implements OnInit {
   }
 
   private createArrayForm() {
-    return this.fb.group({
+    const form = this.fb.group({
       emailAddress: [null, cUpdateSigningAuthorityValidator.remove.emailAddress],
       ministryUserId: [null, cUpdateSigningAuthorityValidator.remove.ministryUserId],
     });
+    this.patchValue(form);
+    return form;
   }
 
   private removeForm(index: number) {
@@ -75,13 +80,10 @@ export class MspDirectUpdateSigningAuthorityRemoveComponent implements OnInit {
   }
 
 
-  // generateJSON(formValues) {
-
-  //   // generate access-administrator-remove object
-  //   const json: any = {};
-  //   json.email = formValues && formValues.emailAddress ? formValues.emailAddress : '';
-  //   if (jsonMaps.isValidOptionalField(formValues.ministryUserId)) json.user_id = formValues.ministryUserId;
-  //   return json;
-  // }
+  
+  patchValue(formGroup) {
+    if (!environment.useDummyData) return;
+    formGroup.patchValue(RandomObjects.getRemoveUser((this.getFormsCount + 1).toString() + 'SA'));
+  }
 
 }

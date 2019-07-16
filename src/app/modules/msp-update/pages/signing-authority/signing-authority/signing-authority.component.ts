@@ -73,7 +73,7 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit{
             }`
         );
         this.progressService.setPageComplete();
-        this.router.navigate([ROUTES_UPDATE.USERS.fullpath]);
+        this.router.navigate([ROUTES_UPDATE.ACCESS_ADMINS.fullpath]);
     }
 
     get addFg(): FormGroup {

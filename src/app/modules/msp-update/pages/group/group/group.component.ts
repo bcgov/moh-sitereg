@@ -52,7 +52,7 @@ export class MspDirectUpdateGroupComponent implements OnInit {
         }`
     );
     this.progressService.setPageComplete();
-    this.router.navigate([ROUTES_UPDATE.SUBMIT.fullpath]);
+    this.router.navigate([ROUTES_UPDATE.REVIEW.fullpath]);
   }
 
   canContinue() {

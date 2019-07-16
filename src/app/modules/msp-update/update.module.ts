@@ -4,10 +4,17 @@ import { SharedModule } from '@shared/shared.module';
 import { CaptchaModule } from 'moh-common-lib/captcha';
 import { MspDirectUpdateRoutesModule } from './routing/routes.module';
 import { MspDirectUpdateComponent } from './components/update-container/update-container.component';
+import {
+    MspDirectUpdateReviewContainerComponent
+} from './common/msp-direct-update-review-container/msp-direct-update-review-container.component';
+
+
 import { MspDirectUpdateRequestorComponent } from './pages/requestor/requestor/requestor.component';
+import { MspDirectUpdateRequestorReviewComponent } from './pages/requestor/requestor-review/requestor-review.component';
 
 import { MspDirectUpdateOrganizationComponent } from './pages/organization/organization.component';
 import { MspDirectUpdateOrganizationEditComponent } from './pages/organization/organization-edit/organization-edit.component';
+import { MspDirectUpdateOrganizationReviewComponent } from './pages/organization/organization-review/organization-review.component';
 
 import { MspDirectUpdateSigningAuthorityComponent } from './pages/signing-authority/signing-authority/signing-authority.component';
 import {
@@ -29,6 +36,7 @@ import { MspDirectUpdateUserComponent } from './pages/user/user/user.component';
 import { MspDirectUpdateUserRemoveComponent } from './pages/user/user-remove/user-remove.component';
 import { MspDirectUpdateUserAddComponent } from './pages/user/user-add/user-add.component';
 import { MspDirectUpdateUserEditComponent } from './pages/user/user-edit/user-edit.component';
+import { MspDirectUpdateUserReviewComponent } from './pages/user/user-review/user-review.component';
 
 import { MspDirectUpdateGroupComponent } from './pages/group/group/group.component';
 import { MspDirectUpdateGroupRemoveComponent } from './pages/group/group-remove/group-remove.component';
@@ -36,7 +44,6 @@ import { MspDirectUpdateGroupAddComponent } from './pages/group/group-add/group-
 import { MspDirectUpdateGroupEditComponent } from './pages/group/group-edit/group-edit.component';
 
 import { MspDirectUpdateSubmitComponent } from './pages/submit/submit.component';
-import { MspDirectUpdateAutofillComponent } from './pages/autofill/autofill.component';
 import { MspDirectUpdateConfirmationComponent } from './pages/confirmation/confirmation.component';
 import { MspDirectUpdateProgressService } from './services/progress.service';
 import { AbstractPgCheckService, RouteGuardService, SharedCoreModule } from 'moh-common-lib';
@@ -48,20 +55,20 @@ import { ReviewSectionComponent } from './components/review-section/review-secti
 import { MspDirectUpdateErrorBoxComponent } from './common/error-update-error-box/error-update-error-box.component';
 import { JsonUpdateViewComponent } from './common/json-update-view/json-update-view.component';
 
-
-
-
 @NgModule({
     declarations: [
 
         MspDirectUpdateErrorBoxComponent,
+        MspDirectUpdateReviewContainerComponent,
 
         MspDirectUpdateComponent,
 
         MspDirectUpdateRequestorComponent,
+        MspDirectUpdateRequestorReviewComponent,
 
         MspDirectUpdateOrganizationComponent,
         MspDirectUpdateOrganizationEditComponent,
+        MspDirectUpdateOrganizationReviewComponent,
 
         MspDirectUpdateSigningAuthorityComponent,
         MspDirectUpdateSigningAuthorityRemoveComponent,
@@ -77,6 +84,7 @@ import { JsonUpdateViewComponent } from './common/json-update-view/json-update-v
         MspDirectUpdateUserRemoveComponent,
         MspDirectUpdateUserAddComponent,
         MspDirectUpdateUserEditComponent,
+        MspDirectUpdateUserReviewComponent,
 
         MspDirectUpdateUserComponent,
 
@@ -86,7 +94,6 @@ import { JsonUpdateViewComponent } from './common/json-update-view/json-update-v
         MspDirectUpdateGroupEditComponent,
 
         MspDirectUpdateSubmitComponent,
-        MspDirectUpdateAutofillComponent,
         MspDirectUpdateConfirmationComponent,
         MspUpdateReviewComponent,
         ReviewSectionComponent,

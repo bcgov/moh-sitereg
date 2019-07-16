@@ -5,34 +5,39 @@
 
       <common-xicon-button class='d-block pb-1' label="Cancel Remove Signing Authority" (clickEvent)="removeForm(i)">
       </common-xicon-button>
-      <h3 class='border-bottom'>Remove Signing Authority</h3>
-      <p><small>Signing Authority information</small></p>
+      <h2 class='border-bottom'>Remove Signing Authority</h2>
+      <common-page-section layout='tips'>
+        <aside>Signing Authority information</aside>
 
-      <div class='form-group col-sm-8 p-sm-0'>
+        <div class='form-group col-sm-8 p-sm-0'>
 
-        <label for='emailAddress_{{formIndex}}'>Enter the email of the Signing Authority to remove</label>
-        <input type='text' class='form-control' name='emailAddress_{{formIndex}}' formControlName='emailAddress'
-          id='emailAddress_{{formIndex}}' placeholder="example@example.com" maxlength="100">
+          <label for='emailAddress_remove_{{formIndex}}'>Enter the email of the Signing Authority to remove</label>
+          <input type='text' class='form-control' name='emailAddress_remove_{{formIndex}}' formControlName='emailAddress'
+            id='emailAddress_remove_{{formIndex}}'  maxlength="100">
 
-        <sitereg-update-error-box [formControlValidity]="formControlValidity(fg,'emailAddress')"
-          formControlLabel="Email" errorMessage="Please provide valid email address.">
-        </sitereg-update-error-box>
+          <sitereg-update-error-box [formControlValidity]="formControlValidity(fg,'emailAddress')"
+            formControlLabel="Email" errorMessage="Please provide valid email address.">
+          </sitereg-update-error-box>
 
-      <label for='ministryUserId_{{formIndex}}'>Ministry asigned User ID (optional)</label>
-      <input type='text' class='form-control' name='ministryUserId_{{formIndex}}' formControlName='ministryUserId'
-        id='ministryUserId_{{formIndex}}' placeholder="Ministry provided User Id" maxlength="20">
+          <label for='ministryUserId_remove_{{formIndex}}'>Ministry assigned User ID (optional)</label>
+          <input type='text' class='form-control' name='ministryUserId_remove_{{formIndex}}' formControlName='ministryUserId'
+            id='ministryUserId_remove_{{formIndex}}' maxlength="20">
 
-      <sitereg-update-error-box [formControlValidity]="formControlValidity(fg,'ministryUserId')"
-      formControlLabel="Ministry asigned User ID" errorMessage="Please provide valid Ministry assigned User Id.">
-      </sitereg-update-error-box>
+          <sitereg-update-error-box [formControlValidity]="formControlValidity(fg,'ministryUserId')"
+            formControlLabel="Ministry asigned User ID" errorMessage="Please provide valid Ministry assigned User Id.">
+          </sitereg-update-error-box>
 
 
-      <sitereg-update-json-view [showRaw]="false" [raw]='fg.value' [showJson]="true" [json]='json(fg.value)'>
-      </sitereg-update-json-view>
+          <sitereg-update-json-view [showRaw]="false" [raw]='fg.value' [showJson]="true" [json]='json(fg.value)'>
+          </sitereg-update-json-view>
+
+
+        </div>
+
+      </common-page-section>
+
+    </form>
+
 
   </div>
-</form>
-
-
-</div>
 </form>

@@ -1,6 +1,12 @@
 
 //#region General
 
+export function addDefinationProperty(json, definationName: string) {
+
+    json.__defination = definationName;
+    return json;
+}
+
 
 export function getDateinMMDDYYYY(date: Date) {
     let mm: string;

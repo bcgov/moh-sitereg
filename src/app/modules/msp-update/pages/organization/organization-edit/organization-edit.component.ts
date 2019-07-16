@@ -1,10 +1,9 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { cUpdateEnumeration, validMultiFormControl, cUpdateValidators } from '../../../common/validators';
-
-import * as jsonMaps from '../../../common/update-json-map';
-
 import { getEditJsonOfOrganization } from '../shared/organization-json-map';
+import { RandomObjects, IDataForm } from '../../../common/i-dataform';
+import { environment } from 'src/environments/environment.prod';
 
 
 @Component({
@@ -12,7 +11,7 @@ import { getEditJsonOfOrganization } from '../shared/organization-json-map';
   templateUrl: './organization-edit.component.html',
   styleUrls: ['./organization-edit.component.scss']
 })
-export class MspDirectUpdateOrganizationEditComponent implements OnInit {
+export class MspDirectUpdateOrganizationEditComponent implements OnInit, IDataForm {
 
   @Input() formState: FormGroup | null;
   @Output() statusChanged: EventEmitter<FormGroup | null> = new EventEmitter<FormGroup | null>();
@@ -55,7 +54,7 @@ export class MspDirectUpdateOrganizationEditComponent implements OnInit {
   }
 
   private createForm() {
-    return this.fb.group({
+    const form = this.fb.group({
       organizationName: [null, cUpdateValidators.organization.organizationName],
       suite: [null, cUpdateValidators.organization.suite],
       street: [null, cUpdateValidators.organization.street],
@@ -66,25 +65,13 @@ export class MspDirectUpdateOrganizationEditComponent implements OnInit {
       postalCode: [null, cUpdateValidators.organization.postalCode],
       administeringFor: [this.administeringForOptions[0], cUpdateValidators.organization.administeringFor]
     });
+    this.patchValue(form);
+    return form;
   }
 
-  generateJSON(formValues) {
-    // generate signing-authorityistrator-remove object
-    // #suiteno is missing
-    const json: any = {};
-    json.org_name = formValues.organizationName ? formValues.organizationName : '';
-    // suite no not in schema
-    // json.suite = formValues.suite ? formValues.suite : '';
-    // street no not in schema
-    // json.street = formValues.street ? formValues.street : '';
-    // is street_address is street name
-    json.street_address = formValues.streetName ? formValues.streetName : '';
-    json.address_2 = formValues.addressLine2 ? formValues.addressLine2 : '';
-    json.city = formValues.city ? formValues.city : '';
-    json.province = formValues.province ? formValues.province : '';
-    json.postalCode = formValues.postalCode ? formValues.postalCode : '';
-    json.org_spg = jsonMaps.mapAdministeringForDef(formValues.administeringFor);
-    // if (isValidOptionalField(formValues.ministryUserId)) json.user_id = formValues.ministryUserId;
-    return json;
+  patchValue(formGroup) {
+    if(!environment.useDummyData) return;
+    formGroup.patchValue(RandomObjects.getOrganization('Org'));
   }
+
 }

@@ -8,14 +8,15 @@ import {
   validMultiFormControl, formControlValidity
 } from '../../../common/update-validators';
 import { getRemoveJsonOfMspUser } from '../shared/user-shared-json-map';
-
+import { environment } from 'src/environments/environment.prod';
+import { IDataForm, RandomObjects } from '../../../common/i-dataform';
 
 @Component({
   selector: 'sitereg-update-user-remove',
   templateUrl: './user-remove.component.html',
   styleUrls: ['./user-remove.component.scss']
 })
-export class MspDirectUpdateUserRemoveComponent implements OnInit {
+export class MspDirectUpdateUserRemoveComponent implements OnInit, IDataForm {
 
   private arrayFormPropertyName = 'arrayOfForms';
   @Input() formState: FormGroup | null;
@@ -47,10 +48,12 @@ export class MspDirectUpdateUserRemoveComponent implements OnInit {
   }
 
   private createArrayForm() {
-    return this.fb.group({
+    const form =  this.fb.group({
       emailAddress: [null, cUpdateUserValidator.remove.emailAddress],
       ministryUserId: [null, cUpdateUserValidator.remove.ministryUserId],
     });
+    this.patchValue(form);
+    return form;
   }
 
   private removeForm(index: number) {
@@ -73,4 +76,11 @@ export class MspDirectUpdateUserRemoveComponent implements OnInit {
     this.getFormsArray.insert(0, this.createArrayForm());
     this.formArrayChanged.emit(this.parentForm);
   }
+
+  
+  patchValue(formGroup) {
+    if(!environment.debug) return;
+    formGroup.patchValue(RandomObjects.getRemoveUser((this.getFormsCount + 1).toString() + 'USR'));
+  }
+
 }
