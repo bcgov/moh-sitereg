@@ -6,7 +6,7 @@ export const APPLICATION_ROUTES = {
 };
 
 export const ROUTES_UPDATE = {
-    Requestor: {
+    REQUESTOR: {
         order: 1,
         path: 'requestor',
         fullpath: `${APPLICATION_ROUTES.UPDATE}/requestor`,

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import {
   cUpdateSigningAuthorityEnumeration, cUpdateSigningAuthorityValidator
 } from '../shared/signing-authority-shared';
@@ -10,6 +10,8 @@ import {
 
 
 import { getAddJsonOfSigningAuthority } from '../shared/signing-authority-json-map';
+import { environment } from 'src/environments/environment.prod';
+import { RandomObjects, IDataForm } from '../../../common/i-dataform';
 
 
 @Component({
@@ -17,7 +19,7 @@ import { getAddJsonOfSigningAuthority } from '../shared/signing-authority-json-m
   templateUrl: './signing-authority-add.component.html',
   styleUrls: ['./signing-authority-add.component.scss']
 })
-export class MspDirectUpdateSigningAuthorityAddComponent implements OnInit {
+export class MspDirectUpdateSigningAuthorityAddComponent implements OnInit, IDataForm {
 
   @Input() showAdministeringMSPForQuestion = true; // needed in MSP updates only
   private arrayFormPropertyName = 'arrayOfForms';
@@ -54,7 +56,7 @@ export class MspDirectUpdateSigningAuthorityAddComponent implements OnInit {
   }
 
   private createArrayForm() {
-    return this.fb.group({
+    const form = this.fb.group({
       userTitle: [null, cUpdateSigningAuthorityValidator.add.userTitle],
       firstName: [null, cUpdateSigningAuthorityValidator.add.firstName],
       initial: [null, cUpdateSigningAuthorityValidator.add.initial],
@@ -66,9 +68,11 @@ export class MspDirectUpdateSigningAuthorityAddComponent implements OnInit {
       ext: [null, cUpdateSigningAuthorityValidator.add.ext],
       fax: [null, cUpdateSigningAuthorityValidator.add.fax],
       isAdmin: [null, cUpdateSigningAuthorityValidator.add.isAdmin],
-      // administeringFor: [null, cUpdateSigningAuthorityValidator.add.administeringFor],
+      administeringFor: [null, cUpdateSigningAuthorityValidator.add.administeringFor],
 
     });
+    this.patchValue(form);
+    return form;
   }
 
   private removeForm(index: number) {
@@ -92,25 +96,21 @@ export class MspDirectUpdateSigningAuthorityAddComponent implements OnInit {
     this.formArrayChanged.emit(this.parentForm);
   }
 
+  updateAccessValidation(formGroup, status) {
+    console.log(status);
+    const control = formGroup.controls.administeringFor as FormControl;
+    if (status === true) {
+      control.setValidators(Validators.required);
+    } else {
+      control.clearValidators();
+    }
+    control.setValue('', { onlySelf: false });
+    formGroup.updateValueAndValidity();
+  }
 
-  // updateAccessValidation(formGroup, status) {
-  //   const control = formGroup.controls.administeringFor as FormControl;
-  //   if (status === true) {
-  //     control.setValidators(Validators.required);
-  //   } else {
-  //     control.clearValidators();
-  //   }
-  //   control.setValue('', { onlySelf: false });
-  //   formGroup.updateValueAndValidity();
-  // }
-
-  // generateJSON(formValues) {
-
-  //   // generate signing-authorityistrator-remove object
-  //   const json: any = {};
-  //   json.email = formValues && formValues.emailAddress ? formValues.emailAddress : '';
-  //   if (isValidOptionalField(formValues.ministryUserId)) json.user_id = formValues.ministryUserId;
-  //   return json;
-  // }
+  patchValue(formGroup) {
+    if (!environment.useDummyData) return;
+    formGroup.patchValue(RandomObjects.getUser02((this.getFormsCount + 1).toString() + 'SA'));
+  }
 
 }

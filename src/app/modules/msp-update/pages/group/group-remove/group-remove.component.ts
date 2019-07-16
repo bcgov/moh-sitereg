@@ -2,13 +2,17 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 
 import { cUpdateValidators, validMultiFormControl, isValidOptionalField } from '../../../common/validators';
+import { getRemoveJsonOfMspGroup } from '../shared/group-shared-json-map';
+import { environment } from 'src/environments/environment.prod';
+import { IDataForm, RandomObjects } from '../../../common/i-dataform';
+
 
 @Component({
   selector: 'sitereg-update-group-remove',
   templateUrl: './group-remove.component.html',
   styleUrls: ['./group-remove.component.scss']
 })
-export class MspDirectUpdateGroupRemoveComponent implements OnInit {
+export class MspDirectUpdateGroupRemoveComponent implements OnInit, IDataForm {
 
 
   private arrayFormPropertyName = 'arrayOfForms';
@@ -16,9 +20,11 @@ export class MspDirectUpdateGroupRemoveComponent implements OnInit {
   @Output() formArrayChanged: EventEmitter<FormGroup | FormArray | null> = new EventEmitter<FormGroup | null>();
   parentForm: FormGroup;
   validFormControl: (fg: FormGroup, name: string) => boolean;
+  json: (formValues: any) => any;
 
   constructor(private fb: FormBuilder) {
     this.validFormControl = validMultiFormControl;
+    this.json = getRemoveJsonOfMspGroup;
   }
 
   ngOnInit() {
@@ -37,9 +43,11 @@ export class MspDirectUpdateGroupRemoveComponent implements OnInit {
   }
 
   private createArrayForm() {
-    return this.fb.group({
+    const form = this.fb.group({
       groupNo: ['',  cUpdateValidators.group.groupNo]
     });
+    this.patchValue(form);
+    return form;
   }
 
   private removeForm(index: number) {
@@ -64,12 +72,10 @@ export class MspDirectUpdateGroupRemoveComponent implements OnInit {
   }
 
 
-  generateJSON(formValues) {
-    return 'please implement';
-    const json: any = {};
-    json.email = formValues && formValues.emailAddress ? formValues.emailAddress : '';
-    if (isValidOptionalField(formValues.ministryUserId)) json.user_id = formValues.ministryUserId;
-    return json;
+
+  patchValue(formGroup) {
+    if(!environment.debug) return;
+    formGroup.patchValue(RandomObjects.getGroup((this.getFormsCount + 1).toString()));
   }
 
 }

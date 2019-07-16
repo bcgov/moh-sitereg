@@ -1,23 +1,29 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { groupNumberValidator, cUpdateValidators, validMultiFormControl, isValidOptionalField } from '../../../common/validators';
+import { getAddJsonOfMspGroup } from '../shared/group-shared-json-map';
+import { environment } from 'src/environments/environment.prod';
+import { IDataForm, RandomObjects } from '../../../common/i-dataform';
+
 
 @Component({
   selector: 'sitereg-update-group-add',
   templateUrl: './group-add.component.html',
   styleUrls: ['./group-add.component.scss']
 })
-export class MspDirectUpdateGroupAddComponent implements OnInit {
+export class MspDirectUpdateGroupAddComponent implements OnInit, IDataForm {
 
   private arrayFormPropertyName = 'arrayOfForms';
   @Input() formState: FormGroup | null;
   @Output() formArrayChanged: EventEmitter<FormGroup | FormArray | null> = new EventEmitter<FormGroup | null>();
   parentForm: FormGroup;
   validFormControl: (fg: FormGroup, name: string) => boolean;
-  radioBtnLabels = [{label: 'No', value: '0'}, {label: 'Yes', value: '1'}];
+  radioBtnLabels = [{label: 'No', value: 'N'}, {label: 'Yes', value: 'Y'}];
+  json: (formValues: any) => any;
 
   constructor(private fb: FormBuilder) {
     this.validFormControl = validMultiFormControl;
+    this.json = getAddJsonOfMspGroup;
   }
 
   ngOnInit() {
@@ -36,10 +42,12 @@ export class MspDirectUpdateGroupAddComponent implements OnInit {
   }
 
   private createArrayForm() {
-    return this.fb.group({
-      groupNo: ['', cUpdateValidators.group.groupNo],
-      thirdPartyAdmin: ['', Validators.required]
+    const form = this.fb.group({
+      groupNo: [null, cUpdateValidators.group.groupNo],
+      thirdPartyAdmin: [null, Validators.required]
     });
+    this.patchValue(form);
+    return form;
   }
 
   private removeForm(index: number) {
@@ -63,13 +71,10 @@ export class MspDirectUpdateGroupAddComponent implements OnInit {
     this.formArrayChanged.emit(this.parentForm);
   }
 
-
-  generateJSON(formValues) {
-    return 'please implement';
-    const json: any = {};
-    json.email = formValues && formValues.emailAddress ? formValues.emailAddress : '';
-    if (isValidOptionalField(formValues.ministryUserId)) json.user_id = formValues.ministryUserId;
-    return json;
+  
+  patchValue(formGroup) {
+    if(!environment.debug) return;
+    formGroup.patchValue(RandomObjects.getGroup((this.getFormsCount + 1).toString()));
   }
 
 }

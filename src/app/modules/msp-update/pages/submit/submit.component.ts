@@ -5,7 +5,7 @@ import { ROUTES_UPDATE } from '../../routing/routes.constants';
 import { funcRemoveStrings } from '@msp-register/constants';
 import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
-import { environment } from '../../../../../environments/environment';
+import { environment } from '../../../../../environments/environment.prod';
 import { MspRegisterApiService } from '../../../../shared/services/api.service';
 
 @Component({

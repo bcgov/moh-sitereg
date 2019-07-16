@@ -1,21 +1,23 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import {
   cUpdateAccessAdminEnumeration, cUpdateAccessAdminValidator
 } from '../shared/access-admin-shared';
 
-import { 
+import {
   validMultiFormControl, formControlValidity
 } from '../../../common/update-validators';
+import { IDataForm, RandomObjects } from '../../../common/i-dataform';
 
 import { getAddJsonOfAccessAdministrator } from '../shared/access-admin-json-map';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'sitereg-update-access-admin-add',
   templateUrl: './access-admin-add.component.html',
   styleUrls: ['./access-admin-add.component.scss']
 })
-export class MspDirectUpdateAccessAdministratorAddComponent implements OnInit {
+export class MspDirectUpdateAccessAdministratorAddComponent implements OnInit, IDataForm {
 
   @Input() showAdministeringMSPForQuestion = true; // needed in MSP updates only
   private arrayFormPropertyName = 'arrayOfForms';
@@ -51,7 +53,7 @@ export class MspDirectUpdateAccessAdministratorAddComponent implements OnInit {
   }
 
   private createArrayForm() {
-    return this.fb.group({
+    const form = this.fb.group({
       userTitle: [null, cUpdateAccessAdminValidator.add.userTitle],
       firstName: [null, cUpdateAccessAdminValidator.add.firstName],
       initial: [null, cUpdateAccessAdminValidator.add.initial],
@@ -65,6 +67,8 @@ export class MspDirectUpdateAccessAdministratorAddComponent implements OnInit {
       administeringFor: [null, cUpdateAccessAdminValidator.add.administeringFor],
 
     });
+    this.patchValue(form);
+    return form;
   }
 
   private removeForm(index: number) {
@@ -88,14 +92,9 @@ export class MspDirectUpdateAccessAdministratorAddComponent implements OnInit {
     this.formArrayChanged.emit(this.parentForm);
   }
 
-
-  // generateJSON(formValues) {
-
-  //   // generate access-administrator-remove object
-  //   const json: any = {};
-  //   json.email = formValues && formValues.emailAddress ? formValues.emailAddress : '';
-  //   if (isValidOptionalField(formValues.ministryUserId)) json.user_id = formValues.ministryUserId;
-  //   return json;
-  // }
+  patchValue(formGroup) {
+    if(!environment.debug) return;
+    formGroup.patchValue(RandomObjects.getUser02((this.getFormsCount + 1).toString() + 'AA'));
+  }
 
 }

@@ -59,7 +59,7 @@ U
                 // || x.path.includes('users')
                 // || x.path.includes('access-admins')
                 || x.path.includes('submit')
-                || x.path.includes('review')
+                // || x.path.includes('review')
             );
         });
 
