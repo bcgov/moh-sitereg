@@ -18,161 +18,153 @@
 
 <common-page-framework layout="blank">
   <!--  -->
-  <h1>Organization</h1>
-  <div>
-    <p class="border-bottom">
-      Enter the information about the <b>Organization</b> applying for access to MSP Direct.
-      <br />
-      This request must be submitted by the Organization's Access Administrator or Signing Authority. If you have any
-      trouble using this form, please contact the Ministry of Health Help desk at 1-250-952-1234, Monday to Friday
-      8:00AM
-      - 4:30PM.
-    </p>
-  </div>
+  <h1 class="border-bottom">Organization</h1>
   <common-page-section layout="tips">
-
-    <!-- <aside>
+      
+    <aside>
       This request must be submitted by the Organization's Access Administrator or Signing Authority. If you have any
       trouble using this form, please contact the Ministry of Health Help desk at 1-250-952-1234, Monday to Friday 8:00AM
       - 4:30PM.
       <br /> <br />
       Enter the information about the <b>Organization</b> applying for access to MSP Direct.
-    </aside> -->
-
-    <!-- <aside>
+    </aside>
+  
+  <!-- <aside>
     This request must be submitted by the Organization's Access Administrator or Signing Authority. If you have any
     trouble using this form, please contact the Ministry of Health Help desk at 1-250-952-1234, Monday to Friday 8:00AM
     - 4:30PM.
     <br /> <br />
     Enter the information about the <b>Organization</b> applying for access to MSP Direct.
   </aside> -->
-    <div *ngIf="fg">
-      <!-- TODO - This form should be replaced with OrganizationFormComponent -->
-      <form [formGroup]="fg">
-        <div class="form-group col-sm-8 p-sm-0">
+  <div *ngIf="fg">
+    <!-- TODO - This form should be replaced with OrganizationFormComponent -->
+    <form [formGroup]="fg">
+      <div class="form-group col-sm-8 p-sm-0">
 
-          <!-- Organization Name -->
-          <label class="control-label" for="name">Organization Name</label>
-          <input id="name" formControlName="name" class="form-control" maxlength="100">
-          <div class="text-danger" *ngIf="validFormControl('name')">
-            Enter Organization name
-          </div>
+        <!-- Organization Name -->
+        <label class="control-label" for="name">Organization Name</label>
+        <input id="name" formControlName="name" class="form-control"  maxlength="100">
+        <div class="text-danger" *ngIf="validFormControl('name')">
+          Enter Organization name
+        </div>
 
-          <!-- Suite Number-->
-          <label class="control-label" for="suite">Suite# (optional)</label>
-          <input id="suite" formControlName="suite" class="form-control" maxlength="10">
-          <div class="text-danger" *ngIf="validFormControl('suite')">
-            Enter valid Suite# (optional)
-          </div>
+        <!-- Suite Number-->
+        <label class="control-label" for="suite">Suite# (optional)</label>
+        <input id="suite" formControlName="suite" class="form-control"  maxlength="10">
+        <div class="text-danger" *ngIf="validFormControl('suite')">
+          Enter valid Suite# (optional)
+        </div>
 
-          <div class="row">
+        <div class="row">
 
-            <!-- Street Number -->
-            <div class="col-sm-4">
-              <label class="control-label" for="street">Street#</label>
-              <input id="street" formControlName="street" class="form-control" maxlength="10">
-              <div class="text-danger" *ngIf="validFormControl('street')">
-                Enter valid Street#
-              </div>
+          <!-- Street Number -->
+          <div class="col-sm-4">
+            <label class="control-label" for="street">Street#</label>
+            <input id="street" formControlName="street" class="form-control"  maxlength="10">
+            <div class="text-danger" *ngIf="validFormControl('street')">
+              Enter valid Street#
             </div>
+          </div>
 
-            <!-- Street Name -->
-            <div class="col-sm-8">
-              <label class="control-label" for="streetName">Street Name</label>
-              <input id="streetName" formControlName="streetName" class="form-control" maxlength="75">
-              <div class="text-danger" *ngIf="validFormControl('streetName')">
-                Enter valid Street Name
-              </div>
+          <!-- Street Name -->
+          <div class="col-sm-8">
+            <label class="control-label" for="streetName">Street Name</label>
+            <input id="streetName" formControlName="streetName" class="form-control" 
+              maxlength="75">
+            <div class="text-danger" *ngIf="validFormControl('streetName')">
+              Enter valid Street Name
             </div>
-
           </div>
 
-          <!-- Address Line 2 -->
-          <label class="control-label" for="addressLine2">Street Address Line 2 (optional)</label>
-          <input id="addressLine2" formControlName="addressLine2" class="form-control" maxlength="200">
-          <div class="text-danger" *ngIf="validFormControl('addressLine2')">
-            Enter valid Street Address Line 2
-          </div>
+        </div>
 
-          <!-- City -->
-          <label class="control-label" for="city">City</label>
-          <input id="city" formControlName="city" class="form-control" maxlength="25">
-          <div class="text-danger" *ngIf="validFormControl('city')">
-            Please enter your city.
-          </div>
+        <!-- Address Line 2 -->
+        <label class="control-label" for="addressLine2">Street Address Line 2 (optional)</label>
+        <input id="addressLine2" formControlName="addressLine2" class="form-control"
+           maxlength="200">
+        <div class="text-danger" *ngIf="validFormControl('addressLine2')">
+          Enter valid Street Address Line 2
+        </div>
 
-          <div class="row">
-            <div class="col-sm-8">
-              <!-- Province -->
-              <label class="control-label" for="province">Province</label>
-              <select class="form-control" id="province" *ngIf="provinces | async as provinces"
-                formControlName="province" maxlength="3">
-                <option value="null" label="-- Select Province --" selected></option>
-                <option *ngFor="let province of provinces " [value]="province.provCode">{{province.description}}
-                </option>
-              </select>
-              <div class="text-danger" *ngIf="validFormControl('province')">
-                Please select a valid province.
-              </div>
+        <!-- City -->
+        <label class="control-label" for="city">City</label>
+        <input id="city" formControlName="city" class="form-control"  maxlength="25">
+        <div class="text-danger" *ngIf="validFormControl('city')">
+          Please enter your city.
+        </div>
+
+        <div class="row">
+          <div class="col-sm-8">
+            <!-- Province -->
+            <label class="control-label" for="province">Province</label>
+            <select class="form-control" id="province" *ngIf="provinces | async as provinces" formControlName="province"
+              maxlength="3">
+              <option value="null" label="-- Select Province --" selected></option>
+              <option *ngFor="let province of provinces " [value]="province.provCode">{{province.description}}</option>
+            </select>
+            <div class="text-danger" *ngIf="validFormControl('province')">
+              Please select a valid province.
             </div>
-            <div class="col-sm-4">
-              <!-- Postal Code -->
-              <label class="control-label" for="postalCode">Postal Code</label>
-              <input id="postalCode" formControlName="postalCode" class="form-control" maxlength="6">
-              <div class="text-danger" *ngIf="validFormControl('postalCode')">
-                Please enter your postal code in the format A1A1A1.
-              </div>
+          </div>
+          <div class="col-sm-4">
+            <!-- Postal Code -->
+            <label class="control-label" for="postalCode">Postal Code</label>
+            <input id="postalCode" formControlName="postalCode" class="form-control"  maxlength="6">
+            <div class="text-danger" *ngIf="validFormControl('postalCode')">
+              Please enter your postal code in the format A1A1A1.
+            </div>
+          </div>
+        </div>
+
+        <!-- Administrating For-->
+        <label class="control-label" for="administeringFor">This organization will be administering MSP for</label>
+        <select class="form-control" id="administeringFor" *ngIf="administeringFor | async as administering"
+          formControlName="administeringFor">
+          <option value="" label="-- Select Option --" selected></option>
+          <option *ngFor="let a of administering " [value]="a">{{a}}</option>
+        </select>
+        <div class="text-danger" *ngIf="validFormControl('administeringFor')">
+          Please select a valid option
+        </div>
+
+        <fieldset>
+          <!-- Question Third Party Administering -->
+          <span class="control-label">
+            Are you contracting a 3rd party to administer MSP Direct on your behalf?
+          </span>
+          <legend hidden="true"></legend>
+          <br />
+          <div class="md-radio md-radio-inline">
+
+            <!--No-->
+            <input formControlName="thirdParty" type="radio" id="thirdPartyFalse" tabindex="0" [value]="false"
+              (click)="updateThirdPartyValidations(false)">
+            <label for="thirdPartyFalse">No</label>
+            <!--Yes-->
+            <input formControlName="thirdParty" type="radio" name="" id="thirdPartyTrue" tabindex="0" [value]="true"
+              (click)="updateThirdPartyValidations(true)">
+            <label for="thirdPartyTrue">Yes</label>
+
+          </div>
+          <div class="text-danger" *ngIf="validFormControl('thirdParty')">
+            Please select a valid option
+          </div>
+        </fieldset>
+
+
+        <div class="row">
+          <div *ngIf="fg.controls.thirdParty.value" class="col-sm-4">
+            <!-- Organization Number -->
+            <label class="control-label" for="organizationNumber">Organization Number</label>
+            <input id="organizationNumber" formControlName="organizationNumber" class="form-control"
+               maxlength="8">
+            <div class="text-danger" *ngIf="validFormControl('organizationNumber')">
+              Please enter Organization Number, must be 8 digits only.
             </div>
           </div>
 
           <!-- Administrating For-->
-          <label class="control-label" for="administeringFor">This organization will be administering MSP for</label>
-          <select class="form-control" id="administeringFor" *ngIf="administeringFor | async as administering"
-            formControlName="administeringFor">
-            <option value="" label="-- Select Option --" selected></option>
-            <option *ngFor="let a of administering " [value]="a">{{a}}</option>
-          </select>
-          <div class="text-danger" *ngIf="validFormControl('administeringFor')">
-            Please select a valid option
-          </div>
-
-          <fieldset>
-            <!-- Question Third Party Administering -->
-            <span class="control-label">
-              Are you contracting a 3rd party to administer MSP Direct on your behalf?
-            </span>
-            <legend hidden="true"></legend>
-            <br />
-            <div class="md-radio md-radio-inline">
-
-              <!--No-->
-              <input formControlName="thirdParty" type="radio" id="thirdPartyFalse" tabindex="0" [value]="false"
-                (click)="updateThirdPartyValidations(false)">
-              <label for="thirdPartyFalse">No</label>
-              <!--Yes-->
-              <input formControlName="thirdParty" type="radio" name="" id="thirdPartyTrue" tabindex="0" [value]="true"
-                (click)="updateThirdPartyValidations(true)">
-              <label for="thirdPartyTrue">Yes</label>
-
-            </div>
-            <div class="text-danger" *ngIf="validFormControl('thirdParty')">
-              Please select a valid option
-            </div>
-          </fieldset>
-
-
-          <div class="row">
-            <div *ngIf="fg.controls.thirdParty.value" class="col-sm-4">
-              <!-- Organization Number -->
-              <label class="control-label" for="organizationNumber">Organization Number</label>
-              <input id="organizationNumber" formControlName="organizationNumber" class="form-control" maxlength="8">
-              <div class="text-danger" *ngIf="validFormControl('organizationNumber')">
-                Please enter Organization Number, must be 8 digits only.
-              </div>
-            </div>
-
-            <!-- Administrating For-->
-            <!-- <div *ngIf="fg.controls.thirdParty.value" class="col-sm-8">
+          <!-- <div *ngIf="fg.controls.thirdParty.value" class="col-sm-8">
           <label class="control-label" for="administeringFor">This organization will be adminstering MSP for</label>
           <select class="form-control" *ngIf="administeringFor | async as administering"
             formControlName="administeringFor">
@@ -184,30 +176,30 @@
           </div>
         </div> -->
 
-          </div>
-
-          <!-- Question Blue Cross -->
-          <span class="control-label">Are you applying to access MSP Direct through Blue Cross?</span>
-          <br />
-          <div class="md-radio md-radio-inline">
-            <!--No-->
-            <input formControlName="blueCross" type="radio" id="aafalse" tabindex="0" [value]="false">
-            <label for="aafalse">No</label>
-            <!--Yes-->
-            <input formControlName="blueCross" type="radio" name="" id="aatrue" tabindex="0" [value]="true">
-            <label for="aatrue">Yes</label>
-          </div>
-          <div class="text-danger" *ngIf="validFormControl('blueCross')">
-            Please select a valid option
-          </div>
         </div>
-      </form>
-    </div>
-    <div *ngIf="globalConfigSvc.debug">
-      Debugging purposes only:
-      <ngx-json-viewer [json]="schemaObject()" [expanded]="true"></ngx-json-viewer>
-    </div>
-  </common-page-section>
+
+        <!-- Question Blue Cross -->
+        <span class="control-label">Are you applying to access MSP Direct through Blue Cross?</span>
+        <br />
+        <div class="md-radio md-radio-inline">
+          <!--No-->
+          <input formControlName="blueCross" type="radio" id="aafalse" tabindex="0" [value]="false">
+          <label for="aafalse">No</label>
+          <!--Yes-->
+          <input formControlName="blueCross" type="radio" name="" id="aatrue" tabindex="0" [value]="true">
+          <label for="aatrue">Yes</label>
+        </div>
+        <div class="text-danger" *ngIf="validFormControl('blueCross')">
+          Please select a valid option
+        </div>
+      </div>
+    </form>
+  </div>
+  <div *ngIf="globalConfigSvc.debug">
+    Debugging purposes only:
+    <ngx-json-viewer [json]="schemaObject()" [expanded]="true"></ngx-json-viewer>
+  </div>
+</common-page-section>
 </common-page-framework>
 
 <!-- class="fixed-bottom avoid-sliding"  -->

@@ -1,20 +1,13 @@
 <common-page-framework layout="blank">
-    <h1>Signing Authority</h1>
-    <div>
-        <p class="border-bottom">
-                The Signing Authority is the person with the authority to sign the Data Access Agreement that binds your
-                Organization to the terms and conditions document. Only one <b>Signing Authority</b> can be added per
-                Organization.
-        </p>
-    </div>
+    <h1 class="border-bottom">Signing Authority</h1>
     <common-page-section layout="tips">
 
-        <!-- <aside>
+        <aside>
             The Signing Authority is the person with the authority to sign the Data Access Agreement that binds your
             Organization to the terms and conditions document. Only one <b>Signing Authority</b> can be added per
             Organization.
-        </aside> -->
-
+        </aside>
+        
         <div *ngIf="fg">
 
             <sitereg-msp-register-user-msp [fg]="fg" [showMspDirectAccessQuestion]="true">

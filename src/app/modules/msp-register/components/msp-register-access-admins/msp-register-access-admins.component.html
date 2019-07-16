@@ -1,49 +1,38 @@
 <!-- TODO: ask if the control to add access administrators is the button click. UX is confusing -->
-<common-page-framework layout="blank">
-  <h1>Access Admins</h1>
-  <div>
-    <p class="border-bottom">
-      <b>Access Administrators</b> are the primary contacts within your Organization for all questions and concerns
-      about user access to the Ministry of Health web applications. They are responsible for registering users,
-      assigning and cancelling access permissions, coordinating the installation of the digital certificate on user's
-      computers and other responsibilities identified by the Ministry. The form should include at least one Access
-      Administrator.
-    </p>
-  </div>
-  <!-- <p><b>Access Administrators</b> are the primary contacts within your Organization for all questions and concerns about user access to the Ministry of Health web applications. They are responsible for registering users, assigning and cancelling access permissions, coordinating the installation of the digital certificate on user's computers and other responsibilities identified by the Ministry. The form should include at least one Access Administrator.</p> -->
-  <common-page-section layout="tips">
+<common-page-framework  layout="blank">
+<h1 class="border-bottom">Access Admins</h1>
+<common-page-section layout="tips">
 
-    <!-- <aside>
+<aside>
     <b>Access Administrators</b> are the primary contacts within your Organization for all questions and concerns about user access to the Ministry of Health web applications. They are responsible for registering users, assigning and cancelling access permissions, coordinating the installation of the digital certificate on user's computers and other responsibilities identified by the Ministry. The form should include at least one Access Administrator.
-</aside> -->
-    <div class='row mb-4'>
-      <div class='col-md-6 p-4'>
-        <a (click)='addFormGroup()'>
-          <button class="btn btn-block btn-lg btn-secondary">
-            Add New Access Admin
-          </button>
-        </a>
-      </div>
+</aside>
+<div class='row mb-4'>
+  <div class='col-md-6 p-4'>
+    <a (click)='addFormGroup()'>
+      <button class="btn btn-block btn-lg btn-secondary">
+        Add New Access Admin
+      </button>
+    </a>
+  </div>
+</div>
+<div *ngFor="let fg of fgs; index as i">
+  <div class="row border-bottom">
+    <div class="col-auto mr-auto">
+      <h2> Access Admin #{{fgs.length-i}}</h2>
     </div>
-    <div *ngFor="let fg of fgs; index as i">
-      <div class="row border-bottom">
-        <div class="col-auto mr-auto">
-          <h2> Access Admin #{{fgs.length-i}}</h2>
-        </div>
-        <div class="col-auto">
-          <button class="btn delete" (click)="deleteFormGroup(i)" type="button" aria-label="Delete">
-            <i style="color: red !important;" class="fa fa-2x fa-times-circle"></i>
-          </button>
-        </div>
-      </div>
-      <sitereg-msp-register-user-msp [fg]="fg" [formIndex]="i" [showMspDirectAccessQuestion]="false">
-      </sitereg-msp-register-user-msp>
+    <div class="col-auto">
+      <button  class="btn delete"  (click)="deleteFormGroup(i)" type="button" aria-label="Delete">
+      <i style="color: red !important;" class="fa fa-2x fa-times-circle"></i>
+    </button>
     </div>
-    <div *ngIf="globalConfigSvc.debug">
-      Debugging purposes only:
-      <ngx-json-viewer [json]="schemaObject()" [expanded]="true"></ngx-json-viewer>
-    </div>
-  </common-page-section>
+  </div>
+  <sitereg-msp-register-user-msp [fg]="fg" [formIndex]="i"  [showMspDirectAccessQuestion]="false" ></sitereg-msp-register-user-msp>
+</div>
+<div *ngIf="globalConfigSvc.debug">
+    Debugging purposes only:
+    <ngx-json-viewer [json]="schemaObject()" [expanded]="true"></ngx-json-viewer>
+</div>
+</common-page-section>
 </common-page-framework>
-<common-form-action-bar (btnClick)="continue()" [canContinue]="validFormGroup(fgs)">
+<common-form-action-bar  (btnClick)="continue()" [canContinue]="validFormGroup(fgs)">
 </common-form-action-bar>
