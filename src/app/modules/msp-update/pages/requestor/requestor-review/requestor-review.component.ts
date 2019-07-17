@@ -31,10 +31,10 @@ export class MspDirectUpdateRequestorReviewComponent implements OnInit {
     const form = this.updateStateService.forms.requestorForm;
     const infoObject: interfaceObjects.IRequestor = interfaceObjects.getIRequestor(form.value);
     if (!infoObject) return;
-    const items = [
+    const items = [[
       { label: 'Organization Number', value: infoObject.organizationNumber },
       { label: 'Email Address', value: infoObject.emailAddress },
-    ];
+    ]];
     this.review.sectionItems = items;
   }
 

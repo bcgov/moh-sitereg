@@ -4,15 +4,15 @@ import {
 } from '../../../common/msp-direct-update-review-container/msp-direct-update-review-container.component';
 import { ROUTES_UPDATE } from '../../../routing/routes.constants';
 import { UpdateStateService } from '../../../services/update.state.service';
-import * as interfaceObjects from '../shared/i-user';
+import * as interfaceObjects from '../shared/i-group';
 import * as common from '../../../common/update-json-map';
 
 @Component({
-  selector: 'sitereg-update-user-review',
-  templateUrl: './user-review.component.html',
-  styleUrls: ['./user-review.component.scss']
+  selector: 'sitereg-update-group-review',
+  templateUrl: './group-review.component.html',
+  styleUrls: ['./group-review.component.scss']
 })
-export class MspDirectUpdateUserReviewComponent implements OnInit {
+export class MspDirectUpdateGroupReviewComponent implements OnInit {
 
   @ViewChild('add')
   add: MspDirectUpdateReviewContainerComponent;
@@ -20,8 +20,6 @@ export class MspDirectUpdateUserReviewComponent implements OnInit {
   remove: MspDirectUpdateReviewContainerComponent;
   @ViewChild('edit')
   edit: MspDirectUpdateReviewContainerComponent;
-
-
 
 
   constructor(public updateStateService: UpdateStateService, ) { }
@@ -36,36 +34,29 @@ export class MspDirectUpdateUserReviewComponent implements OnInit {
 
   reviewItems(action: common.actionType, review: MspDirectUpdateReviewContainerComponent) {
 
-    review.redirectPath = ROUTES_UPDATE.USERS.fullpath;
-    review.header = ROUTES_UPDATE.USERS.title;
-    const form = this.updateStateService.forms.mspUsers;
+    review.redirectPath = ROUTES_UPDATE.GROUP_NUMBERS.fullpath;
+    review.header = ROUTES_UPDATE.GROUP_NUMBERS.title;
+    const form = this.updateStateService.forms.mspGroups;
     let infoObjects = null;
 
     if (action === common.actionType.Add) {
       review.header += ' (Add)';
-      if (!form.add) return;
-      infoObjects = interfaceObjects.getIUser(form.add.value);
+      infoObjects = interfaceObjects.getIGroup(form.add.value);
     }
 
     if (action === common.actionType.Edit) {
       review.header += ' (Update)';
-      if (!form.update) return;
-      infoObjects = interfaceObjects.getIUser(form.update.value);
+      infoObjects = interfaceObjects.getIGroup(form.update.value);
     }
 
     if (action === common.actionType.Remove) {
       review.header += ' (Remove)';
-      if (!form.remove) return;
-      console.log(form.remove.value);
-      infoObjects = interfaceObjects.getIUser(form.remove.value);
+      infoObjects = interfaceObjects.getIGroup(form.remove.value);
     }
 
     if (!infoObjects) return;
 
-    const items = interfaceObjects.getIUserReviewItems(infoObjects);
+    const items = interfaceObjects.getIGroupReviewItems(infoObjects);
     review.sectionItems = items;
   }
-
-
 }
-

@@ -7,6 +7,8 @@ import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
 import { environment } from '../../../../../environments/environment.prod';
 import { MspRegisterApiService } from '../../../../shared/services/api.service';
+import { UpdateStateService } from '../../services/update.state.service';
+import { jsonPayLoadApplication } from './json-payload';
 
 @Component({
     selector: 'sitereg-msp-update-submit',
@@ -34,6 +36,7 @@ export class MspDirectUpdateSubmitComponent implements OnInit {
         private loggerSvc: LoggerService,
         private globalConfigSvc: GlobalConfigService,
         public apiSvc: MspRegisterApiService,
+        public updateStateService: UpdateStateService,
     ) {
 
       this.captchaApiBaseUrl = environment.captchaApiBaseUrl;
@@ -70,4 +73,9 @@ export class MspDirectUpdateSubmitComponent implements OnInit {
     canContinue() {
       return this._hasToken;
     }
+
+    json() {
+        this.updateStateService.applicationId = this.globalConfigSvc.applicationId;
+        return jsonPayLoadApplication(this.updateStateService);
+      }
 }

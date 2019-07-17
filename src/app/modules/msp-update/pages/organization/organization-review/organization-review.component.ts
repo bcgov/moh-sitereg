@@ -31,7 +31,7 @@ export class MspDirectUpdateOrganizationReviewComponent implements OnInit {
     const form = this.updateStateService.forms.organizationForm;
     const infoObject: interfaceObjects.IOrganizationEdit = interfaceObjects.getIOrganizationEdit(form.value);
     if (!infoObject) return;
-    const items = [
+    const items = [[
       { label: 'Organization name', value: infoObject.organizationName },
       { label: 'Suite', value: infoObject.suite },
       { label: 'Street', value: infoObject.street },
@@ -41,7 +41,7 @@ export class MspDirectUpdateOrganizationReviewComponent implements OnInit {
       { label: 'Postal Code', value: infoObject.postalCode },
       { label: 'Province', value: infoObject.province },
       { label: 'Administering for', value: infoObject.administeringFor },
-    ];
+    ]];
     this.review.sectionItems = items;
   }
 

@@ -8,6 +8,6 @@ export function getIRequestor(formValues): IRequestor {
     const iobj: IRequestor = {
         emailAddress: formValues.organizationNumber ? formValues.organizationNumber : '',
         organizationNumber: formValues.emailAddress ? formValues.emailAddress : '',
-    }
+    };
     return iobj;
 }
