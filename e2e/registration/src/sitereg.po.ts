@@ -144,7 +144,9 @@ export class OrganizationPage extends BaseSiteRegTestPage {
         if (info.suiteNo) {
             this.typeText('suite', info.suiteNo + '');
         }
-        this.typeTextFirstOccurrence('street', info.streetNo + '');
+        if (info.streetNo !== undefined) {
+            this.typeTextFirstOccurrence('street', info.streetNo + '');
+        }
         this.typeText('streetName', info.streetName);
         if (info.streetAddressLine) {
             this.typeText('addressLine2', info.streetAddressLine);
