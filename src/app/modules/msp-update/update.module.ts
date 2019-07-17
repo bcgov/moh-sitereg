@@ -50,7 +50,6 @@ import { MspDirectUpdateGroupEditComponent } from './pages/group/group-edit/grou
 import { MspDirectUpdateGroupReviewComponent } from './pages/group/group-review/group-review.component';
 
 import { MspDirectUpdateSubmitComponent } from './pages/submit/submit.component';
-import { MspDirectUpdateConfirmationComponent } from './pages/confirmation/confirmation.component';
 import { MspDirectUpdateProgressService } from './services/progress.service';
 import { AbstractPgCheckService, RouteGuardService, SharedCoreModule } from 'moh-common-lib';
 import { RouterModule } from '@angular/router';
@@ -60,6 +59,7 @@ import { MspUpdateReviewComponent } from './pages/review/review.component';
 import { ReviewSectionComponent } from './components/review-section/review-section.component';
 import { MspDirectUpdateErrorBoxComponent } from './common/error-update-error-box/error-update-error-box.component';
 import { JsonUpdateViewComponent } from './common/json-update-view/json-update-view.component';
+import { MspDirectUpdateConfirmationComponent } from './pages/confirmation/confirmation.component';
 
 
 

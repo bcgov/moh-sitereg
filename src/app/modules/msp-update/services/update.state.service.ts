@@ -8,6 +8,10 @@ import { environment } from 'src/environments/environment.prod';
   providedIn: 'root',
 })
 export class UpdateStateService {
+
+  public enableConfirmation = false;
+  public requestFinalStatus: any;
+
   requestor = new UpdatePerson();
 
   public hasConsentedToInformationCollection: boolean = environment.bypassInformationCollectionNotice;
