@@ -107,7 +107,7 @@ export class MspUpdateApiService extends AbstractHttpService {
         // disabled to keep log of the application all steps.
         // this.eventUUID = UUID.UUID();
 
-        const url = environment.baseAPIUrl + `${this.eventUUID}`;
+        const url = environment.baseUpdateAPIUrl + `${this.eventUUID}`;
 
         // console.log(`nonce & applicationid: %o`, GlobalConfigService.uuid );
 

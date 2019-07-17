@@ -7,6 +7,7 @@ export const environment = {
     useDummyData: false,
     useMockBackend: false,
     baseAPIUrl: '/sitereg/api/siteregIntegration/sitereg/',
+    baseUpdateAPIUrl: '/sitereg/api/siteregIntegration/siteregmaintenance/',
     loggingURL: '/sitereg/api/logging',
     captchaApiBaseUrl: '/sitereg/api/captcha',
     envServerUrl: '/sitereg/api/env',
