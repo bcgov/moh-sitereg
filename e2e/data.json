@@ -1,7 +1,48 @@
-{
-    "organizationPage":{"administeringFor":"Employees","blueCross":true,"city":"St. Luke","orgName":"Sample Org Name","orgNum":14819757,"postal":"V7X6H8","province":"British Columbia","streetAddressLine":"line 2","streetName":"Gloucester Street","streetNo":"1630","suiteNo":"Suite 2372","thirdParty":true},
-    "signingAuthorityPage":{"administeringFor":"Employees","confirmEmail":"Quirinus.20190715.171329.035858@example.com","directMspAccess":true,"email":"Quirinus.20190715.171329.035858@example.com","extension":1466,"fax":6705550159,"firstName":"Vitalis","initial":"W","jobTitle":"Job Title","lastName":"Cato","mobile":6035550196,"title":"Mr."},
-    "accessAdminsPage":[{"administeringFor":"Employees","confirmEmail":"Modestus.20190715.171329.261550@example.com","email":"Modestus.20190715.171329.261550@example.com","extension":929,"fax":7505550124,"firstName":"Isidorus","initial":"F","jobTitle":"Job Title","lastName":"Traianus","mobile":7185550121,"title":"Mr."}],
-    "usersPage":[{"administeringFor":"Employees","confirmEmail":"Peregrinus.20190715.171329.408384@example.com","email":"Peregrinus.20190715.171329.408384@example.com","extension":1370,"fax":1755550197,"firstName":"Amantius","initial":"S","jobTitle":"Job Title","lastName":"Porcius","mobile":6255550141,"title":"Mr."}],
-    "groupNumbersPage":[{"groupNum":5122570,"thirdParty":true}]
-}
+{ "organizationPage" :
+    { "administeringFor"  : "Employees"
+    , "blueCross"         : true
+    , "city"              : "Hammersmith"
+    , "orgName"           : "MSPDIR_REW_01 INC."
+    , "orgNum"            : 75459959
+    , "postal"            : "V1A0A6"
+    , "province"          : "British Columbia"
+    , "streetAddressLine" : "line 2"
+    , "streetName"        : "Victoria Terrace"
+    , "streetNo"          : "2376"
+    , "suiteNo"           : "Suite 2946"
+    , "thirdParty"        : true
+    }
+  , "signingAuthorityPage" :
+    { "administeringFor" : "Employees"
+    , "confirmEmail"     : "Modestus.20190716.191616.760591@example.com"
+    , "directMspAccess"  : true
+    , "email"            : "Modestus.20190716.191616.760591@example.com"
+    , "extension"        : "393"
+    , "fax"              : 3125550144
+    , "firstName"        : "Ferrutius"
+    , "initial"          : "V"
+    , "jobTitle"         : "Job Title"
+    , "lastName"         : "Manlius"
+    , "mobile"           : 1675550175
+    , "title"            : "Mr."
+    }
+  , "accessAdminsPage" :
+    [ { "administeringFor" : "Employees"
+      , "confirmEmail"     : "Florentinus.20190716.191616.971297@example.com"
+      , "email"            : "Florentinus.20190716.191616.971297@example.com"
+      , "extension"        : "2825"
+      , "fax"              : 1985550173
+      , "firstName"        : "Vitalis"
+      , "initial"          : "Q"
+      , "jobTitle"         : "Job Title"
+      , "lastName"         : "Vibianus"
+      , "mobile"           : 3995550136
+      , "title"            : "Mr."
+      }
+    ]
+  , "groupNumbersPage" :
+    [ { "groupNum"   : 5466847
+      , "thirdParty" : true
+      }
+    ]
+  }
