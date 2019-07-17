@@ -1,5 +1,7 @@
 import * as jsonUserMaps from '../../../common/update-json-user-map';
 import { actionType, deepCopy, addDefinationProperty } from '../../../common/update-json-map';
+import * as jsonInterfaces from '../../submit/json-payload';
+import { getIUser } from './i-user';
 
 export function getAddJsonOfMspUser(formValues) {
     let json = jsonUserMaps.mapJsonCoreUser(actionType.Add, formValues);
@@ -20,9 +22,28 @@ export function getAddJsonOfMspUser(formValues) {
     return jsonDef;
 }
 
+
+export function getAddJSONofMspUser(formValue) {
+    if (!formValue) return;
+    const formValuesArray = getIUser(formValue);
+
+    const jsonArray: any[] = [];
+    formValuesArray.forEach(formValues => {
+
+        let json = jsonUserMaps.mapJsonCoreUser(actionType.Add, formValues);
+        delete json.confirm_email;
+        json.msp_access = 'Y';
+        json = deepCopy(json, 'user_');
+
+        jsonArray.push(json);
+    });
+
+    return jsonArray;
+}
+
 export function getEditJsonOfMspUser(formValues) {
     let json = jsonUserMaps.mapJsonCoreUser(actionType.Edit, formValues);
-    
+
     json.user = addDefinationProperty(json.user, 'person_id_def');
     json = deepCopy(json, 'user_');
 
@@ -31,6 +52,23 @@ export function getEditJsonOfMspUser(formValues) {
     const jsonDef: any = { users_updated: {} };
     jsonDef.users_updated = json;
     return jsonDef;
+}
+
+export function getEditJSONofMspUser(formValue) {
+
+    if (!formValue) return;
+    const formValuesArray = getIUser(formValue);
+    const jsonArray: any[] = [];
+    formValuesArray.forEach(formValues => {
+
+        let json = jsonUserMaps.mapJsonCoreUser(actionType.Edit, formValues);
+        // delete json.confirm_email;
+        json = deepCopy(json, 'user_');
+
+        jsonArray.push(json);
+    });
+
+    return jsonArray;
 }
 
 export function getRemoveJsonOfMspUser(formValues) {
@@ -45,4 +83,19 @@ export function getRemoveJsonOfMspUser(formValues) {
     const jsonDef: any = { users_removed: {} };
     jsonDef.users_removed = json;
     return jsonDef;
+}
+
+
+export function getRemoveJSONofMspUser(formValue) {
+    if (!formValue) return;
+    const formValuesArray = getIUser(formValue);
+    const jsonArray: any[] = [];
+    formValuesArray.forEach(formValues => {
+
+        const json = jsonUserMaps.mapJsonCoreUser(actionType.Remove, formValues);
+
+        jsonArray.push(json);
+    });
+
+    return jsonArray;
 }
