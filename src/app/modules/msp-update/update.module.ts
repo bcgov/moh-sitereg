@@ -26,11 +26,16 @@ import {
 import {
     MspDirectUpdateSigningAuthorityEditComponent
 } from './pages/signing-authority/signing-authority-edit/signing-authority-edit.component';
+import {
+    MspDirectUpdateSigningAuthorityReviewComponent
+} from './pages/signing-authority/signing-authority-review/signing-authority-review.component';
+
 
 import { MspDirectUpdateAccessAdministratorComponent } from './pages/access-admin/access-admin/access-admin.component';
 import { MspDirectUpdateAccessAdministratorRemoveComponent } from './pages/access-admin/access-admin-remove/access-admin-remove.component';
 import { MspDirectUpdateAccessAdministratorAddComponent } from './pages/access-admin/access-admin-add/access-admin-add.component';
 import { MspDirectUpdateAccessAdministratorEditComponent } from './pages/access-admin/access-admin-edit/access-admin-edit.component';
+import { MspDirectUpdateAccessAdminReviewComponent } from './pages/access-admin/access-admin-review/access-admin-review.component';
 
 import { MspDirectUpdateUserComponent } from './pages/user/user/user.component';
 import { MspDirectUpdateUserRemoveComponent } from './pages/user/user-remove/user-remove.component';
@@ -42,6 +47,7 @@ import { MspDirectUpdateGroupComponent } from './pages/group/group/group.compone
 import { MspDirectUpdateGroupRemoveComponent } from './pages/group/group-remove/group-remove.component';
 import { MspDirectUpdateGroupAddComponent } from './pages/group/group-add/group-add.component';
 import { MspDirectUpdateGroupEditComponent } from './pages/group/group-edit/group-edit.component';
+import { MspDirectUpdateGroupReviewComponent } from './pages/group/group-review/group-review.component';
 
 import { MspDirectUpdateSubmitComponent } from './pages/submit/submit.component';
 import { MspDirectUpdateConfirmationComponent } from './pages/confirmation/confirmation.component';
@@ -54,7 +60,9 @@ import { MspUpdateReviewComponent } from './pages/review/review.component';
 import { ReviewSectionComponent } from './components/review-section/review-section.component';
 import { MspDirectUpdateErrorBoxComponent } from './common/error-update-error-box/error-update-error-box.component';
 import { JsonUpdateViewComponent } from './common/json-update-view/json-update-view.component';
-import { MspDirectUpdateGroupReviewComponent } from './pages/group/group-review/group-review.component';
+
+
+
 
 @NgModule({
     declarations: [
@@ -75,11 +83,13 @@ import { MspDirectUpdateGroupReviewComponent } from './pages/group/group-review/
         MspDirectUpdateSigningAuthorityRemoveComponent,
         MspDirectUpdateSigningAuthorityAddComponent,
         MspDirectUpdateSigningAuthorityEditComponent,
+        MspDirectUpdateSigningAuthorityReviewComponent,
 
         MspDirectUpdateAccessAdministratorComponent,
         MspDirectUpdateAccessAdministratorRemoveComponent,
         MspDirectUpdateAccessAdministratorAddComponent,
         MspDirectUpdateAccessAdministratorEditComponent,
+        MspDirectUpdateAccessAdminReviewComponent,
 
         MspDirectUpdateUserComponent,
         MspDirectUpdateUserRemoveComponent,
