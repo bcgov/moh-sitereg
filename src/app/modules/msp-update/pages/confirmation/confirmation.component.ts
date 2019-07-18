@@ -4,6 +4,7 @@ import { GlobalConfigService } from '@shared/services/global-config.service';
 import { LoggerService } from '@shared/services/logger.service';
 import { MSP_REGISTER_ROUTES } from '@msp-register/constants';
 import { UpdateStateService } from '../../services/update.state.service';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
     selector: 'sitereg-msp-update-confirmation',
@@ -25,6 +26,7 @@ export class MspDirectUpdateConfirmationComponent implements OnInit {
         // this.debugonly();
         this.debugMode = this.globalConfigSvc.debug;
         // this.mockSuccess();
+        this.debugMode = environment.debug;
     }
 
     ngOnInit() {

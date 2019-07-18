@@ -1,6 +1,6 @@
 export const environment = {
     production: true,
-    useDummyData: true,
+    useDummyData: false,
     useMockBackend: false,
     baseAPIUrl: '/sitereg/api/siteregIntegration/sitereg/',
     baseUpdateAPIUrl: '/sitereg/api/siteregIntegration/siteregmaintenance/',

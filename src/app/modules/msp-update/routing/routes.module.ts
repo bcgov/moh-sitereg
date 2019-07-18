@@ -10,11 +10,12 @@ const moduleRoutes: Routes = [
         path: '',
         component: MspDirectUpdateComponent,
         children: routes
+        // canActivateChild: [MspRegistrationGuard],
     },
 ];
 @NgModule({
-    providers: [GlobalConfigService],
     imports: [RouterModule.forChild(moduleRoutes)],
+    providers: [GlobalConfigService],
     exports: [RouterModule],
 })
 export class MspDirectUpdateRoutesModule {}
