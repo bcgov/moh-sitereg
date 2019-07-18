@@ -18,11 +18,17 @@ import { jsonPayLoadApplication } from './json-payload';
 })
 export class MspDirectUpdateSubmitComponent implements OnInit {
 
-    public captchaApiBaseUrl;
+    requestUUID: string;
     // tslint:disable-next-line:variable-name
     private _hasToken = false;
-    public isProcessing = false;
+    // public isProcessing = false;
     date: Date = new Date();
+
+    captchaApiBaseUrl: string;
+    nonce: string;
+    showCaptcha = false;
+    validCaptch = false;
+    isProcessing = false;
 
     get componentInfo(): string {
         return (
@@ -38,22 +44,34 @@ export class MspDirectUpdateSubmitComponent implements OnInit {
         private progressService: MspDirectUpdateProgressService,
         private loggerSvc: LoggerService,
         private globalConfigSvc: GlobalConfigService,
-        public apiSvc: MspRegisterApiService,
+        // public apiSvc: MspRegisterApiService,
         public mspUpdateApiSvc: MspUpdateApiService,
         public updateStateService: UpdateStateService,
     ) {
 
         this.captchaApiBaseUrl = environment.captchaApiBaseUrl;
+        this.requestUUID = this.nonce = this.globalConfigSvc.applicationId;
+        this.updateStateService.applicationId = this.requestUUID;
+
+        console.log(
+            '%c %o %o %o',
+            'color:red',
+            this.requestUUID,
+            this.globalConfigSvc.applicationId,
+            this.updateStateService.applicationId
+        );
+
     }
 
-    /** Use the UUID as a cryptographic client nonce to avoid replay attacks. */
-    get nonce(): string {
-        return this.globalConfigSvc.applicationId;
-    }
+    // /** Use the UUID as a cryptographic client nonce to avoid replay attacks. */
+    // get nonce(): string {
+    //     return this.globalConfigSvc.applicationId;
+    // }
 
     setToken(token): void {
         this._hasToken = true;
-        this.apiSvc.setCaptchaToken(token);
+        this.validCaptch = true;
+        this.mspUpdateApiSvc.setCaptchaToken(token);
     }
 
     ngOnInit() {
@@ -83,7 +101,8 @@ export class MspDirectUpdateSubmitComponent implements OnInit {
     }
 
     json() {
-        this.updateStateService.applicationId = this.globalConfigSvc.applicationId;
+        // this.updateStateService.applicationId = this.updateStateService.applicationId;
+        // this.updateStateService.applicationId = this.globalConfigSvc.applicationId;
         return jsonPayLoadApplication(this.updateStateService);
     }
 
@@ -132,7 +151,8 @@ export class MspDirectUpdateSubmitComponent implements OnInit {
         this.mspUpdateApiSvc
             .siteUpdateRequest(
                 middleWareObject,
-                this.date.toDateString()
+                this.date.toDateString(),
+                this.requestUUID
             )
             .toPromise()
             .catch((err) => {
@@ -163,7 +183,7 @@ export class MspDirectUpdateSubmitComponent implements OnInit {
                 }
 
                 requestStatus.response = result;
-                requestStatus.referenceId = this.updateStateService.applicationId;
+                requestStatus.referenceId = this.requestUUID;
 
                 if (result && requestStatus.exception === null) {
                     if (

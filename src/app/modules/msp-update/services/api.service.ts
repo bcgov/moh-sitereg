@@ -14,6 +14,7 @@ import { environment } from '../../../../environments/environment.prod';
 import { ISiteRegRequest } from '@core/interfaces/i-http-data';
 import { LoggerService } from '../../../shared/services/logger.service';
 import { GlobalConfigService } from '../../../shared/services/global-config.service';
+import { UpdateStateService } from './update.state.service';
 
 @Injectable({
     providedIn: 'root',
@@ -41,10 +42,11 @@ export class MspUpdateApiService extends AbstractHttpService {
     constructor(
         protected http: HttpClient,
         private globalConfigSvc: GlobalConfigService,
-        public logService: LoggerService
+        public logService: LoggerService,
+        public updateStateService: UpdateStateService,
     ) {
         super(http);
-        this.apiURL = this.globalConfigSvc.currentEnironment.baseAPIUrl;
+        this.apiURL = this.globalConfigSvc.currentEnironment.baseUpdateAPIUrl;
 
         this.eventUUID = this.globalConfigSvc.applicationId;
     }
@@ -102,12 +104,13 @@ export class MspUpdateApiService extends AbstractHttpService {
      */
     siteUpdateRequest(
         siteUpdateRequest: any,
-        processDate = this.getProcessDate()
+        processDate = this.getProcessDate(),
+        uuid
     ): Observable<PayloadInterface> {
         // disabled to keep log of the application all steps.
         // this.eventUUID = UUID.UUID();
 
-        const url = environment.baseUpdateAPIUrl + `${this.eventUUID}`;
+        const url = environment.baseUpdateAPIUrl + `${uuid}`;
 
         // console.log(`nonce & applicationid: %o`, GlobalConfigService.uuid );
 
