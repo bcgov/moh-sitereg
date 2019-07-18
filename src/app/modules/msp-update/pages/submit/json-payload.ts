@@ -15,75 +15,115 @@ import * as appGroup from '../group/shared/group-shared-json-map';
 
 export function jsonPayLoadApplication(stateService: UpdateStateService) {
 
+
     // payload  - requestor
-    const requestor = appRequestor.getJSONofRequestor(stateService.forms.requestorForm.value, stateService.applicationId);
-    console.log(requestor);
+    let requestor = null;
+    if (stateService.forms.requestorForm) {
+        requestor = appRequestor.getJSONofRequestor(stateService.forms.requestorForm.value, stateService.applicationId);
+        console.log(requestor);
+    }
 
     // payload  - organization edit
-    const organization = appOrganization.getEditJSONofOrganization(stateService.forms.organizationForm.value);
-    console.log(organization);
+    let organization = null;
+    if (stateService.forms.organizationForm) {
+        organization = appOrganization.getEditJSONofOrganization(stateService.forms.organizationForm.value);
+        console.log(organization);
+    }
 
     // Signing Authority
 
     // payload  - add
-    const singingAuthorityAdd = appSA.getAddJSONofSigningAuthority(stateService.forms.signingAuthority.add.value);
-    console.log(singingAuthorityAdd);
+    let singingAuthorityAdd = [];
+    if (stateService.forms.signingAuthority && stateService.forms.signingAuthority.add) {
+        singingAuthorityAdd = appSA.getAddJSONofSigningAuthority(stateService.forms.signingAuthority.add.value);
+        console.log(singingAuthorityAdd);
+    }
 
     // payload  - edit
-    const singingAuthorityEdit = appSA.getEditJSONofSigningAuthority(stateService.forms.signingAuthority.update.value);
-    console.log(singingAuthorityEdit);
-
-
+    let singingAuthorityEdit = [];
+    if (stateService.forms.signingAuthority && stateService.forms.signingAuthority.update) {
+        singingAuthorityEdit = appSA.getEditJSONofSigningAuthority(stateService.forms.signingAuthority.update.value);
+        console.log(singingAuthorityEdit);
+    }
 
     // payload  - remove
-    const singingAuthorityRemove = appSA.getRemoveJSONofSigningAuthority(stateService.forms.signingAuthority.remove.value);
-    console.log(singingAuthorityRemove);
+    let singingAuthorityRemove = [];
+    if (stateService.forms.signingAuthority && stateService.forms.signingAuthority.remove) {
+        singingAuthorityRemove = appSA.getRemoveJSONofSigningAuthority(stateService.forms.signingAuthority.remove.value);
+        console.log(singingAuthorityRemove);
+    }
 
     // Access Administrator
 
     // payload - add
-    const accessAdministratorAdd = appAA.getAddJSONofAccessAdministrator(stateService.forms.mspAccessAdministrators.add.value);
-    console.log(accessAdministratorAdd);
+    let accessAdministratorAdd = [];
+    if (stateService.forms.mspAccessAdministrators && stateService.forms.mspAccessAdministrators.add) {
+        accessAdministratorAdd = appAA.getAddJSONofAccessAdministrator(stateService.forms.mspAccessAdministrators.add.value);
+        console.log(accessAdministratorAdd);
+    }
 
     // payload  - edit
-    const accessAdministratorEdit = appAA.getEditJSONofAccessAdministrator(stateService.forms.mspAccessAdministrators.update.value);
-    console.log(accessAdministratorEdit);
+    let accessAdministratorEdit = [];
+    if (stateService.forms.mspAccessAdministrators && stateService.forms.mspAccessAdministrators.update) {
+        accessAdministratorEdit = appAA.getEditJSONofAccessAdministrator(stateService.forms.mspAccessAdministrators.update.value);
+        console.log(accessAdministratorEdit);
+    }
 
     // payload  - remove
-    const accessAdministratorRemove = appAA.getRemoveJSONofAccessAdministrator(stateService.forms.mspAccessAdministrators.remove.value);
-    console.log(accessAdministratorRemove);
-
+    let accessAdministratorRemove = [];
+    if (stateService.forms.mspAccessAdministrators && stateService.forms.mspAccessAdministrators.remove) {
+        accessAdministratorRemove = appAA.getRemoveJSONofAccessAdministrator(stateService.forms.mspAccessAdministrators.remove.value);
+        console.log(accessAdministratorRemove);
+    }
 
     // Users
 
     // payload  - add
-    const usersAdd = appUser.getAddJSONofMspUser(stateService.forms.mspUsers.add.value);
-    console.log(usersAdd);
+    let usersAdd = [];
+    if (stateService.forms.mspUsers && stateService.forms.mspUsers.add) {
+        usersAdd = appUser.getAddJSONofMspUser(stateService.forms.mspUsers.add.value);
+        console.log(usersAdd);
+    }
 
 
     // payload  - edit
-    const usersEdit = appUser.getEditJSONofMspUser(stateService.forms.mspUsers.update.value);
-    console.log(usersEdit);
+    let usersEdit = [];
+    if (stateService.forms.mspUsers && stateService.forms.mspUsers.update) {
+        usersEdit = appUser.getEditJSONofMspUser(stateService.forms.mspUsers.update.value);
+        console.log(usersEdit);
+    }
 
 
     // payload  - remove
-    const usersRemove = appUser.getRemoveJSONofMspUser(stateService.forms.mspUsers.remove.value);
-    console.log(usersRemove);
+    let usersRemove = [];
+    if (stateService.forms.mspUsers && stateService.forms.mspUsers.remove) {
+        usersRemove = appUser.getRemoveJSONofMspUser(stateService.forms.mspUsers.remove.value);
+        console.log(usersRemove);
+    }
 
 
     // MSP Groups
 
     // payload  - add
-    const groupsAdd = appGroup.getAddJSONofMspGroup(stateService.forms.mspGroups.add.value);
-    console.log(groupsAdd);
+    let groupsAdd = [];
+    if (stateService.forms.mspGroups && stateService.forms.mspGroups.add) {
+        groupsAdd = appGroup.getAddJSONofMspGroup(stateService.forms.mspGroups.add.value);
+        console.log(groupsAdd);
+    }
 
     // payload  - edit
-    const groupsEdit = appGroup.getEditJSONofMspGroup(stateService.forms.mspGroups.update.value);
-    console.log(groupsEdit);
+    let groupsEdit = [];
+    if (stateService.forms.mspGroups && stateService.forms.mspGroups.update) {
+        groupsEdit = appGroup.getEditJSONofMspGroup(stateService.forms.mspGroups.update.value);
+        console.log(groupsEdit);
+    }
 
     // payload  - remove
-    const groupsRemove = appGroup.getRemoveJSONofMspGroup(stateService.forms.mspGroups.remove.value);
-    console.log(groupsRemove);
+    let groupsRemove = [];
+    if (stateService.forms.mspGroups && stateService.forms.mspGroups.remove) {
+        groupsRemove = appGroup.getRemoveJSONofMspGroup(stateService.forms.mspGroups.remove.value);
+        console.log(groupsRemove);
+    }
 
     // assign all
     const jsonPayLoad: IUpdateApplicationJson = {
