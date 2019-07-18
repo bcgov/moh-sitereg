@@ -157,11 +157,12 @@ export class OrganizationPage extends BaseSiteRegTestPage {
     }
 
     fillOrgNum(data?: OrganizationPageTest) {
-        let info = data;
         if (data === undefined) {
-            info = this.jsonData.organizationPage;
+            data = this.jsonData.organizationPage;
         }
-        this.typeText('organizationNumber', info.orgNum + '');
+        if (data.thirdParty) {
+            this.typeText('organizationNumber', data.orgNum + '');
+        }
         this.selectAdministeringFor('administeringFor', 'Employees');
     }
 
@@ -228,7 +229,9 @@ export class AccessAdminsPage extends BaseSiteRegTestPage {
 
     fillPage() {
         const json = this.jsonData.accessAdminsPage;
-        this.clickButton('btn delete');
+        if (this.jsonData.signingAuthorityPage.directMspAccess) {
+            this.clickButton('btn delete');
+        }
         for (let i = 0; i < json.length; i++) {
             this.clickButton('btn btn-block');
             this.fillInfo(i);
@@ -379,10 +382,14 @@ export class GroupNumbersPage extends BaseSiteRegTestPage {
         if (data === undefined) {
             data = this.jsonData.groupNumbersPage;
             this.typeTextFirstOccurrence('groupNumber', data[i].groupNum + '');
-            this.clickOptionJSON('thirdParty', data[i].thirdParty.toString());
+            if (this.jsonData.organizationPage.thirdParty) {
+                this.clickOptionJSON('thirdParty', data[i].thirdParty.toString());
+            }
         } else {
             this.typeTextFirstOccurrence('groupNumber', data.groupNum + '');
-            this.clickOptionJSON('thirdParty', data.thirdParty.toString());
+            if (this.jsonData.organizationPage.thirdParty) {
+                this.clickOptionJSON('thirdParty', data.thirdParty.toString());
+            }
         }
     }
 }

@@ -17,10 +17,12 @@ export class FakeDataSiteReg {
             city: faker.address.city(),
             province: 'British Columbia',
             postal: faker.address.zipCode('A1A1A1'),
+            thirdParty: true,
             orgNum: faker.random.number({
                 min: 10000000,
                 max: 99999999
-            })
+            }),
+            blueCross: true
         };
     }
 
@@ -66,7 +68,9 @@ export class FakeDataSiteReg {
             city: 'Lorem ipsum dolor sit ame',
             province: 'British Columbia',
             postal: 'A1A1A1',
-            orgNum: 99999999
+            thirdParty: true,
+            orgNum: 99999999,
+            blueCross: true
         };
     }
 
@@ -122,7 +126,9 @@ export interface OrganizationPageTest {
   city: string;
   province: string;
   postal: string;
+  thirdParty: boolean;
   orgNum: number;
+  blueCross: boolean;
 }
 
 export interface SigningAuthorityPageTest {

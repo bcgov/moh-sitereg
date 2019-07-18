@@ -51,7 +51,7 @@ describe('Moh SiteReg - End to End Test (Happy Path)', () => {
         expect(browser.getCurrentUrl()).toContain(AUTH_PAGE_URL, 'should contunue to the Authorization Page');
         authPage.fillPage();
         expect(browser.getCurrentUrl()).toContain(CONFIRM_PAGE_URL, 'should be able to succesfully submit the form');
-    }, 120000);
+    }, 2000000);
 
 });
 
