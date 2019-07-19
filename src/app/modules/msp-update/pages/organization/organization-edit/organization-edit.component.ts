@@ -31,12 +31,12 @@ export class MspDirectUpdateOrganizationEditComponent implements OnInit, IDataFo
     this.parentForm.valueChanges.subscribe(x => {
       this.statusChanged.emit(this.parentForm);
 
-      // console.log(x);
-      // console.log(this.parentForm);
+      // // console.log(x);
+      // // console.log(this.parentForm);
       for (const controlName in this.parentForm.controls) {
         if (controlName) {
           const control = this.parentForm.get(controlName);
-          if (control && control.status === 'INVALID') console.log(controlName + ' invalid');
+          if (control && control.status === 'INVALID')  console.log(controlName + ' invalid');
         }
       }
     });
@@ -44,10 +44,10 @@ export class MspDirectUpdateOrganizationEditComponent implements OnInit, IDataFo
 
   private createOrUpdateForms() {
     if (!this.formState) {
-      console.log('create form');
+      // console.log('create form');
       this.parentForm = this.createForm();
     } else {
-      console.log('update form with state provided');
+      // console.log('update form with state provided');
       this.parentForm = this.formState;
     }
     this.statusChanged.emit(this.parentForm);

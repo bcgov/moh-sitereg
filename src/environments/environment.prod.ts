@@ -14,7 +14,7 @@ export const environment = {
     purgeWhenInactive: true,
     enableLogging: true,
     bypassInformationCollectionNotice: false,
-    debug: true,
+    debug: false,
     /** Link used in app */
     links: {
         FAQ:

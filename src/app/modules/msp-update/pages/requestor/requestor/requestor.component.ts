@@ -8,7 +8,7 @@ import { GlobalConfigService } from '@shared/services/global-config.service';
 import { UpdateStateService } from '../../../services/update.state.service';
 import { cUpdateValidators, validMultiFormControl } from '../../../common/validators';
 
-import { getJsonOfRequestor } from '../shared/requestor-json-map';
+import { getJSONofRequestor } from '../shared/requestor-json-map';
 import { IDataForm, RandomObjects } from '../../../common/i-dataform';
 import { environment } from 'src/environments/environment.prod';
 
@@ -32,7 +32,7 @@ export class MspDirectUpdateRequestorComponent implements OnInit, AfterViewInit,
         private fb: FormBuilder
     ) {
         this.validFormControl = validMultiFormControl;
-        this.json = getJsonOfRequestor;
+        this.json = getJSONofRequestor;
     }
 
     ngOnInit() {

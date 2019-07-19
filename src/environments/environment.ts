@@ -18,9 +18,9 @@ export const environment = {
     bypassSplashPage: false,
     promptOnExit: false,
     purgeWhenInactive: false,
-    enableLogging: true,
+    enableLogging: false,
     /** Do not display the modal at beginning of flow. */
-    bypassInformationCollectionNotice: true,
+    bypassInformationCollectionNotice: false,
     /** Show additional debug information such as Technical Details on submission */
     debug: true,
     /** Link used in app */

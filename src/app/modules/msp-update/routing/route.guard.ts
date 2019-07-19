@@ -20,7 +20,7 @@ export class MspDirectUpdateRouteGuard implements CanActivateChild {
         next: ActivatedRouteSnapshot,
         state: RouterStateSnapshot
     ): Observable<boolean> | Promise<boolean> | boolean {
-        // console.log(
+        // // console.log(
         //     '%c CanActivateChild: %o %o',
         //     'color:green',
         //     this.router.url,
@@ -29,7 +29,7 @@ export class MspDirectUpdateRouteGuard implements CanActivateChild {
 
         // // REMOVEME - debug only
         // return true;
-        // console.log('%o: route guards', this.registrationService.registrationItems);
+        // // console.log('%o: route guards', this.registrationService.registrationItems);
         return this.progressService.moveNext(this.router.url, state.url);
     }
 }

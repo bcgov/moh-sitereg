@@ -50,7 +50,15 @@ export function isValidOptionalField(fieldValue: string | boolean | any): boolea
 
         if (typeof fieldValue === 'object') {
             const isArray = fieldValue instanceof Array;
-            if (isArray === true && fieldValue.length > 0) return true;
+            if (isArray === true && fieldValue.length > 0) {
+                return true;
+            }
+            if ( isArray === false ) {
+                // if (fieldValue) return true;
+                // console.log(fieldValue);
+                if (fieldValue) return true;
+            }
+
             return false;
         }
     }
@@ -140,7 +148,7 @@ export const enum actionType {
 //     const json: any = {};
 
 //     if (userAction === actionType.Add) {
-//         console.log('mapJson - ' + userAction);
+//         // console.log('mapJson - ' + userAction);
 
 //         json.firstName = formValues.firstName ? formValues.firstName : '';
 //         json.lastName = formValues.lastName ? formValues.lastName : '';
@@ -158,13 +166,13 @@ export const enum actionType {
 //     }
 
 //     if (userAction === actionType.Edit) {
-//         console.log('mapJson - ' + userAction);
+//         // console.log('mapJson - ' + userAction);
 
 //         json.email = formValues && formValues.forIdentifyEmailAddress ? formValues.forIdentifyEmailAddress : '';
 //         if (isValidOptionalField(formValues.forIdentifyMinistryUserId)) json.id = formValues.forIdentifyMinistryUserId;
 
 //         json.change_role = mapChangeRoleDef(formValues.changeRole);
-//         console.log('formValues.changeRole ' + formValues.changeRole);
+//         // console.log('formValues.changeRole ' + formValues.changeRole);
 //         json.msp_access = formValues.changeAdministerFor && formValues.changeAdministerFor === true ? 'Y' : 'N';
 //         json.spg = mapAdministeringForDef(formValues.administeringFor);
 
@@ -184,7 +192,7 @@ export const enum actionType {
 //     }
 
 //     if (userAction === actionType.Remove) {
-//         console.log('mapJson - ' + userAction);
+//         // console.log('mapJson - ' + userAction);
 //         json.email = formValues && formValues.emailAddress ? formValues.emailAddress : '';
 //         if (isValidOptionalField(formValues.ministryUserId)) json.id = formValues.ministryUserId;
 //     }

@@ -32,7 +32,9 @@ export function getAddJSONofMspUser(formValue) {
 
         let json = jsonUserMaps.mapJsonCoreUser(actionType.Add, formValues);
         delete json.confirm_email;
-        json.msp_access = 'Y';
+        
+        // json.msp_access = 'Y';
+        delete json.msp_access; // because schema don`t want this field.
         json = deepCopy(json, 'user_');
 
         jsonArray.push(json);
@@ -57,13 +59,16 @@ export function getEditJsonOfMspUser(formValues) {
 export function getEditJSONofMspUser(formValue) {
 
     if (!formValue) return;
+    console.log(formValue);
     const formValuesArray = getIUser(formValue);
+    console.log(formValuesArray);
     const jsonArray: any[] = [];
     formValuesArray.forEach(formValues => {
-
+        console.log(formValues);
         let json = jsonUserMaps.mapJsonCoreUser(actionType.Edit, formValues);
         // delete json.confirm_email;
         json = deepCopy(json, 'user_');
+        console.log(json);
 
         jsonArray.push(json);
     });

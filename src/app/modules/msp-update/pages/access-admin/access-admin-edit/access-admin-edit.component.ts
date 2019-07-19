@@ -47,7 +47,7 @@ export class MspDirectUpdateAccessAdministratorEditComponent implements OnInit, 
 
   private createOrUpdateForms() {
     if (!this.formState) {
-      console.log('create or update form');
+      // // console.log('create or update form');
       this.parentForm = this.fb.group({
         arrayOfForms: this.fb.array([])
       });
@@ -81,7 +81,7 @@ export class MspDirectUpdateAccessAdministratorEditComponent implements OnInit, 
   }
 
   private removeForm(index: number) {
-    console.log('Deleteing Form at ' + index);
+    // // console.log('Deleteing Form at ' + index);
     this.getFormsArray.removeAt(index);
     this.formArrayChanged.emit(this.parentForm);
   }
@@ -96,7 +96,7 @@ export class MspDirectUpdateAccessAdministratorEditComponent implements OnInit, 
   }
 
   public newForm() {
-    console.log('Adding new Form');
+    // // console.log('Adding new Form');
     const formGroup = this.createArrayForm();
 
     this.getFormsArray.insert(0, formGroup);

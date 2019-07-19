@@ -17,10 +17,10 @@ export function getIGroup(formValues): IGroup[] {
         if (isValidOptionalField(form.thirdPartyAdmin)) iObj.thirdPartyAdmin = form.thirdPartyAdmin;
 
         iObjArray.push(iObj);
-        console.log(iObj);
+        // console.log(iObj);
     });
 
-    console.log(iObjArray);
+    // console.log(iObjArray);
     return iObjArray;
 }
 

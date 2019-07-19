@@ -76,7 +76,7 @@ export function getEditJsonOfSigningAuthority(formValues) {
     json = deepCopy(json, 'sa_');
 
     console.clear();
-    console.log(json);
+    // console.log(json);
 
     // json.user = jsonMaps.addDefinationProperty(json.user, 'person_id_def');
 

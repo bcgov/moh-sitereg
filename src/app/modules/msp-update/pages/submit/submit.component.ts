@@ -53,13 +53,13 @@ export class MspDirectUpdateSubmitComponent implements OnInit {
         this.requestUUID = this.nonce = this.globalConfigSvc.applicationId;
         this.updateStateService.applicationId = this.requestUUID;
 
-        console.log(
-            '%c %o %o %o',
-            'color:red',
-            this.requestUUID,
-            this.globalConfigSvc.applicationId,
-            this.updateStateService.applicationId
-        );
+        // console.log(
+        //     '%c %o %o %o',
+        //     'color:red',
+        //     this.requestUUID,
+        //     this.globalConfigSvc.applicationId,
+        //     this.updateStateService.applicationId
+        // );
 
     }
 
@@ -75,7 +75,7 @@ export class MspDirectUpdateSubmitComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log(`%c%o : %o`, 'color:green', this.componentInfo);
+        // console.log(`%c%o : %o`, 'color:green', this.componentInfo);
         this.progressService.setPageIncomplete();
     }
 
@@ -125,7 +125,7 @@ export class MspDirectUpdateSubmitComponent implements OnInit {
 
         const middleWareObject = this.updateObject();
 
-        // console.log(
+        // // console.log(
         //     `%c middleware object <= %o\n\t%o`,
         //     'color:lightgreen',
         //     funcRemoveStrings(
@@ -157,7 +157,7 @@ export class MspDirectUpdateSubmitComponent implements OnInit {
             .toPromise()
             .catch((err) => {
 
-                console.log(`result: %c %o`, 'color:organge', err);
+                // console.log(`result: %c %o`, 'color:organge', err);
                 this.loggerSvc.logError({
                     event: 'http-exception',
                     exceptionMessage: `${err}`,
@@ -168,8 +168,8 @@ export class MspDirectUpdateSubmitComponent implements OnInit {
                 this.isProcessing = false;
             })
             .then((result) => {
-                // console.log(`result: %c %o`, 'color:organge', result);
-                // console.log(`requestStatus: %c %o`, 'color:organge', requestStatus);
+                // // console.log(`result: %c %o`, 'color:organge', result);
+                // // console.log(`requestStatus: %c %o`, 'color:organge', requestStatus);
 
                 this.loggerSvc.logNavigation(
                     'middleware-request-status:',
