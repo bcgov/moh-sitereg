@@ -43,7 +43,7 @@ export function getEditJSONofOrganization(formValue) {
     if (!formValue) return;
     const formValues = getIOrganizationEdit(formValue);
 
-    console.log(formValues);
+    // console.log(formValues);
     const json: jsonInterfaces.ji_org_maintenance_def = {
 
         org_name: formValues.organizationName ? formValues.organizationName : '',

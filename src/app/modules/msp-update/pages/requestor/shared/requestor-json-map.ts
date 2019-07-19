@@ -2,32 +2,32 @@ import { funcRandomNumber8Digit, getDateinMMDDYYYY } from '../../../common/updat
 import { IRequestor, getIRequestor } from './i-requestor';
 import * as jsonInterfaces from '../../submit/json-payload';
 
-export function getJsonOfRequestor(formValues, requestUUID?: string) {
+// export function getJsonOfRequestor(formValues, requestUUID?: string) {
 
-    // SiteregMaintenance: object
-    /**
-     * authorizedBySA - this is not required in maintenance forms
-     * authorizedDate - seems Pattern changed
-     * applicationType - mspdUpdate
-     */
+//     // SiteregMaintenance: object
+//     /**
+//      * authorizedBySA - this is not required in maintenance forms
+//      * authorizedDate - seems Pattern changed
+//      * applicationType - mspdUpdate
+//      */
 
-    const json: any = {};
+//     const json: any = {};
 
-    // required
-    json.org_num = formValues && formValues.organizationNumber ? formValues.organizationNumber : '';
-    json.org_email = formValues && formValues.emailAddress ? formValues.emailAddress : '';
-    json.request_uuid = requestUUID ? requestUUID : this.globalConfigSvc.applicationId;
-    json.request_num = funcRandomNumber8Digit();
+//     // required
+//     json.org_num = formValues && formValues.organizationNumber ? formValues.organizationNumber : '';
+//     json.org_email = formValues && formValues.emailAddress ? formValues.emailAddress : '';
+//     json.request_uuid = requestUUID ? requestUUID : this.globalConfigSvc.applicationId;
+//     json.request_num = funcRandomNumber8Digit();
 
-    const dated = new Date();
+//     const dated = new Date();
 
-    // optional
-    json.authorizedBySA = 'Y';
-    json.authorizedDate = getDateinMMDDYYYY(dated);
-    json.applicationType = 'mspdUpdate';
+//     // optional
+//     json.authorizedBySA = 'Y';
+//     json.authorizedDate = getDateinMMDDYYYY(dated);
+//     json.applicationType = 'mspdUpdate';
 
-    return json;
-}
+//     return json;
+// }
 
 
 export function getJSONofRequestor(formValue, requestUUID?: string) {
@@ -42,7 +42,7 @@ export function getJSONofRequestor(formValue, requestUUID?: string) {
     if (!formValue) return;
     const formValues = getIRequestor(formValue);
 
-    // console.log(formValues);
+    // // console.log(formValues);
 
     const dated = new Date();
 
@@ -53,7 +53,7 @@ export function getJSONofRequestor(formValue, requestUUID?: string) {
         request_num: funcRandomNumber8Digit(),
         authorizedBySA: 'Y',
         authorizedDate : getDateinMMDDYYYY(dated),
-        applicationType : 'mspdUpdate',
+        applicationType : 'mspdMaintenance',
     };
 
     return json;

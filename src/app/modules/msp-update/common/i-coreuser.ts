@@ -30,6 +30,7 @@ export function getICoreUser(formValues): ICoreUser[] {
     if (!formValues) return;
 
     const iObjArray: ICoreUser[] = [];
+    // console.log(formValues);
 
     formValues.arrayOfForms.forEach(form => {
         const iObj: ICoreUser = {};
@@ -50,10 +51,10 @@ export function getICoreUser(formValues): ICoreUser[] {
         if (isValidOptionalField(form.ministryUserId)) iObj.ministryUserId = form.ministryUserId;
         
         iObjArray.push(iObj);
-        //// console.log(iObj);
+        //// // console.log(iObj);
     });
 
-    // console.log(iObjArray);
+    // // console.log(iObjArray);
     return iObjArray;
 }
 

@@ -84,7 +84,7 @@ let defaultRoutes: Routes = [
 ];
 
 if (environment.bypassGuards || true ) {
-    console.log('DEVELOPMENT ONLY - BYPASSING ROUTE GUARDS');
+    // console.log('DEVELOPMENT ONLY - BYPASSING ROUTE GUARDS');
     defaultRoutes = defaultRoutes.map(x => {
         x.canActivate = [];
         return x;

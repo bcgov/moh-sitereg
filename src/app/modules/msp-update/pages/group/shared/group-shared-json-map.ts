@@ -73,9 +73,10 @@ export function getRemoveJSONofMspGroup(formValue) {
 
     const jsonArray: any[] = [];
     formValuesArray.forEach(formValues => {
-        const json = {
-            mspgroup_num: formValues.groupNo ? formValues.groupNo : ''
-        };
+        // const json = {
+        //     mspgroup_num: formValues.groupNo ? formValues.groupNo : ''
+        // };
+        const json = formValues.groupNo ? formValues.groupNo : '';
         jsonArray.push(json);
     });
 

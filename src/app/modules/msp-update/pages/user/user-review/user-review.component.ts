@@ -56,7 +56,7 @@ export class MspDirectUpdateUserReviewComponent implements OnInit {
     if (action === common.actionType.Remove) {
       review.header += ' (Remove)';
       if (!form.remove) return;
-      console.log(form.remove.value);
+      // console.log(form.remove.value);
       infoObjects = interfaceObjects.getIUser(form.remove.value);
     }
 

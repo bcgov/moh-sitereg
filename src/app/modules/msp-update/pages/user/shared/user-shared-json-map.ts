@@ -32,7 +32,9 @@ export function getAddJSONofMspUser(formValue) {
 
         let json = jsonUserMaps.mapJsonCoreUser(actionType.Add, formValues);
         delete json.confirm_email;
-        json.msp_access = 'Y';
+        
+        // json.msp_access = 'Y';
+        delete json.msp_access; // because schema don`t want this field.
         json = deepCopy(json, 'user_');
 
         jsonArray.push(json);
