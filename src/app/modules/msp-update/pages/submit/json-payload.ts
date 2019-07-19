@@ -38,21 +38,21 @@ export function jsonPayLoadApplication(stateService: UpdateStateService) {
     // Signing Authority
 
     // payload  - add
-    let singingAuthorityAdd = [];
+    let singingAuthorityAdd = null;
     if (stateService.forms.signingAuthority && stateService.forms.signingAuthority.add) {
         singingAuthorityAdd = appSA.getAddJSONofSigningAuthority(stateService.forms.signingAuthority.add.value);
         // // console.log(singingAuthorityAdd);
     }
 
     // payload  - edit
-    let singingAuthorityEdit = [];
+    let singingAuthorityEdit = null;
     if (stateService.forms.signingAuthority && stateService.forms.signingAuthority.update) {
         singingAuthorityEdit = appSA.getEditJSONofSigningAuthority(stateService.forms.signingAuthority.update.value);
         // // console.log(singingAuthorityEdit);
     }
 
     // payload  - remove
-    let singingAuthorityRemove = [];
+    let singingAuthorityRemove = null;
     if (stateService.forms.signingAuthority && stateService.forms.signingAuthority.remove) {
         singingAuthorityRemove = appSA.getRemoveJSONofSigningAuthority(stateService.forms.signingAuthority.remove.value);
         // // console.log(singingAuthorityRemove);
@@ -237,12 +237,12 @@ export interface ji_person_id_def {
 export interface ji_org_maintenance_def {
 
     // these should be optional
-    org_name: string;
-    street_address: string;
-    city: string;
-    province: string;
-    postal_code: string;
-    org_spg: string; // NEIB
+    org_name?: string;
+    street_address?: string;
+    city?: string;
+    province?: string;
+    postal_code?: string;
+    org_spg?: string; // NEIB
 
     address_2?: string;
 }

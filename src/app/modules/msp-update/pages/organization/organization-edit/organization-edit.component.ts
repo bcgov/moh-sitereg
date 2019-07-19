@@ -36,7 +36,7 @@ export class MspDirectUpdateOrganizationEditComponent implements OnInit, IDataFo
       for (const controlName in this.parentForm.controls) {
         if (controlName) {
           const control = this.parentForm.get(controlName);
-          if (control && control.status === 'INVALID')  console.log(controlName + ' invalid');
+          if (control && control.status === 'INVALID') console.log(controlName + ' invalid');
         }
       }
     });
@@ -70,7 +70,7 @@ export class MspDirectUpdateOrganizationEditComponent implements OnInit, IDataFo
   }
 
   patchValue(formGroup) {
-    if(!environment.useDummyData) return;
+    if (!environment.useDummyData) return;
     formGroup.patchValue(RandomObjects.getOrganization('Org'));
   }
 

@@ -46,22 +46,34 @@ export function getEditJSONofOrganization(formValue) {
     // console.log(formValues);
     const json: jsonInterfaces.ji_org_maintenance_def = {
 
-        org_name: formValues.organizationName ? formValues.organizationName : '',
-        // suite no not in schema
-        //  suite : formValues.suite ? formValues.suite : '',:
-        // street no not in schema
-        //  street : formValues.street ? formValues.street : '',:
-        // is street_address is street name
+        // org_name: formValues.organizationName ? formValues.organizationName : '',
+        // // suite no not in schema
+        // //  suite : formValues.suite ? formValues.suite : '',:
+        // // street no not in schema
+        // //  street : formValues.street ? formValues.street : '',:
+        // // is street_address is street name
 
-        street_address: formValues.streetName ? formValues.streetName : '',
-        city: formValues.city ? formValues.city : '',
-        province: formValues.province ? formValues.province : '',
-        postal_code: formValues.postalCode ? formValues.postalCode : '',
-        org_spg: mapAdministeringForDef(formValues.administeringFor),
+        // street_address: formValues.streetName ? formValues.streetName : '',
+        // city: formValues.city ? formValues.city : '',
+        // province: formValues.province ? formValues.province : '',
+        // postal_code: formValues.postalCode ? formValues.postalCode : '',
+        // org_spg: mapAdministeringForDef(formValues.administeringFor),
 
     };
 
+    // org_name: formValues.organizationName ? formValues.organizationName : '',
+    // // suite no not in schema
+    // //  suite : formValues.suite ? formValues.suite : '',:
+    // // street no not in schema
+    // //  street : formValues.street ? formValues.street : '',:
+    // // is street_address is street name
+
     // optional
+    if (isValidOptionalField(formValues.streetName)) json.street_address = formValues.streetName;
+    if (isValidOptionalField(formValues.city)) json.city = formValues.city;
+    if (isValidOptionalField(formValues.province)) json.province = formValues.province;
+    if (isValidOptionalField(formValues.postalCode)) json.postal_code = formValues.postalCode;
+    if (isValidOptionalField(formValues.administeringFor)) json.org_spg = mapAdministeringForDef(formValues.administeringFor);
     if (isValidOptionalField(formValues.addressLine2)) json.address_2 = formValues.addressLine2;
 
     return json;

@@ -77,9 +77,9 @@ export class MspDirectUpdateAccessAdministratorRemoveComponent implements OnInit
     this.formArrayChanged.emit(this.parentForm);
   }
 
-
   patchValue(formGroup) {
-    if(!environment.debug) return;
+    if (!environment.useDummyData) return;
+    console.log(RandomObjects.getRemoveUser((this.getFormsCount + 1).toString() + 'AA'));
     formGroup.patchValue(RandomObjects.getRemoveUser((this.getFormsCount + 1).toString() + 'AA'));
   }
 
