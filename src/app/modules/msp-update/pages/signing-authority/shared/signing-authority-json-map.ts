@@ -34,7 +34,8 @@ export function getAddJSONofSigningAuthority(formValue) {
     if (!formValue) return;
     const formValuesArray = getISigningAuthority(formValue);
 
-    const jsonArray: any[] = [];
+    let jsonObject = null;
+    // const jsonArray: any[] = [];
     formValuesArray.forEach(formValues => {
 
         let json = jsonUserMaps.mapJsonCoreUser(actionType.Add, formValues);
@@ -47,10 +48,12 @@ export function getAddJSONofSigningAuthority(formValue) {
         // json.msp_access = 'Y';
         json = deepCopy(json, 'sa_');
 
-        jsonArray.push(json);
+        jsonObject = json;
+        // jsonArray.push(json);
     });
 
-    return jsonArray;
+    // return jsonArray;
+    return jsonObject;
 }
 
 export function getEditJsonOfSigningAuthority(formValues) {
@@ -75,7 +78,7 @@ export function getEditJsonOfSigningAuthority(formValues) {
     json.user = addDefinationProperty(json.user, 'person_id_def');
     json = deepCopy(json, 'sa_');
 
-    console.clear();
+    // console.clear();
     // console.log(json);
 
     // json.user = jsonMaps.addDefinationProperty(json.user, 'person_id_def');
@@ -87,7 +90,8 @@ export function getEditJsonOfSigningAuthority(formValues) {
 export function getEditJSONofSigningAuthority(formValue) {
     if (!formValue) return;
     const formValuesArray = getISigningAuthority(formValue);
-    const jsonArray: any[] = [];
+    let jsonObject = null;
+    // const jsonArray: any[] = [];
     formValuesArray.forEach(formValues => {
 
         let json = jsonUserMaps.mapJsonCoreUser(actionType.Edit, formValues);
@@ -102,10 +106,11 @@ export function getEditJSONofSigningAuthority(formValue) {
         // // if not admin msp_access is N and spg become optional remove spg
         // if (isAdmin === false) json.msp_access = 'N'; // there should not be spg property.
         json = deepCopy(json, 'sa_');
-        jsonArray.push(json);
+        jsonObject = json;
+        // jsonArray.push(json);
     });
 
-    return jsonArray;
+    return jsonObject;
 }
 
 export function getRemoveJsonOfSigningAuthority(formValues) {
@@ -122,13 +127,15 @@ export function getRemoveJsonOfSigningAuthority(formValues) {
 export function getRemoveJSONofSigningAuthority(formValue) {
     if (!formValue) return;
     const formValuesArray = getISigningAuthority(formValue);
-    const jsonArray: any[] = [];
+    let jsonObject = null;
+    // const jsonArray: any[] = [];
     formValuesArray.forEach(formValues => {
 
         const json = jsonUserMaps.mapJsonCoreUser(actionType.Remove, formValues);
-
-        jsonArray.push(json);
+        jsonObject = json;
+       // jsonArray.push(json);
     });
 
-    return jsonArray;
+    // return jsonArray;
+    return jsonObject;
 }

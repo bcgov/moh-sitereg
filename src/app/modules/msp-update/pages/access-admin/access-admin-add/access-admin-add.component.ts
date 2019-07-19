@@ -65,7 +65,6 @@ export class MspDirectUpdateAccessAdministratorAddComponent implements OnInit, I
       ext: [null, cUpdateAccessAdminValidator.add.ext],
       fax: [null, cUpdateAccessAdminValidator.add.fax],
       administeringFor: [null, cUpdateAccessAdminValidator.add.administeringFor],
-
     });
     this.patchValue(form);
     return form;
@@ -93,7 +92,7 @@ export class MspDirectUpdateAccessAdministratorAddComponent implements OnInit, I
   }
 
   patchValue(formGroup) {
-    if(!environment.debug) return;
+    if(!environment.useDummyData) return;
     formGroup.patchValue(RandomObjects.getUser02((this.getFormsCount + 1).toString() + 'AA'));
   }
 
