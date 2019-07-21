@@ -4,7 +4,7 @@
 
 export const environment = {
     production: false,
-    useDummyData: false,
+    useDummyData: true,
     useMockBackend: false,
     baseAPIUrl: '/sitereg/api/siteregIntegration/sitereg/',
     baseUpdateAPIUrl: '/sitereg/api/siteregIntegration/siteregmaintenance/',
@@ -20,7 +20,7 @@ export const environment = {
     purgeWhenInactive: false,
     enableLogging: false,
     /** Do not display the modal at beginning of flow. */
-    bypassInformationCollectionNotice: false,
+    bypassInformationCollectionNotice: true,
     /** Show additional debug information such as Technical Details on submission */
     debug: true,
     /** Link used in app */

@@ -153,10 +153,10 @@
 
            <!-- Administrating For-->
            <ng-container class="row" *ngIf='fg.controls.isAdmin.value'>
-              <label class="control-label" for="administeringFor_{{formIndex}}">This Signing Authority will be
+              <label class="control-label" for="administeringFor_remove_{{formIndex}}">This Signing Authority will be
                 administering MSP
                 for</label>
-              <select class="form-control" id="administeringFor_{{formIndex}}" *ngIf="administeringForOptions"
+              <select class="form-control" id="administeringFor_remove_{{formIndex}}" *ngIf="administeringForOptions"
                 formControlName="administeringFor">
                 <option value="" label="-- Select Option --" selected></option>
                 <option *ngFor="let a of administeringForOptions " [value]="a">{{a}}</option>
