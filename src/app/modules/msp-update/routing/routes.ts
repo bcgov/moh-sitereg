@@ -83,13 +83,13 @@ let defaultRoutes: Routes = [
     // { path: '**', component: MspDirectUpdateIdentifyComponent },
 ];
 
-if (environment.bypassGuards || true ) {
-    // console.log('DEVELOPMENT ONLY - BYPASSING ROUTE GUARDS');
-    defaultRoutes = defaultRoutes.map(x => {
-        x.canActivate = [];
-        return x;
-    });
-}
+// if (environment.bypassGuards || true ) {
+//     // console.log('DEVELOPMENT ONLY - BYPASSING ROUTE GUARDS');
+//     defaultRoutes = defaultRoutes.map(x => {
+//         x.canActivate = [];
+//         return x;
+//     });
+// }
 
 
 export const routes = defaultRoutes;
