@@ -4,7 +4,7 @@
 
 export const environment = {
     production: false,
-    useDummyData: true,
+    useDummyData: false,
     useMockBackend: false,
     baseAPIUrl: '/sitereg/api/siteregIntegration/sitereg/',
     baseUpdateAPIUrl: '/sitereg/api/siteregIntegration/siteregmaintenance/',
@@ -14,15 +14,15 @@ export const environment = {
     logHTTPRequestsToConsole: true,
 
     /** Implemented in msp-update module */
-    bypassGuards: true,
+    bypassGuards: false,
     bypassSplashPage: false,
     promptOnExit: false,
     purgeWhenInactive: false,
-    enableLogging: false,
+    enableLogging: true,
     /** Do not display the modal at beginning of flow. */
-    bypassInformationCollectionNotice: true,
+    bypassInformationCollectionNotice: false,
     /** Show additional debug information such as Technical Details on submission */
-    debug: true,
+    debug: false,
     /** Link used in app */
     links: {
         FAQ:
