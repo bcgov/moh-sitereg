@@ -81,15 +81,16 @@ export class MspDirectUpdateSubmitComponent implements OnInit {
 
     continue() {
 
-        this.submit();
 
-        // // splunk-log
-        // this.loggerSvc.logNavigation(
-        //     this.constructor.name,
-        //     `Valid Data - Continue button clicked. ${
-        //     this.globalConfigSvc.applicationId
-        //     }`
-        // );
+
+        // splunk-log
+        this.loggerSvc.logNavigation(
+            this.constructor.name,
+            `Valid Data - Continue button clicked. ${
+            this.globalConfigSvc.applicationId
+            }`
+        );
+        this.submit();
         // this.progressService.enableConfirmation = true;
         // this.progressService.setPageComplete();
         // this.router.navigate([ROUTES_UPDATE.CONFIRMATION.fullpath]);
@@ -196,6 +197,9 @@ export class MspDirectUpdateSubmitComponent implements OnInit {
                         requestStatus.status = false;
                     }
                 }
+
+                this.progressService.enableConfirmation = true;
+                this.progressService.setPageComplete();
 
                 this.updateStateService.requestFinalStatus = requestStatus;
 
