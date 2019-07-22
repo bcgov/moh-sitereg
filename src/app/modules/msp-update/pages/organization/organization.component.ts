@@ -64,7 +64,7 @@ export class MspDirectUpdateOrganizationComponent extends AbstractForm implement
         // should be form array
         if (form) {
             this.updateStateService.forms.organizationForm = form;
-            console.log('Form Status Changed => ' + form.valid);
+            // console.log('Form Status Changed => ' + form.valid);
         }
     }
 
@@ -76,10 +76,10 @@ export class MspDirectUpdateOrganizationComponent extends AbstractForm implement
     set hasOrganizationUpdates(value) {
         this.updateStateService.hasOrganizationUpdates = value;
         if (value && value === true) {
-            console.log('has organization udpates - create form');
+            // console.log('has organization udpates - create form');
             // this.createFormGroup();
         } else {
-            console.log('NO organization udpates - destroy form');
+            // console.log('NO organization udpates - destroy form');
             // this.destroyFormGroup();
         }
     }

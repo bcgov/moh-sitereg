@@ -5,16 +5,22 @@
 
     <!--Component Heading-->
     <div class="row col-md-8 ml-0 pl-0 align-items-center border-bottom">
-        <div class="col-md-6 pl-0">
-          <h1>#NotForTesting Review your request for Updates</h1>
-        </div>
-        <div class="col-md-2 ml-auto  text-right">
-          <button tabindex="0" class="btn btn-default " onclick="window.print();return false;" title="Print" >
-            <i class="fa fa-print fa-lg pointer" aria-hidden="true"></i> Print
-          </button>
-        </div>
+      <div class="col-md-6 pl-0">
+        <h1>Review your request for Updates</h1>
       </div>
-      
+      <div class="col-md-2 ml-auto  text-right">
+        <button tabindex="0" class="btn btn-default " onclick="window.print();return false;" title="Print">
+          <i class="fa fa-print fa-lg pointer" aria-hidden="true"></i> Print
+        </button>
+      </div>
+    </div>
+
+    <!-- <div class='row col-md-8 ml-0 pl-0 mb-4'>
+      <div class="mb-2">
+        <sitereg-update-json-view  [showRaw]="false" [showJson]="true"  [json]='json()'></sitereg-update-json-view>
+      </div>
+    </div> -->
+
       <!--Content-->
       <!-- <div class='row col-md-8 ml-0 pl-0 mb-4'>
         <div class="mb-2">
@@ -27,17 +33,17 @@
           You may wish to print this page for your own reference.
         </div>
       </div> -->
-<!-- 
-      <sitereg-update-review-container>
 
-      </sitereg-update-review-container> -->
 
       <sitereg-update-requestor-review></sitereg-update-requestor-review>
       <sitereg-update-organization-review></sitereg-update-organization-review>
+      <sitereg-update-signing-authority-review></sitereg-update-signing-authority-review>
+      <sitereg-update-access-admin-review></sitereg-update-access-admin-review>
       <sitereg-update-user-review></sitereg-update-user-review>
-      
-    </div>
+      <sitereg-update-group-review></sitereg-update-group-review>
 
+    
+  </div>
   <!-- <h1 class="border-bottom">Review your request for Update</h1> -->
   <!-- <common-page-section layout='tips'>
     <div class="d-flex row">
@@ -55,6 +61,7 @@
       </div>
     </div>
   </common-page-section> -->
+
 
 </common-page-framework>
 <common-form-action-bar (btnClick)="continue()"></common-form-action-bar>

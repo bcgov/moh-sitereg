@@ -115,9 +115,9 @@
 
           <!-- Administrating For-->
          <ng-container *ngIf='fg.controls.isAdmin.value'>
-          <label class="control-label" for="administeringFor_{{formIndex}}">This Signing Authority will be administering MSP
+          <label class="control-label" for="administeringFor_add_{{formIndex}}">This Signing Authority will be administering MSP
             for</label>
-          <select class="form-control" id="administeringFor_{{formIndex}}" *ngIf="administeringForOptions"
+          <select class="form-control" id="administeringFor_add_{{formIndex}}" *ngIf="administeringForOptions"
             formControlName="administeringFor">
             <option value="" label="-- Select Option --" selected></option>
             <option *ngFor="let a of administeringForOptions " [value]="a">{{a}}</option>
@@ -128,8 +128,8 @@
 
           <!--#endregion Form-->
 
-          <sitereg-update-json-view [showRaw]="false" [raw]='fg.value' [showJson]="true" [json]='json(fg.value)'>
-          </sitereg-update-json-view>
+          <!-- <sitereg-update-json-view  [showRaw]="false" [raw]='fg.value' [showJson]="true" [json]='json(fg.value)'>
+          </sitereg-update-json-view> -->
 
         </div>
 

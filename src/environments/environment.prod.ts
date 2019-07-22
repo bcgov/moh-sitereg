@@ -3,6 +3,7 @@ export const environment = {
     useDummyData: false,
     useMockBackend: false,
     baseAPIUrl: '/sitereg/api/siteregIntegration/sitereg/',
+    baseUpdateAPIUrl: '/sitereg/api/siteregIntegration/siteregmaintenance/',
     captchaApiBaseUrl: '/sitereg/api/captcha',
     loggingURL: '/sitereg/api/logging',
     envServerUrl: '/sitereg/api/env',
@@ -13,7 +14,7 @@ export const environment = {
     purgeWhenInactive: true,
     enableLogging: true,
     bypassInformationCollectionNotice: false,
-    debug: true,
+    debug: false,
     /** Link used in app */
     links: {
         FAQ:

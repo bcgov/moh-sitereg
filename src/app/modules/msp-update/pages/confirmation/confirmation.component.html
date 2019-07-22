@@ -1,21 +1,98 @@
-<common-page-framework layout="blank">
-  <h1 class="border-bottom">#NotForTesting {{componentInfo}}</h1>
-  <common-page-section layout="tips">
-    <aside>
-      At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque
-      corrupti quos dolores et
-      quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt
-      mollitia animi, id est
-      laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta
-      nobis est eligendi optio
-      cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor
-      repellendus. Temporibus autem
-      quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et
-      molestiae non recusandae. Itaque
-      earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut
-      perferendis doloribus asperiores repellat.
-    </aside>
-  </common-page-section>
+<common-page-framework layout='blank'>
+  <!-- <sitereg-msp-register-h2-with-print *ngIf="status"></sitereg-msp-register-h2-with-print> -->
+   <!--Component Heading-->
+   <div class="row col-md-8 ml-0 pl-0 align-items-center border-bottom">
+    <div class="col-md-6 pl-0">
+      <h1>Confirmation Message</h1>
+    </div>
+    <div class="col-md-2 ml-auto  text-right">
+      <button tabindex="0" class="btn btn-default " onclick="window.print();return false;" title="Print" >
+        <i class="fa fa-print fa-lg pointer" aria-hidden="true"></i> Print
+      </button>
+    </div>
+  </div>
+  <div class='mb-2' *ngIf="status">
+    <div class='row mb-4 mt-4 pl-4 pt-4 pb-4 border-success-custom'>
+
+      <div class='col-md-auto'>
+        <span class="mt-4  pr-0 iam-icon--success ">
+          <i aria-label="success" class="fa fa-2x fa-check-circle "></i>
+        </span>
+      </div>
+      <div class='col-md-4'>
+        <span style="font-size: 1.25rem;">Your application has been submitted.</span> <br />
+        <span><small>{{ today | date:'mediumDate' }} --- Request and Agreement number: <b>{{ paddedConfirmationNumber() }}</b>
+           <!-- <b>{{mspRegDataSvc.requestFinalStatus?.confirmationNumber }}</b> -->
+          </small></span>
+      </div>
+    </div>
+    <div class="row mr-2">
+      <h2>Next Steps</h2>
+    </div>
+    <div class="row mr-0 pr-0">
+      <ul>
+        <li><b>Important:</b> Keep your request number – write it down, or print this page for your records.</li>
+        <li>Allow up to 15 business days for your application to be processed. Once your application is processed, you
+          will be sent an email confirmation.</li>
+        <li>If you have questions regarding the status of your request, contact <a
+            href="mailto:HLTH.HnetConnection@gov.bc.ca">HLTH.HnetConnection@gov.bc.ca</a> and include the request
+          number. </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class='mb-2' *ngIf="!(status)">
+    <div class='row mb-4 mt-4 pl-4 pt-4 pb-4 border-failed-custom'>
+
+      <div class='col-md-auto'>
+        <span class="mt-4  pr-0 iam-icon--failed ">
+          <i aria-label="failed" class="fa fa-2x fa-times-circle "></i>
+        </span>
+      </div>
+      <div class='col-md-4'>
+        <span style="font-size: 1.25rem;">Your application did not submit successfully. Please try submitting your application again.</span>
+        <br />
+        <span>If you continue to receive error messages, or if you have questions, contact: <a
+          href="mailto:HTLH.HnetConnection@gov.bc.ca">HLTH.HnetConnection@gov.bc.ca</a>.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class='row mr-0' *ngIf="isTechnicalInfoAvaialble && debugMode">
+    <div class='col-md-4 p-4'>
+      <div (click)="toggleDetail()">Technical information</div>
+    </div>
+  </div>
+
+
+  <div class="card" *ngIf="debugMode && showDetail">
+    <div class="card-body">
+      <h5 class="card-title">Reference Identifier</h5>
+      <p class="card-text">
+        {{updateStateService.requestFinalStatus?.referenceId}}
+      </p>
+
+      <h5 class="card-title">Response</h5>
+      <p class="card-text">
+        <!-- {{updateStateService.requestFinalStatus?.response | json}} -->
+       <sitereg-update-json-view [showRaw]="false" [showJson]="true"
+          [json]='updateStateService.requestFinalStatus?.response'>
+        </sitereg-update-json-view>
+      </p>
+
+      <h5 class="card-title">Middleware Schema</h5>
+      <p class="card-text">
+          <sitereg-update-json-view [showRaw]="false" [showJson]="true"
+          [json]='updateStateService.requestFinalStatus?.schema'>
+        </sitereg-update-json-view>   
+        <!-- {{updateStateService.requestFinalStatus?.schema | json}} -->
+      </p>
+
+      <h5 class="card-title">Exception</h5>
+      <p class="card-text">
+        {{updateStateService.requestFinalStatus?.exception | json}}
+      </p>
+    </div>
+  </div>
+
 </common-page-framework>
-<common-form-action-bar (btnClick)="continue()" [submitLabel]="buttonLabel">
-</common-form-action-bar>

@@ -6,8 +6,8 @@ export interface IRequestor {
 export function getIRequestor(formValues): IRequestor {
     if (!formValues) return;
     const iobj: IRequestor = {
-        emailAddress: formValues.organizationNumber ? formValues.organizationNumber : '',
-        organizationNumber: formValues.emailAddress ? formValues.emailAddress : '',
-    }
+        organizationNumber: formValues.organizationNumber ? formValues.organizationNumber : '',
+        emailAddress: formValues.emailAddress ? formValues.emailAddress : '',
+    };
     return iobj;
 }

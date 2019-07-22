@@ -43,7 +43,7 @@ export class MspDirectUpdateAccessAdministratorAddComponent implements OnInit, I
 
   private createOrUpdateForms() {
     if (!this.formState) {
-      console.log('create or update form');
+      // console.log('create or update form');
       this.parentForm = this.fb.group({
         arrayOfForms: this.fb.array([])
       });
@@ -65,14 +65,13 @@ export class MspDirectUpdateAccessAdministratorAddComponent implements OnInit, I
       ext: [null, cUpdateAccessAdminValidator.add.ext],
       fax: [null, cUpdateAccessAdminValidator.add.fax],
       administeringFor: [null, cUpdateAccessAdminValidator.add.administeringFor],
-
     });
     this.patchValue(form);
     return form;
   }
 
   private removeForm(index: number) {
-    console.log('Deleteing Form at ' + index);
+    // console.log('Deleteing Form at ' + index);
     this.getFormsArray.removeAt(index);
     this.formArrayChanged.emit(this.parentForm);
   }
@@ -87,13 +86,13 @@ export class MspDirectUpdateAccessAdministratorAddComponent implements OnInit, I
   }
 
   public newForm() {
-    console.log('Adding new Form');
+    // console.log('Adding new Form');
     this.getFormsArray.insert(0, this.createArrayForm());
     this.formArrayChanged.emit(this.parentForm);
   }
 
   patchValue(formGroup) {
-    if(!environment.debug) return;
+    if(!environment.useDummyData) return;
     formGroup.patchValue(RandomObjects.getUser02((this.getFormsCount + 1).toString() + 'AA'));
   }
 

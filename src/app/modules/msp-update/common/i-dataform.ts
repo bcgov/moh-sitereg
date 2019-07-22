@@ -90,7 +90,7 @@ export class RandomObjects {
     public static getRemoveUser(prefix) {
         const obj: IUserRemove = {
             emailAddress: prefix + 'useremail@users.com',
-            ministryUserId: prefix + '1234567890'
+            ministryUserId: '1234567890'
         };
         return obj;
     }
@@ -114,7 +114,7 @@ export class RandomObjects {
             changeAdministerFor: true,
             changeRole: 'No Change',
             forIdentifyEmailAddress: prefix + 'identify@users.com',
-            forIdentifyMinistryUserId: prefix + funcRandomNumber8Digit(),
+            forIdentifyMinistryUserId: funcRandomNumber8Digit(),
 
             ministryUserId: prefix + funcRandomNumber8Digit(),
             isAdmin: true
@@ -141,7 +141,7 @@ export class RandomObjects {
             forIdentifyEmailAddress: prefix + 'identify@users.com',
             forIdentifyMinistryUserId: prefix + funcRandomNumber8Digit(),
 
-            ministryUserId: prefix + funcRandomNumber8Digit(),
+            ministryUserId: funcRandomNumber8Digit(),
             isAdmin: true
         };
         return obj;

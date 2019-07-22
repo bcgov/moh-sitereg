@@ -14,12 +14,14 @@
 
 <!--Section - Content -->
 <div class='col-md-8 ml-2 pl-2 mt-2'>
-  <div class="row" *ngFor="let item of sectionItems; let i=index">
-    <div class='col-md-3'>
-      {{item.label}}:
-    </div>
-    <div class='col-md-5'>
-      {{item.value}}
+  <div *ngFor="let form of sectionItems; let formIndex=index" class="pb-2">
+    <div class="row" *ngFor="let item of form; let i=index">
+      <div class='col-md-3'>
+        {{item.label}}:
+      </div>
+      <div class='col-md-5'>
+        {{item.value}}
+      </div>
     </div>
   </div>
 </div>

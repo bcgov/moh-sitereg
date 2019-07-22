@@ -33,7 +33,7 @@ export class MspDirectUpdateGroupRemoveComponent implements OnInit, IDataForm {
 
   private createOrUpdateForms() {
     if (!this.formState) {
-      console.log('create or update form');
+      // console.log('create or update form');
       this.parentForm = this.fb.group({
         arrayOfForms: this.fb.array([])
       });
@@ -51,7 +51,7 @@ export class MspDirectUpdateGroupRemoveComponent implements OnInit, IDataForm {
   }
 
   private removeForm(index: number) {
-    console.log('Deleteing Form at ' + index);
+    // console.log('Deleteing Form at ' + index);
     this.getFormsArray.removeAt(index);
     this.formArrayChanged.emit(this.parentForm);
   }
@@ -66,7 +66,7 @@ export class MspDirectUpdateGroupRemoveComponent implements OnInit, IDataForm {
   }
 
   public newForm() {
-    console.log('Adding new Form');
+    // console.log('Adding new Form');
     this.getFormsArray.insert(0, this.createArrayForm());
     this.formArrayChanged.emit(this.parentForm);
   }
