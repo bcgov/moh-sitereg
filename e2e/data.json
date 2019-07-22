@@ -1,7 +1,7 @@
 { "organizationPage" :
     { "administeringFor"  : "Employees"
     , "blueCross"         : true
-    , "city"              : "St. Pancras"
+    , "city"              : "St. Pancrasabcdefghijklmnopqrstuvwxyz"
     , "orgName"           : "MSPDIR_REW_14 INC."
     , "orgNum"            : 77762167
     , "postal"            : "V7S0C5"
