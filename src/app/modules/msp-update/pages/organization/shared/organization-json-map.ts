@@ -72,7 +72,7 @@ export function getEditJSONofOrganization(formValue) {
     if (isValidOptionalField(formValues.streetName)) json.street_address = formValues.streetName;
     if (isValidOptionalField(formValues.city)) json.city = formValues.city;
     if (isValidOptionalField(formValues.province)) json.province = formValues.province;
-    if (isValidOptionalField(formValues.postalCode)) json.postal_code = formValues.postalCode;
+    if (isValidOptionalField(formValues.postalCode)) json.postal_code = formValues.postalCode.replace(' ', '');
     if (isValidOptionalField(formValues.administeringFor)) json.org_spg = mapAdministeringForDef(formValues.administeringFor);
     if (isValidOptionalField(formValues.addressLine2)) json.address_2 = formValues.addressLine2;
 
