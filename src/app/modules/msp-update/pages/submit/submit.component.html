@@ -17,5 +17,5 @@
     </div>
   </common-page-section>
 </common-page-framework>
-<common-form-action-bar (btnClick)="continue()" submitLabel="Submit" [canContinue]='canContinue()'>
+<common-form-action-bar [isLoading]="isProcessing" [defaultColor]="false"  (btnClick)="continue()" submitLabel="Submit" [canContinue]='canContinue()'>
 </common-form-action-bar>
