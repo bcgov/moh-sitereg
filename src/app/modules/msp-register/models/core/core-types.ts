@@ -96,13 +96,11 @@ export const cUserMspValidators = {
     ],
     emailAddress: [
         Validators.required,
-        Validators.email,
         Validators.maxLength(100),
         Validators.pattern(/^(\S+)@(\S+)\.(\S+)$/),
     ],
     confirmEmail: [
         Validators.required,
-        Validators.email,
         Validators.maxLength(100),
         Validators.pattern(/^(\S+)@(\S+)\.(\S+)$/)
     ],
