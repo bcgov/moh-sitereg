@@ -1,0 +1,6 @@
+<common-page-framework layout='default'>
+    <div class="p-4">
+        <common-captcha [apiBaseUrl]="captchaApiBaseUrl" [nonce]="nonce" (onValidToken)="setToken($event)"
+          [successMessage]="'  '"></common-captcha>
+      </div>
+</common-page-framework>
