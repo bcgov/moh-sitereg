@@ -29,7 +29,7 @@ export class BaseSiteRegTestPage extends AbstractTestPage {
     }
 
     clickButton(value: string) {
-        element(by.css(`button[class*="${value}"]`)).click();
+        element.all(by.css(`button[class*="${value}"]`)).first().click();
     }
 
     // TODO: Move these methods to shared lib
@@ -120,7 +120,6 @@ export class OrganizationPage extends BaseSiteRegTestPage {
         this.clickConsentModalContinue();
         this.fillOrgName();
         this.fillAddress();
-        browser.sleep(10000);
         this.selectAdministeringFor('administeringFor', json.administeringFor);
         this.scrollDown();
         this.clickOptionJSON('thirdParty', json.thirdParty.toString());
@@ -388,9 +387,6 @@ export class GroupNumbersPage extends BaseSiteRegTestPage {
             }
         } else {
             this.typeTextFirstOccurrence('groupNumber', data.groupNum + '');
-            if (this.jsonData.organizationPage.thirdParty) {
-                this.clickOptionJSON('thirdParty', data.thirdParty.toString());
-            }
         }
     }
 }
