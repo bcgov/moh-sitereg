@@ -46,13 +46,13 @@
     <label class="control-label" for="emailAddress_{{formIndex}}">Email Address</label>
     <input id="emailAddress_{{formIndex}}" formControlName="emailAddress" class="form-control" maxlength="100" >
     <sitereg-error-box [error]="validFormControl(fg,'emailAddress')"
-      errorMessage="Email is required. Must be in the format test@example.com"></sitereg-error-box>
+      errorMessage="Email is required. Must be in the format test@example.com, no spaces."></sitereg-error-box>
 
     <!-- Confirm Email Address -->
     <!-- TODO: make this a validator -->
     <label class="control-label" for="confirmEmail_{{formIndex}}">Confirm Email Address</label>
     <input id="confirmEmail_{{formIndex}}" formControlName="confirmEmail" class="form-control" maxlength="100">
-    <sitereg-error-box [error]="validFormControl(fg, 'confirmEmail')" errorMessage="Must match email address">
+    <sitereg-error-box [error]="validFormControl(fg, 'confirmEmail')" errorMessage="Must match email address, no spaces.">
     </sitereg-error-box>
 
     <!-- Phone -->
