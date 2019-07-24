@@ -1,12 +1,13 @@
 import { browser, by, element, WebElement, protractor, $$ } from 'protractor';
 import { AbstractTestPage } from 'moh-common-lib/e2e';
 import { OrganizationPageTest, SigningAuthorityPageTest, GroupNumbersPageTest, FakeDataSiteReg } from './sitereg.data';
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
 export class BaseSiteRegTestPage extends AbstractTestPage {
 
     protected data = new FakeDataSiteReg();
     protected jsonData = this.data.getJSONData();
-    protected loc = this.data.getSnapshotLoc();
+    protected jsonParam = this.jsonData.e2eParam;
 
     constructor() {
         super();
@@ -102,14 +103,38 @@ export class BaseSiteRegTestPage extends AbstractTestPage {
         element.all(by.css(selector)).first().element(by.xpath('..')).element(by.cssContainingText('label', `${ngVal}`)).click();
     }
 
+    getSnapshotLoc() {
+        if (this.jsonParam.folderLocation) {
+            return this.jsonParam.folderLocation;
+        } else {
+            return 'e2e/snapshots';
+        }
+    }
+
     pageSnapshot(page: string) {
         browser.sleep(3000);
         const fs = require('fs');
+        const loc = this.getSnapshotLoc();
         browser.takeScreenshot().then(data => {
-            const stream = fs.createWriteStream(`${this.loc}/${page}`);
+            const stream = fs.createWriteStream(`${loc}/${page}`);
             stream.write(new Buffer(data, 'base64'));
             stream.end();
         });
+    }
+
+    checkSnapshot(pageName: string, pageNum: number) {
+        if (this.jsonParam){
+            if (this.jsonParam.snapshotAt !== undefined) {
+                const snapshot = this.jsonParam.snapshotAt;
+                for (let i = 0; i < snapshot.length; i++) {
+                    if (snapshot[i] === pageNum) {
+                        this.pageSnapshot(pageName);
+                    }
+                }
+            } else {
+                this.pageSnapshot(pageName);
+            }
+        }
     }
 
 }
@@ -135,9 +160,7 @@ export class OrganizationPage extends BaseSiteRegTestPage {
         this.clickOptionJSON('thirdParty', json.thirdParty.toString());
         this.fillOrgNum();
         this.clickOptionJSON('blueCross', json.blueCross.toString());
-        if (json.takeSnapshot){
-            this.pageSnapshot('Organization');
-        }
+        this.checkSnapshot('Organization', 1);
         this.continue();
     }
 
@@ -197,9 +220,7 @@ export class SigningAuthorityPage extends BaseSiteRegTestPage {
         this.scrollDown();
         this.selectAdministeringFor('administeringFor', json.administeringFor);
         this.clickOptionJSON('directMspAccess', json.directMspAccess.toString());
-        if (json.takeSnapshot){
-            this.pageSnapshot('Signing Authority');
-        }
+        this.checkSnapshot('Signing Authority', 2);
         this.continue();
     }
 
@@ -253,9 +274,7 @@ export class AccessAdminsPage extends BaseSiteRegTestPage {
             this.fillInfo(i);
             this.scrollDown();
             this.selectAdministeringFor('administeringFor', json[i].administeringFor);
-            if (json[i].takeSnapshot){
-                this.pageSnapshot('Access Admin #' + (i + 1));
-            }
+            this.checkSnapshot('Access Admin #' + (i + 1), 3);
             this.scrollUp();
         }
         this.continue();
@@ -324,9 +343,7 @@ export class UsersPage extends SigningAuthorityPage {
                 this.fillInfo(i);
                 this.scrollDown();
                 this.selectAdministeringFor('administeringFor', json[i].administeringFor);
-                if (json[i].takeSnapshot){
-                    this.pageSnapshot('User #' + (i + 1));
-                }
+                this.checkSnapshot('User #' + (i + 1), 4);
                 this.scrollUp();
                 this.scrollUp();
             }
@@ -393,9 +410,7 @@ export class GroupNumbersPage extends BaseSiteRegTestPage {
         const json = this.jsonData.groupNumbersPage;
         for (let i = 0; i < json.length; i++) {
             this.fillGroupNum(i);
-            if (json[i].takeSnapshot){
-                this.pageSnapshot('Group Number #' + (i + 1));
-            }
+            this.checkSnapshot('Group Number #' + (i + 1), 5);
             this.scrollUp();
             this.scrollUp();
             if (i !== json.length - 1){

@@ -1,4 +1,9 @@
-{ "organizationPage" :
+{ 
+    "e2eParam" :
+    { "snapshotAt": [3, 4, 5]
+    , "folderLocation": "e2e/snapshots"
+    }
+  , "organizationPage" :
     { "administeringFor"  : "Employees"
     , "blueCross"         : false
     , "city"              : "Finsbury"
@@ -10,7 +15,6 @@
     , "streetNo"          : "982"
     , "suiteNo"           : "Suite 3530"
     , "thirdParty"        : false
-    , "takeSnapshot"      : false
     }
   , "signingAuthorityPage" :
     { "administeringFor" : "Employees"
@@ -25,7 +29,6 @@
     , "lastName"         : "Lucius"
     , "mobile"           : 1495550119
     , "title"            : "Mr."
-    , "takeSnapshot"     : false
     }
   , "accessAdminsPage" :
     [ { "administeringFor" : "Employees"
@@ -39,7 +42,6 @@
       , "lastName"         : "Traianus"
       , "mobile"           : 3475550178
       , "title"            : "Mr."
-      , "takeSnapshot"     : true
       }
     ]
   , "usersPage" :
@@ -54,13 +56,11 @@
       , "lastName"         : "Julius"
       , "mobile"           : 9625550156
       , "title"            : "Mr."
-      , "takeSnapshot"     : true
       }
     ]
   , "groupNumbersPage" :
     [ { "groupNum"   : 3495832
       , "thirdParty" : false
-      , "takeSnapshot" : true
       }
     ]
   }
