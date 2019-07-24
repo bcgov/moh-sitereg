@@ -1,9 +1,8 @@
 import { browser } from 'protractor';
 import { FakeDataSiteReg } from './sitereg.data';
 import { SigningAuthorityPage, OrganizationPage, AccessAdminsPage, UsersPage, GroupNumbersPage, AuthorizePage, SpecialCasePage, ReviewPage } from './sitereg.po';
-import { BrowserViewportScroller } from '@angular/common/src/viewport_scroller';
 
-describe('Moh SiteReg - End to End Test (Happy Path)', () => {
+fdescribe('Moh SiteReg - End to End Test (Happy Path)', () => {
     let orgPage: OrganizationPage;
     let saPage: SigningAuthorityPage;
     let aaPage: AccessAdminsPage;

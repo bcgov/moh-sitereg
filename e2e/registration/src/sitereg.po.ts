@@ -6,6 +6,7 @@ export class BaseSiteRegTestPage extends AbstractTestPage {
 
     protected data = new FakeDataSiteReg();
     protected jsonData = this.data.getJSONData();
+    protected loc = this.data.getSnapshotLoc();
 
     constructor() {
         super();
@@ -100,7 +101,16 @@ export class BaseSiteRegTestPage extends AbstractTestPage {
         }
         element.all(by.css(selector)).first().element(by.xpath('..')).element(by.cssContainingText('label', `${ngVal}`)).click();
     }
-    
+
+    pageSnapshot(page: string) {
+        browser.sleep(3000);
+        const fs = require('fs');
+        browser.takeScreenshot().then(data => {
+            const stream = fs.createWriteStream(`${this.loc}/${page}`);
+            stream.write(new Buffer(data, 'base64'));
+            stream.end();
+        });
+    }
 
 }
 
@@ -125,6 +135,9 @@ export class OrganizationPage extends BaseSiteRegTestPage {
         this.clickOptionJSON('thirdParty', json.thirdParty.toString());
         this.fillOrgNum();
         this.clickOptionJSON('blueCross', json.blueCross.toString());
+        if (json.takeSnapshot){
+            this.pageSnapshot('Organization');
+        }
         this.continue();
     }
 
@@ -184,6 +197,9 @@ export class SigningAuthorityPage extends BaseSiteRegTestPage {
         this.scrollDown();
         this.selectAdministeringFor('administeringFor', json.administeringFor);
         this.clickOptionJSON('directMspAccess', json.directMspAccess.toString());
+        if (json.takeSnapshot){
+            this.pageSnapshot('Signing Authority');
+        }
         this.continue();
     }
 
@@ -237,6 +253,9 @@ export class AccessAdminsPage extends BaseSiteRegTestPage {
             this.fillInfo(i);
             this.scrollDown();
             this.selectAdministeringFor('administeringFor', json[i].administeringFor);
+            if (json[i].takeSnapshot){
+                this.pageSnapshot('Access Admin #' + (i + 1));
+            }
             this.scrollUp();
         }
         this.continue();
@@ -305,6 +324,10 @@ export class UsersPage extends SigningAuthorityPage {
                 this.fillInfo(i);
                 this.scrollDown();
                 this.selectAdministeringFor('administeringFor', json[i].administeringFor);
+                if (json[i].takeSnapshot){
+                    this.pageSnapshot('User #' + (i + 1));
+                }
+                this.scrollUp();
                 this.scrollUp();
             }
         }
@@ -370,6 +393,10 @@ export class GroupNumbersPage extends BaseSiteRegTestPage {
         const json = this.jsonData.groupNumbersPage;
         for (let i = 0; i < json.length; i++) {
             this.fillGroupNum(i);
+            if (json[i].takeSnapshot){
+                this.pageSnapshot('Group Number #' + (i + 1));
+            }
+            this.scrollUp();
             this.scrollUp();
             if (i !== json.length - 1){
                 this.clickButton('btn-block');

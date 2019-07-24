@@ -112,6 +112,17 @@ export class FakeDataSiteReg {
         }
     }
 
+    getSnapshotLoc() {
+        const x = process.argv;
+        const loc = process.argv.filter(x => x.startsWith('--snapshot'));
+        if (loc.toString() !== '') {
+            const filename = loc.toString().split('=')[1];
+            return filename;
+        } else {
+            return 'e2e/snapshots';
+        }
+    }
+
     getUUID() {
 
     }

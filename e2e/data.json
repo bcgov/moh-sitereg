@@ -1,62 +1,66 @@
 { "organizationPage" :
-    { "orgName"           : "MSPDIR_REW_15 INC\"."
-    , "suiteNo"           : "Suite\" 19"
-    , "streetNo"          : "1590"
-    , "streetName"        : "Street\" name"
-    , "streetAddressLine" : "Line\" 2"
-    , "city"              : "City\" name"
+    { "administeringFor"  : "Employees"
+    , "blueCross"         : false
+    , "city"              : "Finsbury"
+    , "orgName"           : "MSPDIR_REW_10 INC."
+    , "postal"            : "V2W9S3"
     , "province"          : "British Columbia"
-    , "postal"            : "V9P4C5"
-    , "administeringFor"  : "Employees"
-    , "thirdParty"        : true
-    , "orgNum"            : 58600546
-    , "blueCross"         : true
+    , "streetAddressLine" : "line 2"
+    , "streetName"        : "Stamford Terrace"
+    , "streetNo"          : "982"
+    , "suiteNo"           : "Suite 3530"
+    , "thirdParty"        : false
+    , "takeSnapshot"      : false
     }
   , "signingAuthorityPage" :
-    { "title"            : "Mr."
-    , "firstName"        : "SA\"first"
-    , "initial"          : "B"
-    , "lastName"         : "SA\"last"
-    , "jobTitle"         : "SA\"s Job Title"
-    , "email"            : "SAfirst.SAlast.190722.190135.943996@example.com"
-    , "mobile"           : 9645550188
-    , "extension"        : "SA\"s Ext"
-    , "fax"              : 1645550146
-    , "administeringFor" : "Employees"
-    , "directMspAccess"  : true
-    , "confirmEmail"     : "SAfirst.SAlast.190722.190135.943996@example.com"
+    { "administeringFor" : "Employees"
+    , "confirmEmail"     : "Liborius.20190717.184952.451017@example.com"
+    , "directMspAccess"  : false
+    , "email"            : "Liborius.20190717.184952.451017@example.com"
+    , "extension"        : "647"
+    , "fax"              : 9625550137
+    , "firstName"        : "Isaurus"
+    , "initial"          : "O"
+    , "jobTitle"         : "Job Title"
+    , "lastName"         : "Lucius"
+    , "mobile"           : 1495550119
+    , "title"            : "Mr."
+    , "takeSnapshot"     : false
     }
   , "accessAdminsPage" :
-    [ { "lastName"         : "Admin\"fast"
-      , "confirmEmail"     : "Adminfirst.190722.190136.085255@example.com"
-      , "administeringFor" : "Employees"
-      , "fax"              : 5695550180
-      , "extension"        : "Admin\"s Ext"
-      , "mobile"           : 4805550194
-      , "email"            : "Adminfirst.190722.190136.085255@example.com"
-      , "jobTitle"         : "Admin\"s Job Title"
-      , "initial"          : "G"
-      , "firstName"        : "Admin\"first"
+    [ { "administeringFor" : "Employees"
+      , "confirmEmail"     : "Christianus.20190717.184952.654355@example.com"
+      , "email"            : "Christianus.20190717.184952.654355@example.com"
+      , "extension"        : "474"
+      , "fax"              : 6905550108
+      , "firstName"        : "Amadeus"
+      , "initial"          : "J"
+      , "jobTitle"         : "Job Title"
+      , "lastName"         : "Traianus"
+      , "mobile"           : 3475550178
       , "title"            : "Mr."
+      , "takeSnapshot"     : true
       }
     ]
   , "usersPage" :
-    [ { "title"            : "Mr."
-      , "confirmEmail"     : "Userfirst.Userlast.190722.190136.212014@example.com"
-      , "administeringFor" : "Employees"
-      , "fax"              : 7655550133
-      , "extension"        : "User\"s Ext"
-      , "mobile"           : 2435550114
-      , "email"            : "Userfirst.Userlast.190722.190136.212014@example.com"
-      , "jobTitle"         : "User\"s Job Title"
-      , "lastName"         : "User\"last"
-      , "initial"          : "J"
-      , "firstName"        : "User\"first"
+    [ { "administeringFor" : "Employees"
+      , "confirmEmail"     : "Laurus.20190717.184952.845519@example.com"
+      , "email"            : "Laurus.20190717.184952.845519@example.com"
+      , "extension"        : "2706"
+      , "fax"              : 6275550102
+      , "firstName"        : "Sebastianus"
+      , "initial"          : "Q"
+      , "jobTitle"         : "Job Title"
+      , "lastName"         : "Julius"
+      , "mobile"           : 9625550156
+      , "title"            : "Mr."
+      , "takeSnapshot"     : true
       }
     ]
   , "groupNumbersPage" :
-    [ { "groupNum"   : 3363229
-      , "thirdParty" : true
+    [ { "groupNum"   : 3495832
+      , "thirdParty" : false
+      , "takeSnapshot" : true
       }
     ]
   }
