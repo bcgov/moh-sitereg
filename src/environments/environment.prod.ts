@@ -1,6 +1,6 @@
 export const environment = {
     production: true,
-    useDummyData: false,
+    useDummyData: true,
     useMockBackend: false,
     baseAPIUrl: '/sitereg/api/siteregIntegration/sitereg/',
     baseUpdateAPIUrl: '/sitereg/api/siteregIntegration/siteregmaintenance/',
@@ -9,11 +9,11 @@ export const environment = {
     envServerUrl: '/sitereg/api/env',
     logHTTPRequestsToConsole: false,
     bypassSplashPage: false,
-    bypassGuards: false,
+    bypassGuards: true,
     promptOnExit: true,
     purgeWhenInactive: true,
     enableLogging: true,
-    bypassInformationCollectionNotice: false,
+    bypassInformationCollectionNotice: true,
     debug: false,
     /** Link used in app */
     links: {
