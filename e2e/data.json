@@ -1,7 +1,7 @@
 { 
     "e2eParam" :
     { "snapshotAt": [3, 4, 5]
-    , "folderLocation": "e2e/snapshots"
+    , "snapshotLocation": "e2e/snapshots"
     }
   , "organizationPage" :
     { "administeringFor"  : "Employees"
