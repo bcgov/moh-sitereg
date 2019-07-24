@@ -92,6 +92,10 @@ export function mapYesNoDef(val: boolean): string {
 export function mapAdministeringForDef(val: string): string {
     let result = '';
     switch (val) {
+        case 'No Change': {
+            result = 'N';
+            break;
+        }
         case 'Employees': {
             result = 'E';
             break;
