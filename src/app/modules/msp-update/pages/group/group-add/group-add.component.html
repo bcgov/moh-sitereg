@@ -11,7 +11,7 @@
         <label for='groupNo_{{formIndex}}'>Enter MSP Group Number</label>
         <input type='text' class='form-control' formControlName='groupNo' id='groupNo_{{formIndex}}' maxlength="7">
 
-        <sitereg-error-box [error]="validFormControl(fg, 'groupNo')" errorMessage="Please provide valid Group Number">
+        <sitereg-error-box [error]="validFormControl(fg, 'groupNo')" errorMessage="Please provide a valid MSP Group Number">
         </sitereg-error-box>
 
         <common-radio [radioLabels]="radioBtnLabels"
