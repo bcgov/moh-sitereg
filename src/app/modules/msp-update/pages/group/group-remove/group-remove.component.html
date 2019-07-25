@@ -1,7 +1,7 @@
 <form [formGroup]="parentForm">
   <div formArrayName="arrayOfForms" *ngFor="let fg of getFormsArray.controls; let formIndex=index">
     <form [formGroupName]='formIndex'>
-      <common-xicon-button class='d-block pb-1' label="Cancel Remove Access Administrator" (clickEvent)="removeForm(formIndex)">
+      <common-xicon-button class='d-block pb-1' label="Cancel Remove MSP Group Number" (clickEvent)="removeForm(formIndex)">
       </common-xicon-button>
       <h2 class='border-bottom'>Remove an existing MSP Group #{{getFormsArray.controls.length - formIndex}}</h2>
       <common-page-section layout='tips'>
