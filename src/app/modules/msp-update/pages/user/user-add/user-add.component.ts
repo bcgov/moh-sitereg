@@ -5,7 +5,7 @@ import {
 } from '../shared/user-shared';
 
 import {
-  validMultiFormControl, formControlValidity,
+  validMultiFormControl, formControlValidity, matchFieldValidator,
 } from '../../../common/update-validators';
 
 import { getAddJsonOfMspUser } from '../shared/user-shared-json-map';
@@ -60,8 +60,10 @@ export class MspDirectUpdateUserAddComponent implements OnInit, IDataForm {
       initial: [null, cUpdateUserValidator.add.initial],
       lastName: [null, cUpdateUserValidator.add.lastName],
       jobTitle: [null, cUpdateUserValidator.add.jobTitle],
-      emailAddress: [null, cUpdateUserValidator.add.emailAddress],
-      confirmEmail: [null, cUpdateUserValidator.add.confirmEmail],
+      formGroupEmail: this.fb.group({
+        emailAddress: [null, cUpdateUserValidator.edit.emailAddress],
+        confirmEmail: [null, cUpdateUserValidator.edit.confirmEmail],
+      }, { validator: matchFieldValidator('confirmEmail', 'emailAddress') }),
       phone: [null, cUpdateUserValidator.add.phone],
       ext: [null, cUpdateUserValidator.add.ext],
       fax: [null, cUpdateUserValidator.add.fax],
