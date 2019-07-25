@@ -2,6 +2,7 @@ import { browser, by, element, WebElement, protractor, $$ } from 'protractor';
 import { AbstractTestPage } from 'moh-common-lib/e2e';
 import { OrganizationPageTest, SigningAuthorityPageTest, GroupNumbersPageTest, FakeDataSiteReg } from './sitereg.data';
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+var screenShotUtils = require("protractor-screenshot-utils").ProtractorScreenShotUtils;
 
 export class BaseSiteRegTestPage extends AbstractTestPage {
 
@@ -115,6 +116,9 @@ export class BaseSiteRegTestPage extends AbstractTestPage {
         browser.sleep(3000);
         const fs = require('fs');
         const loc = this.getSnapshotLoc();
+        // screenShotUtils.takeScreenshot({
+        //     saveTo: "fullpageScreenshot.png"
+        // });
         browser.takeScreenshot().then(data => {
             const stream = fs.createWriteStream(`${loc}/${page}`);
             stream.write(new Buffer(data, 'base64'));
@@ -272,7 +276,7 @@ export class AccessAdminsPage extends BaseSiteRegTestPage {
         for (let i = 0; i < json.length; i++) {
             this.clickButton('btn btn-block');
             this.fillInfo(i);
-            this.scrollDown();
+            // this.scrollDown();
             this.selectAdministeringFor('administeringFor', json[i].administeringFor);
             this.checkSnapshot('Access Admin #' + (i + 1), 3);
             this.scrollUp();
@@ -341,10 +345,9 @@ export class UsersPage extends SigningAuthorityPage {
             for (let i = 0; i < json.length; i++) {
                 this.clickButton('btn btn-block');
                 this.fillInfo(i);
-                this.scrollDown();
+                // this.scrollDown();
                 this.selectAdministeringFor('administeringFor', json[i].administeringFor);
                 this.checkSnapshot('User #' + (i + 1), 4);
-                this.scrollUp();
                 this.scrollUp();
             }
         }
@@ -411,7 +414,6 @@ export class GroupNumbersPage extends BaseSiteRegTestPage {
         for (let i = 0; i < json.length; i++) {
             this.fillGroupNum(i);
             this.checkSnapshot('Group Number #' + (i + 1), 5);
-            this.scrollUp();
             this.scrollUp();
             if (i !== json.length - 1){
                 this.clickButton('btn-block');

@@ -1,66 +1,66 @@
-{ 
-    "e2eParam" :
-    { "snapshotAt": [3, 4, 5]
+{ "e2eParam" :
+    { "snapshotAt": [1, 2, 3]
     , "snapshotLocation": "e2e/snapshots"
     }
-  , "organizationPage" :
-    { "administeringFor"  : "Employees"
-    , "blueCross"         : false
-    , "city"              : "Finsbury"
-    , "orgName"           : "MSPDIR_REW_10 INC."
-    , "postal"            : "V2W9S3"
-    , "province"          : "British Columbia"
-    , "streetAddressLine" : "line 2"
-    , "streetName"        : "Stamford Terrace"
-    , "streetNo"          : "982"
-    , "suiteNo"           : "Suite 3530"
-    , "thirdParty"        : false
-    }
-  , "signingAuthorityPage" :
-    { "administeringFor" : "Employees"
-    , "confirmEmail"     : "Liborius.20190717.184952.451017@example.com"
-    , "directMspAccess"  : false
-    , "email"            : "Liborius.20190717.184952.451017@example.com"
-    , "extension"        : "647"
-    , "fax"              : 9625550137
-    , "firstName"        : "Isaurus"
-    , "initial"          : "O"
-    , "jobTitle"         : "Job Title"
-    , "lastName"         : "Lucius"
-    , "mobile"           : 1495550119
-    , "title"            : "Mr."
-    }
-  , "accessAdminsPage" :
-    [ { "administeringFor" : "Employees"
-      , "confirmEmail"     : "Christianus.20190717.184952.654355@example.com"
-      , "email"            : "Christianus.20190717.184952.654355@example.com"
-      , "extension"        : "474"
-      , "fax"              : 6905550108
-      , "firstName"        : "Amadeus"
-      , "initial"          : "J"
-      , "jobTitle"         : "Job Title"
-      , "lastName"         : "Traianus"
-      , "mobile"           : 3475550178
-      , "title"            : "Mr."
-      }
-    ]
-  , "usersPage" :
-    [ { "administeringFor" : "Employees"
-      , "confirmEmail"     : "Laurus.20190717.184952.845519@example.com"
-      , "email"            : "Laurus.20190717.184952.845519@example.com"
-      , "extension"        : "2706"
-      , "fax"              : 6275550102
-      , "firstName"        : "Sebastianus"
-      , "initial"          : "Q"
-      , "jobTitle"         : "Job Title"
-      , "lastName"         : "Julius"
-      , "mobile"           : 9625550156
-      , "title"            : "Mr."
-      }
-    ]
-  , "groupNumbersPage" :
-    [ { "groupNum"   : 3495832
-      , "thirdParty" : false
-      }
-    ]
+, "organizationPage" :
+  { "orgName"           : "MSPDIR_REW_17 [{\b\f\r\n}]"
+  , "suiteNo"           : "[{\b\f\r\n\\\t}]"
+  , "streetNo"          : "3607"
+  , "streetName"        : "Street name [{\b\f\r\n\\\t}], CR: \r, LF: \n<"
+  , "streetAddressLine" : "Line 2 [{\b\f\r\n\\\t}]"
+  , "city"              : "City name [{\b\f\r\n\\\t}]"
+  , "province"          : "British Columbia"
+  , "postal"            : "V5S1T1"
+  , "administeringFor"  : "Employees"
+  , "thirdParty"        : true
+  , "orgNum"            : 36248183
+  , "blueCross"         : true
   }
+, "signingAuthorityPage" :
+  { "title"            : "Mr."
+  , "firstName"        : "SA first [{\b\f\r\n\\\t}]"
+  , "initial"          : "Y"
+  , "lastName"         : "SA last [{\b\f\r\n\\\t}]"
+  , "jobTitle"         : "SA Job Title [{\b\f\r\n\\\t}]"
+  , "email"            : "SAfirst.SAlast[{\b\f\r\n\\\t}].190723.193302.890239@example.com"
+  , "mobile"           : 4015550100
+  , "extension"        : "SA Ext [{\b\f\r\n\\\t}]"
+  , "fax"              : 1975550167
+  , "administeringFor" : "Employees"
+  , "directMspAccess"  : true
+  , "confirmEmail"     : "SAfirst.SAlast[{\b\f\r\n\\\t}].190723.193302.890239@example.com"
+  }
+, "accessAdminsPage" :
+  [ { "title"            : "Mr."
+    , "confirmEmail"     : "Adminfirst[{\b\f\r\n\\\t}].190723.193303.027013@example.com"
+    , "administeringFor" : "Employees"
+    , "fax"              : 1275550143
+    , "extension"        : "Admin Ext [{\b\f\r\n\\\t}]"
+    , "mobile"           : 9205550137
+    , "email"            : "Adminfirst[{\b\f\r\n\\\t}].190723.193303.027013@example.com"
+    , "jobTitle"         : "Admin Job Title [{\b\f\r\n\\\t}]"
+    , "lastName"         : "Admin last [{\b\f\r\n\\\t}]"
+    , "initial"          : "G"
+    , "firstName"        : "Admin first [{\b\f\r\n\\\t}]"
+    }
+  ]
+, "usersPage" :
+  [ { "title"            : "Mr."
+    , "confirmEmail"     : "Userfirst.Userlast[{\b\f\r\n\\\t}].190723.193303.158960@example.com"
+    , "administeringFor" : "Employees"
+    , "fax"              : 2385550130
+    , "extension"        : "User Ext [{\b\f\r\n\\\t}]"
+    , "mobile"           : 3245550189
+    , "email"            : "Userfirst.Userlast[{\b\f\r\n\\\t}].190723.193303.158960@example.com"
+    , "jobTitle"         : "User Job Title [{\b\f\r\n\\\t}]"
+    , "lastName"         : "User last [{\b\f\r\n\\\t}]"
+    , "initial"          : "R"
+    , "firstName"        : "User first [{\b\f\r\n\\\t}]"
+    }
+  ]
+, "groupNumbersPage" :
+  [ { "groupNum"   : 3183619
+    , "thirdParty" : true
+    }
+  ]
+}
