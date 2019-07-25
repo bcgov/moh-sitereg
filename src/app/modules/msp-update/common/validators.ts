@@ -54,7 +54,7 @@ export function trailingSpacesValidator(): ValidatorFn {
         if (!control.value || control.value.length === 0) return null; // Necessary for optional fields.
         const forbidden = !/^(?!\s*$).+/.test(
             control.value
-        )
+        );
         // const forbidden = !/^[^\s]+(\s+[^\s]+)*$/.test(
         //     control.value
         // );
@@ -337,7 +337,7 @@ export const cUpdateValidators = {
             Validators.required,
             Validators.minLength(7),
             Validators.maxLength(7),
-            groupNumberValidator,
+            groupNumberValidator(),
         ],
     },
 
@@ -481,6 +481,7 @@ export function groupNumberValidator(): ValidatorFn {
             : null;
     };
 }
+
 
 
 
