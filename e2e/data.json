@@ -1,5 +1,5 @@
 { "e2eParam" :
-    { "snapshotAt": [1, 2, 3]
+    { "snapshotAt": [1, 2, 3, 4 ,5]
     , "snapshotLocation": "e2e/snapshots"
     }
 , "organizationPage" :

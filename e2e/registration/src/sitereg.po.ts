@@ -120,8 +120,8 @@ export class BaseSiteRegTestPage extends AbstractTestPage {
         //     saveTo: "fullpageScreenshot.png"
         // });
         browser.takeScreenshot().then(data => {
-            const currentDate = new Date();
-            page = page + ' ' + currentDate.toString();
+            // const currentDate = new Date();
+            // page = page + ' ' + currentDate.toString();
             const stream = fs.createWriteStream(`${loc}/${page}`);
             stream.write(new Buffer(data, 'base64'));
             stream.end();
