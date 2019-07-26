@@ -3,64 +3,64 @@
     , "snapshotLocation": "e2e/snapshots"
     }
 , "organizationPage" :
-  { "orgName"           : "MSPDIR_REW_17 [{\b\f\r\n}]"
-  , "suiteNo"           : "[{\b\f\r\n\\\t}]"
-  , "streetNo"          : "3607"
-  , "streetName"        : "Street name [{\b\f\r\n\\\t}], CR: \r, LF: \n<"
-  , "streetAddressLine" : "Line 2 [{\b\f\r\n\\\t}]"
-  , "city"              : "City name [{\b\f\r\n\\\t}]"
-  , "province"          : "British Columbia"
-  , "postal"            : "V5S1T1"
-  , "administeringFor"  : "Employees"
-  , "thirdParty"        : true
-  , "orgNum"            : 36248183
-  , "blueCross"         : true
-  }
-, "signingAuthorityPage" :
-  { "title"            : "Mr."
-  , "firstName"        : "SA first [{\b\f\r\n\\\t}]"
-  , "initial"          : "Y"
-  , "lastName"         : "SA last [{\b\f\r\n\\\t}]"
-  , "jobTitle"         : "SA Job Title [{\b\f\r\n\\\t}]"
-  , "email"            : "SAfirst.SAlast[{\b\f\r\n\\\t}].190723.193302.890239@example.com"
-  , "mobile"           : 4015550100
-  , "extension"        : "SA Ext [{\b\f\r\n\\\t}]"
-  , "fax"              : 1975550167
-  , "administeringFor" : "Employees"
-  , "directMspAccess"  : true
-  , "confirmEmail"     : "SAfirst.SAlast[{\b\f\r\n\\\t}].190723.193302.890239@example.com"
-  }
-, "accessAdminsPage" :
-  [ { "title"            : "Mr."
-    , "confirmEmail"     : "Adminfirst[{\b\f\r\n\\\t}].190723.193303.027013@example.com"
+    { "postal"            : "V7R6A5"
+    , "administeringFor"  : "Employees"
+    , "thirdParty"        : true
+    , "orgNum"            : 54303633
+    , "blueCross"         : true
+    , "orgName"           : "MSPDIR_REW_02 INC."
+    , "suiteNo"           : "Suite 2594"
+    , "streetNo"          : "1573"
+    , "streetName"        : "Back Lane"
+    , "streetAddressLine" : "line 2"
+    , "city"              : "Battersea"
+    , "province"          : "British Columbia"
+    }
+  , "signingAuthorityPage" :
+    { "title"            : "Mr."
+    , "firstName"        : "Caesarius"
+    , "initial"          : "X"
+    , "lastName"         : "Aurelianus"
+    , "jobTitle"         : "Job Title"
+    , "email"            : "Caesarius.190725.194315.160715@example.com"
+    , "mobile"           : 8985550199
+    , "extension"        : "3392"
+    , "fax"              : 8195550117
     , "administeringFor" : "Employees"
-    , "fax"              : 1275550143
-    , "extension"        : "Admin Ext [{\b\f\r\n\\\t}]"
-    , "mobile"           : 9205550137
-    , "email"            : "Adminfirst[{\b\f\r\n\\\t}].190723.193303.027013@example.com"
-    , "jobTitle"         : "Admin Job Title [{\b\f\r\n\\\t}]"
-    , "lastName"         : "Admin last [{\b\f\r\n\\\t}]"
-    , "initial"          : "G"
-    , "firstName"        : "Admin first [{\b\f\r\n\\\t}]"
+    , "directMspAccess"  : true
+    , "confirmEmail"     : "Caesarius.190725.194315.160715@example.com"
     }
-  ]
-, "usersPage" :
-  [ { "title"            : "Mr."
-    , "confirmEmail"     : "Userfirst.Userlast[{\b\f\r\n\\\t}].190723.193303.158960@example.com"
-    , "administeringFor" : "Employees"
-    , "fax"              : 2385550130
-    , "extension"        : "User Ext [{\b\f\r\n\\\t}]"
-    , "mobile"           : 3245550189
-    , "email"            : "Userfirst.Userlast[{\b\f\r\n\\\t}].190723.193303.158960@example.com"
-    , "jobTitle"         : "User Job Title [{\b\f\r\n\\\t}]"
-    , "lastName"         : "User last [{\b\f\r\n\\\t}]"
-    , "initial"          : "R"
-    , "firstName"        : "User first [{\b\f\r\n\\\t}]"
-    }
-  ]
-, "groupNumbersPage" :
-  [ { "groupNum"   : 3183619
-    , "thirdParty" : true
-    }
-  ]
-}
+  , "accessAdminsPage" :
+    [ { "title"            : "Mr."
+      , "confirmEmail"     : "Ursinus.190725.194315.364546@example.com"
+      , "administeringFor" : "Employees"
+      , "fax"              : 9835550152
+      , "extension"        : "3832"
+      , "mobile"           : 2615550162
+      , "email"            : "Ursinus.190725.194315.364546@example.com"
+      , "jobTitle"         : "Job Title"
+      , "lastName"         : "Vitus"
+      , "initial"          : "U"
+      , "firstName"        : "Caelestinus"
+      }
+    ]
+  , "usersPage" :
+    [ { "title"            : "Mr."
+      , "confirmEmail"     : "Bonifatius.190725.194315.507577@example.com"
+      , "administeringFor" : "Employees"
+      , "fax"              : 5155550103
+      , "extension"        : "1175"
+      , "mobile"           : 8015550169
+      , "email"            : "Bonifatius.190725.194315.507577@example.com"
+      , "jobTitle"         : "Job Title"
+      , "lastName"         : "Diocletianus"
+      , "initial"          : "L"
+      , "firstName"        : "Dorotheus"
+      }
+    ]
+  , "groupNumbersPage" :
+    [ { "groupNum"   : 9810628
+      , "thirdParty" : true
+      }
+    ]
+  }
