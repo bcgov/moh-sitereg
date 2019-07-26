@@ -5,7 +5,7 @@ import {
 } from '../shared/access-admin-shared';
 
 import {
-  validMultiFormControl, formControlValidity
+  validMultiFormControl, formControlValidity, matchFieldValidator
 } from '../../../common/update-validators';
 import { IDataForm, RandomObjects } from '../../../common/i-dataform';
 
@@ -59,8 +59,10 @@ export class MspDirectUpdateAccessAdministratorAddComponent implements OnInit, I
       initial: [null, cUpdateAccessAdminValidator.add.initial],
       lastName: [null, cUpdateAccessAdminValidator.add.lastName],
       jobTitle: [null, cUpdateAccessAdminValidator.add.jobTitle],
-      emailAddress: [null, cUpdateAccessAdminValidator.add.emailAddress],
-      confirmEmail: [null, cUpdateAccessAdminValidator.add.confirmEmail],
+      formGroupEmail: this.fb.group({
+        emailAddress: [null, cUpdateAccessAdminValidator.add.emailAddress],
+        confirmEmail: [null, cUpdateAccessAdminValidator.add.confirmEmail],
+      }, { validator: matchFieldValidator('confirmEmail', 'emailAddress') }),
       phone: [null, cUpdateAccessAdminValidator.add.phone],
       ext: [null, cUpdateAccessAdminValidator.add.ext],
       fax: [null, cUpdateAccessAdminValidator.add.fax],
@@ -92,7 +94,7 @@ export class MspDirectUpdateAccessAdministratorAddComponent implements OnInit, I
   }
 
   patchValue(formGroup) {
-    if(!environment.useDummyData) return;
+    if (!environment.useDummyData) return;
     formGroup.patchValue(RandomObjects.getUser02((this.getFormsCount + 1).toString() + 'AA'));
   }
 
