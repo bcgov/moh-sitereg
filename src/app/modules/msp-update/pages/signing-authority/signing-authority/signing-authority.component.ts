@@ -16,7 +16,7 @@ import { MspDirectUpdateSigningAuthorityEditComponent } from '../signing-authori
     templateUrl: './signing-authority.component.html',
     styleUrls: ['./signing-authority.component.scss'],
 })
-export class MspDirectUpdateSigningAuthorityComponent implements OnInit{
+export class MspDirectUpdateSigningAuthorityComponent implements OnInit {
 
     public validFormControl: (fg: FormGroup, name: string) => boolean;
     public showAddSigningAuthority = false;
@@ -62,6 +62,7 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit{
     ngOnInit() {
         // // console.log(`%c%o : %o`, 'color:green', this.componentInfo);
         this.progressService.setPageIncomplete();
+        this.updateButtonStates();
     }
 
     continue() {
@@ -102,6 +103,20 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit{
         this.updateStateService.forms.signingAuthority.update = null;
     }
 
+    updateButtonStates() {
+
+        const form = this.updateStateService.forms.signingAuthority;
+
+        const formsRemove = form.remove ? form.remove.get('arrayOfForms') as FormArray | null : null;
+        this.showRemoveSigningAuthority = formsRemove && formsRemove.controls.length > 0 ? true : false;
+
+        const formsAdd = form.add ? form.add.get('arrayOfForms') as FormArray | null : null;
+        this.showAddSigningAuthority = formsAdd && formsAdd.controls.length > 0 ? true : false;
+
+        const formsEdit = form.update ? form.update.get('arrayOfForms') as FormArray | null : null;
+        this.showUpdateSigningAuthority = formsEdit && formsEdit.controls.length > 0 ? true : false;
+
+    }
 
     //#region Edit
 
@@ -115,7 +130,7 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit{
 
     formEditStateChanged(formGroups: any) {
         this.updateStateService.forms.signingAuthority.update = formGroups;
-        this.showUpdateSigningAuthority = this.formEdit.getFormsCount > 0 ? true : false;
+        this.updateButtonStates();
     }
 
     formEditNew() {
@@ -136,7 +151,7 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit{
 
     formAddStateChanged(formGroups: any) {
         this.updateStateService.forms.signingAuthority.add = formGroups;
-        this.showAddSigningAuthority = this.formAdd.getFormsCount > 0 ? true : false;
+        this.updateButtonStates();
     }
 
     formAddNew() {
@@ -158,7 +173,7 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit{
 
     formRemoveStateChanged(formGroups: any) {
         this.updateStateService.forms.signingAuthority.remove = formGroups;
-        this.showRemoveSigningAuthority = this.formRemove.getFormsCount > 0 ? true : false;
+        this.updateButtonStates();
     }
 
     formRemoveNew() {
@@ -166,7 +181,4 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit{
     }
 
     //#endregion
-
-
-
 }

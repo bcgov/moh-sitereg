@@ -129,8 +129,10 @@ export class RandomObjects {
             initial: 'I',
             lastName: prefix + 'LastName',
             jobTitle: prefix + 'JobTitle',
-            emailAddress: prefix + 'user@users.com',
-            confirmEmail: prefix + 'user@users.com',
+            formGroupEmail : {
+                emailAddress: prefix + 'user@users.com',
+                confirmEmail: prefix + 'user@users.com',
+            },
             phone: '1000000000',
             ext: '333',
             fax: '1000000000',
