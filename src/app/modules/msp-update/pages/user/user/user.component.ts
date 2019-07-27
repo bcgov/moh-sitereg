@@ -6,7 +6,7 @@ import { funcRemoveStrings } from '@msp-register/constants';
 import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
-import { UpdateStateService } from '../../../services/update.state.service';
+import { UpdateStateService, FormStatusAddRemoveUpdate } from '../../../services/update.state.service';
 import { MspDirectUpdateUserRemoveComponent } from '../user-remove/user-remove.component';
 import { MspDirectUpdateUserAddComponent } from '../user-add/user-add.component';
 import { MspDirectUpdateUserEditComponent } from '../user-edit/user-edit.component';
@@ -23,6 +23,7 @@ export class MspDirectUpdateUserComponent implements OnInit{
     public showAddUser = false;
     public showRemoveUser = false;
     public showUpdateUser = false;
+    public isFormHasData: FormStatusAddRemoveUpdate;
 
     private get isUpdate(): boolean {
         return !(this.showAddUser === false &&
@@ -31,7 +32,7 @@ export class MspDirectUpdateUserComponent implements OnInit{
     }
 
     get buttonLabel(): string {
-        return this.isUpdate ? 'Continue' : 'Skip';
+        return this.isUpdate || this.isFormHasData.hasData ? 'Continue' : 'Skip';
     }
 
     canContinue() {
@@ -63,6 +64,9 @@ export class MspDirectUpdateUserComponent implements OnInit{
     ngOnInit() {
         // console.log(`%c%o : %o`, 'color:green', this.componentInfo);
         this.progressService.setPageIncomplete();
+        this.updateStateService.formsStatusChanges$.subscribe(x =>
+            this.isFormHasData = x.mspUsers
+        );
     }
 
     continue() {
@@ -116,7 +120,7 @@ export class MspDirectUpdateUserComponent implements OnInit{
 
     formEditStateChanged(formGroups: any) {
         this.updateStateService.forms.mspUsers.update = formGroups;
-        this.showUpdateUser = this.formEdit.getFormsCount > 0 ? true : false;
+        this.updateStateService.formStatusChanged();
     }
 
     formEditNew() {
@@ -137,7 +141,7 @@ export class MspDirectUpdateUserComponent implements OnInit{
 
     formAddStateChanged(formGroups: any) {
         this.updateStateService.forms.mspUsers.add = formGroups;
-        this.showAddUser = this.formAdd.getFormsCount > 0 ? true : false;
+        this.updateStateService.formStatusChanged();
     }
 
     formAddNew() {
@@ -159,7 +163,7 @@ export class MspDirectUpdateUserComponent implements OnInit{
 
     formRemoveStateChanged(formGroups: any) {
         this.updateStateService.forms.mspUsers.remove = formGroups;
-        this.showRemoveUser = this.formRemove.getFormsCount > 0 ? true : false;
+        this.updateStateService.formStatusChanged();
     }
 
     formRemoveNew() {

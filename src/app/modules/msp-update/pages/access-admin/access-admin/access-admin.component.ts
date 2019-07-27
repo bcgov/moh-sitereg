@@ -6,7 +6,7 @@ import { funcRemoveStrings } from '@msp-register/constants';
 import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
-import { UpdateStateService } from '../../../services/update.state.service';
+import { UpdateStateService, FormStatusAddRemoveUpdate } from '../../../services/update.state.service';
 import { MspDirectUpdateAccessAdministratorRemoveComponent } from '../access-admin-remove/access-admin-remove.component';
 import { MspDirectUpdateAccessAdministratorAddComponent } from '../access-admin-add/access-admin-add.component';
 import { MspDirectUpdateAccessAdministratorEditComponent } from '../access-admin-edit/access-admin-edit.component';
@@ -18,11 +18,11 @@ import { MspDirectUpdateAccessAdministratorEditComponent } from '../access-admin
 })
 export class MspDirectUpdateAccessAdministratorComponent implements OnInit{
 
-
     public validFormControl: (fg: FormGroup, name: string) => boolean;
     public showAddAccessAdmin = false;
     public showRemoveAccessAdmin = false;
     public showUpdateAccessAdmin = false;
+    public isFormHasData: FormStatusAddRemoveUpdate;
 
     private get isUpdate(): boolean {
         return !(this.showAddAccessAdmin === false &&
@@ -31,7 +31,7 @@ export class MspDirectUpdateAccessAdministratorComponent implements OnInit{
     }
 
     get buttonLabel(): string {
-        return this.isUpdate ? 'Continue' : 'Skip';
+        return this.isUpdate || this.isFormHasData.hasData ? 'Continue' : 'Skip';
     }
 
     canContinue() {
@@ -63,6 +63,9 @@ export class MspDirectUpdateAccessAdministratorComponent implements OnInit{
     ngOnInit() {
         // console.log(`%c%o : %o`, 'color:green', this.componentInfo);
         this.progressService.setPageIncomplete();
+        this.updateStateService.formsStatusChanges$.subscribe(x =>
+            this.isFormHasData = x.mspAccessAdministrators
+        );
     }
 
     continue() {
@@ -116,7 +119,7 @@ export class MspDirectUpdateAccessAdministratorComponent implements OnInit{
 
     formEditStateChanged(formGroups: any) {
         this.updateStateService.forms.mspAccessAdministrators.update = formGroups;
-        this.showUpdateAccessAdmin = this.formEdit.getFormsCount > 0 ? true : false;
+        this.updateStateService.formStatusChanged();
     }
 
     formEditNew() {
@@ -137,7 +140,7 @@ export class MspDirectUpdateAccessAdministratorComponent implements OnInit{
 
     formAddStateChanged(formGroups: any) {
         this.updateStateService.forms.mspAccessAdministrators.add = formGroups;
-        this.showAddAccessAdmin = this.formAdd.getFormsCount > 0 ? true : false;
+        this.updateStateService.formStatusChanged();
     }
 
     formAddNew() {
@@ -159,7 +162,7 @@ export class MspDirectUpdateAccessAdministratorComponent implements OnInit{
 
     formRemoveStateChanged(formGroups: any) {
         this.updateStateService.forms.mspAccessAdministrators.remove = formGroups;
-        this.showRemoveAccessAdmin = this.formRemove.getFormsCount > 0 ? true : false;
+        this.updateStateService.formStatusChanged();
     }
 
     formRemoveNew() {

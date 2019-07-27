@@ -6,7 +6,7 @@ import { funcRemoveStrings } from '@msp-register/constants';
 import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
-import { UpdateStateService } from '../../../services/update.state.service';
+import { UpdateStateService, FormStatusAddRemoveUpdate } from '../../../services/update.state.service';
 import { MspDirectUpdateSigningAuthorityRemoveComponent } from '../signing-authority-remove/signing-authority-remove.component';
 import { MspDirectUpdateSigningAuthorityAddComponent } from '../signing-authority-add/signing-authority-add.component';
 import { MspDirectUpdateSigningAuthorityEditComponent } from '../signing-authority-edit/signing-authority-edit.component';
@@ -22,6 +22,7 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit {
     public showAddSigningAuthority = false;
     public showRemoveSigningAuthority = false;
     public showUpdateSigningAuthority = false;
+    public isFormHasData: FormStatusAddRemoveUpdate;
 
     private get isUpdate(): boolean {
         return !(this.showAddSigningAuthority === false &&
@@ -30,7 +31,7 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit {
     }
 
     get buttonLabel(): string {
-        return this.isUpdate ? 'Continue' : 'Skip';
+        return this.isUpdate || this.isFormHasData.hasData ? 'Continue' : 'Skip';
     }
 
     canContinue() {
@@ -63,6 +64,9 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit {
         // // console.log(`%c%o : %o`, 'color:green', this.componentInfo);
         this.progressService.setPageIncomplete();
         this.updateButtonStates();
+        this.updateStateService.formsStatusChanges$.subscribe(x =>
+            this.isFormHasData = x.signingAuthority
+        );
     }
 
     continue() {
@@ -130,6 +134,7 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit {
 
     formEditStateChanged(formGroups: any) {
         this.updateStateService.forms.signingAuthority.update = formGroups;
+        this.updateStateService.formStatusChanged();
         this.updateButtonStates();
     }
 
@@ -151,6 +156,7 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit {
 
     formAddStateChanged(formGroups: any) {
         this.updateStateService.forms.signingAuthority.add = formGroups;
+        this.updateStateService.formStatusChanged();
         this.updateButtonStates();
     }
 
@@ -173,6 +179,7 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit {
 
     formRemoveStateChanged(formGroups: any) {
         this.updateStateService.forms.signingAuthority.remove = formGroups;
+        this.updateStateService.formStatusChanged();
         this.updateButtonStates();
     }
 
