@@ -92,9 +92,9 @@ export class UpdateStateService {
       requestorForm: this.forms.requestorForm ? true : false,
       organizationForm: this.forms.organizationForm ? true : false,
       signingAuthority: this.getFormStatus(this.forms.signingAuthority),
-      mspAccessAdministrators: this.getFormStatus(this.forms.signingAuthority),
-      mspUsers: this.getFormStatus(this.forms.signingAuthority),
-      mspGroups: this.getFormStatus(this.forms.signingAuthority)
+      mspAccessAdministrators: this.getFormStatus(this.forms.mspAccessAdministrators),
+      mspUsers: this.getFormStatus(this.forms.mspUsers),
+      mspGroups: this.getFormStatus(this.forms.mspGroups)
     };
     this.formsStatus.next(formStatus);
   }
