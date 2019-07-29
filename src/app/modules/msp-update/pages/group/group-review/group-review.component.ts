@@ -37,20 +37,24 @@ export class MspDirectUpdateGroupReviewComponent implements OnInit {
     review.redirectPath = ROUTES_UPDATE.GROUP_NUMBERS.fullpath;
     review.header = ROUTES_UPDATE.GROUP_NUMBERS.title;
     const form = this.updateStateService.forms.mspGroups;
+    if (!form) return;
     let infoObjects = null;
 
     if (action === common.actionType.Add) {
       review.header += ' (Add)';
+      if(!form.add) return;
       infoObjects = interfaceObjects.getIGroup(form.add.value);
     }
 
     if (action === common.actionType.Edit) {
       review.header += ' (Update)';
+      if(!form.update) return;
       infoObjects = interfaceObjects.getIGroup(form.update.value);
     }
 
     if (action === common.actionType.Remove) {
       review.header += ' (Remove)';
+      if(!form.remove) return;
       infoObjects = interfaceObjects.getIGroup(form.remove.value);
     }
 

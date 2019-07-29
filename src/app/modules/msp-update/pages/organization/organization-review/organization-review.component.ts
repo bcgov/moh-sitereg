@@ -29,6 +29,7 @@ export class MspDirectUpdateOrganizationReviewComponent implements OnInit {
     this.review.header = ROUTES_UPDATE.ORGANIZATION.title;
 
     const form = this.updateStateService.forms.organizationForm;
+    if(!form) return;
     const infoObject: interfaceObjects.IOrganizationEdit = interfaceObjects.getIOrganizationEdit(form.value);
     if (!infoObject) return;
     const items = [[
