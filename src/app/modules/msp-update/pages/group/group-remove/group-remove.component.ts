@@ -51,7 +51,6 @@ export class MspDirectUpdateGroupRemoveComponent implements OnInit, IDataForm {
   }
 
   private removeForm(index: number) {
-    // console.log('Deleteing Form at ' + index);
     this.getFormsArray.removeAt(index);
     this.formArrayChanged.emit(this.parentForm);
   }
@@ -74,7 +73,8 @@ export class MspDirectUpdateGroupRemoveComponent implements OnInit, IDataForm {
 
 
   patchValue(formGroup) {
-    if(!environment.debug) return;
+    if (!environment.useDummyData) return;
+    console.log(`patchvalue REMOVE organization Form: %o`, RandomObjects.getGroup((this.getFormsCount + 1).toString()));
     formGroup.patchValue(RandomObjects.getGroup((this.getFormsCount + 1).toString()));
   }
 

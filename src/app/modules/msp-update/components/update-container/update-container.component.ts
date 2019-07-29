@@ -48,7 +48,7 @@ export class MspDirectUpdateComponent extends Container implements OnInit {
             funcRemoveStrings(['Component'], this.constructor.name),
             this.globalConfigSvc.applicationId
         );
-        console.log('ANSWER:%o', this.showStepper());
+        // console.log('ANSWER:%o', this.showStepper());
     }
 
     setProgressItems() {
@@ -64,6 +64,6 @@ export class MspDirectUpdateComponent extends Container implements OnInit {
         });
 
         this.setProgressSteps(progressItemRoute);
-        console.log('PATH: %o', this.router.url);
+        // console.log('PATH: %o', this.router.url);
     }
 }
