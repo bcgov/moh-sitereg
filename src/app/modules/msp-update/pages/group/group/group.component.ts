@@ -18,9 +18,9 @@ import { MspDirectUpdateGroupEditComponent } from '../group-edit/group-edit.comp
 })
 export class MspDirectUpdateGroupComponent implements OnInit {
 
-  public showAddGrp = false;
-  public showRemoveGrp = false;
-  public showEditGrp = false;
+  // public showAddGrp = false;
+  // public showRemoveGrp = false;
+  // public showEditGrp = false;
   public isFormHasData: FormStatusAddRemoveUpdate;
 
   constructor( private router: Router,
@@ -35,9 +35,9 @@ export class MspDirectUpdateGroupComponent implements OnInit {
   ngOnInit() {
     this.progressService.setPageIncomplete();
 
-    this.showAddGrp = this.formAddState ? true : false;
-    this.showRemoveGrp = this.formRemoveState ? true : false;
-    this.showEditGrp = this.formEditState ? true : false;
+    // this.showAddGrp = this.formAddState ? true : false;
+    // this.showRemoveGrp = this.formRemoveState ? true : false;
+    // this.showEditGrp = this.formEditState ? true : false;
 
     this.updateStateService.formsStatusChanges$.subscribe(x =>
       this.isFormHasData = x.mspGroups
@@ -46,7 +46,8 @@ export class MspDirectUpdateGroupComponent implements OnInit {
   }
 
   get buttonLabel() {
-    return this.isUpdate || this.isFormHasData.hasData ? 'Continue' : 'Skip';
+    // return this.isUpdate || this.isFormHasData.hasData ? 'Continue' : 'Skip';
+    return this.isFormHasData.hasData ? 'Continue' : 'Skip';
   }
 
   // Form action bar functions
@@ -71,9 +72,10 @@ export class MspDirectUpdateGroupComponent implements OnInit {
   }
 
   private get isUpdate(): boolean {
-    return !( this.showAddGrp === false &&
-              this.showRemoveGrp === false &&
-              this.showEditGrp === false );
+    return this.isFormHasData.hasData;
+    // return !( this.showAddGrp === false &&
+    //           this.showRemoveGrp === false &&
+    //           this.showEditGrp === false );
   }
 
 
@@ -90,7 +92,7 @@ export class MspDirectUpdateGroupComponent implements OnInit {
     formRemoveStateChanged(formGroups: any) {
         this.updateStateService.forms.mspGroups.remove = formGroups;
         this.updateStateService.formStatusChanged();
-        this.showRemoveGrp = this.formRemove.getFormsCount > 0 ? true : false;
+        // this.showRemoveGrp = this.formRemove.getFormsCount > 0 ? true : false;
     }
 
     formRemoveNew() {
@@ -112,7 +114,7 @@ export class MspDirectUpdateGroupComponent implements OnInit {
     formAddStateChanged(formGroups: any) {
         this.updateStateService.forms.mspGroups.add = formGroups;
         this.updateStateService.formStatusChanged();
-        this.showAddGrp = this.formAdd.getFormsCount > 0 ? true : false;
+        // this.showAddGrp = this.formAdd.getFormsCount > 0 ? true : false;
     }
 
     formAddNew() {
@@ -134,7 +136,7 @@ export class MspDirectUpdateGroupComponent implements OnInit {
     formEditStateChanged(formGroups: any) {
         this.updateStateService.forms.mspGroups.update = formGroups;
         this.updateStateService.formStatusChanged();
-        this.showEditGrp = this.formEdit.getFormsCount > 0 ? true : false;
+        // this.showEditGrp = this.formEdit.getFormsCount > 0 ? true : false;
     }
 
     formEditNew() {

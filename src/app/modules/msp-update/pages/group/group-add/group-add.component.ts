@@ -18,7 +18,7 @@ export class MspDirectUpdateGroupAddComponent implements OnInit, IDataForm {
   @Output() formArrayChanged: EventEmitter<FormGroup | FormArray | null> = new EventEmitter<FormGroup | null>();
   parentForm: FormGroup;
   validFormControl: (fg: FormGroup, name: string) => boolean;
-  radioBtnLabels = [{label: 'No', value: 'N'}, {label: 'Yes', value: 'Y'}];
+  radioBtnLabels = [{ label: 'No', value: 'N' }, { label: 'Yes', value: 'Y' }];
   json: (formValues: any) => any;
 
   constructor(private fb: FormBuilder) {
@@ -71,9 +71,9 @@ export class MspDirectUpdateGroupAddComponent implements OnInit, IDataForm {
     this.formArrayChanged.emit(this.parentForm);
   }
 
-  
+
   patchValue(formGroup) {
-    if(!environment.debug) return;
+    if (!environment.useDummyData) return;
     formGroup.patchValue(RandomObjects.getGroup((this.getFormsCount + 1).toString()));
   }
 

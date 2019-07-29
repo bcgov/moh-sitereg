@@ -1,7 +1,7 @@
 <common-page-framework layout='blank'>
   <h1 class="border-bottom">MSP Group Numbers</h1>
   <common-page-section layout='tips'>
-  <aside>MSP Group Numbers administered through MSP Direct on behalf of the Organization.</aside>  
+    <aside>MSP Group Numbers administered through MSP Direct on behalf of the Organization.</aside>
     <div class="row">
       <button type='button' class='btn btn-secondary col mr-4' (click)="formAddNew()">Add a new MSP Group</button>
       <button type='button' class='btn btn-secondary col mx-2' (click)="formRemoveNew()">Remove MSP Group</button>
@@ -12,22 +12,22 @@
 
   <common-page-section layout='noTips' class="pt-4">
 
-    <sitereg-update-group-add #formAdd [formState]="formRemoveState" (formArrayChanged)="formAddStateChanged($event)">
+    <sitereg-update-group-remove #formRemove [formState]="formRemoveState" (formArrayChanged)="formRemoveStateChanged($event)">
+    </sitereg-update-group-remove>
+
+  </common-page-section>
+
+  <common-page-section layout='noTips' class="pt-4">
+
+    <sitereg-update-group-add #formAdd [formState]="formAddState" (formArrayChanged)="formAddStateChanged($event)">
     </sitereg-update-group-add>
 
   </common-page-section>
 
   <common-page-section layout='noTips' class="pt-4">
 
-    <sitereg-update-group-remove #formRemove [formState]="formRemoveState"
-      (formArrayChanged)="formRemoveStateChanged($event)"></sitereg-update-group-remove>
-
-  </common-page-section>
-
-  <common-page-section layout='noTips' class="pt-4">
-
-    <sitereg-update-group-edit #formRemove [formState]="formEditState"
-      (formArrayChanged)="formEditStateChanged($event)"></sitereg-update-group-edit>
+    <sitereg-update-group-edit #formEdit [formState]="formEditState" (formArrayChanged)="formEditStateChanged($event)">
+    </sitereg-update-group-edit>
 
   </common-page-section>
 

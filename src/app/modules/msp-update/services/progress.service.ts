@@ -46,7 +46,7 @@ export class MspDirectUpdateProgressService extends CheckCompleteBaseService {
               isComplete: false,
           };
       });
-      console.log(`%c %o`, 'color:green', this.pageCheckList);
+      // console.log(`%c %o`, 'color:green', this.pageCheckList);
     }
 
     /**

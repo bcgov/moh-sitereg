@@ -73,7 +73,7 @@ export class MspDirectUpdateGroupEditComponent implements OnInit, IDataForm {
   }
 
   patchValue(formGroup) {
-    if (!environment.debug) return;
+    if (!environment.useDummyData) return;
     formGroup.patchValue(RandomObjects.getGroup((this.getFormsCount + 1).toString()));
   }
 }
