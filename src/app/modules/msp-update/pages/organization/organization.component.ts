@@ -58,6 +58,9 @@ export class MspDirectUpdateOrganizationComponent extends AbstractForm implement
 
     orgUpdatesChange(bool: boolean) {
         this.hasOrganizationUpdates = bool;
+        if (bool === false) {
+            this.updateStateService.forms.organizationForm = null;
+        }
     }
 
     organizationFormStatusChanged(form: FormGroup | null) {
