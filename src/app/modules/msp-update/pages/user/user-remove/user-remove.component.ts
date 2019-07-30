@@ -79,7 +79,7 @@ export class MspDirectUpdateUserRemoveComponent implements OnInit, IDataForm {
 
   
   patchValue(formGroup) {
-    if(!environment.debug) return;
+    if(!environment.useDummyData) return;
     formGroup.patchValue(RandomObjects.getRemoveUser((this.getFormsCount + 1).toString() + 'USR'));
   }
 
