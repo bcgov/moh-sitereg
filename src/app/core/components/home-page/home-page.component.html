@@ -8,7 +8,7 @@
       </a>
     </div>
   </div>
-  <div class='row mb-4' *ngIf="!(disableUpdateForm)">
+  <div class='row mb-4' *ngIf="!(disableUpdateForm | async)">
     <div class='col-12 col-sm-6 col-lg-8 p-4'>
       <a (click)='update()'>
         <button class="btn btn-block btn-lg btn-secondary">
