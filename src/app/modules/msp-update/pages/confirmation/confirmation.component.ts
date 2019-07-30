@@ -15,7 +15,7 @@ export class MspDirectUpdateConfirmationComponent implements OnInit {
     status = false;
     showDetail = false;
     isTechnicalInfoAvaialble = false;
-    debugMode = false;
+    private debug = false;
     today: number = Date.now();
     constructor(
         private router: Router,
@@ -23,10 +23,10 @@ export class MspDirectUpdateConfirmationComponent implements OnInit {
         public loggerSvc: LoggerService,
         public updateStateService: UpdateStateService,
     ) {
-        // this.debugonly();
-        this.debugMode = this.globalConfigSvc.debug;
+        // // this.debugonly();
+        // this.debugMode = this.globalConfigSvc.debug;
         // this.mockSuccess();
-        this.debugMode = environment.debug;
+        this.debug = environment.debug;
     }
 
     ngOnInit() {

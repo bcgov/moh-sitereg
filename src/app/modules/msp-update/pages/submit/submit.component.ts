@@ -29,6 +29,7 @@ export class MspDirectUpdateSubmitComponent implements OnInit {
     showCaptcha = false;
     validCaptch = false;
     isProcessing = false;
+    private debug = false;
 
     get componentInfo(): string {
         return (
@@ -52,6 +53,7 @@ export class MspDirectUpdateSubmitComponent implements OnInit {
         this.captchaApiBaseUrl = environment.captchaApiBaseUrl;
         this.requestUUID = this.nonce = this.globalConfigSvc.applicationId;
         this.updateStateService.applicationId = this.requestUUID;
+        this.debug = environment.debug;
 
         // console.log(
         //     '%c %o %o %o',
@@ -109,7 +111,7 @@ export class MspDirectUpdateSubmitComponent implements OnInit {
 
 
     submit() {
-        console.clear();
+        // console.clear();
         this.isProcessing = true;
         // // splunk-log
         // this.loggerSvc.logNavigation(

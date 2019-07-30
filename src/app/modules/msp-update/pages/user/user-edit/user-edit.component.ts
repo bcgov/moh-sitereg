@@ -119,7 +119,7 @@ export class MspDirectUpdateUserEditComponent implements OnInit, IDataForm {
 
 
   patchValue(formGroup) {
-    if (!environment.debug) return;
+    if (!environment.useDummyData) return;
     formGroup.patchValue(RandomObjects.getUser((this.getFormsCount + 1).toString() + 'USR'));
   }
 }

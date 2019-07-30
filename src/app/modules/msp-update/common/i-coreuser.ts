@@ -39,8 +39,13 @@ export function getICoreUser(formValues): ICoreUser[] {
         if (isValidOptionalField(form.initial)) iObj.initial = form.initial;
         if (isValidOptionalField(form.lastName)) iObj.lastName = form.lastName;
         if (isValidOptionalField(form.jobTitle)) iObj.jobTitle = form.jobTitle;
-        if (isValidOptionalField(form.emailAddress)) iObj.emailAddress = form.emailAddress;
-        if (isValidOptionalField(form.confirmEmail)) iObj.confirmEmail = form.confirmEmail;
+        if (form.formGroupEmail) {
+            if (isValidOptionalField(form.formGroupEmail.emailAddress)) iObj.emailAddress = form.formGroupEmail.emailAddress;
+            if (isValidOptionalField(form.formGroupEmail.confirmEmail)) iObj.confirmEmail = form.formGroupEmail.confirmEmail;
+        } else {
+            if (isValidOptionalField(form.emailAddress)) iObj.emailAddress = form.emailAddress;
+            if (isValidOptionalField(form.confirmEmail)) iObj.confirmEmail = form.confirmEmail;
+        }
         if (isValidOptionalField(form.phone)) iObj.phone = form.phone;
         if (isValidOptionalField(form.ext)) iObj.ext = form.ext;
         if (isValidOptionalField(form.fax)) iObj.fax = form.fax;

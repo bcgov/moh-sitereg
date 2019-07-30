@@ -25,11 +25,15 @@ export function getAddJsonOfMspUser(formValues) {
 
 export function getAddJSONofMspUser(formValue) {
     if (!formValue) return;
+
+    // console.log(`getAddJSONofMspUser %o`, formValue);
     const formValuesArray = getIUser(formValue);
 
+    // console.log(`formValuesArray %o`, formValuesArray);
     const jsonArray: any[] = [];
     formValuesArray.forEach(formValues => {
 
+        // console.log(`form Value Array %o`, formValues);
         let json = jsonUserMaps.mapJsonCoreUser(actionType.Add, formValues);
         delete json.confirm_email;
         
@@ -59,16 +63,16 @@ export function getEditJsonOfMspUser(formValues) {
 export function getEditJSONofMspUser(formValue) {
 
     if (!formValue) return;
-    console.log(formValue);
+    // console.log(formValue);
     const formValuesArray = getIUser(formValue);
-    console.log(formValuesArray);
+    // console.log(formValuesArray);
     const jsonArray: any[] = [];
     formValuesArray.forEach(formValues => {
-        console.log(formValues);
+        // console.log(formValues);
         let json = jsonUserMaps.mapJsonCoreUser(actionType.Edit, formValues);
         // delete json.confirm_email;
         json = deepCopy(json, 'user_');
-        console.log(json);
+        // console.log(json);
 
         jsonArray.push(json);
     });
