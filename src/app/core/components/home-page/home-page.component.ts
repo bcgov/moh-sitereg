@@ -14,8 +14,8 @@ export class HomePageComponent implements OnInit {
     public showUnderConstruction = false;
     public underConstructionMessage = '';
     // disableUpdateForm = true;
-    private _disableUpdateForm: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-    public disableUpdateForm: Observable<boolean> = this._disableUpdateForm.asObservable();
+    private _showUpdateForm: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+    public showUpdateForm: Observable<boolean> = this._showUpdateForm.asObservable();
 
     constructor(
         private router: Router,
@@ -27,9 +27,9 @@ export class HomePageComponent implements OnInit {
         this.splash.values.subscribe((splashVals) => {
             console.log(`Splash Values: %o`, splashVals);
             if (splashVals) {
-                const result = splashVals.SPA_ENV_SITEREG_DISABLE_FORM2;
-                console.log(`disableUpdateForm: %o`, result);
-                this._disableUpdateForm.next(result);
+                const show = typeof splashVals.SPA_ENV_SITEREG_DISABLE_FORM2 === 'string'
+                    && splashVals.SPA_ENV_SITEREG_DISABLE_FORM2 === 'false' ? true : false;
+                this._showUpdateForm.next(show);
             }
         });
     }
