@@ -13,7 +13,6 @@ import { Observable, BehaviorSubject, interval, timer } from 'rxjs';
 export class HomePageComponent implements OnInit {
     public showUnderConstruction = false;
     public underConstructionMessage = '';
-    // disableUpdateForm = true;
     private _showUpdateForm: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
     public showUpdateForm: Observable<boolean> = this._showUpdateForm.asObservable();
 
