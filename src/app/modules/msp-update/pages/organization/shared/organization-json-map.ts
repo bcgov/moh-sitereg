@@ -28,9 +28,9 @@ export function getEditJSONofOrganization(formValue) {
 
     if (!formValue) return;
     const formValues = getIOrganizationEdit(formValue);
-    const json: jsonInterfaces.ji_org_maintenance_def = {
+    const json: jsonInterfaces.ji_org_maintenance_def = {};
 
-    };
+    if (isValidOptionalField(formValues.organizationName)) json.org_name = formValues.organizationName;
 
     // in stabilization organization
     // all address fields should be enforced if any value provided
