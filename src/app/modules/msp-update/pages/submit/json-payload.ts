@@ -11,7 +11,7 @@ import * as appSA from '../signing-authority/shared/signing-authority-json-map';
 import * as appAA from '../access-admin/shared/access-admin-json-map';
 import * as appUser from '../user/shared/user-shared-json-map';
 import * as appGroup from '../group/shared/group-shared-json-map';
-import { isValidOptionalField } from '../../common/update-json-map';
+import { isValidOptionalField, trimObjectAllProperties } from '../../common/update-json-map';
 
 
 export function jsonPayLoadApplication(stateService: UpdateStateService) {
@@ -191,7 +191,10 @@ export function jsonPayLoadApplication(stateService: UpdateStateService) {
     //     msp_group_updated: groupsRemove,
     // };
 
-    return jsonPayLoad;
+    const trimmedObject = trimObjectAllProperties(jsonPayLoad);
+    console.log(trimmedObject);
+    // return jsonPayLoad;
+    return trimmedObject;
 }
 
 //#region Defination Maps
