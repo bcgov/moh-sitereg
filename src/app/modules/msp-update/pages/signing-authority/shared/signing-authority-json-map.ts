@@ -39,13 +39,10 @@ export function getAddJSONofSigningAuthority(formValue) {
     formValuesArray.forEach(formValues => {
 
         let json = jsonUserMaps.mapJsonCoreUser(actionType.Add, formValues);
-        // const isAdmin = formValues.isAdmin && formValues.isAdmin === true ? true : false;
-        // json.is_admin = isAdmin;
-        // json.msp_access = isAdmin === true ? 'Y' : 'N'; // spg become required in Yes case - that must have value administeringFor(spg)
-
+      
         delete json.confirm_email;
         delete json.change_role;
-        // json.msp_access = 'Y';
+        json.msp_access = json.spg ? 'Y' : 'N';
         json = deepCopy(json, 'sa_');
 
         jsonObject = json;
@@ -98,16 +95,9 @@ export function getEditJSONofSigningAuthority(formValue) {
 
         delete json.change_role;
         delete json.confirm_email;
-        // const isAdmin = formValues.isAdmin && formValues.isAdmin === true ? true : false;
-        // json.is_admin = isAdmin;
-        // if (isAdmin === false) json.msp_access = 'N'; // there should not be spg property.
-        // const isAdmin = formValues.isAdmin && formValues.isAdmin === true ? true : false;
-        // json.is_admin = isAdmin;
-        // // if not admin msp_access is N and spg become optional remove spg
-        // if (isAdmin === false) json.msp_access = 'N'; // there should not be spg property.
+        json.msp_access = json.spg ? 'Y' : 'N';
         json = deepCopy(json, 'sa_');
         jsonObject = json;
-        // jsonArray.push(json);
     });
 
     return jsonObject;
@@ -133,7 +123,7 @@ export function getRemoveJSONofSigningAuthority(formValue) {
 
         const json = jsonUserMaps.mapJsonCoreUser(actionType.Remove, formValues);
         jsonObject = json;
-       // jsonArray.push(json);
+        // jsonArray.push(json);
     });
 
     // return jsonArray;
