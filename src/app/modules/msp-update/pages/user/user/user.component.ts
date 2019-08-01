@@ -16,7 +16,7 @@ import { MspDirectUpdateUserEditComponent } from '../user-edit/user-edit.compone
     templateUrl: './user.component.html',
     styleUrls: ['./user.component.scss'],
 })
-export class MspDirectUpdateUserComponent implements OnInit{
+export class MspDirectUpdateUserComponent implements OnInit {
 
 
     public validFormControl: (fg: FormGroup, name: string) => boolean;
@@ -26,13 +26,11 @@ export class MspDirectUpdateUserComponent implements OnInit{
     public isFormHasData: FormStatusAddRemoveUpdate;
 
     private get isUpdate(): boolean {
-        return !(this.showAddUser === false &&
-            this.showRemoveUser === false &&
-            this.showUpdateUser === false);
+        return this.isFormHasData.hasData;
     }
 
     get buttonLabel(): string {
-        return this.isUpdate || this.isFormHasData.hasData ? 'Continue' : 'Skip';
+       return this.isFormHasData.hasData ? 'Continue' : 'Skip';
     }
 
     canContinue() {
