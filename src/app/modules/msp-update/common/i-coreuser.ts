@@ -83,7 +83,7 @@ export function getICoreUserReviewItems(infoObjects: ICoreUser[]) {
         if (isValidOptionalField(element.fax)) item.push({ label: 'Fax', value: element.fax });
         if (isValidOptionalField(element.administeringFor)) item.push({ label: 'Administering For', value: element.administeringFor });
         if (isValidOptionalField(element.changeAdministerFor)) item.push({ label: 'Change Administering For', value: element.changeAdministerFor });
-        if (isValidOptionalField(element.forIdentifyEmailAddress)) item.push({ label: 'Identifiy Email', value: element.forIdentifyEmailAddress });
+        if (isValidOptionalField(element.forIdentifyEmailAddress)) item.push({ label: 'Identify Email', value: element.forIdentifyEmailAddress });
         if (isValidOptionalField(element.forIdentifyMinistryUserId)) item.push({ label: 'Identify Ministry Id', value: element.forIdentifyMinistryUserId });
         if (isValidOptionalField(element.ministryUserId)) item.push({ label: 'Ministry Id', value: element.ministryUserId });
         items.push(item);
