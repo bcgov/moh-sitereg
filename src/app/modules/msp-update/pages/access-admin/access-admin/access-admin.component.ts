@@ -25,13 +25,11 @@ export class MspDirectUpdateAccessAdministratorComponent implements OnInit{
     public isFormHasData: FormStatusAddRemoveUpdate;
 
     private get isUpdate(): boolean {
-        return !(this.showAddAccessAdmin === false &&
-            this.showRemoveAccessAdmin === false &&
-            this.showUpdateAccessAdmin === false);
+        return this.isFormHasData.hasData;
     }
 
     get buttonLabel(): string {
-        return this.isUpdate || this.isFormHasData.hasData ? 'Continue' : 'Skip';
+        return this.isFormHasData.hasData ? 'Continue' : 'Skip';
     }
 
     canContinue() {
