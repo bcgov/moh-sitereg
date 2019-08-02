@@ -18,22 +18,28 @@ export class FakeDataDevUpdate {
 
     organizationInfo(): OrganizationPageTest {
         return {
+            anyUpdates: true,
             orgName: faker.company.companyName(),
             suiteNo: Math.random() > 0.5 ? faker.random.number(3) : undefined,
             streetNo: faker.random.number(100),
             streetName: faker.address.streetName(),
             streetAddressLine: Math.random() > 0.5 ? faker.address.streetAddress() : undefined,
             city: faker.address.city(),
-            postal: faker.address.zipCode('A1A1A1')
+            province: 'British Columbia',
+            postal: faker.address.zipCode('A1A1A1'),
+            administeringFor: 'Employees'
         };
     }
 
     signingAuthorityInfo(): SigningAuthorityPageTest {
         return {
+            title: 'Prof.',
             firstName: faker.name.firstName(),
+            initial: 'S',
             lastName: faker.name.lastName(),
             jobTitle: faker.name.jobTitle(),
-            email: faker.internet.email(),
+            email: 'user@example.com',
+            confirmEmail: 'user@example.com',
             mobile: faker.random.number({
                 min: 1000000000,
                 max: 9999999999
@@ -43,6 +49,8 @@ export class FakeDataDevUpdate {
                 min: 1000000000,
                 max: 9999999999
             }),
+            accessToMSP: true,
+            administeringFor: 'Employees'
         };
     }
 
@@ -85,23 +93,31 @@ export interface RequestorPageTest {
 }
 
 export interface OrganizationPageTest {
-  orgName: string;
-  suiteNo: number;
-  streetNo: number;
-  streetName: string;
-  streetAddressLine: string;
-  city: string;
-  postal: string;
+    anyUpdates: boolean;
+    orgName: string;
+    suiteNo: number;
+    streetNo: number;
+    streetName: string;
+    streetAddressLine: string;
+    city: string;
+    province: string;
+    postal: string;
+    administeringFor: string;
 }
 
 export interface SigningAuthorityPageTest {
+    title: string;
     firstName: string;
+    initial: string;
     lastName: string;
     jobTitle: string;
     email: string;
+    confirmEmail: string;
     mobile: number;
     extension: number;
     fax: number;
+    accessToMSP: boolean;
+    administeringFor: string;
 }
 
 export interface GroupNumbersPageTest {

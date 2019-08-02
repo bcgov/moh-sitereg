@@ -1,10 +1,17 @@
-import { AbstractTestPage } from 'moh-common-lib/e2e';
+
 import { browser, element, by, protractor } from 'protractor';
+import { AbstractTestPage } from 'moh-common-lib/e2e';
 
 export class BaseMSPTestPage extends AbstractTestPage {
 
     navigateTo() {
 
+    }
+
+    fillConsentModal(PAGE_URL: string){
+        this.navigateToURL(PAGE_URL);
+        this.agreeConsentModal();
+        this.clickConsentModalContinue();
     }
 
      // TODO: move to shared lib all the methods below

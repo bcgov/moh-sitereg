@@ -2,7 +2,6 @@ import { browser, by, element, WebElement, protractor, $$ } from 'protractor';
 import { AbstractTestPage } from 'moh-common-lib/e2e';
 import { OrganizationPageTest, SigningAuthorityPageTest, GroupNumbersPageTest, FakeDataSiteReg } from './sitereg.data';
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-var screenShotUtils = require("protractor-screenshot-utils").ProtractorScreenShotUtils;
 
 export class BaseSiteRegTestPage extends AbstractTestPage {
 

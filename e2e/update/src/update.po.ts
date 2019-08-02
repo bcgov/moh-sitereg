@@ -1,9 +1,13 @@
 import { browser, by, element, WebElement, protractor, $$ } from 'protractor';
-import { AbstractTestPage } from 'moh-common-lib/e2e';
-import { OrganizationPageTest, RequestorPageTest, SigningAuthorityPageTest } from './update.data';
+import { OrganizationPageTest, RequestorPageTest, SigningAuthorityPageTest, FakeDataDevUpdate } from './update.data';
 import { GroupNumbersPageTest } from 'e2e/registration/src/sitereg.data';
+import { BaseMSPTestPage } from '../../msp.po';
 
-export class BaseDevUpdateTestPage extends AbstractTestPage {
+export class BaseDevUpdateTestPage extends BaseMSPTestPage {
+
+    protected data = new FakeDataDevUpdate();
+    protected jsonData = this.data.getJSONData();
+    protected jsonParam = this.jsonData.e2eParam;
 
     navigateTo() {
         return browser.get('/sitereg/home/');
@@ -23,13 +27,15 @@ export class BaseDevUpdateTestPage extends AbstractTestPage {
 export class RequestorInfoPage extends BaseDevUpdateTestPage {
 
     navigateTo() {
-        return browser.get('/sitereg/update/identify');
+        return browser.get('/sitereg/update/requestor');
     }
 
-    fillPage(data: RequestorPageTest) {
+    fillPage(data?: RequestorPageTest) {
+        if (data === undefined) {
+            data = this.jsonData.requestorInfoPage;
+        }
         this.typeText('organizationNumber', data.orgNum + '');
         this.typeText('emailAddress', data.email);
-        this.continue();
     }
 
 }
@@ -40,11 +46,14 @@ export class OrganizationPage extends BaseDevUpdateTestPage {
         return browser.get('/sitereg/update/organization');
     }
 
-    fillPage(data: OrganizationPageTest) {
-        this.clickOption('true');
-        this.fillOrgInfo(data);
-        this.continue();
-
+    fillPage(data?: OrganizationPageTest) {
+        if (data === undefined) {
+            data = this.jsonData.organizationPage;
+        }
+        this.clickOption(data.anyUpdates.toString());
+        if (data.anyUpdates){
+            this.fillOrgInfo();
+        }
     }
 
     typeTextUsingPlaceHolder(placeholder: string, data: string) {
@@ -66,8 +75,11 @@ export class OrganizationPage extends BaseDevUpdateTestPage {
         return element(by.css(selector)).element(by.css('span[class="ng-value-label"]')).getText();
     }
 
-    fillOrgInfo(data: OrganizationPageTest) {
-        this.typeText('name', data.orgName);
+    fillOrgInfo(data?: OrganizationPageTest) {
+        if (data === undefined) {
+            data = this.jsonData.organizationPage;
+        }
+        this.typeText('organizationName', data.orgName);
         if (data.suiteNo) {
             this.typeText('suite', data.suiteNo + '');
         }
@@ -90,14 +102,23 @@ export class SigningAuthorityPage extends BaseDevUpdateTestPage {
         return browser.get('/sitereg/update/signing-authority');
     }
 
-    fillPage(data: SigningAuthorityPageTest) {
-        this.clickButton('btn', 'Add Signing Authority');
-        this.fillSignAuthInfo(data);
+    fillPage(data?: SigningAuthorityPageTest) {
+        if (data === undefined){
+            data = this.jsonData.signingAuthorityPage;
+        }
+        if (this.jsonData.signingAuthorityPage.addSigningAuthority){
+            this.clickButton('btn', 'Add Signing Authority');
+        }
         this.scrollDown();
-        this.clickOption('bcfalse');
-        browser.sleep(5000);
+        // this.clickOption('bcfalse');
         this.continue();
     }
+
+    /*
+    fillAddSignAuth() {
+        const data = this.jsonData.signingAuthorityPage.addSigningAuthority;
+    }
+    */
 
     fillSignAuthInfo(data: SigningAuthorityPageTest) {
         this.typeText('firstName', data.firstName);

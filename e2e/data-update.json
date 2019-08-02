@@ -1,0 +1,180 @@
+{
+    "e2eParam" :
+    { 
+        "snapshotAt": [1, 2, 3, 4 ,5], 
+        "snapshotLocation": "e2e/snapshots"
+    },
+    "requestorInfoPage" :
+    {
+        "orgNum": 12345678,
+        "email": "sample@user.com"
+    },
+    "organizationPage" :
+    {
+        "anyUpdates": true,
+        "orgName": "Sample Org",
+        "suiteNo": "123",
+        "streetNo": "456",
+        "streetName": "Sample Street",
+        "streetAddressLine": "Line 2",
+        "city": "Battersea",
+        "province": "British Columbia",
+        "postal": "V1A1S2",
+        "adminsteringFor": "Employees"
+    },
+    "signingAuthorityPage" :
+    {
+        "addSigningAuthority": 
+        {
+            "title": "Mr.",
+            "firstName": "John",
+            "initial": "S",
+            "lastName": "Doe",
+            "jobTitle": "Programmer",
+            "email": "johnsdoe@user.com",
+            "confirmEmail": "johnsdoe@user.com",
+            "mobile": 2501234567,
+            "extension": "123",
+            "fax": 2501234568,
+            "accessToMSP": true,
+            "administeringFor": "Employees"
+        },
+        "removeSigningAuthority":
+        {
+            "signingAuthEmail": "sample@user.com",
+            "ministryUserID": "User123"
+        },
+        "updateSigningAuthority":
+        {
+            "signingAuthEmail": "sample@user.com",
+            "ministryUserID": "User123",
+            "title": "Mrs.",
+            "firstName": "Jane",
+            "initial": "S",
+            "lastName": "Doe",
+            "jobTitle": "Programmer",
+            "email": "janesdoe@user.com",
+            "confirmEmail": "janesdoe@user.com",
+            "phone": 2501234567,
+            "extension": "123",
+            "fax": 2501234568,
+            "accessToMSP": true,
+            "administeringFor": "Employees"
+        }
+    },
+    "accessAdminsPage" :
+    {
+        "addAccessAdmins": 
+        [
+            {
+                "title": "Mr.",
+                "firstName": "John",
+                "initial": "S",
+                "lastName": "Doe",
+                "jobTitle": "Programmer",
+                "email": "johnsdoe@user.com",
+                "confirmEmail": "johnsdoe@user.com",
+                "mobile": 2501234567,
+                "extension": "123",
+                "fax": 2501234568,
+                "administeringFor": "Employees"
+            }
+        ],
+        "removeAccessAdmins":
+        [
+            {
+                "signingAuthEmail": "sample@user.com",
+                "ministryUserID": "User123"
+            }
+        ],
+        "updateAccessAdmins":
+        [
+            {
+                "signingAuthEmail": "sample@user.com",
+                "ministryUserID": "User123",
+                "title": "Mrs.",
+                "firstName": "Jane",
+                "initial": "S",
+                "lastName": "Doe",
+                "jobTitle": "Programmer",
+                "email": "janesdoe@user.com",
+                "confirmEmail": "janesdoe@user.com",
+                "phone": 2501234567,
+                "extension": "123",
+                "fax": 2501234568,
+                "changeRole": "User",
+                "changeAccess": true,
+                "administeringFor": "Employees"
+            }
+        ]
+    },
+    "usersPage" :
+    {
+        "addUsers": 
+        [
+            {
+                "title": "Mr.",
+                "firstName": "John",
+                "initial": "S",
+                "lastName": "Doe",
+                "jobTitle": "Programmer",
+                "email": "johnsdoe@user.com",
+                "confirmEmail": "johnsdoe@user.com",
+                "mobile": 2501234567,
+                "extension": "123",
+                "fax": 2501234568,
+                "administeringFor": "Employees"
+            }
+        ],
+        "removeUsers":
+        [
+            {
+                "signingAuthEmail": "sample@user.com",
+                "ministryUserID": "User123"
+            }
+        ],
+        "updateUsers":
+        [
+            {
+                "signingAuthEmail": "sample@user.com",
+                "ministryUserID": "User123",
+                "title": "Mrs.",
+                "firstName": "Jane",
+                "initial": "S",
+                "lastName": "Doe",
+                "jobTitle": "Programmer",
+                "email": "janesdoe@user.com",
+                "confirmEmail": "janesdoe@user.com",
+                "phone": 2501234567,
+                "extension": "123",
+                "fax": 2501234568,
+                "changeRole": "Signing Authority",
+                "changeAccess": true,
+                "administeringFor": "Employees"
+            }
+        ]
+    },
+    "groupNumbersPage" :
+    {
+        "addMSPGroup": 
+        [
+            {
+                "groupNum": 1234567,
+                "thirdParty": true
+            }
+        ],
+        "removeMSPGroup":
+        [
+            {
+                "groupNum": 1234567
+            }
+        ],
+        "updateMSPGroup":
+        [
+            {
+                "groupNum": 1234567,
+                "thirdParty": true
+            }
+        ]
+    }
+}
