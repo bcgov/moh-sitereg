@@ -33,6 +33,39 @@ export function funcRandomNumber8Digit() {
 }
 
 
+export function trimText(sourceText: any) {
+    let trimmedText: any;
+
+    // cautionary this must have value.
+    trimmedText = sourceText;
+    try {
+        if (sourceText) {
+            if (typeof sourceText === 'string' && sourceText.length > 0) {
+                trimmedText = sourceText.trim();
+            }
+
+            if (typeof sourceText === 'object') {
+                trimmedText = trimObjectAllProperties(sourceText);
+            }
+        }
+    } catch (e) {
+        console.log(e);
+        trimmedText = sourceText;
+    }
+
+    return trimmedText;
+}
+
+
+export function trimObjectAllProperties(jsonObject: any) {
+
+    const properties = Object.keys(jsonObject);
+    for (const prop of properties) {
+        console.log(`%o: %o`, prop, jsonObject[prop]);
+        jsonObject[prop] = trimText(jsonObject[prop]);
+    }
+    return jsonObject;
+}
 /**
  * verifies if field value is not null and not empty string or valid boolean
  * @param fieldValue FieldValue
@@ -53,7 +86,7 @@ export function isValidOptionalField(fieldValue: string | boolean | any): boolea
             if (isArray === true && fieldValue.length > 0) {
                 return true;
             }
-            if ( isArray === false ) {
+            if (isArray === false) {
                 // if (fieldValue) return true;
                 // console.log(fieldValue);
                 if (fieldValue) return true;
