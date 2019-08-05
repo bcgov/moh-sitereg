@@ -45,7 +45,7 @@
             </div>
             <!-- First Name -->
             <div class="col-sm-8">
-              <label class="control-label" for="firstName_edit_{{formIndex}}">First Name</label>
+              <label class="control-label" for="firstName_edit_{{formIndex}}">First Name (optional)</label>
               <input id="firstName_edit_{{formIndex}}" formControlName="firstName" class="form-control"
                  maxlength="100">
               <sitereg-update-error-box [formControlValidity]="formControlValidity(fg,'firstName')"
@@ -67,7 +67,7 @@
             <div class="col-sm-8">
 
               <!-- Last Name -->
-              <label class="control-label" for="lastName_edit_{{formIndex}}">Last Name</label>
+              <label class="control-label" for="lastName_edit_{{formIndex}}">Last Name (optional)</label>
               <input id="lastName_edit_{{formIndex}}" formControlName="lastName" class="form-control" 
                 maxlength="100">
               <sitereg-update-error-box [formControlValidity]="formControlValidity(fg,'lastName')"
@@ -76,7 +76,7 @@
           </div>
 
           <!-- Job Title -->
-          <label class="control-label" for="jobTitle_edit_{{formIndex}}">Job Title</label>
+          <label class="control-label" for="jobTitle_edit_{{formIndex}}">Job Title (optional)</label>
           <input id="jobTitle_edit_{{formIndex}}" formControlName="jobTitle" class="form-control" 
             maxlength="100">
           <sitereg-error-box [error]="validFormControl(fg,'jobTitle')"
@@ -84,7 +84,7 @@
 
           <div formGroupName="formGroupEmail">
             <!-- Email Address -->
-            <label class="control-label" for="emailAddress_edit_{{formIndex}}">Email Address</label>
+            <label class="control-label" for="emailAddress_edit_{{formIndex}}">Email Address (optional)</label>
             <input id="emailAddress_edit_{{formIndex}}" formControlName="emailAddress" class="form-control"
                maxlength="100">
             <sitereg-update-error-box
@@ -104,7 +104,7 @@
           <!-- Phone -->
           <div class="row">
             <div class="col-sm-8">
-              <label class="control-label" for="phone_edit_{{formIndex}}">Phone</label>
+              <label class="control-label" for="phone_edit_{{formIndex}}">Phone (optional)</label>
               <input id="phone_edit_{{formIndex}}" formControlName="phone" class="form-control" 
                 maxlength="10">
               <sitereg-update-error-box [formControlValidity]="formControlValidity(fg,'phone')"
