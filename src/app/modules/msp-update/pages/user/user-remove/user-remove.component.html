@@ -8,7 +8,7 @@
       <h2 class='border-bottom'>Remove a User #{{getFormsArray.controls.length - formIndex}}</h2>
       <common-page-section layout='tips'>
 
-        <aside>User information</aside>
+        <!-- <aside>User information</aside> -->
 
         <div class='form-group col-sm-8 p-sm-0'>
 
@@ -27,15 +27,11 @@
           <sitereg-update-error-box [formControlValidity]="formControlValidity(fg,'ministryUserId')"
             formControlLabel="Ministry assigned User ID" errorMessage="Please provide valid Ministry assigned User Id.">
           </sitereg-update-error-box>
-
-
-
+          
           <!-- <sitereg-update-json-view [showRaw]="false" [raw]='fg.value' [showJson]="true" [json]='json(fg.value)'>
           </sitereg-update-json-view> -->
 
-
         </div>
-
       </common-page-section>
 
     </form>
