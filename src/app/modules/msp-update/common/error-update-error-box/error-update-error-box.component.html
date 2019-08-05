@@ -1,6 +1,6 @@
 <div class="text-danger" *ngIf="isError">
   <span *ngIf="formControlValidity.required">
-    {{ formControlLabel }} is required.
+    {{ formControlLabel? formControlLabel + ' is required.':'' }}
   </span>
   <span *ngIf="formControlValidity.other">
     {{ errorMessage }}
