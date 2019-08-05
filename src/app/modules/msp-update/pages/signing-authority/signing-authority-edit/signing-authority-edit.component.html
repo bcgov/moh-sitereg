@@ -5,7 +5,7 @@
 
       <common-xicon-button class='d-block pb-1' label="Cancel" (clickEvent)="removeForm(formIndex)">
       </common-xicon-button>
-      <h2 class='border-bottom'>Update existing Signing Authority</h2>
+      <h2 class='border-bottom'>Update Existing Signing Authority</h2>
       <common-page-section layout='tips'>
         <aside>Signing Authority information</aside>
 
@@ -145,7 +145,7 @@
               label="Do you want to change access?" (statusChange)="updateAccessValidation(fg,$event)"></common-radio> -->
 
               <common-radio [radioLabels]="radioBtnLabels" formControlName="isAdmin"
-                label="Does you want to change the Signing Authority require access to MSP Direct?"
+                label="Does the Signing Authority require access to MSP Direct?"
                 (statusChange)="updateAccessValidation(fg,$event)"></common-radio>
                 <!-- (statusChange)="updateChangeAdministeringQuestionValidation(fg,$event)"></common-radio> -->
             </div>
