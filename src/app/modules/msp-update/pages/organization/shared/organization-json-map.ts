@@ -1,4 +1,4 @@
-import { mapAdministeringForDef, isValidOptionalField } from '../../../common/update-json-map';
+import { mapAdministeringForDef, isValidOptionalField, trimText } from '../../../common/update-json-map';
 import { getIOrganizationEdit } from './i-organization';
 import * as jsonInterfaces from '../../submit/json-payload';
 
@@ -39,9 +39,9 @@ export function getEditJSONofOrganization(formValue) {
     let suite = null;
     let street = null;
     let streetName = null;
-    if (isValidOptionalField(formValues.suite)) suite = formValues.suite;
-    if (isValidOptionalField(formValues.street)) street = formValues.street;
-    if (isValidOptionalField(formValues.streetName)) streetName = formValues.streetName;
+    if (isValidOptionalField(formValues.suite)) suite = trimText(formValues.suite);
+    if (isValidOptionalField(formValues.street)) street = trimText(formValues.street);
+    if (isValidOptionalField(formValues.streetName)) streetName = trimText(formValues.streetName);
 
     if (suite || street || streetName) {
         json.street_address = `${(suite ? suite + ' ' : '')}${(street ? street + ' ' : '')} ${(streetName ? streetName : '')}`;
