@@ -10,6 +10,23 @@
     </div>
   </common-page-section>
 
+  <div style="display:flex;flex-direction:column">
+
+    <sitereg-update-group-remove #formRemove [formState]="formRemoveState"
+      (formArrayChanged)="formRemoveStateChanged($event)" [style.order]="displayOrder.remove">
+    </sitereg-update-group-remove>
+
+    <sitereg-update-group-add #formAdd [formState]="formAddState" (formArrayChanged)="formAddStateChanged($event)"
+      [style.order]="displayOrder.add">
+    </sitereg-update-group-add>
+
+    <sitereg-update-group-edit #formEdit [formState]="formEditState" (formArrayChanged)="formEditStateChanged($event)"
+      [style.order]="displayOrder.edit">
+    </sitereg-update-group-edit>
+
+  </div>
+
+  <!--     
   <common-page-section layout='noTips' class="pt-4">
 
     <sitereg-update-group-remove #formRemove [formState]="formRemoveState" (formArrayChanged)="formRemoveStateChanged($event)">
@@ -29,7 +46,7 @@
     <sitereg-update-group-edit #formEdit [formState]="formEditState" (formArrayChanged)="formEditStateChanged($event)">
     </sitereg-update-group-edit>
 
-  </common-page-section>
+  </common-page-section> -->
 
 </common-page-framework>
 

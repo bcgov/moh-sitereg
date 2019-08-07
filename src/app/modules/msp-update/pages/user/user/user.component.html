@@ -9,21 +9,35 @@
     </div>
   </common-page-section>
 
-  <common-page-section layout='noTips' class="pt-4">
-    <sitereg-update-user-remove #formRemove [formState]="formRemoveState"
-      (formArrayChanged)="formRemoveStateChanged($event)"></sitereg-update-user-remove>
-  </common-page-section>
+  <!--
+    <common-page-section layout='noTips' class="pt-4">
+      <sitereg-update-user-remove #formRemove [formState]="formRemoveState"
+        (formArrayChanged)="formRemoveStateChanged($event)"></sitereg-update-user-remove>
+    </common-page-section>
 
-  <common-page-section layout='noTips' class="pt-4">
-    <sitereg-update-user-add #formAdd [formState]="formAddState" (formArrayChanged)="formAddStateChanged($event)">
-    </sitereg-update-user-add>
-  </common-page-section>
+    <common-page-section layout='noTips' class="pt-4">
+      <sitereg-update-user-add #formAdd [formState]="formAddState" (formArrayChanged)="formAddStateChanged($event)">
+      </sitereg-update-user-add>
+    </common-page-section>
 
-  <common-page-section layout='noTips' class="pt-4">
-    <sitereg-update-user-edit #formEdit [formState]="formEditState" (formArrayChanged)="formEditStateChanged($event)">
-    </sitereg-update-user-edit>
-  </common-page-section>
+    <common-page-section layout='noTips' class="pt-4">
+      <sitereg-update-user-edit #formEdit [formState]="formEditState" (formArrayChanged)="formEditStateChanged($event)">
+      </sitereg-update-user-edit>
+    </common-page-section>
+  -->
+  <div style="display:flex;flex-direction:column">
+      <sitereg-update-user-remove #formRemove [formState]="formRemoveState"
+        (formArrayChanged)="formRemoveStateChanged($event)" [style.order]="displayOrder.remove">
+      </sitereg-update-user-remove>
 
+      <sitereg-update-user-add #formAdd [formState]="formAddState" (formArrayChanged)="formAddStateChanged($event)"
+        [style.order]="displayOrder.add">
+      </sitereg-update-user-add>
+
+      <sitereg-update-user-edit #formEdit [formState]="formEditState" (formArrayChanged)="formEditStateChanged($event)"
+        [style.order]="displayOrder.edit">
+      </sitereg-update-user-edit>
+  </div>
 </common-page-framework>
 <common-form-action-bar (btnClick)="continue()" [submitLabel]="buttonLabel" [canContinue]='canContinue()'>
 </common-form-action-bar>

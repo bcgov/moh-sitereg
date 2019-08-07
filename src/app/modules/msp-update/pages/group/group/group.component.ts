@@ -12,23 +12,44 @@ import { MspDirectUpdateGroupEditComponent } from '../group-edit/group-edit.comp
 
 
 @Component({
-    selector: 'sitereg-msp-update-group',
-    templateUrl: './group.component.html',
-    styleUrls: ['./group.component.scss'],
+  selector: 'sitereg-msp-update-group',
+  templateUrl: './group.component.html',
+  styleUrls: ['./group.component.scss'],
 })
 export class MspDirectUpdateGroupComponent implements OnInit {
 
-  // public showAddGrp = false;
-  // public showRemoveGrp = false;
-  // public showEditGrp = false;
   public isFormHasData: FormStatusAddRemoveUpdate;
 
-  constructor( private router: Router,
-               private progressService: MspDirectUpdateProgressService,
-               private loggerSvc: LoggerService,
-               private globalConfigSvc: GlobalConfigService,
-               public updateStateService: UpdateStateService,
-               private fb: FormBuilder ) {
+  public displayOrder = {
+    add: 0,
+    remove: 0,
+    edit: 0,
+  };
+
+  public updateDisplayOrder(actionType: 'add' | 'remove' | 'edit') {
+    if (actionType === 'add') {
+      this.displayOrder.add = 1;
+      this.displayOrder.remove = 2;
+      this.displayOrder.edit = 3;
+    }
+    if (actionType === 'remove') {
+      this.displayOrder.remove = 1;
+      this.displayOrder.add = 2;
+      this.displayOrder.edit = 3;
+    }
+    if (actionType === 'edit') {
+      this.displayOrder.edit = 1;
+      this.displayOrder.remove = 2;
+      this.displayOrder.add = 3;
+    }
+  }
+
+  constructor(private router: Router,
+    private progressService: MspDirectUpdateProgressService,
+    private loggerSvc: LoggerService,
+    private globalConfigSvc: GlobalConfigService,
+    public updateStateService: UpdateStateService,
+    private fb: FormBuilder) {
 
   }
 
@@ -41,7 +62,7 @@ export class MspDirectUpdateGroupComponent implements OnInit {
 
     this.updateStateService.formsStatusChanges$.subscribe(x =>
       this.isFormHasData = x.mspGroups
-  );
+    );
 
   }
 
@@ -54,10 +75,10 @@ export class MspDirectUpdateGroupComponent implements OnInit {
   continue() {
     // splunk-log
     this.loggerSvc.logNavigation(
-        this.constructor.name,
-        `Valid Data - Continue button clicked. ${
-            this.globalConfigSvc.applicationId
-        }`
+      this.constructor.name,
+      `Valid Data - Continue button clicked. ${
+      this.globalConfigSvc.applicationId
+      }`
     );
     this.progressService.setPageComplete();
     this.router.navigate([ROUTES_UPDATE.REVIEW.fullpath]);
@@ -65,10 +86,10 @@ export class MspDirectUpdateGroupComponent implements OnInit {
 
   canContinue() {
     return !this.isUpdate ? true : [this.formAddState, this.formRemoveState, this.formEditState]
-                            .filter(x => x !== null && x !== undefined) // only check added form
-                            .map(x => x.valid) // get validity
-                            .filter(x => x === false) // get invalid forms
-                            .length === 0;
+      .filter(x => x !== null && x !== undefined) // only check added form
+      .map(x => x.valid) // get validity
+      .filter(x => x === false) // get invalid forms
+      .length === 0;
   }
 
   private get isUpdate(): boolean {
@@ -81,67 +102,69 @@ export class MspDirectUpdateGroupComponent implements OnInit {
 
   //#region REMOVE
 
-    // tslint:disable-next-line: member-ordering
-    @ViewChild(MspDirectUpdateGroupRemoveComponent)
-    formRemove: MspDirectUpdateGroupRemoveComponent;
+  // tslint:disable-next-line: member-ordering
+  @ViewChild(MspDirectUpdateGroupRemoveComponent)
+  formRemove: MspDirectUpdateGroupRemoveComponent;
 
-    get formRemoveState(): FormGroup {
-        return this.updateStateService.forms.mspGroups.remove;
-    }
+  get formRemoveState(): FormGroup {
+    return this.updateStateService.forms.mspGroups.remove;
+  }
 
-    formRemoveStateChanged(formGroups: any) {
-        this.updateStateService.forms.mspGroups.remove = formGroups;
-        this.updateStateService.formStatusChanged();
-        // this.showRemoveGrp = this.formRemove.getFormsCount > 0 ? true : false;
-    }
+  formRemoveStateChanged(formGroups: any) {
+    this.updateStateService.forms.mspGroups.remove = formGroups;
+    this.updateStateService.formStatusChanged();
+    // this.showRemoveGrp = this.formRemove.getFormsCount > 0 ? true : false;
+  }
 
-    formRemoveNew() {
-        this.formRemove.newForm();
-    }
+  formRemoveNew() {
+    this.formRemove.newForm();
+    this.updateDisplayOrder('remove');
+  }
 
-    //#endregion
+  //#endregion
 
   //#region Add
 
-    // tslint:disable-next-line: member-ordering
-    @ViewChild(MspDirectUpdateGroupAddComponent)
-    formAdd: MspDirectUpdateGroupAddComponent;
+  // tslint:disable-next-line: member-ordering
+  @ViewChild(MspDirectUpdateGroupAddComponent)
+  formAdd: MspDirectUpdateGroupAddComponent;
 
-    get formAddState(): FormGroup {
-        return this.updateStateService.forms.mspGroups.add;
-    }
+  get formAddState(): FormGroup {
+    return this.updateStateService.forms.mspGroups.add;
+  }
 
-    formAddStateChanged(formGroups: any) {
-        this.updateStateService.forms.mspGroups.add = formGroups;
-        this.updateStateService.formStatusChanged();
-        // this.showAddGrp = this.formAdd.getFormsCount > 0 ? true : false;
-    }
+  formAddStateChanged(formGroups: any) {
+    this.updateStateService.forms.mspGroups.add = formGroups;
+    this.updateStateService.formStatusChanged();
+    // this.showAddGrp = this.formAdd.getFormsCount > 0 ? true : false;
+  }
 
-    formAddNew() {
-        this.formAdd.newForm();
-    }
+  formAddNew() {
+    this.formAdd.newForm();
+    this.updateDisplayOrder('add');
+  }
 
   //#endregion
 
   //#region Update
 
-    // tslint:disable-next-line: member-ordering
-    @ViewChild(MspDirectUpdateGroupEditComponent)
-    formEdit: MspDirectUpdateGroupEditComponent;
+  // tslint:disable-next-line: member-ordering
+  @ViewChild(MspDirectUpdateGroupEditComponent)
+  formEdit: MspDirectUpdateGroupEditComponent;
 
-    get formEditState(): FormGroup {
-        return this.updateStateService.forms.mspGroups.update;
-    }
+  get formEditState(): FormGroup {
+    return this.updateStateService.forms.mspGroups.update;
+  }
 
-    formEditStateChanged(formGroups: any) {
-        this.updateStateService.forms.mspGroups.update = formGroups;
-        this.updateStateService.formStatusChanged();
-        // this.showEditGrp = this.formEdit.getFormsCount > 0 ? true : false;
-    }
+  formEditStateChanged(formGroups: any) {
+    this.updateStateService.forms.mspGroups.update = formGroups;
+    this.updateStateService.formStatusChanged();
+  }
 
-    formEditNew() {
-        this.formEdit.newForm();
-    }
+  formEditNew() {
+    this.formEdit.newForm();
+    this.updateDisplayOrder('edit');
+  }
 
   //#endregion
 
