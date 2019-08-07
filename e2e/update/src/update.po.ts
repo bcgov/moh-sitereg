@@ -2,6 +2,7 @@ import { browser, by, element, WebElement, protractor, $$ } from 'protractor';
 import { OrganizationPageTest, RequestorPageTest, SigningAuthorityPageTest, FakeDataDevUpdate } from './update.data';
 import { GroupNumbersPageTest } from 'e2e/registration/src/sitereg.data';
 import { BaseMSPTestPage } from '../../msp.po';
+import { elementAt } from 'rxjs/operators';
 
 export class BaseDevUpdateTestPage extends BaseMSPTestPage {
 
@@ -20,6 +21,33 @@ export class BaseDevUpdateTestPage extends BaseMSPTestPage {
     // TODO: Move the methods below to shared lib
     clickOption(value: string) {
         element(by.css(`label[for^="${value}"]`)).click();
+    }
+
+    selectValue(label: string, value: string) {
+        element.all(by.css(`select[ng-reflect-name="${label}"]`)).first().click(); // opens dropdown
+        element.all(by.css(`select[ng-reflect-name="${label}"]`)).first().element(by.cssContainingText('option', `${value}`)).click();
+    }
+
+    /**
+     * * Types the text inside the first input box
+     */
+    typeTextFirstOccurrence(labelId: string, text: string) {
+        element.all(by.css(`input[ng-reflect-name^="${labelId}"]`)).first().sendKeys(text);
+    }
+
+    typeTextUsingIndex(val: string, index: number, text: string) {
+        const idVal = val + index;
+        element.all(by.css(`input[id^="${idVal}"]`)).first().sendKeys(text);
+    }
+
+    selectValueUsingIndex(val: string, index: number, text: string) {
+        const idVal = val + index;
+        element.all(by.css(`select[id="${idVal}"]`)).first().click(); // opens dropdown
+        element.all(by.css(`select[id="${idVal}"]`)).first().element(by.cssContainingText('option', `${text}`)).click();
+    }
+
+    clickRadioButton(labelVal: string, forVal: string) {
+        element.all(by.css(`common-radio[label^="${labelVal}"]`)).first().element(by.css(`label[for^="${forVal}"]`)).click();
     }
 
 }
@@ -50,7 +78,7 @@ export class OrganizationPage extends BaseDevUpdateTestPage {
         if (data === undefined) {
             data = this.jsonData.organizationPage;
         }
-        this.clickOption(data.anyUpdates.toString());
+        this.clickOption(data.anyUpdates + '');
         if (data.anyUpdates){
             this.fillOrgInfo();
         }
@@ -98,28 +126,84 @@ export class OrganizationPage extends BaseDevUpdateTestPage {
 
 export class SigningAuthorityPage extends BaseDevUpdateTestPage {
 
+    protected data = this.jsonData.signingAuthorityPage;
+    private index = 0;
+
     navigateTo() {
         return browser.get('/sitereg/update/signing-authority');
     }
 
-    fillPage(data?: SigningAuthorityPageTest) {
-        if (data === undefined){
-            data = this.jsonData.signingAuthorityPage;
-        }
-        if (this.jsonData.signingAuthorityPage.addSigningAuthority){
+    fillPage() {
+        if (this.data.addSigningAuthority) {
             this.clickButton('btn', 'Add Signing Authority');
+            this.fillAddSignAuth();
+            this.scrollUp();
         }
-        this.scrollDown();
-        // this.clickOption('bcfalse');
-        this.continue();
+        if (this.data.removeSigningAuthority) {
+            this.clickButton('btn', 'Remove Signing Authority');
+            this.fillRemoveSignAuth();
+            this.scrollUp();
+        }
+        if (this.data.updateSigningAuthority) {
+            this.clickButton('btn', 'Update Signing Authority');
+            this.scrollDown();
+            this.fillUpdateSignAuth();
+        }
+    }
+
+    fillAddSignAuth() {
+        const data = this.data.addSigningAuthority;
+        if (data.title) {
+            this.selectValueUsingIndex('userTitle_', this.index, data.title);
+        }
+        this.typeTextUsingIndex('firstName_', this.index, data.firstName);
+        if (data.initial) {
+            this.typeTextUsingIndex('initial_', this.index, data.initial);
+        }
+        this.typeTextUsingIndex('lastName_', this.index, data.lastName);
+        this.typeTextUsingIndex('jobTitle_', this.index, data.jobTitle);
+        this.typeTextUsingIndex('emailAddress_', this.index, data.email);
+        this.typeTextUsingIndex('confirmEmail_', this.index, data.email);
+        this.typeTextUsingIndex('phone_', this.index, data.mobile + '');
+        this.typeTextUsingIndex('ext_', this.index, data.extension);
+        this.typeTextUsingIndex('fax_', this.index, data.fax + '');
+        this.clickRadioButton('Does the Signing Authority', data.accessToMSP + '');
+        if (data.accessToMSP) {
+            this.selectValueUsingIndex('administeringFor_add_', this.index, data.administeringFor);
+        }
+    }
+
+    fillRemoveSignAuth() {
+        const data = this.data.removeSigningAuthority;
+        this.typeTextUsingIndex('emailAddress_remove_', this.index, data.signingAuthEmail);
+        this.typeTextUsingIndex('ministryUserId_remove_', this.index, data.ministryUserID);
+    }
+
+    fillUpdateSignAuth() {
+        const data = this.data.updateSigningAuthority;
+        this.typeTextUsingIndex('forIdentifyEmailAddress_edit_', this.index, data.signingAuthEmail);
+        this.typeTextUsingIndex('forIdentifyMinistryUserId_edit_', this.index, data.ministryUserID);
+        if (data.title) {
+            this.selectValueUsingIndex('userTitle_edit_', this.index, data.title);
+        }
+        this.typeTextUsingIndex('firstName_edit_', this.index, data.firstName);
+        if (data.initial) {
+            this.typeTextUsingIndex('initial_edit_', this.index, data.initial);
+        }
+        this.typeTextUsingIndex('lastName_edit_', this.index, data.lastName);
+        this.typeTextUsingIndex('jobTitle_edit_', this.index, data.jobTitle);
+        this.typeTextUsingIndex('emailAddress_edit_', this.index, data.email);
+        this.typeTextUsingIndex('confirmEmail_edit_', this.index, data.email);
+        this.typeTextUsingIndex('phone_edit_', this.index, data.mobile + '');
+        this.typeTextUsingIndex('ext_edit_', this.index, data.extension);
+        this.typeTextUsingIndex('fax_edit_', this.index, data.fax + '');
+        this.clickRadioButton('Does you want to change', data.accessToMSP + '');
+        if (data.accessToMSP) {
+            this.selectValueUsingIndex('administeringFor_remove_', this.index, data.administeringFor);
+        }
     }
 
     /*
-    fillAddSignAuth() {
-        const data = this.jsonData.signingAuthorityPage.addSigningAuthority;
-    }
-    */
-
     fillSignAuthInfo(data: SigningAuthorityPageTest) {
         this.typeText('firstName', data.firstName);
         this.typeText('lastName', data.lastName);
@@ -130,18 +214,95 @@ export class SigningAuthorityPage extends BaseDevUpdateTestPage {
         this.typeText('ext', data.extension + '');
         this.typeText('fax', data.fax + '');
     }
+    */
 
 }
 
-export class AccessAdminsPage extends BaseDevUpdateTestPage {
+export class AccessAdminsPage extends SigningAuthorityPage {
+
+    protected data = this.jsonData.accessAdminsPage;
 
     navigateTo() {
         return browser.get('/sitereg/update/access-admins');
     }
 
+    fillPage() {
+        if (this.data.addAccessAdmins) {
+            for (let i = 0; i < this.data.addAccessAdmins.length; i++) {
+                this.clickButton('btn', 'Add Access Administrator');
+                this.fillAddAccessAdmin(i);
+                this.scrollUp();
+            }
+        }
+        if (this.data.removeAccessAdmins) {
+            for (let i = 0; i < this.data.removeAccessAdmins.length; i++) {
+                this.clickButton('btn', 'Remove Access Administrator');
+                this.fillRemoveAccessAdmin(i);
+                this.scrollUp();
+            }
+        }
+        if (this.data.updateAccessAdmins) {
+            for (let i = 0; i < this.data.updateAccessAdmins.length; i++) {
+                this.clickButton('btn', 'Update Access Administrator');
+                this.scrollDown();
+                this.fillUpdateAccessAdmin(i);
+            }
+        }
+    }
+
+    fillAddAccessAdmin(index: number) {
+        const data = this.data.addAccessAdmins;
+        if (data[index].title) {
+            this.selectValueUsingIndex('userTitle_', index, data[index].title);
+        }
+        this.typeTextUsingIndex('firstName_', index, data[index].firstName);
+        if (data[index].initial) {
+            this.typeTextUsingIndex('initial_', index, data[index].initial);
+        }
+        this.typeTextUsingIndex('lastName_', index, data[index].lastName);
+        this.typeTextUsingIndex('jobTitle_', index, data[index].jobTitle);
+        this.typeTextUsingIndex('emailAddress_', index, data[index].email);
+        this.typeTextUsingIndex('confirmEmail_', index, data[index].email);
+        this.typeTextUsingIndex('phone_', index, data[index].mobile + '');
+        this.typeTextUsingIndex('ext_', index, data[index].extension);
+        this.typeTextUsingIndex('fax_', index, data[index].fax + '');
+        this.selectValueUsingIndex('administeringFor_', index, data[index].administeringFor);
+    }
+
+    fillRemoveAccessAdmin(index: number) {
+        const data = this.data.removeAccessAdmins;
+        this.typeTextUsingIndex('emailAddress_remove_', index, data[index].signingAuthEmail);
+        this.typeTextUsingIndex('ministryUserId_remove_', index, data[index].ministryUserID);
+    }
+
+    fillUpdateAccessAdmin(index: number) {
+        const data = this.data.updateAccessAdmins;
+        this.typeTextUsingIndex('forIdentifyEmailAddress_edit_', index, data[index].signingAuthEmail);
+        this.typeTextUsingIndex('forIdentifyMinistryUserId_edit_', index, data[index].ministryUserID);
+        if (data[index].title) {
+            this.selectValueUsingIndex('userTitle_edit_', index, data[index].title);
+        }
+        this.typeTextUsingIndex('firstName_edit_', index, data[index].firstName);
+        if (data[index].initial) {
+            this.typeTextUsingIndex('initial_edit_', index, data[index].initial);
+        }
+        this.typeTextUsingIndex('lastName_edit_', index, data[index].lastName);
+        this.typeTextUsingIndex('jobTitle_edit_', index, data[index].jobTitle);
+        this.typeTextUsingIndex('emailAddress_edit_', index, data[index].email);
+        this.typeTextUsingIndex('confirmEmail_edit_', index, data[index].email);
+        this.typeTextUsingIndex('phone_edit_', index, data[index].mobile + '');
+        this.typeTextUsingIndex('ext_edit_', index, data[index].extension);
+        this.typeTextUsingIndex('fax_edit_', index, data[index].fax + '');
+        this.selectValueUsingIndex('changeRole_edit_', index, data[index].changeRole);
+        this.clickRadioButton('Do you want to change', data[index].changeAccess + '');
+        if (data[index].changeAccess) {
+            this.selectValueUsingIndex('administeringFor_edit_', index, data[index].administeringFor);
+        }
+    }
+
 }
 
-export class UsersPage extends BaseDevUpdateTestPage {
+export class UsersPage extends SigningAuthorityPage {
 
     navigateTo() {
         return browser.get('/sitereg/update/users');

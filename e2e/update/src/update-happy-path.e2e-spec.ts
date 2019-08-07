@@ -55,21 +55,19 @@ describe('MSP Direct Update - End to End Test (Happy Path)', () => {
         expect(browser.getCurrentUrl()).toContain(SA_PAGE_URL, 'should continue to the Signing Authority Page');
         saPage.fillPage();
         saPage.continue();
-        /*
         expect(browser.getCurrentUrl()).toContain(AA_PAGE_URL, 'should continue to the Access Admins Page');
+        aaPage.fillPage();
         aaPage.continue();
-        // aaPage.fillPage(); // Page not yet finished
         expect(browser.getCurrentUrl()).toContain(USERS_PAGE_URL, 'should continue to the Users Page');
-        usersPage.continue();
-        // usersPage.fillPage(); Method not yet working
-        expect(browser.getCurrentUrl()).toContain(GROUP_PAGE_URL, 'should continue to the Group Page');
-        groupPage.fillPage(groupData);
-        expect(browser.getCurrentUrl()).toContain(REVIEW_PAGE_URL, 'should continue to the Review Page');
-        reviewPage.continue();
-        expect(browser.getCurrentUrl()).toContain(SUBMIT_PAGE_URL, 'should contunue to the Submit Page');
-        submitPage.typeCaptcha();
-        expect(browser.getCurrentUrl()).toContain(CONFIRM_PAGE_URL, 'should be able to succesfully submit the form');
-        */
+        // usersPage.continue();
+        // // usersPage.fillPage(); Method not yet working
+        // expect(browser.getCurrentUrl()).toContain(GROUP_PAGE_URL, 'should continue to the Group Page');
+        // groupPage.fillPage(groupData);
+        // expect(browser.getCurrentUrl()).toContain(REVIEW_PAGE_URL, 'should continue to the Review Page');
+        // reviewPage.continue();
+        // expect(browser.getCurrentUrl()).toContain(SUBMIT_PAGE_URL, 'should contunue to the Submit Page');
+        // submitPage.typeCaptcha();
+        // expect(browser.getCurrentUrl()).toContain(CONFIRM_PAGE_URL, 'should be able to succesfully submit the form');
     }, 120000);
 
 });
