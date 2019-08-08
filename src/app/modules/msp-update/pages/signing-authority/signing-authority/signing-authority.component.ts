@@ -24,6 +24,30 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit {
     public showUpdateSigningAuthority = false;
     public isFormHasData: FormStatusAddRemoveUpdate;
 
+    public displayOrder = {
+        add: 0,
+        remove: 0,
+        edit: 0,
+    };
+
+    public updateDisplayOrder(actionType: 'add' | 'remove' | 'edit') {
+        if (actionType === 'add') {
+            this.displayOrder.add = 1;
+            this.displayOrder.remove = 2;
+            this.displayOrder.edit = 3;
+        }
+        if (actionType === 'remove') {
+            this.displayOrder.remove = 1;
+            this.displayOrder.add = 2;
+            this.displayOrder.edit = 3;
+        }
+        if (actionType === 'edit') {
+            this.displayOrder.edit = 1;
+            this.displayOrder.remove = 2;
+            this.displayOrder.add = 3;
+        }
+    }
+
     private get isUpdate(): boolean {
         return !(this.showAddSigningAuthority === false &&
             this.showRemoveSigningAuthority === false &&
@@ -140,6 +164,7 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit {
 
     formEditNew() {
         this.formEdit.newForm();
+        this.updateDisplayOrder('edit');
     }
 
     //#endregion
@@ -162,6 +187,7 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit {
 
     formAddNew() {
         this.formAdd.newForm();
+        this.updateDisplayOrder('add');
     }
 
     //#endregion
@@ -185,6 +211,7 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit {
 
     formRemoveNew() {
         this.formRemove.newForm();
+        this.updateDisplayOrder('remove');
     }
 
     //#endregion
