@@ -43,7 +43,7 @@ export class MspUpdateApiService extends AbstractHttpService {
         protected http: HttpClient,
         private globalConfigSvc: GlobalConfigService,
         public logService: LoggerService,
-        public updateStateService: UpdateStateService,
+        public updateStateService: UpdateStateService
     ) {
         super(http);
         this.apiURL = this.globalConfigSvc.currentEnironment.baseUpdateAPIUrl;
@@ -79,9 +79,7 @@ export class MspUpdateApiService extends AbstractHttpService {
         } else {
             // The backend returned an unsuccessful response code
             console.error(
-                `Backend returned error code: ${error.status}.  Error body: ${
-                    error.error
-                }`
+                `Backend returned error code: ${error.status}.  Error body: ${error.error}`
             );
         }
         // A user facing error message /could/ go here; we shouldn't log dev info through the throwError observable

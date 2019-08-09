@@ -10,51 +10,45 @@ import { funcRemoveStrings } from '@msp-register/constants';
 import { jsonPayLoadApplication } from '../submit/json-payload';
 
 @Component({
-  selector: 'sitereg-msp-update-review',
-  templateUrl: './review.component.html',
-  styleUrls: ['./review.component.scss']
+    selector: 'sitereg-msp-update-review',
+    templateUrl: './review.component.html',
+    styleUrls: ['./review.component.scss'],
 })
 export class MspUpdateReviewComponent implements OnInit {
+    get componentInfo(): string {
+        return (
+            `${funcRemoveStrings(
+                ['MspDirectUpdate', 'Component'],
+                this.constructor.name
+            ).toUpperCase()} :` + ` ${this.globalConfigSvc.applicationId}`
+        );
+    }
 
-  get componentInfo(): string {
-    return (
-      `${funcRemoveStrings(
-        ['MspDirectUpdate', 'Component'],
-        this.constructor.name
-      ).toUpperCase()} :` + ` ${this.globalConfigSvc.applicationId}`
-    );
-  }
+    constructor(
+        private router: Router,
+        private progressService: MspDirectUpdateProgressService,
+        private loggerSvc: LoggerService,
+        private globalConfigSvc: GlobalConfigService,
+        public updateStateService: UpdateStateService
+    ) {}
 
-  constructor(
-    private router: Router,
-    private progressService: MspDirectUpdateProgressService,
-    private loggerSvc: LoggerService,
-    private globalConfigSvc: GlobalConfigService,
-    public updateStateService: UpdateStateService
-  ) {
+    ngOnInit() {
+        console.log(`%c%o : %o`, 'color:green', this.componentInfo);
+        this.progressService.setPageIncomplete();
+    }
 
-  }
+    continue() {
+        // splunk-log
+        this.loggerSvc.logNavigation(
+            this.constructor.name,
+            `Valid Data - Continue button clicked. ${this.globalConfigSvc.applicationId}`
+        );
+        this.progressService.setPageComplete();
+        this.router.navigate([ROUTES_UPDATE.SUBMIT.fullpath]);
+    }
 
-  ngOnInit() {
-    console.log(`%c%o : %o`, 'color:green', this.componentInfo);
-    this.progressService.setPageIncomplete();
-  }
-
-  continue() {
-    // splunk-log
-    this.loggerSvc.logNavigation(
-      this.constructor.name,
-      `Valid Data - Continue button clicked. ${
-      this.globalConfigSvc.applicationId
-      }`
-    );
-    this.progressService.setPageComplete();
-    this.router.navigate([ROUTES_UPDATE.SUBMIT.fullpath]);
-  }
-
-  // json() {
-  //   this.updateStateService.applicationId = this.globalConfigSvc.applicationId;
-  //   return jsonPayLoadApplication(this.updateStateService);
-  // }
-
+    // json() {
+    //   this.updateStateService.applicationId = this.globalConfigSvc.applicationId;
+    //   return jsonPayLoadApplication(this.updateStateService);
+    // }
 }
