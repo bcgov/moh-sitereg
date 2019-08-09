@@ -35,22 +35,14 @@ export class BaseDevUpdateTestPage extends BaseMSPTestPage {
         element.all(by.css(`input[ng-reflect-name^="${labelId}"]`)).first().sendKeys(text);
     }
 
-    typeTextUsingIndex(val: string, index: number, text: string) {
-        const idVal = val + index;
+    typeTextUsingID(idVal: string, text: string) {
         element.all(by.css(`input[id^="${idVal}"]`)).first().sendKeys(text);
     }
 
-    selectValueUsingIndex(val: string, index: number, text: string) {
-        const idVal = val + index;
+    selectValueUsingID(idVal: string, text: string) {
         element.all(by.css(`select[id="${idVal}"]`)).first().click(); // opens dropdown
         element.all(by.css(`select[id="${idVal}"]`)).first().element(by.cssContainingText('option', `${text}`)).click();
     }
-
-    /*
-    clickRadioButtonUsingIndex(val: string, index: number, text: string) {
-        
-    }
-    */
 
     clickRadioButton(labelVal: string, forVal: string) {
         element.all(by.css(`common-radio[label^="${labelVal}"]`)).first().element(by.css(`label[for^="${forVal}"]`)).click();
@@ -94,10 +86,7 @@ export class OrganizationPage extends BaseDevUpdateTestPage {
         element(by.css(`input[placeholder="${placeholder}"]`)).sendKeys(data);
     }
 
-    typeTextUsingID(id: string, data: string) {
-        element(by.css(`input[id^="${id}"]`)).sendKeys(data);
-        element(by.css(`input[id^="${id}"]`)).sendKeys(protractor.Key.ENTER);
-    }
+   
 
     selectFromDropDown(id: string, value: string) {
         element(by.css(`input[id^="${id}"]`)).click();
@@ -160,53 +149,53 @@ export class SigningAuthorityPage extends BaseDevUpdateTestPage {
     fillAddSignAuth() {
         const data = this.data.addSigningAuthority;
         if (data.title) {
-            this.selectValueUsingIndex('userTitle_', this.index, data.title);
+            this.selectValueUsingID('userTitle_0', data.title);
         }
-        this.typeTextUsingIndex('firstName_', this.index, data.firstName);
+        this.typeTextUsingID('firstName_0', data.firstName);
         if (data.initial) {
-            this.typeTextUsingIndex('initial_', this.index, data.initial);
+            this.typeTextUsingID('initial_0', data.initial);
         }
-        this.typeTextUsingIndex('lastName_', this.index, data.lastName);
-        this.typeTextUsingIndex('jobTitle_', this.index, data.jobTitle);
-        this.typeTextUsingIndex('emailAddress_', this.index, data.email);
-        this.typeTextUsingIndex('confirmEmail_', this.index, data.email);
-        this.typeTextUsingIndex('phone_', this.index, data.mobile + '');
-        this.typeTextUsingIndex('ext_', this.index, data.extension);
-        this.typeTextUsingIndex('fax_', this.index, data.fax + '');
+        this.typeTextUsingID('lastName_0', data.lastName);
+        this.typeTextUsingID('jobTitle_0', data.jobTitle);
+        this.typeTextUsingID('emailAddress_0', data.email);
+        this.typeTextUsingID('confirmEmail_0', data.email);
+        this.typeTextUsingID('phone_0', data.mobile + '');
+        this.typeTextUsingID('ext_0', data.extension);
+        this.typeTextUsingID('fax_0', data.fax + '');
         this.scrollDown();
         this.clickRadioButton('Does the Signing Authority', data.accessToMSP + '');
         if (data.accessToMSP) {
-            this.selectValueUsingIndex('administeringFor_add_', this.index, data.administeringFor);
+            this.selectValueUsingID('administeringFor_add_0', data.administeringFor);
         }
     }
 
     fillRemoveSignAuth() {
         const data = this.data.removeSigningAuthority;
-        this.typeTextUsingIndex('emailAddress_remove_', this.index, data.signingAuthEmail);
-        this.typeTextUsingIndex('ministryUserId_remove_', this.index, data.ministryUserID);
+        this.typeTextUsingID('emailAddress_remove_0', data.signingAuthEmail);
+        this.typeTextUsingID('ministryUserId_remove_0', data.ministryUserID);
     }
 
     fillUpdateSignAuth() {
         const data = this.data.updateSigningAuthority;
-        this.typeTextUsingIndex('forIdentifyEmailAddress_edit_', this.index, data.signingAuthEmail);
-        this.typeTextUsingIndex('forIdentifyMinistryUserId_edit_', this.index, data.ministryUserID);
+        this.typeTextUsingID('forIdentifyEmailAddress_edit_0', data.signingAuthEmail);
+        this.typeTextUsingID('forIdentifyMinistryUserId_edit_0', data.ministryUserID);
         if (data.title) {
-            this.selectValueUsingIndex('userTitle_edit_', this.index, data.title);
+            this.selectValueUsingID('userTitle_edit_0', data.title);
         }
-        this.typeTextUsingIndex('firstName_edit_', this.index, data.firstName);
+        this.typeTextUsingID('firstName_edit_0', data.firstName);
         if (data.initial) {
-            this.typeTextUsingIndex('initial_edit_', this.index, data.initial);
+            this.typeTextUsingID('initial_edit_0', data.initial);
         }
-        this.typeTextUsingIndex('lastName_edit_', this.index, data.lastName);
-        this.typeTextUsingIndex('jobTitle_edit_', this.index, data.jobTitle);
-        this.typeTextUsingIndex('emailAddress_edit_', this.index, data.email);
-        this.typeTextUsingIndex('confirmEmail_edit_', this.index, data.email);
-        this.typeTextUsingIndex('phone_edit_', this.index, data.mobile + '');
-        this.typeTextUsingIndex('ext_edit_', this.index, data.extension);
-        this.typeTextUsingIndex('fax_edit_', this.index, data.fax + '');
+        this.typeTextUsingID('lastName_edit_0', data.lastName);
+        this.typeTextUsingID('jobTitle_edit_0', data.jobTitle);
+        this.typeTextUsingID('emailAddress_edit_0', data.email);
+        this.typeTextUsingID('confirmEmail_edit_0', data.email);
+        this.typeTextUsingID('phone_edit_0', data.mobile + '');
+        this.typeTextUsingID('ext_edit_0', data.extension);
+        this.typeTextUsingID('fax_edit_0', data.fax + '');
         this.clickRadioButton('Does the Signing Authority', data.accessToMSP + '');
         if (data.accessToMSP) {
-            this.selectValueUsingIndex('administeringFor_remove_', this.index, data.administeringFor);
+            this.selectValueUsingID('administeringFor_remove_0', data.administeringFor);
         }
     }
 
@@ -261,52 +250,52 @@ export class AccessAdminsPage extends SigningAuthorityPage {
     fillAddAccessAdmin(index: number) {
         const data = this.data.addAccessAdmins;
         if (data[index].title) {
-            this.selectValueUsingIndex('userTitle_', index, data[index].title);
+            this.selectValueUsingID('userTitle_0', data[index].title);
         }
-        this.typeTextUsingIndex('firstName_', index, data[index].firstName);
+        this.typeTextUsingID('firstName_0', data[index].firstName);
         if (data[index].initial) {
-            this.typeTextUsingIndex('initial_', index, data[index].initial);
+            this.typeTextUsingID('initial_0', data[index].initial);
         }
-        this.typeTextUsingIndex('lastName_', index, data[index].lastName);
-        this.typeTextUsingIndex('jobTitle_', index, data[index].jobTitle);
-        this.typeTextUsingIndex('emailAddress_', index, data[index].email);
-        this.typeTextUsingIndex('confirmEmail_', index, data[index].email);
-        this.typeTextUsingIndex('phone_', index, data[index].mobile + '');
-        this.typeTextUsingIndex('ext_', index, data[index].extension);
-        this.typeTextUsingIndex('fax_', index, data[index].fax + '');
+        this.typeTextUsingID('lastName_0', data[index].lastName);
+        this.typeTextUsingID('jobTitle_0', data[index].jobTitle);
+        this.typeTextUsingID('emailAddress_0', data[index].email);
+        this.typeTextUsingID('confirmEmail_0', data[index].email);
+        this.typeTextUsingID('phone_0', data[index].mobile + '');
+        this.typeTextUsingID('ext_0', data[index].extension);
+        this.typeTextUsingID('fax_0', data[index].fax + '');
         this.scrollDown();
-        this.selectValueUsingIndex('administeringFor_', index, data[index].administeringFor);
+        this.selectValueUsingID('administeringFor_0', data[index].administeringFor);
     }
 
     fillRemoveAccessAdmin(index: number) {
         const data = this.data.removeAccessAdmins;
-        this.typeTextUsingIndex('emailAddress_remove_', index, data[index].signingAuthEmail);
-        this.typeTextUsingIndex('ministryUserId_remove_', index, data[index].ministryUserID);
+        this.typeTextUsingID('emailAddress_remove_0', data[index].signingAuthEmail);
+        this.typeTextUsingID('ministryUserId_remove_0', data[index].ministryUserID);
     }
 
     fillUpdateAccessAdmin(index: number) {
         const data = this.data.updateAccessAdmins;
-        this.typeTextUsingIndex('forIdentifyEmailAddress_edit_', index, data[index].signingAuthEmail);
-        this.typeTextUsingIndex('forIdentifyMinistryUserId_edit_', index, data[index].ministryUserID);
+        this.typeTextUsingID('forIdentifyEmailAddress_edit_0', data[index].signingAuthEmail);
+        this.typeTextUsingID('forIdentifyMinistryUserId_edit_0', data[index].ministryUserID);
         this.scrollDown();
         if (data[index].title) {
-            this.selectValueUsingIndex('userTitle_edit_', index, data[index].title);
+            this.selectValueUsingID('userTitle_edit_0', data[index].title);
         }
-        this.typeTextUsingIndex('firstName_edit_', index, data[index].firstName);
+        this.typeTextUsingID('firstName_edit_0', data[index].firstName);
         if (data[index].initial) {
-            this.typeTextUsingIndex('initial_edit_', index, data[index].initial);
+            this.typeTextUsingID('initial_edit_0', data[index].initial);
         }
-        this.typeTextUsingIndex('lastName_edit_', index, data[index].lastName);
-        this.typeTextUsingIndex('jobTitle_edit_', index, data[index].jobTitle);
-        this.typeTextUsingIndex('emailAddress_edit_', index, data[index].email);
-        this.typeTextUsingIndex('confirmEmail_edit_', index, data[index].email);
-        this.typeTextUsingIndex('phone_edit_', index, data[index].mobile + '');
-        this.typeTextUsingIndex('ext_edit_', index, data[index].extension);
-        this.typeTextUsingIndex('fax_edit_', index, data[index].fax + '');
-        this.selectValueUsingIndex('changeRole_edit_', index, data[index].changeRole);
+        this.typeTextUsingID('lastName_edit_0', data[index].lastName);
+        this.typeTextUsingID('jobTitle_edit_0', data[index].jobTitle);
+        this.typeTextUsingID('emailAddress_edit_0', data[index].email);
+        this.typeTextUsingID('confirmEmail_edit_0', data[index].email);
+        this.typeTextUsingID('phone_edit_0', data[index].mobile + '');
+        this.typeTextUsingID('ext_edit_0', data[index].extension);
+        this.typeTextUsingID('fax_edit_0', data[index].fax + '');
+        this.selectValueUsingID('changeRole_edit_0', data[index].changeRole);
         this.clickRadioButton('Do you want to change', data[index].changeAccess + '');
         if (data[index].changeAccess) {
-            this.selectValueUsingIndex('administeringFor_edit_', index, data[index].administeringFor);
+            this.selectValueUsingID('administeringFor_edit_0', data[index].administeringFor);
         }
     }
 
@@ -347,51 +336,51 @@ export class UsersPage extends SigningAuthorityPage {
     fillAddUser(index: number) {
         const data = this.data.addUsers;
         if (data[index].title) {
-            this.selectValueUsingIndex('userTitle_', index, data[index].title);
+            this.selectValueUsingID('userTitle_0', data[index].title);
         }
-        this.typeTextUsingIndex('firstName_', index, data[index].firstName);
+        this.typeTextUsingID('firstName_0', data[index].firstName);
         if (data[index].initial) {
-            this.typeTextUsingIndex('initial_', index, data[index].initial);
+            this.typeTextUsingID('initial_0', data[index].initial);
         }
-        this.typeTextUsingIndex('lastName_', index, data[index].lastName);
-        this.typeTextUsingIndex('jobTitle_', index, data[index].jobTitle);
-        this.typeTextUsingIndex('emailAddress_', index, data[index].email);
-        this.typeTextUsingIndex('confirmEmail_', index, data[index].email);
-        this.typeTextUsingIndex('phone_', index, data[index].mobile + '');
-        this.typeTextUsingIndex('ext_', index, data[index].extension);
-        this.typeTextUsingIndex('fax_', index, data[index].fax + '');
+        this.typeTextUsingID('lastName_0', data[index].lastName);
+        this.typeTextUsingID('jobTitle_0', data[index].jobTitle);
+        this.typeTextUsingID('emailAddress_0', data[index].email);
+        this.typeTextUsingID('confirmEmail_0', data[index].email);
+        this.typeTextUsingID('phone_0', data[index].mobile + '');
+        this.typeTextUsingID('ext_0', data[index].extension);
+        this.typeTextUsingID('fax_0', data[index].fax + '');
         this.scrollDown();
-        this.selectValueUsingIndex('administeringFor_', index, data[index].administeringFor);
+        this.selectValueUsingID('administeringFor_0', data[index].administeringFor);
     }
 
     fillRemoveUser(index: number) {
         const data = this.data.removeUsers;
-        this.typeTextUsingIndex('emailAddress_remove_', index, data[index].signingAuthEmail);
-        this.typeTextUsingIndex('ministryUserId_remove_', index, data[index].ministryUserID);
+        this.typeTextUsingID('emailAddress_remove_0', data[index].signingAuthEmail);
+        this.typeTextUsingID('ministryUserId_remove_0', data[index].ministryUserID);
     }
 
     fillUpdateUser(index: number) {
         const data = this.data.updateUsers;
-        this.typeTextUsingIndex('forIdentifyEmailAddress_edit_', index, data[index].signingAuthEmail);
-        this.typeTextUsingIndex('forIdentifyMinistryUserId_edit_', index, data[index].ministryUserID);
+        this.typeTextUsingID('forIdentifyEmailAddress_edit_0', data[index].signingAuthEmail);
+        this.typeTextUsingID('forIdentifyMinistryUserId_edit_0', data[index].ministryUserID);
         if (data[index].title) {
-            this.selectValueUsingIndex('userTitle_edit_', index, data[index].title);
+            this.selectValueUsingID('userTitle_edit_0', data[index].title);
         }
-        this.typeTextUsingIndex('firstName_edit_', index, data[index].firstName);
+        this.typeTextUsingID('firstName_edit_0', data[index].firstName);
         if (data[index].initial) {
-            this.typeTextUsingIndex('initial_edit_', index, data[index].initial);
+            this.typeTextUsingID('initial_edit_0', data[index].initial);
         }
-        this.typeTextUsingIndex('lastName_edit_', index, data[index].lastName);
-        this.typeTextUsingIndex('jobTitle_edit_', index, data[index].jobTitle);
-        this.typeTextUsingIndex('emailAddress_edit_', index, data[index].email);
-        this.typeTextUsingIndex('confirmEmail_edit_', index, data[index].email);
-        this.typeTextUsingIndex('phone_edit_', index, data[index].mobile + '');
-        this.typeTextUsingIndex('ext_edit_', index, data[index].extension);
-        this.typeTextUsingIndex('fax_edit_', index, data[index].fax + '');
-        this.selectValueUsingIndex('changeRole_edit_', index, data[index].changeRole);
+        this.typeTextUsingID('lastName_edit_0', data[index].lastName);
+        this.typeTextUsingID('jobTitle_edit_0', data[index].jobTitle);
+        this.typeTextUsingID('emailAddress_edit_0', data[index].email);
+        this.typeTextUsingID('confirmEmail_edit_0', data[index].email);
+        this.typeTextUsingID('phone_edit_0', data[index].mobile + '');
+        this.typeTextUsingID('ext_edit_0', data[index].extension);
+        this.typeTextUsingID('fax_edit_0', data[index].fax + '');
+        this.selectValueUsingID('changeRole_edit_0', data[index].changeRole);
         this.clickRadioButton('Do you want to change', data[index].changeAccess + '');
         if (data[index].changeAccess) {
-            this.selectValueUsingIndex('administeringFor_edit_', index, data[index].administeringFor);
+            this.selectValueUsingID('administeringFor_edit_0', data[index].administeringFor);
         }
     }
 
@@ -439,18 +428,18 @@ export class GroupNumbersPage extends BaseDevUpdateTestPage {
 
     fillAddMSPGroup(index: number) {
         const data = this.data.addMSPGroup;
-        this.typeTextUsingIndex('groupNo_', index, data[index].groupNum);
+        this.typeTextUsingID('groupNo_0', data[index].groupNum);
         this.clickRadioButton('Will this group be', this.checkThirdParty(index));
     }
 
     fillRemoveMSPGroup(index: number) {
         const data = this.data.removeMSPGroup;
-        this.typeTextUsingIndex('groupNo_remove_', index, data[index].groupNum);
+        this.typeTextUsingID('groupNo_remove_0', data[index].groupNum);
     }
 
     fillUpdateMSPGroup(index: number) {
         const data = this.data.updateMSPGroup;
-        this.typeTextUsingIndex('groupNo_edit_', index, data[index].groupNum);
+        this.typeTextUsingID('groupNo_edit_0', data[index].groupNum);
         this.clickRadioButton('Will this group be', this.checkThirdParty(index));
     }
 

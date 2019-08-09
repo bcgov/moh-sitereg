@@ -41,7 +41,6 @@ describe('MSP Direct Update - End to End Test (Happy Path)', () => {
         orgData = data.organizationInfo();
         saData = data.signingAuthorityInfo();
         groupData = data.groupNumbersInfo();
-        data.setSeed(123);
     });
 
     it('Should navigate from Requestor Info to Confirmation Page (end-to-end) when all required fields are filled out', () => {
