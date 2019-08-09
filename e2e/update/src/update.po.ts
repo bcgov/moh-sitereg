@@ -85,8 +85,6 @@ export class OrganizationPage extends BaseDevUpdateTestPage {
         element(by.css(`input[placeholder="${placeholder}"]`)).sendKeys(data);
     }
 
-   
-
     selectFromDropDown(id: string, value: string) {
         element(by.css(`input[id^="${id}"]`)).click();
         element(by.cssContainingText('span', value)).click();
@@ -128,20 +126,22 @@ export class SigningAuthorityPage extends BaseDevUpdateTestPage {
     }
 
     fillPage() {
-        if (this.data.updateSigningAuthority) {
-            this.clickButton('btn', 'Update Signing Authority');
-            this.fillUpdateSignAuth();
-            this.scrollUp();
-        }
-        if (this.data.addSigningAuthority) {
-            this.clickButton('btn', 'Add Signing Authority');
-            this.fillAddSignAuth();
-            this.scrollUp();
-        }
-        if (this.data.removeSigningAuthority) {
-            this.clickButton('btn', 'Remove Signing Authority');
-            this.fillRemoveSignAuth();
-            this.scrollUp();
+        if(this.data){
+            if (this.data.updateSigningAuthority) {
+                this.clickButton('btn', 'Update Signing Authority');
+                this.fillUpdateSignAuth();
+                this.scrollUp();
+            }
+            if (this.data.addSigningAuthority) {
+                this.clickButton('btn', 'Add Signing Authority');
+                this.fillAddSignAuth();
+                this.scrollUp();
+            }
+            if (this.data.removeSigningAuthority) {
+                this.clickButton('btn', 'Remove Signing Authority');
+                this.fillRemoveSignAuth();
+                this.scrollUp();
+            }
         }
     }
 
@@ -222,26 +222,28 @@ export class AccessAdminsPage extends SigningAuthorityPage {
     }
 
     fillPage() {
-        if (this.data.updateAccessAdmins) {
-            for (let i = 0; i < this.data.updateAccessAdmins.length; i++) {
-                this.clickButton('btn', 'Update Access Administrator');
-                this.fillUpdateAccessAdmin(i);
-                this.scrollUp();
+        if (this.data){
+            if (this.data.updateAccessAdmins) {
+                for (let i = 0; i < this.data.updateAccessAdmins.length; i++) {
+                    this.clickButton('btn', 'Update Access Administrator');
+                    this.fillUpdateAccessAdmin(i);
+                    this.scrollUp();
 
+                }
             }
-        }
-        if (this.data.addAccessAdmins) {
-            for (let i = 0; i < this.data.addAccessAdmins.length; i++) {
-                this.clickButton('btn', 'Add Access Administrator');
-                this.fillAddAccessAdmin(i);
-                this.scrollUp();
+            if (this.data.addAccessAdmins) {
+                for (let i = 0; i < this.data.addAccessAdmins.length; i++) {
+                    this.clickButton('btn', 'Add Access Administrator');
+                    this.fillAddAccessAdmin(i);
+                    this.scrollUp();
+                }
             }
-        }
-        if (this.data.removeAccessAdmins) {
-            for (let i = 0; i < this.data.removeAccessAdmins.length; i++) {
-                this.clickButton('btn', 'Remove Access Administrator');
-                this.fillRemoveAccessAdmin(i);
-                this.scrollUp();
+            if (this.data.removeAccessAdmins) {
+                for (let i = 0; i < this.data.removeAccessAdmins.length; i++) {
+                    this.clickButton('btn', 'Remove Access Administrator');
+                    this.fillRemoveAccessAdmin(i);
+                    this.scrollUp();
+                }
             }
         }
     }
@@ -309,25 +311,27 @@ export class UsersPage extends SigningAuthorityPage {
     }
 
     fillPage() {
-        if (this.data.updateUsers) {
-            for (let i = 0; i < this.data.updateUsers.length; i++) {
-                this.clickButton('btn', 'Update User');
-                this.fillUpdateUser(i);
-                this.scrollUp();
+        if (this.data){
+            if (this.data.updateUsers) {
+                for (let i = 0; i < this.data.updateUsers.length; i++) {
+                    this.clickButton('btn', 'Update User');
+                    this.fillUpdateUser(i);
+                    this.scrollUp();
+                }
             }
-        }
-        if (this.data.addUsers) {
-            for (let i = 0; i < this.data.addUsers.length; i++) {
-                this.clickButton('btn', 'Add User');
-                this.fillAddUser(i);
-                this.scrollUp();
+            if (this.data.addUsers) {
+                for (let i = 0; i < this.data.addUsers.length; i++) {
+                    this.clickButton('btn', 'Add User');
+                    this.fillAddUser(i);
+                    this.scrollUp();
+                }
             }
-        }
-        if (this.data.removeUsers) {
-            for (let i = 0; i < this.data.removeUsers.length; i++) {
-                this.clickButton('btn', 'Remove User');
-                this.fillRemoveUser(i);
-                this.scrollUp();
+            if (this.data.removeUsers) {
+                for (let i = 0; i < this.data.removeUsers.length; i++) {
+                    this.clickButton('btn', 'Remove User');
+                    this.fillRemoveUser(i);
+                    this.scrollUp();
+                }
             }
         }
     }
@@ -394,25 +398,27 @@ export class GroupNumbersPage extends BaseDevUpdateTestPage {
     }
 
     fillPage() {
-        if (this.data.updateMSPGroup) {
-            for (let i = 0; i < this.data.updateMSPGroup.length; i++) {
-                this.clickButton('btn', 'Update administration of MSP Group');
-                this.fillUpdateMSPGroup(i);
-                this.scrollUp();
+        if (this.data){
+            if (this.data.updateMSPGroup) {
+                for (let i = 0; i < this.data.updateMSPGroup.length; i++) {
+                    this.clickButton('btn', 'Update administration of MSP Group');
+                    this.fillUpdateMSPGroup(i);
+                    this.scrollUp();
+                }
             }
-        }
-        if (this.data.addMSPGroup) {
-            for (let i = 0; i < this.data.addMSPGroup.length; i++) {
-                this.clickButton('btn', 'Add a new MSP Group');
-                this.fillAddMSPGroup(i);
-                this.scrollUp();
+            if (this.data.addMSPGroup) {
+                for (let i = 0; i < this.data.addMSPGroup.length; i++) {
+                    this.clickButton('btn', 'Add a new MSP Group');
+                    this.fillAddMSPGroup(i);
+                    this.scrollUp();
+                }
             }
-        }
-        if (this.data.removeMSPGroup) {
-            for (let i = 0; i < this.data.removeMSPGroup.length; i++) {
-                this.clickButton('btn', 'Remove MSP Group');
-                this.fillRemoveMSPGroup(i);
-                this.scrollUp();
+            if (this.data.removeMSPGroup) {
+                for (let i = 0; i < this.data.removeMSPGroup.length; i++) {
+                    this.clickButton('btn', 'Remove MSP Group');
+                    this.fillRemoveMSPGroup(i);
+                    this.scrollUp();
+                }
             }
         }
     }

@@ -1,0 +1,11 @@
+[
+  {
+    "description": "MSP Direct Update - End to End Test (Happy Path) Should navigate from Requestor Info to Confirmation Page (end-to-end) when all required fields are filled out",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 17751
+  }
+]
