@@ -5,7 +5,11 @@ import {
     Input,
 } from '@angular/core';
 import { FormGroup, FormControl, FormControlName } from '@angular/forms';
-import { isRequiredError, validFormControl, validMultiFormControl } from 'src/app/modules/msp-update/common/validators';
+import {
+    isRequiredError,
+    validFormControl,
+    validMultiFormControl,
+} from 'src/app/modules/msp-update/common/validators';
 
 @Component({
     selector: 'sitereg-update-error-box',
@@ -22,14 +26,15 @@ export class MspDirectUpdateErrorBoxComponent implements OnInit {
     @Input() formControlLabel: string;
     @Input() errorMessage: string;
 
-
     get isError(): boolean {
         // // console.log(this.formControlValidity);
-        return (this.formControlValidity.required === true
-            || this.formControlValidity.other === true) ? true : false;
+        return this.formControlValidity.required === true ||
+            this.formControlValidity.other === true
+            ? true
+            : false;
     }
 
-    constructor() { }
+    constructor() {}
 
-    ngOnInit() { }
+    ngOnInit() {}
 }
