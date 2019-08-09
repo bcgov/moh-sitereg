@@ -1,11 +1,11 @@
 <common-page-framework layout='blank'>
   <h1 class="border-bottom">Access Administrator </h1>
   <common-page-section layout='tips'>
-    <aside>Access Administrators are the primary contacts within your Organization for all question and
+    <!-- <aside>Access Administrators are the primary contacts within your Organization for all question and
       concerns about user access to the Ministry of Health web applications. They are responsible for registering users,
       assiging users, assigning and cancelling access persmissions, co-ordinating the installation of the digital
       certificate on users's computers and other responsibilites identified by the Ministry.
-    </aside>
+    </aside> -->
 
     <div class="row mb-4">
       <button type='button' class='btn btn-secondary col mr-4' (click)="formAddNew()">Add Access Administrator</button>
@@ -15,6 +15,21 @@
         Administrator</button>
     </div>
   </common-page-section>
+
+  <div style="display:flex;flex-direction:column">
+    <sitereg-update-access-admin-remove #formRemove [formState]="formRemoveState"
+      (formArrayChanged)="formRemoveStateChanged($event)" [style.order]="displayOrder.remove">
+    </sitereg-update-access-admin-remove>
+
+    <sitereg-update-access-admin-add #formAdd [formState]="formAddState"
+      (formArrayChanged)="formAddStateChanged($event)" [style.order]="displayOrder.add">
+    </sitereg-update-access-admin-add>
+
+    <sitereg-update-access-admin-edit #formEdit [formState]="formEditState"
+      (formArrayChanged)="formEditStateChanged($event)" [style.order]="displayOrder.edit">
+    </sitereg-update-access-admin-edit>
+  </div>
+  <!-- 
   <common-page-section layout='noTips' class="pt-4">
     <sitereg-update-access-admin-remove #formRemove [formState]="formRemoveState"
       (formArrayChanged)="formRemoveStateChanged($event)"></sitereg-update-access-admin-remove>
@@ -28,7 +43,7 @@
   <common-page-section layout='noTips' class="pt-4">
     <sitereg-update-access-admin-edit #formEdit [formState]="formEditState"
       (formArrayChanged)="formEditStateChanged($event)"></sitereg-update-access-admin-edit>
-  </common-page-section>
+  </common-page-section> -->
 
 </common-page-framework>
 <common-form-action-bar (btnClick)="continue()" [submitLabel]="buttonLabel" [canContinue]='canContinue()'>

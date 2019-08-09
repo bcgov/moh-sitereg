@@ -6,7 +6,7 @@ import { funcRemoveStrings } from '@msp-register/constants';
 import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
-import { UpdateStateService } from '../../../services/update.state.service';
+import { UpdateStateService, FormStatusAddRemoveUpdate } from '../../../services/update.state.service';
 import { MspDirectUpdateSigningAuthorityRemoveComponent } from '../signing-authority-remove/signing-authority-remove.component';
 import { MspDirectUpdateSigningAuthorityAddComponent } from '../signing-authority-add/signing-authority-add.component';
 import { MspDirectUpdateSigningAuthorityEditComponent } from '../signing-authority-edit/signing-authority-edit.component';
@@ -16,12 +16,37 @@ import { MspDirectUpdateSigningAuthorityEditComponent } from '../signing-authori
     templateUrl: './signing-authority.component.html',
     styleUrls: ['./signing-authority.component.scss'],
 })
-export class MspDirectUpdateSigningAuthorityComponent implements OnInit{
+export class MspDirectUpdateSigningAuthorityComponent implements OnInit {
 
     public validFormControl: (fg: FormGroup, name: string) => boolean;
     public showAddSigningAuthority = false;
     public showRemoveSigningAuthority = false;
     public showUpdateSigningAuthority = false;
+    public isFormHasData: FormStatusAddRemoveUpdate;
+
+    public displayOrder = {
+        add: 0,
+        remove: 0,
+        edit: 0,
+    };
+
+    public updateDisplayOrder(actionType: 'add' | 'remove' | 'edit') {
+        if (actionType === 'add') {
+            this.displayOrder.add = 1;
+            this.displayOrder.remove = 2;
+            this.displayOrder.edit = 3;
+        }
+        if (actionType === 'remove') {
+            this.displayOrder.remove = 1;
+            this.displayOrder.add = 2;
+            this.displayOrder.edit = 3;
+        }
+        if (actionType === 'edit') {
+            this.displayOrder.edit = 1;
+            this.displayOrder.remove = 2;
+            this.displayOrder.add = 3;
+        }
+    }
 
     private get isUpdate(): boolean {
         return !(this.showAddSigningAuthority === false &&
@@ -30,7 +55,7 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit{
     }
 
     get buttonLabel(): string {
-        return this.isUpdate ? 'Continue' : 'Skip';
+        return this.isUpdate || this.isFormHasData.hasData ? 'Continue' : 'Skip';
     }
 
     canContinue() {
@@ -62,6 +87,10 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit{
     ngOnInit() {
         // // console.log(`%c%o : %o`, 'color:green', this.componentInfo);
         this.progressService.setPageIncomplete();
+        this.updateButtonStates();
+        this.updateStateService.formsStatusChanges$.subscribe(x =>
+            this.isFormHasData = x.signingAuthority
+        );
     }
 
     continue() {
@@ -102,6 +131,20 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit{
         this.updateStateService.forms.signingAuthority.update = null;
     }
 
+    updateButtonStates() {
+
+        const form = this.updateStateService.forms.signingAuthority;
+
+        const formsRemove = form.remove ? form.remove.get('arrayOfForms') as FormArray | null : null;
+        this.showRemoveSigningAuthority = formsRemove && formsRemove.controls.length > 0 ? true : false;
+
+        const formsAdd = form.add ? form.add.get('arrayOfForms') as FormArray | null : null;
+        this.showAddSigningAuthority = formsAdd && formsAdd.controls.length > 0 ? true : false;
+
+        const formsEdit = form.update ? form.update.get('arrayOfForms') as FormArray | null : null;
+        this.showUpdateSigningAuthority = formsEdit && formsEdit.controls.length > 0 ? true : false;
+
+    }
 
     //#region Edit
 
@@ -115,11 +158,13 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit{
 
     formEditStateChanged(formGroups: any) {
         this.updateStateService.forms.signingAuthority.update = formGroups;
-        this.showUpdateSigningAuthority = this.formEdit.getFormsCount > 0 ? true : false;
+        this.updateStateService.formStatusChanged();
+        this.updateButtonStates();
     }
 
     formEditNew() {
         this.formEdit.newForm();
+        this.updateDisplayOrder('edit');
     }
 
     //#endregion
@@ -136,11 +181,13 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit{
 
     formAddStateChanged(formGroups: any) {
         this.updateStateService.forms.signingAuthority.add = formGroups;
-        this.showAddSigningAuthority = this.formAdd.getFormsCount > 0 ? true : false;
+        this.updateStateService.formStatusChanged();
+        this.updateButtonStates();
     }
 
     formAddNew() {
         this.formAdd.newForm();
+        this.updateDisplayOrder('add');
     }
 
     //#endregion
@@ -158,15 +205,14 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit{
 
     formRemoveStateChanged(formGroups: any) {
         this.updateStateService.forms.signingAuthority.remove = formGroups;
-        this.showRemoveSigningAuthority = this.formRemove.getFormsCount > 0 ? true : false;
+        this.updateStateService.formStatusChanged();
+        this.updateButtonStates();
     }
 
     formRemoveNew() {
         this.formRemove.newForm();
+        this.updateDisplayOrder('remove');
     }
 
     //#endregion
-
-
-
 }

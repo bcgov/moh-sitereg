@@ -45,7 +45,7 @@ export class MspRegisterDataService {
     );
     private signingAuthorityName$: BehaviorSubject<
         string
-    > = new BehaviorSubject('Sean');
+    > = new BehaviorSubject('user');
     private agreementText$: BehaviorSubject<string> = new BehaviorSubject(text);
     private signingAuthorityAddress$: BehaviorSubject<
         string

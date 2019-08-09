@@ -5,7 +5,7 @@
       </common-xicon-button>
       <h2 class='border-bottom'>Remove an Access Administrator #{{getFormsArray.controls.length - formIndex}}</h2>
       <common-page-section layout='tips'>
-        <aside>Access Administrator information</aside>
+        <!-- <aside>Access Administrator information</aside> -->
         <div class='form-group col-sm-8 p-sm-0'>
 
           <label for='emailAddress_remove_{{formIndex}}'>Enter the email of the Access Administrator to remove</label>
@@ -16,12 +16,12 @@
             formControlLabel="Email" errorMessage="Please provide valid email address.">
           </sitereg-update-error-box>
 
-          <label for='ministryUserId_remove_{{formIndex}}'>Ministry asigned User ID (optional)</label>
+          <label for='ministryUserId_remove_{{formIndex}}'>Ministry assigned User ID (optional)</label>
           <input type='text' class='form-control' name='ministryUserId_remove_{{formIndex}}' formControlName='ministryUserId'
             id='ministryUserId_remove_{{formIndex}}' maxlength="20">
 
           <sitereg-update-error-box [formControlValidity]="formControlValidity(fg,'ministryUserId')"
-            formControlLabel="Ministry asigned User ID" errorMessage="Please provide valid Ministry assigned User Id.">
+            formControlLabel="Ministry assigned User ID" errorMessage="Please provide valid Ministry assigned User Id.">
           </sitereg-update-error-box>
 
           <!-- <sitereg-update-json-view [showRaw]="false" [raw]='fg.value' [showJson]="true" [json]='json(fg.value)'>

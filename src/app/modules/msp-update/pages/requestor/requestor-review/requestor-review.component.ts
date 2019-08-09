@@ -29,6 +29,7 @@ export class MspDirectUpdateRequestorReviewComponent implements OnInit {
     this.review.header = ROUTES_UPDATE.REQUESTOR.title;
 
     const form = this.updateStateService.forms.requestorForm;
+    if (!form) return;
     const infoObject: interfaceObjects.IRequestor = interfaceObjects.getIRequestor(form.value);
     if (!infoObject) return;
     const items = [[

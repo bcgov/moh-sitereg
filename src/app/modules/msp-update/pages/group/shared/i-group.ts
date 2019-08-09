@@ -20,6 +20,7 @@ export function getIGroup(formValues): IGroup[] {
         // console.log(iObj);
     });
 
+    // console.log(`%c getIGroup: %o`, 'color:green', iObjArray);
     // console.log(iObjArray);
     return iObjArray;
 }
@@ -35,6 +36,7 @@ export function getIGroupReviewItems(infoObjects: IGroup[]) {
         item.push({ label: 'Group Number', value: element.groupNo });
         if (isValidOptionalField(element.thirdPartyAdmin)) item.push({ label: 'Third Party', value: element.thirdPartyAdmin });
 
+        // console.log(`%c pushing ITEM getIGroupReviewItems : %o`, 'color:green', item);
         items.push(item);
 
     });

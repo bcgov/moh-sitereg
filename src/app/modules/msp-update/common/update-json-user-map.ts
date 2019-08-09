@@ -34,14 +34,14 @@ export function mapJsonCoreUserGeneralInfo(userAction: jsonMaps.actionType, form
     let json: any = {};
 
     if (userAction === jsonMaps.actionType.Add) {
-        // console.log('mapJson - ' + userAction);
+        // console.log('mapJson - ADD %o', formValues);
 
         // required
         json.first_name = formValues.firstName ? formValues.firstName : '';
         json.last_name = formValues.lastName ? formValues.lastName : '';
         json.job_title = formValues.jobTitle ? formValues.jobTitle : '';
         json.email = formValues.emailAddress ? formValues.emailAddress : '';
-        json.confirm_email = formValues.confirmEmail ? formValues.confirmEmail : '';
+        // json.confirm_email = formValues.confirmEmail ? formValues.confirmEmail : '';
         json.phone_num = formValues.phone ? formValues.phone : '';
 
         // Optional
@@ -54,7 +54,7 @@ export function mapJsonCoreUserGeneralInfo(userAction: jsonMaps.actionType, form
     }
 
     if (userAction === jsonMaps.actionType.Edit) {
-        // console.log('mapJson - ' + userAction);
+        // console.log('mapJson - Edit %o', formValues);
 
         // required
         json.user = mapJsonCoreUserGeneralIdentificationInfo(jsonMaps.actionType.Edit, formValues);
@@ -72,7 +72,7 @@ export function mapJsonCoreUserGeneralInfo(userAction: jsonMaps.actionType, form
         if (jsonMaps.isValidOptionalField(formValues.lastName)) json.last_name = formValues.lastName;
         if (jsonMaps.isValidOptionalField(formValues.jobTitle)) json.job_title = formValues.jobTitle;
         if (jsonMaps.isValidOptionalField(formValues.emailAddress)) json.email = formValues.emailAddress;
-        if (jsonMaps.isValidOptionalField(formValues.confirmEmail)) json.confirm_email = formValues.confirmEmail;
+        // if (jsonMaps.isValidOptionalField(formValues.confirmEmail)) json.confirm_email = formValues.confirmEmail;
         if (jsonMaps.isValidOptionalField(formValues.phone)) json.phone_num = formValues.phone;
 
     }

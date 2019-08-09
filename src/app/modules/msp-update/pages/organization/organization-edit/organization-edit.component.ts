@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { cUpdateEnumeration, validMultiFormControl, cUpdateValidators } from '../../../common/validators';
-import { getEditJsonOfOrganization } from '../shared/organization-json-map';
+import { getEditJSONofOrganization } from '../shared/organization-json-map';
 import { RandomObjects, IDataForm } from '../../../common/i-dataform';
 import { environment } from 'src/environments/environment.prod';
 
@@ -23,7 +23,7 @@ export class MspDirectUpdateOrganizationEditComponent implements OnInit, IDataFo
 
   constructor(private fb: FormBuilder) {
     this.validFormControl = validMultiFormControl;
-    this.json = getEditJsonOfOrganization;
+    this.json = getEditJSONofOrganization;
   }
 
   ngOnInit() {
@@ -31,8 +31,6 @@ export class MspDirectUpdateOrganizationEditComponent implements OnInit, IDataFo
     this.parentForm.valueChanges.subscribe(x => {
       this.statusChanged.emit(this.parentForm);
 
-      // // console.log(x);
-      // // console.log(this.parentForm);
       for (const controlName in this.parentForm.controls) {
         if (controlName) {
           const control = this.parentForm.get(controlName);

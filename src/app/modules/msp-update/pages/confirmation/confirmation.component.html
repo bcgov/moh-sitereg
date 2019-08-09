@@ -21,7 +21,7 @@
       </div>
       <div class='col-md-4'>
         <span style="font-size: 1.25rem;">Your application has been submitted.</span> <br />
-        <span><small>{{ today | date:'mediumDate' }} --- Request and Agreement number: <b>{{ paddedConfirmationNumber() }}</b>
+        <span><small>{{ today | date:'mediumDate' }} --- Request number: <b>{{ paddedConfirmationNumber() }}</b>
            <!-- <b>{{mspRegDataSvc.requestFinalStatus?.confirmationNumber }}</b> -->
           </small></span>
       </div>
@@ -58,14 +58,14 @@
     </div>
   </div>
 
-  <div class='row mr-0' *ngIf="isTechnicalInfoAvaialble && debugMode">
+  <div class='row mr-0'  *ngIf="debug" >
     <div class='col-md-4 p-4'>
       <div (click)="toggleDetail()">Technical information</div>
     </div>
   </div>
 
 
-  <div class="card" *ngIf="debugMode && showDetail">
+  <div class="card" *ngIf="debug && showDetail">
     <div class="card-body">
       <h5 class="card-title">Reference Identifier</h5>
       <p class="card-text">

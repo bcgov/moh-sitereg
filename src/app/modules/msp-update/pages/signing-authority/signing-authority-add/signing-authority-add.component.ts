@@ -5,7 +5,7 @@ import {
 } from '../shared/signing-authority-shared';
 
 import {
-  validMultiFormControl, formControlValidity
+  validMultiFormControl, formControlValidity, matchFieldValidator
 } from '../../../common/update-validators';
 
 
@@ -62,8 +62,10 @@ export class MspDirectUpdateSigningAuthorityAddComponent implements OnInit, IDat
       initial: [null, cUpdateSigningAuthorityValidator.add.initial],
       lastName: [null, cUpdateSigningAuthorityValidator.add.lastName],
       jobTitle: [null, cUpdateSigningAuthorityValidator.add.jobTitle],
-      emailAddress: [null, cUpdateSigningAuthorityValidator.add.emailAddress],
-      confirmEmail: [null, cUpdateSigningAuthorityValidator.add.confirmEmail],
+      formGroupEmail: this.fb.group({
+        emailAddress: [null, cUpdateSigningAuthorityValidator.add.emailAddress],
+        confirmEmail: [null, cUpdateSigningAuthorityValidator.add.confirmEmail],
+      }, { validator: matchFieldValidator('confirmEmail', 'emailAddress') }),
       phone: [null, cUpdateSigningAuthorityValidator.add.phone],
       ext: [null, cUpdateSigningAuthorityValidator.add.ext],
       fax: [null, cUpdateSigningAuthorityValidator.add.fax],

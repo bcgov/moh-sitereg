@@ -5,9 +5,9 @@
 
       <common-xicon-button class='d-block pb-1' label="Cancel" (clickEvent)="removeForm(formIndex)">
       </common-xicon-button>
-      <h2 class='border-bottom'>Update existing Signing Authority</h2>
+      <h2 class='border-bottom'>Update Existing Signing Authority</h2>
       <common-page-section layout='tips'>
-        <aside>Signing Authority information</aside>
+        <!-- <aside>Signing Authority information</aside> -->
 
         <div class='form-group col-sm-8 p-sm-0'>
 
@@ -21,13 +21,13 @@
             formControlLabel="Email" errorMessage="Please provide valid email address.">
           </sitereg-update-error-box>
 
-          <label for='forIdentifyMinistryUserId_edit_{{formIndex}}'>Ministry asigned User ID (optional)</label>
+          <label for='forIdentifyMinistryUserId_edit_{{formIndex}}'>Ministry assigned User ID (optional)</label>
           <input type='text' class='form-control' name='forIdentifyMinistryUserId_edit_{{formIndex}}'
             formControlName='forIdentifyMinistryUserId' id='forIdentifyMinistryUserId_edit_{{formIndex}}'
             maxlength="20">
 
           <sitereg-update-error-box [formControlValidity]="formControlValidity(fg,'forIdentifyMinistryUserId')"
-            formControlLabel="Ministry asigned User ID" errorMessage="Please provide valid Ministry assigned User Id.">
+            formControlLabel="Ministry assigned User ID" errorMessage="Please provide valid Ministry assigned User Id.">
           </sitereg-update-error-box>
 
 
@@ -43,7 +43,7 @@
             </div>
             <!-- First Name -->
             <div class="col-sm-8">
-              <label class="control-label" for="firstName_edit_{{formIndex}}">First Name</label>
+              <label class="control-label" for="firstName_edit_{{formIndex}}">First Name (optional)</label>
               <input id="firstName_edit_{{formIndex}}" formControlName="firstName" class="form-control" maxlength="100">
               <sitereg-update-error-box [formControlValidity]="formControlValidity(fg,'firstName')"
                 formControlLabel="First Name" errorMessage="Please provide valid first name.">
@@ -63,7 +63,7 @@
             <div class="col-sm-8">
 
               <!-- Last Name -->
-              <label class="control-label" for="lastName_edit_{{formIndex}}">Last Name</label>
+              <label class="control-label" for="lastName_edit_{{formIndex}}">Last Name (optional)</label>
               <input id="lastName_edit_{{formIndex}}" formControlName="lastName" class="form-control" maxlength="100">
               <sitereg-update-error-box [formControlValidity]="formControlValidity(fg,'lastName')"
                 formControlLabel="Last Name" errorMessage="Please provide valid last name."> </sitereg-update-error-box>
@@ -71,14 +71,14 @@
           </div>
 
           <!-- Job Title -->
-          <label class="control-label" for="jobTitle_edit_{{formIndex}}">Job Title</label>
+          <label class="control-label" for="jobTitle_edit_{{formIndex}}">Job Title (optional)</label>
           <input id="jobTitle_edit_{{formIndex}}" formControlName="jobTitle" class="form-control" maxlength="100">
           <sitereg-error-box [error]="validFormControl(fg,'jobTitle')"
             errorMessage="Job title is required. Please provide valid job title."></sitereg-error-box>
 
           <div formGroupName="formGroupEmail">
             <!-- Email Address -->
-            <label class="control-label" for="emailAddress_edit_{{formIndex}}">Email Address</label>
+            <label class="control-label" for="emailAddress_edit_{{formIndex}}">Email Address (optional)</label>
             <input id="emailAddress_edit_{{formIndex}}" formControlName="emailAddress" class="form-control"
               maxlength="100">
             <sitereg-update-error-box
@@ -98,7 +98,7 @@
           <!-- Phone -->
           <div class="row">
             <div class="col-sm-8">
-              <label class="control-label" for="phone_edit_{{formIndex}}">Phone</label>
+              <label class="control-label" for="phone_edit_{{formIndex}}">Phone (optional)</label>
               <input id="phone_edit_{{formIndex}}" formControlName="phone" class="form-control" maxlength="10">
               <sitereg-update-error-box [formControlValidity]="formControlValidity(fg,'phone')"
                 formControlLabel="Phone Number" errorMessage="Must be in the format 0000000000">
@@ -145,7 +145,7 @@
               label="Do you want to change access?" (statusChange)="updateAccessValidation(fg,$event)"></common-radio> -->
 
               <common-radio [radioLabels]="radioBtnLabels" formControlName="isAdmin"
-                label="Does you want to change the Signing Authority require access to MSP Direct?"
+                label="Does the Signing Authority require access to MSP Direct?"
                 (statusChange)="updateAccessValidation(fg,$event)"></common-radio>
                 <!-- (statusChange)="updateChangeAdministeringQuestionValidation(fg,$event)"></common-radio> -->
             </div>
@@ -162,7 +162,7 @@
                 <option *ngFor="let a of administeringForOptions " [value]="a">{{a}}</option>
               </select>
               <sitereg-update-error-box [formControlValidity]="formControlValidity(fg,'administeringFor')"
-                formControlLabel="Administer for" errorMessage="Please select a valid option">
+                formControlLabel="" errorMessage="Please select a valid option">
               </sitereg-update-error-box>
             </ng-container>
 
