@@ -8,7 +8,6 @@ export class BaseDevUpdateTestPage extends BaseMSPTestPage {
 
     protected data = new FakeDataDevUpdate();
     protected jsonData = this.data.getJSONData();
-    protected jsonParam = this.jsonData.e2eParam;
 
     navigateTo() {
         return browser.get('/sitereg/home/');

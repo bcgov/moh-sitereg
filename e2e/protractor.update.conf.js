@@ -11,7 +11,8 @@ exports.config = {
   multiCapabilities: [{
   //  'browserName': 'firefox'
   //}, {
-    'browserName': 'chrome'
+    'browserName': 'chrome',
+    'chromeOptions': {args: ['--headless']}
   }],
   directConnect: true,
   baseUrl: 'http://localhost:4200/',
@@ -21,6 +22,7 @@ exports.config = {
     defaultTimeoutInterval: 30000,
     print: function() {}
   },
+  resultJsonOutputFile: 'e2e/moh-update-e2e-results.json',
   onPrepare: function() {
     require('ts-node').register({
       project: require('path').join(__dirname, './tsconfig.e2e.json')

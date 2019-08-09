@@ -7,7 +7,6 @@ export class BaseSiteRegTestPage extends AbstractTestPage {
 
     protected data = new FakeDataSiteReg();
     protected jsonData = this.data.getJSONData();
-    protected jsonParam = this.jsonData.e2eParam;
 
     constructor() {
         super();
@@ -104,8 +103,9 @@ export class BaseSiteRegTestPage extends AbstractTestPage {
     }
 
     getSnapshotLoc() {
-        if (this.jsonParam.folderLocation) {
-            return this.jsonParam.folderLocation;
+        const jsonParam = this.jsonData.e2eParam;
+        if (jsonParam.folderLocation) {
+            return jsonParam.folderLocation;
         } else {
             return 'e2e/snapshots';
         }
@@ -128,9 +128,10 @@ export class BaseSiteRegTestPage extends AbstractTestPage {
     }
 
     checkSnapshot(pageName: string, pageNum: number) {
-        if (this.jsonParam){
-            if (this.jsonParam.snapshotAt !== undefined) {
-                const snapshot = this.jsonParam.snapshotAt;
+        if (this.jsonData.e2eParam){
+            const jsonParam = this.jsonData.e2eParam;
+            if (jsonParam.snapshotAt !== undefined) {
+                const snapshot = jsonParam.snapshotAt;
                 for (let i = 0; i < snapshot.length; i++) {
                     if (snapshot[i] === pageNum) {
                         this.pageSnapshot(pageName);
