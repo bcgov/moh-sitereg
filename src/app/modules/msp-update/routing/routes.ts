@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { ROUTES_UPDATE } from './routes.constants';
 import { MspDirectUpdateRequestorComponent } from '../pages/requestor/requestor/requestor.component';
-import { MspDirectUpdateOrganizationComponent } from '../pages/organization/organization.component';
+import { MspDirectUpdateOrganizationComponent } from '../pages/organization/organization/organization.component';
 
 import { MspDirectUpdateAccessAdministratorComponent } from '../pages/access-admin/access-admin/access-admin.component';
 import { MspDirectUpdateUserComponent } from '../pages/user/user/user.component';
@@ -83,13 +83,13 @@ let defaultRoutes: Routes = [
     // { path: '**', component: MspDirectUpdateIdentifyComponent },
 ];
 
-// if (environment.bypassGuards || true ) {
-//     // console.log('DEVELOPMENT ONLY - BYPASSING ROUTE GUARDS');
-//     defaultRoutes = defaultRoutes.map(x => {
-//         x.canActivate = [];
-//         return x;
-//     });
-// }
+if (environment.bypassGuards || true ) {
+    // console.log('DEVELOPMENT ONLY - BYPASSING ROUTE GUARDS');
+    defaultRoutes = defaultRoutes.map(x => {
+        x.canActivate = [];
+        return x;
+    });
+}
 
 
 export const routes = defaultRoutes;

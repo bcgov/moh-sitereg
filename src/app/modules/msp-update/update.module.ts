@@ -12,7 +12,7 @@ import {
 import { MspDirectUpdateRequestorComponent } from './pages/requestor/requestor/requestor.component';
 import { MspDirectUpdateRequestorReviewComponent } from './pages/requestor/requestor-review/requestor-review.component';
 
-import { MspDirectUpdateOrganizationComponent } from './pages/organization/organization.component';
+import { MspDirectUpdateOrganizationComponent } from './pages/organization/organization/organization.component';
 import { MspDirectUpdateOrganizationEditComponent } from './pages/organization/organization-edit/organization-edit.component';
 import { MspDirectUpdateOrganizationReviewComponent } from './pages/organization/organization-review/organization-review.component';
 
