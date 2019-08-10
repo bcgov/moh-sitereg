@@ -1,7 +1,11 @@
-import { AbstractControl, ValidatorFn, FormGroup, ValidationErrors } from '@angular/forms';
+import {
+    AbstractControl,
+    ValidatorFn,
+    FormGroup,
+    ValidationErrors,
+} from '@angular/forms';
 
 //#region Validators-Commmon
-
 
 export function copyToClipBoard(content: any) {
     document.addEventListener('copy', (e: ClipboardEvent) => {
@@ -16,15 +20,10 @@ export function emailValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
         // tslint:disable-next-line: max-line-length
         // const forbidden = !/(?:[\u00A0-\uD7FF\uE000-\uFFFF-a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[\u00A0-\uD7FF\uE000-\uFFFF-a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[\u00A0-\uD7FF\uE000-\uFFFF-a-z0-9](?:[\u00A0-\uD7FF\uE000-\uFFFF-a-z0-9-]*[\u00A0-\uD7FF\uE000-\uFFFF-a-z0-9])?\.)+[\u00A0-\uD7FF\uE000-\uFFFF-a-z0-9](?:[\u00A0-\uD7FF\uE000-\uFFFF-a-z0-9-]*[\u00A0-\uD7FF\uE000-\uFFFF-a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/.test(
-        const forbidden = /^(\S+)@(\S+)\.(\S+)$/.test(
-            control.value
-        );
-        return forbidden
-            ? { invalidEmail: { value: control.value } }
-            : null;
+        const forbidden = /^(\S+)@(\S+)\.(\S+)$/.test(control.value);
+        return forbidden ? { invalidEmail: { value: control.value } } : null;
     };
 }
-
 
 export function matchFieldValidator(
     controlName: string,
@@ -45,7 +44,6 @@ export function matchFieldValidator(
     };
 }
 
-
 /**
  * Validate a form control, replacing validFormControl().
  */
@@ -60,7 +58,6 @@ export function validFormControlCommon(fg: FormGroup, name: string) {
     return control.invalid;
 }
 
-
 export function validFormControl(name: string) {
     if (this.fg.controls[name].pristine) return false;
     return this.fg.controls[name].invalid;
@@ -71,23 +68,29 @@ export function validMultiFormControl(fg: FormGroup, name: string) {
     return fg.controls[name].invalid;
 }
 
-
-
-export function validMultiFormControlExceptRequired(fg: FormGroup, name: string) {
+export function validMultiFormControlExceptRequired(
+    fg: FormGroup,
+    name: string
+) {
     if (fg.controls[name].pristine) return false;
-    return isRequiredError(fg, name) && fg.controls[name].errors.count === 1 ? false : fg.controls[name].invalid;
+    return isRequiredError(fg, name) && fg.controls[name].errors.count === 1
+        ? false
+        : fg.controls[name].invalid;
 }
 
-export function formControlValidity(fg: FormGroup, name: string): { required: boolean; other: boolean } {
+export function formControlValidity(
+    fg: FormGroup,
+    name: string
+): { required: boolean; other: boolean } {
     let status = {
         required: false,
-        other: false
+        other: false,
     };
     if (fg.controls[name].pristine) return status;
 
     status = {
         required: isRequiredError(fg, name),
-        other: validMultiFormControlExceptRequired(fg, name)
+        other: validMultiFormControlExceptRequired(fg, name),
     };
 
     // // console.log(status);
@@ -97,7 +100,11 @@ export function formControlValidity(fg: FormGroup, name: string): { required: bo
 export function isRequiredError(fg: FormGroup, name: string) {
     if (fg.controls[name].pristine) return false;
     let invalid = false;
-    if (fg.controls[name].invalid && fg.controls[name].errors && fg.controls[name].errors.required) {
+    if (
+        fg.controls[name].invalid &&
+        fg.controls[name].errors &&
+        fg.controls[name].errors.required
+    ) {
         invalid = fg.controls[name].errors.required === true ? true : false;
     }
     return invalid;
@@ -109,15 +116,11 @@ export function isRequiredError(fg: FormGroup, name: string) {
 export function trailingSpacesValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
         if (!control.value || control.value.length === 0) return null; // Necessary for optional fields.
-        const forbidden = !/^(?!\s*$).+/.test(
-            control.value
-        )
+        const forbidden = !/^(?!\s*$).+/.test(control.value);
         // const forbidden = !/^[^\s]+(\s+[^\s]+)*$/.test(
         //     control.value
         // );
-        return forbidden
-            ? { invalidText: { value: control.value } }
-            : null;
+        return forbidden ? { invalidText: { value: control.value } } : null;
     };
 }
 
@@ -138,7 +141,6 @@ export function trailingSpacesValidator(): ValidatorFn {
 
 //#region Validators-IAM
 
-
 export function postalCodeValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
         const forbidden = !/^[ABCEGHJ-NPRSTVXY][0-9][ABCEGHJ-NPRSTV-Z][0-9][ABCEGHJ-NPRSTV-Z][0-9]$/.test(
@@ -152,7 +154,9 @@ export function postalCodeValidator(): ValidatorFn {
 
 export function phoneValidator() {
     return (control: AbstractControl): { [key: string]: any } | null => {
-        const forbidden = !/^[1-9][0-9]{2}[0-9]{7}$|null|^$/.test(control.value);
+        const forbidden = !/^[1-9][0-9]{2}[0-9]{7}$|null|^$/.test(
+            control.value
+        );
         return forbidden
             ? { invalid: { value: `${control.value} is not valid` } }
             : null;
@@ -162,13 +166,14 @@ export function phoneValidator() {
 export function faxValidator() {
     return (control: AbstractControl): { [key: string]: any } | null => {
         if (!control.value) return null;
-        const forbidden = !/^[1-9][0-9]{2}[0-9]{7}$|null|^$/.test(control.value);
+        const forbidden = !/^[1-9][0-9]{2}[0-9]{7}$|null|^$/.test(
+            control.value
+        );
         return forbidden
             ? { invalid: { value: `${control.value} is not valid` } }
             : null;
     };
 }
-
 
 /**
  * Validates group number

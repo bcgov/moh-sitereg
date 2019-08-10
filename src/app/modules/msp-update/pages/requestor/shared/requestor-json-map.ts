@@ -1,4 +1,7 @@
-import { funcRandomNumber8Digit, getDateinMMDDYYYY } from '../../../common/update-json-map';
+import {
+    funcRandomNumber8Digit,
+    getDateinMMDDYYYY,
+} from '../../../common/update-json-map';
 import { IRequestor, getIRequestor } from './i-requestor';
 import * as jsonInterfaces from '../../submit/json-payload';
 
@@ -29,9 +32,7 @@ import * as jsonInterfaces from '../../submit/json-payload';
 //     return json;
 // }
 
-
 export function getJSONofRequestor(formValue, requestUUID?: string) {
-
     // SiteregMaintenance: object
     /**
      * authorizedBySA - this is not required in maintenance forms
@@ -47,15 +48,18 @@ export function getJSONofRequestor(formValue, requestUUID?: string) {
     const dated = new Date();
 
     const json: jsonInterfaces.ji_requestor_def = {
-        org_num: formValues.organizationNumber ? formValues.organizationNumber : '',
+        org_num: formValues.organizationNumber
+            ? formValues.organizationNumber
+            : '',
         org_email: formValues.emailAddress ? formValues.emailAddress : '',
-        request_uuid: requestUUID ? requestUUID : this.globalConfigSvc.applicationId,
+        request_uuid: requestUUID
+            ? requestUUID
+            : this.globalConfigSvc.applicationId,
         request_num: funcRandomNumber8Digit(),
         authorizedBySA: 'Y',
-        authorizedDate : getDateinMMDDYYYY(dated),
-        applicationType : 'mspdMaintenance',
+        authorizedDate: getDateinMMDDYYYY(dated),
+        applicationType: 'mspdMaintenance',
     };
 
     return json;
 }
-
