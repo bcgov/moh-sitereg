@@ -157,7 +157,7 @@ export class SigningAuthorityPage extends BaseDevUpdateTestPage {
         this.typeTextUsingID('lastName_0', data.lastName);
         this.typeTextUsingID('jobTitle_0', data.jobTitle);
         this.typeTextUsingID('emailAddress_0', data.email);
-        this.typeTextUsingID('confirmEmail_0', data.email);
+        this.typeTextUsingID('confirmEmail_0', data.confirmEmail);
         this.typeTextUsingID('phone_0', data.mobile + '');
         this.typeTextUsingID('ext_0', data.extension);
         this.typeTextUsingID('fax_0', data.fax + '');
@@ -187,8 +187,9 @@ export class SigningAuthorityPage extends BaseDevUpdateTestPage {
         }
         this.typeTextUsingID('lastName_edit_0', data.lastName);
         this.typeTextUsingID('jobTitle_edit_0', data.jobTitle);
+        this.scrollDown();
         this.typeTextUsingID('emailAddress_edit_0', data.email);
-        this.typeTextUsingID('confirmEmail_edit_0', data.email);
+        this.typeTextUsingID('confirmEmail_edit_0', data.confirmEmail);
         this.typeTextUsingID('phone_edit_0', data.mobile + '');
         this.typeTextUsingID('ext_edit_0', data.extension);
         this.typeTextUsingID('fax_edit_0', data.fax + '');
@@ -260,7 +261,7 @@ export class AccessAdminsPage extends SigningAuthorityPage {
         this.typeTextUsingID('lastName_0', data[index].lastName);
         this.typeTextUsingID('jobTitle_0', data[index].jobTitle);
         this.typeTextUsingID('emailAddress_0', data[index].email);
-        this.typeTextUsingID('confirmEmail_0', data[index].email);
+        this.typeTextUsingID('confirmEmail_0', data[index].confirmEmail);
         this.typeTextUsingID('phone_0', data[index].mobile + '');
         this.typeTextUsingID('ext_0', data[index].extension);
         this.typeTextUsingID('fax_0', data[index].fax + '');
@@ -289,7 +290,7 @@ export class AccessAdminsPage extends SigningAuthorityPage {
         this.typeTextUsingID('lastName_edit_0', data[index].lastName);
         this.typeTextUsingID('jobTitle_edit_0', data[index].jobTitle);
         this.typeTextUsingID('emailAddress_edit_0', data[index].email);
-        this.typeTextUsingID('confirmEmail_edit_0', data[index].email);
+        this.typeTextUsingID('confirmEmail_edit_0', data[index].confirmEmail);
         this.typeTextUsingID('phone_edit_0', data[index].mobile + '');
         this.typeTextUsingID('ext_edit_0', data[index].extension);
         this.typeTextUsingID('fax_edit_0', data[index].fax + '');
@@ -348,7 +349,7 @@ export class UsersPage extends SigningAuthorityPage {
         this.typeTextUsingID('lastName_0', data[index].lastName);
         this.typeTextUsingID('jobTitle_0', data[index].jobTitle);
         this.typeTextUsingID('emailAddress_0', data[index].email);
-        this.typeTextUsingID('confirmEmail_0', data[index].email);
+        this.typeTextUsingID('confirmEmail_0', data[index].confirmEmail);
         this.typeTextUsingID('phone_0', data[index].mobile + '');
         this.typeTextUsingID('ext_0', data[index].extension);
         this.typeTextUsingID('fax_0', data[index].fax + '');
@@ -376,7 +377,7 @@ export class UsersPage extends SigningAuthorityPage {
         this.typeTextUsingID('lastName_edit_0', data[index].lastName);
         this.typeTextUsingID('jobTitle_edit_0', data[index].jobTitle);
         this.typeTextUsingID('emailAddress_edit_0', data[index].email);
-        this.typeTextUsingID('confirmEmail_edit_0', data[index].email);
+        this.typeTextUsingID('confirmEmail_edit_0', data[index].confirmEmail);
         this.typeTextUsingID('phone_edit_0', data[index].mobile + '');
         this.typeTextUsingID('ext_edit_0', data[index].extension);
         this.typeTextUsingID('fax_edit_0', data[index].fax + '');
@@ -423,8 +424,16 @@ export class GroupNumbersPage extends BaseDevUpdateTestPage {
         }
     }
 
-    checkThirdParty(index: number){
+    checkAddThirdParty(index: number){
         if (this.data.addMSPGroup[index].groupNum === true){
+            return 'Y';
+        } else {
+            return 'N';
+        }
+    }
+
+    checkUpdateThirdParty(index: number){
+        if (this.data.updateMSPGroup[index].groupNum === true){
             return 'Y';
         } else {
             return 'N';
@@ -434,7 +443,7 @@ export class GroupNumbersPage extends BaseDevUpdateTestPage {
     fillAddMSPGroup(index: number) {
         const data = this.data.addMSPGroup;
         this.typeTextUsingID('groupNo_0', data[index].groupNum);
-        this.clickRadioButton('Will this group be', this.checkThirdParty(index));
+        this.clickRadioButton('Will this group be', this.checkAddThirdParty(index));
     }
 
     fillRemoveMSPGroup(index: number) {
@@ -445,7 +454,7 @@ export class GroupNumbersPage extends BaseDevUpdateTestPage {
     fillUpdateMSPGroup(index: number) {
         const data = this.data.updateMSPGroup;
         this.typeTextUsingID('groupNo_edit_0', data[index].groupNum);
-        this.clickRadioButton('Will this group be', this.checkThirdParty(index));
+        this.clickRadioButton('Will this group be', this.checkUpdateThirdParty(index));
     }
 
     /*

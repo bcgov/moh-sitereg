@@ -1,8 +1,18 @@
 { "requestorInfoPage" :
-    { "orgNum" : 89891198
-    , "email"  : "MSPDIR_UPW_02.190809.131227.716770@example.com"
-    },
-  "organizationPage" :
-    { "anyUpdates"  : false
+    { "orgNum" : 49510727
+    , "email"  : "MSPDIR_UPW_19.190809.193932.749607@example.com"
     }
-}
+  , "organizationPage" :
+    { "anyUpdates" : false
+    }
+  , "groupNumbersPage" :
+    { "updateMSPGroup" :
+      [ { "groupNum"   : 7033564
+        , "thirdParty" : true
+        }
+      , { "groupNum"   : 4456919
+        , "thirdParty" : true
+        }
+      ]
+    }
+  }
