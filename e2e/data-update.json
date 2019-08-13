@@ -3,143 +3,69 @@
     , "email"  : "kRYpXaGrRBSNEoUbKMDMBxDFKaDUIjNzGKTdMisHuMbqWYJBQTzuTArcrgwbjjNd@kgZlXIHmqbrHIxBWQSHHdrxDOoTOyfFCt.X"
     }
   , "organizationPage" :
-    { "anyUpdates"        : true
-    , "orgName"           : "MSPDIR_UPW_23 INC. h5frnngjqybslu3uthy4bh5u1h5twuu8otjyodmy2sdzoci6grm7h4xcmkkjhaservq97qsw9b30to1i8"
-    , "suiteNo"           : "Suite 7039"
-    , "streetNo"          : "7623151643"
-    , "streetName"        : "vo39w2b2q2q8bsyvuclxf1ep5z8fu65qxfcwwz38bh9prph5qqglpt2zocor9hsoh247s235uvn"
-    , "streetAddressLine" : "frvuvqo0k08qlr1n5hwwtkexjrkakl3sgpxve1pb9qia94sd9y0yf9kqig5gbst0p5l0sqze7f62o6atqk9zunjz52bqticyv4a1urshe603fuk91ef6fc0v8wql8bd3jh3jy3a4ra3ai396hrx9uct311n326kyo4meyvetpjhyf91ponu3o76liqm19v3geqpgynz6"
-    , "city"              : "he79mvtpoh6rdrj6u9f7qh939"
-    , "province"          : "Newfoundland and Labrador"
-    , "postal"            : "A9L0K8"
-    , "administeringFor"  : "Employees and International Students"
+    { "anyUpdates" : false
     }
   , "signingAuthorityPage" :
-    { "addSigningAuthority" :
-      { "title"            : "Prof."
-      , "firstName"        : "z22da2za78ssmmmm9z4op59aklmnjxporjj2gqtd317td4wd8b332b6jno0u0oyyrbu2dg0c1ch295oswpql8v7e8kwgfscud2wq"
-      , "initial"          : "P"
-      , "lastName"         : "xq9nk5bgubjdrg8k5dzwrjt9c7eeesu1e2jawxoqjylcdp0ypu9tfjt9xo1zy5i9e3nodxbpbl848t722o8ucobcrl9u37zy190r"
-      , "jobTitle"         : "qbn1ghyod1b0c9uautl5oxig4bndv8vv5v3i66iqpmc4v45x0l4q7j7snbebqtkiwfjjgd1jfxaj1od5wr32r3os6huw039m1vnb"
-      , "mobile"           : 5185550146
-      , "extension"        : "ljea97lxk2iehx8b2wdfgga5htxvjvulg5dczplc808exckpy82rxgmycb5s2gj07vqhmuobxluesvug2zngchjsgi4254dgvyvk"
-      , "fax"              : 2275550102
+    { "updateSigningAuthority" :
+      { "confirmEmail"     : "Viator.Vibianus.190812.172206.424831@example.com"
+      , "signingAuthEmail" : "Urbanus.190812.172205.671159@example.com"
+      , "ministryUserID"   : "MA SAU UID"
+      , "title"            : "Mr."
+      , "firstName"        : "Viator"
+      , "initial"          : "E"
+      , "lastName"         : "Vibianus"
+      , "jobTitle"         : "SAU Job Title"
+      , "mobile"           : 5835550194
+      , "extension"        : "2462"
+      , "fax"              : 6235550149
       , "accessToMSP"      : true
-      , "administeringFor" : "Employees and International Students"
-      , "email"            : "jutafcruxgt9huhjfj9knf2qb9ps8dn0odwdz0zx4os5ydy49rnu4rxp4i3oqevluqnguggk82pmt1ul1cnc5kps@example.com"
-      , "confirmEmail"     : "jutafcruxgt9huhjfj9knf2qb9ps8dn0odwdz0zx4os5ydy49rnu4rxp4i3oqevluqnguggk82pmt1ul1cnc5kps@example.com"
-      }
-    , "removeSigningAuthority" :
-      { "signingAuthEmail" : "wux6qbheebs8fx2soeujsz1sskqyy4vcwxt6oyy7rbdh3755atec5btofn4ogdqb8lf3w0zgq80w67x3e4b4go0c@example.com"
-      , "ministryUserID"   : "oxv4coi0xtk075l02f9b"
-      }
-    , "updateSigningAuthority" :
-      { "signingAuthEmail" : "nqsusftx1rnsjb88pign1kwedi4hkkgzft6cco2eg6sg4s8xo1n4z5qw9wbcz9whlu4v0am5o836c5b1kslkp6wo@example.com"
-      , "ministryUserID"   : "siocyyv10xc42v3carac"
-      , "title"            : "Prof."
-      , "firstName"        : "i1yuoxwpft5bct8y9h7o6faf1eevjvw08uiefk1es0ccqk2bda1g6krcgdp7tspnnopre9c1ij1wzdrepgcpgodo78m8dr1fp234"
-      , "initial"          : "V"
-      , "lastName"         : "lcwu2d6yjr6t2xah3cvwczs0eh8m41ts4ajjpwf74v1akivuebme3wuuu4g7fzrn2qcsupp77x7xinussu08ynmyf0q5w6u6le2e"
-      , "jobTitle"         : "fk2m8tblkpmnyhfdnelhq3xqvketb9bq8xf1ncujc9ldh6ijkgociz534gfk2ncsm2olt9w0o6v8afag025t9hucdulp06bycazb"
-      , "mobile"           : 5425550156
-      , "extension"        : "gmjksfgk4ikeb565zwabtg8z0gujruupnlpmoxehwfz15chy9ka4wnj93d3k9a9s4a1z2knwcadysqx914noieyryt7x8oa0p117"
-      , "fax"              : 9145550185
-      , "accessToMSP"      : true
-      , "administeringFor" : "Employees and International Students"
-      , "email"            : "x02pfuiyegmtufpiuchyssb5vq0vzldqqp6abzinibgogk4vp4ayc1xsr2lefwo56s36e75doxm9cf0lvbubmbii@example.com"
-      , "confirmEmail"     : "x02pfuiyegmtufpiuchyssb5vq0vzldqqp6abzinibgogk4vp4ayc1xsr2lefwo56s36e75doxm9cf0lvbubmbii@example.com"
+      , "administeringFor" : "Employees"
+      , "email"            : "Viator.Vibianus.190812.172206.424831@example.com"
       }
     }
   , "accessAdminsPage" :
-    { "addAccessAdmins" :
-      [ { "title"            : "Prof."
-        , "confirmEmail"     : "urorv7to4kvur98e2x7pgydmefq277nyksy9fy1tii34p9zx92039v477eu3ehnoct478a7kgbt67dkoir5h3s5r@example.com"
-        , "email"            : "urorv7to4kvur98e2x7pgydmefq277nyksy9fy1tii34p9zx92039v477eu3ehnoct478a7kgbt67dkoir5h3s5r@example.com"
-        , "administeringFor" : "Employees and International Students"
-        , "fax"              : 2175550176
-        , "extension"        : "bfyn7jcmm7lnryble2ssi0g85ib3baep0e5vm02i15fsgr1b6kmdbkp7y9ritrbnmridye4f77lyrikb3xgmu4wyoxdfse5nxy5f"
-        , "mobile"           : 3095550148
-        , "jobTitle"         : "j5r1i01cvh17hryaxeygca4rmwz2go8hu2gsa7lqdms1vq261ogf7dfy1r3zpaupkh0szk0b1qh706xnkgin2ngwuks0iggx4stv"
-        , "lastName"         : "gmhwnpaurjrhxb7uw46ifspkdbpp2oqzmch1d6sb3udx5czr2ykg765lx6lpe1tew8jbi06zykfk5obf9a69vwlkj3rs8mqz3w9n"
-        , "initial"          : "P"
-        , "firstName"        : "pvo3pdhi5ir8so8j238xa8xw2be6qvsvwsqdvvhwgkfqxwt3t9zi53ro629f89d1bimokpfjnnn75qzvkeowykj2v0t45uxr21eh"
-        }
-      ]
-    , "removeAccessAdmins" :
-      [ { "signingAuthEmail" : "ks7c339i1774ow8maowtrsa356qexpbpv5tpxef0v4i4omsxluz6xgvjyyr0sl7xc1tmbnm5tfxff21r0qlv568u@example.com"
-        , "ministryUserID"   : "ckpq0my75cqz9e3f9xmd"
-        }
-      ]
-    , "updateAccessAdmins" :
-      [ { "signingAuthEmail" : "nwazocvysgrfljcbaldzroeph46an78o3jtrwkos3pnrw2akzge1l12z1h9bk3mv0k7h403da0qnqp9hllc89ao4@example.com"
-        , "confirmEmail"     : "fscufpiub7bxj7ipdu9g9pvp5zki9tgkmh1ozpfrj53ql3dvleych1hdsxcpiyfxpdljxyhxzc7us9lreivruxxe@example.com"
-        , "email"            : "fscufpiub7bxj7ipdu9g9pvp5zki9tgkmh1ozpfrj53ql3dvleych1hdsxcpiyfxpdljxyhxzc7us9lreivruxxe@example.com"
-        , "administeringFor" : "Employees and International Students"
+    { "updateAccessAdmins" :
+      [ { "signingAuthEmail" : "Quirinus.190812.172205.883757@example.com"
+        , "confirmEmail"     : "Pastor.Iuvenalis.190812.172206.432050@example.com"
+        , "email"            : "Pastor.Iuvenalis.190812.172206.432050@example.com"
+        , "administeringFor" : "Employees"
         , "changeAccess"     : true
-        , "changeRole"       : "Signing Authority"
-        , "fax"              : 4065550175
-        , "extension"        : "d3klasczojrrswd72hnza85xkqoopt2cwztocpwyibslt2w69zxskp3pu8azlfcljlf4la6ltfl4a13tqlhai62r84ox48k1w8pf"
-        , "mobile"           : 4545550117
-        , "jobTitle"         : "ysjqw8mak9xyn0aqvyoz3k6ku3ksg0w5du0nkd8qztqq3s2bdpuexjgrv4jd8jgx4xm7djguseq7c9w7sf7ejcx9yj0swoo3rcxh"
-        , "lastName"         : "sbj5gdevd36x2s4wp5s67qtfzxr4v6r6jst5rbb4zbaishrv9tjm2zyo8b9ck52wwz2u3f1oh3o08ka9qbqy6pvr33hcge1vbdcw"
-        , "initial"          : "N"
-        , "firstName"        : "tbgm3mkteaz2nbzsbqilvzot37r1r1l0m4q5pob2ln6y58te5gwc5e5ui8ovo5u0fq7dzavwepk18h78noexgqv5df0du530deb5"
-        , "title"            : "Prof."
-        , "ministryUserID"   : "b33hoan4au902exag5pc"
+        , "changeRole"       : "No Change"
+        , "fax"              : 1185550122
+        , "extension"        : "1741"
+        , "mobile"           : 3465550160
+        , "jobTitle"         : "AAU Job Title 1"
+        , "lastName"         : "Iuvenalis"
+        , "initial"          : "L"
+        , "firstName"        : "Pastor"
+        , "title"            : "Mr."
+        , "ministryUserID"   : "MA AAU UID 1"
         }
       ]
     }
   , "usersPage" :
-    { "addUsers" :
-      [ { "title"            : "Prof."
-        , "confirmEmail"     : "kedioup8ip9j1vskr57aa246f7hdwcc3sz1mt75h2hdt4eb5o215z1kumvwk62capb5u2y2tnl3fgfc4aijvdwye@example.com"
-        , "email"            : "kedioup8ip9j1vskr57aa246f7hdwcc3sz1mt75h2hdt4eb5o215z1kumvwk62capb5u2y2tnl3fgfc4aijvdwye@example.com"
-        , "administeringFor" : "Employees and International Students"
-        , "fax"              : 9235550163
-        , "extension"        : "ww6vdqqmmxctu6b6ux647nkfm330rffgzyr6pwqp1xlwtxcq72l2kltgzaw5562lv3zk31wvvr01kw6t5p3c09xy8nbu3sbx0khx"
-        , "mobile"           : 9025550138
-        , "jobTitle"         : "w7wbq9j2kq7owyndcfq6vzs74c759mg4iz4q5me16xgfavmuhpkqicpzk4g0v073pcf2k1ejc7l5ue1m2svsz6434lr1ml5w9vhv"
-        , "lastName"         : "qp8fun2fs33u63qb2yx16fizszqhh8ta4jfwdmb1qbs0stt3106kt8neozwbvwqxnjqjp2dtaq2z9b3tzw2bhgpsjb88i2zeujkh"
-        , "initial"          : "Q"
-        , "firstName"        : "bfiwvq7ikusa3ledsp41qjqmpnajn3vv54e68elc3xy1qnxtlcr6vsdr3tgju3eqz7gc0zpvm23h6nfb01pjv8n8xup3h0234eeq"
-        }
-      ]
-    , "removeUsers" :
-      [ { "signingAuthEmail" : "bum35h0a5zzi5f0k4qae7u7tvchzj5tv0b7ii9748mtzitv1rvv4tggx742pmt56b60no7pcd4epn3vm8d3dl9t7@example.com"
-        , "ministryUserID"   : "la852cajtun70le4z9uh"
-        }
-      ]
-    , "updateUsers" :
-      [ { "signingAuthEmail" : "obkfh6382ydrg9srk0w7y1xopar7myu5kdmygbd5boba3gyllbbyar59lcn44xenc0qxk6xwo7h2hv9al35xpzf6@example.com"
-        , "confirmEmail"     : "wy6z9isrsjo7cdzbo5lggwywefgkzbpk9cubgvkf4rmttbfyo4cutxa9enj8tib2vijt9krsx7aa7eu2ktes80tn@example.com"
-        , "email"            : "wy6z9isrsjo7cdzbo5lggwywefgkzbpk9cubgvkf4rmttbfyo4cutxa9enj8tib2vijt9krsx7aa7eu2ktes80tn@example.com"
-        , "administeringFor" : "Employees and International Students"
+    { "updateUsers" :
+      [ { "signingAuthEmail" : "Zephyrinus.190812.172206.130884@example.com"
+        , "confirmEmail"     : "Bonitus.Aurelianus.190812.172206.439506@example.com"
+        , "email"            : "Bonitus.Aurelianus.190812.172206.439506@example.com"
+        , "administeringFor" : "Employees"
         , "changeAccess"     : true
-        , "changeRole"       : "Access Administrator"
-        , "fax"              : 6815550155
-        , "extension"        : "jwux48vz61o6b262qrh21cekaaxmfn11k4zzq4k0gxel9vqcw1yxwvqn6sjkww1q6n526r37pwob74w7bvkcjsorwjjn0lrmljog"
-        , "mobile"           : 6495550117
-        , "jobTitle"         : "v2arofjcwpvccfmapifyo0dnhggvme99bmmxge2f9na22vr766t683zbjrmbtsm7ci9stoqy5q1qv5von92uh9kue98a7onl5jvw"
-        , "lastName"         : "n51b3vyzmtxe5qwf0vwvohvnhya8tv6ruf3cqdx9lhht7zdodaqmvnd03bjwq5rh80qw4tpmdeowg8bv81vpjjryqn9hiorui8pc"
-        , "initial"          : "S"
-        , "firstName"        : "rej6ft2uxtu2asjtyqke9pq4rqk3w6qdezd535g6loq0uqilm1oriqwf54abzs7bs77exzzkeae3g9per9vexnsk3nh2xohevxes"
-        , "title"            : "Prof."
-        , "ministryUserID"   : "sa2l8stnp17omvhait0s"
+        , "changeRole"       : "No Change"
+        , "fax"              : 9375550177
+        , "extension"        : "2420"
+        , "mobile"           : 9595550140
+        , "jobTitle"         : "UU Job Title 1"
+        , "lastName"         : "Aurelianus"
+        , "initial"          : "V"
+        , "firstName"        : "Bonitus"
+        , "title"            : "Mr."
+        , "ministryUserID"   : "MA UU UID 1"
         }
       ]
     }
   , "groupNumbersPage" :
-    { "addMSPGroup" :
-      [ { "groupNum"   : 6962106
-        , "thirdParty" : true
-        }
-      ]
-    , "removeMSPGroup" :
-      [ { "groupNum" : 8561946
-        }
-      ]
-    , "updateMSPGroup" :
-      [ { "groupNum"   : 7401672
+    { "updateMSPGroup" :
+      [ { "groupNum"   : 7722296
         , "thirdParty" : true
         }
       ]

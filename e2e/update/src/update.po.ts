@@ -109,9 +109,9 @@ export class OrganizationPage extends BaseDevUpdateTestPage {
             this.typeText('addressLine2', data.streetAddressLine);
         }
         this.typeTextUsingID('city', data.city);
-        this.typeTextUsingID('province', 'British Columbia');
+        this.typeTextUsingID('province', data.province);
         this.typeTextUsingID('postalCode', data.postal);
-        this.typeTextUsingID('The organization', 'Employees');
+        this.selectValueUsingID('administeringFor', data.administeringFor);
     }
 
 }
