@@ -70,7 +70,7 @@ describe('MSP Direct Update - End to End Test (Happy Path)', () => {
         submitPage.continue();
         browser.sleep(5000);
         expect(browser.getCurrentUrl()).toContain(CONFIRM_PAGE_URL, 'should be able to succesfully submit the form');
-    }, 120000);
+    }, 2000000);
 
 });
 
