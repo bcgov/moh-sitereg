@@ -56,8 +56,13 @@
       </div>
     </div>
 
-    <common-dropdown label='The organization will be administering MSP for:' formControlName='administeringFor'
-      [items]='administeringForOptions' [clearable]='false' placeholder="-- Select Option --"></common-dropdown>
+    <!-- <common-dropdown label='The organization will be administering MSP for:' formControlName='administeringFor'
+      [items]='administeringForOptions' [clearable]='true' placeholder="-- Select Option --" [addTag]="false" ></common-dropdown> -->
+      <label class="control-label" for="administeringFor">The organization will be administering MSP for:</label>
+      <select class="form-control" id="administeringFor" *ngIf="administeringForOptions"
+        formControlName="administeringFor">
+        <option *ngFor="let a of administeringForOptions " [value]="a">{{a}}</option>
+      </select>
     <sitereg-error-box [error]="validFormControl(parentForm,'administeringFor')" errorMessage='Please select a valid option'>
     </sitereg-error-box>
 
