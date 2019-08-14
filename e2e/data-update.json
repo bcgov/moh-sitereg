@@ -1,73 +1,93 @@
 { "requestorInfoPage" :
-    { "orgNum" : 23270695
-    , "email"  : "kRYpXaGrRBSNEoUbKMDMBxDFKaDUIjNzGKTdMisHuMbqWYJBQTzuTArcrgwbjjNd@kgZlXIHmqbrHIxBWQSHHdrxDOoTOyfFCt.X"
+  { "orgNum" : 78202000
+  , "email"  : "MSPDIR_UPW_25.190813.201221.436624@example.com"
+  }
+, "organizationPage" :
+  { "anyUpdates"       : true
+  , "orgName"          : "MSPDIR_UPW_25 INC."
+  , "streetNo"         : "1234"
+  , "streetName"       : "Baroness Street"
+  , "city"             : "Limehouse"
+  , "province"         : "British Columbia"
+  , "postal"           : "V3W9K9"
+  , "administeringFor" : "Employees"
+  }
+, "signingAuthorityPage" :
+  { "addSigningAuthority" :
+    { "firstName"    : "Candidus"
+    , "lastName"     : "Livianus"
+    , "jobTitle"     : "SAA Job Title"
+    , "mobile"       : 9145550105
+    , "accessToMSP"  : false
+    , "email"        : "Candidus.Livianus.190813.201222.150506@example.com"
+    , "confirmEmail" : "Candidus.Livianus.190813.201222.150506@example.com"
     }
-  , "organizationPage" :
-    { "anyUpdates" : false
+  , "removeSigningAuthority" :
+    { "signingAuthEmail" : "Vitalis.190813.201221.714758@example.com"
     }
-  , "signingAuthorityPage" :
-    { "updateSigningAuthority" :
-      { "confirmEmail"     : "Viator.Vibianus.190812.172206.424831@example.com"
-      , "signingAuthEmail" : "Urbanus.190812.172205.671159@example.com"
-      , "ministryUserID"   : "MA SAU UID"
-      , "title"            : "Mr."
-      , "firstName"        : "Viator"
-      , "initial"          : "E"
-      , "lastName"         : "Vibianus"
-      , "jobTitle"         : "SAU Job Title"
-      , "mobile"           : 5835550194
-      , "extension"        : "2462"
-      , "fax"              : 6235550149
-      , "accessToMSP"      : true
-      , "administeringFor" : "Employees"
-      , "email"            : "Viator.Vibianus.190812.172206.424831@example.com"
-      }
-    }
-  , "accessAdminsPage" :
-    { "updateAccessAdmins" :
-      [ { "signingAuthEmail" : "Quirinus.190812.172205.883757@example.com"
-        , "confirmEmail"     : "Pastor.Iuvenalis.190812.172206.432050@example.com"
-        , "email"            : "Pastor.Iuvenalis.190812.172206.432050@example.com"
-        , "administeringFor" : "Employees"
-        , "changeAccess"     : true
-        , "changeRole"       : "No Change"
-        , "fax"              : 1185550122
-        , "extension"        : "1741"
-        , "mobile"           : 3465550160
-        , "jobTitle"         : "AAU Job Title 1"
-        , "lastName"         : "Iuvenalis"
-        , "initial"          : "L"
-        , "firstName"        : "Pastor"
-        , "title"            : "Mr."
-        , "ministryUserID"   : "MA AAU UID 1"
-        }
-      ]
-    }
-  , "usersPage" :
-    { "updateUsers" :
-      [ { "signingAuthEmail" : "Zephyrinus.190812.172206.130884@example.com"
-        , "confirmEmail"     : "Bonitus.Aurelianus.190812.172206.439506@example.com"
-        , "email"            : "Bonitus.Aurelianus.190812.172206.439506@example.com"
-        , "administeringFor" : "Employees"
-        , "changeAccess"     : true
-        , "changeRole"       : "No Change"
-        , "fax"              : 9375550177
-        , "extension"        : "2420"
-        , "mobile"           : 9595550140
-        , "jobTitle"         : "UU Job Title 1"
-        , "lastName"         : "Aurelianus"
-        , "initial"          : "V"
-        , "firstName"        : "Bonitus"
-        , "title"            : "Mr."
-        , "ministryUserID"   : "MA UU UID 1"
-        }
-      ]
-    }
-  , "groupNumbersPage" :
-    { "updateMSPGroup" :
-      [ { "groupNum"   : 7722296
-        , "thirdParty" : true
-        }
-      ]
+  , "updateSigningAuthority" :
+    { "signingAuthEmail" : "Firminus.190813.201221.732608@example.com"
+    , "accessToMSP"      : false
     }
   }
+, "accessAdminsPage" :
+  { "addAccessAdmins" :
+    [ { "firstName"        : "Amantius"
+      , "confirmEmail"     : "Amantius.Gnaeus.190813.201222.152177@example.com"
+      , "email"            : "Amantius.Gnaeus.190813.201222.152177@example.com"
+      , "administeringFor" : "Employees"
+      , "mobile"           : 4925550104
+      , "jobTitle"         : "AAA Job Title 1"
+      , "lastName"         : "Gnaeus"
+      }
+    ]
+  , "removeAccessAdmins" :
+    [ { "signingAuthEmail" : "Vivianus.190813.201221.825091@example.com"
+      }
+    ]
+  , "updateAccessAdmins" :
+    [ { "signingAuthEmail" : "Primus.190813.201221.840426@example.com"
+      , "changeAccess"      : false
+      , "changeRole"       : "No Change"
+      }
+    ]
+  }
+, "usersPage" :
+  { "addUsers" :
+    [ { "firstName"        : "Durans"
+      , "confirmEmail"     : "Durans.Sergius.190813.201222.153570@example.com"
+      , "email"            : "Durans.Sergius.190813.201222.153570@example.com"
+      , "administeringFor" : "Employees"
+      , "mobile"           : 6045550155
+      , "jobTitle"         : "UA Job Title 1"
+      , "lastName"         : "Sergius"
+      }
+    ]
+  , "removeUsers" :
+    [ { "signingAuthEmail" : "Virgilius.190813.201221.998454@example.com"
+      }
+    ]
+  , "updateUsers" :
+    [ { "signingAuthEmail" : "Christophorus.190813.201222.012561@example.com"
+      , "changeAccess"      : false
+      , "changeRole"       : "No Change"
+      }
+    ]
+  }
+, "groupNumbersPage" :
+  { "addMSPGroup" :
+    [ { "groupNum"   : 9344580
+      , "thirdParty" : true
+      }
+    ]
+  , "removeMSPGroup" :
+    [ { "groupNum" : 4039771
+      }
+    ]
+  , "updateMSPGroup" :
+    [ { "groupNum"   : 9318641
+      , "thirdParty" : true
+      }
+    ]
+  }
+}
