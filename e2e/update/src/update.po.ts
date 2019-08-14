@@ -39,14 +39,18 @@ export class BaseDevUpdateTestPage extends BaseMSPTestPage {
     }
 
     selectValueUsingID(idVal: string, text: string) {
-        element.all(by.css(`select[id="${idVal}"]`)).first().click(); // opens dropdown
-        element.all(by.css(`select[id="${idVal}"]`)).first().element(by.cssContainingText('option', `${text}`)).click();
+        element.all(by.css(`select[id^="${idVal}"]`)).first().click(); // opens dropdown
+        element.all(by.css(`select[id^="${idVal}"]`)).first().element(by.cssContainingText('option', `${text}`)).click();
+    }
+
+    selectProvinceUsingID(text: string) {
+        element.all(by.css(`input[id^="province"]`)).first().click();
+        element.all(by.css(`common-province`)).first().element(by.cssContainingText('span', `${text}`)).click();
     }
 
     clickRadioButton(labelVal: string, forVal: string) {
         element.all(by.css(`common-radio[label^="${labelVal}"]`)).first().element(by.css(`label[for^="${forVal}"]`)).click();
     }
-
 }
 
 export class RequestorInfoPage extends BaseDevUpdateTestPage {
@@ -109,7 +113,7 @@ export class OrganizationPage extends BaseDevUpdateTestPage {
             this.typeText('addressLine2', data.streetAddressLine);
         }
         this.typeTextUsingID('city', data.city);
-        this.typeTextUsingID('province', data.province);
+        this.selectProvinceUsingID(data.province);
         this.typeTextUsingID('postalCode', data.postal);
         this.selectValueUsingID('administeringFor', data.administeringFor);
     }
@@ -409,6 +413,7 @@ export class UsersPage extends SigningAuthorityPage {
         if (data[index].ministryUserID){
             this.typeTextUsingID('forIdentifyMinistryUserId_edit_0', data[index].ministryUserID);
         }
+        this.scrollDown();
         if (data[index].title) {
             this.selectValueUsingID('userTitle_edit_0', data[index].title);
         }

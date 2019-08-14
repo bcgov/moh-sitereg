@@ -1,87 +1,91 @@
 { "requestorInfoPage" :
-  { "orgNum" : 16509443
-  , "email"  : "MSPDIR_UPW_25.190813.141326.524795@example.com"
+  { "orgNum" : 78202000
+  , "email"  : "MSPDIR_UPW_25.190813.201221.436624@example.com"
   }
 , "organizationPage" :
   { "anyUpdates"       : true
   , "orgName"          : "MSPDIR_UPW_25 INC."
-  , "streetNo"         : "3380"
-  , "streetName"       : "Hart's Lane"
-  , "city"             : "Stoke Newington"
+  , "streetNo"         : "1234"
+  , "streetName"       : "Baroness Street"
+  , "city"             : "Limehouse"
   , "province"         : "British Columbia"
-  , "postal"           : "V9B4R5"
+  , "postal"           : "V3W9K9"
   , "administeringFor" : "Employees"
   }
 , "signingAuthorityPage" :
   { "addSigningAuthority" :
-    { "firstName"    : "Johannes"
-    , "lastName"     : "Maximus"
+    { "firstName"    : "Candidus"
+    , "lastName"     : "Livianus"
     , "jobTitle"     : "SAA Job Title"
-    , "mobile"       : 4785550132
-    , "email"        : "Johannes.Maximus.190813.141327.183257@example.com"
-    , "confirmEmail" : "Johannes.Maximus.190813.141327.183257@example.com"
+    , "mobile"       : 9145550105
+    , "accessToMSP"  : false
+    , "email"        : "Candidus.Livianus.190813.201222.150506@example.com"
+    , "confirmEmail" : "Candidus.Livianus.190813.201222.150506@example.com"
     }
   , "removeSigningAuthority" :
-    { "signingAuthEmail" : "Prudentius.190813.141326.711593@example.com"
+    { "signingAuthEmail" : "Vitalis.190813.201221.714758@example.com"
     }
   , "updateSigningAuthority" :
-    { "signingAuthEmail" : "Amantius.190813.141326.727870@example.com"
+    { "signingAuthEmail" : "Firminus.190813.201221.732608@example.com"
+    , "accessToMSP"      : false
     }
   }
 , "accessAdminsPage" :
   { "addAccessAdmins" :
-    [ { "firstName"        : "Renatus"
-      , "confirmEmail"     : "Renatus.Naevius.190813.141327.185105@example.com"
-      , "email"            : "Renatus.Naevius.190813.141327.185105@example.com"
+    [ { "firstName"        : "Amantius"
+      , "confirmEmail"     : "Amantius.Gnaeus.190813.201222.152177@example.com"
+      , "email"            : "Amantius.Gnaeus.190813.201222.152177@example.com"
       , "administeringFor" : "Employees"
-      , "mobile"           : 6665550198
+      , "mobile"           : 4925550104
       , "jobTitle"         : "AAA Job Title 1"
-      , "lastName"         : "Naevius"
+      , "lastName"         : "Gnaeus"
       }
     ]
   , "removeAccessAdmins" :
-    [ { "signingAuthEmail" : "Climacus.190813.141326.870072@example.com"
+    [ { "signingAuthEmail" : "Vivianus.190813.201221.825091@example.com"
       }
     ]
   , "updateAccessAdmins" :
-    [ { "signingAuthEmail" : "Sidonius.190813.141326.888453@example.com"
+    [ { "signingAuthEmail" : "Primus.190813.201221.840426@example.com"
+      , "changeAccess"      : false
       , "changeRole"       : "No Change"
       }
     ]
   }
 , "usersPage" :
   { "addUsers" :
-    [ { "firstName"        : "Natalius"
-      , "confirmEmail"     : "Natalius.Maximianus.190813.141327.186572@example.com"
-      , "email"            : "Natalius.Maximianus.190813.141327.186572@example.com"
+    [ { "firstName"        : "Durans"
+      , "confirmEmail"     : "Durans.Sergius.190813.201222.153570@example.com"
+      , "email"            : "Durans.Sergius.190813.201222.153570@example.com"
       , "administeringFor" : "Employees"
-      , "mobile"           : 8445550132
+      , "mobile"           : 6045550155
       , "jobTitle"         : "UA Job Title 1"
-      , "lastName"         : "Maximianus"
+      , "lastName"         : "Sergius"
       }
     ]
   , "removeUsers" :
-    [ { "signingAuthEmail" : "Christophorus.190813.141326.990795@example.com"
+    [ { "signingAuthEmail" : "Virgilius.190813.201221.998454@example.com"
       }
     ]
   , "updateUsers" :
-    [ { "signingAuthEmail" : "Liberius.190813.141327.007244@example.com"
+    [ { "signingAuthEmail" : "Christophorus.190813.201222.012561@example.com"
+      , "changeAccess"      : false
       , "changeRole"       : "No Change"
       }
     ]
   }
 , "groupNumbersPage" :
   { "addMSPGroup" :
-    [ { "groupNum"   : 6872962
+    [ { "groupNum"   : 9344580
       , "thirdParty" : true
       }
     ]
   , "removeMSPGroup" :
-    [ { "groupNum" : 1444937
+    [ { "groupNum" : 4039771
       }
     ]
   , "updateMSPGroup" :
-    [ { "groupNum"   : 8504166
+    [ { "groupNum"   : 9318641
       , "thirdParty" : true
       }
     ]
