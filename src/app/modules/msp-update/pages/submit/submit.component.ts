@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MspDirectUpdateProgressService } from '../../services/progress.service';
 import { ROUTES_UPDATE } from '../../routing/routes.constants';
-import { funcRemoveStrings, MSP_REGISTER_ROUTES } from '@msp-register/constants';
+import {
+    funcRemoveStrings,
+    MSP_REGISTER_ROUTES,
+} from '@msp-register/constants';
 import { LoggerService, LogMessage } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
 import { environment } from '../../../../../environments/environment.prod';
@@ -17,7 +20,6 @@ import { jsonPayLoadApplication } from './json-payload';
     styleUrls: ['./submit.component.scss'],
 })
 export class MspDirectUpdateSubmitComponent implements OnInit {
-
     requestUUID: string;
     // tslint:disable-next-line:variable-name
     private _hasToken = false;
@@ -47,9 +49,8 @@ export class MspDirectUpdateSubmitComponent implements OnInit {
         private globalConfigSvc: GlobalConfigService,
         // public apiSvc: MspRegisterApiService,
         public mspUpdateApiSvc: MspUpdateApiService,
-        public updateStateService: UpdateStateService,
+        public updateStateService: UpdateStateService
     ) {
-
         this.captchaApiBaseUrl = environment.captchaApiBaseUrl;
         this.requestUUID = this.nonce = this.globalConfigSvc.applicationId;
         this.updateStateService.applicationId = this.requestUUID;
@@ -62,7 +63,6 @@ export class MspDirectUpdateSubmitComponent implements OnInit {
         //     this.globalConfigSvc.applicationId,
         //     this.updateStateService.applicationId
         // );
-
     }
 
     // /** Use the UUID as a cryptographic client nonce to avoid replay attacks. */
@@ -82,15 +82,10 @@ export class MspDirectUpdateSubmitComponent implements OnInit {
     }
 
     continue() {
-
-
-
         // splunk-log
         this.loggerSvc.logNavigation(
             this.constructor.name,
-            `Valid Data - Continue button clicked. ${
-            this.globalConfigSvc.applicationId
-            }`
+            `Valid Data - Continue button clicked. ${this.globalConfigSvc.applicationId}`
         );
         this.submit();
         // this.progressService.enableConfirmation = true;
@@ -99,7 +94,6 @@ export class MspDirectUpdateSubmitComponent implements OnInit {
     }
 
     canContinue() {
-
         return this._hasToken;
     }
 
@@ -108,7 +102,6 @@ export class MspDirectUpdateSubmitComponent implements OnInit {
         // this.updateStateService.applicationId = this.globalConfigSvc.applicationId;
         return jsonPayLoadApplication(this.updateStateService);
     }
-
 
     submit() {
         // console.clear();
@@ -148,7 +141,7 @@ export class MspDirectUpdateSubmitComponent implements OnInit {
             schema: middleWareObject,
             response: null,
             exception: null,
-            statuscode: null
+            statuscode: null,
         };
 
         this.mspUpdateApiSvc
@@ -159,7 +152,6 @@ export class MspDirectUpdateSubmitComponent implements OnInit {
             )
             .toPromise()
             .catch((err) => {
-
                 // console.log(`result: %c %o`, 'color:organge', err);
                 this.loggerSvc.logError({
                     event: 'http-exception',
@@ -207,9 +199,7 @@ export class MspDirectUpdateSubmitComponent implements OnInit {
 
                 this.isProcessing = false;
                 this.updateStateService.enableConfirmation = true;
-                this.router.navigate([
-                    ROUTES_UPDATE.CONFIRMATION.fullpath,
-                ]);
+                this.router.navigate([ROUTES_UPDATE.CONFIRMATION.fullpath]);
             });
     }
 

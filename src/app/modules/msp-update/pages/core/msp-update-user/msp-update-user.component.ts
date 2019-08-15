@@ -1,10 +1,13 @@
 import { Component, Input, OnInit, AfterViewInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
+import { cAdministeringFor } from '@msp-register/models/core/core-types';
 import {
-    cAdministeringFor
-} from '@msp-register/models/core/core-types';
-import { validMultiFormControl, cUpdateValidators, matchFieldValidator, cUserTitles  } from '../../../common/validators';
+    validMultiFormControl,
+    cUpdateValidators,
+    matchFieldValidator,
+    cUserTitles,
+} from '../../../common/validators';
 
 @Component({
     selector: 'sitereg-msp-update-user',
@@ -29,23 +32,20 @@ export class MspUpdateUserComponent implements OnInit, AfterViewInit {
         );
     }
 
-    ngOnInit(){
-
-    }
+    ngOnInit() {}
 
     createFormGroup() {
         this.fg = this.fb.group({
             userTitle: [null, cUpdateValidators.user.userTitle],
             firstName: [null, cUpdateValidators.user.firstName],
-            initial: [null, cUpdateValidators.user.initial ],
-            lastName: [null, cUpdateValidators.user.lastName ],
-            jobTitle: [null, cUpdateValidators.user.jobTitle ],
-            emailAddress: [null, cUpdateValidators.user.emailAddress ],
-            confirmEmail: [null, cUpdateValidators.user.confirmEmail ],
-            phone: [null, cUpdateValidators.user.phone ],
-            ext: [null, cUpdateValidators.user.ext  ],
-            administeringFor: [null, cUpdateValidators.user.administeringFor ]
+            initial: [null, cUpdateValidators.user.initial],
+            lastName: [null, cUpdateValidators.user.lastName],
+            jobTitle: [null, cUpdateValidators.user.jobTitle],
+            emailAddress: [null, cUpdateValidators.user.emailAddress],
+            confirmEmail: [null, cUpdateValidators.user.confirmEmail],
+            phone: [null, cUpdateValidators.user.phone],
+            ext: [null, cUpdateValidators.user.ext],
+            administeringFor: [null, cUpdateValidators.user.administeringFor],
         });
     }
-
 }

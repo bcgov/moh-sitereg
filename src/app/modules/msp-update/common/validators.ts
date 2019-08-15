@@ -1,10 +1,18 @@
-import { ValidatorFn, AbstractControl, FormGroup, Validators, ValidationErrors } from '@angular/forms';
+import {
+    ValidatorFn,
+    AbstractControl,
+    FormGroup,
+    Validators,
+    ValidationErrors,
+} from '@angular/forms';
 
 export const cUserTitles = ['Mr.', 'Mrs.', 'Ms.', 'Dr.', 'Prof.', 'Rev.'];
 
 export function phoneValidator() {
     return (control: AbstractControl): { [key: string]: any } | null => {
-        const forbidden = !/^[1-9][0-9]{2}[0-9]{7}$|null|^$/.test(control.value);
+        const forbidden = !/^[1-9][0-9]{2}[0-9]{7}$|null|^$/.test(
+            control.value
+        );
         return forbidden
             ? { invalid: { value: `${control.value} is not valid` } }
             : null;
@@ -14,7 +22,9 @@ export function phoneValidator() {
 export function faxValidator() {
     return (control: AbstractControl): { [key: string]: any } | null => {
         if (!control.value) return null;
-        const forbidden = !/^[1-9][0-9]{2}[0-9]{7}$|null|^$/.test(control.value);
+        const forbidden = !/^[1-9][0-9]{2}[0-9]{7}$|null|^$/.test(
+            control.value
+        );
         return forbidden
             ? { invalid: { value: `${control.value} is not valid` } }
             : null;
@@ -25,15 +35,10 @@ export function emailValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
         // tslint:disable-next-line: max-line-length
         // const forbidden = !/(?:[\u00A0-\uD7FF\uE000-\uFFFF-a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[\u00A0-\uD7FF\uE000-\uFFFF-a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[\u00A0-\uD7FF\uE000-\uFFFF-a-z0-9](?:[\u00A0-\uD7FF\uE000-\uFFFF-a-z0-9-]*[\u00A0-\uD7FF\uE000-\uFFFF-a-z0-9])?\.)+[\u00A0-\uD7FF\uE000-\uFFFF-a-z0-9](?:[\u00A0-\uD7FF\uE000-\uFFFF-a-z0-9-]*[\u00A0-\uD7FF\uE000-\uFFFF-a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/.test(
-        const forbidden = /^(\S+)@(\S+)\.(\S+)$/.test(
-            control.value
-        );
-        return forbidden
-            ? { invalidEmail: { value: control.value } }
-            : null;
+        const forbidden = /^(\S+)@(\S+)\.(\S+)$/.test(control.value);
+        return forbidden ? { invalidEmail: { value: control.value } } : null;
     };
 }
-
 
 export function postalCodeValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
@@ -52,15 +57,11 @@ export function postalCodeValidator(): ValidatorFn {
 export function trailingSpacesValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
         if (!control.value || control.value.length === 0) return null; // Necessary for optional fields.
-        const forbidden = !/^(?!\s*$).+/.test(
-            control.value
-        );
+        const forbidden = !/^(?!\s*$).+/.test(control.value);
         // const forbidden = !/^[^\s]+(\s+[^\s]+)*$/.test(
         //     control.value
         // );
-        return forbidden
-            ? { invalidText: { value: control.value } }
-            : null;
+        return forbidden ? { invalidText: { value: control.value } } : null;
     };
 }
 // }
@@ -90,7 +91,6 @@ export function validFormControlCommon(fg: FormGroup, name: string) {
     return control.invalid;
 }
 
-
 export function validFormControl(name: string) {
     if (this.fg.controls[name].pristine) return false;
     return this.fg.controls[name].invalid;
@@ -101,23 +101,29 @@ export function validMultiFormControl(fg: FormGroup, name: string) {
     return fg.controls[name].invalid;
 }
 
-
-
-export function validMultiFormControlExceptRequired(fg: FormGroup, name: string) {
+export function validMultiFormControlExceptRequired(
+    fg: FormGroup,
+    name: string
+) {
     if (fg.controls[name].pristine) return false;
-    return isRequiredError(fg, name) && fg.controls[name].errors.count === 1 ? false : fg.controls[name].invalid;
+    return isRequiredError(fg, name) && fg.controls[name].errors.count === 1
+        ? false
+        : fg.controls[name].invalid;
 }
 
-export function formControlValidity(fg: FormGroup, name: string): { required: boolean; other: boolean } {
+export function formControlValidity(
+    fg: FormGroup,
+    name: string
+): { required: boolean; other: boolean } {
     let status = {
         required: false,
-        other: false
+        other: false,
     };
     if (fg.controls[name].pristine) return status;
 
     status = {
         required: isRequiredError(fg, name),
-        other: validMultiFormControlExceptRequired(fg, name)
+        other: validMultiFormControlExceptRequired(fg, name),
     };
 
     // // console.log(status);
@@ -127,20 +133,19 @@ export function formControlValidity(fg: FormGroup, name: string): { required: bo
 export function isRequiredError(fg: FormGroup, name: string) {
     if (fg.controls[name].pristine) return false;
     let invalid = false;
-    if (fg.controls[name].invalid && fg.controls[name].errors && fg.controls[name].errors.required) {
+    if (
+        fg.controls[name].invalid &&
+        fg.controls[name].errors &&
+        fg.controls[name].errors.required
+    ) {
         invalid = fg.controls[name].errors.required === true ? true : false;
     }
     return invalid;
 }
 
-
-
-
-
 export const cUpdateEnumeration = {
     userTitles: ['Mr.', 'Mrs.', 'Ms.', 'Dr.', 'Prof.', 'Rev.'],
     administeringFor: {
-
         add: [
             'Employees',
             'International Students',
@@ -151,40 +156,31 @@ export const cUpdateEnumeration = {
             'Employees',
             'International Students',
             'Employees and International Students',
-        ]
+        ],
     },
     changeRole: {
-        signingAuthority: [
-            'No Change',
-            'Access Administrator',
-            'User',
-        ],
-        accessAdminstrator: [
-            'No Change',
-            'User',
-            'Signing Authority',
-        ],
-        user: [
-            'No Change',
-            'Access Administrator',
-            'Signing Authority',
-        ],
-    }
+        signingAuthority: ['No Change', 'Access Administrator', 'User'],
+        accessAdminstrator: ['No Change', 'User', 'Signing Authority'],
+        user: ['No Change', 'Access Administrator', 'Signing Authority'],
+    },
 };
-
 
 /**
  * verifies if field value is not null and not empty string or valid boolean
  * @param fieldValue FieldValue
  */
-export function isValidOptionalField(fieldValue: string | boolean | any): boolean {
-
+export function isValidOptionalField(
+    fieldValue: string | boolean | any
+): boolean {
     if (fieldValue) {
         if (typeof fieldValue === 'string' && fieldValue.length > 0) {
             return true;
         }
 
-        if (typeof fieldValue === 'boolean' && (fieldValue === true || fieldValue === false)) {
+        if (
+            typeof fieldValue === 'boolean' &&
+            (fieldValue === true || fieldValue === false)
+        ) {
             return true;
         }
 
@@ -205,7 +201,6 @@ export function isValidOptionalField(fieldValue: string | boolean | any): boolea
 // ];
 
 export const cUpdateValidators = {
-
     general: {
         emailAddress: [
             Validators.required,
@@ -213,10 +208,7 @@ export const cUpdateValidators = {
             Validators.maxLength(100),
             Validators.pattern(/^(\S+)@(\S+)\.(\S+)$/),
         ],
-        ministryUserId: [
-            Validators.maxLength(20),
-            trailingSpacesValidator()
-        ]
+        ministryUserId: [Validators.maxLength(20), trailingSpacesValidator()],
     },
 
     requestorInformation: {
@@ -228,7 +220,7 @@ export const cUpdateValidators = {
             Validators.minLength(8),
             Validators.maxLength(8),
             Validators.min(1),
-            Validators.pattern(/^[0-9]*$/)
+            Validators.pattern(/^[0-9]*$/),
         ],
 
         emailAddress: [
@@ -245,58 +237,37 @@ export const cUpdateValidators = {
          */
         organizationName: [
             Validators.maxLength(100),
-            trailingSpacesValidator()
+            trailingSpacesValidator(),
         ],
         suite: [
             Validators.maxLength(10),
             // trailingSpacesValidator()
         ],
-        street: [
-            Validators.maxLength(10),
-            trailingSpacesValidator()
-        ],
-        streetName: [
-            Validators.maxLength(75),
-            trailingSpacesValidator()
-        ],
-        addressLine2: [
-            Validators.maxLength(200),
-            trailingSpacesValidator()
-        ],
+        street: [Validators.maxLength(10), trailingSpacesValidator()],
+        streetName: [Validators.maxLength(75), trailingSpacesValidator()],
+        addressLine2: [Validators.maxLength(200), trailingSpacesValidator()],
         city: [
             Validators.minLength(1),
             Validators.maxLength(25),
-            trailingSpacesValidator()
+            trailingSpacesValidator(),
         ],
-        province: [
-            Validators.minLength(2),
-            Validators.maxLength(3)
-        ],
+        province: [Validators.minLength(2), Validators.maxLength(3)],
         postalCode: [
             Validators.maxLength(6),
             // postalCodeValidator(),
         ],
         // blueCross: [], why blue cross is missing this time in question
-        administeringFor: [
-            Validators.required,
-            Validators.maxLength(100)
-        ]
+        administeringFor: [Validators.required, Validators.maxLength(100)],
     },
 
     user: {
-        userTitle: [
-            Validators.maxLength(5),
-            trailingSpacesValidator(),
-        ],
+        userTitle: [Validators.maxLength(5), trailingSpacesValidator()],
         firstName: [
             Validators.minLength(1),
             Validators.maxLength(100),
             trailingSpacesValidator(),
         ],
-        initial: [
-            Validators.maxLength(1),
-            trailingSpacesValidator(),
-        ],
+        initial: [Validators.maxLength(1), trailingSpacesValidator()],
         lastName: [
             Validators.minLength(1),
             Validators.maxLength(100),
@@ -317,19 +288,11 @@ export const cUpdateValidators = {
             Validators.maxLength(100),
             Validators.pattern(/^(\S+)@(\S+)\.(\S+)$/),
         ],
-        phone: [
-            phoneValidator(),
-            trailingSpacesValidator(),
-        ],
-        ext: [
-            Validators.maxLength(100),
-            trailingSpacesValidator(),
-        ],
+        phone: [phoneValidator(), trailingSpacesValidator()],
+        ext: [Validators.maxLength(100), trailingSpacesValidator()],
         fax: [faxValidator()],
         administeringFor: [Validators.maxLength(100)],
-        ministryUserId: [
-            Validators.maxLength(20),
-            trailingSpacesValidator()]
+        ministryUserId: [Validators.maxLength(20), trailingSpacesValidator()],
     },
 
     group: {
@@ -340,30 +303,15 @@ export const cUpdateValidators = {
             groupNumberValidator(),
         ],
     },
-
 };
-
 
 export const cUpdateUserValidator = {
     add: {
-        userTitle: [
-            ...cUpdateValidators.user.userTitle,
-        ],
-        firstName: [
-            Validators.required,
-            ...cUpdateValidators.user.firstName,
-        ],
-        initial: [
-            ...cUpdateValidators.user.initial,
-        ],
-        lastName: [
-            Validators.required,
-            ...cUpdateValidators.user.lastName,
-        ],
-        jobTitle: [
-            Validators.required,
-            ...cUpdateValidators.user.jobTitle,
-        ],
+        userTitle: [...cUpdateValidators.user.userTitle],
+        firstName: [Validators.required, ...cUpdateValidators.user.firstName],
+        initial: [...cUpdateValidators.user.initial],
+        lastName: [Validators.required, ...cUpdateValidators.user.lastName],
+        jobTitle: [Validators.required, ...cUpdateValidators.user.jobTitle],
         emailAddress: [
             Validators.required,
             ...cUpdateValidators.user.emailAddress,
@@ -372,16 +320,9 @@ export const cUpdateUserValidator = {
             Validators.required,
             ...cUpdateValidators.user.confirmEmail,
         ],
-        phone: [
-            Validators.required,
-            ...cUpdateValidators.user.phone,
-        ],
-        ext: [
-            ...cUpdateValidators.user.ext,
-        ],
-        fax: [
-            ...cUpdateValidators.user.fax,
-        ],
+        phone: [Validators.required, ...cUpdateValidators.user.phone],
+        ext: [...cUpdateValidators.user.ext],
+        fax: [...cUpdateValidators.user.fax],
         administeringFor: [
             Validators.required,
             ...cUpdateValidators.user.administeringFor,
@@ -392,61 +333,30 @@ export const cUpdateUserValidator = {
             Validators.required,
             ...cUpdateValidators.user.emailAddress,
         ],
-        ministryUserId: [
-            ...cUpdateValidators.user.ministryUserId,
-        ]
+        ministryUserId: [...cUpdateValidators.user.ministryUserId],
     },
     edit: {
-        userTitle: [
-            ...cUpdateValidators.user.userTitle,
-        ],
-        firstName: [
-            ...cUpdateValidators.user.firstName,
-        ],
-        initial: [
-            ...cUpdateValidators.user.initial,
-        ],
-        lastName: [
-            ...cUpdateValidators.user.lastName,
-        ],
-        jobTitle: [
-            ...cUpdateValidators.user.jobTitle,
-        ],
-        emailAddress: [
-            ...cUpdateValidators.user.emailAddress,
-        ],
-        confirmEmail: [
-            ...cUpdateValidators.user.confirmEmail,
-        ],
-        phone: [
-            ...cUpdateValidators.user.phone,
-        ],
-        ext: [
-            ...cUpdateValidators.user.ext,
-        ],
-        fax: [
-            ...cUpdateValidators.user.fax,
-        ],
+        userTitle: [...cUpdateValidators.user.userTitle],
+        firstName: [...cUpdateValidators.user.firstName],
+        initial: [...cUpdateValidators.user.initial],
+        lastName: [...cUpdateValidators.user.lastName],
+        jobTitle: [...cUpdateValidators.user.jobTitle],
+        emailAddress: [...cUpdateValidators.user.emailAddress],
+        confirmEmail: [...cUpdateValidators.user.confirmEmail],
+        phone: [...cUpdateValidators.user.phone],
+        ext: [...cUpdateValidators.user.ext],
+        fax: [...cUpdateValidators.user.fax],
 
+        changeRole: [Validators.required],
 
-        changeRole: [
-            Validators.required,
-        ],
-
-        changeAdministeringFor: [
-            Validators.required,
-        ],
-        administeringFor: [
-            ...cUpdateValidators.user.administeringFor,
-        ],
+        changeAdministeringFor: [Validators.required],
+        administeringFor: [...cUpdateValidators.user.administeringFor],
 
         forIdentifyEmailAddress: [
             Validators.required,
             ...cUpdateValidators.user.emailAddress,
         ],
-        forIdentifyMinistryUserId: [
-            ...cUpdateValidators.user.ministryUserId,
-        ]
+        forIdentifyMinistryUserId: [...cUpdateValidators.user.ministryUserId],
     },
 };
 
@@ -469,7 +379,6 @@ export function matchFieldValidator(
     };
 }
 
-
 /**
  * Validates group number
  */
@@ -481,7 +390,3 @@ export function groupNumberValidator(): ValidatorFn {
             : null;
     };
 }
-
-
-
-

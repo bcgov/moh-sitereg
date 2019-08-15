@@ -1,10 +1,12 @@
 import * as jsonUserMaps from '../../../common/update-json-user-map';
-import { actionType, deepCopy, addDefinationProperty } from '../../../common/update-json-map';
+import {
+    actionType,
+    deepCopy,
+    addDefinationProperty,
+} from '../../../common/update-json-map';
 import { getIAccessAdmin } from './i-access-admin';
 
-
 export function getAddJsonOfAccessAdministrator(formValues) {
-
     let json = jsonUserMaps.mapJsonCoreUser(actionType.Add, formValues);
 
     delete json.confirm_email;
@@ -23,14 +25,12 @@ export function getAddJsonOfAccessAdministrator(formValues) {
     return jsonDef;
 }
 
-
 export function getAddJSONofAccessAdministrator(formValue) {
     if (!formValue) return;
     const formValuesArray = getIAccessAdmin(formValue);
 
     const jsonArray: any[] = [];
-    formValuesArray.forEach(formValues => {
-
+    formValuesArray.forEach((formValues) => {
         let json = jsonUserMaps.mapJsonCoreUser(actionType.Add, formValues);
         delete json.confirm_email;
         json.msp_access = 'Y';
@@ -43,7 +43,6 @@ export function getAddJSONofAccessAdministrator(formValue) {
 }
 
 export function getEditJsonOfAccessAdministrator(formValues) {
-
     let json = jsonUserMaps.mapJsonCoreUser(actionType.Edit, formValues);
 
     /**
@@ -61,12 +60,10 @@ export function getEditJsonOfAccessAdministrator(formValues) {
 }
 
 export function getEditJSONofAccessAdministrator(formValue) {
-
     if (!formValue) return;
     const formValuesArray = getIAccessAdmin(formValue);
     const jsonArray: any[] = [];
-    formValuesArray.forEach(formValues => {
-
+    formValuesArray.forEach((formValues) => {
         let json = jsonUserMaps.mapJsonCoreUser(actionType.Edit, formValues);
         // delete json.confirm_email;
         json = deepCopy(json, 'aa_');
@@ -78,7 +75,6 @@ export function getEditJSONofAccessAdministrator(formValue) {
 }
 
 export function getRemoveJsonOfAccessAdministrator(formValues) {
-
     let json = jsonUserMaps.mapJsonCoreUser(actionType.Remove, formValues);
 
     /**
@@ -92,14 +88,15 @@ export function getRemoveJsonOfAccessAdministrator(formValues) {
     return jsonDef;
 }
 
-
 export function getRemoveJSONofAccessAdministrator(formValue) {
     if (!formValue) return;
     const formValuesArray = getIAccessAdmin(formValue);
     const jsonArray: any[] = [];
-    formValuesArray.forEach(formValues => {
-
-        const json = jsonUserMaps.mapJsonCoreUser(actionType.Remove, formValues);
+    formValuesArray.forEach((formValues) => {
+        const json = jsonUserMaps.mapJsonCoreUser(
+            actionType.Remove,
+            formValues
+        );
 
         jsonArray.push(json);
     });

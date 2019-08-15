@@ -37,7 +37,6 @@ export class MspDirectUpdateComponent extends Container implements OnInit {
 
         // Set values
         progressService.getUpdateItems();
-
     }
 
     ngOnInit() {
@@ -53,14 +52,12 @@ export class MspDirectUpdateComponent extends Container implements OnInit {
 
     setProgressItems() {
         const progressItemRoute = routes.filter((x) => {
-            return !(x.path.includes('_')
-                || x.path.includes('confirmation')
-                // || x.path.includes('signing-authority')
-                // || x.path.includes('users')
-                // || x.path.includes('access-admins')
-                // || x.path.includes('submit')
-                // || x.path.includes('review')
-            );
+            return !(x.path.includes('_') || x.path.includes('confirmation'));
+            // || x.path.includes('signing-authority')
+            // || x.path.includes('users')
+            // || x.path.includes('access-admins')
+            // || x.path.includes('submit')
+            // || x.path.includes('review')
         });
 
         this.setProgressSteps(progressItemRoute);
