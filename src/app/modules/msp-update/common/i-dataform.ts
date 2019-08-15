@@ -1,7 +1,6 @@
 import { FormGroup } from '@angular/forms';
 import { funcRandomNumber8Digit } from './update-json-map';
 
-
 export interface IDataForm {
     patchValue(FormGroup);
 }
@@ -15,7 +14,7 @@ interface IUser {
     formGroupEmail?: {
         emailAddress?;
         confirmEmail?;
-    }
+    };
 
     emailAddress?;
     confirmEmail?;
@@ -55,35 +54,54 @@ interface IOrg {
     administeringFor?;
 }
 
-
 interface IRequestor {
     organizationNumber?;
     emailAddress?;
 }
 
 export class RandomObjects {
-
     public static addSpaces = ' ';
 
     public static getRequestor(prefix) {
         const obj: IRequestor = {
             organizationNumber: funcRandomNumber8Digit(),
-            emailAddress: prefix + 'orgrepresentative@organization.com'
+            emailAddress: prefix + 'orgrepresentative@organization.com',
         };
         return obj;
     }
 
     public static getOrganization(prefix) {
         const obj: IOrg = {
-            organizationName: RandomObjects.addSpaces + prefix + 'Ministry of Health' + RandomObjects.addSpaces,
-            suite: RandomObjects.addSpaces + prefix + '162' + RandomObjects.addSpaces,
-            street: RandomObjects.addSpaces + prefix + '977' + RandomObjects.addSpaces,
-            streetName: RandomObjects.addSpaces + prefix + 'Douglas Street' + RandomObjects.addSpaces,
-            addressLine2: RandomObjects.addSpaces + prefix + 'Opposite to convention Center' + RandomObjects.addSpaces,
-            city: RandomObjects.addSpaces + 'Victoria' + RandomObjects.addSpaces,
+            organizationName:
+                RandomObjects.addSpaces +
+                prefix +
+                'Ministry of Health' +
+                RandomObjects.addSpaces,
+            suite:
+                RandomObjects.addSpaces +
+                prefix +
+                '162' +
+                RandomObjects.addSpaces,
+            street:
+                RandomObjects.addSpaces +
+                prefix +
+                '977' +
+                RandomObjects.addSpaces,
+            streetName:
+                RandomObjects.addSpaces +
+                prefix +
+                'Douglas Street' +
+                RandomObjects.addSpaces,
+            addressLine2:
+                RandomObjects.addSpaces +
+                prefix +
+                'Opposite to convention Center' +
+                RandomObjects.addSpaces,
+            city:
+                RandomObjects.addSpaces + 'Victoria' + RandomObjects.addSpaces,
             province: 'BC',
             postalCode: 'V3K6A9',
-            administeringFor: 'Employees'
+            administeringFor: 'Employees',
         };
         return obj;
     }
@@ -91,7 +109,7 @@ export class RandomObjects {
     public static getRemoveUser(prefix) {
         const obj: IUserRemove = {
             emailAddress: prefix + 'useremail@users.com',
-            ministryUserId: '1234567890'
+            ministryUserId: '1234567890',
         };
         return obj;
     }
@@ -99,10 +117,22 @@ export class RandomObjects {
     public static getUser(prefix) {
         const obj: IUser = {
             userTitle: 'Mr.',
-            firstName: RandomObjects.addSpaces + prefix + 'FirstName' + RandomObjects.addSpaces,
+            firstName:
+                RandomObjects.addSpaces +
+                prefix +
+                'FirstName' +
+                RandomObjects.addSpaces,
             initial: 'I',
-            lastName: RandomObjects.addSpaces + prefix + 'LastName' + RandomObjects.addSpaces,
-            jobTitle: RandomObjects.addSpaces + prefix + 'JobTitle' + RandomObjects.addSpaces,
+            lastName:
+                RandomObjects.addSpaces +
+                prefix +
+                'LastName' +
+                RandomObjects.addSpaces,
+            jobTitle:
+                RandomObjects.addSpaces +
+                prefix +
+                'JobTitle' +
+                RandomObjects.addSpaces,
             formGroupEmail: {
                 emailAddress: prefix + 'user@users.com',
                 confirmEmail: prefix + 'user@users.com',
@@ -118,7 +148,7 @@ export class RandomObjects {
             forIdentifyMinistryUserId: funcRandomNumber8Digit(),
 
             ministryUserId: prefix + funcRandomNumber8Digit(),
-            isAdmin: true
+            isAdmin: true,
         };
         return obj;
     }
@@ -126,10 +156,22 @@ export class RandomObjects {
     public static getUser02(prefix) {
         const obj: IUser = {
             userTitle: 'Mr.',
-            firstName: RandomObjects.addSpaces + prefix + 'FirstName' + RandomObjects.addSpaces,
+            firstName:
+                RandomObjects.addSpaces +
+                prefix +
+                'FirstName' +
+                RandomObjects.addSpaces,
             initial: 'I',
-            lastName: RandomObjects.addSpaces + prefix + 'LastName' + RandomObjects.addSpaces,
-            jobTitle: RandomObjects.addSpaces + prefix + 'JobTitle' + RandomObjects.addSpaces,
+            lastName:
+                RandomObjects.addSpaces +
+                prefix +
+                'LastName' +
+                RandomObjects.addSpaces,
+            jobTitle:
+                RandomObjects.addSpaces +
+                prefix +
+                'JobTitle' +
+                RandomObjects.addSpaces,
             formGroupEmail: {
                 emailAddress: prefix + 'user@users.com',
                 confirmEmail: prefix + 'user@users.com',
@@ -145,7 +187,7 @@ export class RandomObjects {
             forIdentifyMinistryUserId: prefix + funcRandomNumber8Digit(),
 
             ministryUserId: funcRandomNumber8Digit(),
-            isAdmin: true
+            isAdmin: true,
         };
         return obj;
     }
@@ -153,11 +195,10 @@ export class RandomObjects {
     public static getGroup(prefix) {
         const obj: IGroup = {
             groupNo: prefix + '000000',
-            thirdPartyAdmin: 'Y'
+            thirdPartyAdmin: 'Y',
         };
         return obj;
     }
-
 }
 
 // patchValue(formGroup) {

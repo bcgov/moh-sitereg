@@ -1,29 +1,32 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { MspDirectUpdateProgressService } from '../../services/progress.service';
-import { ROUTES_UPDATE } from '../../routing/routes.constants';
+import { MspDirectUpdateProgressService } from '../../../services/progress.service';
+import { ROUTES_UPDATE } from '../../../routing/routes.constants';
 import { funcRemoveStrings } from '@msp-register/constants';
 import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { UpdateStateService } from '../../services/update.state.service';
+import { UpdateStateService } from '../../../services/update.state.service';
 import { AbstractForm } from 'moh-common-lib';
-import { cUpdateValidators, cAdministeringForUpdate } from '@msp-register/models/core/core-types';
-import { MspDirectUpdateOrganizationEditComponent } from './organization-edit/organization-edit.component';
+import {
+    cUpdateValidators,
+    cAdministeringForUpdate,
+} from '@msp-register/models/core/core-types';
+import { MspDirectUpdateOrganizationEditComponent } from '../organization-edit/organization-edit.component';
 
 @Component({
     selector: 'sitereg-msp-update-organization',
     templateUrl: './organization.component.html',
     styleUrls: ['./organization.component.scss'],
 })
-export class MspDirectUpdateOrganizationComponent extends AbstractForm implements OnInit {
-
+export class MspDirectUpdateOrganizationComponent extends AbstractForm
+    implements OnInit {
     constructor(
         public router: Router,
         private progressService: MspDirectUpdateProgressService,
         private loggerSvc: LoggerService,
         private globalConfigSvc: GlobalConfigService,
-        public updateStateService: UpdateStateService,
+        public updateStateService: UpdateStateService
     ) {
         super(router);
     }
@@ -36,17 +39,18 @@ export class MspDirectUpdateOrganizationComponent extends AbstractForm implement
         // splunk-log
         this.loggerSvc.logNavigation(
             this.constructor.name,
-            `Valid Data - Continue button clicked. ${
-            this.globalConfigSvc.applicationId
-            }`
+            `Valid Data - Continue button clicked. ${this.globalConfigSvc.applicationId}`
         );
         this.progressService.setPageComplete();
         this.router.navigate([ROUTES_UPDATE.SIGNING_AUTHORITY.fullpath]);
     }
 
     canContinue(): boolean {
-        return this.hasOrganizationUpdates === false ? true :
-            (this.formOrganizationState ? this.formOrganizationState.valid : false);
+        return this.hasOrganizationUpdates === false
+            ? true
+            : this.formOrganizationState
+            ? this.formOrganizationState.valid
+            : false;
     }
 
     //#region NEW
@@ -54,7 +58,6 @@ export class MspDirectUpdateOrganizationComponent extends AbstractForm implement
     // // tslint:disable-next-line: member-ordering
     // @ViewChild(MspDirectUpdateOrganizationEditComponent)
     // formOrganizationEdit: MspDirectUpdateOrganizationEditComponent;
-
 
     orgUpdatesChange(bool: boolean) {
         this.hasOrganizationUpdates = bool;
@@ -70,8 +73,6 @@ export class MspDirectUpdateOrganizationComponent extends AbstractForm implement
             // console.log('Form Status Changed => ' + form.valid);
         }
     }
-
-
 
     get hasOrganizationUpdates(): boolean | null {
         return this.updateStateService.hasOrganizationUpdates;
