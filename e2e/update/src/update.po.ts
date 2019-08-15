@@ -51,6 +51,7 @@ export class BaseDevUpdateTestPage extends BaseMSPTestPage {
     clickRadioButton(labelVal: string, forVal: string) {
         element.all(by.css(`common-radio[label^="${labelVal}"]`)).first().element(by.css(`label[for^="${forVal}"]`)).click();
     }
+
 }
 
 export class RequestorInfoPage extends BaseDevUpdateTestPage {
@@ -59,7 +60,7 @@ export class RequestorInfoPage extends BaseDevUpdateTestPage {
         return browser.get('/sitereg/update/requestor');
     }
 
-    fillPage(data?: RequestorPageTest) {
+    async fillPage(data?: RequestorPageTest) {
         if (data === undefined) {
             data = this.jsonData.requestorInfoPage;
         }
