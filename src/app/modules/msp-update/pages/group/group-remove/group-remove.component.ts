@@ -76,12 +76,7 @@ export class MspDirectUpdateGroupRemoveComponent implements OnInit, IDataForm {
 
     patchValue(formGroup) {
         if (!environment.useDummyData) return;
-        console.log(
-            `patchvalue REMOVE organization Form: %o`,
-            RandomObjects.getGroup((this.getFormsCount + 1).toString())
-        );
-        formGroup.patchValue(
-            RandomObjects.getGroup((this.getFormsCount + 1).toString())
-        );
+        // console.log(`patchvalue REMOVE organization Form: %o`, RandomObjects.getGroup((this.getFormsCount + 1).toString()));
+        formGroup.patchValue(RandomObjects.getGroup((this.getFormsCount + 1).toString()));
     }
 }
