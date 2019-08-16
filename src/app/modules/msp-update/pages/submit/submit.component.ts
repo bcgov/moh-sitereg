@@ -29,7 +29,7 @@ export class MspDirectUpdateSubmitComponent implements OnInit {
     showCaptcha = false;
     validCaptch = false;
     isProcessing = false;
-    private debug = false;
+    public debug = false;
 
     get componentInfo(): string {
         return (

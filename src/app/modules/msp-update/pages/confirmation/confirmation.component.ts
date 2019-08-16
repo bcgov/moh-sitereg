@@ -15,11 +15,11 @@ export class MspDirectUpdateConfirmationComponent implements OnInit {
     status = false;
     showDetail = false;
     isTechnicalInfoAvaialble = false;
-    private debug = false;
+    debug = false;
     today: number = Date.now();
     constructor(
         private router: Router,
-        private globalConfigSvc: GlobalConfigService,
+        public globalConfigSvc: GlobalConfigService,
         public loggerSvc: LoggerService,
         public updateStateService: UpdateStateService,
     ) {

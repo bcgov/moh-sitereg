@@ -56,7 +56,7 @@ export class MspDirectUpdateSigningAuthorityReviewComponent implements OnInit {
     if (action === common.actionType.Remove) {
       review.header += ' (Remove)';
       if (!form.remove) return;
-      console.log(form.remove.value);
+      // console.log(form.remove.value);
       infoObjects = interfaceObjects.getISigningAuthority(form.remove.value);
     }
 
