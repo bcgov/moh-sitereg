@@ -36,7 +36,7 @@ export class MspUpdateReviewComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(`%c%o : %o`, 'color:green', this.componentInfo);
+    // console.log(`%c%o : %o`, 'color:green', this.componentInfo);
     this.progressService.setPageIncomplete();
   }
 

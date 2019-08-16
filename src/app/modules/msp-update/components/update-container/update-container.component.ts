@@ -42,12 +42,12 @@ export class MspDirectUpdateComponent extends Container implements OnInit {
 
     ngOnInit() {
         // this.globalConfigSvc.logRefreshMspApplicationUUID();
-        console.log(
-            `%c %o \n MSP Application id: %o`,
-            'color:green',
-            funcRemoveStrings(['Component'], this.constructor.name),
-            this.globalConfigSvc.applicationId
-        );
+        // console.log(
+        //     `%c %o \n MSP Application id: %o`,
+        //     'color:green',
+        //     funcRemoveStrings(['Component'], this.constructor.name),
+        //     this.globalConfigSvc.applicationId
+        // );
         // console.log('ANSWER:%o', this.showStepper());
     }
 

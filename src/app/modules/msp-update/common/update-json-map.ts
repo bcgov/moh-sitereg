@@ -61,7 +61,7 @@ export function trimObjectAllProperties(jsonObject: any) {
 
     const properties = Object.keys(jsonObject);
     for (const prop of properties) {
-        console.log(`%o: %o`, prop, jsonObject[prop]);
+        // console.log(`%o: %o`, prop, jsonObject[prop]);
         jsonObject[prop] = trimText(jsonObject[prop]);
     }
     return jsonObject;

@@ -192,7 +192,7 @@ export function jsonPayLoadApplication(stateService: UpdateStateService) {
     // };
 
     const trimmedObject = trimObjectAllProperties(jsonPayLoad);
-    console.log(trimmedObject);
+    // console.log(trimmedObject);
     // return jsonPayLoad;
     return trimmedObject;
 }
