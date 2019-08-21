@@ -9,7 +9,7 @@
     one MSP Group Number.
   </aside> -->
   <div class='row mb-4'>
-    <div class='col-md-6 p-4'>
+    <div class='col-md-6 pl-3 pr-4 pt-4 pb-4'>
       <a (click)='addFormGroup()'>
         <button class="btn btn-block btn-lg btn-secondary">
           Add New Group Number
@@ -19,7 +19,7 @@
   </div>
   <!-- <sitereg-page-sections *ngFor="let fg of fgs; index as i"> -->
   <div *ngFor="let fg of fgs; index as i">
-    <div class="row border-bottom">
+    <!-- <div class="row border-bottom">
       <div class="col-auto mr-auto">
         <h2> Group Number #{{fgs.length-i}}</h2>
       </div>
@@ -28,7 +28,12 @@
           <i style="color: red !important;" class="fa fa-2x fa-times-circle" ></i>
         </button>
       </div>
-    </div>
+    </div> -->
+    <common-xicon-button class='inline-block pb-1' label="Cancel Add New Group"
+    (clickEvent)="deleteFormGroup(i)">
+    </common-xicon-button>
+    <h2 class='border-bottom'>Group Number #{{fgs.length-i}}</h2>
+
     <form [formGroup]="fg">
 
       <!--Group Number-->
