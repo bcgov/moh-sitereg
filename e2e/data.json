@@ -1,131 +1,66 @@
-{
-    "organizationPage": {
-        "orgName": "Company Inc.",
-        "suiteNo": "123",
-        "streetNo": "456",
-        "streetName": "Government St.",
-        "streetAddressLine": "Douglas Road",
-        "city": "Victoria",
-        "province": "British Columbia",
-        "postal": "A1A1A1",
-        "administeringFor": "Employees",
-        "thirdParty": true,
-        "orgNum": 12345678,
-        "blueCross": false
-    },
-
-    "signingAuthorityPage": {
-        "title": "Mr.",
-        "firstName": "John",
-        "initial": "S.",
-        "lastName": "Doe",
-        "jobTitle": "Programmer",
-        "email": "johndoe@example.com",
-        "confirmEmail": "johndoe@example.com",
-        "mobile": 2501234567,
-        "extension": 123,
-        "fax": 2501234568,
-        "administeringFor": "Employees",
-        "directMspAccess": true
-    },
-
-    "accessAdminsPage": [
-        {
-            "title": "Mr.",
-            "firstName": "John",
-            "initial": "S.",
-            "lastName": "Doe",
-            "jobTitle": "Programmer",
-            "email": "johndoe@example.com",
-            "confirmEmail": "johndoe@example.com",
-            "mobile": 2501234567,
-            "extension": 123,
-            "fax": 2501234568,
-            "administeringFor": "Employees"
-        },
-        {
-            "title": "Mr.",
-            "firstName": "Joseph",
-            "initial": "S.",
-            "lastName": "Doe",
-            "jobTitle": "Programmer",
-            "email": "josephdoe@example.com",
-            "confirmEmail": "josephdoe@example.com",
-            "mobile": 2501234567,
-            "extension": 123,
-            "fax": 2501234568,
-            "administeringFor": "Employees" 
-        },
-        {
-            "title": "Mrs.",
-            "firstName": "Jane",
-            "initial": "S.",
-            "lastName": "Doe",
-            "jobTitle": "Programmer",
-            "email": "janedoe@example.com",
-            "confirmEmail": "janedoe@example.com",
-            "mobile": 2501234567,
-            "extension": 123,
-            "fax": 2501234568,
-            "administeringFor": "Employees" 
-        }
-    ],
-
-    "usersPage": [
-        {
-            "title": "Mr.",
-            "firstName": "John",
-            "initial": "S.",
-            "lastName": "Doe",
-            "jobTitle": "Programmer",
-            "email": "johndoe@example.com",
-            "confirmEmail": "johndoe@example.com",
-            "mobile": 2501234567,
-            "extension": 123,
-            "fax": 2501234568,
-            "administeringFor": "Employees"
-        },
-        {
-            "title": "Mr.",
-            "firstName": "Joseph",
-            "initial": "S.",
-            "lastName": "Doe",
-            "jobTitle": "Programmer",
-            "email": "josephdoe@example.com",
-            "confirmEmail": "josephdoe@example.com",
-            "mobile": 2501234567,
-            "extension": 123,
-            "fax": 2501234568,
-            "administeringFor": "Employees" 
-        },
-        {
-            "title": "Mrs.",
-            "firstName": "Jane",
-            "initial": "S.",
-            "lastName": "Doe",
-            "jobTitle": "Programmer",
-            "email": "janedoe@example.com",
-            "confirmEmail": "janedoe@example.com",
-            "mobile": 2501234567,
-            "extension": 123,
-            "fax": 2501234568,
-            "administeringFor": "Employees" 
-        }
-    ],
-
-    "groupNumbersPage": [
-        {
-            "groupNum": 1234567,
-            "thirdParty": true
-        },
-        {
-            "groupNum": 9090909,
-            "thirdParty": false
-        },
-        {
-            "groupNum": 8888777,
-            "thirdParty": true
-        }
-    ] 
-    
-}
+{ "e2eParam" :
+    { "snapshotAt": [1, 2, 3, 4 ,5]
+    , "snapshotLocation": "e2e/snapshots"
+    }
+, "organizationPage" :
+    { "postal"            : "V7R6A5"
+    , "administeringFor"  : "Employees"
+    , "thirdParty"        : true
+    , "orgNum"            : 54303633
+    , "blueCross"         : true
+    , "orgName"           : "MSPDIR_REW_02 INC."
+    , "suiteNo"           : "Suite 2594"
+    , "streetNo"          : "1573"
+    , "streetName"        : "Back Lane"
+    , "streetAddressLine" : "line 2"
+    , "city"              : "Battersea"
+    , "province"          : "British Columbia"
+    }
+  , "signingAuthorityPage" :
+    { "title"            : "Mr."
+    , "firstName"        : "Caesarius"
+    , "initial"          : "X"
+    , "lastName"         : "Aurelianus"
+    , "jobTitle"         : "Job Title"
+    , "email"            : "Caesarius.190725.194315.160715@example.com"
+    , "mobile"           : 8985550199
+    , "extension"        : "3392"
+    , "fax"              : 8195550117
+    , "administeringFor" : "Employees"
+    , "directMspAccess"  : true
+    , "confirmEmail"     : "Caesarius.190725.194315.160715@example.com"
+    }
+  , "accessAdminsPage" :
+    [ { "title"            : "Mr."
+      , "confirmEmail"     : "Ursinus.190725.194315.364546@example.com"
+      , "administeringFor" : "Employees"
+      , "fax"              : 9835550152
+      , "extension"        : "3832"
+      , "mobile"           : 2615550162
+      , "email"            : "Ursinus.190725.194315.364546@example.com"
+      , "jobTitle"         : "Job Title"
+      , "lastName"         : "Vitus"
+      , "initial"          : "U"
+      , "firstName"        : "Caelestinus"
+      }
+    ]
+  , "usersPage" :
+    [ { "title"            : "Mr."
+      , "confirmEmail"     : "Bonifatius.190725.194315.507577@example.com"
+      , "administeringFor" : "Employees"
+      , "fax"              : 5155550103
+      , "extension"        : "1175"
+      , "mobile"           : 8015550169
+      , "email"            : "Bonifatius.190725.194315.507577@example.com"
+      , "jobTitle"         : "Job Title"
+      , "lastName"         : "Diocletianus"
+      , "initial"          : "L"
+      , "firstName"        : "Dorotheus"
+      }
+    ]
+  , "groupNumbersPage" :
+    [ { "groupNum"   : 9810628
+      , "thirdParty" : true
+      }
+    ]
+  }

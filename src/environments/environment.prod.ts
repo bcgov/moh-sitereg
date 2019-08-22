@@ -13,7 +13,7 @@ export const environment = {
     promptOnExit: true,
     purgeWhenInactive: true,
     enableLogging: true,
-    bypassInformationCollectionNotice: true,
+    bypassInformationCollectionNotice: false,
     debug: false,
     /** Link used in app */
     links: {

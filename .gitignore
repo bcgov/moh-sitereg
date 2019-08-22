@@ -48,3 +48,4 @@ package-lock.json
 
 /testresults
 /e2e/moh-sitereg-e2e-results.json
+/e2e/moh-update-e2e-results.json

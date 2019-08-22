@@ -1,0 +1,147 @@
+{ "requestorInfoPage" :
+  { "orgNum" : 106566580
+  , "email"  : "MSPDIR_UPW_24_g5gnsvb3a0e74hde2eq650udsk04xwrtmr24xk1n0oo5lef23a@example.com"
+  }
+, "organizationPage" :
+  { "anyUpdates"        : true
+  , "orgName"           : "MSPDIR_UPW_24 INC. wrknd1pgspr3xwrgb12f223ebre9gwvuwhk5vb8uuoozks5z7oth56p6iyxuxlbo7c9s80b5qremv9ooxW"
+  , "suiteNo"           : "Suite 45427"
+  , "streetNo"          : "60504449895"
+  , "streetName"        : "xooo10xsssh5xf831g3qy7og05d3nt8l5jv7qo7fnqjgvhunjnsdo5ft2xnpu6eycdco4fjoooxW"
+  , "streetAddressLine" : "xoofm6uoj3jt5hbzof8hjwlvld04v40webqay8cpjdw251tut7tw8901xobhavlxfa34poo8s5koyfpflt04e0yb01r93ymzn06vqi2mcdl6oqhiicmovk8gcvdsnb7g5rjoys1x7lb3qftjddyyivfzwkodu92i55vniifpxxsm02zp9br57mf1b71s24fcq6q9yooxW"
+  , "city"              : "xooh8bbqliyep5wfj1wijgooxW"
+  , "province"          : "Newfoundland and Labrador"
+  , "postal"            : "A5Y6L8"
+  , "administeringFor"  : "International Students"
+  }
+, "signingAuthorityPage" :
+  { "addSigningAuthority" :
+    { "title"            : "Prof."
+    , "firstName"        : "xoobo3ivyc81k2do51577nktzmzt325ul5b0f8hhamqqyt76xnro0g8k9vws6nqkhj10au6gowx5gszwaqh4jdfv07tmv82s6ooxW"
+    , "initial"          : "U."
+    , "lastName"         : "xoot8nemljouh97gklexq06girvm6289upoe46mhufcmslwfmlqcweibyocepmvg8c8lfuye1qjjm2w4dly3grktd0tttiy3sooxW"
+    , "jobTitle"         : "xoop88fvunbawihegbabi6eg9md1f8cxhtbrs1yqspwvly604ncb07y7p5mnhrsbhn2okf5806634kge9pdgga56zxf9tr19cooxW"
+    , "mobile"           : 95515307168
+    , "extension"        : "xooeeb85tif5semyvz3x2yhgkhyd76ic5q9jwpj38sl9pr5uxj7vpjpxgijlirhz9pop4523sp7rpnai158wq89m8t4eg12hhooxW"
+    , "fax"              : 39488593526
+    , "accessToMSP"      : true
+    , "administeringFor" : "International Students"
+    , "email"            : "xoodwq2p31brzhve0mt2x09bbvcq7meumcrchi3z4sf2wmf7vybusuoixgu4cgjpd33hzyd5e85tnoi6uok0g2dk@example.coma"
+    , "confirmEmail"     : "xoodwq2p31brzhve0mt2x09bbvcq7meumcrchi3z4sf2wmf7vybusuoixgu4cgjpd33hzyd5e85tnoi6uok0g2dk@example.coma"
+    }
+  , "removeSigningAuthority" :
+    { "signingAuthEmail" : "xoovw7xq8ene6zfhnsh8zrlhis3k65kaz5lmv789kvbw8p3wllngtoz022e3ch07j8117or8os57hpe4er00tja1@example.comW"
+    , "ministryUserID"   : "xoofzq8p8h44cyfdvooxW"
+    }
+  , "updateSigningAuthority" :
+    { "signingAuthEmail" : "xood9esnadd4htf361a9r8r9wx8ds54mukjdtjoa7xei0fueqjqvc48ba3i2jwa5yxiac3edyprrnmomgy85acy5@example.comW"
+    , "ministryUserID"   : "xoor1fcgyf5uwsdi8ooxW"
+    , "title"            : "Prof."
+    , "firstName"        : "xooup9in0qxyr2q7t98amzxnt2tjtmk56vgbqgw50axxqsm6q7qstuf6l2biv2s6ldaiimcuj67drktjajbmh0brxrumjobmnooxW"
+    , "initial"          : "F."
+    , "lastName"         : "xool9fz19ex5lf9qvmm4d34yj5442boh7enn7jvtohh8wa2njezznsa6tcjbrnjhsltty5jj34d9e6l3k34p4yn0r7zy7fag2ooxW"
+    , "jobTitle"         : "xooh1vgl6njc91zv9dgo1vl7hjssr6lt06fe4vssq3fdr4txe7v0usms0v2s11f7uyqewsn0hw1szf4wrnsmy7l12h76w8zl2ooxW"
+    , "mobile"           : 27585276691
+    , "extension"        : "xoorwhxw4wtu7rosjvf0918xgxkt1nlj3sgww1swklg6yatldm65a8ii4bgy5jf7p9q4sgp4hv77c2itkrybv4174xu1l73avooxW"
+    , "fax"              : 23185526307
+    , "accessToMSP"      : true
+    , "administeringFor" : "International Students"
+    , "email"            : "xooumhuynpivijwltc96gngj6or4f5tjxa6plbym3n9roq8iuf058gz91bx1mnikzol3uv7w0jy5eo114sanlsty@example.coma"
+    , "confirmEmail"     : "xooumhuynpivijwltc96gngj6or4f5tjxa6plbym3n9roq8iuf058gz91bx1mnikzol3uv7w0jy5eo114sanlsty@example.coma"
+    }
+  }
+, "accessAdminsPage" :
+  { "addAccessAdmins" :
+    [ { "title"            : "Prof."
+      , "confirmEmail"     : "xoop4q7yg62cuvjlgfvyyam51b648o8fbjktbbscezcdtoz4hw2rk9qt45qcffdsqn566cxue7cszl9i88wtyy9g@example.coma"
+      , "email"            : "xoop4q7yg62cuvjlgfvyyam51b648o8fbjktbbscezcdtoz4hw2rk9qt45qcffdsqn566cxue7cszl9i88wtyy9g@example.coma"
+      , "administeringFor" : "International Students"
+      , "fax"              : 14564437119
+      , "extension"        : "xoogqu0r6aacwgbl2mk8ie0mzggpapz49eaxdke2y8t5zngkr874h2dn5tz1kzwgpk9a0qo0vddi2g6rpnusrcrf7azxkajntooxW"
+      , "mobile"           : 73491788996
+      , "jobTitle"         : "xoozr3ad2ze7hf5tlmo7vndsb9gpbvoo44glzn1untwv6j6rbm795dvoqdo3zy163ush37o8gk216jknvoyg9jcui4ozm31rnooxW"
+      , "lastName"         : "xooagdne5d81kv5mjqsuoomewiasovc8hy798zfp4hoy8p1erxel2i0x7zt490mmbfbtvlcn7gtwdnsnfodqdc5ox0di02cgwooxW"
+      , "initial"          : "S."
+      , "firstName"        : "xootriquhddma1bo2fa0nhfu6l6eosec2iz3l8o14cy55dw7d428pj42sh5gb47jwcqva0q7s86tvc1kq8mecjfu05jwdvl0pooxW"
+      }
+    ]
+  , "removeAccessAdmins" :
+    [ { "signingAuthEmail" : "xooad4lnllnjijevgutbcnwxv98l17ooguiflrea8icaw5ao4t9xyfkocolec9c1f5z4bs5pc6m9s6lz2hizm9ds@example.comW"
+      , "ministryUserID"   : "xoon4ux1qconbe8ygooxW"
+      }
+    ]
+  , "updateAccessAdmins" :
+    [ { "signingAuthEmail" : "xookhzv6qm6oe63ezjptz9u2cjhe0i1hqn0h2doq8g27q88wlg6nx6hkhyshhwnh975gks480r1pi3zyzo2yoi27@example.comW"
+      , "confirmEmail"     : "xoorb5rq644mikz0wzv4ejkv0cddm5den8eybxxi2z0qwr0i9ecnfduzmt2xb45udjkuiwjzzwubbleaqp11j7d9@example.coma"
+      , "email"            : "xoorb5rq644mikz0wzv4ejkv0cddm5den8eybxxi2z0qwr0i9ecnfduzmt2xb45udjkuiwjzzwubbleaqp11j7d9@example.coma"
+      , "administeringFor" : "International Students"
+      , "changeAccess"     : true
+      , "changeRole"       : "Signing Authority"
+      , "fax"              : 11767500121
+      , "extension"        : "xoomexg16puntm1bgv404lspssus0rr5898y51jj3xf7ti7kycbwabof9e9fp86ey2lzolvjtk7y4zar56ob3gkhnhdu9qy20ooxW"
+      , "mobile"           : 55504234931
+      , "jobTitle"         : "xoounvr7zhfnu5plekuoafhwyye0or5xx3awoulmexx0g3poje024m2jy1sbmw4wlpjj0b8shrprj7kide3sd7hv428brpjznooxW"
+      , "lastName"         : "xookpy7t2ebgcvepcwykkajmujv4925rw0ssnqkmljjo8sv01xe02byi2kiz1dlze38zmzbygh9t3enwh95be4azkbro46lzmooxW"
+      , "initial"          : "R."
+      , "firstName"        : "xoodl87df9gjhmvf6eqpu040u4bqnzp0ig4j7vfdyylp8oepp2wdnco55ov98wdypk2ohat4dbe2ojqj783bcd5o4ztgrscnjooxW"
+      , "title"            : "Prof."
+      , "ministryUserID"   : "xooptyjac7in8oa0cooxW"
+      }
+    ]
+  }
+, "usersPage" :
+  { "addUsers" :
+    [ { "title"            : "Prof."
+      , "confirmEmail"     : "xoobhwm22cfjlkfokh8a7zqy89cj3zucj3f0hhkywfiifrz5wi1x0signmlkvhelgvk21zmgwrtnqp45seh4sct6@example.coma"
+      , "email"            : "xoobhwm22cfjlkfokh8a7zqy89cj3zucj3f0hhkywfiifrz5wi1x0signmlkvhelgvk21zmgwrtnqp45seh4sct6@example.coma"
+      , "administeringFor" : "International Students"
+      , "fax"              : 31764788192
+      , "extension"        : "xoos88rnuo6v412ohctkjhy3hbx971ndmom49rhdxlbsxpusd5qxvgtqn4yf9f0gcs0dtj1ex4dg6swugn73ih49slkj7hu9dooxW"
+      , "mobile"           : 32005664674
+      , "jobTitle"         : "xoovvaugpqf1i4as1bz12id6az14hlte121y9qjqwsbfueotjj79y21858ydwnurshzsutjy4bgww10tj8egovm6a0b5eeip9ooxW"
+      , "lastName"         : "xoousiejulu10okl6ib9l116a6ccjw3v8u0v17fupcwtdu0tw6yj77svyp5behf3fvx1wzgwu83zw206dawq4vr7j57fpuy57ooxW"
+      , "initial"          : "J."
+      , "firstName"        : "xoom424sxiueby6elxqsorwmkzuxbtmuldg82ej2piqeerw9f4nxhvol10fgwqmjwanddqhafg73jtvz4hvtpafndvoy55llsooxW"
+      }
+    ]
+  , "removeUsers" :
+    [ { "signingAuthEmail" : "xoot8w7b93e29pl4s6jsw4q5elx11wobgj7fp36qql6r6pdlr4b4mkfsx3s9swnqmlhysrujrpj2u3q5p95ng44d@example.comW"
+      , "ministryUserID"   : "xooqzohzthd6opzh8ooxW"
+      }
+    ]
+  , "updateUsers" :
+    [ { "signingAuthEmail" : "xoodiuv7go6xncxw90r4ak6fskcxye92bcvnk4c35a110wlq0kloru5r1k1g849r11l7ha0ebs5ahs5t5xlp8etd@example.comW"
+      , "confirmEmail"     : "xoos1lcyzjca3lhqlltavkrimlf12onu8r6x5f0z6s7uf4hbqy2a1vbzemr490s7bi781hqse14ap8uckhb4jytn@example.coma"
+      , "email"            : "xoos1lcyzjca3lhqlltavkrimlf12onu8r6x5f0z6s7uf4hbqy2a1vbzemr490s7bi781hqse14ap8uckhb4jytn@example.coma"
+      , "administeringFor" : "International Students"
+      , "changeAccess"     : true
+      , "changeRole"       : "Access Administrator"
+      , "fax"              : 6575550121
+      , "extension"        : "xooqp728kme6k5wl08k9mbc7m45mds65yquzquewosh97cy1fcdarctcaia3z8ejc85b0ahp02itob91giw550i9842q3tf11ooxW"
+      , "mobile"           : 23529668536
+      , "jobTitle"         : "xoortvx4v54thvdr6502ii4bdlt6fonq31bjj2k0e9sborfhtq97w0dp9yu8klvz7gc1yyskftd79js6c2dbp1gd06r3nf0lqooxW"
+      , "lastName"         : "xoogmqfo37ohtclrncgyjuopznvz2f1cmoyz8f0msj7r4aqf9h3uqymx018p5g1pvmh1rmegwnqn5f585ztsdnanp6pdw1cn5ooxW"
+      , "initial"          : "E."
+      , "firstName"        : "xoodccry9nbl7im6hj34xyp1qvvlnferoeb5ipjywqfkfjaatoz4aca72hqzs6px2mqp764daiodi0bjkvpyrozrw15av9wycooxW"
+      , "title"            : "Prof."
+      , "ministryUserID"   : "xooxw4t9lu6cm9h7mooxW"
+      }
+    ]
+  }
+, "groupNumbersPage" :
+  { "addMSPGroup" :
+    [ { "groupNum"   : 64743804
+      , "thirdParty" : true
+      }
+    ]
+  , "removeMSPGroup" :
+    [ { "groupNum" : 70470121
+      }
+    ]
+  , "updateMSPGroup" :
+    [ { "groupNum"   : 39753201
+      , "thirdParty" : true
+      }
+    ]
+  }
+}

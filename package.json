@@ -12,7 +12,10 @@
     "e2e": "ng e2e",
     "e2e-protractor": "npx protractor",
     "e2e:registration": "npm run e2e-protractor -- e2e/protractor.registration.conf.js",
-    "e2e-sitereg:happy-path": "npm run e2e-protractor -- e2e/protractor.registration.conf.js --specs=e2e/registration/src/reg-happy-path.e2e-spec.ts",
+    "e2e-sitereg:happy-path": "npm run e2e-protractor -- e2e/protractor.registration.conf.js --specs=e2e/registration/src/reg-happy-path-e2e-spec.ts",
+    "e2e-update:happy-path": "npm run e2e-protractor -- e2e/protractor.update.conf.js --specs=e2e/update/src/update-happy-path.e2e-spec.ts",
+    "e2e-update:happy-path-dev": "npm run e2e-protractor -- e2e/protractor.update.conf.js --specs=e2e/update/src/update-happy-path.e2e-spec.ts --data=e2e/data-update.json --baseUrl=https://moh-sitereg-dev.pathfinder.gov.bc.ca",
+    "e2e-update:happy-path-local": "npm run e2e-protractor -- e2e/protractor.update.conf.js --specs=e2e/update/src/update-happy-path.e2e-spec.ts --data=e2e/data-update.json ",
     "e2e:update": "npm run e2e-protractor -- e2e/protractor.update.conf.js",
     "format": "prettier --write \"src/**/*.ts\" && npm run lint && npm run build",
     "publish": "ng build --prod --output-hashing none",
@@ -49,10 +52,11 @@
     "popper.js": "^1.14.7",
     "prettier": "^1.16.4",
     "rxjs": "^6.3.3",
+    "screenshot-protractor": "^1.0.0",
     "sha1": "^1.1.1",
     "tslib": "^1.10.0",
-    "zlib": "^1.0.5",
     "yargs": "^13.2.4",
+    "zlib": "^1.0.5",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
@@ -75,6 +79,7 @@
     "karma-jasmine": "~1.1.2",
     "karma-jasmine-html-reporter": "^0.2.2",
     "protractor": "~5.4.0",
+    "protractor-screenshot-utils": "^1.0.5",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
     "typescript": "~3.2.2"

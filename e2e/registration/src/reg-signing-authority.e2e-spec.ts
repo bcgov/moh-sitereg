@@ -33,7 +33,7 @@ describe('Moh SiteReg - Signing Authority Page', () => {
         saPage.navigateTo();
         saPage.fillInfo(0, saData);
         saPage.scrollDown();
-        saPage.selectValue('administeringFor', 'Employees');
+        saPage.selectAdministeringFor('administeringFor', 'Employees');
         saPage.clickOption('bcfalse');
         saPage.continue();
         expect(saPage.formErrors().count()).toBe(0, 'should be no errors after filling out');

@@ -15,11 +15,14 @@ export class FakeDataSiteReg {
             streetName: faker.address.streetName(),
             streetAddressLine: Math.random() > 0.5 ? faker.address.streetAddress() : undefined,
             city: faker.address.city(),
+            province: 'British Columbia',
             postal: faker.address.zipCode('A1A1A1'),
+            thirdParty: true,
             orgNum: faker.random.number({
                 min: 10000000,
                 max: 99999999
-            })
+            }),
+            blueCross: true
         };
     }
 
@@ -63,8 +66,11 @@ export class FakeDataSiteReg {
 // tslint:disable-next-line: max-line-length
             streetAddressLine: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut laboresLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labores',
             city: 'Lorem ipsum dolor sit ame',
+            province: 'British Columbia',
             postal: 'A1A1A1',
-            orgNum: 99999999
+            thirdParty: true,
+            orgNum: 99999999,
+            blueCross: true
         };
     }
 
@@ -105,10 +111,6 @@ export class FakeDataSiteReg {
             return null;
         }
     }
-
-    getUUID() {
-
-    }
 }
 
 export interface OrganizationPageTest {
@@ -118,8 +120,11 @@ export interface OrganizationPageTest {
   streetName: string;
   streetAddressLine: string;
   city: string;
+  province: string;
   postal: string;
+  thirdParty: boolean;
   orgNum: number;
+  blueCross: boolean;
 }
 
 export interface SigningAuthorityPageTest {
