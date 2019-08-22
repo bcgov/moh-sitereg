@@ -5,8 +5,9 @@
       <div class="col-md-8 p-0">
         <common-xicon-button class='inline-block pb-1' label="Cancel" (clickEvent)="removeForm(formIndex)">
         </common-xicon-button>
+
+        <h2 class='border-bottom'>Add a New Access Administrator #{{getFormsArray.controls.length - formIndex}}</h2>
       </div>
-      <h2 class='border-bottom'>Add a New Access Administrator #{{getFormsArray.controls.length - formIndex}}</h2>
       <common-page-section layout='tips'>
         <!-- <aside>Access Administrator Information</aside> -->
 
