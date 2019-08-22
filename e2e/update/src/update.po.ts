@@ -2,7 +2,6 @@ import { browser, by, element, WebElement, protractor, $$ } from 'protractor';
 import { OrganizationPageTest, RequestorPageTest, SigningAuthorityPageTest, FakeDataDevUpdate } from './update.data';
 import { GroupNumbersPageTest } from 'e2e/registration/src/sitereg.data';
 import { BaseMSPTestPage } from '../../msp.po';
-import { elementAt } from 'rxjs/operators';
 
 export class BaseDevUpdateTestPage extends BaseMSPTestPage {
 
@@ -59,12 +58,13 @@ export class RequestorInfoPage extends BaseDevUpdateTestPage {
         return browser.get('/sitereg/update/requestor');
     }
 
-    fillPage(data?: RequestorPageTest) {
+    async fillPage(data?: RequestorPageTest) {
         if (data === undefined) {
             data = this.jsonData.requestorInfoPage;
         }
         this.typeText('organizationNumber', data.orgNum + '');
         this.typeText('emailAddress', data.email);
+        await console.log('EMAIL: ' + data.email);
     }
 
 }
@@ -80,7 +80,7 @@ export class OrganizationPage extends BaseDevUpdateTestPage {
             data = this.jsonData.organizationPage;
         }
         this.clickOption(data.anyUpdates + '');
-        if (data.anyUpdates){
+        if (data.anyUpdates) {
             this.fillOrgInfo();
         }
     }
@@ -130,7 +130,7 @@ export class SigningAuthorityPage extends BaseDevUpdateTestPage {
     }
 
     fillPage() {
-        if(this.data){
+        if (this.data) {
             if (this.data.updateSigningAuthority) {
                 this.clickButton('btn', 'Update Signing Authority');
                 this.fillUpdateSignAuth();
@@ -179,7 +179,7 @@ export class SigningAuthorityPage extends BaseDevUpdateTestPage {
     fillRemoveSignAuth() {
         const data = this.data.removeSigningAuthority;
         this.typeTextUsingID('emailAddress_remove_0', data.signingAuthEmail);
-        if (data.ministryUserID){
+        if (data.ministryUserID) {
             this.typeTextUsingID('ministryUserId_remove_0', data.ministryUserID);
         }
     }
@@ -187,7 +187,7 @@ export class SigningAuthorityPage extends BaseDevUpdateTestPage {
     fillUpdateSignAuth() {
         const data = this.data.updateSigningAuthority;
         this.typeTextUsingID('forIdentifyEmailAddress_edit_0', data.signingAuthEmail);
-        if (data.ministryUserID){
+        if (data.ministryUserID) {
             this.typeTextUsingID('forIdentifyMinistryUserId_edit_0', data.ministryUserID);
         }
         if (data.title) {
@@ -237,13 +237,12 @@ export class AccessAdminsPage extends SigningAuthorityPage {
     }
 
     fillPage() {
-        if (this.data){
+        if (this.data) {
             if (this.data.updateAccessAdmins) {
                 for (let i = 0; i < this.data.updateAccessAdmins.length; i++) {
                     this.clickButton('btn', 'Update Access Administrator');
                     this.fillUpdateAccessAdmin(i);
                     this.scrollUp();
-
                 }
             }
             if (this.data.addAccessAdmins) {
@@ -277,10 +276,10 @@ export class AccessAdminsPage extends SigningAuthorityPage {
         this.typeTextUsingID('emailAddress_0', data[index].email);
         this.typeTextUsingID('confirmEmail_0', data[index].confirmEmail);
         this.typeTextUsingID('phone_0', data[index].mobile + '');
-        if (data[index].extension){
+        if (data[index].extension) {
             this.typeTextUsingID('ext_0', data[index].extension);
         }
-        if (data[index].fax){
+        if (data[index].fax) {
             this.typeTextUsingID('fax_0', data[index].fax + '');
         }
         this.scrollDown();
@@ -290,7 +289,7 @@ export class AccessAdminsPage extends SigningAuthorityPage {
     fillRemoveAccessAdmin(index: number) {
         const data = this.data.removeAccessAdmins;
         this.typeTextUsingID('emailAddress_remove_0', data[index].signingAuthEmail);
-        if (data[index].ministryUserID){
+        if (data[index].ministryUserID) {
             this.typeTextUsingID('ministryUserId_remove_0', data[index].ministryUserID);
         }
     }
@@ -298,7 +297,7 @@ export class AccessAdminsPage extends SigningAuthorityPage {
     fillUpdateAccessAdmin(index: number) {
         const data = this.data.updateAccessAdmins;
         this.typeTextUsingID('forIdentifyEmailAddress_edit_0', data[index].signingAuthEmail);
-        if (data[index].ministryUserID){
+        if (data[index].ministryUserID) {
             this.typeTextUsingID('forIdentifyMinistryUserId_edit_0', data[index].ministryUserID);
         }
         this.scrollDown();
@@ -350,7 +349,7 @@ export class UsersPage extends SigningAuthorityPage {
     }
 
     fillPage() {
-        if (this.data){
+        if (this.data) {
             if (this.data.updateUsers) {
                 for (let i = 0; i < this.data.updateUsers.length; i++) {
                     this.clickButton('btn', 'Update User');
@@ -402,7 +401,7 @@ export class UsersPage extends SigningAuthorityPage {
     fillRemoveUser(index: number) {
         const data = this.data.removeUsers;
         this.typeTextUsingID('emailAddress_remove_0', data[index].signingAuthEmail);
-        if (data[index].ministryUserID){
+        if (data[index].ministryUserID) {
             this.typeTextUsingID('ministryUserId_remove_0', data[index].ministryUserID);
         }
     }
@@ -410,7 +409,7 @@ export class UsersPage extends SigningAuthorityPage {
     fillUpdateUser(index: number) {
         const data = this.data.updateUsers;
         this.typeTextUsingID('forIdentifyEmailAddress_edit_0', data[index].signingAuthEmail);
-        if (data[index].ministryUserID){
+        if (data[index].ministryUserID) {
             this.typeTextUsingID('forIdentifyMinistryUserId_edit_0', data[index].ministryUserID);
         }
         this.scrollDown();
@@ -462,7 +461,7 @@ export class GroupNumbersPage extends BaseDevUpdateTestPage {
     }
 
     fillPage() {
-        if (this.data){
+        if (this.data) {
             if (this.data.updateMSPGroup) {
                 for (let i = 0; i < this.data.updateMSPGroup.length; i++) {
                     this.clickButton('btn', 'Update administration of MSP Group');
@@ -487,16 +486,16 @@ export class GroupNumbersPage extends BaseDevUpdateTestPage {
         }
     }
 
-    checkAddThirdParty(index: number){
-        if (this.data.addMSPGroup[index].groupNum === true){
+    checkAddThirdParty(index: number) {
+        if (this.data.addMSPGroup[index].groupNum === true) {
             return 'Y';
         } else {
             return 'N';
         }
     }
 
-    checkUpdateThirdParty(index: number){
-        if (this.data.updateMSPGroup[index].groupNum === true){
+    checkUpdateThirdParty(index: number) {
+        if (this.data.updateMSPGroup[index].groupNum === true) {
             return 'Y';
         } else {
             return 'N';
@@ -519,15 +518,6 @@ export class GroupNumbersPage extends BaseDevUpdateTestPage {
         this.typeTextUsingID('groupNo_edit_0', data[index].groupNum);
         this.clickRadioButton('Will this group be', this.checkUpdateThirdParty(index));
     }
-
-    /*
-    fillPage(data: GroupNumbersPageTest) {
-        this.clickButton('btn', 'Add MSP Group');
-        this.typeGroupNumber('Add new MSP Group #1', 'goupNo_0', data);
-        this.checkThirdPartyAdmin('goupNo_0', 'Will this group', 'Yes');
-        this.continue();
-    }
-    */
 
     checkThirdPartyAdmin(ngVal: string, labelVal: string, text: string) {
         const sel = `sitereg-msp-group-no[ng-reflect-labelfor-id="${ngVal}"]`;
@@ -572,6 +562,6 @@ export class SubmitPage extends BaseDevUpdateTestPage {
     typeCaptcha() {
         element(by.css('input[id="answer"]')).sendKeys('irobot');
     }
-    
+
 }
 
