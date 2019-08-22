@@ -1,30 +1,33 @@
 <form [formGroup]="parentForm">
   <div formArrayName="arrayOfForms" *ngFor="let fg of getFormsArray.controls; let formIndex=index">
     <form [formGroupName]='formIndex'>
-      <common-xicon-button class='inline-block pb-1' label="Cancel Remove MSP Group Number" (clickEvent)="removeForm(formIndex)">
-      </common-xicon-button>
-      <h2 class='border-bottom'>Add a New MSP Group #{{getFormsArray.controls.length - formIndex}}</h2>
+      <div class="col-md-8 p-0">
+        <common-xicon-button class='inline-block pb-1' label="Cancel Remove MSP Group Number"
+          (clickEvent)="removeForm(formIndex)">
+        </common-xicon-button>
+        <h2 class='border-bottom'>Add a New MSP Group #{{getFormsArray.controls.length - formIndex}}</h2>
+      </div>
       <common-page-section layout='tips'>
-      <!-- <aside>MSP Group Information</aside> -->
+        <!-- <aside>MSP Group Information</aside> -->
 
-      <div class='form-group col-sm-8 p-sm-0'>
-        <label for='groupNo_{{formIndex}}'>Enter MSP Group Number</label>
-        <input type='text' class='form-control' formControlName='groupNo' id='groupNo_{{formIndex}}' maxlength="7">
+        <div class='form-group col-sm-8 p-sm-0'>
+          <label for='groupNo_{{formIndex}}'>Enter MSP Group Number</label>
+          <input type='text' class='form-control' formControlName='groupNo' id='groupNo_{{formIndex}}' maxlength="7">
 
-        <sitereg-error-box [error]="validFormControl(fg, 'groupNo')" errorMessage="Please provide a valid MSP Group Number">
-        </sitereg-error-box>
+          <sitereg-error-box [error]="validFormControl(fg, 'groupNo')"
+            errorMessage="Please provide a valid MSP Group Number">
+          </sitereg-error-box>
 
-        <common-radio [radioLabels]="radioBtnLabels"
-        formControlName="thirdPartyAdmin"
-        label="Will this group be administered by a Third Party Administrator?"></common-radio>
+          <common-radio [radioLabels]="radioBtnLabels" formControlName="thirdPartyAdmin"
+            label="Will this group be administered by a Third Party Administrator?"></common-radio>
 
 
-        <!-- [showRaw]="false" [raw]='fg.value' [showJson]="true" [json]='json(fg.value)'>
+          <!-- [showRaw]="false" [raw]='fg.value' [showJson]="true" [json]='json(fg.value)'>
           </sitereg-update-json-view> -->
 
 
-      </div>
-    </common-page-section>
+        </div>
+      </common-page-section>
     </form>
   </div>
 </form>
