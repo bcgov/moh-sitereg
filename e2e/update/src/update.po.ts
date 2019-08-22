@@ -50,6 +50,7 @@ export class BaseDevUpdateTestPage extends BaseMSPTestPage {
     clickRadioButton(labelVal: string, forVal: string) {
         element.all(by.css(`common-radio[label^="${labelVal}"]`)).first().element(by.css(`label[for^="${forVal}"]`)).click();
     }
+
 }
 
 export class RequestorInfoPage extends BaseDevUpdateTestPage {

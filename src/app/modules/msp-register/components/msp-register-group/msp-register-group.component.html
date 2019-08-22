@@ -1,13 +1,15 @@
 <!-- TODO: bit of thinking as to how to make the component work for this. -->
 <common-page-framework layout="blank">
-  <h1 class="border-bottom">Group Numbers</h1>
+  <h1>Group Numbers</h1>
+  <p class="border-bottom">These are the <b>MSP Group Numbers</b> you will be administering for MSP Direct. The form should include at least
+    one MSP Group Number.</p>
   <common-page-section layout="tips">
-  <aside>
+  <!-- <aside>
     These are the <b>MSP Group Numbers</b> you will be administering for MSP Direct. The form should include at least
     one MSP Group Number.
-  </aside>
+  </aside> -->
   <div class='row mb-4'>
-    <div class='col-md-6 p-4'>
+    <div class='col-md-6 pl-3 pr-4 pt-4 pb-4'>
       <a (click)='addFormGroup()'>
         <button class="btn btn-block btn-lg btn-secondary">
           Add New Group Number
@@ -17,7 +19,7 @@
   </div>
   <!-- <sitereg-page-sections *ngFor="let fg of fgs; index as i"> -->
   <div *ngFor="let fg of fgs; index as i">
-    <div class="row border-bottom">
+    <!-- <div class="row border-bottom">
       <div class="col-auto mr-auto">
         <h2> Group Number #{{fgs.length-i}}</h2>
       </div>
@@ -26,7 +28,12 @@
           <i style="color: red !important;" class="fa fa-2x fa-times-circle" ></i>
         </button>
       </div>
-    </div>
+    </div> -->
+    <common-xicon-button class='inline-block pb-1' label="Cancel Add New Group"
+    (clickEvent)="deleteFormGroup(i)">
+    </common-xicon-button>
+    <h2 class='border-bottom'>Group Number #{{fgs.length-i}}</h2>
+
     <form [formGroup]="fg">
 
       <!--Group Number-->

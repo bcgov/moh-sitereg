@@ -24,7 +24,7 @@ export class HomePageComponent implements OnInit {
     ngOnInit() {
         this.splash.setup();
         this.splash.values.subscribe((splashVals) => {
-            console.log(`Splash Values: %o`, splashVals);
+            // console.log(`Splash Values: %o`, splashVals);
             if (splashVals) {
                 const show = typeof splashVals.SPA_ENV_SITEREG_DISABLE_FORM2 === 'string'
                     && splashVals.SPA_ENV_SITEREG_DISABLE_FORM2 === 'false' ? true : false;

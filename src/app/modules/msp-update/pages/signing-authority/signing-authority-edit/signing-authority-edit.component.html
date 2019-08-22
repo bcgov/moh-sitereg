@@ -3,9 +3,11 @@
 
     <form [formGroupName]='formIndex'>
 
-      <common-xicon-button class='d-block pb-1' label="Cancel" (clickEvent)="removeForm(formIndex)">
-      </common-xicon-button>
-      <h2 class='border-bottom'>Update Existing Signing Authority</h2>
+      <div class="col-md-8 p-0">
+        <common-xicon-button class='inline-block pb-1' label="Cancel" (clickEvent)="removeForm(formIndex)">
+        </common-xicon-button>
+        <h2 class='border-bottom'>Update Existing Signing Authority</h2>
+      </div>
       <common-page-section layout='tips'>
         <!-- <aside>Signing Authority information</aside> -->
 
@@ -147,27 +149,27 @@
               <common-radio [radioLabels]="radioBtnLabels" formControlName="isAdmin"
                 label="Does the Signing Authority require access to MSP Direct?"
                 (statusChange)="updateAccessValidation(fg,$event)"></common-radio>
-                <!-- (statusChange)="updateChangeAdministeringQuestionValidation(fg,$event)"></common-radio> -->
+              <!-- (statusChange)="updateChangeAdministeringQuestionValidation(fg,$event)"></common-radio> -->
             </div>
           </div>
 
-           <!-- Administrating For-->
-           <ng-container class="row" *ngIf='fg.controls.isAdmin.value'>
-              <label class="control-label" for="administeringFor_remove_{{formIndex}}">This Signing Authority will be
-                administering MSP
-                for</label>
-              <select class="form-control" id="administeringFor_remove_{{formIndex}}" *ngIf="administeringForOptions"
-                formControlName="administeringFor">
-                <option value="" label="-- Select Option --" selected></option>
-                <option *ngFor="let a of administeringForOptions " [value]="a">{{a}}</option>
-              </select>
-              <sitereg-update-error-box [formControlValidity]="formControlValidity(fg,'administeringFor')"
-                formControlLabel="" errorMessage="Please select a valid option">
-              </sitereg-update-error-box>
-            </ng-container>
+          <!-- Administrating For-->
+          <ng-container class="row" *ngIf='fg.controls.isAdmin.value'>
+            <label class="control-label" for="administeringFor_remove_{{formIndex}}">This Signing Authority will be
+              administering MSP
+              for</label>
+            <select class="form-control" id="administeringFor_remove_{{formIndex}}" *ngIf="administeringForOptions"
+              formControlName="administeringFor">
+              <option value="" label="-- Select Option --" selected></option>
+              <option *ngFor="let a of administeringForOptions " [value]="a">{{a}}</option>
+            </select>
+            <sitereg-update-error-box [formControlValidity]="formControlValidity(fg,'administeringFor')"
+              formControlLabel="" errorMessage="Please select a valid option">
+            </sitereg-update-error-box>
+          </ng-container>
 
-         <!-- Question (optional) -->
-         <!-- <ng-container class="row" *ngIf='fg.controls.isAdmin.value'>
+          <!-- Question (optional) -->
+          <!-- <ng-container class="row" *ngIf='fg.controls.isAdmin.value'>
             <div class="col-sm-8">
 
               <common-radio [radioLabels]="radioBtnLabels" formControlName="changeAdministerFor"
@@ -189,7 +191,7 @@
             </sitereg-update-error-box>
           </ng-container> -->
 
-         
+
 
           <!--#endregion Form-->
 

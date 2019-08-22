@@ -1,16 +1,21 @@
 <common-page-framework layout='blank'>
 
-  <h1 class="border-bottom">Submission</h1>
+  <h1>Submission</h1>
+  <p class="border-bottom">
+    If you need to make changes, go back to the Review page. If no changes are required, enter the correct text in the box below and click the "Submit" button.
+    <sitereg-update-json-view *ngIf="debug" [showRaw]="false" [showJson]="true" [json]='json()'></sitereg-update-json-view>
+  </p>
+
   <common-page-section layout="tips">
     <!-- <sitereg-msp-h2-with-print title="#NotForTesting Submit"></sitereg-msp-h2-with-print> -->
     <!-- <h2 class='h1'>Summary of Changes:</h2> -->
-    <p>
+    <!-- <p>
       If you need to make changes, go back to the Review page. If no changes are required, enter the correct text in the box below and click the "Submit" button.
       <sitereg-update-json-view *ngIf="debug" [showRaw]="false" [showJson]="true" [json]='json()'></sitereg-update-json-view>
-    </p>
+    </p> -->
 
    
-    <div class="p-4">
+    <div class="row ml-0 mb-4">
       <common-captcha [apiBaseUrl]="captchaApiBaseUrl" [nonce]="nonce" (onValidToken)="setToken($event)"
         [successMessage]="'  '"></common-captcha>
     </div>
