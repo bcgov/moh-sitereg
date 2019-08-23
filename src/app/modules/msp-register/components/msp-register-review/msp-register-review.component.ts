@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { MspRegisterStateService } from '@msp-register/services/msp-register-state.service';
 import { Router } from '@angular/router';
 import { validMultiFormControl } from '@msp-register/models/validator-helpers';
@@ -27,7 +27,7 @@ export class MspRegisterReviewComponent implements OnInit {
     constructor(
         private router: Router,
         public loggerSvc: LoggerService,
-        private globalConfigSvc: GlobalConfigService,
+        public globalConfigSvc: GlobalConfigService,
         public mspRegisterStateSvc: MspRegisterStateService,
         public mspRegDataSvc: MspRegisterDataService,
         private registrationService: MspRegistrationService
@@ -67,7 +67,7 @@ export class MspRegisterReviewComponent implements OnInit {
         this.router.navigate([MSP_REGISTER_ROUTES.AUTHORIZE.fullpath]);
     }
 
-    mapBooleantoYesNo(val?: boolean) {
+    mapBooleantoYesNo(val?: boolean | FormControl) {
         return val && val === true ? 'Yes' : 'No';
     }
 

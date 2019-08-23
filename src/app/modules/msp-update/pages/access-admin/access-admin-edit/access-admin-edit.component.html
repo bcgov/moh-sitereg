@@ -2,11 +2,12 @@
   <div formArrayName="arrayOfForms" *ngFor="let fg of getFormsArray.controls; let formIndex=index">
 
     <form [formGroupName]='formIndex'>
-
-      <common-xicon-button class='d-block pb-1' label="Cancel" (clickEvent)="removeForm(formIndex)">
-      </common-xicon-button>
-      <h2 class='border-bottom'>Update an Existing Access Administrator #{{getFormsArray.controls.length - formIndex}}
-      </h2>
+      <div class="col-md-8 p-0">
+        <common-xicon-button label="Cancel" (clickEvent)="removeForm(formIndex)">
+        </common-xicon-button>
+        <h2 class='border-bottom'>Update an Existing Access Administrator #{{getFormsArray.controls.length - formIndex}}
+        </h2>
+      </div>
       <common-page-section layout='tips'>
         <!-- <aside>Access Administrator information</aside> -->
 
@@ -16,8 +17,7 @@
           <label for='forIdentifyEmailAddress_edit_{{formIndex}}'>Enter the email of the Access Administrator to
             edit</label>
           <input type='text' class='form-control' name='forIdentifyEmailAddress_edit_{{formIndex}}'
-            formControlName='forIdentifyEmailAddress' id='forIdentifyEmailAddress_edit_{{formIndex}}'
-            maxlength="100">
+            formControlName='forIdentifyEmailAddress' id='forIdentifyEmailAddress_edit_{{formIndex}}' maxlength="100">
 
           <sitereg-update-error-box [formControlValidity]="formControlValidity(fg,'forIdentifyEmailAddress')"
             formControlLabel="Email" errorMessage="Please provide valid email address.">
@@ -37,8 +37,8 @@
           <div class="row">
             <div class="col-sm-4">
               <label class="control-label" for="userTitle_edit_{{formIndex}}">Title (optional)</label>
-              <select class="form-control" id="userTitle_edit_{{formIndex}}" *ngIf="userTitles" formControlName="userTitle"
-                maxlength="5">
+              <select class="form-control" id="userTitle_edit_{{formIndex}}" *ngIf="userTitles"
+                formControlName="userTitle" maxlength="5">
                 <option value="" label="" selected></option>
                 <option *ngFor="let title of userTitles " [value]="title">{{title}}</option>
               </select>
@@ -46,8 +46,7 @@
             <!-- First Name -->
             <div class="col-sm-8">
               <label class="control-label" for="firstName_edit_{{formIndex}}">First Name (optional)</label>
-              <input id="firstName_edit_{{formIndex}}" formControlName="firstName" class="form-control"
-               maxlength="100">
+              <input id="firstName_edit_{{formIndex}}" formControlName="firstName" class="form-control" maxlength="100">
               <sitereg-update-error-box [formControlValidity]="formControlValidity(fg,'firstName')"
                 formControlLabel="First Name" errorMessage="Please provide valid first name.">
               </sitereg-update-error-box>
@@ -58,8 +57,7 @@
 
               <!-- Int (optional)-->
               <label class="control-label" for="initial_edit_{{formIndex}}">Initial (optional)</label>
-              <input id="initial_edit_{{formIndex}}" formControlName="initial" class="form-control"
-                maxlength="1">
+              <input id="initial_edit_{{formIndex}}" formControlName="initial" class="form-control" maxlength="1">
               <sitereg-update-error-box [formControlValidity]="formControlValidity(fg,'initial')"
                 formControlLabel="Initial" errorMessage="One Character."> </sitereg-update-error-box>
 
@@ -68,8 +66,7 @@
 
               <!-- Last Name -->
               <label class="control-label" for="lastName_edit_{{formIndex}}">Last Name (optional)</label>
-              <input id="lastName_edit_{{formIndex}}" formControlName="lastName" class="form-control"
-                maxlength="100">
+              <input id="lastName_edit_{{formIndex}}" formControlName="lastName" class="form-control" maxlength="100">
               <sitereg-update-error-box [formControlValidity]="formControlValidity(fg,'lastName')"
                 formControlLabel="Last Name" errorMessage="Please provide valid last name."> </sitereg-update-error-box>
             </div>
@@ -77,15 +74,15 @@
 
           <!-- Job Title -->
           <label class="control-label" for="jobTitle_edit_{{formIndex}}">Job Title (optional)</label>
-          <input id="jobTitle_edit_{{formIndex}}" formControlName="jobTitle" class="form-control" 
-            maxlength="100">
+          <input id="jobTitle_edit_{{formIndex}}" formControlName="jobTitle" class="form-control" maxlength="100">
           <sitereg-error-box [error]="validFormControl(fg,'jobTitle')"
             errorMessage="Job title is required. Please provide valid job title."></sitereg-error-box>
 
           <div formGroupName="formGroupEmail">
             <!-- Email Address -->
-            <label class="control-label" for="emailAddress_edit_{{formIndex}}">Email Address (optional)</label>
-            <input id="emailAddress_edit_{{formIndex}}" formControlName="emailAddress" class="form-control" maxlength="100">
+            <label class="control-label" for="emailAddress_edit_{{formIndex}}">Email Address</label>
+            <input id="emailAddress_edit_{{formIndex}}" formControlName="emailAddress" class="form-control"
+              maxlength="100">
             <sitereg-update-error-box
               [formControlValidity]="formControlValidity(fg.controls.formGroupEmail,'emailAddress')"
               formControlLabel="Email" errorMessage="Must be in the format test@example.com.">
@@ -126,8 +123,7 @@
           </div>
           <!-- Fax (optional)-->
           <label class="control-label" for="fax_edit_{{formIndex}}">Fax (optional)</label>
-          <input id="fax_edit_{{formIndex}}" formControlName="fax" class="form-control"
-            maxlength="10">
+          <input id="fax_edit_{{formIndex}}" formControlName="fax" class="form-control" maxlength="10">
           <sitereg-update-error-box [formControlValidity]="formControlValidity(fg,'fax')" formControlLabel="Fax"
             errorMessage="Please provide valid Fax number."> </sitereg-update-error-box>
 

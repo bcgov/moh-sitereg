@@ -1,11 +1,13 @@
 <common-page-framework layout="blank">
-<h1 class="border-bottom">Users</h1>
+<h1>Users</h1>
+<p class="border-bottom"><b>Users</b> are persons who will be accessing MSP Direct on behalf of the Organization.
+</p>
 <common-page-section layout="tips">
-<aside>
+<!-- <aside>
     <b>Users</b> are persons who will be accessing MSP Direct on behalf of the Organization.
-</aside>
+</aside> -->
 <div class='row mb-4'>
-  <div class='col-md-4 p-4'>
+  <div class='col-md-4 pl-3 pr-4 pt-4 pb-4'>
     <a (click)='addFormGroup()'>
       <button class="btn btn-block btn-lg btn-secondary">
         Add New User
@@ -14,7 +16,7 @@
   </div>
 </div>
 <div *ngFor="let fg of fgs; index as i">
-  <div class="row border-bottom">
+  <!-- <div class="row border-bottom">
     <div class="col-auto mr-auto">
       <h2> User #{{fgs.length-i}}</h2>
     </div>
@@ -23,7 +25,12 @@
         <i style="color: red !important;" class="fa fa-2x fa-times-circle"></i>
     </button>
   </div>
-  </div>
+  </div> -->
+  <common-xicon-button label="Cancel Add New User"
+  (clickEvent)="deleteFormGroup(i)">
+  </common-xicon-button>
+  <h2 class='border-bottom'>User #{{fgs.length-i}}</h2>
+  
   <sitereg-msp-register-user [formIndex]="i" [fg]="fg"></sitereg-msp-register-user>
 </div>
 <div *ngIf="globalConfigSvc.debug">

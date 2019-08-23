@@ -6,30 +6,30 @@ import { MspDirectUpdateRoutesModule } from './routing/routes.module';
 import { MspDirectUpdateComponent } from './components/update-container/update-container.component';
 import {
     MspDirectUpdateReviewContainerComponent
-} from './common/msp-direct-update-review-container/msp-direct-update-review-container.component';
-
+} from './common/msp-direct-update-review-container/msp-direct-update-review-container.component'; // prettier-ignore
 
 import { MspDirectUpdateRequestorComponent } from './pages/requestor/requestor/requestor.component';
 import { MspDirectUpdateRequestorReviewComponent } from './pages/requestor/requestor-review/requestor-review.component';
 
-import { MspDirectUpdateOrganizationComponent } from './pages/organization/organization.component';
+import { MspDirectUpdateOrganizationComponent } from './pages/organization/organization/organization.component';
 import { MspDirectUpdateOrganizationEditComponent } from './pages/organization/organization-edit/organization-edit.component';
 import { MspDirectUpdateOrganizationReviewComponent } from './pages/organization/organization-review/organization-review.component';
 
-import { MspDirectUpdateSigningAuthorityComponent } from './pages/signing-authority/signing-authority/signing-authority.component';
+import {
+    MspDirectUpdateSigningAuthorityComponent
+} from './pages/signing-authority/signing-authority/signing-authority.component'; // prettier-ignore
 import {
     MspDirectUpdateSigningAuthorityRemoveComponent
-} from './pages/signing-authority/signing-authority-remove/signing-authority-remove.component';
+} from './pages/signing-authority/signing-authority-remove/signing-authority-remove.component'; // prettier-ignore
 import {
     MspDirectUpdateSigningAuthorityAddComponent
-} from './pages/signing-authority/signing-authority-add/signing-authority-add.component';
+} from './pages/signing-authority/signing-authority-add/signing-authority-add.component'; // prettier-ignore
 import {
     MspDirectUpdateSigningAuthorityEditComponent
-} from './pages/signing-authority/signing-authority-edit/signing-authority-edit.component';
+} from './pages/signing-authority/signing-authority-edit/signing-authority-edit.component'; // prettier-ignore
 import {
     MspDirectUpdateSigningAuthorityReviewComponent
-} from './pages/signing-authority/signing-authority-review/signing-authority-review.component';
-
+} from './pages/signing-authority/signing-authority-review/signing-authority-review.component'; // prettier-ignore
 
 import { MspDirectUpdateAccessAdministratorComponent } from './pages/access-admin/access-admin/access-admin.component';
 import { MspDirectUpdateAccessAdministratorRemoveComponent } from './pages/access-admin/access-admin-remove/access-admin-remove.component';
@@ -51,7 +51,11 @@ import { MspDirectUpdateGroupReviewComponent } from './pages/group/group-review/
 
 import { MspDirectUpdateSubmitComponent } from './pages/submit/submit.component';
 import { MspDirectUpdateProgressService } from './services/progress.service';
-import { AbstractPgCheckService, RouteGuardService, SharedCoreModule } from 'moh-common-lib';
+import {
+    AbstractPgCheckService,
+    RouteGuardService,
+    SharedCoreModule,
+} from 'moh-common-lib';
 import { RouterModule } from '@angular/router';
 
 import { MspRegisterModule } from '../msp-register/msp-register.module';
@@ -61,12 +65,8 @@ import { MspDirectUpdateErrorBoxComponent } from './common/error-update-error-bo
 import { JsonUpdateViewComponent } from './common/json-update-view/json-update-view.component';
 import { MspDirectUpdateConfirmationComponent } from './pages/confirmation/confirmation.component';
 
-
-
-
 @NgModule({
     declarations: [
-
         MspDirectUpdateErrorBoxComponent,
         MspDirectUpdateReviewContainerComponent,
 
@@ -124,12 +124,15 @@ import { MspDirectUpdateConfirmationComponent } from './pages/confirmation/confi
          *        page fail when try to navigate to it.
          */
 
-        MspRegisterModule
+        MspRegisterModule,
     ],
     providers: [
         MspDirectUpdateProgressService,
-        { provide: AbstractPgCheckService, useExisting: MspDirectUpdateProgressService },
-        RouteGuardService
-    ]
+        {
+            provide: AbstractPgCheckService,
+            useExisting: MspDirectUpdateProgressService,
+        },
+        RouteGuardService,
+    ],
 })
-export class MspDirectUpdateModule { }
+export class MspDirectUpdateModule {}

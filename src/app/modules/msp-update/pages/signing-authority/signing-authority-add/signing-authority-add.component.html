@@ -3,9 +3,13 @@
 
     <form [formGroupName]='formIndex'>
 
-      <common-xicon-button class='d-block pb-1' label="Cancel" (clickEvent)="removeForm(formIndex)">
-      </common-xicon-button>
-      <h2 class='border-bottom'>Add a New Signing Authority</h2>
+      <div class="col-md-8 p-0">
+        <common-xicon-button label="Cancel" (clickEvent)="removeForm(formIndex)">
+        </common-xicon-button>
+
+        <h2 class='border-bottom'>Add a New Signing Authority</h2>
+      </div>
+
       <common-page-section layout='tips'>
         <!-- <aside>Signing Authority Information</aside> -->
 
@@ -62,7 +66,8 @@
             <!-- Email Address -->
             <label class="control-label" for="emailAddress_{{formIndex}}">Email Address</label>
             <input id="emailAddress_{{formIndex}}" formControlName="emailAddress" class="form-control" maxlength="100">
-            <sitereg-update-error-box [formControlValidity]="formControlValidity(fg.controls.formGroupEmail,'emailAddress')"
+            <sitereg-update-error-box
+              [formControlValidity]="formControlValidity(fg.controls.formGroupEmail,'emailAddress')"
               formControlLabel="Email" errorMessage="Must be in the format test@example.com.">
             </sitereg-update-error-box>
 
@@ -70,7 +75,8 @@
             <!-- TODO: make this a validator -->
             <label class="control-label" for="confirmEmail_{{formIndex}}">Confirm Email Address</label>
             <input id="confirmEmail_{{formIndex}}" formControlName="confirmEmail" class="form-control" maxlength="100">
-            <sitereg-update-error-box [formControlValidity]="formControlValidity(fg.controls.formGroupEmail,'confirmEmail')"
+            <sitereg-update-error-box
+              [formControlValidity]="formControlValidity(fg.controls.formGroupEmail,'confirmEmail')"
               formControlLabel="Confirm Email" errorMessage="Must match email address."> </sitereg-update-error-box>
 
           </div>

@@ -2,7 +2,7 @@ import { browser } from 'protractor';
 import { FakeDataSiteReg } from './sitereg.data';
 import { AccessAdminsPage } from './sitereg.po';
 
-fdescribe('Moh SiteReg - Access Admins Page', () => {
+describe('Moh SiteReg - Access Admins Page', () => {
     let accessPage: AccessAdminsPage;
     const data = new FakeDataSiteReg();
     let accessData;
@@ -44,7 +44,7 @@ fdescribe('Moh SiteReg - Access Admins Page', () => {
         accessPage.clickButton('btn btn-block');
         accessPage.fillInfo(0, accessData);
         accessPage.scrollDown();
-        accessPage.selectValue('administeringFor', 'Employees');
+        accessPage.selectAdministeringFor('administeringFor', 'Employees');
         accessPage.continue();
         expect(accessPage.formErrors().count()).toBe(0, 'should be no errors after filling out');
         expect(browser.getCurrentUrl()).toContain(USERS_PAGE_URL, 'should navigate to the Users page');
@@ -55,7 +55,7 @@ fdescribe('Moh SiteReg - Access Admins Page', () => {
         accessPage.clickButton('btn btn-block');
         accessPage.fillInfo(0, accessData);
         accessPage.scrollDown();
-        accessPage.selectValue('administeringFor', 'Employees');
+        accessPage.selectAdministeringFor('administeringFor', 'Employees');
         accessPage.clickButton('btn delete');
         accessPage.continue();
         expect(browser.getCurrentUrl()).toContain(ACCESS_PAGE_URL, 'should navigate to the Users page');
@@ -67,12 +67,12 @@ fdescribe('Moh SiteReg - Access Admins Page', () => {
         accessPage.clickButton('btn btn-block');
         accessPage.fillInfo(0, accessData);
         accessPage.scrollDown();
-        accessPage.selectValue('administeringFor', 'Employees');
+        accessPage.selectAdministeringFor('administeringFor', 'Employees');
         accessPage.scrollUp();
         accessPage.clickButton('btn btn-block');
         accessPage.fillInfo(0, accessData);
         accessPage.scrollDown();
-        accessPage.selectValue('administeringFor', 'Employees');
+        accessPage.selectAdministeringFor('administeringFor', 'Employees');
         accessPage.clickButton('btn delete'); // deletes the second admin created (latest one)
         browser.sleep(10000);
         accessPage.continue();
@@ -85,7 +85,7 @@ fdescribe('Moh SiteReg - Access Admins Page', () => {
         accessPage.clickButton('btn btn-block');
         accessPage.fillInfo(0, accessData);
         accessPage.scrollDown();
-        accessPage.selectValue('administeringFor', 'Employees');
+        accessPage.selectAdministeringFor('administeringFor', 'Employees');
         accessPage.clickButton('btn btn-block');
         accessPage.fillInfo(0, accessData);
         accessPage.scrollDown();
@@ -94,7 +94,15 @@ fdescribe('Moh SiteReg - Access Admins Page', () => {
     });
 
     it('07. Testing for validation re: maximum characters', () => {
-
+        const accessDataMax = data.signingAuthorityMax();
+        accessPage.navigateTo();
+        accessPage.clickButton('btn btn-block');
+        accessPage.fillInfo(0, accessDataMax);
+        accessPage.scrollDown();
+        accessPage.selectAdministeringFor('administeringFor', 'Employees');
+        accessPage.continue();
+        expect(accessPage.formErrors().count()).toBe(0, 'should be no errors after filling out');
+        expect(browser.getCurrentUrl()).toContain(USERS_PAGE_URL, 'should navigate to the Users page');
     });
 
     // Test will fail since _autofill is still active in dev mode

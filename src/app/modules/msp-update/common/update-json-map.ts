@@ -1,12 +1,9 @@
-
 //#region General
 
 export function addDefinationProperty(json, definationName: string) {
-
     json.__defination = definationName;
     return json;
 }
-
 
 export function getDateinMMDDYYYY(date: Date) {
     let mm: string;
@@ -27,11 +24,9 @@ export function getDateinMMDDYYYY(date: Date) {
     return dateString;
 }
 
-
 export function funcRandomNumber8Digit() {
     return Math.floor(Math.random() * 89999999 + 10000000).toString();
 }
-
 
 export function trimText(sourceText: any) {
     let trimmedText: any;
@@ -56,12 +51,10 @@ export function trimText(sourceText: any) {
     return trimmedText;
 }
 
-
 export function trimObjectAllProperties(jsonObject: any) {
-
     const properties = Object.keys(jsonObject);
     for (const prop of properties) {
-        console.log(`%o: %o`, prop, jsonObject[prop]);
+        // console.log(`%o: %o`, prop, jsonObject[prop]);
         jsonObject[prop] = trimText(jsonObject[prop]);
     }
     return jsonObject;
@@ -70,14 +63,18 @@ export function trimObjectAllProperties(jsonObject: any) {
  * verifies if field value is not null and not empty string or valid boolean
  * @param fieldValue FieldValue
  */
-export function isValidOptionalField(fieldValue: string | boolean | any): boolean {
-
+export function isValidOptionalField(
+    fieldValue: string | boolean | any
+): boolean {
     if (fieldValue) {
         if (typeof fieldValue === 'string' && fieldValue.length > 0) {
             return true;
         }
 
-        if (typeof fieldValue === 'boolean' && (fieldValue === true || fieldValue === false)) {
+        if (
+            typeof fieldValue === 'boolean' &&
+            (fieldValue === true || fieldValue === false)
+        ) {
             return true;
         }
 
@@ -110,7 +107,6 @@ export function deepCopy(obj: any, prefixProperty: string = ''): any {
     });
     return newObject;
 }
-
 
 export function mapYesNoDef(val: boolean): string {
     if (val) return 'Y';
@@ -176,7 +172,7 @@ export function mapChangeRoleDef(val: string): string {
 export const enum actionType {
     Add,
     Remove,
-    Edit
+    Edit,
 }
 
 // export function mapJsonUser(userAction: actionType, formValues) {

@@ -37,7 +37,7 @@ export class MspRegisterAccessAdminsComponent implements OnInit {
     constructor(
         private router: Router,
         public loggerSvc: LoggerService,
-        private globalConfigSvc: GlobalConfigService,
+        public globalConfigSvc: GlobalConfigService,
         public mspRegisterStateSvc: MspRegisterStateService,
         public mspRegDataSvc: MspRegisterDataService,
         private registrationService: MspRegistrationService

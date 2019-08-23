@@ -1,0 +1,217 @@
+{ "requestorInfoPage" :
+  { "orgNum" : 70591378
+  , "email"  : "MSPDIR_UPW_01.190814.144300.418814@example.com"
+  }
+, "organizationPage" :
+  { "anyUpdates"        : true
+  , "orgName"           : "MSPDIR_UPW_01 INC."
+  , "suiteNo"           : "Suite 3554"
+  , "streetNo"          : "852"
+  , "streetName"        : "Jamaica Place"
+  , "streetAddressLine" : "line 2"
+  , "city"              : "Stoke Newington"
+  , "province"          : "British Columbia"
+  , "administeringFor"  : "No Change"
+  , "postal"            : "V7P0R7"
+  }
+, "signingAuthorityPage" :
+  { "addSigningAuthority" :
+    { "title"            : "Mr."
+    , "firstName"        : "Sabellius"
+    , "initial"          : "K"
+    , "lastName"         : "Blasius"
+    , "jobTitle"         : "SAA Job Title"
+    , "mobile"           : 4275550198
+    , "extension"        : "3892"
+    , "fax"              : 2195550147
+    , "accessToMSP"      : true
+    , "administeringFor" : "Employees"
+    , "email"            : "Sabellius.Blasius.190814.144303.077284@example.com"
+    , "confirmEmail"     : "Sabellius.Blasius.190814.144303.077284@example.com"
+    }
+  , "removeSigningAuthority" :
+    { "signingAuthEmail" : "Remigius.190814.144300.901928@example.com"
+    , "ministryUserID"   : "MA SAR UID"
+    }
+  , "updateSigningAuthority" :
+    { "signingAuthEmail" : "Fulgentius.190814.144300.945403@example.com"
+    , "ministryUserID"   : "MA SAU UID"
+    , "title"            : "Mr."
+    , "firstName"        : "Florinus"
+    , "initial"          : "S"
+    , "lastName"         : "Laurentius"
+    , "jobTitle"         : "SAU Job Title"
+    , "mobile"           : 6785550141
+    , "extension"        : "3887"
+    , "fax"              : 8365550169
+    , "accessToMSP"      : true
+    , "administeringFor" : "Employees"
+    , "email"            : "Florinus.Laurentius.190814.144303.078722@example.com"
+    , "confirmEmail"     : "Florinus.Laurentius.190814.144303.078722@example.com"
+    }
+  }
+, "accessAdminsPage" :
+  { "addAccessAdmins" :
+    [ { "title"            : "Mr."
+      , "confirmEmail"     : "Donatianus.Valentinus.190814.144303.080055@example.com"
+      , "email"            : "Donatianus.Valentinus.190814.144303.080055@example.com"
+      , "administeringFor" : "Employees"
+      , "fax"              : 2765550134
+      , "extension"        : "1563"
+      , "mobile"           : 9475550101
+      , "jobTitle"         : "AAA Job Title 1"
+      , "lastName"         : "Valentinus"
+      , "initial"          : "Y"
+      , "firstName"        : "Donatianus"
+      }
+    , { "title"            : "Mr."
+      , "confirmEmail"     : "Virgilius.Septimius.190814.144303.081385@example.com"
+      , "email"            : "Virgilius.Septimius.190814.144303.081385@example.com"
+      , "administeringFor" : "Employees"
+      , "fax"              : 1635550115
+      , "extension"        : "2855"
+      , "mobile"           : 3725550105
+      , "jobTitle"         : "AAA Job Title 2"
+      , "lastName"         : "Septimius"
+      , "initial"          : "J"
+      , "firstName"        : "Virgilius"
+      }
+    ]
+  , "removeAccessAdmins" :
+    [ { "signingAuthEmail" : "Christianus.190814.144301.486390@example.com"
+      , "ministryUserID"   : "MA AAR UID 1"
+      }
+    , { "signingAuthEmail" : "Constantius.190814.144301.518341@example.com"
+      , "ministryUserID"   : "MA AAR UID 2"
+      }
+    ]
+  , "updateAccessAdmins" :
+    [ { "signingAuthEmail" : "Honorius.190814.144301.559014@example.com"
+      , "confirmEmail"     : "Ephesius.Domitius.190814.144303.082696@example.com"
+      , "email"            : "Ephesius.Domitius.190814.144303.082696@example.com"
+      , "administeringFor" : "Employees"
+      , "changeAccess"     : true
+      , "changeRole"       : "No Change"
+      , "fax"              : 5395550165
+      , "extension"        : "4"
+      , "mobile"           : 4725550134
+      , "jobTitle"         : "AAU Job Title 1"
+      , "lastName"         : "Domitius"
+      , "initial"          : "V"
+      , "firstName"        : "Ephesius"
+      , "title"            : "Mr."
+      , "ministryUserID"   : "MA AAU UID 1"
+      }
+    , { "signingAuthEmail" : "Primus.190814.144301.811548@example.com"
+      , "confirmEmail"     : "Ephesius.Hadrianus.190814.144303.084049@example.com"
+      , "email"            : "Ephesius.Hadrianus.190814.144303.084049@example.com"
+      , "administeringFor" : "Employees"
+      , "changeAccess"     : true
+      , "changeRole"       : "No Change"
+      , "fax"              : 2845550161
+      , "extension"        : "1972"
+      , "mobile"           : 6115550173
+      , "jobTitle"         : "AAU Job Title 2"
+      , "lastName"         : "Hadrianus"
+      , "initial"          : "Q"
+      , "firstName"        : "Ephesius"
+      , "title"            : "Mr."
+      , "ministryUserID"   : "MA AAU UID 2"
+      }
+    ]
+  }
+, "usersPage" :
+  { "addUsers" :
+    [ { "title"            : "Mr."
+      , "confirmEmail"     : "Onuphrius.Romilius.190814.144303.085297@example.com"
+      , "email"            : "Onuphrius.Romilius.190814.144303.085297@example.com"
+      , "administeringFor" : "Employees"
+      , "fax"              : 2025550187
+      , "extension"        : "2283"
+      , "mobile"           : 2725550142
+      , "jobTitle"         : "UA Job Title 1"
+      , "lastName"         : "Romilius"
+      , "initial"          : "E"
+      , "firstName"        : "Onuphrius"
+      }
+    , { "title"            : "Mr."
+      , "confirmEmail"     : "Baptista.Cassius.190814.144303.086534@example.com"
+      , "email"            : "Baptista.Cassius.190814.144303.086534@example.com"
+      , "administeringFor" : "Employees"
+      , "fax"              : 8525550142
+      , "extension"        : "68"
+      , "mobile"           : 3715550182
+      , "jobTitle"         : "UA Job Title 2"
+      , "lastName"         : "Cassius"
+      , "initial"          : "E"
+      , "firstName"        : "Baptista"
+      }
+    ]
+  , "removeUsers" :
+    [ { "signingAuthEmail" : "Caesarius.190814.144302.327697@example.com"
+      , "ministryUserID"   : "MA UR UID 1"
+      }
+    , { "signingAuthEmail" : "Durans.190814.144302.354790@example.com"
+      , "ministryUserID"   : "MA UR UID 2"
+      }
+    ]
+  , "updateUsers" :
+    [ { "signingAuthEmail" : "Vivianus.190814.144302.384089@example.com"
+      , "confirmEmail"     : "Clemens.Severus.190814.144303.087962@example.com"
+      , "email"            : "Clemens.Severus.190814.144303.087962@example.com"
+      , "administeringFor" : "Employees"
+      , "changeAccess"     : true
+      , "changeRole"       : "No Change"
+      , "fax"              : 7905550141
+      , "extension"        : "1940"
+      , "mobile"           : 8205550126
+      , "jobTitle"         : "UU Job Title 1"
+      , "lastName"         : "Severus"
+      , "initial"          : "X"
+      , "firstName"        : "Clemens"
+      , "title"            : "Mr."
+      , "ministryUserID"   : "MA UU UID 1"
+      }
+    , { "signingAuthEmail" : "Crescentius.190814.144302.626289@example.com"
+      , "confirmEmail"     : "Iustinianus.Pomponius.190814.144303.090051@example.com"
+      , "email"            : "Iustinianus.Pomponius.190814.144303.090051@example.com"
+      , "administeringFor" : "Employees"
+      , "changeAccess"     : true
+      , "changeRole"       : "No Change"
+      , "fax"              : 6565550185
+      , "extension"        : "3516"
+      , "mobile"           : 9875550137
+      , "jobTitle"         : "UU Job Title 2"
+      , "lastName"         : "Pomponius"
+      , "initial"          : "O"
+      , "firstName"        : "Iustinianus"
+      , "title"            : "Mr."
+      , "ministryUserID"   : "MA UU UID 2"
+      }
+    ]
+  }
+, "groupNumbersPage" :
+  { "addMSPGroup" :
+    [ { "groupNum"   : 1044561
+      , "thirdParty" : true
+      }
+    , { "groupNum"   : 6588605
+      , "thirdParty" : true
+      }
+    ]
+  , "removeMSPGroup" :
+    [ { "groupNum" : 4993041
+      }
+    , { "groupNum" : 6782518
+      }
+    ]
+  , "updateMSPGroup" :
+    [ { "groupNum"   : 5022446
+      , "thirdParty" : true
+      }
+    , { "groupNum"   : 5498735
+      , "thirdParty" : true
+      }
+    ]
+  }
+}

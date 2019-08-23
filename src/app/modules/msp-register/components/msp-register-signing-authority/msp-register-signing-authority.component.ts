@@ -35,7 +35,7 @@ export class MspRegisterSigningAuthorityComponent implements OnInit {
     constructor(
         private router: Router,
         public loggerSvc: LoggerService,
-        private globalConfigSvc: GlobalConfigService,
+        public globalConfigSvc: GlobalConfigService,
         private mspRegisterStateSvc: MspRegisterStateService,
         public mspRegDataSvc: MspRegisterDataService,
         private registrationService: MspRegistrationService

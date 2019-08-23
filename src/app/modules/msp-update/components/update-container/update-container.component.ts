@@ -37,30 +37,27 @@ export class MspDirectUpdateComponent extends Container implements OnInit {
 
         // Set values
         progressService.getUpdateItems();
-
     }
 
     ngOnInit() {
         // this.globalConfigSvc.logRefreshMspApplicationUUID();
-        console.log(
-            `%c %o \n MSP Application id: %o`,
-            'color:green',
-            funcRemoveStrings(['Component'], this.constructor.name),
-            this.globalConfigSvc.applicationId
-        );
+        // console.log(
+        //     `%c %o \n MSP Application id: %o`,
+        //     'color:green',
+        //     funcRemoveStrings(['Component'], this.constructor.name),
+        //     this.globalConfigSvc.applicationId
+        // );
         // console.log('ANSWER:%o', this.showStepper());
     }
 
     setProgressItems() {
         const progressItemRoute = routes.filter((x) => {
-            return !(x.path.includes('_')
-                || x.path.includes('confirmation')
-                // || x.path.includes('signing-authority')
-                // || x.path.includes('users')
-                // || x.path.includes('access-admins')
-                // || x.path.includes('submit')
-                // || x.path.includes('review')
-            );
+            return !(x.path.includes('_') || x.path.includes('confirmation'));
+            // || x.path.includes('signing-authority')
+            // || x.path.includes('users')
+            // || x.path.includes('access-admins')
+            // || x.path.includes('submit')
+            // || x.path.includes('review')
         });
 
         this.setProgressSteps(progressItemRoute);

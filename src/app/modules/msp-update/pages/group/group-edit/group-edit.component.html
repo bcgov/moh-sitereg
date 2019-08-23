@@ -1,11 +1,12 @@
 <form [formGroup]="parentForm">
   <div formArrayName="arrayOfForms" *ngFor="let fg of getFormsArray.controls; let formIndex=index">
     <form [formGroupName]='formIndex'>
-      <common-xicon-button class='d-block pb-1' label="Cancel Remove MSP Group Number"
-        (clickEvent)="removeForm(formIndex)">
-      </common-xicon-button>
-      <h2 class='border-bottom'>Update MSP Group #{{getFormsArray.controls.length - formIndex}}</h2>
-
+      <div class="col-md-8 p-0">
+        <common-xicon-button label="Cancel Remove MSP Group Number"
+          (clickEvent)="removeForm(formIndex)">
+        </common-xicon-button>
+        <h2 class='border-bottom'>Update MSP Group #{{getFormsArray.controls.length - formIndex}}</h2>
+      </div>
       <common-page-section layout='tips'>
         <!-- <aside>MSP Group Information</aside> -->
         <div class='form-group col-sm-8 p-sm-0'>
@@ -13,7 +14,8 @@
           <input type='text' class='form-control' name='groupNo_edit_{{formIndex}}' formControlName='groupNo'
             id='groupNo_edit_{{formIndex}}' maxlength="7">
 
-          <sitereg-error-box [error]="validFormControl(fg, 'groupNo')" errorMessage="Please provide a valid MSP Group Number">
+          <sitereg-error-box [error]="validFormControl(fg, 'groupNo')"
+            errorMessage="Please provide a valid MSP Group Number">
           </sitereg-error-box>
 
           <common-radio [radioLabels]="radioBtnLabels" formControlName="thirdPartyAdmin"

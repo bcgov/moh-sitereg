@@ -6,7 +6,10 @@ import { funcRemoveStrings } from '@msp-register/constants';
 import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
-import { UpdateStateService, FormStatusAddRemoveUpdate } from '../../../services/update.state.service';
+import {
+    UpdateStateService,
+    FormStatusAddRemoveUpdate,
+} from '../../../services/update.state.service';
 import { MspDirectUpdateSigningAuthorityRemoveComponent } from '../signing-authority-remove/signing-authority-remove.component';
 import { MspDirectUpdateSigningAuthorityAddComponent } from '../signing-authority-add/signing-authority-add.component';
 import { MspDirectUpdateSigningAuthorityEditComponent } from '../signing-authority-edit/signing-authority-edit.component';
@@ -17,7 +20,6 @@ import { MspDirectUpdateSigningAuthorityEditComponent } from '../signing-authori
     styleUrls: ['./signing-authority.component.scss'],
 })
 export class MspDirectUpdateSigningAuthorityComponent implements OnInit {
-
     public validFormControl: (fg: FormGroup, name: string) => boolean;
     public showAddSigningAuthority = false;
     public showRemoveSigningAuthority = false;
@@ -49,21 +51,26 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit {
     }
 
     private get isUpdate(): boolean {
-        return !(this.showAddSigningAuthority === false &&
+        return !(
+            this.showAddSigningAuthority === false &&
             this.showRemoveSigningAuthority === false &&
-            this.showUpdateSigningAuthority === false);
+            this.showUpdateSigningAuthority === false
+        );
     }
 
     get buttonLabel(): string {
-        return this.isUpdate || this.isFormHasData.hasData ? 'Continue' : 'Skip';
+        return this.isUpdate || this.isFormHasData.hasData
+            ? 'Continue'
+            : 'Skip';
     }
 
     canContinue() {
-        return !this.isUpdate ? true : [this.addFg, this.formRemoveState, this.updateFg]
-            .filter(x => x !== null && x !== undefined) // only check added form
-            .map(x => x.valid) // get validity
-            .filter(x => x === false) // get invalid forms
-            .length === 0;
+        return !this.isUpdate
+            ? true
+            : [this.addFg, this.formRemoveState, this.updateFg]
+                  .filter((x) => x !== null && x !== undefined) // only check added form
+                  .map((x) => x.valid) // get validity
+                  .filter((x) => x === false).length === 0; // get invalid forms
     }
 
     get componentInfo(): string {
@@ -82,14 +89,14 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit {
         private globalConfigSvc: GlobalConfigService,
         public updateStateService: UpdateStateService,
         private fb: FormBuilder
-    ) { }
+    ) {}
 
     ngOnInit() {
         // // console.log(`%c%o : %o`, 'color:green', this.componentInfo);
         this.progressService.setPageIncomplete();
         this.updateButtonStates();
-        this.updateStateService.formsStatusChanges$.subscribe(x =>
-            this.isFormHasData = x.signingAuthority
+        this.updateStateService.formsStatusChanges$.subscribe(
+            (x) => (this.isFormHasData = x.signingAuthority)
         );
     }
 
@@ -97,9 +104,7 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit {
         // splunk-log
         this.loggerSvc.logNavigation(
             this.constructor.name,
-            `Valid Data - Continue button clicked. ${
-            this.globalConfigSvc.applicationId
-            }`
+            `Valid Data - Continue button clicked. ${this.globalConfigSvc.applicationId}`
         );
         this.progressService.setPageComplete();
         this.router.navigate([ROUTES_UPDATE.ACCESS_ADMINS.fullpath]);
@@ -132,18 +137,25 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit {
     }
 
     updateButtonStates() {
-
         const form = this.updateStateService.forms.signingAuthority;
 
-        const formsRemove = form.remove ? form.remove.get('arrayOfForms') as FormArray | null : null;
-        this.showRemoveSigningAuthority = formsRemove && formsRemove.controls.length > 0 ? true : false;
+        const formsRemove = form.remove
+            ? (form.remove.get('arrayOfForms') as FormArray | null)
+            : null;
+        this.showRemoveSigningAuthority =
+            formsRemove && formsRemove.controls.length > 0 ? true : false;
 
-        const formsAdd = form.add ? form.add.get('arrayOfForms') as FormArray | null : null;
-        this.showAddSigningAuthority = formsAdd && formsAdd.controls.length > 0 ? true : false;
+        const formsAdd = form.add
+            ? (form.add.get('arrayOfForms') as FormArray | null)
+            : null;
+        this.showAddSigningAuthority =
+            formsAdd && formsAdd.controls.length > 0 ? true : false;
 
-        const formsEdit = form.update ? form.update.get('arrayOfForms') as FormArray | null : null;
-        this.showUpdateSigningAuthority = formsEdit && formsEdit.controls.length > 0 ? true : false;
-
+        const formsEdit = form.update
+            ? (form.update.get('arrayOfForms') as FormArray | null)
+            : null;
+        this.showUpdateSigningAuthority =
+            formsEdit && formsEdit.controls.length > 0 ? true : false;
     }
 
     //#region Edit
@@ -191,7 +203,6 @@ export class MspDirectUpdateSigningAuthorityComponent implements OnInit {
     }
 
     //#endregion
-
 
     //#region REMOVE
 

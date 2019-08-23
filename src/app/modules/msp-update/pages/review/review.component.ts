@@ -10,9 +10,9 @@ import { funcRemoveStrings } from '@msp-register/constants';
 import { jsonPayLoadApplication } from '../submit/json-payload';
 
 @Component({
-  selector: 'sitereg-msp-update-review',
-  templateUrl: './review.component.html',
-  styleUrls: ['./review.component.scss']
+    selector: 'sitereg-msp-update-review',
+    templateUrl: './review.component.html',
+    styleUrls: ['./review.component.scss'],
 })
 export class MspUpdateReviewComponent implements OnInit {
 
@@ -36,7 +36,7 @@ export class MspUpdateReviewComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(`%c%o : %o`, 'color:green', this.componentInfo);
+    // console.log(`%c%o : %o`, 'color:green', this.componentInfo);
     this.progressService.setPageIncomplete();
   }
 

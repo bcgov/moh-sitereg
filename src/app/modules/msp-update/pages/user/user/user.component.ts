@@ -6,7 +6,10 @@ import { funcRemoveStrings } from '@msp-register/constants';
 import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
-import { UpdateStateService, FormStatusAddRemoveUpdate } from '../../../services/update.state.service';
+import {
+    UpdateStateService,
+    FormStatusAddRemoveUpdate,
+} from '../../../services/update.state.service';
 import { MspDirectUpdateUserRemoveComponent } from '../user-remove/user-remove.component';
 import { MspDirectUpdateUserAddComponent } from '../user-add/user-add.component';
 import { MspDirectUpdateUserEditComponent } from '../user-edit/user-edit.component';
@@ -17,8 +20,6 @@ import { MspDirectUpdateUserEditComponent } from '../user-edit/user-edit.compone
     styleUrls: ['./user.component.scss'],
 })
 export class MspDirectUpdateUserComponent implements OnInit {
-
-
     public validFormControl: (fg: FormGroup, name: string) => boolean;
     public showAddUser = false;
     public showRemoveUser = false;
@@ -58,11 +59,12 @@ export class MspDirectUpdateUserComponent implements OnInit {
     }
 
     canContinue() {
-        return !this.isUpdate ? true : [this.addFg, this.formRemoveState, this.updateFg]
-            .filter(x => x !== null && x !== undefined) // only check added form
-            .map(x => x.valid) // get validity
-            .filter(x => x === false) // get invalid forms
-            .length === 0;
+        return !this.isUpdate
+            ? true
+            : [this.addFg, this.formRemoveState, this.updateFg]
+                  .filter((x) => x !== null && x !== undefined) // only check added form
+                  .map((x) => x.valid) // get validity
+                  .filter((x) => x === false).length === 0; // get invalid forms
     }
 
     get componentInfo(): string {
@@ -81,13 +83,13 @@ export class MspDirectUpdateUserComponent implements OnInit {
         private globalConfigSvc: GlobalConfigService,
         public updateStateService: UpdateStateService,
         private fb: FormBuilder
-    ) { }
+    ) {}
 
     ngOnInit() {
         // console.log(`%c%o : %o`, 'color:green', this.componentInfo);
         this.progressService.setPageIncomplete();
-        this.updateStateService.formsStatusChanges$.subscribe(x =>
-            this.isFormHasData = x.mspUsers
+        this.updateStateService.formsStatusChanges$.subscribe(
+            (x) => (this.isFormHasData = x.mspUsers)
         );
     }
 
@@ -95,9 +97,7 @@ export class MspDirectUpdateUserComponent implements OnInit {
         // splunk-log
         this.loggerSvc.logNavigation(
             this.constructor.name,
-            `Valid Data - Continue button clicked. ${
-            this.globalConfigSvc.applicationId
-            }`
+            `Valid Data - Continue button clicked. ${this.globalConfigSvc.applicationId}`
         );
         this.progressService.setPageComplete();
         this.router.navigate([ROUTES_UPDATE.GROUP_NUMBERS.fullpath]);
@@ -128,7 +128,6 @@ export class MspDirectUpdateUserComponent implements OnInit {
         this.showUpdateUser = false;
         this.updateStateService.forms.mspUsers.update = null;
     }
-
 
     //#region Edit
 
@@ -174,7 +173,6 @@ export class MspDirectUpdateUserComponent implements OnInit {
 
     //#endregion
 
-
     //#region REMOVE
 
     // tslint:disable-next-line: member-ordering
@@ -196,7 +194,4 @@ export class MspDirectUpdateUserComponent implements OnInit {
     }
 
     //#endregion
-
-
-
 }

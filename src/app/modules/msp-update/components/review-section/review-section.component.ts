@@ -1,26 +1,25 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 export interface ReviewItemInterface {
-  label: string;
-  value: string;
+    label: string;
+    value: string;
 }
 
 @Component({
-  selector: 'sitereg-msp-review-section',
-  templateUrl: './review-section.component.html',
-  styleUrls: ['./review-section.component.scss']
+    selector: 'sitereg-msp-review-section',
+    templateUrl: './review-section.component.html',
+    styleUrls: ['./review-section.component.scss'],
 })
 export class ReviewSectionComponent {
+    // tslint:disable-next-line:no-inferrable-types
+    @Input() sectionTitle: string = '';
+    @Input() reviewItems: ReviewItemInterface[] = [];
 
-  // tslint:disable-next-line:no-inferrable-types
-  @Input() sectionTitle: string = '';
-  @Input() reviewItems: ReviewItemInterface[] = [];
+    @Output() clickEvent: EventEmitter<any> = new EventEmitter<any>();
 
-  @Output() clickEvent: EventEmitter<any> = new EventEmitter<any>();
+    constructor() {}
 
-  constructor() { }
-
-  onClick() {
-    this.clickEvent.emit( );
-  }
+    onClick() {
+        this.clickEvent.emit();
+    }
 }
