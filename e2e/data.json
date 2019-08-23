@@ -1,66 +1,62 @@
-{ "e2eParam" :
-    { "snapshotAt": [1, 2, 3, 4 ,5]
-    , "snapshotLocation": "e2e/snapshots"
-    }
-, "organizationPage" :
-    { "postal"            : "V7R6A5"
-    , "administeringFor"  : "Employees"
-    , "thirdParty"        : true
-    , "orgNum"            : 54303633
-    , "blueCross"         : true
-    , "orgName"           : "MSPDIR_REW_02 INC."
-    , "suiteNo"           : "Suite 2594"
-    , "streetNo"          : "1573"
-    , "streetName"        : "Back Lane"
-    , "streetAddressLine" : "line 2"
-    , "city"              : "Battersea"
-    , "province"          : "British Columbia"
-    }
-  , "signingAuthorityPage" :
-    { "title"            : "Mr."
-    , "firstName"        : "Caesarius"
-    , "initial"          : "X"
-    , "lastName"         : "Aurelianus"
-    , "jobTitle"         : "Job Title"
-    , "email"            : "Caesarius.190725.194315.160715@example.com"
-    , "mobile"           : 8985550199
-    , "extension"        : "3392"
-    , "fax"              : 8195550117
-    , "administeringFor" : "Employees"
-    , "directMspAccess"  : true
-    , "confirmEmail"     : "Caesarius.190725.194315.160715@example.com"
-    }
-  , "accessAdminsPage" :
-    [ { "title"            : "Mr."
-      , "confirmEmail"     : "Ursinus.190725.194315.364546@example.com"
-      , "administeringFor" : "Employees"
-      , "fax"              : 9835550152
-      , "extension"        : "3832"
-      , "mobile"           : 2615550162
-      , "email"            : "Ursinus.190725.194315.364546@example.com"
-      , "jobTitle"         : "Job Title"
-      , "lastName"         : "Vitus"
-      , "initial"          : "U"
-      , "firstName"        : "Caelestinus"
-      }
-    ]
-  , "usersPage" :
-    [ { "title"            : "Mr."
-      , "confirmEmail"     : "Bonifatius.190725.194315.507577@example.com"
-      , "administeringFor" : "Employees"
-      , "fax"              : 5155550103
-      , "extension"        : "1175"
-      , "mobile"           : 8015550169
-      , "email"            : "Bonifatius.190725.194315.507577@example.com"
-      , "jobTitle"         : "Job Title"
-      , "lastName"         : "Diocletianus"
-      , "initial"          : "L"
-      , "firstName"        : "Dorotheus"
-      }
-    ]
-  , "groupNumbersPage" :
-    [ { "groupNum"   : 9810628
-      , "thirdParty" : true
-      }
-    ]
+{ "organizationPage" :
+  { "orgName"           : "MSPDIR_REW_02 INC."
+  , "suiteNo"           : "Suite 1739"
+  , "streetNo"          : "497"
+  , "streetName"        : "Winchester Street"
+  , "streetAddressLine" : "line 2"
+  , "city"              : "Limehouse"
+  , "province"          : "British Columbia"
+  , "postal"            : "V7G3M5"
+  , "administeringFor"  : "Employees"
+  , "thirdParty"        : true
+  , "orgNum"            : 15685800
+  , "blueCross"         : true
   }
+, "signingAuthorityPage" :
+  { "title"            : "Mr."
+  , "firstName"        : "Sabellius"
+  , "initial"          : "Z"
+  , "lastName"         : "Avitus"
+  , "jobTitle"         : "Job Title"
+  , "email"            : "Ephesius.190814.125036.197787@example.com"
+  , "mobile"           : 4175550184
+  , "extension"        : "806"
+  , "fax"              : 3025550198
+  , "administeringFor" : "Employees"
+  , "directMspAccess"  : true
+  , "confirmEmail"     : "Ephesius.190814.125036.197787@example.com"
+  }
+, "accessAdminsPage" :
+  [ { "title"            : "Mr."
+    , "confirmEmail"     : "Clarus.190814.125036.366414@example.com"
+    , "administeringFor" : "Employees"
+    , "fax"              : 7235550188
+    , "extension"        : "3403"
+    , "mobile"           : 4755550194
+    , "email"            : "Clarus.190814.125036.366414@example.com"
+    , "jobTitle"         : "Job Title"
+    , "lastName"         : "Regulus"
+    , "initial"          : "V"
+    , "firstName"        : "Crescens"
+    }
+  ]
+, "usersPage" :
+  [ { "title"            : "Mr."
+    , "confirmEmail"     : "Gerontius.190814.125036.455551@example.com"
+    , "administeringFor" : "Employees"
+    , "fax"              : 6335550127
+    , "extension"        : "2879"
+    , "mobile"           : 4015550122
+    , "email"            : "Gerontius.190814.125036.455551@example.com"
+    , "jobTitle"         : "Job Title"
+    , "lastName"         : "Domitianus"
+    , "initial"          : "A"
+    , "firstName"        : "Columbanus"
+    }
+  ]
+, "groupNumbersPage" :
+  [ { "groupNum"   : 1719232
+    , "thirdParty" : true
+    }
+  ]
+}
