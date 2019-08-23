@@ -273,6 +273,7 @@ export class AccessAdminsPage extends BaseSiteRegTestPage {
     fillPage() {
         const json = this.jsonData.accessAdminsPage;
         if (this.jsonData.signingAuthorityPage.directMspAccess) {
+            browser.sleep(20000);
             this.clickButton('close');
         }
         for (let i = 0; i < json.length; i++) {
