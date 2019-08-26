@@ -148,13 +148,13 @@ export class BaseSiteRegTestPage extends AbstractTestPage {
         element.all(by.css(selector)).first().element(by.xpath('..')).element(by.cssContainingText('label', `${ngVal}`)).click();
     }
 
-    selectThirdPartyGroupNum(labelVal: string, ngVal: string, index: number) {
+    selectThirdPartyGroupNum(labelVal: string, ngVal: string) {
         let idVal;
         if (ngVal === 'true') {
-            idVal = 'bctrue__' + index;
+            idVal = 'bctrue__0';
             ngVal = 'Yes';
         } else {
-            idVal = 'bcfalse' + index;
+            idVal = 'bcfalse_0';
             ngVal = 'No';
         }
         const selector = `input[formcontrolname="thirdParty"][id*="${idVal}"]`;
@@ -488,7 +488,7 @@ export class GroupNumbersPage extends BaseSiteRegTestPage {
             data = this.jsonData.groupNumbersPage;
             this.typeTextUsingID('groupNumber', data[i].groupNum + '');
             if (this.jsonData.organizationPage.thirdParty) {
-                this.selectThirdPartyGroupNum('thirdParty', data[i].thirdParty.toString(), i);
+                this.selectThirdPartyGroupNum('thirdParty', data[i].thirdParty.toString());
             }
         } else {
             this.typeTextUsingID('groupNumber', data.groupNum + '');
