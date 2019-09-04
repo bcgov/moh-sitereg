@@ -15,28 +15,29 @@ export class MspDirectUpdateConfirmationComponent implements OnInit {
     status = false;
     showDetail = false;
     isTechnicalInfoAvaialble = false;
-    debugMode = false;
+    debug = false;
     today: number = Date.now();
     constructor(
         private router: Router,
-        private globalConfigSvc: GlobalConfigService,
+        public globalConfigSvc: GlobalConfigService,
         public loggerSvc: LoggerService,
-        public updateStateService: UpdateStateService,
+        public updateStateService: UpdateStateService
     ) {
-        // this.debugonly();
-        this.debugMode = this.globalConfigSvc.debug;
+        // // this.debugonly();
+        // this.debugMode = this.globalConfigSvc.debug;
         // this.mockSuccess();
-        this.debugMode = environment.debug;
+        this.debug = environment.debug;
     }
 
     ngOnInit() {
         this.updateStateService.enableConfirmation = true;
         this.status =
             this.updateStateService.requestFinalStatus &&
-                this.updateStateService.requestFinalStatus.status
+            this.updateStateService.requestFinalStatus.status
                 ? this.updateStateService.requestFinalStatus.status
                 : false;
-        this.isTechnicalInfoAvaialble = this.updateStateService.requestFinalStatus
+        this.isTechnicalInfoAvaialble = this.updateStateService
+            .requestFinalStatus
             ? true
             : false;
 
@@ -58,10 +59,16 @@ export class MspDirectUpdateConfirmationComponent implements OnInit {
     }
 
     paddedConfirmationNumber() {
-        if (this.status === true && this.updateStateService.requestFinalStatus) {
-            const confirmationNumber = this.updateStateService.requestFinalStatus.confirmationNumber as string;
+        if (
+            this.status === true &&
+            this.updateStateService.requestFinalStatus
+        ) {
+            const confirmationNumber = this.updateStateService
+                .requestFinalStatus.confirmationNumber as string;
             const paddedQty = 8 - confirmationNumber.length;
-            return paddedQty > 0 ? '0'.repeat(paddedQty) + confirmationNumber : confirmationNumber;
+            return paddedQty > 0
+                ? '0'.repeat(paddedQty) + confirmationNumber
+                : confirmationNumber;
         }
         return null;
     }
@@ -73,7 +80,6 @@ export class MspDirectUpdateConfirmationComponent implements OnInit {
     }
 
     mockSuccess() {
-
         this.status = true;
         const requestStatus = {
             referenceId: null,
@@ -82,7 +88,7 @@ export class MspDirectUpdateConfirmationComponent implements OnInit {
             schema: '',
             response: null,
             exception: null,
-            statuscode: null
+            statuscode: null,
         };
 
         if (requestStatus.exception === null) {

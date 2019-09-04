@@ -49,10 +49,10 @@ export class MspRegisterOrganizationComponent implements OnInit, AfterViewInit {
     constructor(
         private router: Router,
         public loggerSvc: LoggerService,
-        private globalConfigSvc: GlobalConfigService,
+        public globalConfigSvc: GlobalConfigService,
         public mspRegisterStateSvc: MspRegisterStateService,
         public mspRegDataSvc: MspRegisterDataService,
-        private registrationService: MspRegistrationService
+        public registrationService: MspRegistrationService
     ) {
         this.fg = this.mspRegisterStateSvc.mspRegisterOrganizationForm;
         this.validFormControl = validFormControl.bind(this);

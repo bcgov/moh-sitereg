@@ -4,12 +4,14 @@ import { GlobalConfigService } from '@shared/services/global-config.service';
 import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { MspDirectUpdateProgressService } from '../../../services/progress.service';
 import { LoggerService } from '@shared/services/logger.service';
-import { UpdateStateService } from '../../../services/update.state.service';
+import {
+    UpdateStateService,
+    FormStatusAddRemoveUpdate,
+} from '../../../services/update.state.service';
 import { ROUTES_UPDATE } from '../../../routing/routes.constants';
 import { MspDirectUpdateGroupRemoveComponent } from '../group-remove/group-remove.component';
 import { MspDirectUpdateGroupAddComponent } from '../group-add/group-add.component';
 import { MspDirectUpdateGroupEditComponent } from '../group-edit/group-edit.component';
-
 
 @Component({
     selector: 'sitereg-msp-update-group',
@@ -17,60 +19,86 @@ import { MspDirectUpdateGroupEditComponent } from '../group-edit/group-edit.comp
     styleUrls: ['./group.component.scss'],
 })
 export class MspDirectUpdateGroupComponent implements OnInit {
+    public isFormHasData: FormStatusAddRemoveUpdate;
 
-  public showAddGrp = false;
-  public showRemoveGrp = false;
-  public showEditGrp = false;
+    public displayOrder = {
+        add: 0,
+        remove: 0,
+        edit: 0,
+    };
 
-  constructor( private router: Router,
-               private progressService: MspDirectUpdateProgressService,
-               private loggerSvc: LoggerService,
-               private globalConfigSvc: GlobalConfigService,
-               public updateStateService: UpdateStateService,
-               private fb: FormBuilder ) {
+    public updateDisplayOrder(actionType: 'add' | 'remove' | 'edit') {
+        if (actionType === 'add') {
+            this.displayOrder.add = 1;
+            this.displayOrder.remove = 2;
+            this.displayOrder.edit = 3;
+        }
+        if (actionType === 'remove') {
+            this.displayOrder.remove = 1;
+            this.displayOrder.add = 2;
+            this.displayOrder.edit = 3;
+        }
+        if (actionType === 'edit') {
+            this.displayOrder.edit = 1;
+            this.displayOrder.remove = 2;
+            this.displayOrder.add = 3;
+        }
+    }
 
-  }
+    constructor(
+        private router: Router,
+        private progressService: MspDirectUpdateProgressService,
+        private loggerSvc: LoggerService,
+        private globalConfigSvc: GlobalConfigService,
+        public updateStateService: UpdateStateService,
+        private fb: FormBuilder
+    ) {}
 
-  ngOnInit() {
-    this.progressService.setPageIncomplete();
-    this.showAddGrp = this.formAddState ? true : false;
-    this.showRemoveGrp = this.formRemoveState ? true : false;
-    this.showEditGrp = this.formEditState ? true : false;
-  }
+    ngOnInit() {
+        this.progressService.setPageIncomplete();
 
-  get buttonLabel() {
-    return this.isUpdate ? 'Continue' : 'Skip';
-  }
+        // this.showAddGrp = this.formAddState ? true : false;
+        // this.showRemoveGrp = this.formRemoveState ? true : false;
+        // this.showEditGrp = this.formEditState ? true : false;
 
-  // Form action bar functions
-  continue() {
-    // splunk-log
-    this.loggerSvc.logNavigation(
-        this.constructor.name,
-        `Valid Data - Continue button clicked. ${
-            this.globalConfigSvc.applicationId
-        }`
-    );
-    this.progressService.setPageComplete();
-    this.router.navigate([ROUTES_UPDATE.REVIEW.fullpath]);
-  }
+        this.updateStateService.formsStatusChanges$.subscribe(
+            (x) => (this.isFormHasData = x.mspGroups)
+        );
+    }
 
-  canContinue() {
-    return !this.isUpdate ? true : [this.formAddState, this.formRemoveState, this.formEditState]
-                            .filter(x => x !== null && x !== undefined) // only check added form
-                            .map(x => x.valid) // get validity
-                            .filter(x => x === false) // get invalid forms
-                            .length === 0;
-  }
+    get buttonLabel() {
+        // return this.isUpdate || this.isFormHasData.hasData ? 'Continue' : 'Skip';
+        return this.isFormHasData.hasData ? 'Continue' : 'Skip';
+    }
 
-  private get isUpdate(): boolean {
-    return !( this.showAddGrp === false &&
-              this.showRemoveGrp === false &&
-              this.showEditGrp === false );
-  }
+    // Form action bar functions
+    continue() {
+        // splunk-log
+        this.loggerSvc.logNavigation(
+            this.constructor.name,
+            `Valid Data - Continue button clicked. ${this.globalConfigSvc.applicationId}`
+        );
+        this.progressService.setPageComplete();
+        this.router.navigate([ROUTES_UPDATE.REVIEW.fullpath]);
+    }
 
+    canContinue() {
+        return !this.isUpdate
+            ? true
+            : [this.formAddState, this.formRemoveState, this.formEditState]
+                  .filter((x) => x !== null && x !== undefined) // only check added form
+                  .map((x) => x.valid) // get validity
+                  .filter((x) => x === false).length === 0; // get invalid forms
+    }
 
-  //#region REMOVE
+    private get isUpdate(): boolean {
+        return this.isFormHasData.hasData;
+        // return !( this.showAddGrp === false &&
+        //           this.showRemoveGrp === false &&
+        //           this.showEditGrp === false );
+    }
+
+    //#region REMOVE
 
     // tslint:disable-next-line: member-ordering
     @ViewChild(MspDirectUpdateGroupRemoveComponent)
@@ -82,16 +110,18 @@ export class MspDirectUpdateGroupComponent implements OnInit {
 
     formRemoveStateChanged(formGroups: any) {
         this.updateStateService.forms.mspGroups.remove = formGroups;
-        this.showRemoveGrp = this.formRemove.getFormsCount > 0 ? true : false;
+        this.updateStateService.formStatusChanged();
+        // this.showRemoveGrp = this.formRemove.getFormsCount > 0 ? true : false;
     }
 
     formRemoveNew() {
         this.formRemove.newForm();
+        this.updateDisplayOrder('remove');
     }
 
     //#endregion
 
-  //#region Add
+    //#region Add
 
     // tslint:disable-next-line: member-ordering
     @ViewChild(MspDirectUpdateGroupAddComponent)
@@ -103,16 +133,18 @@ export class MspDirectUpdateGroupComponent implements OnInit {
 
     formAddStateChanged(formGroups: any) {
         this.updateStateService.forms.mspGroups.add = formGroups;
-        this.showAddGrp = this.formAdd.getFormsCount > 0 ? true : false;
+        this.updateStateService.formStatusChanged();
+        // this.showAddGrp = this.formAdd.getFormsCount > 0 ? true : false;
     }
 
     formAddNew() {
         this.formAdd.newForm();
+        this.updateDisplayOrder('add');
     }
 
-  //#endregion
+    //#endregion
 
-  //#region Update
+    //#region Update
 
     // tslint:disable-next-line: member-ordering
     @ViewChild(MspDirectUpdateGroupEditComponent)
@@ -124,13 +156,13 @@ export class MspDirectUpdateGroupComponent implements OnInit {
 
     formEditStateChanged(formGroups: any) {
         this.updateStateService.forms.mspGroups.update = formGroups;
-        this.showEditGrp = this.formEdit.getFormsCount > 0 ? true : false;
+        this.updateStateService.formStatusChanged();
     }
 
     formEditNew() {
         this.formEdit.newForm();
+        this.updateDisplayOrder('edit');
     }
 
-  //#endregion
-
+    //#endregion
 }

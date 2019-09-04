@@ -31,19 +31,19 @@
       </div>
       <!-- Street Name -->
       <div class="col-sm-5">
-        <common-street formControlName="streetName"></common-street>
+        <common-street formControlName="streetName" maxlen="75" ></common-street>
       </div>
     </div>
 
     <!-- Address Line 2 -->
     <label class="control-label" for="addressLine2">Street Address Line 2 (optional)</label>
-    <input id="addressLine2" formControlName="addressLine2" class="form-control"
+    <input id="addressLine2" formControlName="addressLine2" class="form-control" 
        maxlength="200">
     <div class="text-danger" *ngIf="validFormControl(parentForm,'addressLine2')">
       Enter valid Street Address Line 2
     </div>
 
-    <common-city formControlName="city"></common-city>
+    <common-city formControlName="city" maxlen="25"></common-city>
     <sitereg-error-box [error]="validFormControl(parentForm,'city')" errorMessage='Please enter a valid city name'>
     </sitereg-error-box>
 
@@ -56,8 +56,13 @@
       </div>
     </div>
 
-    <common-dropdown label='The organization will be administering MSP for:' formControlName='administeringFor'
-      [items]='administeringForOptions' [clearable]='false' placeholder="-- Select Option --"></common-dropdown>
+    <!-- <common-dropdown label='The organization will be administering MSP for:' formControlName='administeringFor'
+      [items]='administeringForOptions' [clearable]='true' placeholder="-- Select Option --" [addTag]="false" ></common-dropdown> -->
+      <label class="control-label" for="administeringFor">The organization will be administering MSP for:</label>
+      <select class="form-control" id="administeringFor" *ngIf="administeringForOptions"
+        formControlName="administeringFor">
+        <option *ngFor="let a of administeringForOptions " [value]="a">{{a}}</option>
+      </select>
     <sitereg-error-box [error]="validFormControl(parentForm,'administeringFor')" errorMessage='Please select a valid option'>
     </sitereg-error-box>
 
@@ -65,6 +70,6 @@
   </div>
 </form>
 
-<!-- 
+<!-- <sitereg-update-json-view
 [showRaw]="false" [raw]='parentForm.value' 
 [showJson]="true" [json]='json(parentForm.value)'></sitereg-update-json-view>  -->

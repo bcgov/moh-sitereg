@@ -43,10 +43,10 @@ export const ROUTES_UPDATE = {
         title: 'MSP Groups',
     },
     REVIEW: {
-      order: 6,
-      path: 'review',
-      fullpath: `${APPLICATION_ROUTES.UPDATE}/review`,
-      title: 'Review',
+        order: 6,
+        path: 'review',
+        fullpath: `${APPLICATION_ROUTES.UPDATE}/review`,
+        title: 'Review',
     },
     SUBMIT: {
         order: 6,

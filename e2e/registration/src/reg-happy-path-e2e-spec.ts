@@ -1,9 +1,8 @@
 import { browser } from 'protractor';
 import { FakeDataSiteReg } from './sitereg.data';
 import { SigningAuthorityPage, OrganizationPage, AccessAdminsPage, UsersPage, GroupNumbersPage, AuthorizePage, SpecialCasePage, ReviewPage } from './sitereg.po';
-import { BrowserViewportScroller } from '@angular/common/src/viewport_scroller';
 
-describe('Moh SiteReg - End to End Test (Happy Path)', () => {
+fdescribe('Moh SiteReg - End to End Test (Happy Path)', () => {
     let orgPage: OrganizationPage;
     let saPage: SigningAuthorityPage;
     let aaPage: AccessAdminsPage;
@@ -43,6 +42,7 @@ describe('Moh SiteReg - End to End Test (Happy Path)', () => {
         aaPage.fillPage();
         expect(browser.getCurrentUrl()).toContain(USERS_PAGE_URL, 'should continue to the Users Page');
         usersPage.fillPage();
+         // should show the "Will this group be administered?" question if the user selected 3rd party administrators on the Organization page
         expect(browser.getCurrentUrl()).toContain(GROUP_PAGE_URL, 'should continue to the Group Page');
         groupPage.fillPage();
         expect(browser.getCurrentUrl()).toContain(REVIEW_PAGE_URL, 'should continue to the Review Page');
@@ -50,7 +50,7 @@ describe('Moh SiteReg - End to End Test (Happy Path)', () => {
         expect(browser.getCurrentUrl()).toContain(AUTH_PAGE_URL, 'should contunue to the Authorization Page');
         authPage.fillPage();
         expect(browser.getCurrentUrl()).toContain(CONFIRM_PAGE_URL, 'should be able to succesfully submit the form');
-    }, 120000);
+    }, 2000000);
 
 });
 

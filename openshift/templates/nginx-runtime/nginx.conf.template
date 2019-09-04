@@ -133,6 +133,9 @@ http {
             allow %RealIpFrom%;
 
             # Other request should be denied
+			allow 127.0.0.1;
+			allow 0.0.0.0;
+			allow 172.51.0.0/16;
             deny all;
 
             # No need to log this request, its just noise

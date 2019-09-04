@@ -35,9 +35,9 @@ describe('Moh SiteReg - Users Page', () => {
     it('03. should let user to continue if all the required fields are filled out', () => {
         usersPage.navigateTo();
         usersPage.clickButton('btn btn-block');
-        usersPage.fillInfo(usersData);
+        usersPage.fillInfo(0, usersData);
         usersPage.scrollDown();
-        usersPage.selectValue('administeringFor', 'Employees');
+        usersPage.selectAdministeringFor('administeringFor', 'Employees');
         usersPage.continue();
         expect(usersPage.formErrors().count()).toBe(0, 'should be no errors after filling out');
         expect(browser.getCurrentUrl()).toContain(GROUP_PAGE_URL, 'should navigate to the Users page');
@@ -46,9 +46,9 @@ describe('Moh SiteReg - Users Page', () => {
     it('04. should let user to continue when user clicks the x button', () => {
         usersPage.navigateTo();
         usersPage.clickButton('btn btn-block');
-        usersPage.fillInfo(usersData);
+        usersPage.fillInfo(0, usersData);
         usersPage.scrollDown();
-        usersPage.selectValue('administeringFor', 'Employees');
+        usersPage.selectAdministeringFor('administeringFor', 'Employees');
         usersPage.clickButton('btn delete');
         usersPage.continue();
         expect(usersPage.formErrors().count()).toBe(0, 'should be no errors after filling out');
@@ -60,12 +60,12 @@ describe('Moh SiteReg - Users Page', () => {
         usersData2 = data.signingAuthorityInfo();
         usersPage.navigateTo();
         usersPage.clickButton('btn btn-block');
-        usersPage.fillInfo(usersData);
+        usersPage.fillInfo(0, usersData);
         usersPage.scrollDown();
-        usersPage.selectValue('administeringFor', 'Employees');
+        usersPage.selectAdministeringFor('administeringFor', 'Employees');
         usersPage.clickButton('btn btn-block');
-        usersPage.fillInfo(usersData);
-        usersPage.selectValue('administeringFor', 'Employees');
+        usersPage.fillInfo(0, usersData);
+        usersPage.selectAdministeringFor('administeringFor', 'Employees');
         usersPage.scrollDown();
         usersPage.clickButton('btn delete'); // deletes the second admin created (latest one)
         usersPage.continue();
@@ -76,15 +76,14 @@ describe('Moh SiteReg - Users Page', () => {
     it('06. should NOT be able to continue with an incomplete user section even if another admin is complete', () => {
         usersPage.navigateTo();
         usersPage.clickButton('btn btn-block');
-        usersPage.fillInfo(usersData);
+        usersPage.fillInfo(0, usersData);
         usersPage.scrollDown();
-        usersPage.selectValue('administeringFor', 'Employees');
+        usersPage.selectAdministeringFor('administeringFor', 'Employees');
         usersPage.clickButton('btn btn-block');
-        usersPage.fillInfo(usersData);
+        usersPage.fillInfo(0, usersData);
         usersPage.scrollDown();
         usersPage.continue();
         expect(browser.getCurrentUrl()).toContain(USERS_PAGE_URL);
     });
 
 });
-

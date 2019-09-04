@@ -10,9 +10,8 @@ import { ROUTES_UPDATE } from '../routing/routes.constants';
 import { CheckCompleteBaseService, PageListInterface } from 'moh-common-lib';
 import { environment } from '../../../../environments/environment';
 
-
 export interface MspProgressItem extends PageListInterface {
-  order: number;
+    order: number;
 }
 @Injectable({
     providedIn: 'root',
@@ -25,28 +24,27 @@ export class MspDirectUpdateProgressService extends CheckCompleteBaseService {
     //#endregion
 
     constructor(protected router: Router) {
-      super(router);
+        super(router);
     }
 
     //#region Methods
-
 
     /**
      * Updats ordered steps to complete registeration
      */
     getUpdateItems() {
-      // Set values
-      // this.bypassGuards = environment.bypassGuards;
-      this.startUrl = ROUTES_UPDATE.REQUESTOR.fullpath;
+        // Set values
+        // this.bypassGuards = environment.bypassGuards;
+        this.startUrl = ROUTES_UPDATE.REQUESTOR.fullpath;
 
-      this.pageCheckList = Object.values(ROUTES_UPDATE).map((routeInfo) => {
-          return {
-              order: routeInfo.order,
-              route: routeInfo.path,
-              isComplete: false,
-          };
-      });
-      console.log(`%c %o`, 'color:green', this.pageCheckList);
+        this.pageCheckList = Object.values(ROUTES_UPDATE).map((routeInfo) => {
+            return {
+                order: routeInfo.order,
+                route: routeInfo.path,
+                isComplete: false,
+            };
+        });
+        // console.log(`%c %o`, 'color:green', this.pageCheckList);
     }
 
     /**
@@ -57,7 +55,9 @@ export class MspDirectUpdateProgressService extends CheckCompleteBaseService {
         const nUrl = this.getLastSegmentOfUrl(nextUrl);
 
         const current = this.getProgressItem(cUrl) as MspProgressItem;
-        const next: MspProgressItem = this.getProgressItem(nUrl) as MspProgressItem;
+        const next: MspProgressItem = this.getProgressItem(
+            nUrl
+        ) as MspProgressItem;
 
         // console.log('Current: %o', current);
         // console.log('Next : %o', next);
@@ -83,15 +83,15 @@ export class MspDirectUpdateProgressService extends CheckCompleteBaseService {
         return false;
     }
 
-
-
     /**
      * returns Progress Item { order, path, title } based on provided url
      * todo: instead of include use exact
      * @param url component route url
      */
     private getProgressItem(url: string): PageListInterface | null {
-        const index = this.pageCheckList.findIndex((x) => url.includes(x.route));
+        const index = this.pageCheckList.findIndex((x) =>
+            url.includes(x.route)
+        );
         return index > -1 ? this.pageCheckList[index] : null;
     }
 
@@ -115,9 +115,13 @@ export class MspDirectUpdateProgressService extends CheckCompleteBaseService {
 
     // REMOVEME - debug only
     log(msg) {
-        console.log('%o \n %o : %o', msg, this.getLastSegmentOfUrl(this.router.url), this.pageCheckList);
+        console.log(
+            '%o \n %o : %o',
+            msg,
+            this.getLastSegmentOfUrl(this.router.url),
+            this.pageCheckList
+        );
     }
 
     //#endregion
 }
-

@@ -18,15 +18,15 @@ describe('MSP Direct Update - End to End Test (Happy Path)', () => {
     let saData;
     let groupData;
 
-    const REQ_PAGE_URL = `update/identify`;
-    const ORG_PAGE_URL = `update/organization`;
-    const SA_PAGE_URL = `update/signing-authority`;
-    const AA_PAGE_URL = `update/access-admins`;
-    const USERS_PAGE_URL = `update/users`;
-    const GROUP_PAGE_URL = `update/group-numbers`;
-    const REVIEW_PAGE_URL = `update/review`;
-    const SUBMIT_PAGE_URL = `update/submit`;
-    const CONFIRM_PAGE_URL = `update/confirmation`;
+    const REQ_PAGE_URL = `sitereg/update/requestor`;
+    const ORG_PAGE_URL = `sitereg/update/organization`;
+    const SA_PAGE_URL = `sitereg/update/signing-authority`;
+    const AA_PAGE_URL = `sitereg/update/access-admins`;
+    const USERS_PAGE_URL = `sitereg/update/users`;
+    const GROUP_PAGE_URL = `sitereg/update/group-numbers`;
+    const REVIEW_PAGE_URL = `sitereg/update/review`;
+    const SUBMIT_PAGE_URL = `sitereg/update/submit`;
+    const CONFIRM_PAGE_URL = `sitereg/update/confirmation`;
 
     beforeEach(() => {
         reqPage = new RequestorInfoPage();
@@ -41,32 +41,36 @@ describe('MSP Direct Update - End to End Test (Happy Path)', () => {
         orgData = data.organizationInfo();
         saData = data.signingAuthorityInfo();
         groupData = data.groupNumbersInfo();
-        data.setSeed(123);
     });
 
     it('Should navigate from Requestor Info to Confirmation Page (end-to-end) when all required fields are filled out', () => {
-        reqPage.navigateTo();
+        reqPage.fillConsentModal(REQ_PAGE_URL);
         expect(browser.getCurrentUrl()).toContain(REQ_PAGE_URL, 'should navigate to the Requestor Info Page');
-        reqPage.fillPage(reqData);
+        reqPage.fillPage();
+        reqPage.continue();
         expect(browser.getCurrentUrl()).toContain(ORG_PAGE_URL, 'should navigate to the Organization Page');
-        orgPage.fillPage(orgData);
+        orgPage.fillPage();
+        orgPage.continue();
         expect(browser.getCurrentUrl()).toContain(SA_PAGE_URL, 'should continue to the Signing Authority Page');
+        saPage.fillPage();
         saPage.continue();
-        // saPage.fillPage(saData); // Continue button not working
         expect(browser.getCurrentUrl()).toContain(AA_PAGE_URL, 'should continue to the Access Admins Page');
+        aaPage.fillPage();
         aaPage.continue();
-        // aaPage.fillPage(); // Page not yet finished
         expect(browser.getCurrentUrl()).toContain(USERS_PAGE_URL, 'should continue to the Users Page');
+        usersPage.fillPage();
         usersPage.continue();
-        // usersPage.fillPage(); Method not yet working
         expect(browser.getCurrentUrl()).toContain(GROUP_PAGE_URL, 'should continue to the Group Page');
-        groupPage.fillPage(groupData);
+        groupPage.fillPage();
+        groupPage.continue();
         expect(browser.getCurrentUrl()).toContain(REVIEW_PAGE_URL, 'should continue to the Review Page');
         reviewPage.continue();
         expect(browser.getCurrentUrl()).toContain(SUBMIT_PAGE_URL, 'should contunue to the Submit Page');
         submitPage.typeCaptcha();
+        submitPage.continue();
+        browser.sleep(5000);
         expect(browser.getCurrentUrl()).toContain(CONFIRM_PAGE_URL, 'should be able to succesfully submit the form');
-    }, 120000);
+    }, 2000000);
 
 });
 

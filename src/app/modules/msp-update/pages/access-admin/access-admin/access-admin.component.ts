@@ -6,7 +6,10 @@ import { funcRemoveStrings } from '@msp-register/constants';
 import { LoggerService } from '@shared/services/logger.service';
 import { GlobalConfigService } from '@shared/services/global-config.service';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
-import { UpdateStateService } from '../../../services/update.state.service';
+import {
+    UpdateStateService,
+    FormStatusAddRemoveUpdate,
+} from '../../../services/update.state.service';
 import { MspDirectUpdateAccessAdministratorRemoveComponent } from '../access-admin-remove/access-admin-remove.component';
 import { MspDirectUpdateAccessAdministratorAddComponent } from '../access-admin-add/access-admin-add.component';
 import { MspDirectUpdateAccessAdministratorEditComponent } from '../access-admin-edit/access-admin-edit.component';
@@ -16,30 +19,52 @@ import { MspDirectUpdateAccessAdministratorEditComponent } from '../access-admin
     templateUrl: './access-admin.component.html',
     styleUrls: ['./access-admin.component.scss'],
 })
-export class MspDirectUpdateAccessAdministratorComponent implements OnInit{
-
-
+export class MspDirectUpdateAccessAdministratorComponent implements OnInit {
     public validFormControl: (fg: FormGroup, name: string) => boolean;
     public showAddAccessAdmin = false;
     public showRemoveAccessAdmin = false;
     public showUpdateAccessAdmin = false;
+    public isFormHasData: FormStatusAddRemoveUpdate;
+
+    public displayOrder = {
+        add: 0,
+        remove: 0,
+        edit: 0,
+    };
+
+    public updateDisplayOrder(actionType: 'add' | 'remove' | 'edit') {
+        if (actionType === 'add') {
+            this.displayOrder.add = 1;
+            this.displayOrder.remove = 2;
+            this.displayOrder.edit = 3;
+        }
+        if (actionType === 'remove') {
+            this.displayOrder.remove = 1;
+            this.displayOrder.add = 2;
+            this.displayOrder.edit = 3;
+        }
+        if (actionType === 'edit') {
+            this.displayOrder.edit = 1;
+            this.displayOrder.remove = 2;
+            this.displayOrder.add = 3;
+        }
+    }
 
     private get isUpdate(): boolean {
-        return !(this.showAddAccessAdmin === false &&
-            this.showRemoveAccessAdmin === false &&
-            this.showUpdateAccessAdmin === false);
+        return this.isFormHasData.hasData;
     }
 
     get buttonLabel(): string {
-        return this.isUpdate ? 'Continue' : 'Skip';
+        return this.isFormHasData.hasData ? 'Continue' : 'Skip';
     }
 
     canContinue() {
-        return !this.isUpdate ? true : [this.addFg, this.formRemoveState, this.updateFg]
-            .filter(x => x !== null && x !== undefined) // only check added form
-            .map(x => x.valid) // get validity
-            .filter(x => x === false) // get invalid forms
-            .length === 0;
+        return !this.isUpdate
+            ? true
+            : [this.addFg, this.formRemoveState, this.updateFg]
+                  .filter((x) => x !== null && x !== undefined) // only check added form
+                  .map((x) => x.valid) // get validity
+                  .filter((x) => x === false).length === 0; // get invalid forms
     }
 
     get componentInfo(): string {
@@ -58,20 +83,21 @@ export class MspDirectUpdateAccessAdministratorComponent implements OnInit{
         private globalConfigSvc: GlobalConfigService,
         public updateStateService: UpdateStateService,
         private fb: FormBuilder
-    ) { }
+    ) {}
 
     ngOnInit() {
         // console.log(`%c%o : %o`, 'color:green', this.componentInfo);
         this.progressService.setPageIncomplete();
+        this.updateStateService.formsStatusChanges$.subscribe(
+            (x) => (this.isFormHasData = x.mspAccessAdministrators)
+        );
     }
 
     continue() {
         // splunk-log
         this.loggerSvc.logNavigation(
             this.constructor.name,
-            `Valid Data - Continue button clicked. ${
-            this.globalConfigSvc.applicationId
-            }`
+            `Valid Data - Continue button clicked. ${this.globalConfigSvc.applicationId}`
         );
         this.progressService.setPageComplete();
         this.router.navigate([ROUTES_UPDATE.USERS.fullpath]);
@@ -103,7 +129,6 @@ export class MspDirectUpdateAccessAdministratorComponent implements OnInit{
         this.updateStateService.forms.mspAccessAdministrators.update = null;
     }
 
-
     //#region Edit
 
     // tslint:disable-next-line: member-ordering
@@ -116,11 +141,12 @@ export class MspDirectUpdateAccessAdministratorComponent implements OnInit{
 
     formEditStateChanged(formGroups: any) {
         this.updateStateService.forms.mspAccessAdministrators.update = formGroups;
-        this.showUpdateAccessAdmin = this.formEdit.getFormsCount > 0 ? true : false;
+        this.updateStateService.formStatusChanged();
     }
 
     formEditNew() {
         this.formEdit.newForm();
+        this.updateDisplayOrder('edit');
     }
 
     //#endregion
@@ -137,15 +163,15 @@ export class MspDirectUpdateAccessAdministratorComponent implements OnInit{
 
     formAddStateChanged(formGroups: any) {
         this.updateStateService.forms.mspAccessAdministrators.add = formGroups;
-        this.showAddAccessAdmin = this.formAdd.getFormsCount > 0 ? true : false;
+        this.updateStateService.formStatusChanged();
     }
 
     formAddNew() {
         this.formAdd.newForm();
+        this.updateDisplayOrder('add');
     }
 
     //#endregion
-
 
     //#region REMOVE
 
@@ -159,15 +185,13 @@ export class MspDirectUpdateAccessAdministratorComponent implements OnInit{
 
     formRemoveStateChanged(formGroups: any) {
         this.updateStateService.forms.mspAccessAdministrators.remove = formGroups;
-        this.showRemoveAccessAdmin = this.formRemove.getFormsCount > 0 ? true : false;
+        this.updateStateService.formStatusChanged();
     }
 
     formRemoveNew() {
         this.formRemove.newForm();
+        this.updateDisplayOrder('remove');
     }
 
     //#endregion
-
-
-
 }

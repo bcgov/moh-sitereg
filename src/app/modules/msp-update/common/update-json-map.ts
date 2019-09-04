@@ -1,12 +1,9 @@
-
 //#region General
 
 export function addDefinationProperty(json, definationName: string) {
-
     json.__defination = definationName;
     return json;
 }
-
 
 export function getDateinMMDDYYYY(date: Date) {
     let mm: string;
@@ -27,24 +24,57 @@ export function getDateinMMDDYYYY(date: Date) {
     return dateString;
 }
 
-
 export function funcRandomNumber8Digit() {
     return Math.floor(Math.random() * 89999999 + 10000000).toString();
 }
 
+export function trimText(sourceText: any) {
+    let trimmedText: any;
 
+    // cautionary this must have value.
+    trimmedText = sourceText;
+    try {
+        if (sourceText) {
+            if (typeof sourceText === 'string' && sourceText.length > 0) {
+                trimmedText = sourceText.trim();
+            }
+
+            if (typeof sourceText === 'object') {
+                trimmedText = trimObjectAllProperties(sourceText);
+            }
+        }
+    } catch (e) {
+        console.log(e);
+        trimmedText = sourceText;
+    }
+
+    return trimmedText;
+}
+
+export function trimObjectAllProperties(jsonObject: any) {
+    const properties = Object.keys(jsonObject);
+    for (const prop of properties) {
+        // console.log(`%o: %o`, prop, jsonObject[prop]);
+        jsonObject[prop] = trimText(jsonObject[prop]);
+    }
+    return jsonObject;
+}
 /**
  * verifies if field value is not null and not empty string or valid boolean
  * @param fieldValue FieldValue
  */
-export function isValidOptionalField(fieldValue: string | boolean | any): boolean {
-
+export function isValidOptionalField(
+    fieldValue: string | boolean | any
+): boolean {
     if (fieldValue) {
         if (typeof fieldValue === 'string' && fieldValue.length > 0) {
             return true;
         }
 
-        if (typeof fieldValue === 'boolean' && (fieldValue === true || fieldValue === false)) {
+        if (
+            typeof fieldValue === 'boolean' &&
+            (fieldValue === true || fieldValue === false)
+        ) {
             return true;
         }
 
@@ -53,7 +83,7 @@ export function isValidOptionalField(fieldValue: string | boolean | any): boolea
             if (isArray === true && fieldValue.length > 0) {
                 return true;
             }
-            if ( isArray === false ) {
+            if (isArray === false) {
                 // if (fieldValue) return true;
                 // console.log(fieldValue);
                 if (fieldValue) return true;
@@ -78,7 +108,6 @@ export function deepCopy(obj: any, prefixProperty: string = ''): any {
     return newObject;
 }
 
-
 export function mapYesNoDef(val: boolean): string {
     if (val) return 'Y';
     return 'N';
@@ -92,6 +121,10 @@ export function mapYesNoDef(val: boolean): string {
 export function mapAdministeringForDef(val: string): string {
     let result = '';
     switch (val) {
+        case 'No Change': {
+            result = 'N';
+            break;
+        }
         case 'Employees': {
             result = 'E';
             break;
@@ -139,7 +172,7 @@ export function mapChangeRoleDef(val: string): string {
 export const enum actionType {
     Add,
     Remove,
-    Edit
+    Edit,
 }
 
 // export function mapJsonUser(userAction: actionType, formValues) {

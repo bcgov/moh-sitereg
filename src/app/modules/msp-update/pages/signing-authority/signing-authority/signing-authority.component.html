@@ -1,10 +1,10 @@
 <common-page-framework layout='blank'>
-  <h1 class="border-bottom" >Signing Authority</h1>
+  <h1 class="border-bottom">Signing Authority</h1>
   <common-page-section layout='tips'>
-    <aside >
+    <!-- <aside >
         The Signing Authority represents the Organization. An Organization can only have a single Signing Authority.
-    </aside>
-    <div class="row mb-4">
+    </aside> -->
+    <div class="row ml-0 mb-4">
       <button type='button' class='btn btn-secondary col mr-4' (click)="formAddNew()"
         [disabled]="showAddSigningAuthority">Add Signing Authority</button>
       <button type='button' class='btn btn-secondary col mx-2' (click)="formRemoveNew()"
@@ -14,20 +14,36 @@
     </div>
   </common-page-section>
 
-  <common-page-section layout='noTips' class="pt-4">
+  <div style="display:flex;flex-direction:column">
+
     <sitereg-update-signing-authority-remove #formRemove [formState]="formRemoveState"
-      (formArrayChanged)="formRemoveStateChanged($event)"></sitereg-update-signing-authority-remove>
+      (formArrayChanged)="formRemoveStateChanged($event)" [style.order]="displayOrder.remove">
+    </sitereg-update-signing-authority-remove>
+
+    <sitereg-update-signing-authority-add #formAdd [formState]="formAddState"
+      (formArrayChanged)="formAddStateChanged($event)" [style.order]="displayOrder.add">
+    </sitereg-update-signing-authority-add>
+
+    <sitereg-update-signing-authority-edit #formEdit [formState]="formEditState"
+      (formArrayChanged)="formEditStateChanged($event)" [style.order]="displayOrder.edit">
+    </sitereg-update-signing-authority-edit>
+    
+  </div>
+
+  <!-- <common-page-section layout='noTips' class="pt-4">
+    <sitereg-update-signing-authority-remove #formRemove [formState]="formRemoveState"
+      (formArrayChanged)="formRemoveStateChanged($event)"  [style.order]="displayOrder.remove"></sitereg-update-signing-authority-remove>
   </common-page-section>
 
   <common-page-section layout='noTips' class="pt-4">
     <sitereg-update-signing-authority-add #formAdd [formState]="formAddState"
-      (formArrayChanged)="formAddStateChanged($event)"></sitereg-update-signing-authority-add>
+      (formArrayChanged)="formAddStateChanged($event)" [style.order]="displayOrder.add"></sitereg-update-signing-authority-add>
   </common-page-section>
 
   <common-page-section layout='noTips' class="pt-4">
     <sitereg-update-signing-authority-edit #formEdit [formState]="formEditState"
-      (formArrayChanged)="formEditStateChanged($event)"></sitereg-update-signing-authority-edit>
-  </common-page-section>
+      (formArrayChanged)="formEditStateChanged($event)" [style.order]="displayOrder.edit"></sitereg-update-signing-authority-edit>
+  </common-page-section> -->
 
 </common-page-framework>
 <common-form-action-bar (btnClick)="continue()" [submitLabel]="buttonLabel" [canContinue]='canContinue()'>

@@ -44,7 +44,7 @@ describe('Moh SiteReg - Organization Page', () => {
         orgPage.clickConsentModalContinue();
         orgPage.fillOrgName(orgData);
         orgPage.fillAddress(orgData);
-        orgPage.selectValue('administeringFor', 'Employees');
+        orgPage.selectAdministeringFor('administeringFor', 'Employees');
         orgPage.scrollDown();
         orgPage.clickOption('thirdPartyFalse');
         orgPage.clickOption('aafalse');
@@ -59,7 +59,7 @@ describe('Moh SiteReg - Organization Page', () => {
         orgPage.clickConsentModalContinue();
         orgPage.fillOrgName(orgData);
         orgPage.fillAddress(orgData);
-        orgPage.selectValue('administeringFor', 'Employees');
+        orgPage.selectAdministeringFor('administeringFor', 'Employees');
         orgPage.scrollDown();
         orgPage.clickOption('thirdPartyTrue');
         orgPage.fillOrgNum(orgData);
@@ -93,7 +93,7 @@ describe('Moh SiteReg - Organization Page', () => {
         orgPage.clickConsentModalContinue();
         orgPage.fillOrgName(orgMaxData);
         orgPage.fillAddress(orgMaxData);
-        orgPage.selectValue('administeringFor', 'Employees');
+        orgPage.selectAdministeringFor('administeringFor', 'Employees');
         orgPage.scrollDown();
         orgPage.clickOption('thirdPartyTrue');
         orgPage.fillOrgNum(orgMaxData);
@@ -117,7 +117,7 @@ describe('Moh SiteReg - Organization Page', () => {
         orgPage.clickConsentModalContinue();
         orgPage.fillOrgName(orgData);
         orgPage.fillAddress(orgData);
-        orgPage.selectValue('administeringFor', 'Employees');
+        orgPage.selectAdministeringFor('administeringFor', 'Employees');
         orgPage.scrollDown();
         orgPage.clickOption('thirdPartyTrue');
         orgPage.clickOption('aatrue');

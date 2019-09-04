@@ -5,13 +5,14 @@
     <div class="col-md-6 pl-0">
       <h1>Confirmation Message</h1>
     </div>
-    <div class="col-md-2 ml-auto  text-right">
+    <div class="col-md-2 ml-auto mr-0 pr-0 text-right align-items-right">
       <button tabindex="0" class="btn btn-default " onclick="window.print();return false;" title="Print" >
         <i class="fa fa-print fa-lg pointer" aria-hidden="true"></i> Print
       </button>
     </div>
   </div>
-  <div class='mb-2' *ngIf="status">
+  <common-page-section layout="tips">
+  <div class='mb-2 pl-3' *ngIf="status">
     <div class='row mb-4 mt-4 pl-4 pt-4 pb-4 border-success-custom'>
 
       <div class='col-md-auto'>
@@ -21,7 +22,7 @@
       </div>
       <div class='col-md-4'>
         <span style="font-size: 1.25rem;">Your application has been submitted.</span> <br />
-        <span><small>{{ today | date:'mediumDate' }} --- Request and Agreement number: <b>{{ paddedConfirmationNumber() }}</b>
+        <span><small>{{ today | date:'mediumDate' }} --- Request number: <b>{{ paddedConfirmationNumber() }}</b>
            <!-- <b>{{mspRegDataSvc.requestFinalStatus?.confirmationNumber }}</b> -->
           </small></span>
       </div>
@@ -40,16 +41,18 @@
       </ul>
     </div>
   </div>
+</common-page-section>
+<common-page-section layout="tips">
 
   <div class='mb-2' *ngIf="!(status)">
     <div class='row mb-4 mt-4 pl-4 pt-4 pb-4 border-failed-custom'>
 
       <div class='col-md-auto'>
-        <span class="mt-4  pr-0 iam-icon--failed ">
+        <span class="mt-2  pr-0 iam-icon--failed ">
           <i aria-label="failed" class="fa fa-2x fa-times-circle "></i>
         </span>
       </div>
-      <div class='col-md-4'>
+      <div class='col-md-6'>
         <span style="font-size: 1.25rem;">Your application did not submit successfully. Please try submitting your application again.</span>
         <br />
         <span>If you continue to receive error messages, or if you have questions, contact: <a
@@ -58,14 +61,16 @@
     </div>
   </div>
 
-  <div class='row mr-0' *ngIf="isTechnicalInfoAvaialble && debugMode">
+</common-page-section>
+
+  <div class='row mr-0'  *ngIf="debug" >
     <div class='col-md-4 p-4'>
       <div (click)="toggleDetail()">Technical information</div>
     </div>
   </div>
 
 
-  <div class="card" *ngIf="debugMode && showDetail">
+  <div class="card" *ngIf="debug && showDetail">
     <div class="card-body">
       <h5 class="card-title">Reference Identifier</h5>
       <p class="card-text">
