@@ -63,7 +63,7 @@ The following checklists are intended to guide developers on the implementation 
 ### Before Commit
 
 - [ ] Run Accessibility, Refer to appropriate accessibility tool or use [Wave Accessibility Plugin](https://wave.webaim.org/).
-- [ ] Format code. Use section [code format](#code-format) for automated formatting. .
+- [ ] Format code. Use section [code format](#code-format) for automated formatting.
 - [ ] Lint Code, use section [code lint](#Code-Linting).
 - [ ] e2e tests are passing for [registration](#Registration-Application) and [update](#Update-Application). For more information read section [e2e tests](#Running-e2e-Tests).
 - [ ] Angular production build is working. For more information read section [code publish](#Code-Publish).
@@ -72,7 +72,7 @@ The following checklists are intended to guide developers on the implementation 
 
 
 
-***
+
 ***Additional Settings***  
 ## Application Maitenance Messages
 
