@@ -70,9 +70,6 @@ The following checklists are intended to guide developers on the implementation 
 
 ***
 
-
-
-
 ***Additional Settings***  
 ## Application Maitenance Messages
 
@@ -83,11 +80,11 @@ To enable maintenance page:
 1. Go to the correct OpenShift environment (e.g. dev/test/prod)
 2. Applications > Deployments > spa-env-server
 3. Environment tab
-4. Set SPA_ENV_FPC_MAINTENANCE_START and SPA_ENV_FPC_MAINTENANCE_END
+4. Set SPA_ENV_SITEREG_MAINTENANCE_START and SPA_ENV_SITEREG_MAINTENANCE_END
 
 The spa-env-server will automatically set the maintenance mode flag between these times.
 
-SPA_ENV_FPC_MAINTENANCE_MESSAGE is an optional field.  If anything is provided it will be displayed on the page below the default splash page. If it is empty, only the default page is shown with no custom message.
+SPA_ENV_SITEREG_MAINTENANCE_MESSAGE is an optional field.  If anything is provided it will be displayed on the page below the default splash page. If it is empty, only the default page is shown with no custom message.
 
 ## Application Styling
 Application is using various moh-common-styles library components. These Angular components are regularly maintained and implemented in various web applications of the Ministry of Health.  
