@@ -17,8 +17,8 @@ Application consists of two modules
  
 ## Running Application 
 
-`npm run start`: Application is accessible outside the hosting environment.  
-`npm run dev`: Application is accessible only in the hosting environment.
+`$ npm run start`: Application is accessible outside the hosting environment.  
+`$ npm run dev`: Application is accessible only in the hosting environment.
 
 Browse http://localhost:4200 in your favorite browser.      
 Default port can be update in scripts section of [package.json](package.json)
@@ -28,33 +28,33 @@ e2e tests populate application forms with appropriate data. Automated e2e tests 
 Data uses in e2e tests can be updated in relevant JSON data files.
 
 1. ### Registration Application
-     Console command  : `npm run e2e-register:happy-path-local`  
+     Console command  : `$ npm run e2e-register:happy-path-local`  
      For custom data update [registration data file](e2e/data.json "Update relevant data file").
      
 2. ### Update Application
-     Console command  : `npm run e2e-update:happy-path-local`   
+     Console command  : `$ npm run e2e-update:happy-path-local`   
      For custom data update [update application data file](e2e/data-update.json).
      
      
 ## Code Linting
 
-`npm run lint`: runs linting on the code.
+`$ npm run lint`: runs linting on the code.
 
 ## Code Format
 
-`npm run format`: `npm run format`: formats all typescript code files.
+`$ npm run format`:  formats all typescript code files.
 
 ## Code Publish
 
 Application all environments are set up to deploy application in production build of Angular using OpenShift Kubernetes.
 
-Verify all changes to code are serving for production build of Angular by running following
-Console command: `npm run publish` 
+Verify all changes to code are serving for production build of Angular by running following  
+Console command: `$ npm run publish` 
 
 ## Pre Build
 
-This fetch and update the last commit hash. Application last commit has could be found in deployed application browser console window.
-Console Command: `npm run prebuild` 
+This fetch and update the last commit hash. Application last commit has could be found in deployed application browser console window.  
+Console Command: `$ npm run prebuild` 
 
 ## Checklist of Developers
 
@@ -74,7 +74,7 @@ The following checklists are intended to guide developers on the implementation 
 
 ***
 ***Additional Settings***  
-## Maitenance Mode / Splash Page
+## Application Maitenance Messages
 
 For maintenance messages, a feature splash messages is available in the application.  
 Splash page could be enabled using environment variables for the "spa-env-server" in the connected environment in OpenShift.
