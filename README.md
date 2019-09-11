@@ -1,15 +1,16 @@
+***Following note is specific to this branch only***  
 
+Please do not merge this branch in **master** unless middleware REST API for version number is available.
 
-***Note specific to this branch: partial functionality***  
 ### Context
-This branch has additional feature to verify the version from middleware.  
-However, middleware has needs approval and additional setup to expose REST API for version number of middleware. There is more changes require at enviornment ngix proxies and middleware.
+This branch has an additional feature to verify the version from middleware.
+However, middleware has needs approval to change and additional setup to expose REST API for version number of middleware. There are more changes require in openshift environment, NGNIX proxies and middleware.
 
 ### Frontend
 Frontend has been completed.   
-In order to verify the middleware version api feature in frontend. please set value for key ```baseVersionAPIUrl``` in 
-[environment.ts](/src/environments/environment.ts).  Please run the application and browse (http://localhost:4200/version). 
-Provide valid Captcha and this will display the version number.
+To verify the middleware version API feature in frontend, please set value for key ```baseVersionAPIUrl``` in 
+[environment.ts](/src/environments/environment.ts). Please run the application and browse (http://localhost:4200/version). 
+Provide valid Captcha to see version number.
 
 ***
 
