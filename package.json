@@ -1,6 +1,6 @@
 {
   "name": "moh-sitereg",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --host 0.0.0.0 --port 4200 -o --disable-host-check",
@@ -14,7 +14,7 @@
     "e2e:registration": "npm run e2e-protractor -- e2e/protractor.registration.conf.js",
     "e2e-register:happy-path": "npm run e2e-protractor -- e2e/protractor.registration.conf.js --specs=e2e/registration/src/reg-happy-path-e2e-spec.ts",
     "e2e-register:happy-path-dev": "npm run e2e-protractor -- e2e/protractor.registration.conf.js --specs=e2e/registration/src/reg-happy-path-e2e-spec.ts --data=e2e/data.json --baseUrl=https://moh-sitereg-dev.pathfinder.gov.bc.ca",
-    "e2e-register:happy-path-local": "npm run e2e-protractor -- e2e/protractor.registration.conf.js --specs=e2e/registration/src/reg-happy-path-e2e-spec.ts --data=e2e/data.json",    
+    "e2e-register:happy-path-local": "npm run e2e-protractor -- e2e/protractor.registration.conf.js --specs=e2e/registration/src/reg-happy-path-e2e-spec.ts --data=e2e/data.json",
     "e2e-update:happy-path": "npm run e2e-protractor -- e2e/protractor.update.conf.js --specs=e2e/update/src/update-happy-path.e2e-spec.ts",
     "e2e-update:happy-path-dev": "npm run e2e-protractor -- e2e/protractor.update.conf.js --specs=e2e/update/src/update-happy-path.e2e-spec.ts --data=e2e/data-update.json --baseUrl=https://moh-sitereg-dev.pathfinder.gov.bc.ca",
     "e2e-update:happy-path-local": "npm run e2e-protractor -- e2e/protractor.update.conf.js --specs=e2e/update/src/update-happy-path.e2e-spec.ts --data=e2e/data-update.json ",
