@@ -13,7 +13,7 @@ import * as interfaceObjects from '../shared/i-requestor';
     styleUrls: ['./requestor-review.component.scss'],
 })
 export class MspDirectUpdateRequestorReviewComponent implements OnInit {
-    @ViewChild(MspDirectUpdateReviewContainerComponent)
+    @ViewChild(MspDirectUpdateReviewContainerComponent, { static: true })
     review: MspDirectUpdateReviewContainerComponent;
 
     constructor(public updateStateService: UpdateStateService) {}

@@ -12,7 +12,7 @@ import * as interfaceObjects from '../shared/i-organization';
     styleUrls: ['./organization-review.component.scss'],
 })
 export class MspDirectUpdateOrganizationReviewComponent implements OnInit {
-    @ViewChild(MspDirectUpdateReviewContainerComponent)
+    @ViewChild(MspDirectUpdateReviewContainerComponent, { static: true })
     review: MspDirectUpdateReviewContainerComponent;
 
     constructor(public updateStateService: UpdateStateService) {}

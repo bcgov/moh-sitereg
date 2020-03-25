@@ -56,7 +56,7 @@ export class MspDirectUpdateOrganizationComponent extends AbstractForm
     //#region NEW
 
     // // tslint:disable-next-line: member-ordering
-    // @ViewChild(MspDirectUpdateOrganizationEditComponent)
+    // @ViewChild(MspDirectUpdateOrganizationEditComponent, { static: true })
     // formOrganizationEdit: MspDirectUpdateOrganizationEditComponent;
 
     orgUpdatesChange(bool: boolean) {
