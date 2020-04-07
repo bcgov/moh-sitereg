@@ -9,13 +9,16 @@ describe('Moh SiteReg - Access Admins Page', () => {
     const ACCESS_PAGE_URL = `register/access-admins`;
     const USERS_PAGE_URL = `register/users`;
     const jsonData = data.getJSONData();
-    if (data.hasJsonData) { // Uses JSON data
+    if (data.hasJsonData) {
+        // Uses JSON data
         accessData = jsonData;
     }
 
     beforeAll(() => {
         if (data.hasJsonData === false) {
-            console.log('START OF MOH-SITEREG E2E' + '\nThis test uses Seed #: ' + data.getSeed());
+            console.log(
+                `START OF MOH-SITEREG E2E\nThis test uses Seed #: ${data.getSeed()}`
+            );
         }
     });
 
@@ -30,13 +33,19 @@ describe('Moh SiteReg - Access Admins Page', () => {
     it('01. should load the page without issue', () => {
         accessPage.navigateTo();
         expect(browser.getCurrentUrl()).toContain(ACCESS_PAGE_URL);
-        expect(accessPage.formErrors().count()).toBe(0, 'should be no errors on page load');
+        expect(accessPage.formErrors().count()).toBe(
+            0,
+            'should be no errors on page load'
+        );
     });
 
     it('02. should let user to continue without filling out any fields', () => {
         accessPage.navigateTo();
         accessPage.continue();
-        expect(browser.getCurrentUrl()).toContain(ACCESS_PAGE_URL, 'should stay on the same page');
+        expect(browser.getCurrentUrl()).toContain(
+            ACCESS_PAGE_URL,
+            'should stay on the same page'
+        );
     });
 
     it('03. should let user to continue if all the required fields are filled out', () => {
@@ -46,8 +55,14 @@ describe('Moh SiteReg - Access Admins Page', () => {
         accessPage.scrollDown();
         accessPage.selectAdministeringFor('administeringFor', 'Employees');
         accessPage.continue();
-        expect(accessPage.formErrors().count()).toBe(0, 'should be no errors after filling out');
-        expect(browser.getCurrentUrl()).toContain(USERS_PAGE_URL, 'should navigate to the Users page');
+        expect(accessPage.formErrors().count()).toBe(
+            0,
+            'should be no errors after filling out'
+        );
+        expect(browser.getCurrentUrl()).toContain(
+            USERS_PAGE_URL,
+            'should navigate to the Users page'
+        );
     });
 
     it('04. should NOT let user to continue when user clicks the x button', () => {
@@ -58,7 +73,10 @@ describe('Moh SiteReg - Access Admins Page', () => {
         accessPage.selectAdministeringFor('administeringFor', 'Employees');
         accessPage.clickButton('btn delete');
         accessPage.continue();
-        expect(browser.getCurrentUrl()).toContain(ACCESS_PAGE_URL, 'should navigate to the Users page');
+        expect(browser.getCurrentUrl()).toContain(
+            ACCESS_PAGE_URL,
+            'should navigate to the Users page'
+        );
     });
 
     // Additional Tests
@@ -76,8 +94,14 @@ describe('Moh SiteReg - Access Admins Page', () => {
         accessPage.clickButton('btn delete'); // deletes the second admin created (latest one)
         browser.sleep(10000);
         accessPage.continue();
-        expect(accessPage.formErrors().count()).toBe(0, 'should be no errors after filling out');
-        expect(browser.getCurrentUrl()).toContain(USERS_PAGE_URL, 'should navigate to the Users page');
+        expect(accessPage.formErrors().count()).toBe(
+            0,
+            'should be no errors after filling out'
+        );
+        expect(browser.getCurrentUrl()).toContain(
+            USERS_PAGE_URL,
+            'should navigate to the Users page'
+        );
     });
 
     it('06. should NOT be able to continue with an incomplete admin section even if another admin is complete', () => {
@@ -101,8 +125,14 @@ describe('Moh SiteReg - Access Admins Page', () => {
         accessPage.scrollDown();
         accessPage.selectAdministeringFor('administeringFor', 'Employees');
         accessPage.continue();
-        expect(accessPage.formErrors().count()).toBe(0, 'should be no errors after filling out');
-        expect(browser.getCurrentUrl()).toContain(USERS_PAGE_URL, 'should navigate to the Users page');
+        expect(accessPage.formErrors().count()).toBe(
+            0,
+            'should be no errors after filling out'
+        );
+        expect(browser.getCurrentUrl()).toContain(
+            USERS_PAGE_URL,
+            'should navigate to the Users page'
+        );
     });
 
     // Test will fail since _autofill is still active in dev mode
@@ -110,5 +140,4 @@ describe('Moh SiteReg - Access Admins Page', () => {
         // accessPage.navigateTo();
         // expect(accessPage.getTextFromField()).toBe('', 'should be empty');
     });
-
 });

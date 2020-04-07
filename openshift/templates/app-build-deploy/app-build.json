@@ -62,7 +62,7 @@
 			  ]
 			}
 		  ],
-          "type": "Dockerfile",
+          "type": "Dockerfile"
         },
         "strategy": {
 		  "dockerStrategy": {
@@ -78,7 +78,7 @@
           {
             "type": "ImageChange"
           }
-        ],
+        ]
       },
       "status": {
         "lastVersion": 0
