@@ -1,6 +1,15 @@
 import { browser } from 'protractor';
-import { FakeDataSiteReg } from './sitereg.data';
-import { SigningAuthorityPage, OrganizationPage, AccessAdminsPage, UsersPage, GroupNumbersPage, AuthorizePage, SpecialCasePage, ReviewPage } from './sitereg.po';
+import {
+    SigningAuthorityPage,
+    OrganizationPage,
+    AccessAdminsPage,
+    UsersPage,
+    GroupNumbersPage,
+    AuthorizePage,
+    SpecialCasePage,
+    ReviewPage,
+    BASE_REGISTER_URL,
+} from './sitereg.po';
 
 fdescribe('Moh SiteReg - End to End Test (Happy Path)', () => {
     let orgPage: OrganizationPage;
@@ -12,14 +21,14 @@ fdescribe('Moh SiteReg - End to End Test (Happy Path)', () => {
     let authPage: AuthorizePage;
     let scPage: SpecialCasePage;
 
-    const ORG_PAGE_URL = `register/organization`;
-    const SA_PAGE_URL = `register/signing-authority`;
-    const AA_PAGE_URL = `register/access-admins`;
-    const USERS_PAGE_URL = `register/users`;
-    const GROUP_PAGE_URL = `register/group-numbers`;
-    const REVIEW_PAGE_URL = `register/review`;
-    const AUTH_PAGE_URL = `register/authorize`;
-    const CONFIRM_PAGE_URL = `register/confirmation`;
+    const ORG_PAGE_URL = `${BASE_REGISTER_URL}/organization`;
+    const SA_PAGE_URL = `${BASE_REGISTER_URL}/signing-authority`;
+    const AA_PAGE_URL = `${BASE_REGISTER_URL}/access-admins`;
+    const USERS_PAGE_URL = `${BASE_REGISTER_URL}/users`;
+    const GROUP_PAGE_URL = `${BASE_REGISTER_URL}/group-numbers`;
+    const REVIEW_PAGE_URL = `${BASE_REGISTER_URL}/review`;
+    const AUTH_PAGE_URL = `${BASE_REGISTER_URL}/authorize`;
+    const CONFIRM_PAGE_URL = `${BASE_REGISTER_URL}/confirmation`;
 
     beforeEach(() => {
         orgPage = new OrganizationPage();
@@ -34,23 +43,45 @@ fdescribe('Moh SiteReg - End to End Test (Happy Path)', () => {
 
     it('Should navigate from Organization to Confirmation Page (end-to-end) when all required fields are filled out', () => {
         orgPage.navigateTo();
-        expect(browser.getCurrentUrl()).toContain(ORG_PAGE_URL, 'should navigate to the Organization Page');
+        expect(browser.getCurrentUrl()).toContain(
+            ORG_PAGE_URL,
+            'should navigate to the Organization Page'
+        );
         orgPage.fillPage();
-        expect(browser.getCurrentUrl()).toContain(SA_PAGE_URL, 'should continue to the Signing Authority Page');
+        expect(browser.getCurrentUrl()).toContain(
+            SA_PAGE_URL,
+            'should continue to the Signing Authority Page'
+        );
         saPage.fillPage();
-        expect(browser.getCurrentUrl()).toContain(AA_PAGE_URL, 'should continue to the Access Admins Page');
+        expect(browser.getCurrentUrl()).toContain(
+            AA_PAGE_URL,
+            'should continue to the Access Admins Page'
+        );
         aaPage.fillPage();
-        expect(browser.getCurrentUrl()).toContain(USERS_PAGE_URL, 'should continue to the Users Page');
+        expect(browser.getCurrentUrl()).toContain(
+            USERS_PAGE_URL,
+            'should continue to the Users Page'
+        );
         usersPage.fillPage();
-         // should show the "Will this group be administered?" question if the user selected 3rd party administrators on the Organization page
-        expect(browser.getCurrentUrl()).toContain(GROUP_PAGE_URL, 'should continue to the Group Page');
+        // should show the "Will this group be administered?" question if the user selected 3rd party administrators on the Organization page
+        expect(browser.getCurrentUrl()).toContain(
+            GROUP_PAGE_URL,
+            'should continue to the Group Page'
+        );
         groupPage.fillPage();
-        expect(browser.getCurrentUrl()).toContain(REVIEW_PAGE_URL, 'should continue to the Review Page');
+        expect(browser.getCurrentUrl()).toContain(
+            REVIEW_PAGE_URL,
+            'should continue to the Review Page'
+        );
         reviewPage.continue();
-        expect(browser.getCurrentUrl()).toContain(AUTH_PAGE_URL, 'should contunue to the Authorization Page');
+        expect(browser.getCurrentUrl()).toContain(
+            AUTH_PAGE_URL,
+            'should contunue to the Authorization Page'
+        );
         authPage.fillPage();
-        expect(browser.getCurrentUrl()).toContain(CONFIRM_PAGE_URL, 'should be able to succesfully submit the form');
+        expect(browser.getCurrentUrl()).toContain(
+            CONFIRM_PAGE_URL,
+            'should be able to succesfully submit the form'
+        );
     }, 2000000);
-
 });
-

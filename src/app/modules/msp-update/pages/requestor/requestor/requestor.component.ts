@@ -27,7 +27,7 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class MspDirectUpdateRequestorComponent
     implements OnInit, AfterViewInit, IDataForm {
-    @ViewChild('consentModal') consentModal;
+    @ViewChild('consentModal', { static: true }) consentModal;
     validFormControl: (fg: FormGroup, name: string) => boolean;
     json: (formValues: any) => any;
 

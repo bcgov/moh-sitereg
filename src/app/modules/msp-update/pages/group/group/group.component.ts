@@ -76,7 +76,9 @@ export class MspDirectUpdateGroupComponent implements OnInit {
         // splunk-log
         this.loggerSvc.logNavigation(
             this.constructor.name,
-            `Valid Data - Continue button clicked. ${this.globalConfigSvc.applicationId}`
+            `Valid Data - Continue button clicked. ${
+                this.globalConfigSvc.applicationId
+            }`
         );
         this.progressService.setPageComplete();
         this.router.navigate([ROUTES_UPDATE.REVIEW.fullpath]);
@@ -101,7 +103,7 @@ export class MspDirectUpdateGroupComponent implements OnInit {
     //#region REMOVE
 
     // tslint:disable-next-line: member-ordering
-    @ViewChild(MspDirectUpdateGroupRemoveComponent)
+    @ViewChild(MspDirectUpdateGroupRemoveComponent, { static: true })
     formRemove: MspDirectUpdateGroupRemoveComponent;
 
     get formRemoveState(): FormGroup {
@@ -124,7 +126,7 @@ export class MspDirectUpdateGroupComponent implements OnInit {
     //#region Add
 
     // tslint:disable-next-line: member-ordering
-    @ViewChild(MspDirectUpdateGroupAddComponent)
+    @ViewChild(MspDirectUpdateGroupAddComponent, { static: true })
     formAdd: MspDirectUpdateGroupAddComponent;
 
     get formAddState(): FormGroup {
@@ -147,7 +149,7 @@ export class MspDirectUpdateGroupComponent implements OnInit {
     //#region Update
 
     // tslint:disable-next-line: member-ordering
-    @ViewChild(MspDirectUpdateGroupEditComponent)
+    @ViewChild(MspDirectUpdateGroupEditComponent, { static: true })
     formEdit: MspDirectUpdateGroupEditComponent;
 
     get formEditState(): FormGroup {

@@ -1,52 +1,37 @@
 // Protractor configuration file, see link for more information
 // https://github.com/angular/protractor/blob/master/lib/config.ts
-
-const { SpecReporter } = require('jasmine-spec-reporter');
+const { SpecReporter, StacktraceOption } = require('jasmine-spec-reporter');
 
 exports.config = {
-  allScriptsTimeout: 11000,
-  specs: [
-    './update/src/*.e2e-spec.ts',
-  ],
-  multiCapabilities: [{
-  //  'browserName': 'firefox'
-  //}, {
-    'browserName': 'chrome'
-  //  'chromeOptions': {args: ['--headless']}
-  }],
-  directConnect: true,
-  baseUrl: 'http://localhost:4200/',
-  framework: 'jasmine2',
-  jasmineNodeOpts: {
-    showColors: true,
-    defaultTimeoutInterval: 30000,
-    print: function() {}
-  },
-  resultJsonOutputFile: 'e2e/moh-update-e2e-results.json',
-  onPrepare: function() {
-    require('ts-node').register({
-      project: require('path').join(__dirname, './tsconfig.e2e.json')
-    });
-    jasmine.getEnv().addReporter(new SpecReporter({ spec: { displayStacktrace: true } }));
-    var jasmineReporters = require('jasmine-reporters');
- 
-    // returning the promise makes protractor wait for the reporter config before executing tests
-    return browser.getProcessedConfig().then(function(config) {
-        // you could use other properties here if you want, such as platform and version
-        var browserName = config.capabilities.browserName;
- 
-        var junitReporter = new jasmineReporters.JUnitXmlReporter({
-            consolidateAll: true,
-            savePath: 'testresults',
-            // this will produce distinct xml files for each capability
-            filePrefix: browserName + '-xmloutput',
-            modifySuiteName: function(generatedSuiteName, suite) {
-                // this will produce distinct suite names for each capability,
-                // e.g. 'firefox.login tests' and 'chrome.login tests'
-                return browserName + '.' + generatedSuiteName;
-            }
+    allScriptsTimeout: 11000,
+    specs: ['./update/src/*.e2e-spec.ts'],
+    multiCapabilities: [
+        {
+            // 'browserName': 'firefox'
+            // }, {
+            browserName: 'chrome',
+            // chromeOptions: {args: ['--headless']}
+        },
+    ],
+    directConnect: true,
+    baseUrl: 'http://localhost:4200/',
+    framework: 'jasmine',
+    jasmineNodeOpts: {
+        showColors: true,
+        defaultTimeoutInterval: 30000,
+        print: function() {},
+    },
+    resultJsonOutputFile: 'e2e/moh-update-e2e-results.json',
+    onPrepare() {
+        require('ts-node').register({
+            project: require('path').join(__dirname, './tsconfig.e2e.json'),
         });
-        jasmine.getEnv().addReporter(junitReporter);
-    });
-  }
+        jasmine
+            .getEnv()
+            .addReporter(
+                new SpecReporter({
+                    spec: { displayStacktrace: StacktraceOption.PRETTY },
+                })
+            );
+    },
 };

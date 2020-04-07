@@ -13,11 +13,11 @@ import * as common from '../../../common/update-json-map';
     styleUrls: ['./user-review.component.scss'],
 })
 export class MspDirectUpdateUserReviewComponent implements OnInit {
-    @ViewChild('add')
+    @ViewChild('add', { static: true })
     add: MspDirectUpdateReviewContainerComponent;
-    @ViewChild('remove')
+    @ViewChild('remove', { static: true })
     remove: MspDirectUpdateReviewContainerComponent;
-    @ViewChild('edit')
+    @ViewChild('edit', { static: true })
     edit: MspDirectUpdateReviewContainerComponent;
 
     constructor(public updateStateService: UpdateStateService) {}

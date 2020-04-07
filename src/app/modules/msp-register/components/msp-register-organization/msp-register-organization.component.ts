@@ -1,4 +1,10 @@
-import { Component, OnInit, ChangeDetectionStrategy, ViewChild, AfterViewInit } from '@angular/core';
+import {
+    Component,
+    OnInit,
+    ChangeDetectionStrategy,
+    ViewChild,
+    AfterViewInit,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MspRegisterStateService } from '@msp-register/services/msp-register-state.service';
@@ -41,8 +47,9 @@ export class MspRegisterOrganizationComponent implements OnInit, AfterViewInit {
             'Employees and International Students',
         ]
     );
-
-    @ViewChild('consentModal') consentModal: ConsentModalComponent;
+    
+    @ViewChild('consentModal', { static: true })
+    consentModal: ConsentModalComponent;
 
     validFormControl: () => boolean;
 
@@ -104,7 +111,7 @@ export class MspRegisterOrganizationComponent implements OnInit, AfterViewInit {
         this.loggerSvc.logNavigation(
             this.constructor.name,
             `Valid Data - Continue button clicked. ${
-            this.globalConfigSvc.applicationId
+                this.globalConfigSvc.applicationId
             }`
         );
 
