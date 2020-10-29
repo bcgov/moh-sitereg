@@ -11,6 +11,7 @@ export const environment = {
     loggingURL: '/sitereg/api/logging',
     captchaApiBaseUrl: '/sitereg/api/captcha',
     envServerUrl: '/sitereg/api/env',
+    addressApiUrl: '/sitereg/api/address',
     logHTTPRequestsToConsole: true,
 
     /** Implemented in msp-update module */

@@ -7,6 +7,7 @@ export const environment = {
     captchaApiBaseUrl: '/sitereg/api/captcha',
     loggingURL: '/sitereg/api/logging',
     envServerUrl: '/sitereg/api/env',
+    addressApiUrl: '/sitereg/api/address',
     logHTTPRequestsToConsole: false,
     bypassSplashPage: false,
     bypassGuards: false,
