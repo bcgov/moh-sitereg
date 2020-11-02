@@ -20,6 +20,7 @@ export class MspRegisterOrganization extends GenerateForm<IMspOrganization>
     blueCross: ctFormControlBoolean = null;
     administeringFor: ctFormControlString = null;
     suite: ctFormControlString = null;
+    addressLookup: ctFormControlString = null;
     street: ctFormControlString = null;
     streetName: ctFormControlString = null;
     addressLine2: ctFormControlString = null;
@@ -33,6 +34,7 @@ export class MspRegisterOrganization extends GenerateForm<IMspOrganization>
             // organizationNumber: [groupNumberValidator()], // TBD: opt-out, this is MSP group number
             name: [required, Validators.maxLength(100), trailingSpacesValidator()],
             suite: [Validators.maxLength(10)],
+            addressLookup: [],
             street: [required, Validators.maxLength(10), trailingSpacesValidator()],
             streetName: [required, Validators.maxLength(75), trailingSpacesValidator()],
             addressLine2: [Validators.maxLength(200)], // todo: test blank behaviour and validate form
