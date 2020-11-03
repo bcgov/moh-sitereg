@@ -157,6 +157,7 @@ export class MspRegisterOrganizationComponent implements OnInit, AfterViewInit {
         return middleWareObject;
     }
 
+    // TODO: Add unit tests to confirm form patch.
     onAddressSelect(address: Address) {
         this.fg.patchValue({
             suite: address.unitNumber,

@@ -87,6 +87,7 @@ export class MspDirectUpdateOrganizationEditComponent
         formGroup.patchValue(RandomObjects.getOrganization('Org'));
     }
 
+    // TODO: Add unit tests to confirm form patch.
     onAddressSelect(address: Address) {
         this.formState.patchValue({
             suite: address.unitNumber,
