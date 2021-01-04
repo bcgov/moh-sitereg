@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { MspDirectUpdateProgressService } from '../../../services/progress.service';
 import { ROUTES_UPDATE } from '../../../routing/routes.constants';
@@ -26,7 +26,8 @@ export class MspDirectUpdateOrganizationComponent extends AbstractForm
         private progressService: MspDirectUpdateProgressService,
         private loggerSvc: LoggerService,
         private globalConfigSvc: GlobalConfigService,
-        public updateStateService: UpdateStateService
+        public updateStateService: UpdateStateService,
+        private cd: ChangeDetectorRef
     ) {
         super(router);
     }
@@ -79,6 +80,7 @@ export class MspDirectUpdateOrganizationComponent extends AbstractForm
     }
     set hasOrganizationUpdates(value) {
         this.updateStateService.hasOrganizationUpdates = value;
+        this.cd.detectChanges();
         if (value && value === true) {
             // console.log('has organization udpates - create form');
             // this.createFormGroup();

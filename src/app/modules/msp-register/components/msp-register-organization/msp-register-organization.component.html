@@ -54,6 +54,13 @@
           Enter Organization name
         </div>
 
+        <!-- Address Lookup -->
+        <common-address-validator id="addressLookup"
+                                  formControlName="addressLookup"
+                                  label="Address Lookup (optional)"
+                                  [serviceUrl]="addressServiceUrl"
+                                  (select)="onAddressSelect($event)"></common-address-validator>
+
         <!-- Suite Number-->
         <label class="control-label" for="suite">Suite# (optional)</label>
         <input id="suite" formControlName="suite" class="form-control"  maxlength="10">

@@ -253,7 +253,7 @@ export const cUpdateValidators = {
         ],
         province: [Validators.minLength(2), Validators.maxLength(3)],
         postalCode: [
-            Validators.maxLength(6),
+            Validators.maxLength(7),
             // postalCodeValidator(),
         ],
         // blueCross: [], why blue cross is missing this time in question

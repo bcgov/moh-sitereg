@@ -8,6 +8,7 @@ import {
 import { getEditJSONofOrganization } from '../shared/organization-json-map';
 import { RandomObjects, IDataForm } from '../../../common/i-dataform';
 import { environment } from 'src/environments/environment.prod';
+import { Address } from 'moh-common-lib';
 
 @Component({
     selector: 'sitereg-update-organization-edit',
@@ -22,6 +23,7 @@ export class MspDirectUpdateOrganizationEditComponent
 
     parentForm: FormGroup;
     administeringForOptions = cUpdateEnumeration.administeringFor.edit;
+    addressServiceUrl: string = environment.addressApiUrl;
     validFormControl: (fg: FormGroup, name: string) => boolean;
     json: (formValues: any) => any;
 
@@ -63,6 +65,7 @@ export class MspDirectUpdateOrganizationEditComponent
                 null,
                 cUpdateValidators.organization.organizationName,
             ],
+            addressLookup: [],
             suite: [null, cUpdateValidators.organization.suite],
             street: [null, cUpdateValidators.organization.street],
             streetName: [null, cUpdateValidators.organization.streetName],
@@ -82,5 +85,17 @@ export class MspDirectUpdateOrganizationEditComponent
     patchValue(formGroup) {
         if (!environment.useDummyData) return;
         formGroup.patchValue(RandomObjects.getOrganization('Org'));
+    }
+
+    // TODO: Add unit tests to confirm form patch.
+    onAddressSelect(address: Address) {
+        this.formState.patchValue({
+            suite: address.unitNumber,
+            street: address.streetNumber,
+            streetName: address.streetName,
+            city: address.city,
+            province: address.province,
+            postalCode: address.postal
+        })
     }
 }

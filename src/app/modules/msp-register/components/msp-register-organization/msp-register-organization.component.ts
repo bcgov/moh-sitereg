@@ -17,7 +17,7 @@ import {
     MSP_REGISTER_ROUTES,
 } from '@msp-register/constants';
 import { MspRegistrationService } from '@msp-register/msp-registration.service';
-import { ConsentModalComponent } from 'moh-common-lib';
+import { ConsentModalComponent, Address } from 'moh-common-lib';
 import { environment } from 'src/environments/environment.prod';
 
 @Component({
@@ -41,6 +41,7 @@ export class MspRegisterOrganizationComponent implements OnInit, AfterViewInit {
             'Employees and International Students',
         ]
     );
+    public addressServiceUrl: string = environment.addressApiUrl;
 
     @ViewChild('consentModal') consentModal: ConsentModalComponent;
 
@@ -154,5 +155,17 @@ export class MspRegisterOrganizationComponent implements OnInit, AfterViewInit {
         //     middleWareObject
         // );
         return middleWareObject;
+    }
+
+    // TODO: Add unit tests to confirm form patch.
+    onAddressSelect(address: Address) {
+        this.fg.patchValue({
+            suite: address.unitNumber,
+            street: address.streetNumber,
+            streetName: address.streetName,
+            city: address.city,
+            province: address.province,
+            postalCode: address.postal.replace(' ', '')
+        });
     }
 }
