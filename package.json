@@ -33,7 +33,7 @@
     "@angular/platform-browser": "~7.2.0",
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
-    "@ng-select/ng-select": "^2.16.4",
+    "@ng-select/ng-select": "^2.20.5",
     "@types/faker": "^4.1.5",
     "angular2-text-mask": "^9.0.0",
     "angular2-uuid": "^1.1.1",
