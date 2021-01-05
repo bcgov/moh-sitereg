@@ -58,7 +58,7 @@
     "screenshot-protractor": "^1.0.0",
     "sha1": "^1.1.1",
     "tslib": "^1.10.0",
-    "yargs": "^13.2.4",
+    "yargs": "^16.0.0",
     "zlib": "^1.0.5",
     "zone.js": "~0.8.26"
   },
