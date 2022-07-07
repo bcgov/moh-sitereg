@@ -45,7 +45,7 @@
     "faker": "^4.1.0",
     "font-awesome": "^4.7.0",
     "moh-common-lib": "^3.2.5",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "mygovbc-bootstrap-theme": "^0.4.1",
     "ngx-bootstrap": "^5.1.2",
     "ngx-json-viewer": "^2.4.0",
