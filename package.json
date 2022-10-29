@@ -76,7 +76,7 @@
     "jasmine-reporters": "^2.3.2",
     "jasmine-json-test-reporter": "^1.0.0-beta",
     "jasmine-spec-reporter": "~4.2.1",
-    "karma": "~4.0.0",
+    "karma": "~6.4.1",
     "karma-chrome-launcher": "~2.2.0",
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~1.1.2",
