@@ -51,7 +51,7 @@
     "ngx-json-viewer": "^2.4.0",
     "ngx-mask": "^7.3.6",
     "ngx-mydatepicker": "^2.4.5",
-    "pdfjs-dist": "^2.0.550",
+    "pdfjs-dist": "^4.2.67",
     "popper.js": "^1.14.7",
     "prettier": "^1.16.4",
     "rxjs": "^6.3.3",
